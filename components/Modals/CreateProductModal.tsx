@@ -26,7 +26,7 @@ interface Props {
 function CreateProductModal(this: any, {}: Props): ReactElement {
 
     const sectionsProduct = useAppSelector(sections_product)
-    const [clips, setclips] = useState([{id2:99} , {id2:98} , {id2:97}])
+    const [clips, setclips] = useState<{id2:number , src:strng}[]>([])
     
 
 
@@ -40,7 +40,6 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
 
 
     function handleOnDragEnd(result:any) {
-        console.log(result)
         if(result.source.droppableId === 'main')
         {
             if (!result.destination) return;
@@ -84,6 +83,29 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
         console.log(sectionsProduct)
     }, [sectionsProduct])
 
+
+    
+
+
+    const [isLoading, setIsLoading] = useState(false);
+
+    const addClip = (e) => {
+        if(e.target.files[0]) {
+            setclips(
+            [...clips , 
+            {
+                id2: Date.now(),
+                src: URL.createObjectURL(e.target.files[0]),
+            }
+            ])    
+        }   
+    }
+    const deleteClip = (index) => {
+        let oldclips = [...clips] 
+        oldclips.splice(index, 1)
+        setclips(oldclips)
+    }
+
     return (
         <ProductCreateModal>
             <ProductCreateForm>
@@ -94,7 +116,7 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
                 <DragDropContext onDragEnd={handleOnDragEnd}>
                     <Droppable droppableId="main" >
                         {(provided , snapshot) => (
-                            <div  style={{
+                            <div key={"77"}  style={{
                                 background: snapshot.isDraggingOver
                                   ? "lightblue"
                                   : "lightgrey",
@@ -116,15 +138,15 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
                                                     color: "white",
                                                     ...provided.draggableProps.style
                                                   }}>   
-                                                    <ProductLabelCont key={id}>
-                                                        <span style={{marginRight:"10px" , color:"black"}} {...provided.dragHandleProps}><FontAwesomeIcon icon={faRulerVertical}  >block</FontAwesomeIcon></span>
-                                                        {isEditor && <button type='button' onClick={()=>deleteBlock(index)}>x</button>}
+                                                    <ProductLabelCont >
+                                                        {isEditor &&<button disabled={id === 1 ||  id === 2 || id === 3} type='button' onClick={()=>dispatch(deleteSection({index:index}))}>x</button>}
+                                                        <span {...provided.dragHandleProps}  style={{marginRight:"10px" , color:"black"}} ><FontAwesomeIcon icon={faRulerVertical}  >block</FontAwesomeIcon></span>
                                                         {isClips && <input type='text' disabled={true} value={label_key} />}
                                                         {isEditor &&<input type='text' value={label_key} onChange={(e:any) => dispatch(updateKey({index:index , content:e.target.value}))} />}
                                                         {isEditor && <MyEditor content={label_value}  onChange={(content:any) => dispatch(updateLabel({index:index , content:content}))}/>}
                                                         {isEditor &&<label htmlFor="title">validate</label>}
                                                         {isClips && 
-                                                            <div style={{width:'100%', height:'450px'}}>
+                                                            <div style={{width:'100%', height:'450px', display:'flex' , flexDirection:'column'}}>
                                                                 <Droppable droppableId="clips"  type={`${1}`}>
                                                                     {(provided , snapshot) => (
                                                                         <div  style={{
@@ -134,7 +156,7 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
                                                                             padding: 4,
                                                                             width: "100%",
                                                                         }} {...provided.droppableProps} ref={provided.innerRef}>
-                                                                            {clips.map(({id2}, index) => {
+                                                                            {clips.map(({id2, src}, index) => {
                                                                                 return (
                                                                                     <Draggable key={id2} draggableId={id2.toString()} index={index}>
                                                                                         {(provided , snapshot) => (
@@ -148,8 +170,10 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
                                                                                                 color: "white",
                                                                                                 ...provided.draggableProps.style
                                                                                             }}>
+                                                                                                <img className="imgPreview" id="imgPreview" src={src} width="auto" height="100px" alt=""/>
                                                                                                 <span style={{marginRight:"10px" , color:"black"}} {...provided.dragHandleProps}><FontAwesomeIcon icon={faRulerVertical}  >block</FontAwesomeIcon></span>
                                                                                                 {id2}
+                                                                                                <button type="button" onClick={() => deleteClip(index)}>delete img</button>
                                                                                             </div>  
                                                                                         )}
                                                                                     </Draggable>
@@ -159,6 +183,8 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
                                                                         </div>
                                                                     )}
                                                                 </Droppable>
+
+                                                                <button><input onChangeCapture={addClip} value={""} type="file" placeholder="add Image"/></button>
                                                             </div>
                                                         }
 
@@ -194,7 +220,7 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
 
 
                 
-                <button type="button" onClick={addNewBlock}>add new block</button>
+                <button type="button" disabled={sectionsProduct.length > 7} onClick={addNewBlock}>add new block</button>
                 <button type="submit">Post</button>
             </ProductCreateForm>
         </ProductCreateModal>

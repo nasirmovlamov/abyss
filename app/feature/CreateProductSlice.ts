@@ -24,8 +24,10 @@ export const CreateProductSlice = createSlice({
             state.sections_product =  [...state.sections_product , {id:Date.now() , label_key:"Header" , label_value:"" , isEditor:true , isClips:false}]
         },
         deleteSection(state, {payload})
-        {
-            state.sections_product.splice(payload.index, 1)
+        {   
+            let newArray = [...state.sections_product]
+            newArray.splice( payload.index, 1)
+            state.sections_product = newArray
         }
         
     },

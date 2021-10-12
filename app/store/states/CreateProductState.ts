@@ -11,14 +11,14 @@ export const CreateProductState:CreateProductInterface = {
             isClips:false,
         },
         {
-            id: 2,
+            id:2,
             label_key: "Clips",
             label_value:"",
             isEditor:false,
             isClips:true
         },
         {
-            id: 3,
+            id:3,
             label_key: "Description",
             label_value:"",
             isEditor:true,
