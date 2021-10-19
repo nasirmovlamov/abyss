@@ -20,6 +20,7 @@ export const ProductCreateForm = styled.div`
     border-radius:10px;
     width: 1200px;
     overflow-y: auto;
+    height: auto;
 
 `
 

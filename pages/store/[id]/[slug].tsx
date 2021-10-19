@@ -15,6 +15,10 @@ import { PageDefaultStyle } from '../../../styles/pages/Page.styled'
 import {  SingleProductMiddle } from '../../../styles/pages/SingleQuestionPage.styled'
 import { ClipBody, ClipsCont, ClipTitle, Flexer, LabelContent, LabelKey, MainClip, SideClip, SideClips, StoreDiscussionBody, StoreDiscussionCont, StoreDiscussionTitle, StoreForumBody, StoreForumCont, StoreForumTitle, StoreTop, StoreTopAvatar, StoreTopCodeLines, StoreTopContent, StoreTopImg, StoreTopImgCont, StoreTopPrice, StoreTopRatingBought, StoreTopRatingCont, StoreTopRatingStars, StoreTopTags, StoreTopTitle } from '../../../styles/pages/Store.styled'
 import FormQuestion from '../../../components/ForumQuestion'
+import { useAppDispatch } from '../../../app/store/hooks'
+import { changeModalAction } from '../../../app/feature/UserSlice'
+
+
 
 interface Props {
     
@@ -23,7 +27,8 @@ interface Props {
 
 const SingleProductPage = (props: Props) => {
     const [formQuestionsAPI, setformQuestionsAPI] = useState([])
-
+    const dispatch = useAppDispatch() 
+    
     const getQuestions = async () => {
         try {
             const response = await axios.get("https://610685e81f34870017437966.mockapi.io/forum")
@@ -73,6 +78,7 @@ const SingleProductPage = (props: Props) => {
                                     <StoreTopRatingBought><FontAwesomeIcon icon={faDollarSign} /> 381</StoreTopRatingBought>
                                 </StoreTopRatingCont>
                                 <StoreTopPrice>2.89$</StoreTopPrice>
+                                <button onClick={() => dispatch(changeModalAction("iterationCreate"))}> add iteration </button>
                             </StoreTopContent>
                         </Flexer>
                         
@@ -122,7 +128,7 @@ const SingleProductPage = (props: Props) => {
                     </ClipsCont>
                     
                     <StoreDiscussionCont>
-                        <StoreDiscussionTitle>Discussion</StoreDiscussionTitle>
+                        <StoreDiscussionTitle>Discussion  <button  onClick={() => dispatch(changeModalAction("discussionCreate"))}>create discussion</button></StoreDiscussionTitle>
                         <StoreDiscussionBody>
                             {formQuestionsAPI.map((element , index) => <FormQuestion key={index} data={element}/>)} 
                         </StoreDiscussionBody>

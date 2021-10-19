@@ -36,6 +36,9 @@ export const AUTH_STATE:AUTH_INTERFACE = {
         forgetPassword:false,
         isEmailSend:false,
         questionCreate:false,
+        productCreate:false,
+        discussionCreate:false,
+        iterationCreate:false
     },
     forms:{
         registerForm:{

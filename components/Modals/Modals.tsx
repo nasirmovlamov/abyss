@@ -8,6 +8,8 @@ import IsEmailSendModal from './IsEmailSendModal'
 import CreateQuestionModal from './CreateQuestionModal'
 import ModalCont from './ModalCont'
 import CreateProductModal from './CreateProductModal'
+import CreateDiscussionModal from './CreateDiscussionModal'
+import CreateIterationModal from './CreateIterationModal'
 
 interface Props {
 }
@@ -24,6 +26,8 @@ function Modals({}: Props):ReactElement {
             {allModals.isEmailSend && <ModalCont><IsEmailSendModal /></ModalCont>}
             {allModals.questionCreate && <ModalCont><CreateQuestionModal /></ModalCont>}        
             {allModals.productCreate && <ModalCont><CreateProductModal /></ModalCont>}        
+            {allModals.discussionCreate && <ModalCont><CreateDiscussionModal /></ModalCont>}        
+            {allModals.iterationCreate && <ModalCont><CreateIterationModal /></ModalCont>}        
             
             </>
     )
