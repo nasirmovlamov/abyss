@@ -40,7 +40,6 @@ function Forum({}: Props): ReactElement {
     return (
         <PageDefaultStyle>
             <SidePartOfPage side={"left"}>
-                <PageFilters/>
             </SidePartOfPage>
 
             <MainPartOfPage>

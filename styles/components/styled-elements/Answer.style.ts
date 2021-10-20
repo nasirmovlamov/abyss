@@ -7,11 +7,14 @@ export const AnswerStyle = styled.li`
     column-gap: 10px;
     padding: 10px;
     box-sizing:border-box;
-    border-bottom: 1px solid black;
     padding-bottom: 20px;
     flex-direction: column;
     color: white;
-    background-color: white;
+    background-color: #ffffff;
+    box-shadow: 0px 1px 1px rgba(99,105,108,0.61), inset 0px 0px 0px rgba(99,105,108,0.61);
+    border: 1px solid lightgray;
+    border-radius: 10px;
+
 `
 export const LikeButton = styled.button`
     display: flex;
@@ -43,10 +46,17 @@ export const Avatar = styled.div`
 
 `
 export const Name = styled.span`
-    font-size: 15px;
-    text-align: center;
-    color: black;
-    /* z-index: 999; */
+    font-size: 12px;
+    margin-top: 6px;
+    display: flex;
+    color: #00090e;
+    opacity: 0.62;
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
 `
 
