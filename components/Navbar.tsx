@@ -1,11 +1,6 @@
 import React, { ReactElement, useEffect,  useState } from 'react'
 import {Enterance, Guest, ImageStyle1, ImageStyle2,  Light, LightShadow, LightShadow2, Line,  LinksStyle, LinkStyle, LiStyle, Logged, LoginButton, Logo, LogoText, Logout, Nav, PersonName, RegisterButton} from '../styles/components/styled-elements/Navbar.style'
 import Image from 'next/image'
-import mainLogo from '../public/static/img/main-logo.svg'
-import lightPerson from '../public/static/img/light-person.png'
-import darkPerson from '../public/static/img/dark-person.png'
-import loginPng from '../public/static/img/login.svg'
-import registerSVG from '../public/static/img/register-icon.svg'
 import RegisterModal from './Modals/RegisterModal'
 import LoginModal from './Modals/LoginModal'
 import Modals from './Modals/Modals'
@@ -67,10 +62,10 @@ function Navbar({}: Props): ReactElement {
             const view = 
             <Guest>  
                 <LoginButton      onClick={() => dispatch(changeModalAction("login"))}>
-                    <Image  src={loginPng} alt={"login"}/> 
+                    <Image layout="fill" src={"/login.svg"} alt={"login"}/> 
                 </LoginButton>
                 <RegisterButton   onClick={() => dispatch(changeModalAction("register"))}>
-                    <Image  src={registerSVG} alt={"register"}/> 
+                    <Image layout="fill" src={"/register-icon.svg"} alt={"register"}/> 
                 </RegisterButton>
             </Guest>
             setnavView(view)
@@ -81,7 +76,7 @@ function Navbar({}: Props): ReactElement {
             const view = <>
                     <Logged> 
                         <ImageStyle1>
-                            <Image width="70px" height='40px' src={lightPerson} alt={"person icon"}/> 
+                            <Image width="70px" height='40px' layout="fill" src={"/dark-person.png"} alt={"person icon"}/> 
                         </ImageStyle1>
                         {/* <ImageStyle2>
                             <Image width="70px" height='40px' src={darkPerson} /> 
@@ -104,7 +99,7 @@ function Navbar({}: Props): ReactElement {
         <Nav>
             <NavLink href={"/"} >
                 <Logo> 
-                    <Image height="49px" src={mainLogo} alt={"Abyss logo"}/>  
+                    <Image src={"/main-logo.svg"} layout="fill" width="100px" height="49px"  alt={"Abyss logo"}/>  
                     <Light/>
                     <LightShadow/>
                     <LightShadow2/> 
