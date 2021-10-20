@@ -15,9 +15,11 @@ export const CommentsSlice = createSlice({
             state.isCommentOpened = true
             if(payload)
             {
-                const {id , type , showComments, title, user}  = payload
+                const {id , type , showComments, title, user , isQuestion , isAnswer}  = payload
                 state.commentsType = {id:id, type:type , showComments:showComments, title:title, user:user} 
                 state.isCommentOpened = true
+                state.isQuestion = isQuestion
+                state.isAnswer = isAnswer
             }
             else
             {
@@ -27,6 +29,18 @@ export const CommentsSlice = createSlice({
 
         },
         closeComments(state, {payload}) {
+            console.log(state.isQuestion)
+            console.log(state.commentsType)
+            if(state.isQuestion)
+            {
+                document.querySelector(`#question${state.commentsType!.id}`)?.setAttribute("style","z-index: 1 !important;position:inherit;")
+            }
+            else if(state.isAnswer)
+            {
+                document.querySelector(`#answer${state.commentsType!.id}`)?.setAttribute("style","z-index: 1 !important;position:inherit;")
+            }
+            else{}
+            document.body.setAttribute("style" , "overflow-y: scroll")
             state.commentsType = null 
             state.isCommentOpened = false
         },
@@ -112,6 +126,8 @@ export const comments_errors = (state: RootState) => state.commentsReducer.comme
 export const comments = (state: RootState) => state.commentsReducer.comments
 export const comments_types = (state: RootState) => state.commentsReducer.commentsType
 export const is_comment_opened = (state: RootState) => state.commentsReducer.isCommentOpened
+export const is_question = (state: RootState) => state.commentsReducer.isQuestion
+export const is_answer = (state: RootState) => state.commentsReducer.isAnswer
 export const comments_status = (state: RootState) => state.commentsReducer.commentsStatus
 
 

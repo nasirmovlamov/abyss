@@ -6,7 +6,7 @@ export const MainPartOfPageStyle = styled.div`
     padding-top: 74px;
     display: flex;
     justify-content: center;
-    z-index: 2;
+    /* z-index: 2; */
 `
 
 
@@ -17,7 +17,7 @@ export const SidePartOfPageStyle = styled.aside`
     display: flex;
     padding-top: 115px;
     justify-content: center;
-
+    minHeight: 100vh;
 `
 
 export const PageDefaultStyle = styled.main`

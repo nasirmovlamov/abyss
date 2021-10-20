@@ -51,7 +51,7 @@ export const checkRoomChat = createAsyncThunk(
 
 
 export const sendMessageToRoom = createAsyncThunk(
-  types.SEND_MESSAGE_TO_ROOM, async ({roomId , content}:{roomId:string, content:string}, {rejectWithValue}) => {
+  types.SEND_MESSAGE_TO_ROOM, async ({roomId , content}:{roomId:number, content:string}, {rejectWithValue}) => {
     try {
       const formData = new FormData() 
       formData.append('content', content)

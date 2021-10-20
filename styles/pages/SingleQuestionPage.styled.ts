@@ -161,7 +161,7 @@ export const QuestionStatisticButton = styled.button<{changeDirection:boolean}>`
     transform: ${({changeDirection})=> changeDirection ? "rotateY(180deg)" : "rotate(0deg)"};
     svg 
     {
-        color: ${({voted})=> voted ? "rotateY(180deg)" : "rotate(0deg)"};
+        color: ${({voted}:any)=> voted ? "rotateY(180deg)" : "rotate(0deg)"};
     }
 
 `
@@ -227,7 +227,6 @@ export const AnswersCont = styled.div`
     width: 100%;
     align-items: center ;
     box-sizing: border-box;
-    
 `
 
 export const AnswersAndProductsCont = styled.div`

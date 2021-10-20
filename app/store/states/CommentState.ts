@@ -6,6 +6,8 @@ export const CommentsState:CommentsInterface = {
     commentsType:null,
     commentsStatus:"idle",
     isCommentOpened:false,
+    isAnswer:null,    
+    isQuestion:null,    
     commentsErrors:{
         email:[],
         content:[],

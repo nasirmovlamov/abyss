@@ -31,7 +31,7 @@ function FormQuestion({data}: Props): ReactElement {
             </PersonCont>
 
             <TextCont>
-                <NavLink href={`/forum/46/laravel-is-so-prettyyy`}>
+                <NavLink href={`/forum/17/laravel-is-so-prettyyy`}>
                     <Title> 
                         {data.title}
                     </Title>

@@ -85,7 +85,7 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
 
 
 
-    const addNewBlock = (index:number , content:any) =>{
+    const addNewBlock = () =>{
         dispatch(addNewSection(null))
         return null
     }
@@ -107,7 +107,7 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
         const reader = new FileReader();
         let textFile = /text.*/;
          if (file.type.match(textFile)) {
-            reader.onload = function (event) {
+            reader.onload = function (event:any) {
                setproductCode(event.target.result);
             }
          } else {
@@ -123,7 +123,7 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
                 <div style={{display:'flex',flexDirection:"column",alignItems:'flex-end',marginTop:"0px",marginBottom:"10px"}}>
                     <button type="button" onClick={() => dispatch(changeModalAction('productCreate'))} style={{background:"none",border:"none",cursor:"pointer"}}>X</button>
                 </div>
-                <button >get code from file <input  value={""} type="file" placeholder="add Image" onChange={(e) => getCodefromfile(e.target.files[0])} /></button>
+                <button >get code from file <input  value={""} type="file" placeholder="add Image" onChange={(e:any) => getCodefromfile(e.target.files[0])} /></button>
 
                 <CodeMirror
                 value={productCode}
@@ -144,7 +144,7 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
                     height: "auto",
                     }}>   
                     <ProductLabelCont >
-                        <span   style={{marginRight:"10px" , color:"gray"}} ><FontAwesomeIcon  icon={faRulerVertical}  >block</FontAwesomeIcon></span>
+                        <span   style={{marginRight:"10px" , color:"gray"}} ><FontAwesomeIcon  icon={faRulerVertical} /> block</span>
                         {sectionsProduct[0].isEditor && <input type='text' value={sectionsProduct[0].label_key}  />}
                         {sectionsProduct[0].isEditor && <MyEditor content={sectionsProduct[0].label_value}  onChange={(content:any) => dispatch(updateLabel({index:0 , content:content}))}/>}
                         {sectionsProduct[0].isEditor && <label htmlFor="title">validate</label>}
@@ -160,7 +160,7 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
                     height: "auto",
                     }}>   
                     <ProductLabelCont >
-                        <span   style={{marginRight:"10px" , color:"gray"}} ><FontAwesomeIcon  icon={faRulerVertical}  >block</FontAwesomeIcon></span>
+                        <span   style={{marginRight:"10px" , color:"gray"}} ><FontAwesomeIcon  icon={faRulerVertical}  />block</span>
                         {sectionsProduct[1].isEditor && <input type='text' value={sectionsProduct[1].label_key}  />}
                         {sectionsProduct[1].isEditor && <MyEditor content={sectionsProduct[1].label_value}  onChange={(content:any) => dispatch(updateLabel({index:1 , content:content}))}/>}
                         {sectionsProduct[1].isEditor && <label htmlFor="title">validate</label>}
@@ -199,7 +199,7 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
                                                       }}>   
                                                         <ProductLabelCont >
                                                             {isEditor &&<button disabled={id === 1 ||  id === 2 || id === 3} type='button' onClick={()=>dispatch(deleteSection({index:index}))}>x</button>}
-                                                            <span {...provided.dragHandleProps}  style={{marginRight:"10px" , color:"black"}} ><FontAwesomeIcon  icon={faRulerVertical}  >block</FontAwesomeIcon></span>
+                                                            <span {...provided.dragHandleProps}  style={{marginRight:"10px" , color:"black"}} ><FontAwesomeIcon  icon={faRulerVertical}  />block</span>
                                                             {isClips.status && <input type='text' disabled={true} value={label_key} />}
                                                             {isEditor &&<input type='text' value={label_key} onChange={(e:any) => dispatch(updateKey({index:index , content:e.target.value}))} />}
                                                             {isEditor && <MyEditor content={label_value}  onChange={(content:any) => dispatch(updateLabel({index:index , content:content}))}/>}
@@ -209,7 +209,7 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
                                                                     <div style={{width:'100%', minHeight:'450px', display:'flex' }}>
                                                                                 <div  style={{
                                                                                     width: "100%",
-                                                                                    backgroundColor: snapshot.isDraggingOver
+                                                                                    backgroundColor: snapshot.draggingOver
                                                                                                     ? "lightred"
                                                                                                     : "green",
                                                                                 }} >
@@ -261,7 +261,7 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
                                                                                                             ...provided.draggableProps.style
                                                                                                         }}>
                                                                                                             <img className="imgPreview" id="imgPreview" src={src} width="auto" height="100px" alt=""/>
-                                                                                                            <span style={{marginRight:"10px" , color:"black"}} {...provided.dragHandleProps}><FontAwesomeIcon icon={faRulerVertical}  >block</FontAwesomeIcon></span>
+                                                                                                            <span style={{marginRight:"10px" , color:"black"}} {...provided.dragHandleProps}><FontAwesomeIcon icon={faRulerVertical}  />block</span>
                                                                                                             {id}
                                                                                                             <button type="button" onClick={() => dispatch(deleteClip({index:index}))}>delete img</button>
                                                                                                         </div>  
@@ -277,7 +277,7 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
                                                                             </Droppable>
     
                                                                     </div>
-                                                                    <button><input onChangeCapture={(e) => dispatch(addFile(e.target.files[0]))} value={""} type="file" placeholder="add Image"/></button>
+                                                                    <button><input onChangeCapture={(e:any) => dispatch(addFile(e.target.files[0]))} value={""} type="file" placeholder="add Image"/></button>
                                                                 </div>
                                                             }
     
@@ -318,7 +318,7 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
 
 
                 
-                <button type="button" disabled={sectionsProduct.length > 7} onClick={addNewBlock}>add new block</button>
+                <button type="button"  onClick={addNewBlock} disabled={sectionsProduct.length > 7} >add new block</button>
                 <button type="submit">Post</button>
             </ProductCreateForm>
         </ProductCreateModal>

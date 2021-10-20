@@ -39,7 +39,7 @@ function Forum({}: Props): ReactElement {
     
     return (
         <PageDefaultStyle>
-            <SidePartOfPage>
+            <SidePartOfPage side={"left"}>
                 <PageFilters/>
             </SidePartOfPage>
 
@@ -50,7 +50,7 @@ function Forum({}: Props): ReactElement {
                 </ForumPage>
             </MainPartOfPage>
 
-            <SidePartOfPage>
+            <SidePartOfPage side={"right"}>
                 {
                     <> 
                         {isChatBoxOpened  && <ChatBox/>}

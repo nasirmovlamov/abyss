@@ -7,8 +7,13 @@ import javascript from 'highlight.js/lib/languages/javascript';
 import { Head } from "next/document";
 
 
+interface Props {
+  content:any
+  onChange:any
+}
 
-function MyEditor({content , onChange}) {
+
+function MyEditor({content , onChange}: Props){
   hljs.configure({
     languages: ['javascript', 'ruby', 'python', 'rust'],
   })
@@ -27,7 +32,7 @@ function MyEditor({content , onChange}) {
       ['clean']
     ],
     syntax: {
-      highlight: code => hljs.highlightAuto(code).value,
+      highlight: (code:any) => hljs.highlightAuto(code).value,
     },
   }
 

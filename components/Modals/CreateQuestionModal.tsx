@@ -45,8 +45,11 @@ function CreateQuestionModal({}: Props): ReactElement {
             formData.append("tags" , JSON.stringify(tags))
             const resp = await BASE_API_INSTANCE.post("/forum/create", formData) 
             autoSuccessToaster(resp.data.message)
+            console.log(resp.data.message)
+            dispatch(changeModalAction('questionCreate'))
         } catch (error:any) {
             autoErrorToaster(error.response.data)
+            
         }
     }
 

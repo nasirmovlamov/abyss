@@ -18,7 +18,7 @@ export const SingleTabsContainer  = styled.div`
     top: 56px;
     transition: 0.5s top;
     padding-bottom: 0px;
-    z-index: 99999;
+    z-index: 999;
     border-radius: 10px;
     background-color: #ffffff;
     &:hover 

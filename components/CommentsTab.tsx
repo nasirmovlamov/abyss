@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { set_overflowy } from '../app/feature/AppSlice'
 import { user_data } from '../app/feature/UserSlice'
-import { comments,   comments_types, showComments } from '../app/feature/CommentsSlice'
+import { closeComments, comments,   comments_types, is_answer, is_question, showComments } from '../app/feature/CommentsSlice'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { addAnswerComment, addQuestionComment } from '../app/thunks/CommentsThunk'
 import { AllCommentsCont, CommentChangeContent, CommentsForm,  CommentsTabMainNameStyle, CommentsTabStyle, CommentsTabTitleStyle, CommentStyle, PostComment  } from '../styles/components/styled-elements/CommentsTab.style'
@@ -15,6 +15,8 @@ function CommentModal({}: Props): ReactElement {
     const [newComment, setNewComment] = useState("")
     const commentsType = useAppSelector(comments_types)
     const Comments = useAppSelector(comments)
+    const isQuestion = useAppSelector(is_question)
+    const isAnswer = useAppSelector(is_answer)
     const userData = useAppSelector(user_data)
     const dispatch = useAppDispatch()
     if(commentsType === null)
@@ -49,12 +51,13 @@ function CommentModal({}: Props): ReactElement {
 
 
     const dontShowComments = () => {
-        dispatch(showComments(null))
+        dispatch(closeComments(null))
         dispatch(set_overflowy(""))
     }
+   
     return (
-        <div>
-            <button onClick={dontShowComments}>X</button>
+        <div style={{position:"sticky" , top:"140px" , width: "300px", height: "500px", display: "flex", flexDirection: "column", zIndex:1000}}>
+            <button onClick={() => dontShowComments()}>X</button>
             {
                 commentsType.type !== null  && 
                 <CommentsTabStyle>

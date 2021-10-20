@@ -61,7 +61,7 @@ export default function ChatBox({}: Props): ReactElement {
 
 
     const scrollToBottom = () => {
-        messagesEndRef.current.scrollIntoView({block: 'nearest',inline: 'start'})
+        messagesEndRef!.current!.scrollIntoView({block: 'nearest',inline: 'start'})
     }
 
 

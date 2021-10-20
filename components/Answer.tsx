@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../app/store/hooks';
 import { unVoteAnswer, voteAnswer } from '../app/thunks/QuestionThunk';
 import { AnswerContent, AnswerStyle, Avatar, LikeButton, Name, PersonCont, ShowComments } from '../styles/components/styled-elements/Answer.style';
 import { AnswersCont } from '../styles/pages/SingleQuestionPage.styled'
-import { showComments } from '../app/feature/CommentsSlice';
+import { closeComments, showComments } from '../app/feature/CommentsSlice';
 import { getAnswerComments } from '../app/thunks/CommentsThunk';
 import { single_question_data } from '../app/feature/QuestionSlice';
 import { errorToastFunc, loginError } from './Notify/ErrorToasts';
@@ -42,21 +42,46 @@ function Answer({answer ,direction  }: Props): ReactElement {
         else{}
     }
     
-    const openComments = () =>{
+    // const openComments = () =>{
+        
+    //     setTimeout(() => {
+    //         dispatch(getAnswerComments(answer.id))
+    //         dispatch(
+    //             showComments(
+    //                 {
+    //                     id:answer.id, 
+    //                     user:answer.user, 
+    //                     title:answer.content, 
+    //                     type:"answer",
+    //                     showComments:true
+    //                 }
+    //             )
+    //         )
+    //     }, 1000);
+        
+    // }
+
+    const clickToOpenComments = () =>{
+        document.querySelector(`#answer${answer.id}`)?.setAttribute("style", "z-index: 1000 !important;position:relative;")
         document.body.style.overflow = "hidden"
         dispatch(set_overflowy("hidden"))
-        dispatch(getAnswerComments(answer.id))
-        dispatch(
-            showComments(
-                {
-                    id:answer.id, 
-                    user:answer.user, 
-                    title:answer.content, 
-                    type:"answer",
-                    showComments:true
-                }
+        setTimeout(() => {
+            dispatch(getAnswerComments(answer.id))
+            dispatch(
+                showComments(
+                    {
+                        isQuestion:null , 
+                        isAnswer:true,
+                        id:answer.id, 
+                        user:answer.user, 
+                        title:answer.content, 
+                        type:"answer",
+                        showComments:true
+                    }
+                )
             )
-        )
+        }, 1000);
+        
     }
 
     useEffect(() => {
@@ -71,8 +96,10 @@ function Answer({answer ,direction  }: Props): ReactElement {
     }, [userData , answer])
 
 
+ 
+
     return (
-        <AnswerStyle ref={answerRef} key={answer.id}>
+        <AnswerStyle id={`answer${answer.id}`} ref={answerRef} key={answer.id}>
             <div  className="flexer c-gp-10">
                 <PersonCont>
                     <Avatar></Avatar>
@@ -86,7 +113,7 @@ function Answer({answer ,direction  }: Props): ReactElement {
                 </div>
             </div>
             <div className="flexer fd-c a-end">
-                <ShowComments onClick={openComments}>Show Comments</ShowComments>
+                <ShowComments  onClick={clickToOpenComments}>Show Comments</ShowComments>
             </div>
         </AnswerStyle>
     )

@@ -9,6 +9,7 @@ export const ChatWindow = styled.div`
     background-color: lightgray;
     position: sticky;
     top: 100px;
+    box-shadow: 5px 10px #888888;
 `
 
 export const ChatNav = styled.div`

@@ -100,13 +100,15 @@ function AnswersConts({}: Props): ReactElement {
     
     
     return (
-        <AnswersCont ref={inViewRefAnswersCont} id="answersCont"  style={{scrollMarginTop: "250px"}}>
-                <ul >{submittedAnswer.map((answer) => <Answer key={answer.id} direction="new-submitted"  answer={answer}/>)} </ul>
-                <ul >{topAnswers.map((answer) => <Answer key={answer.id} direction="top"  answer={answer}/>)} </ul>
+        <AnswersCont style={{zIndex:1000 , scrollMarginTop: "250px"}} ref={inViewRefAnswersCont} id="answersCont" >
+                {submittedAnswer.length > 0 &&  <div >{submittedAnswer.map((answer) => <Answer key={answer.id} direction="new-submitted"  answer={answer}/>)} </div>}
+                <div >{topAnswers.map((answer) => <Answer key={answer.id} direction="top"  answer={answer}/>)} </div>
                     {topAnswersStatus === "loading" && <div ref={inViewRefLoaderDown}><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/></div>}
                     {topAnswersStatus === "loading" && <div style={{height:"100vh"}}></div>}
                     {downAnswersStatus === "loading" && <div ref={inViewRefLoaderUp}><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/></div>}
-                <ul id="downAnswers" >{downAnswers.map((answer ) => <Answer key={answer.id} direction="bottom"  answer={answer}/>)} </ul>
+                <div id="downAnswers" >{downAnswers.map((answer ) => <Answer key={answer.id} direction="bottom"  answer={answer}/>)} </div>
+
+                {<div> </div>}
         </AnswersCont>
     )
 }

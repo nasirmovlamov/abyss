@@ -5,7 +5,6 @@ import { createSlice} from '@reduxjs/toolkit'
 import { autoErrorToaster } from "../../components/Notify/AutoErrorToaster";
 import { CreateProductState } from "../store/states/CreateProductState";
 import { SectionOfProduct } from "../store/state-Interfaces/CreateProductInterface";
-import { base64Image } from '../../logic/convertBase64';
 import { addFile } from '../thunks/CreateProductThunk';
 
 

@@ -32,6 +32,7 @@ import { AnswerCont, AnswerCount, DateCount, DefaultLine, HelpfulCont, HelpfulCo
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsDown as solidfaThumbsDown  ,   faThumbsUp as solidfaThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import {faComment, faThumbsDown as regularfaThumbsDown  ,   faThumbsUp as regularfaThumbsUp  } from '@fortawesome/free-regular-svg-icons'
+import { set_overflowy } from '../../../app/feature/AppSlice'
 
 interface Props {
 }
@@ -88,6 +89,9 @@ function SingleQuestionPAge({}: Props): ReactElement {
     }
 
     const openQuestionComments = () =>{
+        document.querySelector(`#question${singleQuestionData.id}`)?.setAttribute("style", "z-index: 1000 !important;position:relative;")
+        document.body.style.overflow = "hidden"
+        dispatch(set_overflowy("hidden"))
         if(singleQuestionData !== null)
         {
             dispatch(closeChat(""))
@@ -95,7 +99,9 @@ function SingleQuestionPAge({}: Props): ReactElement {
             dispatch(
                 showComments(
                     {
-                        id:singleQuestionData.id, 
+                        isQuestion: true, 
+                        isAnswer:null,
+                        id: singleQuestionData.id,
                         user:singleQuestionData.user, 
                         title:singleQuestionData.title, 
                         type:"question",
@@ -111,7 +117,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
 
     return (
 
-        <PageDefaultStyle>
+        <PageDefaultStyle >
             <SidePartOfPage side={"left"}>
                 {/* <SingleProductAside>
                 {
@@ -137,7 +143,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
                                 <>
                                     <button style={{alignSelf:'flex-end'}} onClick={() => dispatch(changeModalAction("questionCreate"))}>QuestionCreate</button>
 
-                                    <QuestionCont>
+                                    <QuestionCont id={`question${singleQuestionData.id}`}>
                                         <PersonCont>
                                             <Avatar></Avatar>
                                             <Name>{singleQuestionData.user.name}</Name>
@@ -159,7 +165,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
                                                 </QuestionTags> 
                                                 
                                                 
-                                                <ShowComments disabled={singleQuestionData.comment_count === 0} type="button" onClick={openQuestionComments}> <FontAwesomeIcon icon={faComment} /> <span>{singleQuestionData.comment_count}</span> comment</ShowComments> 
+                                                <ShowComments  type="button" onClick={openQuestionComments}> <FontAwesomeIcon icon={faComment} /> <span>{singleQuestionData.comment_count}</span> comment</ShowComments> 
 
                                             </QuestionTagsAndDate>
                                         </ContentCont>
@@ -220,6 +226,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
                         {isCommentOpened && <CommentModal/>}
                     </>
                 }
+                {console.log(isCommentOpened)}
             </SidePartOfPage>
         </PageDefaultStyle>
         

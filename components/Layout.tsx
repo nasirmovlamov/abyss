@@ -54,6 +54,16 @@ const Layout: FC<Props> = ({ children, ...props }) => {
                     <Modals/>
                     <Footer/>
                 </div>   
+                {
+                (pageOverflowY === "hidden" 
+                    && 
+                    <div style={{position:"fixed",  width:"100%" , height:"100vh" , right:"0px", top:"0px",  zIndex:999, backgroundColor:"rgba(0,0,0,0.5)"}}>
+                        <div style={{width:"100%" , height:"59.4px" , backgroundColor:"#00090e"}}></div>
+                    </div> 
+                )
+                }
+
+
 
                 {
                 (pageOverflowY === "hidden" 

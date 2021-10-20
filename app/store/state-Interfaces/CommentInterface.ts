@@ -15,6 +15,8 @@ export interface CommentsInterface {
     } | null
     commentsStatus:"idle" | "loading"
     isCommentOpened:boolean,
+    isAnswer:number | null,
+    isQuestion:number | null,
     commentsErrors:{
         email:string[],
         content:string[]
