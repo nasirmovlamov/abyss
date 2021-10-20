@@ -5,7 +5,7 @@ exports.id = 888;
 exports.ids = [888];
 exports.modules = {
 
-/***/ 2914:
+/***/ 9425:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 // ESM COMPAT FLAG
@@ -1849,6 +1849,8 @@ const Guest = external_styled_components_default().div.withConfig({
 })(["display:flex;justify-content:center;align-items:center;"]);
 // EXTERNAL MODULE: ./node_modules/next/image.js
 var next_image = __webpack_require__(5675);
+;// CONCATENATED MODULE: ./public/static/img/main-logo.svg
+/* harmony default export */ const main_logo = ({"src":"/_next/static/image/public/static/img/main-logo.87dac0cb01bc4cf7e10e733629a13c40.svg","height":1919,"width":1918});
 ;// CONCATENATED MODULE: ./public/static/img/light-person.png
 /* harmony default export */ const light_person = ({"src":"/_next/static/image/public/static/img/light-person.eff4e2f709a5bf2a791b0809da1c54c8.png","height":1080,"width":1920,"blurDataURL":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAVElEQVR42mNABmfPn1cCYQZ08P//f2YQ/enz5yMgDBdDB1evX18OwiiC9+4/YAbR12/e9Pv06dN/EL5+44YfRO4+wpSKxka+I8ePZ4FwWX09H0wcACi2M76A27sZAAAAAElFTkSuQmCC"});
 ;// CONCATENATED MODULE: ./public/static/img/login.svg
@@ -1862,6 +1864,7 @@ var NavLink = __webpack_require__(7456);
 // EXTERNAL MODULE: ./logic/regex/NavbarRegex.ts
 var NavbarRegex = __webpack_require__(1555);
 ;// CONCATENATED MODULE: ./components/Navbar.tsx
+
 
 
 
@@ -1961,10 +1964,9 @@ function Navbar({}) {
       href: "/",
       children: /*#__PURE__*/(0,jsx_runtime_.jsxs)(Logo, {
         children: [/*#__PURE__*/jsx_runtime_.jsx(next_image.default, {
-          src: "/static/img/main-logo.svg",
-          alt: "Abyss logo",
-          width: 100,
-          height: 49
+          height: "49px",
+          src: main_logo,
+          alt: "Abyss logo"
         }), /*#__PURE__*/jsx_runtime_.jsx(Light, {}), /*#__PURE__*/jsx_runtime_.jsx(LightShadow, {}), /*#__PURE__*/jsx_runtime_.jsx(LightShadow2, {}), /*#__PURE__*/jsx_runtime_.jsx(LogoText, {
           children: "abyss"
         })]
@@ -2282,7 +2284,7 @@ const Layout = (_ref) => {
         style: {
           width: "100%",
           minHeight: "100vh",
-          backgroundImage: "url(/public/static/img/default-vector-background.png)"
+          backgroundColor: "#0f1113"
         },
         children: [/*#__PURE__*/jsx_runtime_.jsx(components_Navbar, {}), /*#__PURE__*/jsx_runtime_.jsx(components_SearchBox, {}), children, userData !== null && /*#__PURE__*/jsx_runtime_.jsx("button", {
           type: "button",
@@ -2790,7 +2792,7 @@ module.exports = require("styled-components");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [664,675,927,304,984], () => (__webpack_exec__(2914)));
+var __webpack_exports__ = __webpack_require__.X(0, [664,675,927,304,984], () => (__webpack_exec__(9425)));
 module.exports = __webpack_exports__;
 
 })();

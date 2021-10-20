@@ -1,11 +1,11 @@
 import React, { ReactElement, useEffect,  useState } from 'react'
 import {Enterance, Guest, ImageStyle1, ImageStyle2,  Light, LightShadow, LightShadow2, Line,  LinksStyle, LinkStyle, LiStyle, Logged, LoginButton, Logo, LogoText, Logout, Nav, PersonName, RegisterButton} from '../styles/components/styled-elements/Navbar.style'
 import Image from 'next/image'
-import mainLogo from '/main-logo.svg'
-import lightPerson from '/public/static/img/light-person.png'
-import darkPerson from '/public/static/img/dark-person.png'
-import loginPng from '/public/static/img/login.svg'
-import registerSVG from '/public/static/img/register-icon.svg'
+import mainLogo from '../public/static/img/main-logo.svg'
+import lightPerson from '../public/static/img/light-person.png'
+import darkPerson from '../public/static/img/dark-person.png'
+import loginPng from '../public/static/img/login.svg'
+import registerSVG from '../public/static/img/register-icon.svg'
 import RegisterModal from './Modals/RegisterModal'
 import LoginModal from './Modals/LoginModal'
 import Modals from './Modals/Modals'
@@ -104,7 +104,7 @@ function Navbar({}: Props): ReactElement {
         <Nav>
             <NavLink href={"/"} >
                 <Logo> 
-                    <Image src={"/static/img/main-logo.svg"}  alt={"Abyss logo"} width={100} height={49} />  
+                    <Image height="49px" src={mainLogo} alt={"Abyss logo"}/>  
                     <Light/>
                     <LightShadow/>
                     <LightShadow2/> 

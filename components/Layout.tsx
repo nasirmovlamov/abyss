@@ -45,7 +45,7 @@ const Layout: FC<Props> = ({ children, ...props }) => {
         return (
             <>
                 
-                <div style={{width:"100%" , minHeight:"100vh", backgroundImage: "url(/public/static/img/default-vector-background.png)" }}>
+                <div style={{width:"100%" , minHeight:"100vh", backgroundColor: "#0f1113" }}>
                     <Navbar/>
                     <SearchBox/>
                     {children}

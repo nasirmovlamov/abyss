@@ -8,6 +8,7 @@ export const ForumPage = styled.div`
     margin: auto;
     align-items: center;
     row-gap: 14px;
+    
     /* padding-top: 100px; */
 `
 

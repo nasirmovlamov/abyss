@@ -18,12 +18,19 @@ export const FormQuestionCont = styled.div`
     padding-left: 20px;
     padding-right: 44px;
     box-sizing: border-box;
-    background-color: ${({theme}) => theme.pageTabs.contBG};
-    border-radius: 6px;
+    /* border-radius: 6px; */
     column-gap: 22px;
-    border-radius: 10px;
-    background-color: #ffffff;
-    box-shadow: 0px 1px 1px rgba(99,105,108,0.61), inset 0px 0px 0px rgba(99,105,108,0.61);
+    border-radius: 20px;
+    background-color: #1c1e20;
+
+    /* box-shadow: 0px 1px 1px rgba(99,105,108,0.61), inset 0px 0px 0px rgba(99,105,108,0.61); */
+
+    &:nth-child(odd) {
+        box-shadow: #949597 0px 0px 2px 0px inset;
+    }
+    &:nth-child(even) {
+        box-shadow: #949597 0px 0px 2px 0px ;
+    }
     justify-content: space-between;
     height: 125px;
     align-items: center;
