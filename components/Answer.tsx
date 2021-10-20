@@ -62,9 +62,9 @@ function Answer({answer ,direction  }: Props): ReactElement {
     // }
 
     const clickToOpenComments = () =>{
-        document.querySelector(`#answer${answer.id}`)?.setAttribute("style", "z-index: 1000 !important;position:relative;")
-        document.body.style.overflow = "hidden"
-        dispatch(set_overflowy("hidden"))
+        document.querySelector(`#answer${answer.id}`)?.setAttribute("style", "border: 1px solid black !important;position:relative;")
+        // document.body.style.overflow = "hidden"
+        // dispatch(set_overflowy("hidden"))
         setTimeout(() => {
             dispatch(getAnswerComments(answer.id))
             dispatch(

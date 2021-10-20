@@ -57,7 +57,6 @@ export const Name = styled.span`
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-
 `
 
 export const AnswerContent = styled.p`

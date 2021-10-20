@@ -263,7 +263,7 @@ export const Logout = styled.button`
     cursor: pointer;
     transition: 0.2s;
     font-size: 16px;
-    color: ${({theme}) => theme.navbar.navLinks};
+    color: white;
 
     &:hover 
     {

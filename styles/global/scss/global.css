@@ -109,7 +109,7 @@ body {
 }
 
 body {
-  background-image: url(../../../public/static/img/default-vector-background.png);
+  background-image: url(/public/static/img/default-vector-background.png);
   overflow-x: hidden;
 }
 
