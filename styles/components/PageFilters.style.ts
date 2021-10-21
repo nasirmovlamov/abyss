@@ -5,7 +5,7 @@ export const FilterContStyle  = styled.div`
     display: flex;
     flex-direction: column;
     width: 195px;
-    height: 403px;
+    height: auto;
     box-sizing: border-box;
     z-index: 2;
     overflow: hidden;
@@ -22,7 +22,7 @@ export const FilterCont  = styled.div<{isFocused:boolean , stayInFocus:boolean}>
     border-radius: 20px;
     box-shadow: 0px 1px 1px rgba(99,105,108,0.61), inset 0px 0px 0px rgba(99,105,108,0.61);
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     row-gap: 10px;
     transform: ${({stayInFocus}) => stayInFocus ? "translateX(0px) !important" : "translateX(200px)"};
     transform: ${({isFocused}) => isFocused ? "translateX(0px)" : "translateX(200px)"};
@@ -76,12 +76,11 @@ export const Subjects  = styled.button`
     height: 21px;
     border: none;
     background-color: transparent;
-    flex-direction: column;
+    /* flex-direction: column; */
     width: 100%;
     row-gap: 5px;
     font-size: 15px;
-    display: flex;
-    flex-direction: column;
+    column-gap: 10px;
 `
 
 
@@ -167,4 +166,47 @@ export const FilterLanguages  = styled.button`
     font-size: 15px;
     display: flex;
     flex-direction: column;
+`
+
+
+export const FilterSearchCont  = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: none;
+`
+
+export const FilterSearchInCont  = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: none;
+`
+
+export const FilterSearchInput  = styled.input`
+    width: 100%;
+   box-sizing: border-box;
+   padding: 5px;
+   height: 20px;
+`
+
+
+export const FilterSearchDropdown  = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* height: 200px; */
+    border: 1px solid #E6E6E6;
+    row-gap: 5px;
+`
+
+export const FilterSearchDropdownElement  = styled.p`
+    width: 100%;
+    height: 20px;
+    color: gray;
+    box-sizing: border-box;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 `

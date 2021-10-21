@@ -15,6 +15,32 @@ export const PageFiltersSlice = createSlice({
     changeToStayInFocus(state, action) {
       state.stayInFocus= !action.payload
     },
+   
+    addFilter(state, action) {
+      for (let i = 0; i < state.filterTags.length; i++) {
+        if (state.filterTags[i].name === action.payload.name) {
+          return 
+        }
+      } 
+      state.filterTags.push(action.payload)
+    },
+
+    filterSearchValueOnChange(state, action){
+      state.filterSearchValue.value = action.payload
+      state.filterSearchValue.isTouched = true
+
+    },
+    filterTagsSearchisFocused(state, action){
+      state.filterSearchValue.isTouched = !action.payload
+    },
+    
+    filterTagsOnClick(state, action){
+      // state.filterTagsOnClick=action.payload
+    },
+    filterTagsOnDelete(state, action){
+      state.filterTags = state.filterTags.filter(tag => tag.id !== action.payload)
+    },
+          
 
   },
 
@@ -42,12 +68,23 @@ export const PageFiltersSlice = createSlice({
 
 
 // action
-export const {changePositionOfFilters , changeToStayInFocus} = PageFiltersSlice.actions;
+export const {
+  changePositionOfFilters , 
+  changeToStayInFocus , 
+  addFilter , 
+  filterSearchValueOnChange,
+  filterTagsSearchisFocused,
+  filterTagsOnClick,
+  filterTagsOnDelete
+} = PageFiltersSlice.actions;
 
 
 // data
 export const is_focused = (state: RootState) => state.pageFiltersReducer.isShown
 export const stay_in_focus = (state: RootState) => state.pageFiltersReducer.stayInFocus
+export const filter_search_tags = (state: RootState) => state.pageFiltersReducer.filterSearch
+export const filter_tags = (state: RootState) => state.pageFiltersReducer.filterTags
+export const filter_search_value = (state: RootState) => state.pageFiltersReducer.filterSearchValue
 
 
 export default PageFiltersSlice.reducer;
