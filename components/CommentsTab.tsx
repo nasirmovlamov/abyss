@@ -4,7 +4,7 @@ import { user_data } from '../app/feature/UserSlice'
 import { closeComments, comments,   comments_types, is_answer, is_question, showComments } from '../app/feature/CommentsSlice'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { addAnswerComment, addQuestionComment } from '../app/thunks/CommentsThunk'
-import { AllCommentsCont, CommentChangeContent, CommentsForm,  CommentsTabMainNameStyle, CommentsTabStyle, CommentsTabTitleStyle, CommentStyle, PostComment, TakeCommentsToSideMakeAbsolute,  } from '../styles/components/styled-elements/CommentsTab.style'
+import { AllCommentsCont, CommentAvatar, CommentChangeContent, CommentContent, CommentNameAndContentCont, CommentsCloseButton, CommentsForm,  CommentsTabMainNameStyle, CommentsTabStyle, CommentsTabTitleStyle, CommentStyle, CommentUserName, PostComment, TakeCommentsToSideMakeAbsolute,  } from '../styles/components/styled-elements/CommentsTab.style'
 import { errorToastFunc } from './Notify/ErrorToasts'
 
 interface Props {
@@ -45,8 +45,8 @@ function CommentModal({}: Props): ReactElement {
         else if(commentsType.type === "question")
         {
             dispatch(addQuestionComment(comment))
+            setNewComment("")
         }
-        setNewComment("")
     }
 
 
@@ -57,17 +57,28 @@ function CommentModal({}: Props): ReactElement {
    
     return (
         <TakeCommentsToSideMakeAbsolute>
-            <button onClick={() => dontShowComments()}>X</button>
             {
                 commentsType.type !== null  && 
                 <CommentsTabStyle>
-                    <CommentsTabMainNameStyle>{commentsType.user.name} </CommentsTabMainNameStyle>
+                    <CommentsTabMainNameStyle> 
+                        <CommentsCloseButton onClick={() => dontShowComments()}>X</CommentsCloseButton>
+                    </CommentsTabMainNameStyle>
+                    
                     <AllCommentsCont>
-                        {Comments.map(comment => <CommentStyle key={comment.id}>{comment.content}</CommentStyle>)}
+                        {Comments.map(comment => 
+                        <CommentStyle key={comment.id}>
+                            <CommentAvatar>
+
+                            </CommentAvatar>
+                            <CommentNameAndContentCont>
+                                <CommentUserName>{comment.user.name}</CommentUserName>
+                                <CommentContent>{comment.content}</CommentContent>
+                            </CommentNameAndContentCont>
+                        </CommentStyle>)}
                     </AllCommentsCont>
 
                     <CommentsForm onSubmit={submitComment}>
-                        <CommentChangeContent onChange={(e)=> setNewComment(e.target.value)} placeholder="add comment"></CommentChangeContent>
+                        <CommentChangeContent onChange={(e)=> setNewComment(e.target.value)} value={newComment} placeholder="Write a comment"></CommentChangeContent>
                         <PostComment type="submit">Add Comment</PostComment>
                     </CommentsForm>
                 </CommentsTabStyle>

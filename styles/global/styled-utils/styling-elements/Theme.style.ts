@@ -54,6 +54,7 @@ import { pageLightGray, pageBlack, pageDarkBlack, linesSideTextColor, whiteTextC
         boxShadow: ForumBoxShadowDark,
         boxShadowForElement: BoxShadowDarkForElement,
         tabsTitle:pageLightGray,
+        commentsBorder:darkLinesSideTextColor
       }
 
   }
