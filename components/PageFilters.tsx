@@ -80,7 +80,7 @@ function PageFilters({}: Props): ReactElement {
 
                 <FilterSearchCont>
                     <FilterSearchInCont>
-                        <FilterSearchInput onFocus={() => dispach(filterTagsSearchisFocused(filterSearchValue.isTouched ))}  type="text" value={filterSearchValue.value} onChange={(e) => dispach(filterSearchValueOnChange(e.target.value))} type="text" placeholder="Search..."/>
+                        <FilterSearchInput onFocus={() => dispach(filterTagsSearchisFocused(filterSearchValue.isTouched ))}  type="text" value={filterSearchValue.value} onChange={(e) => dispach(filterSearchValueOnChange(e.target.value))}  placeholder="Search..."/>
                     </FilterSearchInCont>
                     {filterSearchValue.isTouched && 
                     <FilterSearchDropdown>

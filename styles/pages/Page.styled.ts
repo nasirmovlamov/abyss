@@ -13,7 +13,6 @@ export const MainPartOfPageStyle = styled.div`
 
 export const SidePartOfPageStyle = styled.aside<{side:string}>`
     width: ${ ({side}) => side === "left" ? "200px" : "200px"};   
-    background-color: gray;
     box-sizing: border-box;
     padding-top: 25px;
     display: flex;

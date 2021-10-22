@@ -4,7 +4,7 @@ import { user_data } from '../app/feature/UserSlice'
 import { closeComments, comments,   comments_types, is_answer, is_question, showComments } from '../app/feature/CommentsSlice'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { addAnswerComment, addQuestionComment } from '../app/thunks/CommentsThunk'
-import { AllCommentsCont, CommentChangeContent, CommentsForm,  CommentsTabMainNameStyle, CommentsTabStyle, CommentsTabTitleStyle, CommentStyle, PostComment, TakeCommentsToSideMakeAbsolute, takeCommentsToSideMakeAbsolute  } from '../styles/components/styled-elements/CommentsTab.style'
+import { AllCommentsCont, CommentChangeContent, CommentsForm,  CommentsTabMainNameStyle, CommentsTabStyle, CommentsTabTitleStyle, CommentStyle, PostComment, TakeCommentsToSideMakeAbsolute,  } from '../styles/components/styled-elements/CommentsTab.style'
 import { errorToastFunc } from './Notify/ErrorToasts'
 
 interface Props {

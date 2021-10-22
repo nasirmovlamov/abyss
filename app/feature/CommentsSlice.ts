@@ -12,7 +12,17 @@ export const CommentsSlice = createSlice({
     initialState:CommentsState ,
     reducers: {
         showComments(state, {payload}) {
+            if(state.isQuestion)
+            {
+                document.querySelector(`#question${state.commentsType!.id}`)?.setAttribute("style","z-index: 1 !important;position:inherit;")
+            }
+            else if(state.isAnswer)
+            {
+                document.querySelector(`#answer${state.commentsType!.id}`)?.setAttribute("style","z-index: 1 !important;position:inherit;")
+            }
             state.isCommentOpened = true
+
+
             if(payload)
             {
                 const {id , type , showComments, title, user , isQuestion , isAnswer}  = payload
@@ -43,6 +53,8 @@ export const CommentsSlice = createSlice({
             document.body.setAttribute("style" , "overflow-y: scroll")
             state.commentsType = null 
             state.isCommentOpened = false
+            state.isAnswer = null
+            state.isQuestion = null
         },
     },
 

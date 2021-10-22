@@ -21,7 +21,7 @@ export const Nav = styled.nav`
     top:0px;
     height: 60px;
     z-index: 999;
-
+    width: 100%;
 `
 
 
@@ -29,16 +29,11 @@ export const NavForShadow = styled.nav`
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding-left: 72px;
-    padding-right: 10px;
-    padding-top: 7px;
-    padding-bottom: 10px;
-    /* border-bottom: 1px solid ${({theme}) => theme.navbar.navBorder}; */
     background-color: ${({theme}) => theme.navbar.background};
-    box-shadow: inset  0 -2px 2px -2px #949597, 0px 2px 20px 2px #000000 , 0px 0px 6px 0px #000000;
-    margin: 0px;
+    box-shadow: ${({theme}) => theme.navbar.boxShadow};
     position: fixed;
     top:0px;
+    left:0px;
     height: 60px;
     z-index: 1;
     width: 100%;
@@ -197,7 +192,8 @@ export const LinksStyleCenterer = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
-    padding-right: 140px;
+    top:0px;
+    left:0px;
     position: absolute;
 `
 

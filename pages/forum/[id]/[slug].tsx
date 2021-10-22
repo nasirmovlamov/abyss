@@ -89,13 +89,11 @@ function SingleQuestionPAge({}: Props): ReactElement {
     }
 
     const openQuestionComments = () =>{
-        document.querySelector(`#question${singleQuestionData.id}`)?.setAttribute("style", "z-index: 1000 !important;position:relative;")
-        document.body.style.overflow = "hidden"
-        dispatch(set_overflowy("hidden"))
+        document.querySelector(`#question${singleQuestionData.id}`)?.setAttribute("style", "border:1px solid white; position:relative;")
+        // document.body.style.overflow = "hidden"
+        // dispatch(set_overflowy("hidden"))
         if(singleQuestionData !== null)
         {
-            dispatch(closeChat(""))
-            dispatch(getQuestionComments(singleQuestionData.id))
             dispatch(
                 showComments(
                     {
@@ -109,6 +107,8 @@ function SingleQuestionPAge({}: Props): ReactElement {
                     }
                 )
             )
+            dispatch(closeChat(""))
+            dispatch(getQuestionComments(singleQuestionData.id))
         }
 
     }
@@ -223,10 +223,8 @@ function SingleQuestionPAge({}: Props): ReactElement {
                     <Loader/>
                     :
                     <> 
-                        {isCommentOpened && <CommentModal/>}
                     </>
                 }
-                {console.log(isCommentOpened)}
             </SidePartOfPage>
         </PageDefaultStyle>
         

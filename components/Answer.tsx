@@ -62,25 +62,23 @@ function Answer({answer ,direction  }: Props): ReactElement {
     // }
 
     const clickToOpenComments = () =>{
-        document.querySelector(`#answer${answer.id}`)?.setAttribute("style", "border: 1px solid black !important;position:relative;")
+        document.querySelector(`#answer${answer.id}`)?.setAttribute("style", "border: 1px solid white !important;position:relative;")
         // document.body.style.overflow = "hidden"
         // dispatch(set_overflowy("hidden"))
-        setTimeout(() => {
-            dispatch(getAnswerComments(answer.id))
-            dispatch(
-                showComments(
-                    {
-                        isQuestion:null , 
-                        isAnswer:true,
-                        id:answer.id, 
-                        user:answer.user, 
-                        title:answer.content, 
-                        type:"answer",
-                        showComments:true
-                    }
-                )
+        dispatch(
+            showComments(
+                {
+                    isQuestion:null , 
+                    isAnswer:true,
+                    id:answer.id, 
+                    user:answer.user, 
+                    title:answer.content, 
+                    type:"answer",
+                    showComments:true
+                }
             )
-        }, 1000);
+        )
+        dispatch(getAnswerComments(answer.id))
         
     }
 

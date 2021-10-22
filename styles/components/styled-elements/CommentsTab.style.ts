@@ -4,19 +4,28 @@ import { HeaderHeight } from "../../global/styled-utils/styling-elements/Sizes";
 
 export const TakeCommentsToSideMakeAbsolute = styled.div`
     position: fixed;
-    width: 400px;
-    height: calc(100vh - ${HeaderHeight});
+    width: 383px;
+    height: calc(100% - ${HeaderHeight});
+    background-color: ${({theme}) => theme.forumPage.elementBackground};
+    box-shadow: ${({theme}) => theme.forumPage.boxShadow};
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    right: 0px;
+    z-index: 980;
 `
 
 export const CommentsTabStyle = styled.div`
     display: flex;
-    flex-direction: column;
-    z-index: 1000;
-    position: relative;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 96%;
 `
 
 export const CommentsTabMainNameStyle = styled.div`
     font-size: 20px;
+    height: 30px;
+
 `
 
 export const CommentsTabTitleStyle = styled.div`
@@ -48,6 +57,7 @@ export const CommentsForm = styled.form`
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    align-self: flex-end;
 `
 export const CommentChangeContent = styled.textarea`
     font-size: 15px;

@@ -18,7 +18,9 @@ import { pageLightGray, pageBlack, pageDarkBlack, linesSideTextColor, whiteTextC
         navPersonName:"#032728",
         navLogin:"0",
         navRegister:"0",
-        navLogout:"#000000"
+        navLogout:"#000000",
+        boxShadow: ForumBoxShadowDark,
+
       },
       pageTabs: {
         contBG:pageBlack,
