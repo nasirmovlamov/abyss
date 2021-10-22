@@ -10,9 +10,7 @@ export const AnswerStyle = styled.li`
     padding-bottom: 20px;
     flex-direction: column;
     color: white;
-    background-color: #ffffff;
-    box-shadow: 0px 1px 1px rgba(99,105,108,0.61), inset 0px 0px 0px rgba(99,105,108,0.61);
-    border: 1px solid lightgray;
+    background-color: ${({theme}) => theme.forumPage.elementBackground};
     border-radius: 10px;
 
 `
@@ -39,7 +37,9 @@ export const PersonCont = styled.div`
 export const Avatar = styled.div`
     width: 62px;
     height:62px;
-    background-color: red;
+    background-color: ${({theme}) => theme.forumPage.darkelementBacground};
+    box-shadow: ${({theme}) => theme.forumPage.boxShadowForElement};
+    
     border-radius:50%;
     object-fit: cover;
     /* z-index: 999; */
@@ -49,7 +49,8 @@ export const Name = styled.span`
     font-size: 12px;
     margin-top: 6px;
     display: flex;
-    color: #00090e;
+    color:  ${({theme}) => theme.forumPage.textColor};
+
     opacity: 0.62;
     width: 100%;
     display: -webkit-box;
@@ -64,7 +65,8 @@ export const AnswerContent = styled.p`
     width: 500px;
     overflow: hidden;
     margin-top: 10px;
-    color: black;
+    color:  ${({theme}) => theme.forumPage.textColor};
+
 
 `
 export const AnswerContentSkeleton = styled.div`
@@ -78,14 +80,15 @@ export const AnswerContentSkeleton = styled.div`
 export const ShowComments = styled.button`
     border: none;
     background-color: transparent;
-    color: #474d51;
+    color: ${({theme}) => theme.forumPage.titleColor};
+
     border-radius: 6px;
     padding: 5px 7px;
     cursor: pointer;
     column-gap: 5px;
     span , svg
     {
-        color: #00578b;
+        color: ${({theme}) => theme.forumPage.titleColor};
         font-size: 15px;
     }
     svg 

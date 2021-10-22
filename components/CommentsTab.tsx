@@ -4,7 +4,7 @@ import { user_data } from '../app/feature/UserSlice'
 import { closeComments, comments,   comments_types, is_answer, is_question, showComments } from '../app/feature/CommentsSlice'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { addAnswerComment, addQuestionComment } from '../app/thunks/CommentsThunk'
-import { AllCommentsCont, CommentChangeContent, CommentsForm,  CommentsTabMainNameStyle, CommentsTabStyle, CommentsTabTitleStyle, CommentStyle, PostComment  } from '../styles/components/styled-elements/CommentsTab.style'
+import { AllCommentsCont, CommentChangeContent, CommentsForm,  CommentsTabMainNameStyle, CommentsTabStyle, CommentsTabTitleStyle, CommentStyle, PostComment, TakeCommentsToSideMakeAbsolute, takeCommentsToSideMakeAbsolute  } from '../styles/components/styled-elements/CommentsTab.style'
 import { errorToastFunc } from './Notify/ErrorToasts'
 
 interface Props {
@@ -56,7 +56,7 @@ function CommentModal({}: Props): ReactElement {
     }
    
     return (
-        <div style={{position:"sticky" , top:"140px" , width: "300px", height: "500px", display: "flex", flexDirection: "column", zIndex:1000}}>
+        <TakeCommentsToSideMakeAbsolute>
             <button onClick={() => dontShowComments()}>X</button>
             {
                 commentsType.type !== null  && 
@@ -72,7 +72,7 @@ function CommentModal({}: Props): ReactElement {
                     </CommentsForm>
                 </CommentsTabStyle>
             }
-        </div>
+        </TakeCommentsToSideMakeAbsolute>
     )
 }
 

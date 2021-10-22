@@ -1,5 +1,12 @@
 import styled from "styled-components";
+import { HeaderHeight } from "../../global/styled-utils/styling-elements/Sizes";
 
+
+export const TakeCommentsToSideMakeAbsolute = styled.div`
+    position: fixed;
+    width: 400px;
+    height: calc(100vh - ${HeaderHeight});
+`
 
 export const CommentsTabStyle = styled.div`
     display: flex;

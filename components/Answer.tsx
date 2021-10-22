@@ -100,7 +100,7 @@ function Answer({answer ,direction  }: Props): ReactElement {
 
     return (
         <AnswerStyle id={`answer${answer.id}`} ref={answerRef} key={answer.id}>
-            <div  className="flexer c-gp-10">
+            <div  className="flexer c-gp-10 sp-bt j-between">
                 <PersonCont>
                     <Avatar></Avatar>
                     <Name>{answer.user.name}</Name>

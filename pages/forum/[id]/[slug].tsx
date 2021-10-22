@@ -12,7 +12,7 @@ import AnswerSubmit from '../../../components/AnswerSubmit'
 import ProductsConts from '../../../components/ProductsCont'
 import SinglePageTabs from '../../../components/SinglePageTabs'
 import { SingleProductPage } from '../../../styles/global/styled-utils/styling-elements/Pages.style'
-import { Avatar, Name, PersonCont, QuestionTags, ContentCont, QuestionCont, QuestionContent, QuestionDate, QuestionTag, QuestionTagsAndDate, QuestionTitle, QuestionStatistics, QuestionStatisticElement, QuestionStatisticButton, QuestionStatisticText, AddAnswer, AddAnswerCont, AddAnswerSubmit, AnswersCont, ProductsCont, SingleProductMiddle, SingleProductAside, AnswersAndProductsCont, VotePercentage } from '../../../styles/pages/SingleQuestionPage.styled'
+import { Avatar, Name, PersonCont, QuestionTags, ContentCont, QuestionCont, QuestionContent, QuestionDate, QuestionTag, QuestionTagsAndDate, QuestionTitle, QuestionStatistics, QuestionStatisticElement, QuestionStatisticButton, QuestionStatisticText, AddAnswer, AddAnswerCont, AddAnswerSubmit, AnswersCont, ProductsCont, SingleProductMiddle, SingleProductAside, AnswersAndProductsCont, VotePercentage, StatisticContSingleQuestion } from '../../../styles/pages/SingleQuestionPage.styled'
 import CommentModal from '../../../components/CommentsTab'
 import { closeComments, comments,   comments_status,   comments_types, is_comment_opened, showComments } from '../../../app/feature/CommentsSlice'
 import { closeChat, is_chatbox_opened, openChat } from '../../../app/feature/ChatBoxSlice'
@@ -165,14 +165,14 @@ function SingleQuestionPAge({}: Props): ReactElement {
                                                 </QuestionTags> 
                                                 
                                                 
-                                                <ShowComments  type="button" onClick={openQuestionComments}> <FontAwesomeIcon icon={faComment} /> <span>{singleQuestionData.comment_count}</span> comment</ShowComments> 
+                                                <ShowComments  type="button" onClick={openQuestionComments}> <FontAwesomeIcon icon={faComment} /> <span>{singleQuestionData.comment_count}</span> comment {singleQuestionData.comment_count > 1 && "s"}</ShowComments> 
 
                                             </QuestionTagsAndDate>
                                         </ContentCont>
 
 
                                         <QuestionStatistics>
-                                            <StatisticCont>
+                                            <StatisticContSingleQuestion>
                                                     <AnswerCont>
                                                         <AnswerCount>7</AnswerCount>
                                                         <Text>Answers</Text>
@@ -188,7 +188,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
                                                             6%
                                                         </VotePercentage>
                                                     </HelpfulCont>
-                                            </StatisticCont>
+                                            </StatisticContSingleQuestion>
                                             <DateCount>
                                                 2d 7h ago
                                             </DateCount>

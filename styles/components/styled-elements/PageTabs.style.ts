@@ -44,7 +44,7 @@ export const TabResults = styled.p`
     display: flex;
     justify-content: center;
     align-items: center;
-    color:${({theme }) =>theme.pageTabs.focusedColor };
+    color:${({theme }) =>theme.pageTabs.nonfocusedColor };
     font-size: 20px;
     margin-left:30px;
     font-family: r;

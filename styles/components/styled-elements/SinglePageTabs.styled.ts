@@ -12,15 +12,16 @@ export const SingleTabsContainer  = styled.div`
     align-items: flex-start;
     row-gap:10px;
     padding-top: 10px;
-    padding-right: 51px;
+    padding-left: 10px;
+    padding-right: 10px;
     margin-top: 10px;
     position: sticky;
-    top: 56px;
+    top: 60px;
     transition: 0.5s top;
     padding-bottom: 0px;
-    z-index: 999;
-    border-radius: 10px;
-    background-color: #ffffff;
+    z-index: 9;
+    border-radius: 0px 0px 0px 0px;
+    background-color: ${({theme }) =>theme.pageTabs.contBG };
     &:hover 
     {
     }
@@ -38,7 +39,7 @@ export const SingleLine = styled.div`
     width: 100%;
     opacity:0;
     height: 2px;
-    background-color:  #00090e;
+    background-color: ${({theme }) =>theme.pageTabs.focusedColor };
     transition: 0.2s;
     align-self: center;
 
@@ -62,7 +63,6 @@ export const SingleTabTags = styled.button`
     background-color: transparent;
     transition: 0.4s;
     border:1px solid ${(props:{theme:ThemeType , tagFocus:boolean}) => props.tagFocus ? "white" : "transparent"};
-   
 `
 
 export const SingleTabs = styled.div`
@@ -71,7 +71,7 @@ export const SingleTabs = styled.div`
     &:hover ${SingleLine}
     {
         transform: scale(0.8);
-        background-color: gray;
+        background-color: ${({theme}) =>  theme.pageTabs.nonfocusedColor};
     }
     &:hover ${SingleTabText}
     {
@@ -81,7 +81,7 @@ export const SingleTabs = styled.div`
 
 
 
-export const SingleTabButton = styled.button`    
+export const SingleTabButton = styled.button<{tabActive:boolean}>`    
     display: flex;
     border: none;
     font-size: 18px;
@@ -102,25 +102,25 @@ export const SingleTabButton = styled.button`
         transform: scale(1);
     }
     span {
-        color: ${(props : {theme:ThemeType , tabActive:boolean}) => props.tabActive ?  "#00090e" :  "#63696c"};
+        color: ${({theme, tabActive}) => tabActive ?  theme.pageTabs.focusedColor :  theme.pageTabs.nonfocusedColor};
     }
     &:hover
     {   
        
         ${SingleTabText}
         {
-            color: black;
+            color: ${({theme}) => theme.pageTabs.focusedColor};
             opacity: 1;
         }
         span{
-            color: #00090e;
+            color: ${({theme}) => theme.pageTabs.focusedColor};
         }
         div{
             opacity:1  !important;
             width: 100% !important;
             transform: scale(1) !important;
             color:#63696c;
-            background-color: black !important;
+            background-color: ${({theme}) => theme.pageTabs.focusedColor} !important;
         }
     }
 `

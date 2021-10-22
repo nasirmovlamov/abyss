@@ -44,10 +44,10 @@ export const Avatar = styled.img`
 `
 export const Name = styled.span`
     font-size: 12px;
-    margin-top: 6px;
+    margin-top: 18px;
     display: flex;
     opacity: 0.62;
-    width: 100%;
+    width: 120%;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
@@ -121,7 +121,8 @@ export const Tags = styled.button`
     text-align: center;
     transition: 0.2s;
     &:hover{
-        box-shadow: ${({theme}) => theme.forumPage.boxShadow};
+        box-shadow: ${({theme}) => theme.forumPage.boxShadowForElement};
+
     }
 `
 export const ProductsIcons = styled.div`
@@ -250,5 +251,6 @@ export const DateCount = styled.p`
     font-family: r;
     font-style: italic;
     font-size: 12px;
-    color:#9ea1a3;    
+    color: ${({theme}) => theme.forumPage.darkSideTextColor};
+ 
 `
