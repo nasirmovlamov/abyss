@@ -47,12 +47,13 @@ const Layout: FC<Props> = ({ children, ...props }) => {
                 
                 <div style={{width:"100%" , minHeight:"100vh", backgroundColor: "#0f1113" }}>
                     <Navbar/>
+                    
                     <SearchBox/>
                     {children}
 
                     {userData !== null && <button type="button" style={{position:"fixed",right:"0px",bottom:"0px"}} onClick={openUserChat}>Chat</button>}
                     <Modals/>
-                    <Footer/>
+                    {/* <Footer/> */}
                 </div>   
                 {
                 (pageOverflowY === "hidden" 
@@ -85,3 +86,5 @@ const Layout: FC<Props> = ({ children, ...props }) => {
 
 
 export default Layout
+
+

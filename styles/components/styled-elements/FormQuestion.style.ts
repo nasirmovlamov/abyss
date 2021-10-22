@@ -12,7 +12,7 @@ export interface ProductIconProps {
 
 export const FormQuestionCont = styled.div`
     display: flex;
-    width: 810px;
+    width: 100%;
     padding-top: 15px;
     padding-bottom: 8px;
     padding-left: 20px;
@@ -21,16 +21,8 @@ export const FormQuestionCont = styled.div`
     /* border-radius: 6px; */
     column-gap: 22px;
     border-radius: 20px;
-    background-color: #1c1e20;
-
-    /* box-shadow: 0px 1px 1px rgba(99,105,108,0.61), inset 0px 0px 0px rgba(99,105,108,0.61); */
-
-    &:nth-child(odd) {
-        box-shadow: #949597 0px 0px 2px 0px inset;
-    }
-    &:nth-child(even) {
-        box-shadow: #949597 0px 0px 2px 0px ;
-    }
+    background-color: ${({theme}) => theme.forumPage.elementBackground};
+    box-shadow: ${({theme}) => theme.forumPage.boxShadow};
     justify-content: space-between;
     height: 125px;
     align-items: center;
@@ -47,12 +39,13 @@ export const Avatar = styled.img`
     height:61px;
     border-radius:50%;
     object-fit: cover;
+    background-color: ${({theme}) => theme.forumPage.darkelementBacground};
+
 `
 export const Name = styled.span`
     font-size: 12px;
     margin-top: 6px;
     display: flex;
-    color: #00090e;
     opacity: 0.62;
     width: 100%;
     display: -webkit-box;
@@ -60,18 +53,18 @@ export const Name = styled.span`
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-`
+    color:  ${({theme}) => theme.forumPage.sideTextColor};
+    `
 export const TextCont = styled.div`
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    row-gap: 10px;
+    flex-wrap: wrap;
     width: 644px;
+    height: 100%;
 `
 
 export const Title = styled.h2`
     font-size: 20px;
-    color: #00578b;
+    color:  ${({theme}) => theme.forumPage.titleColor};
     cursor: pointer;
     text-transform: capitalize;
     display: -webkit-box;
@@ -79,6 +72,8 @@ export const Title = styled.h2`
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    width: 100%;
+    
     font-family: s;
 `
 export const Content = styled.p`
@@ -88,13 +83,16 @@ export const Content = styled.p`
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: #00090e;
+    color:  ${({theme}) => theme.forumPage.textColor};
     font-family: r;
+    align-self: flex-start;
 `
 
 export const BottomSide = styled.div`
     display: flex;
     justify-content: space-between;
+    width: 100%;
+    margin-top: 7px;
 `
 
 export const QuestionTags = styled.div`
@@ -110,17 +108,21 @@ export const Tags = styled.button`
     padding: 5px;
     border-radius: 5px;
     display: flex;
-    color: #00578b;
+    color:  ${({theme}) => theme.forumPage.textColor};
     font-family: r;
     justify-content: center;
-    border: 1px solid lightgray;
+    /* border: 1px solid lightgray; */
     align-items: center;
-    box-shadow: 0px 0px 0px 0.5px rgba(158,161,163,0.38), inset 0px 0px 1px rgba(158,161,163,1);
     background-color: #e5f0f4;
     font-family: r;
+    background:  ${({theme}) => theme.forumPage.tagsBackground};
+    cursor: pointer;
     font-size: 12px;
-    text-decoration: none solid rgb(0, 87, 139);
     text-align: center;
+    transition: 0.2s;
+    &:hover{
+        box-shadow: ${({theme}) => theme.forumPage.boxShadow};
+    }
 `
 export const ProductsIcons = styled.div`
     display: flex;
@@ -134,6 +136,7 @@ export const ProductIcon = styled.div<ProductIconProps>`
     box-shadow: 0px 1px 2px rgba(99,105,108,1), inset 0px 0px 0px rgba(99,105,108,0.61);
     border-radius: 50%;
     background-color: ${({backgroundColor}) =>  backgroundColor};
+    color:  ${({theme}) => theme.forumPage.sideTextColor};
     position: absolute;
     margin-right: ${({index}) => (index * 15)}px;
 `
@@ -147,13 +150,13 @@ export const ProductCount = styled.div`
     font-family: r;
     font-size: 12px;
     text-decoration: none solid rgb(71, 77, 81);
-    color: #474d51;
+    color: ${({theme}) => theme.forumPage.titleColor};
     span 
     {
-        color: #00578b;
+        color: ${({theme}) => theme.forumPage.titleColor};
         font-size: 16px;
         font-family: m;
-        text-decoration: none solid rgb(0, 87, 139);
+        text-decoration: none solid ${({theme}) => theme.forumPage.titleColor};
     }
 `
 
@@ -189,19 +192,19 @@ export const AnswerCount = styled.div`
     align-items: center;
     justify-content: center;
     row-gap: 5px;
-    color:#00578b;
+    color:${({theme}) => theme.forumPage.sideTextColor};
     font-size:20px;
 
 `
 
 export const Text = styled.span`
     font-size: 13px;
-    color:#474d51;
+    color:${({theme}) => theme.forumPage.sideTextColor};
 
 `
 export const ThumbIcon = styled.span`
     font-size: 13px;
-    color:#00578b;
+    color:${({theme}) => theme.forumPage.sideTextColor};
     font-size: 18px;
 `
 
@@ -219,7 +222,7 @@ export const HelpfulCont = styled.div`
 export const HelpfulCount = styled.div`
     width: 45px;
     height: 23px;
-    color: #00578B;
+    color: ${({theme}) => theme.forumPage.sideTextColor};
     border-radius: 6px;
     display: flex;
     align-items: center;
@@ -231,13 +234,13 @@ export const HelpfulCount = styled.div`
 export const DefaultLine = styled.div`
     width: 76px;
     height: 3px;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0);
 `
 
 export const PercentageLine = styled.div<PercentageLineProps>`
     width: ${({percentage}) => percentage}%;
     height: 100%;
-    background-color:#00578b;
+    background-color:${({theme}) => theme.forumPage.darkSideTextColor};
 `
 
 export const ViewsCont = styled.div`

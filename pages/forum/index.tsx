@@ -41,7 +41,7 @@ function Forum({}: Props): ReactElement {
         <PageDefaultStyle>
             <SidePartOfPage side={"left"}>
             </SidePartOfPage>
-
+            
             <MainPartOfPage>
                 <ForumPage>
                     <PageTabs/>  

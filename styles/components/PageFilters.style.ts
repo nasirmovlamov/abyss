@@ -8,9 +8,10 @@ export const FilterContStyle  = styled.div`
     height: auto;
     box-sizing: border-box;
     z-index: 2;
-    overflow: hidden;
-    position: sticky;
-    top: 90px;
+    height: 200px;
+    /* box-shadow: 190px 190px 190px 190px red; */
+    /* position: sticky; */
+    /* top: 90px; */
 `
 
 

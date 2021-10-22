@@ -4,18 +4,12 @@ import styled from "styled-components";
 
 export const SearchBoxContainer = styled.div<{path:string}>`
     display: flex;
-    /* flex-direction: column; */
-    /* align-items: center; */
-    column-gap: 20px;
+    width: 100%;
     padding-top: ${(props) => props.path === "/" ? "20vh" : "0vh"};
     height: ${(props) => props.path === "/" ? "70vh" : "auto"};
-    transition: 0.01s;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    z-index: 2;
-    pointer-events: none;
-    transition: 0.4s;
+    justify-content: center;
+    box-sizing: border-box;
+    padding-right: 56px;
 `
 
 export const SearchBoxThunkAndCont = styled.div<{direction:string}>`
@@ -28,6 +22,7 @@ export const SearchBoxThunkAndCont = styled.div<{direction:string}>`
     position: sticky;
     transition: 0.5s;
     z-index: 100;
+
 
 `
 
@@ -50,6 +45,7 @@ export const SearchBoxThunk = styled.button<{direction:string}>`
     transform: ${({direction})=>direction === "down" ? "translateY(0px)" : "translateY(-20px)"};
     pointer-events: ${({direction})=>direction === "down" ? "all" : "none"};
     transition: 0.2s;
+
 `
 
 export const SearchBoxStyle = styled.div<{direction:string, path:string}>`
@@ -63,7 +59,6 @@ export const SearchBoxStyle = styled.div<{direction:string, path:string}>`
     border-radius: 5px;
     border-radius: 30px 30px 30px 30px ;
     border: none;
-    box-shadow: 0px 1px 1px rgba(99,105,108,0.61), inset 0px 0px 0px rgba(99,105,108,0.61);
     transition: 0.4s;
     background-color: white;
     align-items: flex-start;
@@ -72,22 +67,25 @@ export const SearchBoxStyle = styled.div<{direction:string, path:string}>`
     z-index: 9999;
     transform-origin: top;
     transition: 0.5s;
+    background-color: ${({theme}) => theme.searchBox.background};
+    box-shadow: ${({theme}) => theme.searchBox.boxShadow};
 `
 
 
 export const SearchBoxPage = styled.div`
-    width:100px;
+    width:112px;
     height: 100%;
     display:flex;
     justify-content: center;
     align-items: center;
     padding-left: 10px;
     background-color: white;
-    color: #474D51;
+    color:${({theme}) => theme.searchBox.leftSideColor} ;
     font-family: r;
     border-radius: 30px 0px 0px 30px ;
+    background-color: ${({theme}) => theme.searchBox.background};
 
-    flex: 0 0 100px; /* flex-grow, flex-shrink, flex-basis */
+    flex: 0 0 112px; /* flex-grow, flex-shrink, flex-basis */
 `
 
 export const SearchInput = styled.input<{path:string}>`
@@ -98,11 +96,13 @@ export const SearchInput = styled.input<{path:string}>`
     color:black;
     width: 100%;
     z-index: 3;
+    background-color: ${({theme}) => theme.searchBox.background};
+    color: ${({theme}) => theme.searchBox.inputColor};
     &:focus {
         outline: none;
     }
     &::placeholder {
-        color: #d9dadb;
+        color: ${({theme}) => theme.searchBox.borderAndPlaceHolderColor};
     }
 `
 
@@ -112,8 +112,8 @@ export const SearchCont = styled.div`
     height: 100%;
     display:flex;
     align-items: center;
-    border-left: 1px solid #E5E6E6;
-
+    border-left: 1px solid red;
+    border-color:  ${({theme}) => theme.searchBox.borderAndPlaceHolderColor} !important;
     position: relative;
     svg 
     {
@@ -121,7 +121,7 @@ export const SearchCont = styled.div`
         color: white;
         position: absolute;
         margin-left: 10px;
-        color: #d9dadb;
+        color: ${({theme}) => theme.searchBox.borderAndPlaceHolderColor};
     }
     input 
     {
@@ -146,6 +146,7 @@ export const SearchNav = styled.div<{path:string}>`
     margin: 0px;
     padding: 0px;
     border: 0px;
+
 `
 export const SearchNavQuery = styled.button`
     display: flex;
@@ -153,6 +154,7 @@ export const SearchNavQuery = styled.button`
     align-items: center;
     background-color: white;
     border: none;
+
     svg 
     {
         z-index: 4;
@@ -171,8 +173,7 @@ export const SearchNavQuery = styled.button`
 `
 
 export const AddQuesitionCont = styled.button`
-    width: 100px;
-    flex: 0 0 100px; /* flex-grow, flex-shrink, flex-basis */
+    flex: 0 0 112px; /* flex-grow, flex-shrink, flex-basis */
     height: 100%;
     display: flex;
     justify-content: center;
@@ -183,6 +184,9 @@ export const AddQuesitionCont = styled.button`
     font-size: 15px;
     font-family: s;
     border-radius: 0px 30px 30px 0px ;
+    background-color: ${({theme}) => theme.searchBox.button};
+    color: ${({theme}) => theme.searchBox.buttonColor};
+
 
 `
 

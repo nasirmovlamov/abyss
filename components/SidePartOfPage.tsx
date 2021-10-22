@@ -13,9 +13,13 @@ interface Props {
 function SidePartOfPage({children , side}: Props): ReactElement {
     const isChatBoxOpened = useAppSelector(is_chatbox_opened) 
     return (
-        <SidePartOfPageStyle>
+        <SidePartOfPageStyle side={side} >
             {children}
-            {side ==="left" && <PageFilters/>}
+            {side ==="left" && 
+            <>
+            <PageFilters/>
+            </>
+            }
             {side ==="right" && 
                 (isChatBoxOpened && <ChatBox/>)
             }

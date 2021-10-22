@@ -8,6 +8,8 @@ import { useAppDispatch } from '../app/store/hooks'
 import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex'
 import { AddQuesitionCont, SearchBoxContainer , SearchBoxPage, SearchBoxStyle, SearchBoxThunk, SearchBoxThunkAndCont, SearchCont, SearchInput, SearchNav, SearchNavQuery} from '../styles/components/styled-elements/SearchBox.style'
 import { MainPartOfPageStyle, SidePartOfPageStyle } from '../styles/pages/Page.styled'
+import { useScrollYPosition } from 'react-use-scroll-position';
+
 
 interface Props {
     
@@ -21,6 +23,7 @@ function SearchBox({}: Props): ReactElement {
     const searchInputRef = useRef<HTMLInputElement>(null)
     const searchNavRef = useRef<HTMLDivElement>(null)
     const dispatch = useAppDispatch()
+    const scrollY = useScrollYPosition();
     const [searchValue, setSearchValue] = useState("")
 
     const changeSearchValue = (e:string) => {
@@ -123,36 +126,37 @@ function SearchBox({}: Props): ReactElement {
         {}
     }
     
+    useEffect(() => {
+        if(scrollY === 0)
+        {
+            setDirection('up')
+            console.log(scrollY)
+        }
+    }, [scrollY])
+
     return (
         <SearchBoxContainer ref={searchContRef} path={router.asPath} style={SearchContDesign}>
-            <>
-                <div style={{width:"400px"}}></div>
-                <div style={{width:"808px"}}>
-                    <SearchBoxThunkAndCont  ref={searchBoxRef} direction={direction}>
-                        <SearchBoxStyle path={router.asPath} direction={direction} > 
-                            <SearchBoxPage>{pagePath}</SearchBoxPage>
-                            <SearchCont>
-                                <FontAwesomeIcon  icon={faSearch}/>
-                                <SearchInput value={searchValue} onChange={(e) => changeSearchValue(e.target.value)}  path={router.asPath} placeholder="Search..." ref={searchInputRef} onFocus={() => searchSizechange('focus')} onBlur={() => searchSizechange('blur')}  type="text" /> 
-                                <SearchNav  path={router.asPath} ref={searchNavRef}>
-                                    <SearchNavQuery>
-                                        <FontAwesomeIcon  icon={faSearch}/>
-                                        <span>react</span>
-                                    </SearchNavQuery>
-                                    <SearchNavQuery>
-                                        <FontAwesomeIcon  icon={faSearch}/>
-                                        <span>react</span>
-                                    </SearchNavQuery>
-                                </SearchNav>
-                            </SearchCont>
-                            {pagePath !== "Home" && <AddQuesitionCont onClick={handleAddClick}>ADD</AddQuesitionCont>}
-                        </SearchBoxStyle>
-                        {pagePath !== "Home" &&<SearchBoxThunk onMouseMove={()=>setDirection("up")} direction={direction}>	• 	•	•</SearchBoxThunk>}
-                    </SearchBoxThunkAndCont>
-                </div>
-                <div style={{width:"400px"}}></div>
-
-            </>
+                <SearchBoxThunkAndCont  ref={searchBoxRef} direction={direction}>
+                    <SearchBoxStyle path={router.asPath} direction={direction} > 
+                        <SearchBoxPage>{pagePath}</SearchBoxPage>
+                        <SearchCont>
+                            <FontAwesomeIcon  icon={faSearch}/>
+                            <SearchInput value={searchValue} onChange={(e) => changeSearchValue(e.target.value)}  path={router.asPath} placeholder="Search..." ref={searchInputRef} onFocus={() => searchSizechange('focus')} onBlur={() => searchSizechange('blur')}  type="text" /> 
+                            <SearchNav  path={router.asPath} ref={searchNavRef}>
+                                <SearchNavQuery>
+                                    <FontAwesomeIcon  icon={faSearch}/>
+                                    <span>react</span>
+                                </SearchNavQuery>
+                                <SearchNavQuery>
+                                    <FontAwesomeIcon  icon={faSearch}/>
+                                    <span>react</span>
+                                </SearchNavQuery>
+                            </SearchNav>
+                        </SearchCont>
+                        {pagePath !== "Home" && <AddQuesitionCont onClick={handleAddClick}>ADD</AddQuesitionCont>}
+                    </SearchBoxStyle>
+                    {pagePath !== "Home" &&<SearchBoxThunk onMouseMove={()=>setDirection("up")} direction={direction}>	• 	•	•</SearchBoxThunk>}
+                </SearchBoxThunkAndCont>
         </SearchBoxContainer>
     )
 }

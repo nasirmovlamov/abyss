@@ -1,3 +1,5 @@
+import { ForumBoxShadowDark, SearchBoxShadowDark } from './BoxShadows';
+import { pageLightGray, pageBlack, pageDarkBlack, linesSideTextColor, whiteTextColor, orangeBackground, pageDarkGray, blueTitle, blueForTags, darkLinesSideTextColor } from './Colors';
   export const lightTheme = {
       body: '#F2F2F3',
       text: '#363537',
@@ -8,11 +10,11 @@
       themeTogglerContBorder: "black",
       backgroundMain:"#00090e",
       navbar: {
-        navBackground:"#FFFFFF",
+        background:pageBlack,
         navLogoText:"#f2f2f3",
         navBorder:"#ADB9B9",
-        navLinks:"#9ea1a3",
-        navLinksHovered:"#f2f2f3",
+        navLinks:"#949597",
+        navLinksHovered:"#F2F2F3",
         navPersonName:"#032728",
         navLogin:"0",
         navRegister:"0",
@@ -21,12 +23,36 @@
       pageTabs: {
         contBG:"#ffffff",
         border:"gray",
-        nonfocusedColor:"#63696c",
-        focusedColor:"#00090e",
+        nonfocusedColor:pageLightGray,
+        focusedColor:whiteTextColor,
         hover:{
           border:"lightgray",
         }
+      },
+
+      searchBox:{
+        background:pageBlack,
+        leftSideColor:linesSideTextColor,
+        borderAndPlaceHolderColor:pageDarkGray,
+        inputColor:whiteTextColor,
+        button:orangeBackground,
+        buttonColor:pageDarkBlack,
+        boxShadow: SearchBoxShadowDark
+      },
+
+      forumPage:{
+        textColor: whiteTextColor, 
+        sideTextColor: linesSideTextColor,
+        iconColor:linesSideTextColor,
+        titleColor: blueTitle,
+        darkSideTextColor:darkLinesSideTextColor,
+        tagsBackground: blueForTags,
+        elementBackground: pageBlack,
+        darkelementBacground:pageDarkBlack,
+        boxShadow: ForumBoxShadowDark,
+        tabsTitle:pageLightGray,
       }
+
   }
   export const darkTheme = {
     body: '#00090E',

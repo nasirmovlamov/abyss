@@ -9,19 +9,40 @@ export const Nav = styled.nav`
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding-left: 25px;
-    padding-right: 20px;
+    padding-left: 72px;
+    padding-right: 10px;
     padding-top: 7px;
     padding-bottom: 10px;
-    border-bottom: 1px solid ${({theme}) => theme.navbar.navBorder};
-    background-color: ${({theme}) => theme.backgroundMain};
+    /* border-bottom: 1px solid ${({theme}) => theme.navbar.navBorder}; */
+    background-color: ${({theme}) => theme.navbar.background};
+    box-shadow: inset  0 -2px 2px -2px #949597, 0px 0px 6px 0px #000000;
     margin: 0px;
     position: sticky;
     top:0px;
     height: 60px;
     z-index: 999;
+
 `
 
+
+export const NavForShadow = styled.nav`
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-left: 72px;
+    padding-right: 10px;
+    padding-top: 7px;
+    padding-bottom: 10px;
+    /* border-bottom: 1px solid ${({theme}) => theme.navbar.navBorder}; */
+    background-color: ${({theme}) => theme.navbar.background};
+    box-shadow: inset  0 -2px 2px -2px #949597, 0px 2px 20px 2px #000000 , 0px 0px 6px 0px #000000;
+    margin: 0px;
+    position: fixed;
+    top:0px;
+    height: 60px;
+    z-index: 1;
+    width: 100%;
+`
 
 
 export const Light = styled.div`
@@ -152,9 +173,12 @@ export const LiStyle = styled.li`
 export const LinksStyle = styled.ul`
     display:flex;
     /* justify-content:center; */
+    justify-content: center;
     align-items:flex-end;
     height:60px;    
-    width:680px;
+    padding-right: 56px;
+    /* width:680px; */
+    width: 864px;
     &:hover ${Line}
     {
         opacity: 0.2; 
@@ -168,6 +192,13 @@ export const LinksStyle = styled.ul`
             color:${({theme}) => theme.navbar.navLinks}   
         }
     }
+`
+export const LinksStyleCenterer = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-right: 140px;
+    position: absolute;
 `
 
 

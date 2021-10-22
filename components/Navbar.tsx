@@ -1,6 +1,8 @@
 import React, { ReactElement, useEffect,  useState } from 'react'
-import {Enterance, Guest, ImageStyle1, ImageStyle2,  Light, LightShadow, LightShadow2, Line,  LinksStyle, LinkStyle, LiStyle, Logged, LoginButton, Logo, LogoText, Logout, Nav, PersonName, RegisterButton} from '../styles/components/styled-elements/Navbar.style'
+import {Enterance, Guest, ImageStyle1, ImageStyle2,  Light, LightShadow, LightShadow2, Line,  LinksStyle, LinksStyleCenterer, LinkStyle, LiStyle, Logged, LoginButton, Logo, LogoText, Logout, Nav, NavForShadow, PersonName, RegisterButton} from '../styles/components/styled-elements/Navbar.style'
 import Image from 'next/image'
+import mainLogo from '/public/main-logo.svg'
+import mainLogoText from '/public/abyss-logo-side-text.svg'
 import RegisterModal from './Modals/RegisterModal'
 import LoginModal from './Modals/LoginModal'
 import Modals from './Modals/Modals'
@@ -12,7 +14,6 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import NavLink from './NavLink'
 import { forumWordRegex } from '../logic/regex/NavbarRegex'
-
 interface Props {
 }
 
@@ -75,9 +76,9 @@ function Navbar({}: Props): ReactElement {
         {
             const view = <>
                     <Logged> 
-                        <ImageStyle1>
+                        {/* <ImageStyle1>
                             <Image width="70px" height='40px' layout="fill" src={"/dark-person.png"} alt={"person icon"}/> 
-                        </ImageStyle1>
+                        </ImageStyle1> */}
                         {/* <ImageStyle2>
                             <Image width="70px" height='40px' src={darkPerson} /> 
                         </ImageStyle2> */}
@@ -96,44 +97,50 @@ function Navbar({}: Props): ReactElement {
 
 
     return (
+        <>
         <Nav>
             <NavLink href={"/"} >
                 <Logo> 
-                    <Image src={"/main-logo.svg"} layout="fill" width="100px" height="49px"  alt={"Abyss logo"}/>  
+                    <Image src={mainLogo} height="49px"  alt={"Abyss logo"}/>  
+                    <Image src={mainLogoText}  height="49px"  alt={"Abyss text"}/>  
                     <Light/>
                     <LightShadow/>
                     <LightShadow2/> 
-                    <LogoText>abyss</LogoText> 
                 </Logo>
             </NavLink>
             
-            <LinksStyle>
-                <NavLink href={"/store"}>
-                    <LiStyle focus={pathname === "/store" ? true: false}>
-                        <LinkStyle>Store</LinkStyle>
-                        <Line />
-                    </LiStyle>
-                </NavLink> 
+            <LinksStyleCenterer>
+                <LinksStyle>
+                    <NavLink href={"/store"}>
+                        <LiStyle focus={pathname === "/store" ? true: false}>
+                            <LinkStyle>Store</LinkStyle>
+                            <Line />
+                        </LiStyle>
+                    </NavLink> 
 
-                <NavLink href={"/forum?selectedTab=Info&selectedTag=Newes"}>
-                    <LiStyle focus={forumWordRegex.test(pathname) ? true: false}>
-                        <LinkStyle>Community</LinkStyle>
-                        <Line/>
-                    </LiStyle>
-                </NavLink>
-                
-                <NavLink href={"/pedi"}>
-                    <LiStyle focus={pathname === "/pedi" ? true: false}>
-                        <LinkStyle>Pedia</LinkStyle>
-                        <Line/>
-                    </LiStyle>
-                </NavLink> 
-            </LinksStyle>
-
+                    <NavLink href={"/forum?selectedTab=Info&selectedTag=Newes"}>
+                        <LiStyle focus={forumWordRegex.test(pathname) ? true: false}>
+                            <LinkStyle>Community</LinkStyle>
+                            <Line/>
+                        </LiStyle>
+                    </NavLink>
+                    
+                    <NavLink href={"/pedi"}>
+                        <LiStyle focus={pathname === "/pedi" ? true: false}>
+                            <LinkStyle>Pedia</LinkStyle>
+                            <Line/>
+                        </LiStyle>
+                    </NavLink> 
+                </LinksStyle>
+            </LinksStyleCenterer>
             <Enterance>
                 {navView}
             </Enterance>
         </Nav>
+        <NavForShadow>
+
+        </NavForShadow>
+        </>
     )
 }
 

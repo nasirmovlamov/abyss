@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ForumPage = styled.div`
-    width: 808px;
+    width: 100%;
     min-height: 1600px;
     display: flex;
     flex-direction: column;
@@ -14,7 +14,7 @@ export const ForumPage = styled.div`
 
 
 export const StorePage = styled.main`
-    width: 808px;
+    width: 100%;
     min-height: 1600px;
     display: flex;
     flex-direction: column;

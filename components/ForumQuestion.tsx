@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp } from '@fortawesome/free-regular-svg-icons'
 import NavLink from './NavLink'
+import { QuestionStatisticButton, QuestionStatistics, VotePercentage } from '../styles/pages/SingleQuestionPage.styled'
 
 interface Props {
     data:{
@@ -47,17 +48,39 @@ function FormQuestion({data}: Props): ReactElement {
 
                     <CountOfProducts> 
                         <ProductsIcons>
-                            <ProductIcon index={3} backgroundColor="#e5f0f4"></ProductIcon>
-                            <ProductIcon index={2} backgroundColor="#00578b"></ProductIcon>
-                            <ProductIcon index={1} backgroundColor="white"></ProductIcon>
+                            <ProductIcon index={3} backgroundColor="#2E4951"></ProductIcon>
+                            <ProductIcon index={2} backgroundColor="#0F1113"></ProductIcon>
+                            <ProductIcon index={1} backgroundColor="#EFF2F4"></ProductIcon>
                         </ProductsIcons>
                         <ProductCount><span>11</span> Products</ProductCount>
                     </CountOfProducts>
                 </BottomSide>
             </TextCont>
 
-            w
+            <QuestionStatistics>
+                    <StatisticCont>
+                            <AnswerCont>
+                                <AnswerCount>7</AnswerCount>
+                                <Text>Answers</Text>
+                            </AnswerCont>
 
+                            <HelpfulCont>
+                                <HelpfulCount>
+                                    <QuestionStatisticButton  changeDirection={false}  ><ThumbIcon><FontAwesomeIcon  icon={faThumbsUp} /> </ThumbIcon></QuestionStatisticButton> 
+                                </HelpfulCount>
+                                <DefaultLine><PercentageLine percentage={(69/100*100)}/></DefaultLine>
+                                
+                            </HelpfulCont>
+                    </StatisticCont>
+                    <DateCount>
+                        2d 7h ago
+                    </DateCount>
+                    {/* <QuestionStatisticElement>
+                        <QuestionStatisticButton onClick={voting} color={singleQuestionData.user_votes === null ? "red" : "green"}>like</QuestionStatisticButton>
+                        <QuestionStatisticText>Give Vote</QuestionStatisticText>
+                        <QuestionDate> {singleQuestionData.created_at} </QuestionDate>
+                    </QuestionStatisticElement> */}
+            </QuestionStatistics>
 
         </FormQuestionCont>
     )
