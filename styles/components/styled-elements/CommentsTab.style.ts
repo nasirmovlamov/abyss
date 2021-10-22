@@ -4,7 +4,7 @@ import { HeaderHeight } from "../../global/styled-utils/styling-elements/Sizes";
 
 export const TakeCommentsToSideMakeAbsolute = styled.div`
     position: fixed;
-    width: 483px;
+    width: 358px;
     height: calc(100% - ${HeaderHeight});
     background-color: ${({theme}) => theme.forumPage.elementBackground};
     box-shadow: ${({theme}) => theme.forumPage.boxShadow};
@@ -63,6 +63,7 @@ export const AllCommentsCont = styled.div`
     width: 100%;
     box-sizing: border-box;
     overflow-y: auto;
+    overflow-x: hidden;
     /* width */
     &::-webkit-scrollbar {
     width: 5px;
@@ -115,7 +116,7 @@ export const CommentUserName = styled.div`
     font-size: 12px;
     display: flex;
     opacity: 0.62;
-    width: 100%;
+    width: calc (100% -20px);
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
