@@ -1,7 +1,14 @@
 {
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
+  "/api/hello": "pages/api/hello.js",
+  "/email/verify/[id]/[slug]": "pages/email/verify/[id]/[slug].html",
+  "/forum/[id]/[slug]": "pages/forum/[id]/[slug].html",
+  "/forum": "pages/forum.html",
+  "/": "pages/index.html",
+  "/pedi": "pages/pedi.html",
+  "/store/[id]/[slug]": "pages/store/[id]/[slug].html",
+  "/store": "pages/store.html",
   "/_error": "pages/_error.js",
-  "/": "pages/index.js",
-  "/store": "pages/store.js"
+  "/404": "pages/404.html"
 }

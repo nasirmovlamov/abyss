@@ -114,11 +114,16 @@ export const ProductContent = styled.div`
 `
 
 export const ProductTitle = styled.a`
-    /* width: 200px; */
-    margin-top: 10px;
-    font-size: 20px;
-    color: #032728;
+    color:  ${({theme}) => theme.forumPage.titleColor};
     cursor: pointer;
+    text-transform: capitalize;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    text-decoration: none;
 `
 
 

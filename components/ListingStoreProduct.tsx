@@ -1,7 +1,26 @@
 import React, { ReactElement} from 'react'
 import Image from 'next/image'
 import { AnswerCount,  Avatar, BottomSide, Content,  FormQuestionCont, Name, PersonCont, QuestionTags, StatisticCont, Tags, TextCont, Title, Text, HelpfulCont, HelpfulCount, AnswerCont, ViewsCont,  } from '../styles/components/styled-elements/FormQuestion.style'
-import { AddCave, Language, LanguageContForTextAndIcon, LanguageInfo, LanguageText, LinesofCode, LinesofCodeContForIconAndText, LinesofCodeText, ProductContent, ProductContentCont, ProductDetailCont,  ProductImageAndContent, ProductImageOverlay, ProductLanguageAndImage, ProductPerson, ProductPriceCont, ProductSoldCont, ProductStarCont, ProductTag, ProductTags, ProductTitle, StoreListingProductStyle } from '../styles/components/styled-elements/ListingStoreProduct.styled'
+import { 
+    AddCave,  
+    LanguageContForTextAndIcon, 
+    LanguageInfo, 
+    LanguageText,  
+    LinesofCodeContForIconAndText, 
+    LinesofCodeText, 
+    ProductContent, 
+    ProductContentCont, 
+    ProductDetailCont,  
+    ProductImageAndContent, 
+    ProductImageOverlay, 
+    ProductLanguageAndImage, 
+    ProductPerson, 
+    ProductPriceCont, 
+    ProductSoldCont, 
+    ProductStarCont, 
+    ProductTag, 
+    ProductTags, 
+    ProductTitle, StoreListingProductStyle } from '../styles/components/styled-elements/ListingStoreProduct.styled'
 import NavLink from './NavLink'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLaptopCode } from '@fortawesome/free-solid-svg-icons'
