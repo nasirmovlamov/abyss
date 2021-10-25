@@ -5,11 +5,10 @@ import styled from "styled-components";
 export const SearchBoxContainer = styled.div<{path:string}>`
     display: flex;
     width: 100%;
+    margin: auto;
     padding-top: ${(props) => props.path === "/" ? "20vh" : "0vh"};
     height: ${(props) => props.path === "/" ? "70vh" : "auto"};
     justify-content: center;
-    box-sizing: border-box;
-    padding-right: 7.2917%;
 `
 
 export const SearchBoxThunkAndCont = styled.div<{direction:string}>`
@@ -22,8 +21,7 @@ export const SearchBoxThunkAndCont = styled.div<{direction:string}>`
     position: sticky;
     transition: 0.5s;
     z-index: 100;
-
-
+    margin-right: 6.2%;
 `
 
 export const SearchBoxThunk = styled.button<{direction:string}>`
@@ -52,7 +50,7 @@ export const SearchBoxStyle = styled.div<{direction:string, path:string}>`
     display: flex;
     pointer-events: all;
     background-color: black;
-    width: 808px;
+    width: 810px;
     transform: translateX(0px);
     height: ${(props) => props.path === "/" ? "65px" : "50px"};
     color: white;
