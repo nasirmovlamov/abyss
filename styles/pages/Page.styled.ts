@@ -31,7 +31,7 @@ export const PageDefaultStyle = styled.main`
     column-gap: 56px;
     align-items: stretch;
     justify-content: center;
-    width: 90%;
+    width: 100%;
     box-sizing: border-box;
     padding-left: 56px;
     padding-right: 56px;

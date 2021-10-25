@@ -171,7 +171,6 @@ export const LinksStyle = styled.ul`
     justify-content: center;
     align-items:flex-end;
     height:60px;    
-    margin-right: 6.2%;
     /* width:680px; */
     width: 810px;
     &:hover ${Line}
@@ -195,6 +194,7 @@ export const LinksStyleCenterer = styled.div`
     top:0px;
     left:0px;
     position: absolute;
+    padding-right:6.85%;
 `
 
 
