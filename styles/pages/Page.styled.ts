@@ -6,7 +6,7 @@ export const MainPartOfPageStyle = styled.div`
     padding-top: 74px;
     display: flex;
     justify-content: center;
-    margin-right: 128px;
+    margin-right: 7.2917%;
     /* z-index: 2; */
 `
 

@@ -9,7 +9,7 @@ export const SearchBoxContainer = styled.div<{path:string}>`
     height: ${(props) => props.path === "/" ? "70vh" : "auto"};
     justify-content: center;
     box-sizing: border-box;
-    padding-right: 128px;
+    padding-right: 7.2917%;
 `
 
 export const SearchBoxThunkAndCont = styled.div<{direction:string}>`
