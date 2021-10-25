@@ -20,10 +20,10 @@ import {
     ProductStarCont, 
     ProductTag, 
     ProductTags, 
-    ProductTitle, StoreListingProductStyle } from '../styles/components/styled-elements/ListingStoreProduct.styled'
+    ProductTitle, ProductViewCont, StoreListingProductStyle } from '../styles/components/styled-elements/ListingStoreProduct.styled'
 import NavLink from './NavLink'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLaptopCode } from '@fortawesome/free-solid-svg-icons'
+import { faDownload, faEye, faLaptopCode } from '@fortawesome/free-solid-svg-icons'
 import { faPython } from '@fortawesome/free-brands-svg-icons'
 import StarCountShow from './StarCountShow'
 
@@ -71,7 +71,8 @@ function ListingStoreProduct({data}: Props): ReactElement {
                         <NavLink href={"store/1/test"}><ProductTitle>{data.name}</ProductTitle></NavLink>
                         <ProductDetailCont>
                             <ProductStarCont><StarCountShow count={4.3}/> {data.starCount}</ProductStarCont>
-                            <ProductSoldCont>sold {data.soldCount}</ProductSoldCont>
+                            <ProductSoldCont><FontAwesomeIcon icon={faDownload}/> {data.soldCount}</ProductSoldCont>
+                            <ProductViewCont><FontAwesomeIcon icon={faEye}/> {data.soldCount}</ProductViewCont>
                         </ProductDetailCont>
                         <ProductTags>
                             {data.tags.map((tag , index) => index < 3 && <ProductTag>{tag}</ProductTag>)}

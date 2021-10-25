@@ -13,8 +13,8 @@ export const StoreListingProductStyle = styled.div`
     width: 100%;
     height: 182px;
     margin-bottom:20px ;
-    background-color: ${({theme}) => theme.forumPage.elementBackground};
-    box-shadow: ${({theme}) => theme.forumPage.boxShadow};
+    background-color: ${({theme}) => theme.productPage.elementBackground};
+    box-shadow: ${({theme}) => theme.productPage.boxShadow};
 
 `   
 
@@ -111,14 +111,11 @@ export const ProductContent = styled.div`
     flex-direction: column;
     row-gap: 3px;
     color: white;
-    svg 
-    {
-        color: yellow;
-    }
+    
 `
 
 export const ProductTitle = styled.a`
-    color:  ${({theme}) => theme.forumPage.titleColor};
+    color:  ${({theme}) => theme.productPage.titleColor};
     cursor: pointer;
     text-transform: capitalize;
     display: -webkit-box;
@@ -134,20 +131,31 @@ export const ProductTitle = styled.a`
 
 export const ProductDetailCont = styled.div`
     display: flex;
-    column-gap: 15px;
+    column-gap: 35px;
+    color: ${({theme}) => theme.productPage.sideTextColor};
 `
 export const ProductStarCont = styled.div`
     display: flex;
     column-gap: 5px;
     font-size: 13px;
+    font-family:s;
+    svg 
+    {
+        color: yellow;
+    }
 `
 export const ProductSoldCont = styled.div`
     display: flex;
     column-gap: 5px;
     font-size: 13px;
-
+    font-family:s;
 `
 export const ProductPriceCont = styled.div`
+    display: flex;
+    column-gap: 5px;
+    font-size: 24px;
+`
+export const ProductViewCont = styled.div`
     display: flex;
     column-gap: 5px;
     font-size: 24px;

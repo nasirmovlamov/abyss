@@ -55,8 +55,22 @@ import { pageLightGray, pageBlack, pageDarkBlack, linesSideTextColor, whiteTextC
         boxShadowForElement: BoxShadowDarkForElement,
         tabsTitle:pageLightGray,
         commentsBorder:darkLinesSideTextColor
-      }
+      },
 
+      productPage:{
+        textColor: whiteTextColor, 
+        sideTextColor: linesSideTextColor,
+        iconColor:linesSideTextColor,
+        titleColor: blueTitle,
+        darkSideTextColor:darkLinesSideTextColor,
+        tagsBackground: blueForTags,
+        elementBackground: pageBlack,
+        darkelementBacground:pageDarkBlack,
+        boxShadow: ForumBoxShadowDark,
+        boxShadowForElement: BoxShadowDarkForElement,
+        tabsTitle:pageLightGray,
+        commentsBorder:darkLinesSideTextColor
+      }
   }
   export const darkTheme = {
     body: '#00090E',

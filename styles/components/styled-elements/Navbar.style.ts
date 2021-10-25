@@ -130,7 +130,7 @@ export const LiStyle = styled.li`
     display:flex;
     justify-content:center;
     align-items:center;
-    height:50px;    
+    height:100%;    
     padding-bottom: 3px;
     column-gap: 40px;
     font-size: 18px;
