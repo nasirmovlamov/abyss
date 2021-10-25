@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 
 export const MainPartOfPageStyle = styled.div`
-    width: 864px;
+    width: 810px;
     padding-top: 74px;
     display: flex;
     justify-content: center;
-    padding-right: 56px;
+    margin-right: 128px;
     /* z-index: 2; */
 `
 

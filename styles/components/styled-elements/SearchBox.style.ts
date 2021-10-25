@@ -9,7 +9,7 @@ export const SearchBoxContainer = styled.div<{path:string}>`
     height: ${(props) => props.path === "/" ? "70vh" : "auto"};
     justify-content: center;
     box-sizing: border-box;
-    padding-right: 56px;
+    padding-right: 128px;
 `
 
 export const SearchBoxThunkAndCont = styled.div<{direction:string}>`
@@ -18,7 +18,7 @@ export const SearchBoxThunkAndCont = styled.div<{direction:string}>`
     /* align-items: center; */
     justify-content: space-between;
     transform: ${({direction}) => direction === "up" ? "translateY(0px)" : "translateY(-51px)"};
-    width: 808px;
+    width: 810px;
     position: sticky;
     transition: 0.5s;
     z-index: 100;

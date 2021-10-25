@@ -161,7 +161,6 @@ export const AddCave = styled.button`
 export const ProductTags = styled.div`
     display: flex;
     column-gap: 10px;
-    margin-bottom: 10px; 
 `
 
 export const ProductTag = styled.button`

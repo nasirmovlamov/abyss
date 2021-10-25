@@ -65,18 +65,18 @@ function ListingStoreProduct({data}: Props): ReactElement {
                 </ProductLanguageAndImage>
 
 
-                <ProductContentCont>
+            <ProductContentCont>
                     <ProductContent>
                         <NavLink href={"store/1/test"}><ProductTitle>{data.name}</ProductTitle></NavLink>
                         <ProductDetailCont>
                             <ProductStarCont>star {data.starCount}</ProductStarCont>
                             <ProductSoldCont>sold {data.soldCount}</ProductSoldCont>
                         </ProductDetailCont>
+                        <ProductTags>
+                            {data.tags.map((tag , index) => index < 3 && <ProductTag>{tag}</ProductTag>)}
+                        </ProductTags>
                         <ProductPriceCont>{data.price}$</ProductPriceCont>
                     </ProductContent>
-                    <ProductTags>
-                {data.tags.map((tag , index) => index < 3 && <ProductTag>{tag}</ProductTag>)}
-            </ProductTags>
                     <AddCave>Add to Cave</AddCave>
 
                 </ProductContentCont>
