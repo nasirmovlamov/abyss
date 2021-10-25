@@ -2,5 +2,6 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
+  "/forum/[id]/[slug]": "pages/forum/[id]/[slug].js",
   "/store": "pages/store.js"
 }

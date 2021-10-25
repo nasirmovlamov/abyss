@@ -102,15 +102,19 @@ export const LinesofCodeText = styled.p`
 export const ProductContentCont = styled.div`
     display: flex;
     flex-direction: column;
-    row-gap: 10px;
+    row-gap: 3px;
     justify-content: space-between;
     align-items: flex-start;
 `
 export const ProductContent = styled.div`
     display: flex;
     flex-direction: column;
-    row-gap: 10px;
+    row-gap: 3px;
     color: white;
+    svg 
+    {
+        color: yellow;
+    }
 `
 
 export const ProductTitle = styled.a`
@@ -124,6 +128,7 @@ export const ProductTitle = styled.a`
     text-overflow: ellipsis;
     width: 100%;
     text-decoration: none;
+    font-size: 20px;
 `
 
 

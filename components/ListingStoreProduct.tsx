@@ -25,6 +25,7 @@ import NavLink from './NavLink'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLaptopCode } from '@fortawesome/free-solid-svg-icons'
 import { faPython } from '@fortawesome/free-brands-svg-icons'
+import StarCountShow from './StarCountShow'
 
 interface Props {
     data:{
@@ -69,7 +70,7 @@ function ListingStoreProduct({data}: Props): ReactElement {
                     <ProductContent>
                         <NavLink href={"store/1/test"}><ProductTitle>{data.name}</ProductTitle></NavLink>
                         <ProductDetailCont>
-                            <ProductStarCont>star {data.starCount}</ProductStarCont>
+                            <ProductStarCont><StarCountShow count={4.3}/> {data.starCount}</ProductStarCont>
                             <ProductSoldCont>sold {data.soldCount}</ProductSoldCont>
                         </ProductDetailCont>
                         <ProductTags>

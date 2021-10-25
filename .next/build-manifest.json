@@ -24,6 +24,11 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+    "/forum/[id]/[slug]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/forum/[id]/[slug].js"
+    ],
     "/store": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
