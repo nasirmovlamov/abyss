@@ -171,7 +171,7 @@ export const LinksStyle = styled.ul`
     justify-content: center;
     align-items:flex-end;
     height:60px;    
-    margin-right: 7.2917%;
+    margin-right: 6.2%;
     /* width:680px; */
     width: 810px;
     &:hover ${Line}
