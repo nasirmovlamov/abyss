@@ -1,8 +1,11 @@
 import React, { ReactElement} from 'react'
 import Image from 'next/image'
 import { AnswerCount,  Avatar, BottomSide, Content,  FormQuestionCont, Name, PersonCont, QuestionTags, StatisticCont, Tags, TextCont, Title, Text, HelpfulCont, HelpfulCount, AnswerCont, ViewsCont,  } from '../styles/components/styled-elements/FormQuestion.style'
-import { AddCave, Language, LanguageInfo, LinesofCode, ProductContent, ProductContentCont, ProductDetailCont,  ProductImageAndContent, ProductLanguageAndImage, ProductPerson, ProductPriceCont, ProductSoldCont, ProductStarCont, ProductTag, ProductTags, ProductTitle, StoreListingProductStyle } from '../styles/components/styled-elements/ListingStoreProduct.styled'
+import { AddCave, Language, LanguageContForTextAndIcon, LanguageInfo, LanguageText, LinesofCode, LinesofCodeContForIconAndText, LinesofCodeText, ProductContent, ProductContentCont, ProductDetailCont,  ProductImageAndContent, ProductImageOverlay, ProductLanguageAndImage, ProductPerson, ProductPriceCont, ProductSoldCont, ProductStarCont, ProductTag, ProductTags, ProductTitle, StoreListingProductStyle } from '../styles/components/styled-elements/ListingStoreProduct.styled'
 import NavLink from './NavLink'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLaptopCode } from '@fortawesome/free-solid-svg-icons'
+import { faPython } from '@fortawesome/free-brands-svg-icons'
 
 interface Props {
     data:{
@@ -27,9 +30,18 @@ function ListingStoreProduct({data}: Props): ReactElement {
             <ProductImageAndContent>
                 <ProductLanguageAndImage>
                     <ProductPerson src={data.avatar}/>
+
+                    <ProductImageOverlay></ProductImageOverlay>
                     <LanguageInfo>
-                        <Language>{data.programingLanguage}</Language>
-                        <LinesofCode>{data.lineCount}</LinesofCode>
+                        <LanguageContForTextAndIcon>
+                            <FontAwesomeIcon icon={faLaptopCode}/>
+                            <LanguageText>{data.programingLanguage}</LanguageText>
+                        </LanguageContForTextAndIcon>
+                        
+                        <LinesofCodeContForIconAndText>
+                            <FontAwesomeIcon icon={faPython}/>
+                            <LinesofCodeText>{data.lineCount}</LinesofCodeText>
+                        </LinesofCodeContForIconAndText>
                     </LanguageInfo>
                 </ProductLanguageAndImage>
 
@@ -43,14 +55,15 @@ function ListingStoreProduct({data}: Props): ReactElement {
                         </ProductDetailCont>
                         <ProductPriceCont>{data.price}$</ProductPriceCont>
                     </ProductContent>
+                    <ProductTags>
+                {data.tags.map((tag , index) => index < 3 && <ProductTag>{tag}</ProductTag>)}
+            </ProductTags>
                     <AddCave>Add to Cave</AddCave>
 
                 </ProductContentCont>
             </ProductImageAndContent>
 
-            <ProductTags>
-                {data.tags.map((tag , index) => index < 3 && <ProductTag>{tag}</ProductTag>)}
-            </ProductTags>
+           
         </StoreListingProductStyle> 
     )
 }

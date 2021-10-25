@@ -13,7 +13,35 @@ import { ProductTag } from '../../../styles/components/styled-elements/ListingSt
 import { ForumPage, StorePage } from '../../../styles/global/styled-utils/styling-elements/Pages.style'
 import { PageDefaultStyle } from '../../../styles/pages/Page.styled'
 import {  SingleProductMiddle } from '../../../styles/pages/SingleQuestionPage.styled'
-import { ClipBody, ClipsCont, ClipTitle, Flexer, LabelContent, LabelKey, MainClip, SideClip, SideClips, StoreDiscussionBody, StoreDiscussionCont, StoreDiscussionTitle, StoreForumBody, StoreForumCont, StoreForumTitle, StoreTop, StoreTopAvatar, StoreTopCodeLines, StoreTopContent, StoreTopImg, StoreTopImgCont, StoreTopPrice, StoreTopRatingBought, StoreTopRatingCont, StoreTopRatingStars, StoreTopTags, StoreTopTitle } from '../../../styles/pages/Store.styled'
+import { 
+    ClipBody, 
+    ClipsCont, 
+    ClipTitle, 
+    Flexer, 
+    LabelContent, 
+    LabelKey, 
+    MainClip, 
+    SideClip,
+    SideClips, 
+    StoreDiscussionBody, 
+    StoreDiscussionCont, 
+    StoreDiscussionTitle, 
+    StoreForumBody, 
+    StoreForumCont, 
+    StoreForumTitle, 
+    StoreTop, 
+    StoreTopAvatar, 
+    StoreTopCodeLines, 
+    StoreTopContent, 
+    StoreTopImg, 
+    StoreTopImgCont, 
+    StoreTopPrice, 
+    StoreTopRatingBought, 
+    StoreTopRatingCont, 
+    StoreTopRatingStars, 
+    StoreTopTags, 
+    StoreTopTitle 
+} from '../../../styles/pages/Store.styled'
 import FormQuestion from '../../../components/ForumQuestion'
 import { useAppDispatch } from '../../../app/store/hooks'
 import { changeModalAction } from '../../../app/feature/UserSlice'

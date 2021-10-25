@@ -5,30 +5,38 @@ import styled from "styled-components";
 export const StoreListingProductStyle = styled.div`
     display: flex;
     flex-direction: column;
-    padding-top: 10px 20px;
+    padding: 14px 21px;
     box-sizing: border-box;
-    /* background-color: ${({theme}) => theme.pageTabs.contBG}; */
-    /* border: 1px solid ${({theme}) => theme.pageTabs.border}; */
-    margin-top: 10px;
-    border-radius: 6px;
+    border-radius: 10px;
     column-gap: 5px;
     row-gap: 15px;
     width: 100%;
+    height: 182px;
     margin-bottom:20px ;
-`
+    background-color: ${({theme}) => theme.forumPage.elementBackground};
+    box-shadow: ${({theme}) => theme.forumPage.boxShadow};
+
+`   
 
 export const ProductImageAndContent = styled.div`
     column-gap: 20px;
     display: flex;
 `
-
+export const ProductImageOverlay = styled.div`
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.4) 30%, rgba(0,212,255,0) 100%);
+    transform: rotate(180deg);
+`
 
 export const ProductLanguageAndImage = styled.div`
-    width: 238px;
-    height: 147px;
-    background-color: pink;
-    border-radius: 0px 30px 0px 10px;
+    background-color: #2ab280;
+    border-radius: 17px 1px 1px 1px;
     position: relative;
+    width: 176px;
+    height: 154px;
 `
 
 export const ProductPerson = styled.img`
@@ -37,7 +45,7 @@ export const ProductPerson = styled.img`
     width: 32px;
     height: 32px;
     position: absolute;
-    right: 0px;
+    left: 0px;
     top: 0px;
     margin: 10px;
 `
@@ -48,14 +56,45 @@ export const LanguageInfo = styled.div`
     bottom: 0px;
     margin: 10px;
     display: flex;
-    flex-direction: column;
+    z-index: 3;
+    width: 100%;
 `
 
-export const Language = styled.span`
-    font-size: 13px;
+export const LanguageContForTextAndIcon = styled.div`
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+    svg 
+    {
+        color: white;
+    }
 `
-export const LinesofCode = styled.span`
+
+export const LanguageText = styled.p`
+   margin: 0px;
+   color: white;
+   font-size: 13px;
+`
+export const LinesofCodeContForIconAndText = styled.div`
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+    svg 
+    {
+        color: white;
+    }
+`
+export const LinesofCodeText = styled.p`
     font-size: 13px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
 `
 
 
