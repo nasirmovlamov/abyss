@@ -12,6 +12,7 @@ import { useAppSelector } from '../../app/store/hooks'
 import { is_chatbox_opened } from '../../app/feature/ChatBoxSlice'
 import ChatBox from '../../components/ChatBox'
 import PageFilters from '../../components/PageFilters'
+import CommentModal from '../../components/CommentsTab'
 
 interface Props {
     
@@ -49,9 +50,10 @@ function Forum({}: Props): ReactElement {
                 </ForumPage>
             </MainPartOfPage>
 
+
             <SidePartOfPage side={"right"}>
                 {
-                    <> 
+                    <>
                         {isChatBoxOpened  && <ChatBox/>}
                     </>
                 }

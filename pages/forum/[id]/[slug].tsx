@@ -48,7 +48,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
     const loading  = useAppSelector(is_loading)
     const userData = useAppSelector(user_data)
     const commentsStatus = useAppSelector(comments_status)
-    const isCommentOpened = useAppSelector(is_comment_opened)
+    const isCommentsOpened = useAppSelector(is_comment_opened)
     const isChatBoxOpened = useAppSelector(is_chatbox_opened)
 
 
@@ -217,6 +217,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
                 </SingleProductMiddle>
             </MainPartOfPage>
 
+            {isCommentsOpened && <CommentModal/>}
             <SidePartOfPage side={"right"}>
                 {
                     singleQuestionStatus=== "loading" ? 

@@ -17,12 +17,15 @@ export const TabsContainer  = styled.div`
 export const TabText = styled.p`
     display: flex;
     padding: 0px 20px 0px 20px;
-    height: 50.08px;
+    height: 60.08px;
     align-items: center;
     color: #63696c;
     transition:0.4s;
     font-size: 14px;    
     text-transform: uppercase;
+`
+export const TabTextSpan = styled.span`
+    padding-top: 21px;
 `
 
 
@@ -104,7 +107,7 @@ export const Tabs = styled.div`
 
 export const TabButtonsCont = styled.div`
     display: flex;
-    padding-left: 10px;
+    /* padding-left: 10px; */
     height: 100%;
     align-items: flex-end;
     overflow: hidden;
@@ -128,6 +131,8 @@ export const TabButton = styled.button`
     justify-content: space-between;
     border: none;
     font-size: 14px;
+    line-height: 18px;
+    font-family: s;
     background-color: transparent;
     color: #63696c;
     cursor: pointer;

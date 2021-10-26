@@ -65,7 +65,7 @@ export const SearchBoxStyle = styled.div<{direction:string, path:string}>`
     background-color: black;
     width: 100%;
     transform: translateX(0px);
-    height: ${(props) => props.path === "/" ? "65px" : "50px"};
+    height: ${(props) => props.path === "/" ? "65px" : "48px"};
     color: white;
     border-radius: 5px;
     border-radius: 30px 30px 30px 30px ;

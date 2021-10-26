@@ -9,25 +9,25 @@ import Navbar from './Navbar'
 import OverlayBackground from './Overlay';
 import SearchBox from './SearchBox';
 import { is_chatbox_opened, openChat } from '../app/feature/ChatBoxSlice'
-import router from 'next/router';
+import { useRouter } from 'next/router';
 import { forumWordRegex } from '../logic/regex/NavbarRegex';
 import Head from 'next/head'
 import CommentModal from './CommentsTab';
 import ChatBox from './ChatBox';
-import { is_comment_opened } from '../app/feature/CommentsSlice';
-
+import { closeComments, is_comment_opened } from '../app/feature/CommentsSlice';
 
 interface Props {
     // any props that come into the component
 }
 
 const Layout: FC<Props> = ({ children, ...props }) => {
+    const router = useRouter();
     const dispatch = useAppDispatch()
     const userStatus = useAppSelector(user_status)
     const pageOverflowY = useAppSelector(page_overflowy)
     const userData = useAppSelector(user_data)
-    const isCommentsOpened = useAppSelector(is_comment_opened)
     const isChatBoxOpened = useAppSelector(is_chatbox_opened)
+    const isCommentBoxOpened = useAppSelector(is_comment_opened)
 
     useEffect(() => {
         if (localStorage.getItem('token') !== null) {
@@ -39,11 +39,17 @@ const Layout: FC<Props> = ({ children, ...props }) => {
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
+    useEffect(() => {
+        if(isCommentBoxOpened)
+        {
+            dispatch(closeComments(null))
+        }
+    }, [router])
 
     const openUserChat = () => {
         dispatch(openChat(""))
     }
+    
     
 
     if(userStatus === "logged" || userStatus === "not-logged") {
@@ -54,7 +60,6 @@ const Layout: FC<Props> = ({ children, ...props }) => {
                     <Navbar/>
 
                     <SearchBox/>
-                    {isCommentsOpened && <CommentModal/>}
                     {isChatBoxOpened && <ChatBox/>}
                     {children}
 

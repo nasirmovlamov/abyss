@@ -20,7 +20,7 @@ function SidePartOfPage({children , side}: Props): ReactElement {
             {children}
             {side ==="left" && 
             <>
-            <PageFilters/>
+                <PageFilters/>
             </>
             }
             {side ==="right" && 

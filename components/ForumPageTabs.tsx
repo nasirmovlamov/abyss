@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import React, { ReactElement, useEffect, useState } from 'react'
 import { FooterColumn,  FooterElement,  FooterRow, FooterStyle } from '../styles/components/styled-elements/Footer.style'
-import { Line, TabButton, TabButtonsCont, TabResults, Tabs, TabsContainer, TabTags, TabTagsAndResults, TabTagsCont, TabText } from '../styles/components/styled-elements/PageTabs.style'
+import { Line, TabButton, TabButtonsCont, TabResults, Tabs, TabsContainer, TabTags, TabTagsAndResults, TabTagsCont, TabText, TabTextSpan } from '../styles/components/styled-elements/PageTabs.style'
 
 interface Props {
     
@@ -46,12 +46,20 @@ function PageTabs({}: Props): ReactElement {
             <Tabs>
                 <TabButtonsCont>
                 <TabButton id="tab1" tabFocus={selectedTab === "Info" ? true: false} name="tab"  onClick={() => tabQuery("Info" , "default")}>
-                    <TabText>Requests</TabText> 
+                    <TabText>
+                        <TabTextSpan>
+                            Requests
+                        </TabTextSpan>
+                    </TabText> 
                     <Line/>     
                 </TabButton>
 
                 <TabButton id="tab2" tabFocus={selectedTab === "Clip" ? true: false} name="tab" onClick={() => tabQuery("Clip", "default")}>
-                    <TabText>Questions</TabText> 
+                    <TabText>
+                        <TabTextSpan>
+                        Questions
+                        </TabTextSpan>
+                    </TabText> 
                     <Line/>        
                 </TabButton>
                 

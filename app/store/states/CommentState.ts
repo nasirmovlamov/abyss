@@ -5,7 +5,7 @@ export const CommentsState:CommentsInterface = {
     comments:[],
     commentsType:null,
     commentsStatus:"idle",
-    isCommentOpened:true,
+    isCommentOpened:false,
     isAnswer:null,    
     isQuestion:null,    
     commentsErrors:{

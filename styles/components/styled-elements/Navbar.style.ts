@@ -124,7 +124,10 @@ export const LinkStyle = styled.a`
     cursor: pointer;
     color: ${({theme}) => theme.navbar.navLinks};
     transition: 0.3s;
-    
+    /* margin-top: 5px; */
+    font-family: s;
+    font-size: 18px;
+    line-height: 24px;
 `
 
 
@@ -132,9 +135,9 @@ export const LinkStyle = styled.a`
 export const LiStyle = styled.li`
     display:flex;
     justify-content:center;
-    align-items:center;
+    align-items:flex-start;
     height:100%;    
-    padding-bottom: 3px;
+    padding-top: 22px;
     column-gap: 40px;
     font-size: 18px;
     width: 195px;

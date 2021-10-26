@@ -13,18 +13,17 @@ export interface ProductIconProps {
 export const FormQuestionCont = styled.div`
     display: flex;
     width: 100%;
-    padding-top: 15px;
+    padding-top: 10px;
     padding-bottom: 8px;
     padding-left: 20px;
     padding-right: 44px;
     box-sizing: border-box;
     /* border-radius: 6px; */
-    column-gap: 22px;
     border-radius: 10px;
     background-color: ${({theme}) => theme.forumPage.elementBackground};
     box-shadow: ${({theme}) => theme.forumPage.boxShadow};
-    justify-content: space-between;
-    height: 125px;
+    justify-content: flex-start;
+    height: auto;
     align-items: center;
     @media only screen and (max-width:1375px){
         flex-wrap: wrap;
@@ -36,8 +35,9 @@ export const FormQuestionCont = styled.div`
 export const PersonCont = styled.div`
     display: flex;
     flex-direction: column;
-    width: 61px;
+    width: 63px;
     height:93px;
+    margin-top: 5px;
     @media only screen and (max-width:1375px){
         flex-direction: row;
         width: 120px;
@@ -47,8 +47,8 @@ export const PersonCont = styled.div`
     }
 `
 export const Avatar = styled.img`
-    width: 61px;
-    height:61px;
+    width: 63px;
+    height:63px;
     border-radius:50%;
     object-fit: cover;
     background-color: ${({theme}) => theme.forumPage.darkelementBacground};
@@ -77,8 +77,9 @@ export const Name = styled.span`
 export const TextCont = styled.div`
     display: flex;
     flex-wrap: wrap;
-    width: auto;
+    width: 535px;
     height: 100%;
+    margin-left: 22px;
     @media only screen and (max-width:1375px){
         order:2;
         width: 100%;
@@ -96,8 +97,9 @@ export const Title = styled.h2`
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
-    
+    line-height: 20px;
     font-family: s;
+    letter-spacing: 0.2px;
 `
 export const Content = styled.p`
     font-size: 15px;
@@ -109,13 +111,15 @@ export const Content = styled.p`
     color:  ${({theme}) => theme.forumPage.textColor};
     font-family: r;
     align-self: flex-start;
+    line-height: 22px;
+    margin-top: 7px;
 `
 
 export const BottomSide = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-top: 7px;
+    margin-top: 13px;
 `
 
 export const QuestionTags = styled.div`
@@ -193,7 +197,7 @@ export const StatisticCont = styled.div`
     align-items: center;
     width: 95px;
     column-gap: 5px;
-    row-gap:5px;
+    row-gap:12px;
     box-sizing: border-box;
     @media only screen and (max-width:1375px){
         flex-direction: row;
@@ -203,13 +207,17 @@ export const StatisticCont = styled.div`
     }
 
 `
+export const QuestionStatisticPercentage = styled.span`
+    font-size: 15px;
+    line-height: 22px;
+`
 
 export const AnswerCont = styled.div`
     width: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    row-gap: 5px;
+    row-gap: 0px;
     @media only screen and (max-width:1375px){
         flex-direction: row;
         column-gap: 10px;
@@ -219,20 +227,19 @@ export const AnswerCont = styled.div`
 
 export const AnswerCount = styled.div`
     width: 40px;
-    height: 23px;
+    height: 20px;
     border-radius: 6px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    row-gap: 5px;
     color:${({theme}) => theme.forumPage.sideTextColor};
     font-size:20px;
-
 `
 
 export const Text = styled.span`
-    font-size: 13px;
+    font-size: 12px;
+    line-height:14px;
     color:${({theme}) => theme.forumPage.sideTextColor};
 
 `
@@ -246,11 +253,11 @@ export const ThumbIcon = styled.span`
 
 
 export const HelpfulCont = styled.div`
-    width: 45px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    row-gap: 3px;
+    row-gap: 5px;
     @media only screen and (max-width:1375px){
         flex-direction: row;
         column-gap: 10px;
@@ -259,7 +266,7 @@ export const HelpfulCont = styled.div`
 `
 
 export const HelpfulCount = styled.div`
-    width: 45px;
+    width: 100%;
     height: 23px;
     color: ${({theme}) => theme.forumPage.sideTextColor};
     border-radius: 6px;
@@ -272,7 +279,7 @@ export const HelpfulCount = styled.div`
 
 export const DefaultLine = styled.div`
     width: 76px;
-    height: 3px;
+    height: 1.5px;
     background-color: rgba(0,0,0);
     @media only screen and (max-width:1375px){
         display: none;
@@ -296,5 +303,5 @@ export const DateCount = styled.p`
     font-style: italic;
     font-size: 12px;
     color: ${({theme}) => theme.forumPage.darkSideTextColor};
- 
+    line-height: 18px;
 `

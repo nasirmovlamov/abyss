@@ -148,10 +148,13 @@ export const QuestionTag = styled.div`
 export const QuestionStatistics = styled.div`
     display: flex;
     flex-direction: column;
-    row-gap: 10px;
+    row-gap: 8.5px;
     justify-content: space-between;
-    margin-left: 22px;
+    /* margin-left: 22px; */
     align-items: center;
+    width: 77px;
+    margin-left: 47px;
+
     @media only screen and (max-width:1375px){
         flex-direction: row;
         column-gap: 10px;
