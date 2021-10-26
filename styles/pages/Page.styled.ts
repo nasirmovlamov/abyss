@@ -50,7 +50,7 @@ export const PageDefaultStyle = styled.main`
     justify-content: center;
     column-gap: 56px;
     width: 100%;
-    padding-right: 7.2917%;
+    /* padding-right: 7.2917%; */
     box-sizing: border-box;
     background-color: lightgray;
     /* margin: auto; */
