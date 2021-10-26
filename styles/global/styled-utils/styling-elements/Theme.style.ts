@@ -65,10 +65,12 @@ import { pageLightGray, pageBlack, pageDarkBlack, linesSideTextColor, whiteTextC
         darkSideTextColor:darkLinesSideTextColor,
         tagsBackground: blueForTags,
         elementBackground: pageBlack,
+        darkBlackColor:pageDarkBlack,
         darkelementBacground:pageDarkBlack,
         boxShadow: ForumBoxShadowDark,
         boxShadowForElement: BoxShadowDarkForElement,
         tabsTitle:pageLightGray,
+        button:orangeBackground,
         commentsBorder:darkLinesSideTextColor
       }
   }

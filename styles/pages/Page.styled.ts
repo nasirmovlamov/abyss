@@ -6,7 +6,6 @@ export const MainPartOfPageStyle = styled.div`
     padding-top: 74px;
     display: flex;
     justify-content: center;
-    margin-right: 7.2917%;
     /* z-index: 2; */
 `
 
@@ -27,13 +26,14 @@ export const SidePartOfPageStyle = styled.aside<{side:string}>`
 `
 
 export const PageDefaultStyle = styled.main`
-    display: flex;
-    column-gap: 56px;
-    align-items: stretch;
+    display: grid;
+    grid-template-columns: 200px 810px 200px ;
+    grid-template-rows: 1fr;
+    align-content: center;
     justify-content: center;
+    column-gap: 56px;
     width: 100%;
+    padding-right: 7.2917%;
     box-sizing: border-box;
-    padding-left: 56px;
-    padding-right: 56px;
-    margin: auto;
+    /* margin: auto; */
 `

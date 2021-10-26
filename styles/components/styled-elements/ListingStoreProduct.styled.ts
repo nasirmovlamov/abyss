@@ -4,8 +4,8 @@ import styled from "styled-components";
 
 export const StoreListingProductStyle = styled.div`
     display: flex;
-    flex-direction: column;
-    padding: 14px 21px;
+    justify-content: space-between;
+    padding: 14px 45px 21px  14px;
     box-sizing: border-box;
     border-radius: 10px;
     column-gap: 5px;
@@ -105,13 +105,14 @@ export const ProductContentCont = styled.div`
     row-gap: 3px;
     justify-content: space-between;
     align-items: flex-start;
+    width: 425px;
+
 `
 export const ProductContent = styled.div`
     display: flex;
     flex-direction: column;
     row-gap: 3px;
-    color: white;
-    
+    color:  ${({theme}) => theme.productPage.linesSideTextColor};
 `
 
 export const ProductTitle = styled.a`
@@ -137,7 +138,7 @@ export const ProductDetailCont = styled.div`
 export const ProductStarCont = styled.div`
     display: flex;
     column-gap: 5px;
-    font-size: 13px;
+    font-size: 12px;
     font-family:s;
     svg 
     {
@@ -147,30 +148,19 @@ export const ProductStarCont = styled.div`
 export const ProductSoldCont = styled.div`
     display: flex;
     column-gap: 5px;
-    font-size: 13px;
+    font-size: 12px;
     font-family:s;
-`
-export const ProductPriceCont = styled.div`
-    display: flex;
-    column-gap: 5px;
-    font-size: 24px;
 `
 export const ProductViewCont = styled.div`
     display: flex;
     column-gap: 5px;
-    font-size: 24px;
+    font-size: 12px;
 `
-export const AddCave = styled.button`
+export const ProductPriceCont = styled.div`
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffd500;
-    color: #032728;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;    
+    column-gap: 5px;
 `
+
 export const ProductTags = styled.div`
     display: flex;
     column-gap: 10px;
@@ -179,14 +169,105 @@ export const ProductTags = styled.div`
 
 export const ProductTag = styled.button`
     height: 22px;
-    font-size: 12px;
     color: white;
-    background-color:rgba(105, 174, 191, 0.32);
     border: none;
     padding: 5px;
     border-radius: 5px;
     display: flex;
+    color:  ${({theme}) => theme.productPage.textColor};
+    font-family: r;
+    justify-content: center;
+    /* border: 1px solid lightgray; */
+    align-items: center;
+    font-family: r;
+    background:  ${({theme}) => theme.productPage.tagsBackground};
+    cursor: pointer;
+    font-size: 12px;
+    text-align: center;
+    transition: 0.2s;
+    &:hover{
+        box-shadow: ${({theme}) => theme.productPage.boxShadowForElement};
+
+    }
+`
+
+
+
+
+export const ProductDescription = styled.div`
+   display: flex;
+   flex-direction: column;
+`
+
+
+export const ProductDescriptionTitle = styled.p`
+    font-size: 18px;
+    color:  ${({theme}) => theme.productPage.darkSideTextColor  };
+
+`
+export const ProductDescriptionContent = styled.p`
+    font-size: 18px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;   
+    text-overflow: ellipsis;
+    color:  ${({theme}) => theme.productPage.textColor  };
+
+`
+export const ProductSideDetailsCont = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+`
+
+
+export const AddCave = styled.button`
+    display: flex;
     justify-content: center;
     align-items: center;
+    background-color: ${({theme}) => theme.productPage.button};
+    color: ${({theme}) => theme.productPage.darkBlackColor};
+    padding: 5px 10px;
+    border: none;
+    border-radius: 20px;
+    font-family: s;
+    cursor: pointer;    
+    box-shadow: ${({theme}) => theme.productPage.boxShadowForElement};
+    width: 83px;
+    height: 22px;
+`
+
+export const AddCaveAndMentionsCont = styled.div`
+    display: flex;
+    flex-direction: column;
+    row-gap: 22px;
+`
+export const MentionsCont = styled.div`
+    display: flex;
+    flex-direction: column;
+    row-gap: 4.5px;
+`
+
+export const MentionsCount = styled.p`
+    color: ${({theme}) => theme.productPage.sideTextColor};
+    text-align: center;
+    font-size: 18px;
+`
+
+export const MentionsText = styled.p`
+    color: ${({theme}) => theme.productPage.sideTextColor};
+    text-align: center;
+    font-size: 16px;
+`
+
+
+export const Iterations = styled.button`
+    color: ${({theme}) => theme.productPage.titleColor};
+    text-align: center;
+    font-size: 16px;
+    border: none;
+    background-color: transparent;
     cursor: pointer;
 `
