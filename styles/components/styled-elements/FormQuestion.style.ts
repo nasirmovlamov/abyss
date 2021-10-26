@@ -77,7 +77,7 @@ export const Name = styled.span`
 export const TextCont = styled.div`
     display: flex;
     flex-wrap: wrap;
-    width: 644px;
+    width: auto;
     height: 100%;
     @media only screen and (max-width:1375px){
         order:2;

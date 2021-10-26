@@ -37,7 +37,8 @@ export const ProductLanguageAndImage = styled.div`
     position: relative;
     width: 176px;
     height: 154px;
-    @media only screen and (max-width:1536px){
+    flex:0 0 176px;
+    @media only screen and (max-width:1375px){
         display: none;
     }
 `
@@ -108,7 +109,7 @@ export const ProductContentCont = styled.div`
     row-gap: 3px;
     justify-content: space-between;
     align-items: flex-start;
-    width: 425px;
+    width: auto;
 
 `
 export const ProductContent = styled.div`

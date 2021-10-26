@@ -10,6 +10,9 @@ export const Nav = styled.nav`
     justify-content:space-between;
     align-items:center;
     padding-left: 72px;
+    @media only screen and (max-width: 1075px) {
+        padding-left: 0px;
+    }
     padding-right: 10px;
     padding-top: 7px;
     padding-bottom: 10px;
@@ -185,6 +188,9 @@ export const LinksStyle = styled.ul`
         {
             color:${({theme}) => theme.navbar.navLinks}   
         }
+    }
+    @media only screen and (max-width: 1236px) {
+        display:none;
     }
 `
 export const LinksStyleCenterer = styled.div`

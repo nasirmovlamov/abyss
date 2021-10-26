@@ -13,6 +13,9 @@ export const SearchBoxContainer = styled.div<{path:string}>`
         padding-right: calc(7.2917% + 56px + 56px);
         box-sizing:border-box;
     }
+    @media only screen and (max-width: 1236px) {
+        padding-right: 0%;
+    }
 `
 
 export const SearchBoxThunkAndCont = styled.div<{direction:string}>`
@@ -28,6 +31,10 @@ export const SearchBoxThunkAndCont = styled.div<{direction:string}>`
     @media only screen and (max-width: 1536px) {
         width: 48.73%;
         box-sizing:border-box;
+    }
+    @media only screen and (max-width: 1236px) {
+        padding-right: 0%;
+        width: 77%;
     }
 `
 

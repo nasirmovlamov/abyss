@@ -29,10 +29,20 @@
       "static/chunks/main.js",
       "static/chunks/pages/forum.js"
     ],
+    "/forum/[id]/[slug]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/forum/[id]/[slug].js"
+    ],
     "/store": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/store.js"
+    ],
+    "/store/[id]/[slug]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/store/[id]/[slug].js"
     ]
   },
   "ampFirstPages": []
