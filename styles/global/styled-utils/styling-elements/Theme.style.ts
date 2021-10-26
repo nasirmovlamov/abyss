@@ -1,4 +1,4 @@
-import { ForumBoxShadowDark, SearchBoxShadowDark, BoxShadowDarkForElement } from './BoxShadows';
+import { ForumBoxShadowDark, SearchBoxShadowDark, BoxShadowDarkForElement, HeaderBoxShadowDark } from './BoxShadows';
 import { pageLightGray, pageBlack, pageDarkBlack, linesSideTextColor, whiteTextColor, orangeBackground, pageDarkGray, blueTitle, blueForTags, darkLinesSideTextColor } from './Colors';
   export const lightTheme = {
       body: '#F2F2F3',
@@ -19,7 +19,7 @@ import { pageLightGray, pageBlack, pageDarkBlack, linesSideTextColor, whiteTextC
         navLogin:"0",
         navRegister:"0",
         navLogout:"#000000",
-        boxShadow: ForumBoxShadowDark,
+        boxShadow: HeaderBoxShadowDark,
 
       },
       pageTabs: {

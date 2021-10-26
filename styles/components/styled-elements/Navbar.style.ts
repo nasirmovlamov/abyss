@@ -194,7 +194,7 @@ export const LinksStyleCenterer = styled.div`
     top:0px;
     left:0px;
     position: absolute;
-    padding-right:6.85%;
+    padding-right:calc(7.2917% + 56px + 56px);
 `
 
 

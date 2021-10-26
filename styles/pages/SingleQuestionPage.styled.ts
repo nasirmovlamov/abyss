@@ -152,6 +152,13 @@ export const QuestionStatistics = styled.div`
     justify-content: space-between;
     margin-left: 22px;
     align-items: center;
+    @media only screen and (max-width:1375px){
+        flex-direction: row;
+        column-gap: 10px;
+        width:auto;
+        justify-content:flex-start;
+        margin-left: 0px;
+    }
 `
 
 export const VotePercentage = styled.div`

@@ -37,6 +37,9 @@ export const ProductLanguageAndImage = styled.div`
     position: relative;
     width: 176px;
     height: 154px;
+    @media only screen and (max-width:1536px){
+        display: none;
+    }
 `
 
 export const ProductPerson = styled.img`

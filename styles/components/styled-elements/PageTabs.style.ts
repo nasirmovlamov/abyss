@@ -37,6 +37,9 @@ export const Line = styled.div`
 export const TabTagsAndResults = styled.div`
     display: flex;
     justify-content: space-between;
+    @media only screen and (max-width: 1536px) {
+        justify-content: flex-end;
+    }
 
 `
 
@@ -48,6 +51,9 @@ export const TabResults = styled.p`
     font-size: 20px;
     margin-left:30px;
     font-family: r;
+    @media only screen and (max-width: 1536px) {
+        display: none;
+    }
 `
 
 

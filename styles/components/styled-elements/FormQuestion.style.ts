@@ -20,12 +20,17 @@ export const FormQuestionCont = styled.div`
     box-sizing: border-box;
     /* border-radius: 6px; */
     column-gap: 22px;
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: ${({theme}) => theme.forumPage.elementBackground};
     box-shadow: ${({theme}) => theme.forumPage.boxShadow};
     justify-content: space-between;
     height: 125px;
     align-items: center;
+    @media only screen and (max-width:1375px){
+        flex-wrap: wrap;
+        height: auto;
+        justify-content: flex-start;
+    }
 `
 
 export const PersonCont = styled.div`
@@ -33,6 +38,13 @@ export const PersonCont = styled.div`
     flex-direction: column;
     width: 61px;
     height:93px;
+    @media only screen and (max-width:1375px){
+        flex-direction: row;
+        width: 120px;
+        height: auto;
+        align-items: center;
+        column-gap: 10px;
+    }
 `
 export const Avatar = styled.img`
     width: 61px;
@@ -40,6 +52,10 @@ export const Avatar = styled.img`
     border-radius:50%;
     object-fit: cover;
     background-color: ${({theme}) => theme.forumPage.darkelementBacground};
+    @media only screen and (max-width:1375px){
+        width: 22px;
+        height:22px;
+    }
 
 `
 export const Name = styled.span`
@@ -54,12 +70,19 @@ export const Name = styled.span`
     overflow: hidden;
     text-overflow: ellipsis;
     color:  ${({theme}) => theme.forumPage.sideTextColor};
+    @media only screen and (max-width:1375px){
+        margin: 0px;
+    }
     `
 export const TextCont = styled.div`
     display: flex;
     flex-wrap: wrap;
     width: 644px;
     height: 100%;
+    @media only screen and (max-width:1375px){
+        order:2;
+        width: 100%;
+    }
 `
 
 export const Title = styled.h2`
@@ -172,6 +195,12 @@ export const StatisticCont = styled.div`
     column-gap: 5px;
     row-gap:5px;
     box-sizing: border-box;
+    @media only screen and (max-width:1375px){
+        flex-direction: row;
+        column-gap: 10px;
+        width:180px;
+        justify-content:flex-start;
+    }
 
 `
 
@@ -181,7 +210,11 @@ export const AnswerCont = styled.div`
     flex-direction: column;
     align-items: center;
     row-gap: 5px;
-    
+    @media only screen and (max-width:1375px){
+        flex-direction: row;
+        column-gap: 10px;
+        width: auto;
+    }
 `
 
 export const AnswerCount = styled.div`
@@ -218,6 +251,11 @@ export const HelpfulCont = styled.div`
     flex-direction: column;
     align-items: center;
     row-gap: 3px;
+    @media only screen and (max-width:1375px){
+        flex-direction: row;
+        column-gap: 10px;
+        width: auto;
+    }
 `
 
 export const HelpfulCount = styled.div`
@@ -236,12 +274,18 @@ export const DefaultLine = styled.div`
     width: 76px;
     height: 3px;
     background-color: rgba(0,0,0);
+    @media only screen and (max-width:1375px){
+        display: none;
+    }
 `
 
 export const PercentageLine = styled.div<PercentageLineProps>`
     width: ${({percentage}) => percentage}%;
     height: 100%;
     background-color:${({theme}) => theme.forumPage.darkSideTextColor};
+    @media only screen and (max-width:1375px){
+        display: none;
+    }
 `
 
 export const ViewsCont = styled.div`
