@@ -135,6 +135,7 @@ function SearchBox({}: Props): ReactElement {
     }, [scrollY])
 
     return (
+        
         <SearchBoxContainer ref={searchContRef} path={router.asPath} style={SearchContDesign}>
                 <SearchBoxThunkAndCont  ref={searchBoxRef} direction={direction}>
                     <SearchBoxStyle path={router.asPath} direction={direction} > 

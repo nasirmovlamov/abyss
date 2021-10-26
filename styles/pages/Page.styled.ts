@@ -4,12 +4,12 @@ import styled from 'styled-components';
 export const MainPartOfPageStyle = styled.div`
     width: 810px;
     position: relative;
-    padding-top: 74px;
+    /* padding-top: 74px;    */
     display: flex;
     justify-content: center;
     /* z-index: 2; */
     @media only screen and (max-width: 1536px) {
-        width: 52.73%;
+        flex: 0 0 52.73%;
         padding-right: 0%;
     }
     @media only screen and (max-width: 1236px) {

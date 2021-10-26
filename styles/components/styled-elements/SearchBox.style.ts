@@ -10,7 +10,7 @@ export const SearchBoxContainer = styled.div<{path:string}>`
     justify-content: center;
     padding-right:calc(7.2917% + 56px + 56px);
     @media only screen and (max-width: 1536px) {
-        padding-right:calc(7.2917% + 56px + 56px);
+        padding-right: calc(7.2917% + 56px + 56px);
         box-sizing:border-box;
     }
 `
@@ -26,7 +26,7 @@ export const SearchBoxThunkAndCont = styled.div<{direction:string}>`
     transition: 0.5s;
     z-index: 100;
     @media only screen and (max-width: 1536px) {
-        width: 47.1%;
+        width: 48.73%;
         box-sizing:border-box;
     }
 `
@@ -89,7 +89,6 @@ export const SearchBoxPage = styled.div`
     font-family: r;
     border-radius: 30px 0px 0px 30px ;
     background-color: ${({theme}) => theme.searchBox.background};
-
     flex: 0 0 112px; /* flex-grow, flex-shrink, flex-basis */
 `
 

@@ -8,6 +8,7 @@ export const ForumPage = styled.div`
     margin: auto;
     align-items: center;
     row-gap: 14px;
+    padding-top: 74px;   
     
     /* padding-top: 100px; */
 `
@@ -21,6 +22,8 @@ export const StorePage = styled.main`
     margin: auto;
     align-items: center;
     row-gap: 15px;
+    padding-top: 74px;   
+
     /* padding-top: 100px; */
 `
 
@@ -31,5 +34,7 @@ export const SingleProductPage = styled.div`
     box-sizing: border-box;
     display: flex;
     row-gap: 20px;
+    padding-top: 74px;   
+
 `
 
