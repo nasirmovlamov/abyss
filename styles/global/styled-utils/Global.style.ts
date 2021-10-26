@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle<Props>`
       overflow-y: scroll;
         /* width */
         ::-webkit-scrollbar {
-        width: 10px;
+        width: 1px;
         }
 
         /* Track */

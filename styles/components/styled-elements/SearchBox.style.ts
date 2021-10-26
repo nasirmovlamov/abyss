@@ -9,7 +9,7 @@ export const SearchBoxContainer = styled.div<{path:string}>`
     height: ${(props) => props.path === "/" ? "70vh" : "auto"};
     justify-content: center;
     padding-right:calc(7.2917% + 56px + 56px);
-    @media only screen and (max-width: 1536px) {
+    @media only screen and (max-width: 1526px) {
         padding-right: calc(7.2917% + 56px + 56px);
         box-sizing:border-box;
     }
@@ -28,7 +28,7 @@ export const SearchBoxThunkAndCont = styled.div<{direction:string}>`
     position: sticky;
     transition: 0.5s;
     z-index: 100;
-    @media only screen and (max-width: 1536px) {
+    @media only screen and (max-width: 1526px) {
         width: 48.73%;
         box-sizing:border-box;
     }

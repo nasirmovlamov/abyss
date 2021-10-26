@@ -6,9 +6,11 @@ export const MainPartOfPageStyle = styled.div`
     position: relative;
     /* padding-top: 74px;    */
     display: flex;
+    background-color: gray;
+
     justify-content: center;
     /* z-index: 2; */
-    @media only screen and (max-width: 1536px) {
+    @media only screen and (max-width: 1526px) {
         flex: 0 0 52.73%;
         padding-right: 0%;
     }
@@ -34,6 +36,7 @@ export const SidePartOfPageStyle = styled.aside<{side:string}>`
     top:0px;
     overflow: hidden;
     flex: 0 0 ${ ({side}) => side === "left" ? "195px" : "307px"};
+    background-color: gray;
     @media only screen and (max-width: 1236px) {
         display: none;
     }
@@ -49,6 +52,7 @@ export const PageDefaultStyle = styled.main`
     width: 100%;
     padding-right: 7.2917%;
     box-sizing: border-box;
+    background-color: lightgray;
     /* margin: auto; */
     @media only screen and (max-width: 1236px) {
         padding-right: 0%;
