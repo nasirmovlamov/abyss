@@ -47,12 +47,12 @@
 
 @font-face {
   font-family: s;
-  src: url("/SegoeAlt.ttf");
+  src: url("/SegoeUIBold.woff");
 }
 
 @font-face {
   font-family: r;
-  src: url("/SegoeAltSemibold.ttf");
+  src: url("/SegoeUI.woff");
 }
 
 body {
