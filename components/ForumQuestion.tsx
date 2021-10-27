@@ -52,7 +52,7 @@ function FormQuestion({data}: Props): ReactElement {
                             <ProductIcon index={2} backgroundColor="#0F1113"></ProductIcon>
                             <ProductIcon index={1} backgroundColor="#EFF2F4"></ProductIcon>
                         </ProductsIcons>
-                        <ProductCount><span>11</span> Products</ProductCount>
+                        <ProductCount>{/*<span>11</span>*/} Products</ProductCount>
                     </CountOfProducts>
                 </BottomSide>
             </TextCont>

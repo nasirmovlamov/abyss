@@ -46,6 +46,9 @@ function Forum({}: Props): ReactElement {
             <MainPartOfPage>
                 <ForumPage>
                     <PageTabs/>  
+                    <span style={{fontSize:"12px",lineHeight:"18px"}}>Salam</span>
+
+
                     {formQuestionsAPI.map((element , index) => <FormQuestion key={index} data={element}/>)} 
                 </ForumPage>
             </MainPartOfPage>

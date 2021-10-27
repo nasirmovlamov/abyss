@@ -1,5 +1,5 @@
-import { ForumBoxShadowDark, SearchBoxShadowDark, BoxShadowDarkForElement, HeaderBoxShadowDark } from './BoxShadows';
-import { pageLightGray, pageBlack, pageDarkBlack, linesSideTextColor, whiteTextColor, orangeBackground, pageDarkGray, blueTitle, blueForTags, darkLinesSideTextColor } from './Colors';
+import { ForumBoxShadowDark, SearchBoxShadowDark, BoxShadowDarkForElement, HeaderBoxShadowDark, BottomHeaderBoxShadowDark, BoxShadowDarkForTag, BoxShadowDarkForTagHover } from './BoxShadows';
+import { pageLightGray, pageBlack, pageDarkBlack, linesSideTextColor, whiteTextColor, orangeBackground, pageDarkGray, blueTitle, blueForTags, darkLinesSideTextColor, TagTextColor, TagBackColor } from './Colors';
   export const lightTheme = {
       body: '#F2F2F3',
       text: '#363537',
@@ -20,7 +20,7 @@ import { pageLightGray, pageBlack, pageDarkBlack, linesSideTextColor, whiteTextC
         navRegister:"0",
         navLogout:"#000000",
         boxShadow: HeaderBoxShadowDark,
-
+        bottomBoxShadow:   BottomHeaderBoxShadowDark,
       },
       pageTabs: {
         contBG:pageBlack,
@@ -54,7 +54,13 @@ import { pageLightGray, pageBlack, pageDarkBlack, linesSideTextColor, whiteTextC
         boxShadow: ForumBoxShadowDark,
         boxShadowForElement: BoxShadowDarkForElement,
         tabsTitle:pageLightGray,
-        commentsBorder:darkLinesSideTextColor
+        commentsBorder:darkLinesSideTextColor,
+        tagTextColor:TagTextColor,
+        tagBackColor:TagBackColor,
+        tagBoxShadow: BoxShadowDarkForTag,
+        hover:{
+          tagBoxShadow: BoxShadowDarkForTagHover,
+        }
       },
 
       productPage:{

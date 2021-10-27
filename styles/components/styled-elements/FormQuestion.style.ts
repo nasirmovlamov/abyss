@@ -13,7 +13,7 @@ export interface ProductIconProps {
 export const FormQuestionCont = styled.div`
     display: flex;
     width: 100%;
-    padding-top: 10px;
+    padding-top: 5px;
     padding-bottom: 8px;
     padding-left: 20px;
     padding-right: 44px;
@@ -23,7 +23,7 @@ export const FormQuestionCont = styled.div`
     background-color: ${({theme}) => theme.forumPage.elementBackground};
     box-shadow: ${({theme}) => theme.forumPage.boxShadow};
     justify-content: flex-start;
-    height: auto;
+    height: 125px;
     align-items: center;
     @media only screen and (max-width:1375px){
         flex-wrap: wrap;
@@ -36,8 +36,8 @@ export const PersonCont = styled.div`
     display: flex;
     flex-direction: column;
     width: 63px;
-    height:93px;
-    margin-top: 5px;
+    /* height:93px;\ */
+    margin-top: 10px;
     @media only screen and (max-width:1375px){
         flex-direction: row;
         width: 120px;
@@ -63,8 +63,10 @@ export const Name = styled.span`
     margin-top: 18px;
     display: flex;
     opacity: 0.62;
+    height: auto;
     width: 120%;
     display: -webkit-box;
+    line-height: 18px;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -97,7 +99,7 @@ export const Title = styled.h2`
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
-    line-height: 20px;
+    line-height: 30px;
     font-family: s;
     letter-spacing: 0.2px;
 `
@@ -112,14 +114,14 @@ export const Content = styled.p`
     font-family: r;
     align-self: flex-start;
     line-height: 22px;
-    margin-top: 7px;
+    margin-top: 2px;
 `
 
 export const BottomSide = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-top: 13px;
+    margin-top: 14px;
 `
 
 export const QuestionTags = styled.div`
@@ -135,21 +137,21 @@ export const Tags = styled.button`
     padding: 5px;
     border-radius: 5px;
     display: flex;
-    color:  ${({theme}) => theme.forumPage.textColor};
     font-family: r;
     justify-content: center;
     /* border: 1px solid lightgray; */
     align-items: center;
     background-color: #e5f0f4;
     font-family: r;
-    background:  ${({theme}) => theme.forumPage.tagsBackground};
+    background:  ${({theme}) => theme.forumPage.tagBackColor};
     cursor: pointer;
     font-size: 12px;
     text-align: center;
-    transition: 0.2s;
+    transition: 10s ease-out ;
+    color:  ${({theme}) => theme.forumPage.tagTextColor};
+    box-shadow: ${({theme}) => theme.forumPage.tagBoxShadow};
     &:hover{
-        box-shadow: ${({theme}) => theme.forumPage.boxShadowForElement};
-
+        box-shadow: ${({theme}) => theme.forumPage.hover.tagBoxShadow};
     }
 `
 export const ProductsIcons = styled.div`
@@ -176,7 +178,8 @@ export const CountOfProducts = styled.div`
 `
 export const ProductCount = styled.div`
     font-family: r;
-    font-size: 12px;
+    font-size: 15px;
+    line-height: 20px;
     text-decoration: none solid rgb(71, 77, 81);
     color: ${({theme}) => theme.forumPage.titleColor};
     span 

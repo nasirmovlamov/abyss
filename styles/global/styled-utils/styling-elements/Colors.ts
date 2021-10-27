@@ -10,5 +10,9 @@ export const blueTitle = "#8DAFCE"
 export const blueForTags = "#344254"
 export const orangeBackground = "#FFB742"
 export const whiteTextColor = "#F1F2F4"
+export const TagTextColor = "#E9E9F2"
+
+export const TagBackColor = "#373A3F"
+export const TagBackHoverColor = whiteTextColor
 
 
