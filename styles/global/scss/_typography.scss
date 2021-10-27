@@ -1,19 +1,16 @@
 
-@font-face {
-    font-family: m;
-    src: url("/SFProDisplay-Medium.ttf");
-} 
+
 @font-face {
     font-family: s;
-    src: url("/SFProDisplay-Semibold.ttf");
+    src: url("/OpenSans-SemiBold.ttf");
 } 
 @font-face {
     font-family: r;
-    src: url("/SFProDisplay-Regular.ttf");
+    src: url("/OpenSans-Regular.ttf");
 } 
 body 
 {
-    font-family:m;
+    font-family:r;
 }
 *{
     font-family:r;

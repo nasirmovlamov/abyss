@@ -97,7 +97,6 @@ export const QuestionContent = styled.p`
     line-height: 22px;
     font-family:r;
     text-align: justify;
-    
 `
 
 export const QuestionTagsAndDate = styled.div`

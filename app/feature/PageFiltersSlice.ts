@@ -28,8 +28,8 @@ export const PageFiltersSlice = createSlice({
     filterSearchValueOnChange(state, action){
       state.filterSearchValue.value = action.payload
       state.filterSearchValue.isTouched = true
-
     },
+    
     filterTagsSearchisFocused(state, action){
       state.filterSearchValue.isTouched = !action.payload
     },
