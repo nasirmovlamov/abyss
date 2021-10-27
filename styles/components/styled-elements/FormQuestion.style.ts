@@ -113,6 +113,7 @@ export const Content = styled.p`
     align-self: flex-start;
     line-height: 22px;
     margin-top: 7px;
+    font-family: system-ui , Arial !important;
 `
 
 export const BottomSide = styled.div`
