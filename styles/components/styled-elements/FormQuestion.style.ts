@@ -122,6 +122,7 @@ export const BottomSide = styled.div`
     justify-content: space-between;
     width: 100%;
     margin-top: 14px;
+    position: relative;
 `
 
 export const QuestionTags = styled.div`
@@ -175,6 +176,9 @@ export const CountOfProducts = styled.div`
     display: flex;
     column-gap: 10px;
     align-items: center;
+    position: absolute;
+    right: 0px;
+    top: -2px;
     /* margin-top: 2px; */
 `
 export const ProductCount = styled.div`
