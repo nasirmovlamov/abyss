@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 
-export const MainPartOfPageStyle = styled.div`
+export const MainPartOfPageStyle = styled.div<{colorConvert:boolean}>`
     width: 810px;
     position: relative;
     /* padding-top: 74px;    */
     display: flex;
-    background-color: gray;
+    background-color: ${({colorConvert})=> colorConvert ? 'transparent' : '#000'};
 
     justify-content: center;
     /* z-index: 2; */
@@ -24,7 +24,7 @@ export const MainPartOfPageStyle = styled.div`
 
 
 
-export const SidePartOfPageStyle = styled.aside<{side:string}>`
+export const SidePartOfPageStyle = styled.aside<{side:string , colorConvert:boolean}>`
     box-sizing: border-box;
     padding-top: 25px;
     display: flex;
@@ -36,14 +36,16 @@ export const SidePartOfPageStyle = styled.aside<{side:string}>`
     top:0px;
     overflow: hidden;
     flex: 0 0 ${ ({side}) => side === "left" ? "195px" : "307px"};
-    background-color: gray;
+    background-color: ${({colorConvert})=> colorConvert ? 'transparent' : '#000'};
+
+    /* background-color: gray; */
     @media only screen and (max-width: 1236px) {
         display: none;
     }
     
 `
 
-export const PageDefaultStyle = styled.main`
+export const PageDefaultStyle = styled.main<{colorConvert:boolean}>`
     display: flex;
     justify-content: center;
     align-content: center;
@@ -52,7 +54,7 @@ export const PageDefaultStyle = styled.main`
     width: 100%;
     /* padding-right: 7.2917%; */
     box-sizing: border-box;
-    background-color: lightgray;
+    /* background-color: lightgray; */
     /* margin: auto; */
     @media only screen and (max-width: 1236px) {
         padding-right: 0%;

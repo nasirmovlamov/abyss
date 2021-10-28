@@ -1,7 +1,7 @@
 import { ForumBoxShadowDark, SearchBoxShadowDark, BoxShadowDarkForElement, HeaderBoxShadowDark, BottomHeaderBoxShadowDark, BoxShadowDarkForTag, BoxShadowDarkForTagHover } from './BoxShadows';
 import { pageLightGray, pageBlack, pageDarkBlack, linesSideTextColor, whiteTextColor, orangeBackground, pageDarkGray, blueTitle, blueForTags, darkLinesSideTextColor, TagTextColor, TagBackColor } from './Colors';
   export const lightTheme = {
-      body: '#F2F2F3',
+      body: pageDarkBlack,
       text: '#363537',
       toggleBorder: '#FFF',
       toggleTheme:"0px",
@@ -81,7 +81,7 @@ import { pageLightGray, pageBlack, pageDarkBlack, linesSideTextColor, whiteTextC
       }
   }
   export const darkTheme = {
-    body: '#00090E',
+    body: pageDarkBlack,
     text: '#FAFAFA',
     toggleBorder: '#6B8096',
     logoWord: "576769",

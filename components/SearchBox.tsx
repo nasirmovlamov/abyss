@@ -144,14 +144,14 @@ function SearchBox({}: Props): ReactElement {
                             <FontAwesomeIcon  icon={faSearch}/>
                             <SearchInput value={searchValue} onChange={(e) => changeSearchValue(e.target.value)}  path={router.asPath} placeholder="Search..." ref={searchInputRef} onFocus={() => searchSizechange('focus')} onBlur={() => searchSizechange('blur')}  type="text" /> 
                             <SearchNav  path={router.asPath} ref={searchNavRef}>
-                                <SearchNavQuery>
+                                {/* <SearchNavQuery>
                                     <FontAwesomeIcon  icon={faSearch}/>
                                     <span>react</span>
                                 </SearchNavQuery>
                                 <SearchNavQuery>
                                     <FontAwesomeIcon  icon={faSearch}/>
                                     <span>react</span>
-                                </SearchNavQuery>
+                                </SearchNavQuery> */}
                             </SearchNav>
                         </SearchCont>
                         {pagePath !== "Home" && <AddQuesitionCont onClick={handleAddClick}>ADD</AddQuesitionCont>}

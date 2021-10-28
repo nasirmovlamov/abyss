@@ -56,7 +56,7 @@ const Layout: FC<Props> = ({ children, ...props }) => {
         return (
             <>
                 
-                <div style={{width:"100%" , minHeight:"100vh", backgroundColor: "#0f1113" }}>
+                <div style={{width:"100%" , minHeight:"100vh" }}>
                     <Navbar/>
 
                     <SearchBox/>

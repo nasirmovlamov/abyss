@@ -54,7 +54,6 @@ export default function ChatBox({}: Props): ReactElement {
         console.log(inViewChatLoaderCont)
         if(inViewChatLoaderCont && openedChatRoomId !== null && chatRooms[openedChatRoomId].messages.length > 0)
         {   
-            console.log("salam " + inViewChatLoaderCont)
             dispatch(loadArchieveMessages({roomId:chatRooms[openedChatRoomId].id , lastMessageId:chatRooms[openedChatRoomId].messages[0].id}))   
         }
     }, [inViewChatLoaderCont])

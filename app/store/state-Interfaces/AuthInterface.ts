@@ -8,6 +8,7 @@ export interface AUTH_INTERFACE {
         email:string
     } | null,
     status:'idle'| 'loading' | 'failed',
+    changeColor:boolean
     user_status:"loading" | "logged" | "not-logged",
     loggedIn:boolean|null,
     message:null|string,

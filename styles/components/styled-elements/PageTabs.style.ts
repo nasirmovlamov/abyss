@@ -7,7 +7,7 @@ export const TabsContainer  = styled.div`
     width:100%;
     display: flex;
     flex-direction: column;
-    row-gap:15px;
+    row-gap:14px;
     border-radius: 6px;
     margin-top: 0px;
 `
@@ -15,18 +15,23 @@ export const TabsContainer  = styled.div`
 
 
 export const TabText = styled.p`
-    display: flex;
-    padding: 0px 20px 0px 20px;
-    height: 60.08px;
-    align-items: center;
+    /* display: flex; */
+    padding: 18px 17.5px 0px 17.5px;
+    height: 50.08px;
+    width: 121px;
+
+    /* align-items: center; */
     color: #63696c;
     transition:0.4s;
     font-size: 14px;    
     text-transform: uppercase;
+    line-height: 18px;
+    &:nth-child(2)
+    {
+        width:77px;
+    }
 `
-export const TabTextSpan = styled.span`
-    padding-top: 21px;
-`
+
 
 
 export const Line = styled.div`
@@ -97,7 +102,7 @@ export const Tabs = styled.div`
     display: flex;
     background-color: ${({theme}) => theme.pageTabs.contBG};
     border-radius:10px;
-    padding-left: 10px;
+    padding-left: 17px;
     box-shadow: ${({theme}) => theme.forumPage.boxShadow};
     height: 54px;
     align-items: flex-end;
@@ -111,7 +116,6 @@ export const TabButtonsCont = styled.div`
     height: 100%;
     align-items: flex-end;
     overflow: hidden;
-    
     &:hover{
        
        ${Line}
@@ -142,6 +146,9 @@ export const TabButton = styled.button`
     padding:0px;
     height: 100%;
     box-sizing: border-box;
+    &:focus {
+        outline: none;
+    }
     div
     {
         height: ${(props : {tabFocus:boolean}) => props.tabFocus ? "2px" : "0px"};

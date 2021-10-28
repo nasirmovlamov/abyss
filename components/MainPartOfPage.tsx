@@ -1,4 +1,6 @@
 import React, { ReactElement } from 'react'
+import { color_convert } from '../app/feature/UserSlice'
+import { useAppSelector } from '../app/store/hooks'
 import { MainPartOfPageStyle } from '../styles/pages/Page.styled'
 
 interface Props {
@@ -6,9 +8,9 @@ interface Props {
 }
 
 function MainPartOfPage({children}: Props): ReactElement {
-    
+    const colorConvert = useAppSelector(color_convert)
     return (
-        <MainPartOfPageStyle>
+        <MainPartOfPageStyle colorConvert={colorConvert}>
             {children}
         </MainPartOfPageStyle>
     )

@@ -31,6 +31,9 @@ export const UserSlice = createSlice({
             state.user_status = action.payload
         },
 
+        changeColor(state, action) {
+            state.changeColor = action.payload
+        },
 
         register_Form_OnChange(state, action) {
             state.forms.registerForm =  {...state.forms.registerForm , [action.payload.name]:action.payload.value}
@@ -165,12 +168,14 @@ export const { changeModalAction } = UserSlice.actions;
 export const { login_Form_OnChange } = UserSlice.actions;
 export const { register_Form_OnChange } = UserSlice.actions;
 export const { user_status_not_logged } = UserSlice.actions;
+export const { changeColor } = UserSlice.actions;
 
 
 
 
 // data
 export const register_errors = (state: RootState) => state.userReducer.user_errors.registerErrors.errors;
+export const color_convert = (state: RootState) => state.userReducer.changeColor;
 export const login_errors = (state: RootState) => state.userReducer.user_errors.loginErrors.errors;
 export const forget_Password_Errors = (state: RootState) => state.userReducer.user_errors.forgetPasswordErrors.errors;
 export const user_data = (state: RootState) => state.userReducer.user

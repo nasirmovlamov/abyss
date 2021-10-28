@@ -47,24 +47,22 @@ function PageTabs({}: Props): ReactElement {
                 <TabButtonsCont>
                 <TabButton id="tab1" tabFocus={selectedTab === "Info" ? true: false} name="tab"  onClick={() => tabQuery("Info" , "default")}>
                     <TabText>
-                        <TabTextSpan>
                             Requests
-                        </TabTextSpan>
                     </TabText> 
                     <Line/>     
                 </TabButton>
 
                 <TabButton id="tab2" tabFocus={selectedTab === "Clip" ? true: false} name="tab" onClick={() => tabQuery("Clip", "default")}>
-                    <TabText>
-                        <TabTextSpan>
+                    <TabText style={{width:"134px",padding:"18px 28.5px 0px 28.5px"}}>
                         Questions
-                        </TabTextSpan>
                     </TabText> 
                     <Line/>        
                 </TabButton>
                 
                 <TabButton id="tab3" tabFocus={selectedTab === "Forum" ? true: false} name="tab" onClick={() => tabQuery("Forum", "default")}>
-                    <TabText>Discussions</TabText> 
+                    <TabText  style={{width:"150px",padding:"18px 18px 0px 18px"}}>
+                        Discussions
+                    </TabText> 
                     <Line  />   
                 </TabButton>
                 </TabButtonsCont>

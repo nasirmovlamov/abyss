@@ -28,6 +28,7 @@ export const AUTH_STATE:AUTH_INTERFACE = {
     user: null ,
     status: 'loading',
     user_status:"loading",
+    changeColor:false,
     loggedIn:null,
     message:null,
     userModals:{
