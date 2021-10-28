@@ -26,7 +26,7 @@ export const SearchBoxSlice = createSlice({
 
     // Forum Search
     builder.addCase(forumSearch.fulfilled, (state, {payload}) => {
-      state.searchBoxData.forum.data = payload.data
+      state.searchBoxData.forum.data = payload.data.results
       state.searchBoxData.forum.status = "loaded"
     }),
     builder.addCase(forumSearch.pending, (state, {payload}) => {
