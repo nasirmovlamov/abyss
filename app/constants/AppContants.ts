@@ -26,6 +26,8 @@ export const CHECK_ROOM:string = 'CHECK_ROOM'
 export const SEND_MESSAGE_TO_ROOM:string = 'SEND_MESSAGE_TO_ROOM'
 export const LOAD_MESSAGES_TO_ROOM:string = 'LOAD_MESSAGES_TO_ROOM'
 
+export const SEARCH_FORUM:string = 'SEARCH_FORUM'
+
 
 
 export const ADD_FILE:string = 'ADD_FILE'

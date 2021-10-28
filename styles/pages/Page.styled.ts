@@ -45,7 +45,7 @@ export const SidePartOfPageStyle = styled.aside<{side:string , colorConvert:bool
     
 `
 
-export const PageDefaultStyle = styled.main<{colorConvert:boolean}>`
+export const PageDefaultStyle = styled.main`
     display: flex;
     justify-content: center;
     align-content: center;

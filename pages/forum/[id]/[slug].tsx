@@ -141,7 +141,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
                                 :
 
                                 <>
-                                    <button style={{alignSelf:'flex-end'}} onClick={() => dispatch(changeModalAction("questionCreate"))}>QuestionCreate</button>
+                                    {/* <button style={{alignSelf:'flex-end'}} onClick={() => dispatch(changeModalAction("questionCreate"))}>QuestionCreate</button> */}
 
                                     <QuestionCont id={`question${singleQuestionData.id}`}>
                                         <PersonCont>
@@ -189,9 +189,9 @@ function SingleQuestionPAge({}: Props): ReactElement {
                                                         </VotePercentage>
                                                     </HelpfulCont>
                                             </StatisticContSingleQuestion>
-                                            <DateCount>
+                                            <QuestionDate>
                                                 2d 7h ago
-                                            </DateCount>
+                                            </QuestionDate>
                                             {/* <QuestionStatisticElement>
                                                 <QuestionStatisticButton onClick={voting} color={singleQuestionData.user_votes === null ? "red" : "green"}>like</QuestionStatisticButton>
                                                 <QuestionStatisticText>Give Vote</QuestionStatisticText>

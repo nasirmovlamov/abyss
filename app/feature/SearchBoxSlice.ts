@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store/store'
 import { SEARCHBOX_STATE } from '../store/states/SearchBoxState'
+import { forumSearch } from '../thunks/SearchBoxThunks'
+import { autoErrorToaster } from '../../components/Notify/AutoErrorToaster'
 
 
 
@@ -22,17 +24,18 @@ export const SearchBoxSlice = createSlice({
 
   extraReducers: (builder) => {
 
-    //ADD NEW ANSWER to Question Reducers
-    // builder.addCase(addAnswer.fulfilled, (state, {payload}) => {
-    //     successToast("top-right" ,payload.message)
-    //     state.answersData.topAnswers.answers = [  payload.data , ...state.answersData.topAnswers.answers ]
-    // }),
-    // builder.addCase(addAnswer.pending, (state, {payload}) => {
-      
-    // }),
-    // builder.addCase(addAnswer.rejected, (state, {payload}) => {
-    //   autoErrorToaster(payload)
-    // })  
+    // Forum Search
+    builder.addCase(forumSearch.fulfilled, (state, {payload}) => {
+      state.searchBoxData.forum.data = payload.data
+      state.searchBoxData.forum.status = "loaded"
+    }),
+    builder.addCase(forumSearch.pending, (state, {payload}) => {
+      state.searchBoxData.forum.status = "loading"
+    }),
+    builder.addCase(forumSearch.rejected, (state, {payload}) => {
+      state.searchBoxData.forum.status = "error"
+      autoErrorToaster(payload)
+    })  
 
   },
 
@@ -44,7 +47,8 @@ export const SearchBoxSlice = createSlice({
 
 
 // data
-export const searchbox_data = (state: RootState) => state.searchBoxReducer.searchBoxData
+export const forum_search_data = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.data  
+export const forum_data_status = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.status  
 
 
 

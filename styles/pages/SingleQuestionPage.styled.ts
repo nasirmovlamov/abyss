@@ -13,8 +13,9 @@ export const SingleProductMiddle = styled.main`
     align-items: center;
     row-gap: 20px;
     padding-bottom: 50px;
-    padding-top: 50px;
+    padding-top: 187px;
     box-sizing: initial;
+    
 `
 
 
@@ -35,111 +36,152 @@ export const SingleProductAside = styled.aside`
 
 
 export const QuestionCont = styled.div`
-    padding:  23px 15px;
-    box-sizing: border-box;
     display: flex;
-    flex-direction: row;
-    border-bottom: 1px solid gray;
-    column-gap: 22px;
-    width: 808px;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 8px;
+    padding-left: 20px;
+    padding-right: 44px;
+    box-sizing: border-box;
+    /* border-radius: 6px; */
+    border-radius: 10px;
     background-color: ${({theme}) => theme.forumPage.elementBackground};
     box-shadow: ${({theme}) => theme.forumPage.boxShadow};
-    border-radius: 10px;
+    justify-content: flex-start;
+    /* align-items: center; */
+    @media only screen and (max-width:1375px){
+        flex-wrap: wrap;
+        height: auto;
+        justify-content: flex-start;
+    }
 `
 
 export const PersonCont = styled.div`
     display: flex;
     flex-direction: column;
-    row-gap: 10px;
-    width: 62px;
-    height: 93px;
+    width: 63px;
+    /* height:93px;\ */
+    margin-top: 10px;
+    @media only screen and (max-width:1375px){
+        flex-direction: row;
+        width: 120px;
+        height: auto;
+        align-items: center;
+        column-gap: 10px;
+    }
 `
 export const Avatar = styled.div`
-    width: 61px;
-    height:61px;
+    width: 63px;
+    height:63px;
     border-radius:50%;
     object-fit: cover;
     background-color: ${({theme}) => theme.forumPage.darkelementBacground};
-    box-shadow: ${({theme}) => theme.forumPage.boxShadowForElement};
-
+    @media only screen and (max-width:1375px){
+        width: 22px;
+        height:22px;
+    }
 `
 export const Name = styled.span`
     font-size: 12px;
+    margin-top: 18px;
     display: flex;
-    width: 100%;
+    opacity: 0.62;
+    height: auto;
+    width: 120%;
     display: -webkit-box;
+    line-height: 18px;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     color:  ${({theme}) => theme.forumPage.sideTextColor};
+    @media only screen and (max-width:1375px){
+        margin: 0px;
+    }
 `
 
 export const ContentCont = styled.div`
-    font-size: 15px;
-    color: white;
     display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-    width: 505px;
-    
+    flex-wrap: wrap;
+    width: 535px;
+    height: 100%;
+    margin-left: 22px;
+    @media only screen and (max-width:1375px){
+        order:2;
+        width: 100%;
+    }
 `
 
 export const QuestionTitle = styled.h2`
-    font-size: 18px;
-    font-family: s;
+    font-size: 20px;
     color:  ${({theme}) => theme.forumPage.titleColor};
+    cursor: pointer;
+    text-transform: capitalize;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    line-height: 30px;
+    font-family: s;
+    letter-spacing: 0.2px;
 `
 
 export const QuestionContent = styled.p`
     font-size: 15px;
+    display: -webkit-box;
     color:  ${({theme}) => theme.forumPage.textColor};
+    font-family: r;
+    align-self: flex-start;
     line-height: 22px;
-    font-family:r;
-    text-align: justify;
+    margin-top: 2px;
 `
 
 export const QuestionTagsAndDate = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
+    margin-top: 14px;
+    align-items: center;
 `    
 export const QuestionDate = styled.p`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: gray;
+     font-family: r;
+    font-style: italic;
     font-size: 12px;
+    color: ${({theme}) => theme.forumPage.darkSideTextColor};
+    line-height: 18px;
+    margin-bottom: 3.5px;
 `    
 
 export const QuestionTags = styled.div`
-    display: flex;
+     display: flex;
     column-gap: 10px;
     
 `
 
 export const QuestionTag = styled.div`
-     height: 22px;
+    height: 22px;
     color: white;
     border: none;
     padding: 5px;
     border-radius: 5px;
     display: flex;
-    color:  ${({theme}) => theme.forumPage.textColor};
     font-family: r;
     justify-content: center;
     /* border: 1px solid lightgray; */
     align-items: center;
     background-color: #e5f0f4;
     font-family: r;
-    background:  ${({theme}) => theme.forumPage.tagsBackground};
+    background:  ${({theme}) => theme.forumPage.tagBackColor};
     cursor: pointer;
     font-size: 12px;
     text-align: center;
-    transition: 0.2s;
+    transition: 10s ease-out ;
+    color:  ${({theme}) => theme.forumPage.tagTextColor};
+    box-shadow: ${({theme}) => theme.forumPage.tagBoxShadow};
     &:hover{
-        box-shadow: ${({theme}) => theme.forumPage.boxShadowForElement};
-
+        box-shadow: ${({theme}) => theme.forumPage.hover.tagBoxShadow};
     }
     
 `
@@ -147,11 +189,12 @@ export const QuestionTag = styled.div`
 export const QuestionStatistics = styled.div`
     display: flex;
     flex-direction: column;
+    align-self: flex-start;
     row-gap: 8.5px;
     justify-content: space-between;
     /* margin-left: 22px; */
     align-items: center;
-    width: 77px;
+    /* width: 77px; */
     margin-left: 47px;
 
     @media only screen and (max-width:1375px){
@@ -171,14 +214,20 @@ export const VotePercentage = styled.div`
     font-family: s;
 `
 export const StatisticContSingleQuestion = styled.div`
-    display: flex;
+     display: flex;
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
-    width: 141px;
+    width: 95px;
     column-gap: 5px;
-    row-gap:5px;
+    row-gap:12px;
     box-sizing: border-box;
+    @media only screen and (max-width:1375px){
+        flex-direction: row;
+        column-gap: 10px;
+        width:180px;
+        justify-content:flex-start;
+    }
 
 `
 

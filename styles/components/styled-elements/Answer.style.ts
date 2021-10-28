@@ -4,14 +4,18 @@ import styled from "styled-components";
 export const AnswerStyle = styled.li`
     display: flex;
     width: 100%;
-    column-gap: 10px;
-    padding: 10px;
-    box-sizing:border-box;
-    padding-bottom: 20px;
-    flex-direction: column;
-    color: white;
-    background-color: ${({theme}) => theme.forumPage.elementBackground};
+    padding-top: 5px;
+    padding-bottom: 8px;
+    padding-left: 20px;
+    padding-right: 44px;
+    box-sizing: border-box;
+    /* border-radius: 6px; */
     border-radius: 10px;
+    background-color: ${({theme}) => theme.forumPage.elementBackground};
+    box-shadow: ${({theme}) => theme.forumPage.boxShadow};
+    justify-content: flex-start;
+    align-items: center;
+    
 
 `
 export const LikeButton = styled.button`
@@ -28,47 +32,63 @@ export const LikeButton = styled.button`
 export const PersonCont = styled.div`
     display: flex;
     flex-direction: column;
-    row-gap: 10px;
-    align-items: center;    
-    width: 100px !important;
-    box-sizing: border-box;
-    /* z-index: 999; */
+    width: 63px;
+    /* height:93px;\ */
+    margin-top: 10px;
+    @media only screen and (max-width:1375px){
+        flex-direction: row;
+        width: 120px;
+        height: auto;
+        align-items: center;
+        column-gap: 10px;
+    }
 `
 export const Avatar = styled.div`
-    width: 62px;
-    height:62px;
-    background-color: ${({theme}) => theme.forumPage.darkelementBacground};
-    box-shadow: ${({theme}) => theme.forumPage.boxShadowForElement};
-    
+    width: 63px;
+    height:63px;
     border-radius:50%;
     object-fit: cover;
-    /* z-index: 999; */
-
+    background-color: ${({theme}) => theme.forumPage.darkelementBacground};
+    @media only screen and (max-width:1375px){
+        width: 22px;
+        height:22px;
+    }
 `
 export const Name = styled.span`
     font-size: 12px;
-    margin-top: 6px;
+    margin-top: 18px;
     display: flex;
-    color:  ${({theme}) => theme.forumPage.textColor};
-
     opacity: 0.62;
-    width: 100%;
+    height: auto;
+    width: 120%;
     display: -webkit-box;
+    line-height: 18px;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    color:  ${({theme}) => theme.forumPage.sideTextColor};
+    @media only screen and (max-width:1375px){
+        margin: 0px;
+    }
 `
 
 export const AnswerContent = styled.p`
+    display: flex;
+    width: 535px;
+    height: 100%;
+    margin-left: 22px;
     font-size: 15px;
-    width: 500px;
-    overflow: hidden;
-    margin-top: 10px;
+    display: -webkit-box;
     color:  ${({theme}) => theme.forumPage.textColor};
-
-
+    font-family: r;
+    align-self: flex-start;
+    line-height: 22px;
+    margin-top: 2px;
 `
+
+
+
 export const AnswerContentSkeleton = styled.div`
     font-size: 15px;
     width: 500px;
@@ -79,6 +99,7 @@ export const AnswerContentSkeleton = styled.div`
 `
 export const ShowComments = styled.button`
     border: none;
+    padding: 0px;
     background-color: transparent;
     color: ${({theme}) => theme.forumPage.titleColor};
 

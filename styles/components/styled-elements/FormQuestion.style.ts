@@ -75,7 +75,7 @@ export const Name = styled.span`
     @media only screen and (max-width:1375px){
         margin: 0px;
     }
-    `
+`
 export const TextCont = styled.div`
     display: flex;
     flex-wrap: wrap;
@@ -175,6 +175,7 @@ export const CountOfProducts = styled.div`
     display: flex;
     column-gap: 10px;
     align-items: center;
+    margin-top: -2px;
 `
 export const ProductCount = styled.div`
     font-family: r;
@@ -198,7 +199,7 @@ export const StatisticCont = styled.div`
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
-    width: 95px;
+    /* width: 95px; */
     column-gap: 5px;
     row-gap:12px;
     box-sizing: border-box;
@@ -213,6 +214,8 @@ export const StatisticCont = styled.div`
 export const QuestionStatisticPercentage = styled.span`
     font-size: 15px;
     line-height: 22px;
+    width:30px;
+    text-align: center;
 `
 
 export const AnswerCont = styled.div`
@@ -230,7 +233,8 @@ export const AnswerCont = styled.div`
 
 export const AnswerCount = styled.div`
     width: 40px;
-    height: 20px;
+    /* height: 20px; */
+    line-height: 30px;
     border-radius: 6px;
     display: flex;
     flex-direction: column;
@@ -244,6 +248,7 @@ export const Text = styled.span`
     font-size: 12px;
     line-height:14px;
     color:${({theme}) => theme.forumPage.sideTextColor};
+    margin-top: -2px;
 
 `
 export const ThumbIcon = styled.span`
@@ -256,7 +261,7 @@ export const ThumbIcon = styled.span`
 
 
 export const HelpfulCont = styled.div`
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -269,14 +274,14 @@ export const HelpfulCont = styled.div`
 `
 
 export const HelpfulCount = styled.div`
-    width: 100%;
-    height: 23px;
+    /* width: 100%; */
+    height: auto;
     color: ${({theme}) => theme.forumPage.sideTextColor};
     border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
-    column-gap: 10px;
+    column-gap: 6px;
 `
 
 

@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp } from '@fortawesome/free-regular-svg-icons'
 import NavLink from './NavLink'
 import { QuestionStatisticButton, QuestionStatistics, VotePercentage } from '../styles/pages/SingleQuestionPage.styled'
+import thumbs_up from "/public/thumbs-up.svg"
 
 interface Props {
     data:{
@@ -32,7 +33,7 @@ function FormQuestion({data}: Props): ReactElement {
             </PersonCont>
 
             <TextCont>
-                <NavLink href={`/forum/17/laravel-is-so-prettyyy`}>
+                <NavLink href={`/forum/18/animi-aut-voluptatum`}>
                     <Title> 
                         {data.title}
                     </Title>
@@ -43,7 +44,7 @@ function FormQuestion({data}: Props): ReactElement {
 
                 <BottomSide>
                     <QuestionTags>
-                        {data.tags.map( (tags, index ) =>  index < 3 && <Tags>{tags}</Tags>)}
+                        {/* {data.tags.map( (tags, index ) =>  index < 3 && <Tags>{tags}</Tags>)} */}
                     </QuestionTags>
 
                     <CountOfProducts> 
@@ -66,7 +67,7 @@ function FormQuestion({data}: Props): ReactElement {
 
                             <HelpfulCont>
                                 <HelpfulCount>
-                                    <QuestionStatisticButton  changeDirection={false}  ><ThumbIcon><FontAwesomeIcon  icon={faThumbsUp} /> </ThumbIcon></QuestionStatisticButton> 
+                                    <QuestionStatisticButton  changeDirection={false}  ><ThumbIcon><Image src={thumbs_up} width="18px" height="18px"/> </ThumbIcon></QuestionStatisticButton> 
                                     <QuestionStatisticPercentage  >69%</QuestionStatisticPercentage> 
                                 </HelpfulCount>
                                 <DefaultLine><PercentageLine percentage={(69/100*100)}/></DefaultLine>

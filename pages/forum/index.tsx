@@ -13,6 +13,8 @@ import { is_chatbox_opened } from '../../app/feature/ChatBoxSlice'
 import ChatBox from '../../components/ChatBox'
 import PageFilters from '../../components/PageFilters'
 import CommentModal from '../../components/CommentsTab'
+import { forum_data_status, forum_search_data } from '../../app/feature/SearchBoxSlice'
+import FormQuestionSkeleton from '../../components/Skeletons/ForumQuestionSkeleton'
 
 interface Props {
     
@@ -20,23 +22,10 @@ interface Props {
 
 function Forum({}: Props): ReactElement {
     const router = useRouter()
-    const [formQuestionsAPI, setformQuestionsAPI] = useState([])
     const isChatBoxOpened = useAppSelector(is_chatbox_opened)
-
-    const getQuestions = async () => {
-        try {
-            const response = await axios.get("https://610685e81f34870017437966.mockapi.io/forum")
-            setformQuestionsAPI(response.data)
-        } catch (error) {
-            console.error(error)
-        }
-    }
-
-    useEffect(() => {
-        setTimeout(() => {
-            getQuestions()
-        }, 500); 
-    }, [])
+    const forumSearchData = useAppSelector(forum_search_data)
+    const forumSearchStatus = useAppSelector(forum_data_status)
+    
     
     return (
         <PageDefaultStyle>
@@ -46,9 +35,15 @@ function Forum({}: Props): ReactElement {
             <MainPartOfPage>
                 <ForumPage>
                     <PageTabs/>  
-
-
-                    {formQuestionsAPI.map((element , index) => <FormQuestion key={index} data={element}/>)} 
+                    {forumSearchStatus === "loaded" && forumSearchData.map((element , index) => <FormQuestion key={index} data={element}/>)} 
+                    {forumSearchStatus === "loading" && 
+                        <div style={{width:"100%" , display:"flex", flexDirection:"column", rowGap:"10px"}}>
+                            <FormQuestionSkeleton/>
+                            <FormQuestionSkeleton/>
+                            <FormQuestionSkeleton/>
+                        </div>
+                    } 
+                    {forumSearchStatus === "error" && <div>Error ...</div>} 
                 </ForumPage>
             </MainPartOfPage>
 
