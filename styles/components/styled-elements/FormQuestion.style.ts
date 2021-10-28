@@ -175,7 +175,7 @@ export const CountOfProducts = styled.div`
     display: flex;
     column-gap: 10px;
     align-items: center;
-    margin-top: -2px;
+    /* margin-top: 2px; */
 `
 export const ProductCount = styled.div`
     font-family: r;

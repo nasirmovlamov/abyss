@@ -45,9 +45,7 @@ function Forum({}: Props): ReactElement {
             
             <MainPartOfPage>
                 <ForumPage>
-                    <PageTabs/>  
-
-
+                    <PageTabs/>
                     {formQuestionsAPI.map((element , index) => <FormQuestion key={index} data={element}/>)} 
                 </ForumPage>
             </MainPartOfPage>
