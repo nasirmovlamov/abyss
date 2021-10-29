@@ -6,7 +6,7 @@ import { useScrollDirection } from 'react-use-scroll-direction'
 import { changeModalAction } from '../app/feature/UserSlice'
 import { useAppDispatch } from '../app/store/hooks'
 import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex'
-import { AddQuesitionCont, SearchBoxContainer , SearchBoxPage, SearchBoxStyle, SearchBoxThunk, SearchBoxThunkAndCont, SearchCont, SearchInput, SearchNav, SearchNavQuery} from '../styles/components/styled-elements/SearchBox.style'
+import { AddQuesitionCont, SearchBoxContainer , SearchBoxPage, SearchBoxStyle, SearchBoxThunk, SearchBoxThunkAndCont, SearchButtonLupa, SearchCont, SearchInput, SearchNav, SearchNavQuery} from '../styles/components/styled-elements/SearchBox.style'
 import { MainPartOfPageStyle, SidePartOfPageStyle } from '../styles/pages/Page.styled'
 import { useScrollYPosition } from 'react-use-scroll-position';
 import { forumSearch } from '../app/thunks/SearchBoxThunks'
@@ -135,6 +135,19 @@ function SearchBox({}: Props): ReactElement {
         }
     }, [scrollY])
 
+    const searchHandleWithEnter = (key:number) => {
+        console.log(key)
+        if(key === 13)
+        {
+            dispatch(forumSearch(searchValue))
+        }
+    }
+    const searchHandleWithSubmit = () => {
+        if(searchValue !== "")
+        {
+            dispatch(forumSearch(searchValue))
+        }
+    }
     return (
         
         <SearchBoxContainer ref={searchContRef} path={router.asPath} style={SearchContDesign}>
@@ -142,8 +155,8 @@ function SearchBox({}: Props): ReactElement {
                     <SearchBoxStyle path={router.asPath} direction={direction} > 
                         <SearchBoxPage>{pagePath}</SearchBoxPage>
                         <SearchCont>
-                            <FontAwesomeIcon  icon={faSearch}/>
-                            <SearchInput  onChange={(e:any) => dispatch(forumSearch(e.target.value))}  path={router.asPath} placeholder="Search..." ref={searchInputRef} onFocus={() => searchSizechange('focus')} onBlur={() => searchSizechange('blur')}  type="text" /> 
+                            <SearchButtonLupa onClick={searchHandleWithSubmit}><FontAwesomeIcon  icon={faSearch}/></SearchButtonLupa>
+                            <SearchInput onKeyDown={(e:any) => searchHandleWithEnter(e.keyCode)} value={searchValue}  onChange={(e:any) => setSearchValue(e.target.value)}  path={router.asPath} placeholder="Search..." ref={searchInputRef} onFocus={() => searchSizechange('focus')} onBlur={() => searchSizechange('blur')}  type="text" /> 
                             <SearchNav  path={router.asPath} ref={searchNavRef}>
                                 {/* <SearchNavQuery>
                                     <FontAwesomeIcon  icon={faSearch}/>

@@ -11,15 +11,26 @@ export const SearchBoxSlice = createSlice({
   initialState:SEARCHBOX_STATE,
   reducers: {
 
-    // changeTopAnswersStatus(state, action) {
-    //     state.answersData.topAnswers.status = action.payload.status
-    // },
-    
+    selectFilterToSearchOption(state, action) {
+      for (let i = 0; i < state.searchBoxData.forum.searchOptions.filters.length; i++) {
+        if (state.searchBoxData.forum.searchOptions.filters[i].id === action.payload.id) {
+          state.searchBoxData.forum.searchOptions.filters = state.searchBoxData.forum.searchOptions.filters.filter(tag => tag.id !== action.payload.id)
+          return
+        }
+      } 
+      state.searchBoxData.forum.searchOptions.filters.push(action.payload)
+    },
+
+    selectForumTypeSearchOption(state, action) {
+      state.searchBoxData.forum.searchOptions.forumType = action.payload
+    },
+
+    selectForumSortSearchOption(state, action) {
+      state.searchBoxData.forum.searchOptions.forumSort = action.payload
+    },
+
 
   },
-
-
-
 
 
   extraReducers: (builder) => {
@@ -37,18 +48,31 @@ export const SearchBoxSlice = createSlice({
       autoErrorToaster(payload)
     })  
 
+
+
+
+
   },
 
 })
 
 
 // action
-// export const {changeDownAnswersStatus} = QuestionSlice.actions;
+export const 
+{
+  selectFilterToSearchOption , 
+  selectForumTypeSearchOption , 
+  selectForumSortSearchOption
+  
+} = SearchBoxSlice.actions;
 
 
 // data
 export const forum_search_data = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.data  
 export const forum_data_status = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.status  
+export const forum_search_type = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.searchOptions.forumType
+export const forum_search_sort = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.searchOptions.forumSort
+export const forum_search_filters = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.searchOptions.filters
 
 
 

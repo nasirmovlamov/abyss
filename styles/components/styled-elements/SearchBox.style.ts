@@ -98,6 +98,30 @@ export const SearchBoxPage = styled.div`
     flex: 0 0 112px; /* flex-grow, flex-shrink, flex-basis */
 `
 
+
+export const SearchButtonLupa = styled.button`
+    width: auto;
+    height: auto;
+    margin:0px;
+    padding:0px;
+    border: none;
+    background-color: transparent;
+    z-index: 4;
+    color: white;
+    position: absolute;
+    margin-left: 10px;
+    cursor: pointer;
+    &:focus 
+    {
+        outline: none;
+    }
+    svg 
+    {
+        color: ${({theme}) => theme.searchBox.borderAndPlaceHolderColor};
+        font-size: 16px;
+    }
+`
+
 export const SearchInput = styled.input<{path:string}>`
     border-radius: ${(props) => props.path === "/" ? "0px 30px 30px 0px" : "inherit"}  ;
     height: 100%;
@@ -125,14 +149,7 @@ export const SearchCont = styled.div`
     border-left: 1px solid red;
     border-color:  ${({theme}) => theme.searchBox.borderAndPlaceHolderColor} !important;
     position: relative;
-    svg 
-    {
-        z-index: 4;
-        color: white;
-        position: absolute;
-        margin-left: 10px;
-        color: ${({theme}) => theme.searchBox.borderAndPlaceHolderColor};
-    }
+    
     input 
     {
         

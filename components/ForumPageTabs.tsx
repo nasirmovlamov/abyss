@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router'
 import React, { ReactElement, useEffect, useState } from 'react'
+import { forum_data_status, forum_search_data, forum_search_sort, forum_search_type, selectForumSortSearchOption, selectForumTypeSearchOption } from '../app/feature/SearchBoxSlice'
+import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { FooterColumn,  FooterElement,  FooterRow, FooterStyle } from '../styles/components/styled-elements/Footer.style'
 import { Line, TabButton, TabButtonsCont, TabResults, Tabs, TabsContainer, TabTags, TabTagsAndResults, TabTagsCont, TabText, } from '../styles/components/styled-elements/PageTabs.style'
 
@@ -8,60 +10,45 @@ interface Props {
 }
 
 function PageTabs({}: Props): ReactElement {
-    const router = useRouter()
-    const {selectedTab , selectedTag} = router.query
+    const dispatch = useAppDispatch()
+    const searchType = useAppSelector(forum_search_type)
+    const searchSort = useAppSelector(forum_search_sort)
+    const forumSearchData = useAppSelector(forum_search_data)
+    const forumSearchStatus = useAppSelector(forum_data_status)
 
 
-    const tabQuery = (tab="default" , tag="default") => {
-        if(tab!== "default")
-        {
-            router.push({
-                pathname:router.pathname,
-                query:{
-                    selectedTab:tab,
-                    selectedTag:selectedTag
-                }
-            })
+    const  searchTypes = ['Requests' , 'Questions' , 'Discussion']
+    const  searchSorts = ['Newes' , 'Most Visited' , 'Most Helpful' , "Recently"]
 
-        }
-        else if(tag!== "default")
-        {
-            router.push({
-                pathname:router.pathname,
-                query:{
-                    selectedTab:selectedTab,
-                    selectedTag:tag
-                }
-            })
-        }
-        else 
-        {}
 
+    const selectType = (type:string) => {
+        dispatch(selectForumTypeSearchOption(type))
     }
-
-    
+    const selectSort = (sort:string) => {
+        dispatch(selectForumSortSearchOption(sort))
+    }
 
     return (
         <TabsContainer>
             <Tabs>
                 <TabButtonsCont>
-                <TabButton id="tab1" tabFocus={selectedTab === "Info" ? true: false} name="tab"  onClick={() => tabQuery("Info" , "default")}>
+                <TabButton  onClick={() => selectType(searchTypes[0])} id="tab1" tabFocus={searchType.includes(searchTypes[0])} name="tab" >
                     <TabText>
-                            Requests
+                        {searchTypes[0]}
                     </TabText> 
                     <Line/>     
                 </TabButton>
 
-                <TabButton id="tab2" tabFocus={selectedTab === "Clip" ? true: false} name="tab" onClick={() => tabQuery("Clip", "default")}>
+                <TabButton onClick={() => selectType(searchTypes[1])} id="tab2" tabFocus={searchType.includes(searchTypes[1])} name="tab" >
                     <TabText style={{width:"134px",padding:"18px 28.5px 0px 28.5px"}}>
-                        Questions
+                        {searchTypes[1]}
                     </TabText> 
                     <Line/>        
                 </TabButton>
                 
-                <TabButton id="tab3" tabFocus={selectedTab === "Forum" ? true: false} name="tab" onClick={() => tabQuery("Forum", "default")}>
+                <TabButton onClick={() => selectType(searchTypes[2])} id="tab3" tabFocus={searchType.includes(searchTypes[2])} name="tab" >
                     <TabText  style={{width:"150px",padding:"18px 18px 0px 18px"}}>
-                        Discussions
+                        {searchTypes[2]}
                     </TabText> 
                     <Line  />   
                 </TabButton>
@@ -69,13 +56,13 @@ function PageTabs({}: Props): ReactElement {
             </Tabs>
 
             <TabTagsAndResults>
-                <TabResults>7,903 results</TabResults>
+                <TabResults>{forumSearchStatus === "loaded" && <>{forumSearchData.length} results</>}  </TabResults>
 
                 <TabTagsCont>
-                    <TabTags name="tag" tagFocus={selectedTag === "Newes" ? true: false} onClick={() => tabQuery("default" , "Newes")}>Newes</TabTags>
-                    <TabTags name="tag" tagFocus={selectedTag === "Most Visited" ? true: false} onClick={() => tabQuery("default" , "Most Visited")}>Most Visited</TabTags>
-                    <TabTags name="tag" tagFocus={selectedTag === "Most Helpful" ? true: false} onClick={() => tabQuery("default" , "Most Helpful")}>Most Helpful</TabTags>
-                    <TabTags name="tag" tagFocus={selectedTag === "Recently" ? true: false} onClick={() => tabQuery("default" , "Recently")}>Recently</TabTags>
+                    <TabTags name="tag" tagFocus={searchSort.includes(searchSorts[0])} onClick={() =>selectSort(searchSorts[0])}>{searchSorts[0]}</TabTags>
+                    <TabTags name="tag" tagFocus={searchSort.includes(searchSorts[1])} onClick={() => selectSort(searchSorts[1])}>{searchSorts[1]}</TabTags>
+                    <TabTags name="tag" tagFocus={searchSort.includes(searchSorts[2])} onClick={() => selectSort(searchSorts[2])}>{searchSorts[2]}</TabTags>
+                    <TabTags name="tag" tagFocus={searchSort.includes(searchSorts[3])} onClick={() => selectSort(searchSorts[3])}>{searchSorts[3]}</TabTags>
                 </TabTagsCont>
             </TabTagsAndResults>
 

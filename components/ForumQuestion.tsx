@@ -43,9 +43,9 @@ function FormQuestion({data}: Props): ReactElement {
                 </Content>
 
                 <BottomSide>
-                    <QuestionTags>
+                    {/* <QuestionTags>
                         {data.tags.map( (tags, index ) =>  index < 3 && <Tags>{tags}</Tags>)}
-                    </QuestionTags>
+                    </QuestionTags> */}
 
                     <CountOfProducts> 
                         <ProductsIcons>

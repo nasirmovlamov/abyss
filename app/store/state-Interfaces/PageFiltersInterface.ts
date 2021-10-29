@@ -1,12 +1,12 @@
 export interface PAGE_FILTERS_INTERFACE {
     isShown:boolean
     stayInFocus:boolean
-    filterSearch: filterTag[]
-    filterTags: filterTag[]
+    filterSearch: filterTagInterFace[]
+    filterTags: filterTagInterFace[]
     filterSearchValue: filterSearchValue
 }
 
-interface filterTag {
+export interface filterTagInterFace {
     id:number,
     name:string,
 } 

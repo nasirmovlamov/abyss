@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { FilterCont, FilterContStyle, FilterLanguageCont, FilterLanguageContent, FilterLanguages, FilterLanguageTitle, FilterSearchCont, FilterSearchDropdown, FilterSearchDropdownElement, FilterSearchInCont, FilterSearchInput, FilterTagCont, FilterTagContent, FilterTags, FilterTagTitle, PinButton, SubjectCont, SubjectContent, Subjects, SubjectTitle } from '../styles/components/PageFilters.style'
 import { addFilter, changePositionOfFilters, changeToStayInFocus, filterSearchValueOnChange, filterTagsOnDelete, filterTagsSearchisFocused,  filter_search_tags, filter_search_value, filter_tags, is_focused, stay_in_focus } from '../app/feature/PageFiltersSlice'
+import { forum_search_filters, selectFilterToSearchOption } from '../app/feature/SearchBoxSlice'
 
 interface Props {
     
@@ -20,6 +21,7 @@ function PageFilters({}: Props): ReactElement {
     const isFocused = useAppSelector(is_focused)
     const stayInFocus = useAppSelector(stay_in_focus)
     const filterBlockRef = useRef<HTMLDivElement>(null)
+    const selectedForumSearchFilters = useAppSelector(forum_search_filters)
 
     const pinFilters = () => {
         dispach(changeToStayInFocus(stayInFocus))
@@ -57,7 +59,7 @@ function PageFilters({}: Props): ReactElement {
                     <SubjectTitle>Subject</SubjectTitle>
                     <SubjectContent>
                         {filterTags.map((element , index)=> 
-                            index < 3 && <Subjects key={element.id}>{element.name} <button onClick={() => dispach(filterTagsOnDelete(element.id))}>del</button></Subjects>
+                            index < 3 && <Subjects key={element.id}><button style={{backgroundColor:selectedForumSearchFilters.includes(element) ? "gray" : "inherit"}} onClick={() => dispach(selectFilterToSearchOption(element))}> {element.name} </button>  <button  onClick={() => dispach(filterTagsOnDelete(element.id))}>del</button></Subjects>
                         )}
                     </SubjectContent>
                 </SubjectCont>
@@ -66,7 +68,7 @@ function PageFilters({}: Props): ReactElement {
                     <FilterTagTitle>Subject</FilterTagTitle>
                     <FilterTagContent>
                         {filterTags.map((element, index)=> 
-                            (3 <=  index && index <= 6)  &&  <Subjects key={element.id}>{element.name} <button onClick={() => dispach(filterTagsOnDelete(element.id))}>del</button></Subjects>
+                            (3 <=  index && index <= 6)  &&  <Subjects key={element.id}>  <button style={{backgroundColor:selectedForumSearchFilters.includes(element) ? "gray" : "inherit"}} onClick={() => dispach(selectFilterToSearchOption(element))}> {element.name} </button>     <button onClick={() => dispach(filterTagsOnDelete(element.id))}>del</button></Subjects>
                         )}
                     </FilterTagContent>
                 </FilterTagCont>
@@ -75,7 +77,7 @@ function PageFilters({}: Props): ReactElement {
                     <FilterLanguageTitle>Language</FilterLanguageTitle>
                     <FilterLanguageContent>
                         {filterTags.map((element, index)=> 
-                             index > 6 && <Subjects key={element.id}>{element.name} <button onClick={() => dispach(filterTagsOnDelete(element.id))}>del</button></Subjects>
+                             index > 6 && <Subjects key={element.id}><button style={{backgroundColor:selectedForumSearchFilters.includes(element) ? "gray" : "inherit"}} onClick={() => dispach(selectFilterToSearchOption(element))}> {selectedForumSearchFilters.includes(element)} {element.name} </button>   <button onClick={() => dispach(filterTagsOnDelete(element.id))}>del</button></Subjects>
                         )}
                     </FilterLanguageContent>
                 </FilterLanguageCont>
