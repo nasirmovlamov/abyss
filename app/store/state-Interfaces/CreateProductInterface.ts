@@ -1,4 +1,22 @@
 export interface CreateProductInterface {
+    name: string;
+    steps:{
+        1:{
+            name: string;
+        },
+        2:{
+
+        }
+        3:{
+
+        }
+        4:{
+
+        }
+        5:{
+
+        }
+    }    
     sections_product:SectionOfProduct[]
 }
 
@@ -11,7 +29,6 @@ export interface SectionOfProduct {
     } 
     label_key: string
     label_value: string
-    
 }
 
 

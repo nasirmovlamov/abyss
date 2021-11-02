@@ -27,6 +27,10 @@ function SearchBox({}: Props): ReactElement {
     const searchNavRef = useRef<HTMLDivElement>(null)
     const dispatch = useAppDispatch()
     const scrollY = useScrollYPosition();
+    const [scrollSearchBox, setscrollSearchBox] = useState<number>(0)
+    const [scrollYInside, setscrollYInside] = useState(0)
+
+
     const searchBoxValue = useAppSelector(forum_search_value)
     const [searchValue, setSearchValue] = useState("")
 
@@ -47,7 +51,7 @@ function SearchBox({}: Props): ReactElement {
     
 
 
-    const [direction, setDirection] = useState('up')
+    const [direction, setDirection] = useState('visible')
     const { isScrollingUp, isScrollingDown } = useScrollDirection()
 
 
@@ -133,21 +137,16 @@ function SearchBox({}: Props): ReactElement {
     }
 
     
-
-    useEffect(() => {
-        if(scrollY === 0)
-        {
-            setDirection('up')
-        }
-    }, [scrollY])
-
-
-    useEffect(() => {
+    const searchScrollControl = async (router:any) => {
         if(router.asPath !== '/')
         {
-            isScrollingDown && setDirection('down')
+               
         }
-    }, [isScrollingDown,  router.asPath])
+    }
+
+    useEffect( () => {
+        searchScrollControl(router.asPath)
+    }, [isScrollingDown,  router.asPath , scrollY])
 
 
     useEffect(() => {
@@ -156,7 +155,7 @@ function SearchBox({}: Props): ReactElement {
             setpagePath(pagePathDetector(router.asPath))
             if(router.asPath !== '/')
             {
-                searchBoxRef.current!.setAttribute("style" , "position:fixed;")
+                searchBoxRef.current!.setAttribute("style" , "position:absolute;")
                 searchInputRef.current!.focus()
                 dispatch(getFiltersFromCache(null))
                 dispatch(getCachedSearchBoxData(null))
@@ -168,7 +167,7 @@ function SearchBox({}: Props): ReactElement {
 
     return (
         
-        <SearchBoxContainer ref={searchContRef} path={router.asPath} style={SearchContDesign}>
+        <SearchBoxContainer scrollTopValue={scrollSearchBox} ref={searchContRef} path={router.asPath} style={SearchContDesign}>
                 <SearchBoxThunkAndCont  ref={searchBoxRef} direction={direction}>
                     <SearchBoxStyle path={router.asPath} direction={direction} > 
                         <SearchBoxPage>{pagePath}</SearchBoxPage>
@@ -188,7 +187,7 @@ function SearchBox({}: Props): ReactElement {
                         </SearchCont>
                         {pagePath !== "Home" && <AddQuesitionCont onClick={handleAddClick}>ADD</AddQuesitionCont>}
                     </SearchBoxStyle>
-                    {pagePath !== "Home" &&<SearchBoxThunk onMouseMove={()=>setDirection("up")} direction={direction}>	• 	•	•</SearchBoxThunk>}
+                    {(pagePath !== "Home" && scrollSearchBox === -48) && <SearchBoxThunk onMouseMove={()=>setDirection("visible")} direction={direction} scrollY={scrollY}>	• 	•	•</SearchBoxThunk>}
                 </SearchBoxThunkAndCont>
         </SearchBoxContainer>
     )

@@ -1,21 +1,21 @@
 import React, { ReactElement, useEffect, useState } from 'react'
-import { changeModalAction } from '../../app/feature/UserSlice'
-import { useAppDispatch, useAppSelector } from '../../app/store/hooks'
-import {BASE_API_INSTANCE} from '../../helpers/api/BaseInstance'
-import { getKeyValue } from '../../logic/getKeyValue'
-import { ProductCreateForm, ProductCreateModal, ProductLabelCont } from '../../styles/components/styled-elements/CreateProductModal.style'
-import { Title } from '../../styles/components/styled-elements/FormQuestion.style'
-import MyEditor from '../MyEditor'
-import { autoErrorToaster } from '../Notify/AutoErrorToaster'
-import { autoSuccessToaster } from '../Notify/AutoSuccessToast'
-import { errorToastFunc } from '../Notify/ErrorToasts'
+import { changeModalAction } from '../../../app/feature/UserSlice'
+import { useAppDispatch, useAppSelector } from '../../../app/store/hooks'
+import {BASE_API_INSTANCE} from '../../../helpers/api/BaseInstance'
+import { getKeyValue } from '../../../logic/getKeyValue'
+import { ProductCreateForm, ProductCreateModal, ProductLabelCont } from '../../../styles/components/styled-elements/CreateProductModal.style'
+import { Title } from '../../../styles/components/styled-elements/FormQuestion.style'
+import MyEditor from '../../MyEditor'
+import { autoErrorToaster } from '../../Notify/AutoErrorToaster'
+import { autoSuccessToaster } from '../../Notify/AutoSuccessToast'
+import { errorToastFunc } from '../../Notify/ErrorToasts'
 import {DragDropContext, Droppable , Draggable} from 'react-beautiful-dnd'
-import {  addNewSection, deleteSection, deleteClip, sections_product, updateKey, updateLabel, updateSectionsOrder, changeClipPosition } from '../../app/feature/CreateProductSlice'
-import { SectionOfProduct } from '../../app/store/state-Interfaces/CreateProductInterface'
+import {  addNewSection, deleteSection, deleteClip, sections_product, updateKey, updateLabel, updateSectionsOrder, changeClipPosition } from '../../../app/feature/CreateProductSlice'
+import { SectionOfProduct } from '../../../app/store/state-Interfaces/CreateProductInterface'
 import { faRulerVertical } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { getClipsIndex } from '../../logic/createProduct'
-import { addFile } from '../../app/thunks/CreateProductThunk'
+import { getClipsIndex } from '../../../logic/createProduct'
+import { addFile } from '../../../app/thunks/CreateProductThunk'
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 
@@ -32,13 +32,7 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
     const dispatch = useAppDispatch()
     const [productCode, setproductCode] = useState<string>()
     
-
-    
-
-
-
     function handleOnDragEnd(result:any) {
-        console.log(result)
         if(result.source.droppableId === 'main')
         {
             if (!result.destination) return;
@@ -75,15 +69,6 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
         }
     }
     
-
-
-    
-  
-
-
-
-
-
     const addNewBlock = () =>{
         dispatch(addNewSection(null))
         return null
@@ -93,14 +78,6 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
         console.log(index)
         dispatch(deleteSection(index))
     }
-
-
-    useEffect(() => {
-        // console.log(sectionsProduct)
-    }, [sectionsProduct])
-
-    
-    
 
     const getCodefromfile = (file:any) => {
         const reader = new FileReader();
@@ -114,23 +91,44 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
          }
          reader.readAsText(file);
     }
+
+
+    
+
+
+    
+  
+
+
+
+
+
+    
+    
+    
+
+    
     
 
     return (
         <ProductCreateModal>
             <ProductCreateForm>
+
+
+                
+
                 <div style={{display:'flex',flexDirection:"column",alignItems:'flex-end',marginTop:"0px",marginBottom:"10px"}}>
                     <button type="button" onClick={() => dispatch(changeModalAction('productCreate'))} style={{background:"none",border:"none",cursor:"pointer"}}>X</button>
                 </div>
                 <button >get code from file <input  value={""} type="file" placeholder="add Image" onChange={(e:any) => getCodefromfile(e.target.files[0])} /></button>
 
                 <CodeMirror
-                value={productCode}
-                height="200px"
-                extensions={[javascript({ jsx: true })]}
-                onChange={(value, viewUpdate) => {
-                    setproductCode(value);
-                }}
+                    value={productCode}
+                    height="200px"
+                    extensions={[javascript({ jsx: true })]}
+                    onChange={(value, viewUpdate) => {
+                        setproductCode(value);
+                    }}
                 />
 
 
@@ -298,17 +296,7 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
                         )}
                     </Droppable>
                 </DragDropContext>
-                {/* <ProductLabelCont>
-                    <input type='text' defaultValue={"Description"} />
-                    <MyEditor content={questionValue} onChange={(code:any) => setQuestionValue(code)}/>
-                    <label htmlFor="title">validate</label>
-                </ProductLabelCont>
-
-                <ProductLabelCont>
-                    <input type='text' defaultValue={"Aplicability"} />
-                    <MyEditor content={questionValue} onChange={(code:any) => setQuestionValue(code)}/>
-                    <label htmlFor="title">validate</label>
-                </ProductLabelCont> */}
+                
 
 
                 
@@ -325,3 +313,20 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
 }
 
 export default CreateProductModal
+
+
+
+
+{/* 
+<ProductLabelCont>
+    <input type='text' defaultValue={"Description"} />
+    <MyEditor content={questionValue} onChange={(code:any) => setQuestionValue(code)}/>
+    <label htmlFor="title">validate</label>
+</ProductLabelCont>
+
+<ProductLabelCont>
+    <input type='text' defaultValue={"Aplicability"} />
+    <MyEditor content={questionValue} onChange={(code:any) => setQuestionValue(code)}/>
+    <label htmlFor="title">validate</label>
+</ProductLabelCont> 
+*/}

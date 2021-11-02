@@ -2,13 +2,17 @@ import styled from "styled-components";
 
 
 
-export const SearchBoxContainer = styled.div<{path:string}>`
+export const SearchBoxContainer = styled.div<{path:string , scrollTopValue:number}>`
     display: flex;
     width: 100%;
     padding-top: ${(props) => props.path === "/" ? "20vh" : "0vh"};
     height: ${(props) => props.path === "/" ? "70vh" : "auto"};
     justify-content: center;
     padding-right:112px;
+    position: fixed;
+    z-index: 555;
+    /* top: 61px; */
+    transform: ${({scrollTopValue})=> `translateY(${scrollTopValue}px)`};
     @media only screen and (max-width: 1526px) {
         box-sizing:border-box;
     }
@@ -22,10 +26,9 @@ export const SearchBoxThunkAndCont = styled.div<{direction:string}>`
     flex-direction: column;
     /* align-items: center; */
     justify-content: space-between;
-    transform: ${({direction}) => direction === "up" ? "translateY(0px)" : "translateY(-51px)"};
+    /* transform: ${({direction}) => direction === "visible" ? "translateY(0px)" : "translateY(-51px)"}; */
     width: 810px;
-    position: sticky;
-    transition: 0.5s;
+    /* position: sticky; */
     z-index: 100;
     @media only screen and (max-width: 1526px) {
         width: 52.73%;
@@ -37,7 +40,7 @@ export const SearchBoxThunkAndCont = styled.div<{direction:string}>`
     }
 `
 
-export const SearchBoxThunk = styled.button<{direction:string}>`
+export const SearchBoxThunk = styled.button<{direction:string,scrollY:number}>`
     display: flex;
     flex-direction: column;
     color: black;
@@ -52,11 +55,12 @@ export const SearchBoxThunk = styled.button<{direction:string}>`
     align-self: center;
     justify-content: center;
     height: 16px;
+    /* opacity: 0; */
     border-radius: 0px 0px 5px 5px;
-    transform: ${({direction})=>direction === "down" ? "translateY(0px)" : "translateY(-20px)"};
-    pointer-events: ${({direction})=>direction === "down" ? "all" : "none"};
-    transition: 0.2s;
-
+    display: ${({scrollY}) => scrollY > 199 ? "block" : "none"};
+    opacity: ${({scrollY}) => scrollY > 200 ? "1" : "0"};
+    transform: ${({direction})=>direction === "not-visible" ? "translateY(0px)" : "translateY(-20px)"};
+    pointer-events: ${({direction})=>direction === "not-visible" ? "all" : "none"};
 `
 
 export const SearchBoxStyle = styled.div<{direction:string, path:string}>`
@@ -70,14 +74,12 @@ export const SearchBoxStyle = styled.div<{direction:string, path:string}>`
     border-radius: 5px;
     border-radius: 30px 30px 30px 30px ;
     border: none;
-    transition: 0.4s;
     background-color: white;
     align-items: flex-start;
     justify-content: space-between;
     box-sizing: border-box;
     z-index: 9999;
     transform-origin: top;
-    transition: 0.5s;
     background-color: ${({theme}) => theme.searchBox.background};
     box-shadow: ${({theme}) => theme.searchBox.boxShadow};
 `
@@ -164,7 +166,6 @@ export const SearchNav = styled.div<{path:string}>`
     background-color: white;
     z-index: 1;
     /* opacity: 0; */
-    transition: 0.5s;
     /* top:50px; */
     border: 1px solid gray;
     border-top: 1px solid lightgray ;

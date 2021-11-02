@@ -7,7 +7,7 @@ import RegisterModal from './RegisterModal'
 import IsEmailSendModal from './IsEmailSendModal'
 import CreateQuestionModal from './CreateQuestionModal'
 import ModalCont from './ModalCont'
-import CreateProductModal from './CreateProductModal'
+import CreateProductModal from './CreateProduct/CreateProductModal'
 import CreateDiscussionModal from './CreateDiscussionModal'
 import CreateIterationModal from './CreateIterationModal'
 

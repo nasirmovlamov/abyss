@@ -24,6 +24,5 @@ export const CreateProductState:CreateProductInterface = {
             isEditor:false,
             isClips:{status:true, clips:[]},
         },
-        
-      ]
+    ]
 }

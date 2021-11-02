@@ -28,7 +28,7 @@ export const SidePartOfPageStyle = styled.aside<{side:string , colorConvert:bool
     box-sizing: border-box;
     padding-top: 25px;
     display: flex;
-    padding-top: 115px;
+    /* padding-top: 115px; */
     display: flex;
     flex-direction: column;
     height: 100vh;

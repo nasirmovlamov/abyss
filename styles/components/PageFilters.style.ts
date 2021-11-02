@@ -9,6 +9,8 @@ export const FilterContStyle  = styled.div`
     box-sizing: border-box;
     z-index: 2;
     height: 200px;
+    position: sticky;
+    top: 188px;
     /* box-shadow: 190px 190px 190px 190px red; */
     /* position: sticky; */
     /* top: 90px; */
