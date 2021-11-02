@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { forgetPasswordThunk,   userCheck, userLogin, userLogout, userRegister,  } from '../thunks/AuthThunk'
 import {APP_STATE} from '../store/states/AppState'
-import { setToken } from '../../logic/userToken'
 import { RootState } from '../store/store'
 import { getKeyValue } from '../../logic/getKeyValue'
 import toast from 'react-hot-toast'

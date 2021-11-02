@@ -1,6 +1,5 @@
 import React, {ReactElement, useEffect, useRef, useState } from 'react'
 import axios from 'axios'
-import { getToken } from '../app/actions/getToken';
 import { useAppDispatch, useAppSelector } from '../app/store/hooks';
 import { AddAnswer, AddAnswerCont, AddAnswerSubmit } from '../styles/pages/SingleQuestionPage.styled'
 import { user_data } from '../app/feature/UserSlice';

@@ -15,7 +15,8 @@ import Head from 'next/head'
 import CommentModal from './CommentsTab';
 import ChatBox from './ChatBox';
 import { closeComments, is_comment_opened } from '../app/feature/CommentsSlice';
-
+import Cookies from 'js-cookie'
+import { getCookie } from '../logic/CookieFunctions';
 interface Props {
     // any props that come into the component
 }
@@ -30,7 +31,7 @@ const Layout: FC<Props> = ({ children, ...props }) => {
     const isCommentBoxOpened = useAppSelector(is_comment_opened)
 
     useEffect(() => {
-        if (localStorage.getItem('token') !== null) {
+        if (getCookie('token') !== null) {
             dispatch(userCheck())
         }
         else 
@@ -39,6 +40,8 @@ const Layout: FC<Props> = ({ children, ...props }) => {
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    
     useEffect(() => {
         if(isCommentBoxOpened)
         {

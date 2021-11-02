@@ -15,6 +15,7 @@ import PageFilters from '../../components/PageFilters'
 import CommentModal from '../../components/CommentsTab'
 import { forum_data_status, forum_search_data } from '../../app/feature/SearchBoxSlice'
 import FormQuestionSkeleton from '../../components/Skeletons/ForumQuestionSkeleton'
+import { encryptData , decryptData } from '../../logic/Cryption'
 
 interface Props {
     
@@ -27,15 +28,20 @@ function Forum({}: Props): ReactElement {
     const forumSearchStatus = useAppSelector(forum_data_status)
     
     
-    
     return (
         <PageDefaultStyle>
             <SidePartOfPage side={"left"}>
             </SidePartOfPage>
             
+           
+
+
             <MainPartOfPage>
                 <ForumPage>
+                    
                     <PageTabs/>  
+                    {`${encryptData("salam")}`}
+                    {`${decryptData(encryptData("salam"))}`}`
                     {forumSearchStatus === "loaded" && forumSearchData.map((element , index) => <FormQuestion key={index} data={element}/>)} 
                     {forumSearchStatus === "loading" && 
                         <div style={{width:"100%" , display:"flex", flexDirection:"column", rowGap:"10px"}}>

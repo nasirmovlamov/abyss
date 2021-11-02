@@ -72,7 +72,7 @@ export const SubjectContent  = styled.div`
     color: #474D51;
 
 `
-export const Subjects  = styled.button`
+export const Subjects  = styled.div`
     display: flex;
     height: 21px;
     border: none;

@@ -101,8 +101,8 @@ function Navbar({}: Props): ReactElement {
         <Nav>
             <NavLink href={"/"} >
                 <Logo> 
-                    <Image src={mainLogo} height="49px"  alt={"Abyss logo"}/>  
-                    <Image src={mainLogoText}  height="49px"  alt={"Abyss text"}/>  
+                    <Image width="80px" src={mainLogo} height="49px"  alt={"Abyss logo"}/>  
+                    <Image width="120px" src={mainLogoText}  height="49px"  alt={"Abyss text"}/>  
                     <Light/>
                     <LightShadow/>
                     <LightShadow2/> 
@@ -118,7 +118,7 @@ function Navbar({}: Props): ReactElement {
                         </LiStyle>
                     </NavLink> 
 
-                    <NavLink href={"/forum?selectedTab=Info&selectedTag=Newes"}>
+                    <NavLink href={"/forum"}>
                         <LiStyle focus={forumWordRegex.test(pathname) ? true: false}>
                             <LinkStyle>Community</LinkStyle>
                             <Line/>

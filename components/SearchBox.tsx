@@ -4,12 +4,14 @@ import { useRouter } from 'next/router'
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import { useScrollDirection } from 'react-use-scroll-direction'
 import { changeModalAction } from '../app/feature/UserSlice'
-import { useAppDispatch } from '../app/store/hooks'
+import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex'
 import { AddQuesitionCont, SearchBoxContainer , SearchBoxPage, SearchBoxStyle, SearchBoxThunk, SearchBoxThunkAndCont, SearchButtonLupa, SearchCont, SearchInput, SearchNav, SearchNavQuery} from '../styles/components/styled-elements/SearchBox.style'
 import { MainPartOfPageStyle, SidePartOfPageStyle } from '../styles/pages/Page.styled'
 import { useScrollYPosition } from 'react-use-scroll-position';
 import { forumSearch } from '../app/thunks/SearchBoxThunks'
+import { forum_search_value, getCachedSearchBoxData, onForumSearchValue } from '../app/feature/SearchBoxSlice'
+import { getFiltersFromCache } from '../app/feature/PageFiltersSlice'
 
 
 interface Props {
@@ -25,30 +27,24 @@ function SearchBox({}: Props): ReactElement {
     const searchNavRef = useRef<HTMLDivElement>(null)
     const dispatch = useAppDispatch()
     const scrollY = useScrollYPosition();
+    const searchBoxValue = useAppSelector(forum_search_value)
     const [searchValue, setSearchValue] = useState("")
 
+    // const [searchValue, setSearchValue] = useState("")
+
     const changeSearchValue = (e:string) => {
-        setSearchValue(e)
-        searchNavRef.current!.style.top = (router.asPath === "/" ? `65px` : "51px")
-        if(router.pathname === '/')
-        {
-            searchNavRef.current!.style.top = `66px`
-        }
+        dispatch(onForumSearchValue(e))
+        // setSearchValue(e)
+        // searchNavRef.current!.style.top = (router.asPath === "/" ? `65px` : "51px")
+        // if(router.pathname === '/')
+        // {
+        //     searchNavRef.current!.style.top = `66px`
+        // }
     }
 
 
 
-    useEffect(() => {
-        if(router.isReady)
-        {
-            setpagePath(pagePathDetector(router.asPath))
-            if(router.asPath !== '/')
-            {
-                searchBoxRef.current!.setAttribute("style" , "position:fixed;")
-                searchInputRef.current!.focus()
-            }
-        }
-    }, [router])
+    
 
 
     const [direction, setDirection] = useState('up')
@@ -56,12 +52,7 @@ function SearchBox({}: Props): ReactElement {
 
 
 
-    useEffect(() => {
-        if(router.asPath !== '/')
-        {
-            isScrollingDown && setDirection('down')
-        }
-    }, [isScrollingDown,  router.asPath])
+   
 
     const searchSizechange = (event:string) => {
         if(router.pathname === '/')
@@ -113,7 +104,6 @@ function SearchBox({}: Props): ReactElement {
 
 
     const handleAddClick = () => {
-        console.log(router.asPath)
 
         if(forumWordRegex.test(router.asPath))
         {
@@ -127,27 +117,55 @@ function SearchBox({}: Props): ReactElement {
         {}
     }
     
+    
+
+    const searchHandleWithEnter = (key:number) => {
+        if(key === 13)
+        {
+            dispatch(forumSearch(searchBoxValue))
+        }
+    }
+    const searchHandleWithSubmit = () => {
+        if(searchBoxValue !== "")
+        {
+            dispatch(forumSearch(searchBoxValue))
+        }
+    }
+
+    
+
     useEffect(() => {
         if(scrollY === 0)
         {
             setDirection('up')
-            console.log(scrollY)
         }
     }, [scrollY])
 
-    const searchHandleWithEnter = (key:number) => {
-        console.log(key)
-        if(key === 13)
+
+    useEffect(() => {
+        if(router.asPath !== '/')
         {
-            dispatch(forumSearch(searchValue))
+            isScrollingDown && setDirection('down')
         }
-    }
-    const searchHandleWithSubmit = () => {
-        if(searchValue !== "")
+    }, [isScrollingDown,  router.asPath])
+
+
+    useEffect(() => {
+        if(router.isReady)
         {
-            dispatch(forumSearch(searchValue))
+            setpagePath(pagePathDetector(router.asPath))
+            if(router.asPath !== '/')
+            {
+                searchBoxRef.current!.setAttribute("style" , "position:fixed;")
+                searchInputRef.current!.focus()
+                dispatch(getFiltersFromCache(null))
+                dispatch(getCachedSearchBoxData(null))
+                // dispatch(forumSearch(searchBoxValue))
+            }
         }
-    }
+    }, [router])
+
+
     return (
         
         <SearchBoxContainer ref={searchContRef} path={router.asPath} style={SearchContDesign}>
@@ -156,7 +174,7 @@ function SearchBox({}: Props): ReactElement {
                         <SearchBoxPage>{pagePath}</SearchBoxPage>
                         <SearchCont>
                             <SearchButtonLupa onClick={searchHandleWithSubmit}><FontAwesomeIcon  icon={faSearch}/></SearchButtonLupa>
-                            <SearchInput onKeyDown={(e:any) => searchHandleWithEnter(e.keyCode)} value={searchValue}  onChange={(e:any) => setSearchValue(e.target.value)}  path={router.asPath} placeholder="Search..." ref={searchInputRef} onFocus={() => searchSizechange('focus')} onBlur={() => searchSizechange('blur')}  type="text" /> 
+                            <SearchInput onKeyDown={(e:any) => searchHandleWithEnter(e.keyCode)} value={searchBoxValue}  onChange={(e:any) => changeSearchValue(e.target.value)}  path={router.asPath} placeholder="Search..." ref={searchInputRef} onFocus={() => searchSizechange('focus')} onBlur={() => searchSizechange('blur')}  type="text" /> 
                             <SearchNav  path={router.asPath} ref={searchNavRef}>
                                 {/* <SearchNavQuery>
                                     <FontAwesomeIcon  icon={faSearch}/>

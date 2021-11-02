@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { getCookie, setCookie } from '../../logic/CookieFunctions';
 import { PAGE_FILTERS_STATE } from '../store/states/PageFiltersState';
 import { RootState } from '../store/store'
 
@@ -9,11 +10,27 @@ export const PageFiltersSlice = createSlice({
   initialState:PAGE_FILTERS_STATE,
   reducers: {
 
+    getFiltersFromCache (state, action ){
+      if(getCookie('filterTags')){
+        state.filterTags = JSON.parse(getCookie('filterTags'))!;
+      }
+      if(getCookie('stayInFocusFiltersBlock'))
+      {
+        state.stayInFocus= JSON.parse(getCookie('stayInFocusFiltersBlock'))
+      }
+      if(getCookie('FiltersAreShown'))
+      {
+        state.isShown = JSON.parse(getCookie('FiltersAreShown'))
+      }
+    },
+    
     changePositionOfFilters(state, action) {
         state.isShown = !action.payload
+        setCookie('FiltersAreShown', JSON.stringify(state.isShown) , 1)
     },
     changeToStayInFocus(state, action) {
       state.stayInFocus= !action.payload
+      setCookie('stayInFocusFiltersBlock', JSON.stringify(state.stayInFocus) , 1)
     },
    
     addFilter(state, action) {
@@ -23,6 +40,7 @@ export const PageFiltersSlice = createSlice({
         }
       } 
       state.filterTags.push(action.payload)
+      setCookie('filterTags', JSON.stringify(state.filterTags), 1)
     },
 
     filterSearchValueOnChange(state, action){
@@ -39,6 +57,7 @@ export const PageFiltersSlice = createSlice({
     },
     filterTagsOnDelete(state, action){
       state.filterTags = state.filterTags.filter(tag => tag.id !== action.payload)
+      setCookie('filterTags', JSON.stringify(state.filterTags), 1)
     },
           
 
@@ -75,7 +94,8 @@ export const {
   filterSearchValueOnChange,
   filterTagsSearchisFocused,
   filterTagsOnClick,
-  filterTagsOnDelete
+  filterTagsOnDelete,
+  getFiltersFromCache
 } = PageFiltersSlice.actions;
 
 

@@ -1,5 +1,6 @@
 import axios from "axios";
-import { getAccessToken } from "../token/TokenHandle";
+import { getCookie } from "../../logic/CookieFunctions";
+import { decryptUserToken } from "../../logic/Cryption";
 import { BASE_API_URL } from "../urls/BASE_URL";
 
 export const BASE_API_INSTANCE = axios.create({baseURL:'https://api.abysshub.com/api'});
@@ -7,7 +8,12 @@ export const BASE_API_INSTANCE = axios.create({baseURL:'https://api.abysshub.com
 // Request interceptor for API calls
 BASE_API_INSTANCE.interceptors.request.use(
   async config => {
-    const accessToken = await localStorage.getItem("token")
+    const cryptedToken = await getCookie("token");
+    let  accessToken = null
+    if(cryptedToken !== null){ 
+      accessToken = decryptUserToken(cryptedToken)
+    }
+
     config.headers = { 
       'Authorization': `Bearer ${accessToken}`,
       'Accept': 'application/json',

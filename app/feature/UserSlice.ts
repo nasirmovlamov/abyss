@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { forgetPasswordThunk, userCheck, userLogin, userLogout, userRegister,  } from '../thunks/AuthThunk'
-import { setToken } from '../../logic/userToken'
 import { RootState } from '../store/store'
 import { getKeyValue } from '../../logic/getKeyValue'
 import toast from 'react-hot-toast'
@@ -8,7 +7,8 @@ import { ToastPosition } from 'react-hot-toast/dist/core/types'
 import { AUTH_STATE, user_errors_data } from '../store/states/AuthState'
 import { autoSuccessToaster } from '../../components/Notify/AutoSuccessToast'
 import { autoErrorToaster } from '../../components/Notify/AutoErrorToaster'
-import { setAccessToken } from '../../helpers/token/TokenHandle'
+import { removeAccessToken, setAccessToken } from '../../helpers/token/TokenHandle'
+import { deleteCookie } from '../../logic/CookieFunctions'
 
 
 
@@ -58,8 +58,7 @@ export const UserSlice = createSlice({
             state.user_status = 'not-logged'
             state.loggedIn = false
             state.user = null
-            setAccessToken(null)
-            localStorage.removeItem('token')
+            removeAccessToken()
         }),
 
 
@@ -68,8 +67,8 @@ export const UserSlice = createSlice({
             state.status = 'idle'
             state.loggedIn = false
             state.user = null
-            setAccessToken(null)
             autoSuccessToaster(payload.message)
+            removeAccessToken()
         }),
 
         builder.addCase(userLogout.pending, (state, {payload}) => {
@@ -79,7 +78,7 @@ export const UserSlice = createSlice({
             state.status = 'failed'
             state.loggedIn = false
             state.user = null
-            
+            removeAccessToken()
         }),
 
 
@@ -100,6 +99,7 @@ export const UserSlice = createSlice({
         builder.addCase(userLogin.rejected, (state,action:any) => {
             state.status = 'failed'
             state.loggedIn = false
+            removeAccessToken()
             if(action.payload)
             {
                 state.user_errors.loginErrors.errors = action.payload.errors
@@ -125,6 +125,7 @@ export const UserSlice = createSlice({
         builder.addCase(userRegister.rejected, (state, action) => {
             state.status = 'failed'
             state.loggedIn = false
+            removeAccessToken()
             if (action.payload) {                    
                 state.user_errors.registerErrors = action.payload      
                 state.user = null

@@ -13,6 +13,7 @@ function PageTabs({}: Props): ReactElement {
     const dispatch = useAppDispatch()
     const searchType = useAppSelector(forum_search_type)
     const searchSort = useAppSelector(forum_search_sort)
+    
     const forumSearchData = useAppSelector(forum_search_data)
     const forumSearchStatus = useAppSelector(forum_data_status)
 

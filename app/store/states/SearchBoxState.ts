@@ -7,9 +7,10 @@ export const SEARCHBOX_STATE:SEARCHBOX_INTERFACE = {
             data:[],
             status:"loaded",
             searchOptions:{
+                searchValue:'',
                 filters:[],
-                forumType:'Questions',
-                forumSort:'New',    
+                forumType:'',
+                forumSort:'',    
              }
         },
         store:{

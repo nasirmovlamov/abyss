@@ -7,9 +7,10 @@ export interface SEARCHBOX_INTERFACE {
             data:ForumQuestionInterface[],
             status:"loading" | "loaded" | "error",
             searchOptions:{
-               filters:filterTagInterFace[],
-               forumType:string,
-               forumSort:string,    
+                searchValue:string,
+                filters:filterTagInterFace[],
+                forumType:string,
+                forumSort:string,    
             }
         },
         store:{

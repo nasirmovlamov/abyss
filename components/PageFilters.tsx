@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { FilterCont, FilterContStyle, FilterLanguageCont, FilterLanguageContent, FilterLanguages, FilterLanguageTitle, FilterSearchCont, FilterSearchDropdown, FilterSearchDropdownElement, FilterSearchInCont, FilterSearchInput, FilterTagCont, FilterTagContent, FilterTags, FilterTagTitle, PinButton, SubjectCont, SubjectContent, Subjects, SubjectTitle } from '../styles/components/PageFilters.style'
 import { addFilter, changePositionOfFilters, changeToStayInFocus, filterSearchValueOnChange, filterTagsOnDelete, filterTagsSearchisFocused,  filter_search_tags, filter_search_value, filter_tags, is_focused, stay_in_focus } from '../app/feature/PageFiltersSlice'
-import { forum_search_filters, selectFilterToSearchOption } from '../app/feature/SearchBoxSlice'
+import { forum_search_filters, ifFilterWasDeleted, selectFilterToSearchOption } from '../app/feature/SearchBoxSlice'
 
 interface Props {
     
@@ -14,7 +14,7 @@ function PageFilters({}: Props): ReactElement {
 
 
 
-    const dispach = useAppDispatch()
+    const dispatch = useAppDispatch()
     const filterTags = useAppSelector(filter_tags)
     const filterSearchTags = useAppSelector(filter_search_tags)
     const filterSearchValue = useAppSelector(filter_search_value)
@@ -24,24 +24,29 @@ function PageFilters({}: Props): ReactElement {
     const selectedForumSearchFilters = useAppSelector(forum_search_filters)
 
     const pinFilters = () => {
-        dispach(changeToStayInFocus(stayInFocus))
+        dispatch(changeToStayInFocus(stayInFocus))
     }
 
     const handleMouseOver = () => {
         if(!stayInFocus)
         {
-            dispach(changePositionOfFilters(false))
+            dispatch(changePositionOfFilters(false))
         }
     }
 
     const handleMouseLeave = () => {
         if(!stayInFocus)
         {
-            dispach(changePositionOfFilters(true))
+            dispatch(changePositionOfFilters(true))
         }
     }
     const handleStayInFocus = () => {
         
+    }
+
+    const deleteFilterTag = (tag: any) => {
+        dispatch(ifFilterWasDeleted(tag))
+        dispatch(filterTagsOnDelete(tag.id))
     }
 
     // addFilter , 
@@ -55,42 +60,75 @@ function PageFilters({}: Props): ReactElement {
         <FilterContStyle onMouseEnter={handleMouseOver} onMouseLeave={handleMouseLeave} ref={filterBlockRef}>
             <FilterCont stayInFocus={stayInFocus}  isFocused={isFocused}>
                 <PinButton  stayInFocus={stayInFocus} isFocused={isFocused} onClick={pinFilters}><FontAwesomeIcon icon={faThumbtack}/></PinButton>
-                <SubjectCont>
+                {/* <SubjectCont>
                     <SubjectTitle>Subject</SubjectTitle>
                     <SubjectContent>
                         {filterTags.map((element , index)=> 
-                            index < 3 && <Subjects key={element.id}><button style={{backgroundColor:selectedForumSearchFilters.includes(element) ? "gray" : "inherit"}} onClick={() => dispach(selectFilterToSearchOption(element))}> {element.name} </button>  <button  onClick={() => dispach(filterTagsOnDelete(element.id))}>del</button></Subjects>
+                            index < 3 && 
+                            <Subjects key={element.id}>
+                                <button 
+                                style={{backgroundColor:selectedForumSearchFilters.includes(element) ? "gray" : "inherit"}} 
+                                onClick={() => dispatch(selectFilterToSearchOption(element))}> 
+                                    {element.name} 
+                                </button> 
+
+                                <button  onClick={() => dispatch(filterTagsOnDelete(element.id))}>
+                                    del
+                                </button>
+                            </Subjects>
                         )}
                     </SubjectContent>
-                </SubjectCont>
+                </SubjectCont> */}
 
-                <FilterTagCont>
+                {/* <FilterTagCont>
                     <FilterTagTitle>Subject</FilterTagTitle>
                     <FilterTagContent>
                         {filterTags.map((element, index)=> 
-                            (3 <=  index && index <= 6)  &&  <Subjects key={element.id}>  <button style={{backgroundColor:selectedForumSearchFilters.includes(element) ? "gray" : "inherit"}} onClick={() => dispach(selectFilterToSearchOption(element))}> {element.name} </button>     <button onClick={() => dispach(filterTagsOnDelete(element.id))}>del</button></Subjects>
+                            (3 <=  index && index <= 6)  &&  
+                                <Subjects key={element.id}>  
+                                    <button 
+                                    style={{backgroundColor:selectedForumSearchFilters.includes(element) ? "gray" : "inherit"}} 
+                                    onClick={() => dispatch(selectFilterToSearchOption(element))}> 
+                                        {element.name} 
+                                    </button>     
+                                    <button 
+                                    onClick={() => dispatch(filterTagsOnDelete(element.id))}>
+                                        del
+                                    </button>
+                                </Subjects>
                         )}
                     </FilterTagContent>
-                </FilterTagCont>
+                </FilterTagCont> */}
 
                 <FilterLanguageCont>
                     <FilterLanguageTitle>Language</FilterLanguageTitle>
                     <FilterLanguageContent>
                         {filterTags.map((element, index)=> 
-                             index > 6 && <Subjects key={element.id}><button style={{backgroundColor:selectedForumSearchFilters.includes(element) ? "gray" : "inherit"}} onClick={() => dispach(selectFilterToSearchOption(element))}> {selectedForumSearchFilters.includes(element)} {element.name} </button>   <button onClick={() => dispach(filterTagsOnDelete(element.id))}>del</button></Subjects>
+                            <Subjects key={element.id}>
+                                <button 
+                                    style={{backgroundColor:selectedForumSearchFilters.find(x => x.id === element.id) ? "gray" : "inherit"}} 
+                                    onClick={() => dispatch(selectFilterToSearchOption(element))}>  
+
+                                    {element.name} 
+                                </button>   
+                                <button 
+                                onClick={() => deleteFilterTag(element)}>
+                                    del
+                                </button>
+                            </Subjects>
                         )}
                     </FilterLanguageContent>
                 </FilterLanguageCont>
 
                 <FilterSearchCont>
                     <FilterSearchInCont>
-                        <FilterSearchInput onFocus={() => dispach(filterTagsSearchisFocused(filterSearchValue.isTouched ))}  type="text" value={filterSearchValue.value} onChange={(e) => dispach(filterSearchValueOnChange(e.target.value))}  placeholder="Search..."/>
+                        <FilterSearchInput onFocus={() => dispatch(filterTagsSearchisFocused(filterSearchValue.isTouched ))}  type="text" value={filterSearchValue.value} onChange={(e) => dispatch(filterSearchValueOnChange(e.target.value))}  placeholder="Search..."/>
                     </FilterSearchInCont>
                     {filterSearchValue.isTouched && 
                     <FilterSearchDropdown>
                         {
                             filterSearchTags.map((element , index) => 
-                                element.name.includes(filterSearchValue.value) && <FilterSearchDropdownElement key={element.id}>{element.name} <button  type="button" onClick={() => dispach(addFilter(element))}>add</button></FilterSearchDropdownElement>
+                                element.name.includes(filterSearchValue.value) && <FilterSearchDropdownElement key={element.id}>{element.name} <button  type="button" onClick={() => dispatch(addFilter(element))}>add</button></FilterSearchDropdownElement>
                             )
                         }
                     </FilterSearchDropdown>
