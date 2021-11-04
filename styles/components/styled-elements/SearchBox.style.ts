@@ -9,8 +9,9 @@ export const SearchBoxContainer = styled.div<{path:string , scrollTopValue:numbe
     height: ${(props) => props.path === "/" ? "70vh" : "auto"};
     justify-content: center;
     padding-right:112px;
-    position: fixed;
     z-index: 555;
+    position: absolute;
+    /* top:60px; */
     /* top: 61px; */
     transform: ${({scrollTopValue})=> `translateY(${scrollTopValue}px)`};
     @media only screen and (max-width: 1526px) {
@@ -38,9 +39,11 @@ export const SearchBoxThunkAndCont = styled.div<{direction:string}>`
         padding-right: 0%;
         width: 77%;
     }
+    /* position: sticky;
+    top: 60px; */
 `
 
-export const SearchBoxThunk = styled.button<{direction:string,scrollY:number}>`
+export const SearchBoxThunk = styled.button<{direction:string}>`
     display: flex;
     flex-direction: column;
     color: black;
@@ -57,9 +60,7 @@ export const SearchBoxThunk = styled.button<{direction:string,scrollY:number}>`
     height: 16px;
     /* opacity: 0; */
     border-radius: 0px 0px 5px 5px;
-    display: ${({scrollY}) => scrollY > 199 ? "block" : "none"};
-    opacity: ${({scrollY}) => scrollY > 200 ? "1" : "0"};
-    transform: ${({direction})=>direction === "not-visible" ? "translateY(0px)" : "translateY(-20px)"};
+    transform: ${({direction})=>direction === "not-visible" ? "translateY(0px)" : "translateY(-10px)"};
     pointer-events: ${({direction})=>direction === "not-visible" ? "all" : "none"};
 `
 
@@ -82,6 +83,9 @@ export const SearchBoxStyle = styled.div<{direction:string, path:string}>`
     transform-origin: top;
     background-color: ${({theme}) => theme.searchBox.background};
     box-shadow: ${({theme}) => theme.searchBox.boxShadow};
+
+    
+    
 `
 
 

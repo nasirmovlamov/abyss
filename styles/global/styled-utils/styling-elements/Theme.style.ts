@@ -62,7 +62,9 @@ import { pageLightGray, pageBlack, pageDarkBlack, linesSideTextColor, whiteTextC
           tagBoxShadow: BoxShadowDarkForTagHover,
         }
       },
-
+      createProductTheme:{
+        
+      },
       productPage:{
         textColor: whiteTextColor, 
         sideTextColor: linesSideTextColor,

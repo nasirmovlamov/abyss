@@ -140,8 +140,13 @@ function SearchBox({}: Props): ReactElement {
     const searchScrollControl = async (router:any) => {
         if(router.asPath !== '/')
         {
-               
-        }
+            isScrollingDown && searchBoxRef.current!.setAttribute("style", `position: sticky;top:10px;`) 
+            console.log(searchContRef.current!.style.position)
+        }   
+    }
+
+    const thunkHasHovered = async (router:any) => {
+        searchContRef.current!.setAttribute("style", `top: 60px;`) 
     }
 
     useEffect( () => {
@@ -155,7 +160,7 @@ function SearchBox({}: Props): ReactElement {
             setpagePath(pagePathDetector(router.asPath))
             if(router.asPath !== '/')
             {
-                searchBoxRef.current!.setAttribute("style" , "position:absolute;")
+                // searchBoxRef.current!.setAttribute("style" , "position:absolute;")
                 searchInputRef.current!.focus()
                 dispatch(getFiltersFromCache(null))
                 dispatch(getCachedSearchBoxData(null))
@@ -187,7 +192,7 @@ function SearchBox({}: Props): ReactElement {
                         </SearchCont>
                         {pagePath !== "Home" && <AddQuesitionCont onClick={handleAddClick}>ADD</AddQuesitionCont>}
                     </SearchBoxStyle>
-                    {(pagePath !== "Home" && scrollSearchBox === -48) && <SearchBoxThunk onMouseMove={()=>setDirection("visible")} direction={direction} scrollY={scrollY}>	• 	•	•</SearchBoxThunk>}
+                    {(pagePath !== "Home") && <SearchBoxThunk onMouseMove={()=>setDirection("visible")} direction={direction} >	• 	•	•</SearchBoxThunk>}
                 </SearchBoxThunkAndCont>
         </SearchBoxContainer>
     )

@@ -7,7 +7,7 @@ import commentsReducer from '../feature/CommentsSlice'
 import chatBoxReducer from '../feature/ChatBoxSlice'
 import searchBoxReducer from '../feature/SearchBoxSlice'
 import pageFiltersReducer from '../feature/PageFiltersSlice'
-import createProductReducer from '../feature/CreateProductSlice'
+import createProductReducer from '../feature/CreateProductFeatures/CreateProductSlice'
 
 const reducer = 
 {  

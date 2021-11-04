@@ -60,7 +60,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <div style={{display:"flex"}}>
 
         <Provider store={store}> 
-          <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme  || localStorage.getItem('theme') !== null ? darkTheme : lightTheme}>
+          <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme  || localStorage.getItem('theme') !== null ? lightTheme  :  darkTheme}>
             <>
               <Toaster/>
               <GlobalStyle/>
