@@ -14,7 +14,6 @@ export const SearchBoxSlice = createSlice({
 
     getCachedSearchBoxData(state , action)
     { 
-      console.log(getCookie('ForumFiltersSearchOption'))
       
       if(JSON.parse(getCookie('ForumFiltersSearchOption')))
       {

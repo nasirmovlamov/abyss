@@ -20,6 +20,7 @@ export const QuestionCreateForm = styled.form`
     row-gap: 10px;
     padding: 20px;
     border-radius:10px;
+    height: auto;
 `
 
 export const LabelCont = styled.div`

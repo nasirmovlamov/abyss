@@ -1,6 +1,10 @@
 export interface CreateProductInterface {
-    current_step:number,
+    current_step:1 | 2 | 3 | 4 | 5,
     name: string;
+    product_created:{
+        status:'created' | 'failed' | 'pending'
+        id:number | null,
+    },
     steps:{
         1:{
             id:number
@@ -54,7 +58,8 @@ export interface CreateProductInterface {
                     valid:boolean,
                     isCharacterMoreThan50:boolean
                     message:string
-                }
+                },
+                
             }
         }
         3:{
@@ -66,6 +71,7 @@ export interface CreateProductInterface {
                 id:number,
                 iteration_code:string,
                 iteration_note: string,
+                iteration_name: string,
                 validators:{
                     isCodeFilled:{
                         valid:boolean,
@@ -75,8 +81,12 @@ export interface CreateProductInterface {
                         valid:boolean,
                         message:"Please enter note of iteration"
                     },
-                    areCodeAndNoteFilled:{
+                    isNameFilled:{
                         valid:boolean,
+                        message:"Please enter name of iteration"
+                    },
+                    areAllFilled:{
+                        valid:'empty' | 'filled'| 'failed' ,
                     }
                 }
             }[],
@@ -96,7 +106,8 @@ export interface CreateProductInterface {
             step_active:boolean    
             validated:'not-checked' | 'valid' | 'not-valid' | 'loading' | 'failed',
             payment_type:'free' | 'paid' | 'not-selected',
-            tier_type: '1' | '2' | '3',
+            visibility_type:'private' | 'public' | 'not-selected',
+            tier_type: 1 | 2 | 3 | 'not-selected' , 
             validators:{
                 isPriceTypeSelected:{
                     valid:boolean,
@@ -106,6 +117,11 @@ export interface CreateProductInterface {
                     valid:boolean,
                     message:string
                 }
+                isVisibilityTypeSelected:{
+                    valid:boolean,
+                    message:string
+                }
+
             }
         }
         
@@ -129,3 +145,5 @@ interface CLIP_INTERFACE {
     src:string
     alt:string
 }
+
+

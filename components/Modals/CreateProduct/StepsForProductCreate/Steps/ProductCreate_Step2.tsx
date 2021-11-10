@@ -1,5 +1,5 @@
-import React from 'react'
-import {  addNewSection, deleteSection, deleteClip, sections_product, updateKey, updateLabel, updateSectionsOrder, changeClipPosition } from '../../../../../app/feature/CreateProductFeatures/CreateProductSlice'
+import React, { useState } from 'react'
+import {  addNewSection, deleteSection, deleteClip, sections_product, updateKey, updateLabel, updateSectionsOrder, changeClipPosition, product_create_step2_data, ProductCreateStep2OnChanges, ProductCreateStep2OnBlurs } from '../../../../../app/feature/CreateProductFeatures/CreateProductSlice'
 import { useAppDispatch, useAppSelector } from '../../../../../app/store/hooks';
 import { addFile } from '../../../../../app/thunks/CreateProductThunk'
 import {DragDropContext, Droppable , Draggable} from 'react-beautiful-dnd'
@@ -17,10 +17,14 @@ interface Props {
 }
 
 export const ProductCreate_Step2 = (props: Props) => {
+    const [tagCreator, settagCreator] = useState('')
+
     const dispatch = useAppDispatch()
     const sectionsProduct = useAppSelector(sections_product)
-
-
+    const createProductStep2 = useAppSelector(product_create_step2_data)
+    const {validators , validated , details_data} = createProductStep2
+    const productName = createProductStep2.details_data.product_name
+    const product_tags = details_data.product_tags
 
     function handleOnDragEnd(result:any) {
         if(result.source.droppableId === 'main')
@@ -71,13 +75,48 @@ export const ProductCreate_Step2 = (props: Props) => {
 
     
 
+    const createTag = (event:any) => {
+        if(event.code === "Space")
+        {
+            dispatch(ProductCreateStep2OnChanges({type:"product_tags" , actionType:"add" , value:event.target.value}))
+            event.target.value = ""
+        }
+    }
+    const deleteTag = (id:number) => {
+        dispatch(ProductCreateStep2OnChanges({type:"product_tags" , actionType:"delete" , id:id}))
 
+    }   
+
+
+    const productsOnBlurs = (type:string) => {
+        dispatch(ProductCreateStep2OnBlurs({type:type}))
+
+    } 
+
+
+    const productNameHandle = (e:any) => {  
+        console.log(e.target.value)
+        dispatch(ProductCreateStep2OnChanges({type:"product_name" , value:e.target.value}))
+    }
 
     return (
         <div>
             
             
-           
+            <div  key={0}   style={{
+                userSelect: "none",
+                padding: 16,
+                margin: "0 0 8px 0",
+                backgroundColor: "#263B4A",
+                color: "white",
+                height: "auto",
+                }}>   
+                <ProductLabelCont >
+                    <span   style={{marginRight:"10px" , color:"gray"}} ><FontAwesomeIcon  icon={faRulerVertical} /> block</span>
+                    <input value={productName} onChange={productNameHandle} type="text"/>
+                    <label style={{color:"red"}} htmlFor="title">{(validated === 'not-valid' && !validators.isNameFilled.valid) && validators.isNameFilled.message}</label>
+                </ProductLabelCont>
+            </div>
 
 
 
@@ -92,8 +131,8 @@ export const ProductCreate_Step2 = (props: Props) => {
                 <ProductLabelCont >
                     <span   style={{marginRight:"10px" , color:"gray"}} ><FontAwesomeIcon  icon={faRulerVertical} /> block</span>
                     {sectionsProduct[0].isEditor && <input type='text' value={sectionsProduct[0].label_key}  />}
-                    {sectionsProduct[0].isEditor && <MyEditor content={sectionsProduct[0].label_value}  onChange={(content:any) => dispatch(updateLabel({index:0 , content:content}))}/>}
-                    {sectionsProduct[0].isEditor && <label htmlFor="title">validate</label>}
+                    {sectionsProduct[0].isEditor && <MyEditor  content={sectionsProduct[0].label_value} onChange={(content:any) => dispatch(updateLabel({index:0 , content:content}))}/>}
+                    {sectionsProduct[0].isEditor && <label style={{color:"red"}} htmlFor="title">{(validated === 'not-valid' && !validators.isDescriptionFilled.valid) && validators.isDescriptionFilled.message}</label>}
                 </ProductLabelCont>
             </div>
 
@@ -109,9 +148,39 @@ export const ProductCreate_Step2 = (props: Props) => {
                     <span   style={{marginRight:"10px" , color:"gray"}} ><FontAwesomeIcon  icon={faRulerVertical}  />block</span>
                     {sectionsProduct[1].isEditor && <input type='text' value={sectionsProduct[1].label_key}  />}
                     {sectionsProduct[1].isEditor && <MyEditor content={sectionsProduct[1].label_value}  onChange={(content:any) => dispatch(updateLabel({index:1 , content:content}))}/>}
-                    {sectionsProduct[1].isEditor && <label htmlFor="title">validate</label>}
+                    {sectionsProduct[1].isEditor && <label style={{color:"red"}} htmlFor="title">{(validated === 'not-valid' && !validators.isApplicabilityFilled.valid) && validators.isApplicabilityFilled.message}</label>}
                 </ProductLabelCont>
             </div>
+
+            <div  key={2}   style={{
+                userSelect: "none",
+                padding: 16,
+                margin: "0 0 8px 0",
+                backgroundColor: "#263B4A",
+                color: "white",
+                height: "auto",
+                }}>   
+                <ProductLabelCont >
+                    <span   style={{marginRight:"10px" , color:"gray"}} ><FontAwesomeIcon  icon={faRulerVertical}  />block</span>
+                    {sectionsProduct[2].isEditor && <input type='text' value={sectionsProduct[2].label_key}  />}
+                    {sectionsProduct[2].isEditor && <MyEditor content={sectionsProduct[2].label_value}  onChange={(content:any) => dispatch(updateLabel({index:2 , content:content}))}/>}
+                    {sectionsProduct[2].isEditor && <label style={{color:"red"}} htmlFor="title">{(validated === 'not-valid' && !validators.isProblemFormulationFilled.valid) && validators.isProblemFormulationFilled.message}</label>}
+                </ProductLabelCont>
+            </div>
+
+            <div>
+                <input onKeyDown={createTag}/>
+                <div style={{display:"flex" , columnGap:"10px"}}>{product_tags.map
+                (element => 
+                    <div key={element.id} style={{display:"flex" , columnGap:"2px" , border:"1px solid gray"}}>
+                        {element.value} 
+                        <button onClick={() => deleteTag(element.id)}>del</button>
+                    </div>
+                )}
+                </div>
+                <div style={{color:'red'}}>{(validated === 'not-valid' && !validators.isTagsFilled.valid) && validators.isTagsFilled.message}</div>
+            </div>
+
 
             <DragDropContext onDragEnd={handleOnDragEnd}>
                 <Droppable droppableId="main" >
@@ -124,7 +193,7 @@ export const ProductCreate_Step2 = (props: Props) => {
                             width: "100%",
                             }} {...provided.droppableProps} ref={provided.innerRef}>
                             {sectionsProduct.map(({id , label_key , label_value , isEditor , isClips}:SectionOfProduct, index) => {
-                                if(index > 1) 
+                                if(index > 2) 
                                 {
                                     return (
                                         <Draggable draggableId={id.toString()} index={index}  key={id}>

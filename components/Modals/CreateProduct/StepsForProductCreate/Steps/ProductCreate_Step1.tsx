@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import {  ProductCreateStep1OnChanges, product_create_steps } from '../../../../../app/feature/CreateProductFeatures/CreateProductSlice'
+import {  ProductCreateStep1OnChanges, product_create_step1_data,  product_create_steps } from '../../../../../app/feature/CreateProductFeatures/CreateProductSlice'
 import { useAppDispatch, useAppSelector } from '../../../../../app/store/hooks'
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
@@ -15,7 +15,8 @@ export const ProductCreate_Step1 = ({}: Props): ReactElement => {
     const ProductCreateSteps = useAppSelector(product_create_steps)
     const Step1Data = ProductCreateSteps['1']
     const sourceCode = Step1Data.source_code
-
+    const productCreateStep1Data = useAppSelector(product_create_step1_data)
+    const {validators} = productCreateStep1Data
 
 
     const getCodefromfile = (file:any) => {
@@ -35,7 +36,6 @@ export const ProductCreate_Step1 = ({}: Props): ReactElement => {
     return (
         <div>
             <button>get code from file <input  value={""} type="file" placeholder="add Image" onChange={(e:any) => getCodefromfile(e.target.files[0])} /></button>
-
             <CodeMirror
                 value={sourceCode}
                 height="200px"
@@ -44,6 +44,7 @@ export const ProductCreate_Step1 = ({}: Props): ReactElement => {
                     dispatch(ProductCreateStep1OnChanges(value));
                 }}
             />    
+            <div style={{color:'red', height:"5px"}}>{ (productCreateStep1Data.validated === 'not-valid'  &&  !validators.isCodeFilled.valid) && validators.isCodeFilled.message  } </div>
         </div>
     )
 }

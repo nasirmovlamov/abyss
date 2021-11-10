@@ -4,6 +4,10 @@ import { CreateProductInterface } from "../state-Interfaces/CreateProductInterfa
 export const CreateProductState:CreateProductInterface = {
     name: "",
     current_step:1,
+    product_created:{
+        status:'pending',
+        id:null,
+    },
     steps:{
         1:{
             id:1,
@@ -29,7 +33,7 @@ export const CreateProductState:CreateProductInterface = {
             step_active:false,
             validated:'not-checked', 
             details_data:{
-                product_name:"",
+                product_name:"",    
                 product_tags:[],
                 sections_product:[
                     {
@@ -98,6 +102,7 @@ export const CreateProductState:CreateProductInterface = {
                     id:Date.now(),
                     iteration_code:'',
                     iteration_note: '',
+                    iteration_name:'',
                     validators:{
                         isCodeFilled:{
                             valid:false,
@@ -107,8 +112,12 @@ export const CreateProductState:CreateProductInterface = {
                             valid:false,
                             message:"Please enter note of iteration"
                         },
-                        areCodeAndNoteFilled:{
+                        isNameFilled:{
                             valid:false,
+                            message:"Please enter name of iteration"
+                        },
+                        areAllFilled:{
+                            valid:'empty',
                         }
                     }
                 }
@@ -119,24 +128,32 @@ export const CreateProductState:CreateProductInterface = {
             id:4,
             step_name:"Checks",
             step_active:false,
-            validated:'not-checked',  
+            validated:'valid',  
             infoValidators:{
                 messagesWithRef:[]
             }
         },
         5:{
-            id:4,
+            id:5,
             step_name:"Pricing",
             step_active:false,
-            validated:'not-checked',  
+            validated:'not-checked',
+            payment_type:'not-selected',
+            tier_type: 'not-selected',  
+            visibility_type:'not-selected',
+
             validators:{
                 isPriceTypeSelected:{
                     valid:false,
-                    message:"Please select pricing type"
+                    message:"Please select tier  type"
                 },
                 isPaidTypeSelected:{
                     valid:false,
-                    message:"Please select tier type"
+                    message:"Please select payment  type"
+                },
+                isVisibilityTypeSelected:{
+                    valid:false,
+                    message:"Please select payment  type"
                 }
             }
         },

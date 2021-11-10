@@ -12,6 +12,8 @@ import { useScrollYPosition } from 'react-use-scroll-position';
 import { forumSearch } from '../app/thunks/SearchBoxThunks'
 import { forum_search_value, getCachedSearchBoxData, onForumSearchValue } from '../app/feature/SearchBoxSlice'
 import { getFiltersFromCache } from '../app/feature/PageFiltersSlice'
+import { createProductThunk } from '../app/thunks/CreateProductThunks'
+import { getAccessToken } from '../helpers/token/TokenHandle'
 
 
 interface Props {
@@ -105,16 +107,17 @@ function SearchBox({}: Props): ReactElement {
     const SearchContDesign = {
         paddingTop: pagePath === "Home" ? "20vh" : "0vh",
     }
+     
 
 
     const handleAddClick = () => {
-
         if(forumWordRegex.test(router.asPath))
         {
             dispatch(changeModalAction("questionCreate"))
         } 
         else if(storeWordRegex.test(router.asPath))
         {
+            dispatch(createProductThunk())
             dispatch(changeModalAction("productCreate"))
         }
         else 
@@ -141,7 +144,7 @@ function SearchBox({}: Props): ReactElement {
         if(router.asPath !== '/')
         {
             isScrollingDown && searchBoxRef.current!.setAttribute("style", `position: sticky;top:10px;`) 
-            console.log(searchContRef.current!.style.position)
+            // console.log(searchContRef.current!.style.position)
         }   
     }
 

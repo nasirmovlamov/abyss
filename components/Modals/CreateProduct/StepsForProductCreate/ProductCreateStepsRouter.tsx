@@ -19,7 +19,7 @@ const ProductStepsRouter = (props: Props) => {
         2: <ProductCreate_Step2/>,
         3: <ProductCreate_Step3/>,
         4: <ProductCreate_Step4/>,
-        // 5: <ProductCreate_Step5/>,
+        5: <ProductCreate_Step5/>,
     }
     const currentStep =  useAppSelector(product_create_current_step)
 

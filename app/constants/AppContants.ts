@@ -32,3 +32,10 @@ export const SEARCH_FORUM:string = 'SEARCH_FORUM'
 
 export const ADD_FILE:string = 'ADD_FILE'
 
+
+
+//Create Product
+
+export const CREATE_PRODUCT:string = 'CREATE_PRODUCT'
+
+export const CHECK_PLAGIAT:string = 'CHECK_PLAGIAT'
