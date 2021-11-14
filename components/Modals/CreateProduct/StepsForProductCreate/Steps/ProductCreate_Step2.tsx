@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {  addNewSection, deleteSection, deleteClip, sections_product, updateKey, updateLabel, updateSectionsOrder, changeClipPosition, product_create_step2_data, ProductCreateStep2OnChanges, ProductCreateStep2OnBlurs } from '../../../../../app/feature/CreateProductFeatures/CreateProductSlice'
+import {  addNewSection, deleteSection, deleteClip, sections_product, updateKey, updateLabel, updateSectionsOrder, changeClipPosition, product_create_step2_data, ProductCreateStep2OnChanges } from '../../../../../app/feature/CreateProductFeatures/CreateProductSlice'
 import { useAppDispatch, useAppSelector } from '../../../../../app/store/hooks';
 import { addFile } from '../../../../../app/thunks/CreateProductThunk'
 import {DragDropContext, Droppable , Draggable} from 'react-beautiful-dnd'
@@ -89,8 +89,7 @@ export const ProductCreate_Step2 = (props: Props) => {
 
 
     const productsOnBlurs = (type:string) => {
-        dispatch(ProductCreateStep2OnBlurs({type:type}))
-
+        // dispatch(ProductCreateStep2OnBlurs({type:type}))
     } 
 
 
@@ -131,7 +130,7 @@ export const ProductCreate_Step2 = (props: Props) => {
                 <ProductLabelCont >
                     <span   style={{marginRight:"10px" , color:"gray"}} ><FontAwesomeIcon  icon={faRulerVertical} /> block</span>
                     {sectionsProduct[0].isEditor && <input type='text' value={sectionsProduct[0].label_key}  />}
-                    {sectionsProduct[0].isEditor && <MyEditor  content={sectionsProduct[0].label_value} onChange={(content:any) => dispatch(updateLabel({index:0 , content:content}))}/>}
+                    {sectionsProduct[0].isEditor && <MyEditor  display={"block"} content={sectionsProduct[0].label_value} onChange={(content:any) => dispatch(updateLabel({index:0 , content:content}))}/>}
                     {sectionsProduct[0].isEditor && <label style={{color:"red"}} htmlFor="title">{(validated === 'not-valid' && !validators.isDescriptionFilled.valid) && validators.isDescriptionFilled.message}</label>}
                 </ProductLabelCont>
             </div>
@@ -147,7 +146,7 @@ export const ProductCreate_Step2 = (props: Props) => {
                 <ProductLabelCont >
                     <span   style={{marginRight:"10px" , color:"gray"}} ><FontAwesomeIcon  icon={faRulerVertical}  />block</span>
                     {sectionsProduct[1].isEditor && <input type='text' value={sectionsProduct[1].label_key}  />}
-                    {sectionsProduct[1].isEditor && <MyEditor content={sectionsProduct[1].label_value}  onChange={(content:any) => dispatch(updateLabel({index:1 , content:content}))}/>}
+                    {sectionsProduct[1].isEditor && <MyEditor display={"block"} content={sectionsProduct[1].label_value}  onChange={(content:any) => dispatch(updateLabel({index:1 , content:content}))}/>}
                     {sectionsProduct[1].isEditor && <label style={{color:"red"}} htmlFor="title">{(validated === 'not-valid' && !validators.isApplicabilityFilled.valid) && validators.isApplicabilityFilled.message}</label>}
                 </ProductLabelCont>
             </div>
@@ -163,7 +162,7 @@ export const ProductCreate_Step2 = (props: Props) => {
                 <ProductLabelCont >
                     <span   style={{marginRight:"10px" , color:"gray"}} ><FontAwesomeIcon  icon={faRulerVertical}  />block</span>
                     {sectionsProduct[2].isEditor && <input type='text' value={sectionsProduct[2].label_key}  />}
-                    {sectionsProduct[2].isEditor && <MyEditor content={sectionsProduct[2].label_value}  onChange={(content:any) => dispatch(updateLabel({index:2 , content:content}))}/>}
+                    {sectionsProduct[2].isEditor && <MyEditor display={"block"} content={sectionsProduct[2].label_value}  onChange={(content:any) => dispatch(updateLabel({index:2 , content:content}))}/>}
                     {sectionsProduct[2].isEditor && <label style={{color:"red"}} htmlFor="title">{(validated === 'not-valid' && !validators.isProblemFormulationFilled.valid) && validators.isProblemFormulationFilled.message}</label>}
                 </ProductLabelCont>
             </div>
@@ -214,7 +213,7 @@ export const ProductCreate_Step2 = (props: Props) => {
                                                         <span {...provided.dragHandleProps}  style={{marginRight:"10px" , color:"black"}} ><FontAwesomeIcon  icon={faRulerVertical}  />block</span>
                                                         {isClips.status && <input type='text' disabled={true} value={label_key} />}
                                                         {isEditor &&<input type='text' value={label_key} onChange={(e:any) => dispatch(updateKey({index:index , content:e.target.value}))} />}
-                                                        {isEditor && <MyEditor content={label_value}  onChange={(content:any) => dispatch(updateLabel({index:index , content:content}))}/>}
+                                                        {isEditor && <MyEditor display={"block"} content={label_value}  onChange={(content:any) => dispatch(updateLabel({index:index , content:content}))}/>}
                                                         {isEditor &&<label htmlFor="title">validate</label>}
                                                         {isClips.status && 
                                                             <div style={{display:"flex" , flexDirection:"column"}}>

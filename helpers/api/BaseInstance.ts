@@ -15,7 +15,6 @@ BASE_API_INSTANCE.interceptors.request.use(
     }
 
     config.headers = { 
-      'Authorization': `Bearer ${accessToken}`,
       'Accept': 'application/json',
       'Content-Type': 'application/x-www-form-urlencoded'
     }

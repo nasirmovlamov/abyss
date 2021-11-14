@@ -54,23 +54,92 @@ const ProductCreate_Tabs = (props: Props) => {
 
     return (
         <div style={{display:"flex", columnGap:"20px", alignItems:"center" ,width:"100%", justifyContent:"center"}}>
-            {Object.keys(productCreateStepsData).map(
-                (key, index) => 
-                <div key={productCreateStepsData[key].id} style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
+            
+                <div key={productCreateStepsData[1].id} style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
                     <button style={
-                        
-                        productCreateStepsData[key].validated === 'not-checked' && (currentStep === productCreateStepsData[key].id ? activeTabStyle : tabStyle )
+                        productCreateStepsData[1].validated === 'not-checked' && (currentStep === productCreateStepsData[1].id ? activeTabStyle : tabStyle )
                         ||
-                        productCreateStepsData[key].validated === 'valid' && doneTabStyle
+                        productCreateStepsData[1].validated === 'valid' && doneTabStyle
                         ||
-                        productCreateStepsData[key].validated === 'loading' && activeTabStyle
+                        productCreateStepsData[1].validated === 'loading' && activeTabStyle
                         ||
-                        productCreateStepsData[key].validated === 'not-valid' && failedStyle
+                        productCreateStepsData[1].validated === 'not-valid' && failedStyle
+                        ||
+                        {}
                     }>
-                        {productCreateStepsData[key].id}
+                        {productCreateStepsData[1].id}
                     </button>
                 </div>
-            )}
+
+
+                <div key={productCreateStepsData[2].id} style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
+                    <button style={
+                        productCreateStepsData[2].validated === 'not-checked' && (currentStep === productCreateStepsData[2].id ? activeTabStyle : tabStyle )
+                        ||
+                        productCreateStepsData[2].validated === 'valid' && doneTabStyle
+                        ||
+                        productCreateStepsData[2].validated === 'loading' && activeTabStyle
+                        ||
+                        productCreateStepsData[2].validated === 'not-valid' && failedStyle
+                        ||
+                        {}
+                    }>
+                        {productCreateStepsData[2].id}
+                    </button>
+                </div>
+
+
+
+                <div key={productCreateStepsData[3].id} style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
+                    <button style={
+                        productCreateStepsData[3].validated === 'not-checked' && (currentStep === productCreateStepsData[3].id ? activeTabStyle : tabStyle )
+                        ||
+                        productCreateStepsData[3].validated === 'valid' && doneTabStyle
+                        ||
+                        productCreateStepsData[3].validated === 'loading' && activeTabStyle
+                        ||
+                        productCreateStepsData[3].validated === 'not-valid' && failedStyle
+                        ||
+                        {}
+                    }>
+                        {productCreateStepsData[3].id}
+                    </button>
+                </div>
+
+
+
+                <div key={productCreateStepsData[4].id} style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
+                    <button style={
+                        productCreateStepsData[4].validated === 'not-checked' && (currentStep === productCreateStepsData[4].id ? activeTabStyle : tabStyle )
+                        ||
+                        productCreateStepsData[4].validated === 'valid' && doneTabStyle
+                        ||
+                        productCreateStepsData[4].validated === 'loading' && activeTabStyle
+                        ||
+                        productCreateStepsData[4].validated === 'not-valid' && failedStyle
+                        ||
+                        {}
+                    }>
+                        {productCreateStepsData[4].id}
+                    </button>
+                </div>
+
+
+                <div key={productCreateStepsData[5].id} style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
+                    <button style={
+                        productCreateStepsData[5].validated === 'not-checked' && (currentStep === productCreateStepsData[5].id ? activeTabStyle : tabStyle )
+                        ||
+                        productCreateStepsData[5].validated === 'valid' && doneTabStyle
+                        ||
+                        productCreateStepsData[5].validated === 'loading' && activeTabStyle
+                        ||
+                        productCreateStepsData[5].validated === 'not-valid' && failedStyle
+                        ||
+                        {}
+                    }>
+                        {productCreateStepsData[5].id}
+                    </button>
+                </div>
         </div>
     )
 }

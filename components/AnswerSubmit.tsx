@@ -9,16 +9,22 @@ import { autoErrorToaster } from './Notify/AutoErrorToaster';
 import { addAnswer } from '../app/thunks/QuestionThunk';
 
 import MyEditor from './MyEditor';
+import dynamic from 'next/dynamic'
+import { LabelCont } from '../styles/components/styled-elements/CreateQuestionModal.style';
+import { single_question_data, submit_answer_content, submit_answer_data } from '../app/feature/QuestionSlice';
 
+const DynamicComponentWithNoSSR = dynamic(
+    () => import('./EditorForAddAnswer'),
+    { ssr: false }
+)
 
 interface Props {
     id:string | string[] | undefined
 }
 
 function AnswerSubmitCont({id}: Props): ReactElement {
-      const [inBrowser, setInBrowser] = useState(false)
-
-    const [answer, setanswer] = useState("")
+    const [inBrowser, setInBrowser] = useState(false)
+    const submitAnswerContent = useAppSelector(submit_answer_content)
     const userData = useAppSelector(user_data);
     const dispatch = useAppDispatch()
     const [textAreaHeight, settextAreaHeight] = useState(50)
@@ -26,24 +32,15 @@ function AnswerSubmitCont({id}: Props): ReactElement {
     const buttonRef = useRef<HTMLButtonElement>(null)
     const textAreaRef = useRef<HTMLTextAreaElement>(null)
 
+    const submitAnswerData = useAppSelector(submit_answer_data)
+
     const submitAnswer = async (e:any) => {
         e.preventDefault()
-        if(userData === null )
-        {
-            errorToastFunc("top-right" , "You must be logged in to submit an answer")
-            return 0
+        const linkedProductsId = submitAnswerData.linkedProducts.map((item:any) => item.id) 
+        const mentionedUsersId = submitAnswerData.mentionedUsers.map((item:any) => item.id) 
+        if(id !== undefined && id !== null){
+            dispatch(addAnswer({content: submitAnswerContent, questionId: id , mentionedUsers:mentionedUsersId, linkedProducts: linkedProductsId }))
         }
-        if(answer === "")
-        {
-            errorToastFunc("top-right" , "Describe your answer with at least 50 character.")
-            return 0
-        }
-        if(answer.length < 50)
-        {
-            errorToastFunc("top-right" , "Your answer must be at least 50 charachter.")
-            return 0
-        }
-        dispatch(addAnswer({content: answer, questionId: id}))
     }
 
     const checkTextAreaHeight = () =>{
@@ -65,12 +62,7 @@ function AnswerSubmitCont({id}: Props): ReactElement {
         }
     }
     
-    const textAreaChange = (e:any) =>{
-        if (e.scrollHeight !== textAreaHeight && e.scrollHeight < 500) {
-            settextAreaHeight(e.scrollHeight+1.5)
-        }
-        setanswer(e.value)
-    }
+    
 
 
     const changeTextAreaHeight = () =>{
@@ -96,7 +88,18 @@ function AnswerSubmitCont({id}: Props): ReactElement {
                 onChange={(e)=> textAreaChange(e.target)}
                 autoComplete="on"
             /> */}
-            <MyEditor content={answer} onChange={(code:any) => setanswer(code)}/>
+            {/* <LabelCont> */}
+                {/* <label htmlFor="content">Content</label> */}
+                <MyEditor display={"none"} content={""} onChange={(content:any) => console.log(content)} />
+                {/* <label htmlFor="content">validate</label>
+            </LabelCont> */}
+
+
+            <LabelCont>
+                <label htmlFor="content">Content</label>
+                <DynamicComponentWithNoSSR/>
+                <label htmlFor="content">validate</label>
+            </LabelCont>
                 
             <AddAnswerSubmit   
                 ref={buttonRef} 

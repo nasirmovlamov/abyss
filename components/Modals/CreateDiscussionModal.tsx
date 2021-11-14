@@ -63,7 +63,7 @@ function CreateDiscussionModal({}: Props): ReactElement {
 
                 <LabelCont>
                     <label htmlFor="content">Dicussion Content</label>
-                    <MyEditor content={questionValue} onChange={(code:any) => setQuestionValue(code)}/>
+                    <MyEditor display='block' content={questionValue.content} onChange={(code:any) => setQuestionValue(code)}/>
                     <label htmlFor="content">validate</label>
                 </LabelCont>
 

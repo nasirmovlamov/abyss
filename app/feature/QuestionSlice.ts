@@ -24,6 +24,26 @@ export const QuestionSlice = createSlice({
     changeDownAnswersStatus(state, action) {
       state.answersData.downAnswers.status = action.payload.status
     },
+    
+
+
+    mentionUserAtAnswer(state , action){
+      if(state.answerSubmitData.mentionedUsers.filter(answer => answer.id === action.payload.id).length === 0){
+        state.answerSubmitData.mentionedUsers.push(action.payload)
+      }
+    },
+    linkProductAtAnswer(state , action){
+      if(state.answerSubmitData.linkedProducts.filter(answer => answer.id === action.payload.id).length === 0){
+        state.answerSubmitData.linkedProducts.push(action.payload)
+      }
+    },
+    AnswerContentOnChange(state, action){
+      state.answerSubmitData.content = action.payload
+    }
+
+
+
+
 
   },
 
@@ -227,8 +247,7 @@ export const QuestionSlice = createSlice({
 
 // action
 
-export const {changeTopAnswersStatus} = QuestionSlice.actions;
-export const {changeDownAnswersStatus} = QuestionSlice.actions;
+export const {changeTopAnswersStatus , mentionUserAtAnswer, linkProductAtAnswer, changeDownAnswersStatus , AnswerContentOnChange} = QuestionSlice.actions;
 
 
 // data
@@ -240,6 +259,10 @@ export const down_answers = (state: RootState) => state.questionReducer.answersD
 export const top_answers = (state: RootState) => state.questionReducer.answersData.topAnswers.answers
 export const top_answers_status = (state: RootState) => state.questionReducer.answersData.topAnswers.status
 export const down_answers_status = (state: RootState) => state.questionReducer.answersData.downAnswers.status
+export const mentioned_users_at_anwser_submit = (state: RootState) => state.questionReducer.answerSubmitData.mentionedUsers
+export const linked_products_at_anwser_submit = (state: RootState) => state.questionReducer.answerSubmitData.linkedProducts
+export const submit_answer_content = (state: RootState) => state.questionReducer.answerSubmitData.content
+export const submit_answer_data = (state: RootState) => state.questionReducer.answerSubmitData
 
 
 export const top_page = (state: RootState) => state.questionReducer.answersData.topPage

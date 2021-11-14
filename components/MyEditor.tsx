@@ -11,10 +11,11 @@ import "quill-mention/dist/quill.mention.css";
 interface Props {
   content:any
   onChange:any
+  display:'none' | 'block'
 }
 
 
-function MyEditor({content , onChange}: Props){
+function MyEditor({content , onChange, display}: Props){
   const [atValues, setatValues] = useState([{ id: 1, value: "Fredrik Sundqvist" },{ id: 2, value: "Patrik Sjölin" }])
   const [hashValues, sethashValues] = useState([{ id: 3, value: "Fredrik Sundqvist 2" },{ id: 4, value: "Patrik Sjölin 2" }])
 
@@ -64,8 +65,13 @@ function MyEditor({content , onChange}: Props){
             }
           renderItem(matches, searchTerm);
         }
+      },
+      onSelect: function (item:any, insertItem:any) {
+        console.log(item)
+        insertItem(item)
       }
     },
+
     magicUrl: {
       // Regex used to check URLs during typing
       urlRegularExpression: /(https?:\/\/[\S]+)|(www.[\S]+)|(tel:[\S]+)/g,
@@ -95,22 +101,27 @@ function MyEditor({content , onChange}: Props){
 
     const MagicUrl = require('quill-magic-url').default; // Install with 'yarn add quill-magic-url'
     const Mention = require('quill-mention').default ; 
-
-    Quill.register({
-      'modules/magicUrl': MagicUrl,
-      'modules/mention': Mention
-    }, function(quill:any, options:any) {
+    
+    if(Quill)
+    {
+      Quill.register({
+        'modules/magicUrl': MagicUrl,
+        'modules/mention': Mention
+      });
+    }
+      
+    if(quill && !Quill)
+    {
       quill.root.innerHTML = content
-      quill.on('text-change', () => {
-        console.log(quill.root.innerHTML)
-        onChange(quill.root.innerHTML);
+      quill.on('text-change', (content) => {
+        console.log(content)
+        onChange(quill.root.innerHTML); 
         let qlSyntaxes = document.querySelectorAll('.ql-syntax')
         for (let index = 0; index < qlSyntaxes.length; index++) {
           qlSyntaxes[index].setAttribute('style', `background-color: ${editor_theme}`)
         }
       });
-    });
-
+    }
     
   }
 
@@ -146,8 +157,8 @@ function MyEditor({content , onChange}: Props){
         <option value="black">black</option>
       </select>
 
-      <div style={{ width: "100%",minHeight:"100" }}>
-        <div ref={quillRef} />
+      <div style={{ width: "100%",minHeight:"100",display:display}}>
+        <div style={{}} ref={quillRef} />
       </div>
     </>
   );

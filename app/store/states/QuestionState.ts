@@ -35,6 +35,11 @@ export const QUESTION_STATE:QUESTION_INTERFACE = {
             answers:[]
         },
     },
+    answerSubmitData:{
+        linkedProducts:[],
+        mentionedUsers:[],
+        content:"",
+    },
     status:"loading"
 }
 

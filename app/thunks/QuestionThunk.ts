@@ -40,10 +40,12 @@ export const getAnswers = createAsyncThunk(
 
 
 export const addAnswer = createAsyncThunk(
-  types.ADD_ANSWER, async (data:{content:string , questionId:string | string [] | undefined }, {rejectWithValue}) => {
+  types.ADD_ANSWER, async (data:{content:string , questionId:any , linkedProducts:number[], mentionedUsers:number[]}, {rejectWithValue}) => {
       try {
         const formData = new FormData()
         formData.append('content', data.content)
+        formData.append('linked_products', JSON.stringify(data.linkedProducts))
+        formData.append('mentioned_users', JSON.stringify(data.mentionedUsers))
         const resp = await BASE_API_INSTANCE.post(`/forum/${data.questionId}/answer/submit` , formData)
         return resp.data
       } catch (error:any) {

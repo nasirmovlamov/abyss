@@ -8,6 +8,7 @@ import chatBoxReducer from '../feature/ChatBoxSlice'
 import searchBoxReducer from '../feature/SearchBoxSlice'
 import pageFiltersReducer from '../feature/PageFiltersSlice'
 import createProductReducer from '../feature/CreateProductFeatures/CreateProductSlice'
+import createQuestionReducer from '../feature/CreateQuestionFeatures/CreateQuestionFeatures'
 
 const reducer = 
 {  
@@ -19,7 +20,8 @@ const reducer =
   chatBoxReducer:chatBoxReducer,
   searchBoxReducer:searchBoxReducer,
   pageFiltersReducer:pageFiltersReducer,
-  createProductReducer:createProductReducer
+  createProductReducer:createProductReducer,
+  createQuestionReducer:createQuestionReducer
 }
 
 

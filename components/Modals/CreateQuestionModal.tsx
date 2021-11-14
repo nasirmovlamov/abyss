@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { changeModalAction } from '../../app/feature/UserSlice'
-import { useAppDispatch } from '../../app/store/hooks'
+import { useAppDispatch, useAppSelector } from '../../app/store/hooks'
 import {BASE_API_INSTANCE} from '../../helpers/api/BaseInstance'
 import { getKeyValue } from '../../logic/getKeyValue'
 import { LabelCont, QuestionCreateForm, QuestionCreateModal } from '../../styles/components/styled-elements/CreateQuestionModal.style'
@@ -10,26 +10,32 @@ import {  autoErrorToaster } from '../Notify/AutoErrorToaster'
 import { errorToastFunc } from '../Notify/ErrorToasts'
 import Image from 'next/image'
 import { autoSuccessToaster , autoErrorToasterWithMessage } from '../Notify/AutoSuccessToast'
-import EditorClassVersion from '../EditorClassVersion'
-import dynamic from 'next/dynamic'
+// import {EditorNewVersion} from '../EditorNewVersion'
+// import EditorClassVersion from '../EditorClassVersion'
 
+import dynamic from 'next/dynamic'
+import { linked_products, mentioned_users, question_value } from '../../app/feature/CreateQuestionFeatures/CreateQuestionFeatures'
 
 const DynamicComponentWithNoSSR = dynamic(
-    () => import('../EditorClassVersion'),
+    () => import('../EditorForQuestionCreateMentions'),
     { ssr: false }
-    )
+)
 interface Props {
 }
 
 
 function CreateQuestionModal({}: Props): ReactElement {
     const [inBrowser, setinBrowser] = useState(false)
+    const linkedProducts = useAppSelector(linked_products)
+    const mentionedUsers = useAppSelector(mentioned_users)
     const [questionValue, setQuestionValue] = useState({title:"", content:""})
     const [tags, settags] = useState<string[]>([])
-    const [linkedProducts, setlinkedProducts] = useState<number[]>([])
     const [searchedProducts, setsearchedProducts] = useState<{id:number, name:string, avatar:string}[]>([])
     const [linkedProductsWithObject, setlinkedProductsWithObject] = useState<{id:number, name:string, avatar:string}[]>([])
     const [searchProductQuery, setsearchProductQuery] = useState<string>('')
+    const [mentionedProducts, setmentionedProducts] = useState([])
+
+    const questionContent =  useAppSelector(question_value)
 
     const [category, setCategory] = useState<string>("1")
 
@@ -50,12 +56,15 @@ function CreateQuestionModal({}: Props): ReactElement {
     const sendCreateQuestionModal = async (e:any) => {
         e.preventDefault()
         try {
+            const idOFLinkedProducts = linkedProducts.map(id => id)
+            console.log(linkedProducts)
             const formData = new FormData()
             formData.append("category_id" , category)
             formData.append("title" , questionValue.title)
-            formData.append("content" , questionValue.content)
+            formData.append("content" , questionContent)
             formData.append("tags" , JSON.stringify(tags))
             formData.append("linked_products" , JSON.stringify(linkedProducts))
+            formData.append("mentioned_users" , JSON.stringify(mentionedUsers))
             const resp = await BASE_API_INSTANCE.post("/forum/create", formData) 
             autoSuccessToaster(resp.data.message)
             console.log(resp.data.message)
@@ -77,79 +86,79 @@ function CreateQuestionModal({}: Props): ReactElement {
     }, [])
     
 
-    const getLinkedProductswithURL = async (e:any) => {
-        let paste = (e.clipboardData).getData('text');
-        console.log(paste)
-        const value = paste
-        const id = paste.split("/")[4]
-        const slug = paste.split("/")[5]
-        if(!linkedProducts.includes(parseInt(id)))
-        {
-            try {
-                const resp = await BASE_API_INSTANCE.get(`/store/${id}/${slug}`)
-                setsearchProductQuery('')
-                setlinkedProducts([...linkedProducts, parseInt(id)])
-                const product = {id:parseInt(id), name:resp.data.data.name, avatar:""}
-                setlinkedProductsWithObject([...linkedProductsWithObject, product])
-                console.log(linkedProductsWithObject)
-            } catch (error) {
+//     const getLinkedProductswithURL = async (e:any) => {
+//         let paste = (e.clipboardData).getData('text');
+//         console.log(paste)
+//         const value = paste
+//         const id = paste.split("/")[4]
+//         const slug = paste.split("/")[5]
+//         if(!linkedProducts.includes(parseInt(id)))
+//         {
+//             try {
+//                 const resp = await BASE_API_INSTANCE.get(`/store/${id}/${slug}`)
+//                 setsearchProductQuery('')
+//                 setlinkedProducts([...linkedProducts, parseInt(id)])
+//                 const product = {id:parseInt(id), name:resp.data.data.name, avatar:""}
+//                 setlinkedProductsWithObject([...linkedProductsWithObject, product])
+//                 console.log(linkedProductsWithObject)
+//             } catch (error) {
                 
-            }
-        }else 
-        {
-            autoErrorToasterWithMessage("Product already added")
-        }
+//             }
+//         }else 
+//         {
+//             autoErrorToasterWithMessage("Product already added")
+//         }
         
-    }
+//     }
 
 
-    const getLinkedProductswithquery = async () => {
-        const urldetector = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm
+//     const getLinkedProductswithquery = async () => {
+//         const urldetector = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm
 
-        if(searchProductQuery.length > 0 && !urldetector.test(searchProductQuery))
-        {
-            try {
-                const resp = await BASE_API_INSTANCE.get(`/forum/product/${searchProductQuery}`)
-                const products = resp.data.data.map((element:any) => {return {name:element.name , id:element.id , avatar:""}})
-                setsearchedProducts(products)   
-            } catch (error) {
-                autoErrorToasterWithMessage("Product not exist")
-            }
-        } 
+//         if(searchProductQuery.length > 0 && !urldetector.test(searchProductQuery))
+//         {
+//             try {
+//                 const resp = await BASE_API_INSTANCE.get(`/forum/product/${searchProductQuery}`)
+//                 const products = resp.data.data.map((element:any) => {return {name:element.name , id:element.id , avatar:""}})
+//                 setsearchedProducts(products)   
+//             } catch (error) {
+//                 autoErrorToasterWithMessage("Product not exist")
+//             }
+//         } 
        
         
-    }
+//     }
 
 
-   const addSearchedProduct = (id:number) => {
-        if(!linkedProducts.includes(id))
-        {
-            const product = searchedProducts.find((element:any) => element.id === id)
-            if(product)
-            {
-                setlinkedProducts([...linkedProducts, id])
-                setlinkedProductsWithObject([...linkedProductsWithObject, product])
-                // setsearchProductQuery('')
-            }
-        }else
-        {
-            autoErrorToasterWithMessage("Product already added")
-        }
-    }
+//    const addSearchedProduct = (id:number) => {
+//         if(!linkedProducts.includes(id))
+//         {
+//             const product = searchedProducts.find((element:any) => element.id === id)
+//             if(product)
+//             {
+//                 setlinkedProducts([...linkedProducts, id])
+//                 setlinkedProductsWithObject([...linkedProductsWithObject, product])
+//                 // setsearchProductQuery('')
+//             }
+//         }else
+//         {
+//             autoErrorToasterWithMessage("Product already added")
+//         }
+//     }
 
         
     
-    useEffect(() => {
-        getLinkedProductswithquery()
-    }, [searchProductQuery])
+    // useEffect(() => {
+    //     getLinkedProductswithquery()
+    // }, [searchProductQuery])
 
 
-    const deleteLinkedProduct = (id:number) => {
-        const newLinkedProducts = linkedProducts.filter((item:number) => item !== id)
-        const newLinkedProductsWithObject = linkedProductsWithObject.filter((item:any) => item.id !== id)
-        setlinkedProducts(newLinkedProducts)
-        setlinkedProductsWithObject(newLinkedProductsWithObject)
-    }
+    // const deleteLinkedProduct = (id:number) => {
+    //     const newLinkedProducts = linkedProducts.filter((item:number) => item !== id)
+    //     const newLinkedProductsWithObject = linkedProductsWithObject.filter((item:any) => item.id !== id)
+    //     setlinkedProducts(newLinkedProducts)
+    //     setlinkedProductsWithObject(newLinkedProductsWithObject)
+    // }
 
     return (
         <QuestionCreateModal>
@@ -166,8 +175,7 @@ function CreateQuestionModal({}: Props): ReactElement {
 
                 <LabelCont>
                     <label htmlFor="content">Content</label>
-                    <MyEditor content={questionValue.content} onChange={(content:any) => questionChange(content)} />
-
+                    <MyEditor  display={"none"} content={questionValue.content} onChange={(content:any) => console.log(content)} />
                     <label htmlFor="content">validate</label>
                 </LabelCont>
 
@@ -175,7 +183,7 @@ function CreateQuestionModal({}: Props): ReactElement {
                 <LabelCont>
                     <label htmlFor="content">Content</label>
                     {inBrowser && <DynamicComponentWithNoSSR/>}
-
+                    {/* <EditorNewVersion/> */}
                     <label htmlFor="content">validate</label>
                 </LabelCont>
 
@@ -205,7 +213,7 @@ function CreateQuestionModal({}: Props): ReactElement {
                                 // onChange={(e:any) => setlinkedProductQuery(e.target.value)} 
                                 value={searchProductQuery} 
                                 onChange={ProductLinkHandler} 
-                                onPaste={getLinkedProductswithURL}
+                                // onPaste={getLinkedProductswithURL}
                                 type="text" 
                                 name="tags"/>
                             {/* <button>Add from Link</button> */}
@@ -215,7 +223,7 @@ function CreateQuestionModal({}: Props): ReactElement {
                                 searchedProducts.map((searchedProduct:any , index:number) => 
                                 <div key={index} style={{display:"flex" , flexDirection:"column" , border:"1px solid gray" , width:"200px" , height:"auto" , background:"lightgray"}}>
                                     {/* <Image src={linkedProduct.avatar} alt={linkedProduct.title  +  " image"} /> */}
-                                    <button type='button' onClick={() => addSearchedProduct(searchedProduct.id)}>add</button>
+                                    {/* <button type='button' onClick={() => addSearchedProduct(searchedProduct.id)}>add</button> */}
                                     <p style={{textAlign:"center"}}>{searchedProduct.name}</p>
                                 </div>
                             )}
@@ -226,7 +234,7 @@ function CreateQuestionModal({}: Props): ReactElement {
                                 linkedProductsWithObject.map((linkedProduct:any , index:number) => 
                                 <div key={index} style={{display:"flex" , flexDirection:"column" , border:"1px solid gray" , width:"200px" , height:"auto" , background:"lightgray"}}>
                                     {/* <Image src={linkedProduct.avatar} alt={linkedProduct.title  +  " image"} /> */}
-                                    <button type='button' onClick={() => deleteLinkedProduct(linkedProduct.id)}>del</button>
+                                    {/* <button type='button' onClick={() => deleteLinkedProduct(linkedProduct.id)}>del</button> */}
                                     <p style={{textAlign:"center"}}>{linkedProduct.name}</p>
                                     <p style={{textAlign:"center"}}>{linkedProduct.id}</p>
                                 </div>

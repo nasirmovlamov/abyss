@@ -20,7 +20,7 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
     const currentStep = useAppSelector(product_create_current_step)
     const isProductCreated = useAppSelector(is_product_created)
 
-    const validateFunctions = {
+    const validateFunctions:{[key: string]: any} = {
         step1: () => dispatch(ProductCreateStep1Validate(null)),
         step2: ()=>dispatch(ProductCreateStep2Validate(null)),
         step3: () => dispatch(ProductCreateStep3Validate(null)),

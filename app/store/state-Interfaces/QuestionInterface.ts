@@ -17,10 +17,17 @@ export interface ANSWER_INTERFACE {
     } | null
 }
 
+export interface ANSWER_SUBMIT_INTERFACE {
+    content:string , 
+    linkedProducts:{id:number}[],
+    mentionedUsers:{id:number}[]
+}
+
 export interface QUESTION_INTERFACE {
     singleQuestionData:SingleFormDataInterface
     answersData:AnswerDataInterface
-    status:"idle" | "loading" | "failed"
+    status:"idle" | "loading" | "failed",
+    answerSubmitData:ANSWER_SUBMIT_INTERFACE
 }
 
 export interface AnswerDataInterface{
