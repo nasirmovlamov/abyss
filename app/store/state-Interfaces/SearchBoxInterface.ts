@@ -21,7 +21,7 @@ export interface SEARCHBOX_INTERFACE {
 }
 
 interface ForumQuestionInterface {
-    id:number,
+    id:string,
     slug:string,
     avatar:string
     name:string

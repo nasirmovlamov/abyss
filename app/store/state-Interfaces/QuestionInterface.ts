@@ -1,3 +1,4 @@
+import { linked_products } from './../../feature/CreateQuestionFeatures/CreateQuestionFeatures';
 import { USER_INTERFACE } from "../../../components/AnswersCont";
 
 export interface ANSWER_INTERFACE {
@@ -53,6 +54,7 @@ export interface SingleFormDataInterface{
     id:number ,
     answer_count:number,
     category:{id:number, name:string, slug:string,sort:number}
+    linked_products:{[key:string] : any}[],
     closed_at:null,
     comment_count:number,
     content:string,

@@ -39,3 +39,7 @@ export const ADD_FILE:string = 'ADD_FILE'
 export const CREATE_PRODUCT:string = 'CREATE_PRODUCT'
 
 export const CHECK_PLAGIAT:string = 'CHECK_PLAGIAT'
+
+
+//Linked Products
+export const GET_LINKED_PRODUCTS:string = 'GET_LINKED_PRODUCTS'

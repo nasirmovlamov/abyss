@@ -56,15 +56,19 @@ function CreateQuestionModal({}: Props): ReactElement {
     const sendCreateQuestionModal = async (e:any) => {
         e.preventDefault()
         try {
-            const idOFLinkedProducts = linkedProducts.map(id => id)
+            const idOFLinkedProducts = linkedProducts.map(element => element.id)
+            const idOFMentionedUsers = mentionedUsers.map(element => element.id)
+
             console.log(linkedProducts)
             const formData = new FormData()
+
+
             formData.append("category_id" , category)
             formData.append("title" , questionValue.title)
             formData.append("content" , questionContent)
             formData.append("tags" , JSON.stringify(tags))
-            formData.append("linked_products" , JSON.stringify(linkedProducts))
-            formData.append("mentioned_users" , JSON.stringify(mentionedUsers))
+            formData.append("linked_products" , JSON.stringify(idOFLinkedProducts))
+            formData.append("mentioned_users" , JSON.stringify(idOFMentionedUsers))
             const resp = await BASE_API_INSTANCE.post("/forum/create", formData) 
             autoSuccessToaster(resp.data.message)
             console.log(resp.data.message)

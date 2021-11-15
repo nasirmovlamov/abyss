@@ -4,6 +4,7 @@ import { ANSWER_INTERFACE} from "../state-Interfaces/QuestionInterface";
 export const QUESTION_STATE:QUESTION_INTERFACE = {
     singleQuestionData:{
         status:"loading",
+        linked_products:[],
         id:-1 ,
         answer_count:0,
         category:{id:0, name:"", slug:"",sort:0},

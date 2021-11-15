@@ -9,6 +9,7 @@ import searchBoxReducer from '../feature/SearchBoxSlice'
 import pageFiltersReducer from '../feature/PageFiltersSlice'
 import createProductReducer from '../feature/CreateProductFeatures/CreateProductSlice'
 import createQuestionReducer from '../feature/CreateQuestionFeatures/CreateQuestionFeatures'
+import linkedProductsReducer from '../feature/LinkedProductsSlice'
 
 const reducer = 
 {  
@@ -21,7 +22,8 @@ const reducer =
   searchBoxReducer:searchBoxReducer,
   pageFiltersReducer:pageFiltersReducer,
   createProductReducer:createProductReducer,
-  createQuestionReducer:createQuestionReducer
+  createQuestionReducer:createQuestionReducer,
+  linkedProductsReducer:linkedProductsReducer
 }
 
 

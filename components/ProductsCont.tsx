@@ -4,6 +4,8 @@ import { AnswersCont, ProductsCont } from '../styles/pages/SingleQuestionPage.st
 import { useInView } from 'react-intersection-observer';
 import { useAppDispatch, useAppSelector } from '../app/store/hooks';
 import { changeForumTabActive, forum_tabs } from '../app/feature/PageTabsSlice';
+import AnswerSkeleton from './Skeletons/AnswerSkeleton';
+import { linked_products_status } from '../app/feature/LinkedProductsSlice';
 
 interface Props {
     
@@ -11,6 +13,9 @@ interface Props {
 
 function ProductsConts({}: Props): ReactElement {
     const { ref, inView, entry } = useInView({threshold: 0,});
+    const linkedProductsStatus = useAppSelector(linked_products_status);
+    const [inViewRefProductsLoad, inViewProductsLoader] = useInView()
+
     const dispatch = useAppDispatch();
     const forumTabs = useAppSelector(forum_tabs)
 
@@ -24,9 +29,28 @@ function ProductsConts({}: Props): ReactElement {
         }
     }, [inView])
 
+    useEffect(() => {
+        if (inViewProductsLoader) {
+            // dispatch()
+        }
+    }, [inViewProductsLoader])
+
+
     return (
         <ProductsCont id="productsCont"  ref={ref} style={{scrollMarginTop: "130px"}}>
-            PRODUCTS    
+
+
+        {
+            linkedProductsStatus === "loading" && 
+            <div ref={inViewRefProductsLoad}>
+                <AnswerSkeleton/>
+                <AnswerSkeleton/>
+                <AnswerSkeleton/>
+                <AnswerSkeleton/>
+                <AnswerSkeleton/>
+                <AnswerSkeleton/>
+            </div>
+        }
         </ProductsCont>
     )
 }

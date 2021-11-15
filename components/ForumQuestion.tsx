@@ -10,7 +10,7 @@ import thumbs_up from "/public/thumbs-up.svg"
 
 interface Props {
     data:{
-        id:number
+        id:string
         slug:string
         avatar:string
         name:string
