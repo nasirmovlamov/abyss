@@ -31,7 +31,7 @@ const modules = {
           const getProductNames = async (query:string) => {
               try {
                   const resp = await BASE_API_INSTANCE.get(`/forum/product/${query}`)
-                  const products = resp.data.data.map((element:any) => {return {value:element.name , id:element.id , link:"https://www.google.com",target:'_blank'}})
+                  const products = resp.data.data.map((element:any) => {return {value:element.name , id:element.id , link:`https://demo-abyss.vercel.app/product/${element.id}/${element.slug}`,target:'_blank'}})
                   return products;
               } catch (error) {
                   
@@ -40,7 +40,7 @@ const modules = {
           const getUserNames = async (query:string) => {
               try {
                   const resp = await BASE_API_INSTANCE.get(`/forum/user/${query}`)
-                  const users = resp.data.data.map((element:any) => {return {value:element.name , id:element.id , link:"https://www.google.com " , target:'_blank'}})
+                  const users = resp.data.data.map((element:any) => {return {value:element.name , id:element.id , link:`https://demo-abyss.vercel.app/forum/${element.id}/${element.slug}` , target:'_blank'}})
                   return users;
               } catch (error) {
                   

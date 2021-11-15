@@ -15,6 +15,9 @@ import { ANSWER_INTERFACE } from '../app/store/state-Interfaces/QuestionInterfac
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { set_overflowy } from '../app/feature/AppSlice';
+import { parseHtml } from '../logic/htmlParser';
+
+
 interface Props {
     answer:ANSWER_INTERFACE,
     direction:string
@@ -104,7 +107,7 @@ function Answer({answer ,direction  }: Props): ReactElement {
                     <Name>{answer.user.name}</Name>
                 </PersonCont>
                 <AnswerContent>
-                    {answer.content}
+                    {parseHtml(answer.content)}
                 </AnswerContent>
                 <div className="flexer fd-c a-end">
                     <LikeButton onClick={voting} style={{color:  isLiked ? "green" : "gray" }}><FontAwesomeIcon icon={faThumbsUp}/> </LikeButton>

@@ -56,7 +56,7 @@ export const QuestionSlice = createSlice({
     //GET SINGLE QUESTION Reducers
     builder.addCase(getSingleQuestion.fulfilled, (state, {payload}) => {
       state.singleQuestionData = payload.data
-      state.singleQuestionData.status = 'idle'
+      state.singleQuestionData.status = 'idle'  
     }),
     builder.addCase(getSingleQuestion.pending, (state, {payload}) => {
       state.singleQuestionData.status = 'loading'
@@ -86,7 +86,7 @@ export const QuestionSlice = createSlice({
             }
             state.answersData.topPage = state.answersData.topPage + 1
   
-            if(topAnswers.answers.length + downAnswers.answers.length - state.answersData.submittedAnswer.length === state.answersData.totalPage && state.answersData.topPage > 1)
+            if(topAnswers.answers.length + downAnswers.answers.length === state.answersData.totalPage && state.answersData.topPage > 1)
             {
                 topAnswers.status = 'idle'
                 downAnswers.status = 'idle'

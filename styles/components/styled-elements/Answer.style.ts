@@ -4,6 +4,7 @@ import styled from "styled-components";
 export const AnswerStyle = styled.li`
     display: flex;
     width: 100%;
+    height: auto;
     padding-top: 5px;
     padding-bottom: 8px;
     padding-left: 20px;
@@ -74,12 +75,12 @@ export const Name = styled.span`
 `
 
 export const AnswerContent = styled.p`
-    display: flex;
+    /* display: flex; */
+    /* display: -webkit-box; */
     width: 535px;
     height: 100%;
     margin-left: 22px;
     font-size: 15px;
-    display: -webkit-box;
     color:  ${({theme}) => theme.forumPage.textColor};
     font-family: r;
     align-self: flex-start;

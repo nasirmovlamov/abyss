@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useQuill } from "react-quilljs";
 import "quill/dist/quill.snow.css";
 import hljs from 'highlight.js';
-import 'highlight.js/styles/arduino-light.css';
+// import 'highlight.js/styles/a11y-dark.css';
 import javascript from 'highlight.js/lib/languages/javascript';
 import { Head } from "next/document";
 import dynamic from 'next/dynamic';
@@ -43,7 +43,7 @@ function MyEditor({content , onChange, display}: Props){
     ],
     syntax: {
       highlight: (code:any) => hljs.highlightAuto(code).value,
-    },
+    },  
     mention: {
       allowedChars: /^[A-Za-z\sÅÄÖåäö]*$/,
       mentionDenotationChars: ["@", "#"],

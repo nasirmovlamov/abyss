@@ -130,7 +130,8 @@ export const QuestionTitle = styled.h2`
 
 export const QuestionContent = styled.p`
     font-size: 15px;
-    display: -webkit-box;
+    width: 100%;
+    /* display: -webkit-box; */
     color:  ${({theme}) => theme.forumPage.textColor};
     font-family: r;
     align-self: flex-start;

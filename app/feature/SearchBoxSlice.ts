@@ -85,7 +85,7 @@ export const SearchBoxSlice = createSlice({
 
     // Forum Search
     builder.addCase(forumSearch.fulfilled, (state, {payload}) => {
-      console.log(payload.data)
+      console.log(payload.data.results)
       state.searchBoxData.forum.data = payload.data.results
       state.searchBoxData.forum.status = "loaded"
     }),

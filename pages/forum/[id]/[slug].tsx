@@ -33,6 +33,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsDown as solidfaThumbsDown  ,   faThumbsUp as solidfaThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import {faComment, faThumbsDown as regularfaThumbsDown  ,   faThumbsUp as regularfaThumbsUp  } from '@fortawesome/free-regular-svg-icons'
 import { set_overflowy } from '../../../app/feature/AppSlice'
+import { parseHtml } from '../../../logic/htmlParser'
 
 interface Props {
 }
@@ -141,7 +142,6 @@ function SingleQuestionPAge({}: Props): ReactElement {
                                 :
 
                                 <>
-                                    {/* <button style={{alignSelf:'flex-end'}} onClick={() => dispatch(changeModalAction("questionCreate"))}>QuestionCreate</button> */}
 
                                     <QuestionCont id={`question${singleQuestionData.id}`}>
                                         <PersonCont>
@@ -154,7 +154,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
                                                 {singleQuestionData.title}
                                             </QuestionTitle>    
                                             <QuestionContent> 
-                                                {singleQuestionData.content}
+                                                {parseHtml(singleQuestionData.content)}
                                             </QuestionContent>
 
                                             <QuestionTagsAndDate>
@@ -204,15 +204,18 @@ function SingleQuestionPAge({}: Props): ReactElement {
                                 </>
                             } 
                         </>
-                    {/* Single Question Title Content Answer Posting */}
                     
-                    {/* Answers and Products */}
-                    <AnswersAndProductsCont>
-                        <SinglePageTabs/>
-                        <AnswersConts />
-                        <ProductsConts />
-                    </AnswersAndProductsCont>
-                    {/* Answers and Products */}
+                        {/* Answers and Products */}
+                        {              
+                                singleQuestionStatus === "idle"
+                                && 
+                                <AnswersAndProductsCont>
+                                    <SinglePageTabs/>
+                                    <AnswersConts />
+                                    <ProductsConts />
+                                </AnswersAndProductsCont>
+                        }
+                        {/* Answers and Products */}
 
                 </SingleProductMiddle>
             </MainPartOfPage>

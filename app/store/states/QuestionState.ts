@@ -4,7 +4,7 @@ import { ANSWER_INTERFACE} from "../state-Interfaces/QuestionInterface";
 export const QUESTION_STATE:QUESTION_INTERFACE = {
     singleQuestionData:{
         status:"loading",
-        id:0 ,
+        id:-1 ,
         answer_count:0,
         category:{id:0, name:"", slug:"",sort:0},
         closed_at:null,
@@ -20,7 +20,7 @@ export const QUESTION_STATE:QUESTION_INTERFACE = {
         user:{id:0,email:"",name:""},
         user_votes:null,
         view_count:0
-    },
+    } ,
     answersData:{
         topPage:1,
         downPage:0,

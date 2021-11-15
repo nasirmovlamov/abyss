@@ -41,8 +41,8 @@ function CreateQuestionModal({}: Props): ReactElement {
 
     const dispatch = useAppDispatch()
 
-    const questionChange = (code:any) => {
-        setQuestionValue({...questionValue, content:code})
+    const questionChange = (e:any) => {
+        setQuestionValue({...questionValue, title:e.target.value})
     }
 
     const createTag = (event:any) => {

@@ -35,7 +35,7 @@ interface Props {
 
 
 function AnswersConts({}: Props): ReactElement {
-    
+    const singleQuestionData = useAppSelector(single_question_data)
     const [inViewRefAnswersCont, inViewAnswersCont] = useInView()
     const [inViewRefLoaderDown, inViewLoaderDown] = useInView()
     const [inViewRefLoaderUp, inViewLoaderUp] = useInView()
@@ -76,39 +76,76 @@ function AnswersConts({}: Props): ReactElement {
     useEffect(() => {
         if(inViewLoaderDown)
         {
-            if(topAnswersStatus ==="loading" && downAnswersStatus ==="loading")
+            if(topAnswersStatus ==="loading")
             {
-                const data:GET_ANSWER_INTERFAC ={page:topPage,direction:"next",questionId:1}
+                const data:GET_ANSWER_INTERFAC ={page:topPage,direction:"next",questionId:singleQuestionData.id}
                 dispatch(getAnswers(data))
                 if(topPage === 1)
                 {
-                    const data:GET_ANSWER_INTERFAC ={page:downPage,direction:"previous",questionId:1}
+                    const data:GET_ANSWER_INTERFAC ={page:downPage,direction:"previous",questionId:singleQuestionData.id}
                     dispatch(getAnswers(data))
                 }
             }
         }
         else if(inViewLoaderUp)
         {
-            if(topAnswersStatus ==="loading" && downAnswersStatus ==="loading")
+            if(downAnswersStatus ==="loading")
             {
-                const data:GET_ANSWER_INTERFAC ={page:downPage,direction:"previous",questionId:1}
+                const data:GET_ANSWER_INTERFAC = {page:downPage,direction:"previous",questionId:singleQuestionData.id}
                 dispatch(getAnswers(data))
                 window.scrollBy({top:250,behavior: "smooth"}) 
             }
-        }
+        }else{}
     }, [inViewLoaderDown ,  inViewLoaderUp])
     
     
     return (
         <AnswersCont style={{ scrollMarginTop: "250px"}} ref={inViewRefAnswersCont} id="answersCont" >
-                {submittedAnswer.length > 0 &&  <div >{submittedAnswer.map((answer) => <Answer key={answer.id} direction="new-submitted"  answer={answer}/>)} </div>}
-                <div style={{width:"100%", display:"flex" , flexDirection:"column", rowGap:"40px", marginTop:"30px"}}>{topAnswers.map((answer) => <Answer key={answer.id} direction="top"  answer={answer}/>)} </div>
-                    {topAnswersStatus === "loading" && <div ref={inViewRefLoaderDown}><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/></div>}
-                    {topAnswersStatus === "loading" && <div style={{height:"100vh"}}></div>}
-                    {downAnswersStatus === "loading" && <div ref={inViewRefLoaderUp}><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/></div>}
-                <div id="downAnswers"  style={{width:"100%", display:"flex" , flexDirection:"column", rowGap:"40px", marginTop:"30px"}}>{downAnswers.map((answer ) => <Answer key={answer.id} direction="bottom"  answer={answer}/>)} </div>
+                {
+                    submittedAnswer.length > 0 &&  
+                    <div >
+                        {submittedAnswer.map((answer) => 
+                            <Answer key={answer.id} direction="new-submitted"  answer={answer}/>)} 
+                    </div>
+                }
+                
+                <div style={{width:"100%", display:"flex" , flexDirection:"column", rowGap:"40px", marginTop:"30px"}}>
+                    {topAnswers.map((answer) => <Answer key={answer.id} direction="top"  answer={answer}/>)} 
+                </div>
+                
+                
+                {
+                    topAnswersStatus === "loading" && 
+                    <div ref={inViewRefLoaderDown}>
+                        <AnswerSkeleton/>
+                        <AnswerSkeleton/>
+                        <AnswerSkeleton/>
+                        <AnswerSkeleton/>
+                        <AnswerSkeleton/>
+                        <AnswerSkeleton/>
+                    </div>
+                }
+                {
+                    (topAnswersStatus === "loading" || downAnswersStatus === "loading") && 
+                    <div style={{height:"100vh"}}></div>
+                }
+                
+                {downAnswersStatus === "loading" && 
+                    <div ref={inViewRefLoaderUp}>
+                        <AnswerSkeleton/>
+                        <AnswerSkeleton/>
+                        <AnswerSkeleton/>
+                        <AnswerSkeleton/>
+                        <AnswerSkeleton/>
+                        <AnswerSkeleton/>
+                        <AnswerSkeleton/>
+                    </div>
+                }
 
-                {<div> </div>}
+                <div id="downAnswers"  style={{width:"100%", display:"flex" , flexDirection:"column", rowGap:"40px", marginTop:"30px"}}>
+                    {downAnswers.map((answer ) => <Answer key={answer.id} direction="bottom"  answer={answer}/>)} 
+                </div>
+
         </AnswersCont>
     )
 }

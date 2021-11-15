@@ -1,4 +1,4 @@
-import React, {  ReactElement, useEffect, useState } from "react";
+import React, {  ReactElement, useEffect, useLayoutEffect, useState } from "react";
 import "quill-mention";
 import  'quill-magic-url'
 import "quill-mention/dist/quill.mention.css";
@@ -9,6 +9,10 @@ import dynamic from 'next/dynamic'
 import { useAppDispatch, useAppSelector } from "../app/store/hooks";
 import { mentionProductAtQuestionCreate, mentionUserAtQuestionCreate, questionContentOnChangeHandler, question_value } from "../app/feature/CreateQuestionFeatures/CreateQuestionFeatures";
 import { AnswerContentOnChange, linked_products_at_anwser_submit, linkProductAtAnswer, mentioned_users_at_anwser_submit, mentionUserAtAnswer, submit_answer_content } from "../app/feature/QuestionSlice";
+import javascript from 'highlight.js/lib/languages/javascript';
+import hljs from 'highlight.js';
+
+
 
 
 interface Props {
@@ -16,11 +20,15 @@ interface Props {
 
 const modules = {
   toolbar: [
-    [{ header: [1, 2, false] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [{ list: "ordered" }, { list: "bullet" }],
-    ["link", "image"]
+    [{ 'header': [1, 2, false] }],
+    ['bold', 'italic', 'underline','strike', 'blockquote' , 'code-block'],
+    [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+    ['link', 'image'],
+    ['clean']
   ],
+  syntax: {
+    highlight: (code:any) => hljs.highlightAuto(code).value,
+  },  
   mention: {
     allowedChars: /^[A-Za-z\sÅÄÖåäö]*$/,
     mentionDenotationChars: ["@", "#" , "https://"],
@@ -79,8 +87,30 @@ const modules = {
 
 
 
-
 const EditorAddAnswer = ({}: Props): ReactElement => {
+  const [theme, settheme] = useState('')
+  const addThemeFromHjs = async (theme:string) => {
+    // const Fuse = (await import('fuse.js')).default
+    // const fuse = new Fuse(names)
+    // const myvalue = theme
+    if(theme ==='dark')
+    {
+      dynamic(await import('highlight.js/styles/a11y-dark.css'))
+    }
+    else {
+      dynamic(await import('highlight.js/styles/a11y-light.css'))
+    }
+  }
+  useLayoutEffect(() => {
+    addThemeFromHjs('dark')
+  }, [])
+
+
+  
+
+  
+  
+
   const dispatch = useAppDispatch();
 
   const answerContent = useAppSelector(submit_answer_content)

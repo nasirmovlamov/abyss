@@ -10,6 +10,8 @@ import thumbs_up from "/public/thumbs-up.svg"
 
 interface Props {
     data:{
+        id:number
+        slug:string
         avatar:string
         name:string
         title:string
@@ -33,7 +35,7 @@ function FormQuestion({data}: Props): ReactElement {
             </PersonCont>
 
             <TextCont>
-                <NavLink href={`/forum/18/animi-aut-voluptatum`}>
+                <NavLink href={`/forum/${data.id}/${data.slug}`}>
                     <Title> 
                         {data.title}
                     </Title>
