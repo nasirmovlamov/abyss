@@ -40,8 +40,7 @@ function Forum({}: Props): ReactElement {
                 <ForumPage>
                     
                     <PageTabs/>  
-                    {`${encryptData("salam")}`}
-                    {`${decryptData(encryptData("salam"))}`}`
+                    
                     {forumSearchStatus === "loaded" && forumSearchData.map((element , index) => <FormQuestion  key={index} data={element}/>)} 
                     {forumSearchStatus === "loading" && 
                         <div style={{width:"100%" , display:"flex", flexDirection:"column", rowGap:"10px"}}>

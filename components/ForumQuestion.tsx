@@ -9,19 +9,7 @@ import { QuestionStatisticButton, QuestionStatistics, VotePercentage } from '../
 import thumbs_up from "/public/thumbs-up.svg"
 
 interface Props {
-    data:{
-        id:string
-        slug:string
-        avatar:string
-        name:string
-        title:string
-        content:string
-        tags:string[]
-        createdAt:string
-        answerCount:string
-        helpfulCount:string
-        viewsCount:string
-    }
+    data:any
 }
 
 function FormQuestion({data}: Props): ReactElement {
@@ -46,7 +34,7 @@ function FormQuestion({data}: Props): ReactElement {
 
                 <BottomSide>
                     <QuestionTags>
-                        {JSON.parse(data.tags).map( (tags, index ) =>  index < 3 && <Tags>{tags}</Tags>)}
+                        {JSON.parse(data.tags).map( (tags:any, index:any ) =>  index < 3 && <Tags>{tags}</Tags>)}
                     </QuestionTags>
 
                     <CountOfProducts> 
