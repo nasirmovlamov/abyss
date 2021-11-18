@@ -120,14 +120,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
 
         <PageDefaultStyle >
             <SidePartOfPage side={"left"}>
-                {/* <SingleProductAside>
-                {
-                    singleQuestionStatus === "loading" ? 
-                    <Loader/>
-                    :
-                    <>Left SIDE</>
-                }
-                </SingleProductAside> */}
+                
             </SidePartOfPage>
 
             <MainPartOfPage>
@@ -154,7 +147,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
                                                 {singleQuestionData.title}
                                             </QuestionTitle>    
                                             <QuestionContent> 
-                                                {parseHtmlWithMention(singleQuestionData.content , singleQuestionData.linked_products)}
+                                                {/* {parseHtmlWithMention(singleQuestionData.content , singleQuestionData.linked_products)} */}
                                             </QuestionContent>
 
                                             <QuestionTagsAndDate>
@@ -205,7 +198,6 @@ function SingleQuestionPAge({}: Props): ReactElement {
                             } 
                         </>
                     
-                        {/* Answers and Products */}
                         {              
                                 singleQuestionStatus === "idle"
                                 && 
@@ -215,7 +207,6 @@ function SingleQuestionPAge({}: Props): ReactElement {
                                     <ProductsConts />
                                 </AnswersAndProductsCont>
                         }
-                        {/* Answers and Products */}
 
                 </SingleProductMiddle>
             </MainPartOfPage>
