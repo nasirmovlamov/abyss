@@ -40,17 +40,17 @@ function ProductsConts({}: Props): ReactElement {
         <ProductsCont id="productsCont"  ref={ref} style={{scrollMarginTop: "130px"}}>
 
 
-        {
-            linkedProductsStatus === "loading" && 
-            <div ref={inViewRefProductsLoad}>
-                <AnswerSkeleton/>
-                <AnswerSkeleton/>
-                <AnswerSkeleton/>
-                <AnswerSkeleton/>
-                <AnswerSkeleton/>
-                <AnswerSkeleton/>
-            </div>
-        }
+            {
+                linkedProductsStatus === "loading" && 
+                <div ref={inViewRefProductsLoad}>
+                    <AnswerSkeleton/>
+                    <AnswerSkeleton/>
+                    <AnswerSkeleton/>
+                    <AnswerSkeleton/>
+                    <AnswerSkeleton/>
+                    <AnswerSkeleton/>
+                </div>
+            }
         </ProductsCont>
     )
 }

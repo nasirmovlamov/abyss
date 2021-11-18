@@ -114,13 +114,18 @@ function SingleQuestionPAge({}: Props): ReactElement {
 
     }
 
-    
+    if(singleQuestionData.status === "loading")
+    {
+        return(
+            <></>
+        )
+    }
 
     return (
 
         <PageDefaultStyle >
             <SidePartOfPage side={"left"}>
-                
+                {console.log(singleQuestionData)}
             </SidePartOfPage>
 
             <MainPartOfPage>
@@ -137,6 +142,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
                                 <>
 
                                     <QuestionCont id={`question${singleQuestionData.id}`}>
+                                        
                                         <PersonCont>
                                             <Avatar></Avatar>
                                             <Name>{singleQuestionData.user.name}</Name>
@@ -147,7 +153,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
                                                 {singleQuestionData.title}
                                             </QuestionTitle>    
                                             <QuestionContent> 
-                                                {/* {parseHtmlWithMention(singleQuestionData.content , singleQuestionData.linked_products)} */}
+                                                 {parseHtmlWithMention(singleQuestionData.content , singleQuestionData.linked_products)} 
                                             </QuestionContent>
 
                                             <QuestionTagsAndDate>
@@ -185,11 +191,11 @@ function SingleQuestionPAge({}: Props): ReactElement {
                                             <QuestionDate>
                                                 2d 7h ago
                                             </QuestionDate>
-                                            {/* <QuestionStatisticElement>
-                                                <QuestionStatisticButton onClick={voting} color={singleQuestionData.user_votes === null ? "red" : "green"}>like</QuestionStatisticButton>
+                                             <QuestionStatisticElement>
+                                                {/* <QuestionStatisticButton onClick={voting} color={singleQuestionData.user_votes === null ? "red" : "green"}>like</QuestionStatisticButton> */}
                                                 <QuestionStatisticText>Give Vote</QuestionStatisticText>
                                                 <QuestionDate> {singleQuestionData.created_at} </QuestionDate>
-                                            </QuestionStatisticElement> */}
+                                            </QuestionStatisticElement> 
                                         </QuestionStatistics>
                                     </QuestionCont>
 
@@ -203,7 +209,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
                                 && 
                                 <AnswersAndProductsCont>
                                     <SinglePageTabs/>
-                                    <AnswersConts />
+                                    {/* <AnswersConts /> */}
                                     <ProductsConts />
                                 </AnswersAndProductsCont>
                         }
