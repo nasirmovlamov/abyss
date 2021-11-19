@@ -10,10 +10,11 @@ import { AddQuesitionCont, SearchBoxContainer , SearchBoxPage, SearchBoxStyle, S
 import { MainPartOfPageStyle, SidePartOfPageStyle } from '../styles/pages/Page.styled'
 import { useScrollYPosition } from 'react-use-scroll-position';
 import { forumSearch } from '../app/thunks/SearchBoxThunks'
-import { forum_search_value, getCachedSearchBoxData, onForumSearchValue } from '../app/feature/SearchBoxSlice'
+import {  forum_search_value, getCachedSearchBoxData, onForumSearchValue } from '../app/feature/SearchBoxSlice'
 import { getFiltersFromCache } from '../app/feature/PageFiltersSlice'
 import { createProductThunk } from '../app/thunks/CreateProductThunks'
 import { getAccessToken } from '../helpers/token/TokenHandle'
+import { getCookie } from '../logic/CookieFunctions'
 
 
 interface Props {
@@ -31,7 +32,6 @@ function SearchBox({}: Props): ReactElement {
     const scrollY = useScrollYPosition();
     const [scrollSearchBox, setscrollSearchBox] = useState<number>(0)
     const [scrollYInside, setscrollYInside] = useState(0)
-
 
     const searchBoxValue = useAppSelector(forum_search_value)
     const [searchValue, setSearchValue] = useState("")
@@ -167,7 +167,7 @@ function SearchBox({}: Props): ReactElement {
                 searchInputRef.current!.focus()
                 dispatch(getFiltersFromCache(null))
                 dispatch(getCachedSearchBoxData(null))
-                // dispatch(forumSearch(searchBoxValue))
+                dispatch(forumSearch(getCookie('ForumSearchValue')))
             }
         }
     }, [router])

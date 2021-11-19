@@ -7,6 +7,7 @@ import { faThumbsUp } from '@fortawesome/free-regular-svg-icons'
 import NavLink from './NavLink'
 import { QuestionStatisticButton, QuestionStatistics, VotePercentage } from '../styles/pages/SingleQuestionPage.styled'
 import thumbs_up from "/public/thumbs-up.svg"
+import { parseHtml, parseHtmlWithMention } from '../logic/htmlParser'
 
 interface Props {
     data:any
@@ -29,7 +30,7 @@ function FormQuestion({data}: Props): ReactElement {
                     </Title>
                 </NavLink>
                 <Content> 
-                    {data.content}
+                    {parseHtmlWithMention(data.content)}
                 </Content>
 
                 <BottomSide>

@@ -80,14 +80,13 @@ function AnswersConts({}: Props): ReactElement {
             {
                 const data:GET_ANSWER_INTERFAC ={page:topPage,direction:"next",questionId:singleQuestionData.id}
                 dispatch(getAnswers(data))
-                if(topPage === 1)
-                {
-                    const data:GET_ANSWER_INTERFAC ={page:downPage,direction:"previous",questionId:singleQuestionData.id}
-                    dispatch(getAnswers(data))
-                }
             }
         }
-        else if(inViewLoaderUp)
+    }, [inViewLoaderDown])
+    
+
+    useEffect(() => {
+        if(inViewLoaderUp)
         {
             if(downAnswersStatus ==="loading")
             {
@@ -96,7 +95,11 @@ function AnswersConts({}: Props): ReactElement {
                 window.scrollBy({top:250,behavior: "smooth"}) 
             }
         }else{}
-    }, [inViewLoaderDown ,  inViewLoaderUp])
+    }, [inViewLoaderUp])
+    
+
+
+
     
     
     return (

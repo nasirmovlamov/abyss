@@ -25,10 +25,15 @@ export interface ANSWER_SUBMIT_INTERFACE {
 }
 
 export interface QUESTION_INTERFACE {
+    status:"idle" | "loading" | "failed",
     singleQuestionData:SingleFormDataInterface
     answersData:AnswerDataInterface
-    status:"idle" | "loading" | "failed",
     answerSubmitData:ANSWER_SUBMIT_INTERFACE
+    linkedProductsData:{
+        linkedProducts:any[],
+        status:"loading" | "idle" | "failed",
+        from:number,
+    }
 }
 
 export interface AnswerDataInterface{

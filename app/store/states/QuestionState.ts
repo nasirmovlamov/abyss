@@ -2,6 +2,7 @@ import { QUESTION_INTERFACE } from "../state-Interfaces/QuestionInterface";
 import { ANSWER_INTERFACE} from "../state-Interfaces/QuestionInterface";
 
 export const QUESTION_STATE:QUESTION_INTERFACE = {
+    status:'loading',
     singleQuestionData:{
         status:"loading",
         linked_products:[],
@@ -41,6 +42,10 @@ export const QUESTION_STATE:QUESTION_INTERFACE = {
         mentionedUsers:[],
         content:"",
     },
-    status:"loading"
+    linkedProductsData:{
+        linkedProducts:[],
+        status:"loading",
+        from:0
+    }
 }
 

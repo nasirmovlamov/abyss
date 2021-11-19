@@ -54,9 +54,12 @@ function SingleQuestionPAge({}: Props): ReactElement {
 
 
     useEffect(() => {
-        if(router.isReady && singleQuestionStatus === "loading")
+        if(router.isReady)
         {
-            dispatch(getSingleQuestion(router.asPath))
+            if(parseInt(id!) !== singleQuestionData.id)
+            {
+                dispatch(getSingleQuestion(router.asPath))
+            }
         }
     }, [router , userData])
 
@@ -142,7 +145,6 @@ function SingleQuestionPAge({}: Props): ReactElement {
                                 <>
 
                                     <QuestionCont id={`question${singleQuestionData.id}`}>
-                                        
                                         <PersonCont>
                                             <Avatar></Avatar>
                                             <Name>{singleQuestionData.user.name}</Name>
@@ -158,9 +160,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
 
                                             <QuestionTagsAndDate>
                                                 <QuestionTags>
-                                                    <QuestionTag>test 1</QuestionTag>
-                                                    <QuestionTag>test 2</QuestionTag>
-                                                    <QuestionTag>test 3</QuestionTag>
+                                                    {JSON.parse(singleQuestionData.tags).map( (tag:any, index:any ) =>  <QuestionTag key={tag}>{tag}</QuestionTag>)}
                                                 </QuestionTags> 
                                                 
                                                 
@@ -209,7 +209,9 @@ function SingleQuestionPAge({}: Props): ReactElement {
                                 && 
                                 <AnswersAndProductsCont>
                                     <SinglePageTabs/>
-                                    {/* <AnswersConts /> */}
+                                    <AnswersConts />
+
+                                    PRODUCTS
                                     <ProductsConts />
                                 </AnswersAndProductsCont>
                         }

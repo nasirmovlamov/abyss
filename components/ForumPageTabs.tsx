@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import React, { ReactElement, useEffect, useState } from 'react'
-import { forum_data_status, forum_search_data, forum_search_sort, forum_search_type, selectForumSortSearchOption, selectForumTypeSearchOption } from '../app/feature/SearchBoxSlice'
+import { forum_data_status, forum_search_data, forum_search_results_number, forum_search_sort, forum_search_type, selectForumSortSearchOption, selectForumTypeSearchOption } from '../app/feature/SearchBoxSlice'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { FooterColumn,  FooterElement,  FooterRow, FooterStyle } from '../styles/components/styled-elements/Footer.style'
 import { Line, TabButton, TabButtonsCont, TabResults, Tabs, TabsContainer, TabTags, TabTagsAndResults, TabTagsCont, TabText, } from '../styles/components/styled-elements/PageTabs.style'
@@ -13,6 +13,7 @@ function PageTabs({}: Props): ReactElement {
     const dispatch = useAppDispatch()
     const searchType = useAppSelector(forum_search_type)
     const searchSort = useAppSelector(forum_search_sort)
+    const forumSearchResultsNumber = useAppSelector(forum_search_results_number)
     
     const forumSearchData = useAppSelector(forum_search_data)
     const forumSearchStatus = useAppSelector(forum_data_status)
@@ -57,7 +58,7 @@ function PageTabs({}: Props): ReactElement {
             </Tabs>
 
             <TabTagsAndResults>
-                <TabResults>{forumSearchStatus === "loaded" && <>{forumSearchData.length} results</>}  </TabResults>
+                <TabResults>{forumSearchStatus === "loaded" && <>{forumSearchResultsNumber} results</>}  </TabResults>
 
                 <TabTagsCont>
                     <TabTags name="tag" tagFocus={searchSort.includes(searchSorts[0])} onClick={() =>selectSort(searchSorts[0])}>{searchSorts[0]}</TabTags>

@@ -1,3 +1,4 @@
+import { getLinkedProducts } from '../thunks/LinkedProductsTunks';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { forgetPasswordThunk,   userCheck, userLogin, userLogout, userRegister,  } from '../thunks/AuthThunk'
 import {APP_STATE} from '../store/states/AppState'
@@ -70,6 +71,8 @@ export const QuestionSlice = createSlice({
     builder.addCase(getAnswers.fulfilled, (state, {payload}) => {
       const topAnswers = state.answersData.topAnswers
       const downAnswers = state.answersData.downAnswers
+
+
       if(payload === null)
       {
         
@@ -101,7 +104,7 @@ export const QuestionSlice = createSlice({
             downAnswers.status = 'idle'
             topAnswers.status = 'idle'
           }
-      }
+        }
       
       }
     }),
@@ -113,6 +116,24 @@ export const QuestionSlice = createSlice({
       state.answersData.topAnswers.answers = [...state.answersData.topAnswers.answers]
       state.answersData.topAnswers.status = 'failed'
     }) 
+
+    builder.addCase(getLinkedProducts.fulfilled, (state, action) => {
+      state.linkedProductsData.linkedProducts = [...state.linkedProductsData.linkedProducts , ...action.payload.data] 
+      state.linkedProductsData.status = 'idle'
+      state.linkedProductsData.from = state.linkedProductsData.linkedProducts.length
+    }) 
+    builder.addCase(getLinkedProducts.pending, (state, action) => {
+      state.linkedProductsData.status = 'loading'
+    }) 
+    builder.addCase(getLinkedProducts.rejected, (state, action) => {
+      state.linkedProductsData.status = 'failed'
+    }) 
+
+
+
+
+
+
 
 
     //ADD NEW ANSWER to Question Reducers
@@ -268,7 +289,8 @@ export const submit_answer_data = (state: RootState) => state.questionReducer.an
 export const top_page = (state: RootState) => state.questionReducer.answersData.topPage
 export const down_page = (state: RootState) => state.questionReducer.answersData.downPage
 export const total_page = (state: RootState) => state.questionReducer.answersData.totalPage
-
+export const from_value_for_linked_products = (state: RootState) => state.questionReducer.linkedProductsData.from
+export const linked_products_for_answers_of_question = (state: RootState) => state.questionReducer.linkedProductsData.linkedProducts
 
 
 export default QuestionSlice.reducer;

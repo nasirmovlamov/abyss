@@ -47,7 +47,7 @@ export const parseHtml = (html: string) => {
 
 
 export const parseHtmlWithMention = (html: string , linkedProducts: any[]) => {
-
+    let finalHtml = html
     const replaceAllSpanWithItsContentTagWhicClassIsEqualToMention = (html:any) => {
         const regex = /<span class="mention" (.*?)>(.*?)<\/span>(.*?)<\/span>/g;
         let mentionsArray = [];
@@ -56,12 +56,12 @@ export const parseHtmlWithMention = (html: string , linkedProducts: any[]) => {
                 mentionsArray = html.match(regex)
             }
         }
-        
         let newHtml = html;
         if(!mentionsArray)
         {
             return html
         }else{
+            let finalHtml = replaceAllSpanWithItsContentTagWhicClassIsEqualToMention(html)
             for (let i = 0; i < mentionsArray.length; i++) {
                 const dataIdOfSpan = mentionsArray[i].match(/data-id="(.*?)"/)[1];
                 const hrefOfSpan = mentionsArray[i].match(/href="(.*?)"/)[1];
@@ -88,17 +88,12 @@ export const parseHtmlWithMention = (html: string , linkedProducts: any[]) => {
                     // </div>`
                     // )
                 }else{}
-                
             }
-            
-    
             return newHtml
         }
         
     }
-    let finalHtml = replaceAllSpanWithItsContentTagWhicClassIsEqualToMention(html)
     
     // const newhtml = replaceAllSpanWithItsContentTagWhicClassIsEqualToMention(html)
     return parse(finalHtml);
-
 }  

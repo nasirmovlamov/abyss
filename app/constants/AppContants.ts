@@ -17,6 +17,7 @@ export const GET_QUESTION_COMMENTS:string = 'GET_QUESTION_COMMENTS'
 export const GET_ANSWER_COMMENTS:string = 'GET_ANSWER_COMMENTS'
 export const ADD_ANSWER_COMMENTS:string = 'ADD_ANSWER_COMMENTS'
 export const ADD_QUESTION_COMMENTS:string = 'ADD_QUESTION_COMMENTS'
+export const GET_LINKED_PRODUCTS:string = 'GET_LINKED_PRODUCTS'
 
 
 export const CHECK_CHAT:string = 'CHECK_CHAT'
@@ -27,6 +28,7 @@ export const SEND_MESSAGE_TO_ROOM:string = 'SEND_MESSAGE_TO_ROOM'
 export const LOAD_MESSAGES_TO_ROOM:string = 'LOAD_MESSAGES_TO_ROOM'
 
 export const SEARCH_FORUM:string = 'SEARCH_FORUM'
+export const SEARCH_FORUM_INFINITY:string = 'SEARCH_FORUM_INFINITY'
 
 
 
@@ -40,6 +42,3 @@ export const CREATE_PRODUCT:string = 'CREATE_PRODUCT'
 
 export const CHECK_PLAGIAT:string = 'CHECK_PLAGIAT'
 
-
-//Linked Products
-export const GET_LINKED_PRODUCTS:string = 'GET_LINKED_PRODUCTS'

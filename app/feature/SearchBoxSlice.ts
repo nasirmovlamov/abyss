@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store/store'
 import { SEARCHBOX_STATE } from '../store/states/SearchBoxState'
-import { forumSearch } from '../thunks/SearchBoxThunks'
+import { forumSearch, forumSearchInfinity } from '../thunks/SearchBoxThunks'
 import { autoErrorToaster } from '../../components/Notify/AutoErrorToaster'
 import { getCookie, setCookie } from '../../logic/CookieFunctions'
 
@@ -14,7 +14,6 @@ export const SearchBoxSlice = createSlice({
 
     getCachedSearchBoxData(state , action)
     { 
-      
       if(JSON.parse(getCookie('ForumFiltersSearchOption')))
       {
         state.searchBoxData.forum.searchOptions.filters = JSON.parse(getCookie('ForumFiltersSearchOption')!)
@@ -77,6 +76,8 @@ export const SearchBoxSlice = createSlice({
       setCookie("ForumSortSearchOption" , action.payload , 365)
     },
 
+    
+
 
   },
 
@@ -85,8 +86,9 @@ export const SearchBoxSlice = createSlice({
 
     // Forum Search
     builder.addCase(forumSearch.fulfilled, (state, {payload}) => {
-      console.log(payload.data.results)
       state.searchBoxData.forum.data = payload.data.results
+      state.searchBoxData.forum.fromNumber = state.searchBoxData.forum.data.length
+      state.searchBoxData.forum.results_number = payload.data.total
       state.searchBoxData.forum.status = "loaded"
     }),
     builder.addCase(forumSearch.pending, (state, {payload}) => {
@@ -97,6 +99,21 @@ export const SearchBoxSlice = createSlice({
       autoErrorToaster(payload)
     })  
 
+
+
+
+    // Forum Search
+    builder.addCase(forumSearchInfinity.fulfilled, (state, {payload}) => {
+      state.searchBoxData.forum.data = [... state.searchBoxData.forum.data , ...payload.data.results]
+      state.searchBoxData.forum.fromNumber = state.searchBoxData.forum.data.length
+      state.searchBoxData.forum.results_number = payload.data.total
+      
+    }),
+    builder.addCase(forumSearchInfinity.pending, (state, {payload}) => {
+    }),
+    builder.addCase(forumSearchInfinity.rejected, (state, {payload}) => {
+      autoErrorToaster(payload)
+    })  
 
 
 
@@ -125,6 +142,8 @@ export const forum_search_type = (state: RootState) => state.searchBoxReducer.se
 export const forum_search_sort = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.searchOptions.forumSort
 export const forum_search_filters = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.searchOptions.filters
 export const forum_search_value = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.searchOptions.searchValue
+export const forum_search_from_value = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.fromNumber
+export const forum_search_results_number = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.results_number
 
 
 

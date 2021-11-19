@@ -46,8 +46,7 @@ interface Props {
         soldCount:string
         price:string
         tags:string[]
-
-    }
+    } | any
 }
 
 function ListingStoreProduct({data}: Props): ReactElement {
@@ -58,18 +57,18 @@ function ListingStoreProduct({data}: Props): ReactElement {
 
             <ProductImageAndContent>
                 <ProductLanguageAndImage>
-                    <ProductPerson src={data.avatar}/>
+                    {/* <ProductPerson src={data.avatar}/> */}
 
                     <ProductImageOverlay></ProductImageOverlay>
                     <LanguageInfo>
                         <LanguageContForTextAndIcon>
                             <FontAwesomeIcon icon={faLaptopCode}/>
-                            <LanguageText>{data.programingLanguage}</LanguageText>
+                            {/* <LanguageText>{data.programingLanguage}</LanguageText> */}
                         </LanguageContForTextAndIcon>
                         
                         <LinesofCodeContForIconAndText>
                             <FontAwesomeIcon icon={faPython}/>
-                            <LinesofCodeText>{data.lineCount}</LinesofCodeText>
+                            {/* <LinesofCodeText>{data.lineCount}</LinesofCodeText> */}
                         </LinesofCodeContForIconAndText>
                     </LanguageInfo>
                 </ProductLanguageAndImage>
@@ -80,11 +79,11 @@ function ListingStoreProduct({data}: Props): ReactElement {
                             <NavLink href={"store/1/test"}><ProductTitle>{data.name}</ProductTitle></NavLink>
                             <ProductDetailCont>
                                 <ProductStarCont><StarCountShow count={4.3}/> {data.starCount}</ProductStarCont>
-                                <ProductSoldCont><FontAwesomeIcon icon={faDownload}/> {data.soldCount}</ProductSoldCont>
-                                <ProductViewCont><FontAwesomeIcon icon={faEye}/> {data.soldCount}</ProductViewCont>
+                                <ProductSoldCont><FontAwesomeIcon icon={faDownload}/> {data.download_count}</ProductSoldCont>
+                                <ProductViewCont><FontAwesomeIcon icon={faEye}/> {data.view_count}</ProductViewCont>
                             </ProductDetailCont>
                             <ProductTags>
-                                {data.tags.map((tag , index) => index < 3 && <ProductTag>{tag}</ProductTag>)}
+                                {/* {data.tags.map((tag , index) => index < 3 && <ProductTag>{tag}</ProductTag>)} */}
                             </ProductTags>
                             {/* <ProductPriceCont>{data.price}$</ProductPriceCont> */}
                         </ProductContent>

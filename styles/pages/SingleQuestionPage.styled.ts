@@ -345,9 +345,9 @@ export const ProductsCont = styled.div`
     box-sizing: border-box;
     align-items: center ;
     justify-content: center;
-    height: 1500px;
     background-color: gray;
     border-radius: 6px;
+    padding-top: 100px  ;
     color: white;
     padding-left: 12px ;
     padding-right: 12px ;
