@@ -57,7 +57,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
         if(router.isReady)
         {
             dispatch(getSingleQuestion(router.asPath))
-        }
+        }]
     }, [router , userData])
 
     
