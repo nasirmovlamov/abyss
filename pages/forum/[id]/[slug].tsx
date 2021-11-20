@@ -56,10 +56,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
     useEffect(() => {
         if(router.isReady)
         {
-            if(parseInt(id!) !== singleQuestionData.id)
-            {
-                dispatch(getSingleQuestion(router.asPath))
-            }
+            dispatch(getSingleQuestion(router.asPath))
         }
     }, [router , userData])
 
