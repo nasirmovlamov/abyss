@@ -30,7 +30,7 @@ function FormQuestion({data}: Props): ReactElement {
                     </Title>
                 </NavLink>
                 <Content> 
-                    {parseHtmlWithMention(data.content)}
+                    {parseHtmlWithMention(data.content , [])}
                 </Content>
 
                 <BottomSide>
