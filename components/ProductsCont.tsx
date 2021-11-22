@@ -34,6 +34,7 @@ function ProductsConts({}: Props): ReactElement {
         }
     }, [inView])
 
+    
     useEffect(() => {
         if (inViewProductsLoader) {
             const data = {question_id: singleQuestionData.id , from:fromValueForLinkedProducts}

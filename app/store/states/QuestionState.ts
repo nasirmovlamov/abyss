@@ -24,6 +24,7 @@ export const QUESTION_STATE:QUESTION_INTERFACE = {
         view_count:0
     } ,
     answersData:{
+        questionId:null,
         topPage:1,
         downPage:0,
         totalPage:0,

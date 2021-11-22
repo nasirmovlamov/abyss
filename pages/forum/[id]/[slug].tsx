@@ -126,7 +126,6 @@ function SingleQuestionPAge({}: Props): ReactElement {
 
         <PageDefaultStyle >
             <SidePartOfPage side={"left"}>
-                {console.log(singleQuestionData)}
             </SidePartOfPage>
 
             <MainPartOfPage>

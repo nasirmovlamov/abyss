@@ -37,6 +37,7 @@ export interface QUESTION_INTERFACE {
 }
 
 export interface AnswerDataInterface{
+    questionId:number | null , 
     topPage:number,
     downPage:number,
     totalPage:number,

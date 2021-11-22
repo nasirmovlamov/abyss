@@ -58,6 +58,15 @@ export const QuestionSlice = createSlice({
     builder.addCase(getSingleQuestion.fulfilled, (state, {payload}) => {
       state.singleQuestionData = payload.data
       state.singleQuestionData.status = 'idle'  
+      if(state.singleQuestionData.id !== state.answersData.questionId){
+        state.answersData.topAnswers.answers= []
+        state.answersData.downAnswers.answers= []
+        state.answersData.topAnswers.status= 'loading'
+        state.answersData.downAnswers.status= 'loading'
+        state.answersData.topPage = 1
+        state.answersData.downPage = 0
+        state.answersData.totalPage = 0
+      }
     }),
     builder.addCase(getSingleQuestion.pending, (state, {payload}) => {
       state.singleQuestionData.status = 'loading'
@@ -71,8 +80,7 @@ export const QuestionSlice = createSlice({
     builder.addCase(getAnswers.fulfilled, (state, {payload}) => {
       const topAnswers = state.answersData.topAnswers
       const downAnswers = state.answersData.downAnswers
-
-
+      state.answersData.questionId = state.singleQuestionData.id
       if(payload === null)
       {
         
