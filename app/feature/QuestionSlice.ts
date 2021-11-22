@@ -75,12 +75,14 @@ export const QuestionSlice = createSlice({
       state.singleQuestionData.status = 'failed'
     })  
 
-
-
-
-
-
     
+
+
+
+
+
+
+
 
     //GET  QUESTION ANSWERS Reducers
     builder.addCase(getAnswers.fulfilled, (state, {payload}) => {
