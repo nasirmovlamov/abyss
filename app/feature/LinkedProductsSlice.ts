@@ -47,7 +47,7 @@ export const LinkedProductsSlice = createSlice({
 
 
 // data
-export const linked_products_status = (state: RootState) => state.linkedProductsReducer.status
+// export const linked_products_status = (state: RootState) => state.linkedProductsReducer.status
 
 
 export default LinkedProductsSlice.reducer;

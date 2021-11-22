@@ -66,6 +66,13 @@ export const QuestionSlice = createSlice({
         state.answersData.topPage = 1
         state.answersData.downPage = 0
         state.answersData.totalPage = 0
+
+        state.linkedProductsData.status = 'loading'
+        state.linkedProductsData.current_page = 1
+        state.linkedProductsData.last_page = 1
+        state.linkedProductsData.total = 0
+        state.linkedProductsData.linkedProducts = []
+
       }
     }),
     builder.addCase(getSingleQuestion.pending, (state, {payload}) => {
@@ -75,7 +82,7 @@ export const QuestionSlice = createSlice({
       state.singleQuestionData.status = 'failed'
     })  
 
-    
+
 
 
 
@@ -133,10 +140,25 @@ export const QuestionSlice = createSlice({
       state.answersData.topAnswers.status = 'failed'
     }) 
 
+
+
+
     builder.addCase(getLinkedProducts.fulfilled, (state, action) => {
       state.linkedProductsData.linkedProducts = [...state.linkedProductsData.linkedProducts , ...action.payload.data] 
-      state.linkedProductsData.status = 'idle'
-      state.linkedProductsData.from = state.linkedProductsData.linkedProducts.length
+      if(state.linkedProductsData.current_page === action.payload.meta.last_page){
+        state.linkedProductsData.status = "idle"
+        return
+      }
+
+      state.linkedProductsData.current_page += 1
+      console.log(action.payload)
+      if(state.linkedProductsData.current_page < action.payload.meta.last_page){
+        state.linkedProductsData.last_page = action.payload.meta.last_page
+        state.linkedProductsData.total = action.payload.meta.total  
+      }
+      
+
+
     }) 
     builder.addCase(getLinkedProducts.pending, (state, action) => {
       state.linkedProductsData.status = 'loading'
@@ -305,8 +327,11 @@ export const submit_answer_data = (state: RootState) => state.questionReducer.an
 export const top_page = (state: RootState) => state.questionReducer.answersData.topPage
 export const down_page = (state: RootState) => state.questionReducer.answersData.downPage
 export const total_page = (state: RootState) => state.questionReducer.answersData.totalPage
-export const from_value_for_linked_products = (state: RootState) => state.questionReducer.linkedProductsData.from
+export const current_page_linked_products = (state: RootState) => state.questionReducer.linkedProductsData.current_page
+export const total_linked_products = (state: RootState) => state.questionReducer.linkedProductsData.total
+export const last_page_linked_products = (state: RootState) => state.questionReducer.linkedProductsData.last_page
 export const linked_products_for_answers_of_question = (state: RootState) => state.questionReducer.linkedProductsData.linkedProducts
+export const linked_products_status = (state: RootState) => state.questionReducer.linkedProductsData.status
 
 
 export default QuestionSlice.reducer;

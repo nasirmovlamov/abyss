@@ -46,7 +46,9 @@ export const QUESTION_STATE:QUESTION_INTERFACE = {
     linkedProductsData:{
         linkedProducts:[],
         status:"loading",
-        from:0
+        current_page:1,
+        last_page:1,
+        total:0,
     }
 }
 

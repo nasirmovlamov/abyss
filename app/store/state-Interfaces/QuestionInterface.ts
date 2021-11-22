@@ -32,7 +32,9 @@ export interface QUESTION_INTERFACE {
     linkedProductsData:{
         linkedProducts:any[],
         status:"loading" | "idle" | "failed",
-        from:number,
+        current_page:number,
+        last_page:number,
+        total:number,
     }
 }
 

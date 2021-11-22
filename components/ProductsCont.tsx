@@ -5,9 +5,8 @@ import { useInView } from 'react-intersection-observer';
 import { useAppDispatch, useAppSelector } from '../app/store/hooks';
 import { changeForumTabActive, forum_tabs } from '../app/feature/PageTabsSlice';
 import AnswerSkeleton from './Skeletons/AnswerSkeleton';
-import { linked_products_status } from '../app/feature/LinkedProductsSlice';
 import { getLinkedProducts } from '../app/thunks/LinkedProductsTunks';
-import { from_value_for_linked_products, linked_products_for_answers_of_question, single_question_data } from '../app/feature/QuestionSlice';
+import { current_page_linked_products,  last_page_linked_products, linked_products_for_answers_of_question, linked_products_status, single_question_data, total_linked_products } from '../app/feature/QuestionSlice';
 import ListingStoreProduct from './ListingStoreProduct';
 
 interface Props {
@@ -19,7 +18,9 @@ function ProductsConts({}: Props): ReactElement {
     const linkedProductsStatus = useAppSelector(linked_products_status);
     const [inViewRefProductsLoad, inViewProductsLoader] = useInView()
     const singleQuestionData = useAppSelector(single_question_data)
-    const fromValueForLinkedProducts = useAppSelector(from_value_for_linked_products)
+    const currentPageLinkedProducts = useAppSelector(current_page_linked_products)
+    const totalLinkedProducts = useAppSelector(total_linked_products)
+    const lastPageLinkedProducts = useAppSelector(last_page_linked_products)
     const linkedProductsForAnswersOfQuestion = useAppSelector(linked_products_for_answers_of_question)
     const dispatch = useAppDispatch();
     const forumTabs = useAppSelector(forum_tabs)
@@ -35,9 +36,10 @@ function ProductsConts({}: Props): ReactElement {
     }, [inView])
 
     
+
     useEffect(() => {
         if (inViewProductsLoader) {
-            const data = {question_id: singleQuestionData.id , from:fromValueForLinkedProducts}
+            const data = {question_id: singleQuestionData.id , current_page:currentPageLinkedProducts , total:totalLinkedProducts, last_page:lastPageLinkedProducts}
             dispatch(getLinkedProducts(data))
         }
     }, [inViewProductsLoader])
