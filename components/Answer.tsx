@@ -45,24 +45,7 @@ function Answer({answer ,direction  }: Props): ReactElement {
         else{}
     }
     
-    // const openComments = () =>{
-        
-    //     setTimeout(() => {
-    //         dispatch(getAnswerComments(answer.id))
-    //         dispatch(
-    //             showComments(
-    //                 {
-    //                     id:answer.id, 
-    //                     user:answer.user, 
-    //                     title:answer.content, 
-    //                     type:"answer",
-    //                     showComments:true
-    //                 }
-    //             )
-    //         )
-    //     }, 1000);
-        
-    // }
+    
 
     const clickToOpenComments = () =>{
         document.querySelector(`#answer${answer.id}`)?.setAttribute("style", "border: 1px solid white !important;position:relative;")
@@ -82,8 +65,9 @@ function Answer({answer ,direction  }: Props): ReactElement {
             )
         )
         dispatch(getAnswerComments(answer.id))
-        
     }
+
+
 
     useEffect(() => {
         if(userData)

@@ -1,3 +1,4 @@
+import { getMentionsOfProduct } from './../thunks/LinkedProductsTunks';
 import { getLinkedProducts } from '../thunks/LinkedProductsTunks';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { forgetPasswordThunk,   userCheck, userLogin, userLogout, userRegister,  } from '../thunks/AuthThunk'
@@ -40,10 +41,18 @@ export const QuestionSlice = createSlice({
     },
     AnswerContentOnChange(state, action){
       state.answerSubmitData.content = action.payload
+    },
+
+    getOptionsForMentionOfProduct(state, action){
+      if(state.mentionsOfLinkedProduct.productId !== action.payload.productId){
+        state.mentionsOfLinkedProduct.productId = action.payload.productId
+        state.mentionsOfLinkedProduct.mentions = []
+        state.mentionsOfLinkedProduct.current_page = 1
+        state.mentionsOfLinkedProduct.last_page = 1
+        state.mentionsOfLinkedProduct.total = 0
+        state.mentionsOfLinkedProduct.status = 'loading'
+      }
     }
-
-
-
 
 
   },
@@ -165,6 +174,33 @@ export const QuestionSlice = createSlice({
     }) 
     builder.addCase(getLinkedProducts.rejected, (state, action) => {
       state.linkedProductsData.status = 'failed'
+    }) 
+
+
+
+    //getMentionsOfProduct
+
+    builder.addCase(getMentionsOfProduct.fulfilled, (state, action) => {
+        state.mentionsOfLinkedProduct.mentions = [...state.mentionsOfLinkedProduct.mentions , ...action.payload.data]
+
+        if(state.mentionsOfLinkedProduct.current_page === action.payload.meta.last_page){
+          state.mentionsOfLinkedProduct.status = "idle"
+          return
+        }else {
+          state.mentionsOfLinkedProduct.status = 'loading'
+        }
+        state.mentionsOfLinkedProduct.current_page += 1
+        console.log(action.payload)
+        if(state.mentionsOfLinkedProduct.current_page < action.payload.meta.last_page){
+          state.mentionsOfLinkedProduct.last_page = action.payload.meta.last_page
+          state.mentionsOfLinkedProduct.total = action.payload.meta.total  
+        }
+    }) 
+    builder.addCase(getMentionsOfProduct.pending, (state, action) => {
+        state.mentionsOfLinkedProduct.status = 'pending'
+    }) 
+    builder.addCase(getMentionsOfProduct.rejected, (state, action) => {
+        state.mentionsOfLinkedProduct.status = 'failed'
     }) 
 
 
@@ -298,6 +334,9 @@ export const QuestionSlice = createSlice({
     }) 
 
 
+
+
+
     
   },
 
@@ -306,11 +345,19 @@ export const QuestionSlice = createSlice({
 
 // action
 
-export const {changeTopAnswersStatus , mentionUserAtAnswer, linkProductAtAnswer, changeDownAnswersStatus , AnswerContentOnChange} = QuestionSlice.actions;
+export const {
+  changeTopAnswersStatus , 
+  mentionUserAtAnswer, 
+  linkProductAtAnswer, 
+  changeDownAnswersStatus , 
+  AnswerContentOnChange , 
+  getOptionsForMentionOfProduct
+} = QuestionSlice.actions;
 
 
 // data
 export const single_question_data = (state: RootState) => state.questionReducer.singleQuestionData
+export const single_question_id = (state: RootState) => state.questionReducer.singleQuestionData.id
 export const single_question_status = (state: RootState) => state.questionReducer.singleQuestionData.status
 
 export const submitted_answer = (state: RootState) => state.questionReducer.answersData.submittedAnswer
@@ -332,6 +379,8 @@ export const total_linked_products = (state: RootState) => state.questionReducer
 export const last_page_linked_products = (state: RootState) => state.questionReducer.linkedProductsData.last_page
 export const linked_products_for_answers_of_question = (state: RootState) => state.questionReducer.linkedProductsData.linkedProducts
 export const linked_products_status = (state: RootState) => state.questionReducer.linkedProductsData.status
+
+export const mentions_of_linked_product = (state: RootState) => state.questionReducer.mentionsOfLinkedProduct
 
 
 export default QuestionSlice.reducer;

@@ -117,7 +117,6 @@ function SearchBox({}: Props): ReactElement {
         } 
         else if(storeWordRegex.test(router.asPath))
         {
-            dispatch(createProductThunk())
             dispatch(changeModalAction("productCreate"))
         }
         else 

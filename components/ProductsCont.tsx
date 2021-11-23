@@ -7,7 +7,7 @@ import { changeForumTabActive, forum_tabs } from '../app/feature/PageTabsSlice';
 import AnswerSkeleton from './Skeletons/AnswerSkeleton';
 import { getLinkedProducts } from '../app/thunks/LinkedProductsTunks';
 import { current_page_linked_products,  last_page_linked_products, linked_products_for_answers_of_question, linked_products_status, single_question_data, total_linked_products } from '../app/feature/QuestionSlice';
-import ListingStoreProduct from './ListingStoreProduct';
+import LinkedStoreProduct from './LinkedStoreProduct';
 
 interface Props {
     
@@ -17,7 +17,9 @@ function ProductsConts({}: Props): ReactElement {
     const { ref, inView, entry } = useInView({threshold: 0,});
     const linkedProductsStatus = useAppSelector(linked_products_status);
     const [inViewRefProductsLoad, inViewProductsLoader] = useInView()
+
     const singleQuestionData = useAppSelector(single_question_data)
+    
     const currentPageLinkedProducts = useAppSelector(current_page_linked_products)
     const totalLinkedProducts = useAppSelector(total_linked_products)
     const lastPageLinkedProducts = useAppSelector(last_page_linked_products)
@@ -49,13 +51,13 @@ function ProductsConts({}: Props): ReactElement {
         <ProductsCont id="productsCont"  ref={ref} style={{scrollMarginTop: "130px"}}>
             {
                 linkedProductsForAnswersOfQuestion.map((element , index)  => 
-                    <ListingStoreProduct key={index} data={element}/>
+                    <LinkedStoreProduct key={index} data={element}/>
                 )
             } 
             
             {
                 linkedProductsStatus === "loading" && 
-                <div ref={inViewRefProductsLoad}>
+                <div style={{}} ref={inViewRefProductsLoad}>
                     <AnswerSkeleton/>
                     <AnswerSkeleton/>
                 </div>

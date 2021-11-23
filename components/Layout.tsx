@@ -5,7 +5,6 @@ import { useAppDispatch, useAppSelector } from '../app/store/hooks';
 import { userCheck } from '../app/thunks/AuthThunk';
 import Footer from './Footer'
 import Modals from './Modals/Modals';
-import Navbar from './Navbar'
 import OverlayBackground from './Overlay';
 import SearchBox from './SearchBox';
 import { is_chatbox_opened, openChat } from '../app/feature/ChatBoxSlice'
@@ -17,6 +16,7 @@ import ChatBox from './ChatBox';
 import { closeComments, is_comment_opened } from '../app/feature/CommentsSlice';
 import Cookies from 'js-cookie'
 import { getCookie } from '../logic/CookieFunctions';
+import Header from './Header';
 interface Props {
     // any props that come into the component
 }
@@ -60,7 +60,7 @@ const Layout: FC<Props> = ({ children, ...props }) => {
             <>
                 
                 <div style={{width:"100%" , minHeight:"100vh" }}>
-                    <Navbar/>
+                    <Header/>
 
                     <SearchBox/>
                     {isChatBoxOpened && <ChatBox/>}

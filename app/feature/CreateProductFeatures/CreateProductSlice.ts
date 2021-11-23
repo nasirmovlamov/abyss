@@ -1,4 +1,5 @@
-import { createProductThunk, startPlagirismChecker } from './../../thunks/CreateProductThunks';
+import { autoSuccessToaster } from './../../../components/Notify/AutoSuccessToast';
+import { createProductThunk, addFile, startPlagirismChecker } from './../../thunks/CreateProductThunks';
 import { getClipsIndex , getClips} from '../../../logic/createProduct';
 import { MainClip } from '../../../styles/pages/Store.styled';
 import { RootState } from "../../store/store";
@@ -6,7 +7,6 @@ import { createSlice} from '@reduxjs/toolkit'
 import { autoErrorToaster } from "../../../components/Notify/AutoErrorToaster";
 import { CreateProductState } from "../../store/states/CreateProductState";
 import { SectionOfProduct } from "../../store/state-Interfaces/CreateProductInterface";
-import { addFile } from '../../thunks/CreateProductThunk';
 
 
 
@@ -86,53 +86,7 @@ export const CreateProductSlice = createSlice({
             }
         },
 
-        // ProductCreateStep2OnBlurs(state, action){
-        //     switch (action.payload.type) {
-        //         case 'product_name':
-        //             if(state.steps[2].details_data.product_name.length < 1)
-        //             {
-        //                 state.steps[2].validators.isNameFilled.valid = false
-        //             }else 
-        //             {
-
-        //                 state.steps[2].validators.isNameFilled.valid = true
-        //             }
-        //             break;
-        //         case 'product_tags':
-        //             if(state.steps[2].details_data.product_tags.length < 1)
-        //             {
-        //                 state.steps[2].validators.isTagsFilled.valid = false
-        //             }else 
-        //             {
-        //                 state.steps[2].validators.isTagsFilled.valid = true
-        //             }
-        //         case 'product_description':
-        //             if(state.steps[2].details_data.sections_product[1].label_value.length < 1)
-        //             {
-        //                 state.steps[2].validators.isDescriptionFilled.valid = false
-        //             }else {
-        //                 state.steps[2].validators.isDescriptionFilled.valid = true
-        //             }
-        //         case 'product_problem_aplicability':
-        //             if(state.steps[2].details_data.sections_product[2].label_value.length < 1)
-        //             {
-        //                 state.steps[2].validators.isApplicabilityFilled.valid = false
-        //             }else{
-        //                 state.steps[2].validators.isApplicabilityFilled.valid = true
-        //             }
-        //         case 'product_problem_formulation':
-        //             if(state.steps[2].details_data.sections_product[3].label_value.length < 1)
-        //             {
-        //                 state.steps[2].validators.isProblemFormulationFilled.valid = false
-        //             }else 
-        //             {
-                        
-        //             }
-                    
-        //         default: 
-        //             break;
-        //     }
-        // },
+        
 
         ProductCreateStep2Validate(state, _){
             if(state.steps[2].details_data.product_name.length < 1)
@@ -504,8 +458,15 @@ export const CreateProductSlice = createSlice({
 
         // Create Product
         builder.addCase(createProductThunk.fulfilled, (state, {payload}) => {
-            state.product_created.id = payload.id
+            autoSuccessToaster(payload.message)
+            state.product_created.id = payload.product_id
+            state.product_created.status = payload.product_status
+            state.product_created.sendend_source_code = payload.source_code
             state.product_created.status = 'created'
+            if(state.steps[state.current_step].validated === 'valid')
+            {
+                state.current_step = 2
+            }
         }),
         builder.addCase(createProductThunk.pending, (state, {payload}) => {
             state.product_created.id = null
@@ -520,16 +481,20 @@ export const CreateProductSlice = createSlice({
 
         // Start Plagiarism
         builder.addCase(startPlagirismChecker.fulfilled, (state, {payload}) => {
-            state.product_created.id = payload.id
-            state.product_created.status = 'created'
+            autoSuccessToaster(payload.data.message)
+            state.product_created.sendend_source_code = payload.source_code
+            state.product_created.plagirismLoading = 'valid'
+            if(state.steps[state.current_step].validated === 'valid')
+            {
+                state.current_step = 2
+            }
         }),
         builder.addCase(startPlagirismChecker.pending, (state, {payload}) => {
-            state.product_created.id = null
-            state.product_created.status = 'pending'
+            state.product_created.plagirismLoading = 'loading'
         }),
         builder.addCase(startPlagirismChecker.rejected, (state, action:any) => {
-            state.product_created.id = null
-            state.product_created.status = 'failed'
+            state.product_created.plagirismLoading = 'not-valid'
+            autoErrorToaster(action.payload)
         })
 
 
@@ -552,7 +517,6 @@ export const {
     ProductCreateStep1OnBlurs,
     ProductCreateStep1Validate,
     ProductCreateStep2OnChanges,
-    // ProductCreateStep2OnBlurs,
     ProductCreateStep2Validate,
     updateKey , 
     updateLabel , 
@@ -584,12 +548,71 @@ export const product_create_step3_data = (state: RootState) => state.createProdu
 export const product_create_step4_data = (state: RootState) => state.createProductReducer.steps[4]
 export const product_create_step5_data = (state: RootState) => state.createProductReducer.steps[5]
 export const product_create_steps_data = (state: RootState) => state.createProductReducer.steps
+export const product_create_id = (state: RootState) => state.createProductReducer.product_created.id
 export const is_product_created = (state: RootState) => state.createProductReducer.product_created
-
 export default CreateProductSlice.reducer;
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+// ProductCreateStep2OnBlurs(state, action){
+        //     switch (action.payload.type) {
+        //         case 'product_name':
+        //             if(state.steps[2].details_data.product_name.length < 1)
+        //             {
+        //                 state.steps[2].validators.isNameFilled.valid = false
+        //             }else 
+        //             {
+
+        //                 state.steps[2].validators.isNameFilled.valid = true
+        //             }
+        //             break;
+        //         case 'product_tags':
+        //             if(state.steps[2].details_data.product_tags.length < 1)
+        //             {
+        //                 state.steps[2].validators.isTagsFilled.valid = false
+        //             }else 
+        //             {
+        //                 state.steps[2].validators.isTagsFilled.valid = true
+        //             }
+        //         case 'product_description':
+        //             if(state.steps[2].details_data.sections_product[1].label_value.length < 1)
+        //             {
+        //                 state.steps[2].validators.isDescriptionFilled.valid = false
+        //             }else {
+        //                 state.steps[2].validators.isDescriptionFilled.valid = true
+        //             }
+        //         case 'product_problem_aplicability':
+        //             if(state.steps[2].details_data.sections_product[2].label_value.length < 1)
+        //             {
+        //                 state.steps[2].validators.isApplicabilityFilled.valid = false
+        //             }else{
+        //                 state.steps[2].validators.isApplicabilityFilled.valid = true
+        //             }
+        //         case 'product_problem_formulation':
+        //             if(state.steps[2].details_data.sections_product[3].label_value.length < 1)
+        //             {
+        //                 state.steps[2].validators.isProblemFormulationFilled.valid = false
+        //             }else 
+        //             {
+                        
+        //             }
+                    
+        //         default: 
+        //             break;
+        //     }
+        // },
 
 

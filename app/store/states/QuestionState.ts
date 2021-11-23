@@ -49,6 +49,14 @@ export const QUESTION_STATE:QUESTION_INTERFACE = {
         current_page:1,
         last_page:1,
         total:0,
+    },
+    mentionsOfLinkedProduct:{
+        productId: null,
+        mentions:[],
+        status:"loading",
+        current_page:1,
+        last_page:1,
+        total:0,
     }
 }
 

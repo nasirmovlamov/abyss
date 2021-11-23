@@ -2,8 +2,11 @@ export interface CreateProductInterface {
     current_step:1 | 2 | 3 | 4 | 5,
     name: string;
     product_created:{
+        isPlagiat: "not-checked" | "valid"  | "not-valid" | "changed" ,
+        plagirismLoading: "loading" | "valid" | "not-checked" | "not-valid",
         status:'created' | 'failed' | 'pending'
         id:number | null,
+        sendend_source_code:string
     },
     steps:{
         1:{

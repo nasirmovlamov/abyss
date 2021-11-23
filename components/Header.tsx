@@ -17,7 +17,7 @@ import { forumWordRegex } from '../logic/regex/NavbarRegex'
 interface Props {
 }
 
-function Navbar({}: Props): ReactElement {
+function Header({}: Props): ReactElement {
     const router = useRouter()
     const {pathname} = router
     const dispatch = useAppDispatch();
@@ -82,10 +82,13 @@ function Navbar({}: Props): ReactElement {
                         {/* <ImageStyle2>
                             <Image width="70px" height='40px' src={darkPerson} /> 
                         </ImageStyle2> */}
-                        <PersonName>
-                            {userData.name}
-                        </PersonName>
+                        <NavLink href="/cave">
+                            <PersonName>
+                                {userData.name}
+                            </PersonName>
+                        </NavLink>
                     </Logged>
+                    
                     <Logout onClick={exit}>
                         exit 
                     </Logout>
@@ -144,5 +147,5 @@ function Navbar({}: Props): ReactElement {
     )
 }
 
-export default Navbar
+export default Header
 

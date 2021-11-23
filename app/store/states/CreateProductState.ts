@@ -5,8 +5,11 @@ export const CreateProductState:CreateProductInterface = {
     name: "",
     current_step:1,
     product_created:{
+        isPlagiat:"not-checked",
         status:'pending',
+        plagirismLoading: "not-checked",
         id:null,
+        sendend_source_code:""
     },
     steps:{
         1:{

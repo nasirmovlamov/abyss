@@ -10,6 +10,7 @@ import ModalCont from './ModalCont'
 import CreateProductModal from './CreateProduct/CreateProductModal'
 import CreateDiscussionModal from './CreateDiscussionModal'
 import CreateIterationModal from './CreateIterationModal'
+import MentionsListModal from './MentionsListModal'
 
 interface Props {
 }
@@ -19,7 +20,6 @@ function Modals({}: Props):ReactElement {
     
     return (
         <>
-            
             {allModals.login && <ModalCont> <LoginModal /></ModalCont>}
             {allModals.register && <ModalCont><RegisterModal /></ModalCont>}
             {allModals.forgetPassword && <ModalCont><ForgetPasswordModal /></ModalCont>}
@@ -28,8 +28,8 @@ function Modals({}: Props):ReactElement {
             {allModals.productCreate && <ModalCont><CreateProductModal /></ModalCont>}        
             {allModals.discussionCreate && <ModalCont><CreateDiscussionModal /></ModalCont>}        
             {allModals.iterationCreate && <ModalCont><CreateIterationModal /></ModalCont>}        
-            
-            </>
+            {allModals.productMentions && <ModalCont><MentionsListModal /></ModalCont>}        
+        </>
     )
 }
 

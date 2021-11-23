@@ -15,5 +15,17 @@ export const getLinkedProducts = createAsyncThunk(
             return rejectWithValue(error.response.data)
         }
     }
-  )
+)
+  
+
+export const getMentionsOfProduct = createAsyncThunk(
+    types.GET_MENTIONS_LINKED_PRODUCT, async (data:{question_id: number , product_id:number , current_page:number, total:number, last_page:number}, {rejectWithValue}) => {
+        try {
+            const resp = await BASE_API_INSTANCE.get(`/forum/${data.question_id}/${data.product_id}/answer/getanswers?page=${data.current_page}` )
+            return resp.data
+        } catch (error:any) {
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
   

@@ -21,7 +21,7 @@ export const UserSlice = createSlice({
             for (const [key, value] of Object.entries(state.userModals)) {
                 if(key !== action.payload)
                 {
-                state.userModals = {...state.userModals,[key]:false}
+                    state.userModals = {...state.userModals,[key]:false}
                 }
             }
             state.userModals = {...state.userModals, [action.payload]:!getKeyValue(state.userModals, action.payload)}

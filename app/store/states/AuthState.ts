@@ -39,7 +39,8 @@ export const AUTH_STATE:AUTH_INTERFACE = {
         questionCreate:false,
         productCreate:false,
         discussionCreate:false,
-        iterationCreate:false
+        iterationCreate:false,
+        productMentions:false,
     },
     forms:{
         registerForm:{

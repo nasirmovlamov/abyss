@@ -24,7 +24,7 @@ function AnswerSkeleton({}: Props): ReactElement {
             <div className="flexer fd-c a-end">
                 <SkeletonBox className="skeleton-box" width="35px" height="15px" borderRadius="8px"/>
             </div>
-    </AnswerStyle>
+        </AnswerStyle>
     )
 }
 

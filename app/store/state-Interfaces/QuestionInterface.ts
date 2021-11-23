@@ -35,6 +35,14 @@ export interface QUESTION_INTERFACE {
         current_page:number,
         last_page:number,
         total:number,
+    },
+    mentionsOfLinkedProduct:{
+        productId:number | null,
+        mentions:any[],
+        status:"loading" | "idle" | "failed" | "pending",
+        current_page:1,
+        last_page:1,
+        total:0,
     }
 }
 

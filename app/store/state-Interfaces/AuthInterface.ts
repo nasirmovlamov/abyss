@@ -21,6 +21,7 @@ export interface AUTH_INTERFACE {
         productCreate:boolean,
         discussionCreate:boolean,
         iterationCreate:boolean,
+        productMentions:boolean
     }
     forms:{
         registerForm:{
