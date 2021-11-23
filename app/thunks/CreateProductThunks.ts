@@ -1,7 +1,7 @@
 import { convertAnyFileBase64 } from './../../logic/convertBase64';
 import { BASE_API_INSTANCE } from './../../helpers/api/BaseInstance';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import * as types from '../constants/AppContants'
+import * as types from '../constants/App.contants'
 import { autoErrorToaster } from '../../components/Notify/AutoErrorToaster';
 import { autoSuccessToaster } from '../../components/Notify/AutoSuccessToast';
 
@@ -80,3 +80,25 @@ export const createProductThunk = createAsyncThunk(
     }
 )
 
+
+
+export const updateProductThunk = createAsyncThunk(
+  types.UPDATE_PRODUCT, async (data:any, {rejectWithValue}) => {
+      try {
+        const send_data = new FormData()
+        
+        send_data.append('price', '0')
+        send_data.append('description', JSON.stringify(data.mainData.steps[2]))
+        send_data.append('category_id', '1')
+        console.log(data.mainData.steps[2].details_data.product_name)
+        send_data.append('name', data.mainData.steps[2].details_data.product_name)
+
+        const resp = await BASE_API_INSTANCE.put(`store/${data.productId}/product/edit` , send_data)
+        autoSuccessToaster(resp.data.message)
+        const submitproduct  = await BASE_API_INSTANCE.post(`store/${data.productId}/product/submit`)
+        return submitproduct.data
+      } catch (error:any) {
+          return rejectWithValue(error.response.data)
+      }
+  }
+)

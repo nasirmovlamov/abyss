@@ -1,5 +1,5 @@
 import React from 'react'
-import { ProductCreateStep3OnBlurs, ProductCreateStep3OnChanges, product_create_step3_data } from '../../../../../app/feature/CreateProductFeatures/CreateProductSlice'
+import { ProductCreateStep3OnBlurs, ProductCreateStep3OnChanges, product_create_step3_data } from '../../../../../app/feature/CreateProductFeatures/CreateProduct.slice'
 import { useAppDispatch, useAppSelector } from '../../../../../app/store/hooks'
 
 interface Props {

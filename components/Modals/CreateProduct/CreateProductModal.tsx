@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect} from 'react'
 
-import { changeModalAction } from '../../../app/feature/UserSlice'
+import { changeModalAction } from '../../../app/feature/User.slice'
 import { useAppDispatch, useAppSelector } from '../../../app/store/hooks'
 import { ProductCreateForm, ProductCreateModal, ProductLabelCont } from '../../../styles/components/styled-elements/CreateProductModal.style'
 import ProductStepsRouter from './StepsForProductCreate/ProductCreateStepsRouter'
@@ -14,12 +14,14 @@ import {
     ProductCreateStep3Validate, 
     ProductCreateStep5Validate, 
     product_create_current_step, 
+    product_create_data, 
     product_create_id, 
     product_create_step1_data, 
+    product_create_steps_data, 
     sections_product 
-} from '../../../app/feature/CreateProductFeatures/CreateProductSlice'
+} from '../../../app/feature/CreateProductFeatures/CreateProduct.slice'
 
-import { createProductThunk, startPlagirismChecker } from '../../../app/thunks/CreateProductThunks'
+import { createProductThunk, startPlagirismChecker, updateProductThunk } from '../../../app/thunks/CreateProductThunks'
 
 
 interface Props {
@@ -35,7 +37,8 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
     const isProductCreated = useAppSelector(is_product_created)
     const productCreateStep1Data = useAppSelector(product_create_step1_data)
     const productCreateId = useAppSelector(product_create_id)
-
+    const productCreateStepsData = useAppSelector(product_create_steps_data)
+    const productCreateData = useAppSelector(product_create_data)
     const validateFunctions:{[key: string]: any} = {
         step1: () => dispatch(ProductCreateStep1Validate(null)),
         step2: ()=>dispatch(ProductCreateStep2Validate(null)),
@@ -46,12 +49,15 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
 
 
     const goNextSection = async () => {
-        if(1 <= currentStep && currentStep < 5)
+        if(1 <= currentStep && currentStep <= 5)
         {
             if(currentStep === 5){
                 await validateFunctions[`step${currentStep}`]()
-                
-            }
+                if(productCreateStepsData[5].validated === 'valid'){
+                    dispatch(updateProductThunk({mainData:productCreateData , productId: productCreateId}))
+                }
+                return
+            }   
 
 
             if(currentStep === 1 ){

@@ -3,10 +3,10 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import { AnswersCont, ProductsCont } from '../styles/pages/SingleQuestionPage.styled'
 import { useInView } from 'react-intersection-observer';
 import { useAppDispatch, useAppSelector } from '../app/store/hooks';
-import { changeForumTabActive, forum_tabs } from '../app/feature/PageTabsSlice';
+import { changeForumTabActive, forum_tabs } from '../app/feature/PageTabs.slice';
 import AnswerSkeleton from './Skeletons/AnswerSkeleton';
 import { getLinkedProducts } from '../app/thunks/LinkedProductsTunks';
-import { current_page_linked_products,  last_page_linked_products, linked_products_for_answers_of_question, linked_products_status, single_question_data, total_linked_products } from '../app/feature/QuestionSlice';
+import { current_page_linked_products,  last_page_linked_products, linked_products_for_answers_of_question, linked_products_status, single_question_data, total_linked_products } from '../app/feature/Question.slice';
 import LinkedStoreProduct from './LinkedStoreProduct';
 
 interface Props {

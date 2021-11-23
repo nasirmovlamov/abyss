@@ -44,7 +44,7 @@ import {
 } from '../../../styles/pages/Store.styled'
 import FormQuestion from '../../../components/ForumQuestion'
 import { useAppDispatch } from '../../../app/store/hooks'
-import { changeModalAction } from '../../../app/feature/UserSlice'
+import { changeModalAction } from '../../../app/feature/User.slice'
 
 
 

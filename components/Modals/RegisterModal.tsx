@@ -2,7 +2,7 @@ import React, { FormEvent, ReactElement, useEffect, useState } from 'react'
 import * as authThunk from '../../app/thunks/AuthThunk'
 import { useAppSelector, useAppDispatch } from '../../app/store/hooks';
 import axios from 'axios';
-import { changeModalAction, register_errors,  register_form, register_Form_OnChange, user_modals } from '../../app/feature/UserSlice';
+import { changeModalAction, register_errors,  register_form, register_Form_OnChange, user_modals } from '../../app/feature/User.slice';
 
 interface Props {
 }

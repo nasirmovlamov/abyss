@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { ReactElement, useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { user_data } from '../app/feature/UserSlice'
+import { user_data } from '../app/feature/User.slice'
 import { useInView } from 'react-intersection-observer';
 
-import { chat_rooms, closeChat, opened_chat_room_id, setRoomId } from '../app/feature/ChatBoxSlice'
+import { chat_rooms, closeChat, opened_chat_room_id, setRoomId } from '../app/feature/ChatBox.slice'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { openRooms, reqRoomMessages, checkRoomChat, sendMessageToRoom, loadArchieveMessages } from '../app/thunks/ChatBoxThunks'
 import { getLastMessageId,  getRooms } from '../logic/chatBoxLogic'

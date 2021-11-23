@@ -1,4 +1,4 @@
-import { linked_products } from './../../feature/CreateQuestionFeatures/CreateQuestionFeatures';
+import { linked_products } from '../../feature/CreateQuestionFeatures/CreateQuestion.slice';
 import { USER_INTERFACE } from "../../../components/AnswersCont";
 
 export interface ANSWER_INTERFACE {

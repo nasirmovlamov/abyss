@@ -1,5 +1,5 @@
 import React from 'react'
-import { ProductCreateStep5OnChage, product_create_step5_data } from '../../../../../app/feature/CreateProductFeatures/CreateProductSlice'
+import { ProductCreateStep5OnChage, product_create_step5_data } from '../../../../../app/feature/CreateProductFeatures/CreateProduct.slice'
 import { useAppDispatch, useAppSelector } from '../../../../../app/store/hooks'
 
 interface Props {

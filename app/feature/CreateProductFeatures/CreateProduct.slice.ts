@@ -1,5 +1,5 @@
 import { autoSuccessToaster } from './../../../components/Notify/AutoSuccessToast';
-import { createProductThunk, addFile, startPlagirismChecker } from './../../thunks/CreateProductThunks';
+import { createProductThunk, addFile, startPlagirismChecker, updateProductThunk } from './../../thunks/CreateProductThunks';
 import { getClipsIndex , getClips} from '../../../logic/createProduct';
 import { MainClip } from '../../../styles/pages/Store.styled';
 import { RootState } from "../../store/store";
@@ -457,6 +457,17 @@ export const CreateProductSlice = createSlice({
         })
 
 
+        // updateProductThunk
+        builder.addCase(updateProductThunk.fulfilled, (state, {payload}) => {
+            autoSuccessToaster(payload.message)
+        }),
+        builder.addCase(updateProductThunk.pending, (state, {payload}) => {
+            
+        }),
+        builder.addCase(updateProductThunk.rejected, (state, action:any) => {
+            autoErrorToaster(action.payload)
+        })
+
 
         // Create Product
         builder.addCase(createProductThunk.fulfilled, (state, {payload}) => {
@@ -552,6 +563,9 @@ export const product_create_step5_data = (state: RootState) => state.createProdu
 export const product_create_steps_data = (state: RootState) => state.createProductReducer.steps
 export const product_create_id = (state: RootState) => state.createProductReducer.product_created.id
 export const is_product_created = (state: RootState) => state.createProductReducer.product_created
+
+export const product_create_data = (state: RootState) => state.createProductReducer
+
 export default CreateProductSlice.reducer;
 
 

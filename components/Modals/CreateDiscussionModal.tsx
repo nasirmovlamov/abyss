@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react'
-import { changeModalAction } from '../../app/feature/UserSlice'
+import { changeModalAction } from '../../app/feature/User.slice'
 import { useAppDispatch } from '../../app/store/hooks'
 import {BASE_API_INSTANCE} from '../../helpers/api/BaseInstance'
 import { getKeyValue } from '../../logic/getKeyValue'

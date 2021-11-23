@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { color_convert } from '../app/feature/UserSlice'
+import { color_convert } from '../app/feature/User.slice'
 import { useAppSelector } from '../app/store/hooks'
 import { MainPartOfPageStyle } from '../styles/pages/Page.styled'
 

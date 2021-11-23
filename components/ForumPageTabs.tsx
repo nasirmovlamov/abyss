@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import React, { ReactElement, useEffect, useState } from 'react'
-import { forum_data_status, forum_search_data, forum_search_results_number, forum_search_sort, forum_search_type, selectForumSortSearchOption, selectForumTypeSearchOption } from '../app/feature/SearchBoxSlice'
+import { forum_data_status, forum_search_data, forum_search_results_number, forum_search_sort, forum_search_type, selectForumSortSearchOption, selectForumTypeSearchOption } from '../app/feature/SearchBox.slice'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { FooterColumn,  FooterElement,  FooterRow, FooterStyle } from '../styles/components/styled-elements/Footer.style'
 import { Line, TabButton, TabButtonsCont, TabResults, Tabs, TabsContainer, TabTags, TabTagsAndResults, TabTagsCont, TabText, } from '../styles/components/styled-elements/PageTabs.style'

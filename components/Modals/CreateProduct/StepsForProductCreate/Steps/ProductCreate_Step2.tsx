@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {  addNewSection, deleteSection, deleteClip, sections_product, updateKey, updateLabel, updateSectionsOrder, changeClipPosition, product_create_step2_data, ProductCreateStep2OnChanges } from '../../../../../app/feature/CreateProductFeatures/CreateProductSlice'
+import {  addNewSection, deleteSection, deleteClip, sections_product, updateKey, updateLabel, updateSectionsOrder, changeClipPosition, product_create_step2_data, ProductCreateStep2OnChanges } from '../../../../../app/feature/CreateProductFeatures/CreateProduct.slice'
 import { useAppDispatch, useAppSelector } from '../../../../../app/store/hooks';
 import {DragDropContext, Droppable , Draggable} from 'react-beautiful-dnd'
 import { SectionOfProduct } from '../../../../../app/store/state-Interfaces/CreateProductInterface'

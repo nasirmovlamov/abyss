@@ -1,4 +1,6 @@
 import React from 'react'
+import CaveSidebar from '../components/Cave/CaveSidebar'
+import CaveWindowRouter from '../components/Cave/Cave_Windows/CaveWindowRouter'
 import CaveSidePartOfPage from '../components/CaveSidePartOfPage'
 import MainPartOfPage from '../components/MainPartOfPage'
 import SidePartOfPage from '../components/SidePartOfPage'
@@ -13,7 +15,7 @@ const Cave = (props: Props) => {
     return (
         <CavePageDefaultStyle>
             <CaveSidePartOfPage side={"left"} >
-                Left
+                <CaveSidebar/>
             </CaveSidePartOfPage>
             
            
@@ -21,7 +23,7 @@ const Cave = (props: Props) => {
 
             <MainPartOfPage>
                 <Cave_Sty>
-                    Cave
+                    <CaveWindowRouter/>
                 </Cave_Sty>
             </MainPartOfPage>
 

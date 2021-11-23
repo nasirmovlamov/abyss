@@ -1,15 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit'
-import appReducer from '../feature/AppSlice'
-import tabsReducer from '../feature/PageTabsSlice'
-import userReducer from '../feature/UserSlice'
-import questionReducer from '../feature/QuestionSlice'
-import commentsReducer from '../feature/CommentsSlice'
-import chatBoxReducer from '../feature/ChatBoxSlice'
-import searchBoxReducer from '../feature/SearchBoxSlice'
-import pageFiltersReducer from '../feature/PageFiltersSlice'
-import createProductReducer from '../feature/CreateProductFeatures/CreateProductSlice'
-import createQuestionReducer from '../feature/CreateQuestionFeatures/CreateQuestionFeatures'
-import linkedProductsReducer from '../feature/LinkedProductsSlice'
+import appReducer from '../feature/App.slice'
+import tabsReducer from '../feature/PageTabs.slice'
+import userReducer from '../feature/User.slice'
+import questionReducer from '../feature/Question.slice'
+import commentsReducer from '../feature/Comments.slice'
+import chatBoxReducer from '../feature/ChatBox.slice'
+import searchBoxReducer from '../feature/SearchBox.slice'
+import pageFiltersReducer from '../feature/PageFilters.slice'
+import createProductReducer from '../feature/CreateProductFeatures/CreateProduct.slice'
+import createQuestionReducer from '../feature/CreateQuestionFeatures/CreateQuestion.slice'
+import linkedProductsReducer from '../feature/LinkedProducts.slice'
+import caveReducer from '../feature/CaveFeatures/Cave.slice'
+
 
 const reducer = 
 {  
@@ -23,7 +25,8 @@ const reducer =
   pageFiltersReducer:pageFiltersReducer,
   createProductReducer:createProductReducer,
   createQuestionReducer:createQuestionReducer,
-  linkedProductsReducer:linkedProductsReducer
+  linkedProductsReducer:linkedProductsReducer,
+  caveReducer:caveReducer
 }
 
 

@@ -59,6 +59,8 @@ export const CaveSidePartOfPage_Sty = styled.aside<{side:string , colorConvert:b
     margin-left: ${ ({side}) => side === "left" ? "0px" : "56px"};
     background-color: ${({colorConvert})=> colorConvert ? 'transparent' : '#000'};
     border: 1px solid gray;
+    padding-top: 200px;
+
     /* background-color: gray; */
     @media only screen and (max-width: 1236px) {
         display: none;

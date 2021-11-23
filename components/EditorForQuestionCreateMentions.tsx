@@ -7,7 +7,13 @@ import { BASE_API_INSTANCE } from "../helpers/api/BaseInstance";
 import ReactQuill, {Quill} from 'react-quill';
 import dynamic from 'next/dynamic'
 import { useAppDispatch, useAppSelector } from "../app/store/hooks";
-import { linked_products, mentioned_users, mentionProductAtQuestionCreate, mentionUserAtQuestionCreate, questionContentOnChangeHandler, question_value } from "../app/feature/CreateQuestionFeatures/CreateQuestionFeatures";
+import { 
+  linked_products, 
+  mentioned_users, 
+  mentionProductAtQuestionCreate, 
+  mentionUserAtQuestionCreate, 
+  questionContentOnChangeHandler, 
+  question_value } from "../app/feature/CreateQuestionFeatures/CreateQuestion.slice";
 
 interface Props {
 }

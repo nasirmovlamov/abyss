@@ -36,8 +36,8 @@ import { faDownload, faEye, faLaptopCode } from '@fortawesome/free-solid-svg-ico
 import { faPython } from '@fortawesome/free-brands-svg-icons'
 import StarCountShow from './StarCountShow'
 import { useAppDispatch } from '../app/store/hooks'
-import { changeModalAction } from '../app/feature/UserSlice'
-import { getOptionsForMentionOfProduct } from '../app/feature/QuestionSlice'
+import { changeModalAction } from '../app/feature/User.slice'
+import { getOptionsForMentionOfProduct } from '../app/feature/Question.slice'
 
 interface Props {
     data:any

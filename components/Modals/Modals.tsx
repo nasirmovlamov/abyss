@@ -1,5 +1,5 @@
 import React, {ReactElement, useEffect, useState} from 'react'
-import { user_modals } from '../../app/feature/UserSlice'
+import { user_modals } from '../../app/feature/User.slice'
 import { useAppSelector } from '../../app/store/hooks'
 import ForgetPasswordModal from './ForgetPasswordModal'
 import LoginModal from './LoginModal'

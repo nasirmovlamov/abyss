@@ -2,7 +2,7 @@ import React, {ReactElement, useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks';
 import { AddAnswer, AddAnswerCont, AddAnswerSubmit } from '../styles/pages/SingleQuestionPage.styled'
-import { user_data } from '../app/feature/UserSlice';
+import { user_data } from '../app/feature/User.slice';
 import { errorToastFunc } from './Notify/ErrorToasts';
 import { autoSuccessToaster } from './Notify/AutoSuccessToast';
 import { autoErrorToaster } from './Notify/AutoErrorToaster';
@@ -11,7 +11,7 @@ import { addAnswer } from '../app/thunks/QuestionThunk';
 import MyEditor from './MyEditor';
 import dynamic from 'next/dynamic'
 import { LabelCont } from '../styles/components/styled-elements/CreateQuestionModal.style';
-import { single_question_data, submit_answer_content, submit_answer_data } from '../app/feature/QuestionSlice';
+import { single_question_data, submit_answer_content, submit_answer_data } from '../app/feature/Question.slice';
 
 const DynamicComponentWithNoSSR = dynamic(
     () => import('./EditorForAddAnswer'),

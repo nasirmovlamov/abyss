@@ -1,20 +1,20 @@
 import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer';
-import { changeForumTabActive } from '../app/feature/PageTabsSlice';
-import { changeModalAction, user_data } from '../app/feature/UserSlice';
+import { changeForumTabActive } from '../app/feature/PageTabs.slice';
+import { changeModalAction, user_data } from '../app/feature/User.slice';
 import { useAppDispatch, useAppSelector } from '../app/store/hooks';
 import { unVoteAnswer, voteAnswer } from '../app/thunks/QuestionThunk';
 import { AnswerContent, AnswerStyle, Avatar, LikeButton, Name, PersonCont, ShowComments } from '../styles/components/styled-elements/Answer.style';
 import { AnswersCont } from '../styles/pages/SingleQuestionPage.styled'
-import { closeComments, showComments } from '../app/feature/CommentsSlice';
+import { closeComments, showComments } from '../app/feature/Comments.slice';
 import { getAnswerComments } from '../app/thunks/CommentsThunk';
-import { single_question_data } from '../app/feature/QuestionSlice';
+import { single_question_data } from '../app/feature/Question.slice';
 import { errorToastFunc, loginError } from './Notify/ErrorToasts';
 import { ANSWER_INTERFACE } from '../app/store/state-Interfaces/QuestionInterface';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
-import { set_overflowy } from '../app/feature/AppSlice';
+import { set_overflowy } from '../app/feature/App.slice';
 import { parseHtml, parseHtmlWithMention } from '../logic/htmlParser';
 
 

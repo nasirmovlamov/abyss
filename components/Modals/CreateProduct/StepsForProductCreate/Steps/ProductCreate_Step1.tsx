@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import {  ProductCreateStep1OnChanges, product_create_step1_data,  product_create_steps } from '../../../../../app/feature/CreateProductFeatures/CreateProductSlice'
+import {  ProductCreateStep1OnChanges, product_create_step1_data,  product_create_steps } from '../../../../../app/feature/CreateProductFeatures/CreateProduct.slice'
 import { useAppDispatch, useAppSelector } from '../../../../../app/store/hooks'
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';

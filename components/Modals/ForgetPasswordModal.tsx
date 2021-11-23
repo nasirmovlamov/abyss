@@ -1,7 +1,7 @@
 import React, { FormEvent,ReactElement, useEffect, useState } from 'react'
 import { useAppSelector, useAppDispatch } from '../../app/store/hooks';
 import * as authThunk from '../../app/thunks/AuthThunk'
-import { changeModalAction, forget_Password_Errors, login_form, login_Form_OnChange, user_modals } from '../../app/feature/UserSlice';
+import { changeModalAction, forget_Password_Errors, login_form, login_Form_OnChange, user_modals } from '../../app/feature/User.slice';
 interface Props {
 }
 

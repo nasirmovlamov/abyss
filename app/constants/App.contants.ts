@@ -40,6 +40,7 @@ export const ADD_FILE:string = 'ADD_FILE'
 //Create Product
 
 export const CREATE_PRODUCT:string = 'CREATE_PRODUCT'
+export const UPDATE_PRODUCT:string = 'UPDATE_PRODUCT'
 
 export const CHECK_PLAGIAT:string = 'CHECK_PLAGIAT'
 

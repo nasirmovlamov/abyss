@@ -1,5 +1,5 @@
 import React from 'react'
-import { product_create_current_step } from '../../../../app/feature/CreateProductFeatures/CreateProductSlice'
+import { product_create_current_step } from '../../../../app/feature/CreateProductFeatures/CreateProduct.slice'
 import { useAppSelector } from '../../../../app/store/hooks'
 import { ProductCreate_Step1  } from './Steps/ProductCreate_Step1'
 import { ProductCreate_Step2  } from './Steps/ProductCreate_Step2'

@@ -7,8 +7,8 @@ import { BASE_API_INSTANCE } from "../helpers/api/BaseInstance";
 import ReactQuill, {Quill} from 'react-quill';
 import dynamic from 'next/dynamic'
 import { useAppDispatch, useAppSelector } from "../app/store/hooks";
-import { mentionProductAtQuestionCreate, mentionUserAtQuestionCreate, questionContentOnChangeHandler, question_value } from "../app/feature/CreateQuestionFeatures/CreateQuestionFeatures";
-import { AnswerContentOnChange, linked_products_at_anwser_submit, linkProductAtAnswer, mentioned_users_at_anwser_submit, mentionUserAtAnswer, submit_answer_content } from "../app/feature/QuestionSlice";
+import { mentionProductAtQuestionCreate, mentionUserAtQuestionCreate, questionContentOnChangeHandler, question_value } from "../app/feature/CreateQuestionFeatures/CreateQuestion.slice";
+import { AnswerContentOnChange, linked_products_at_anwser_submit, linkProductAtAnswer, mentioned_users_at_anwser_submit, mentionUserAtAnswer, submit_answer_content } from "../app/feature/Question.slice";
 import javascript from 'highlight.js/lib/languages/javascript';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/a11y-dark.css'

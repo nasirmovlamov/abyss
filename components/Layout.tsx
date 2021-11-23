@@ -1,22 +1,23 @@
 import React, { ReactElement, FC, useEffect } from 'react'
-import { page_overflowy } from '../app/feature/AppSlice';
-import {  user_data, user_status, user_status_not_logged } from '../app/feature/UserSlice';
+import { page_overflowy } from '../app/feature/App.slice';
+import {  user_data, user_status, user_status_not_logged } from '../app/feature/User.slice';
 import { useAppDispatch, useAppSelector } from '../app/store/hooks';
 import { userCheck } from '../app/thunks/AuthThunk';
 import Footer from './Footer'
 import Modals from './Modals/Modals';
 import OverlayBackground from './Overlay';
 import SearchBox from './SearchBox';
-import { is_chatbox_opened, openChat } from '../app/feature/ChatBoxSlice'
+import { is_chatbox_opened, openChat } from '../app/feature/ChatBox.slice'
 import { useRouter } from 'next/router';
 import { forumWordRegex } from '../logic/regex/NavbarRegex';
 import Head from 'next/head'
 import CommentModal from './CommentsTab';
 import ChatBox from './ChatBox';
-import { closeComments, is_comment_opened } from '../app/feature/CommentsSlice';
+import { closeComments, is_comment_opened } from '../app/feature/Comments.slice';
 import Cookies from 'js-cookie'
 import { getCookie } from '../logic/CookieFunctions';
 import Header from './Header';
+
 interface Props {
     // any props that come into the component
 }

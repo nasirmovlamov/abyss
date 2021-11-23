@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react'
-import { changeModalAction } from '../../app/feature/UserSlice'
+import { changeModalAction } from '../../app/feature/User.slice'
 import { useAppDispatch, useAppSelector } from '../../app/store/hooks'
 import {BASE_API_INSTANCE} from '../../helpers/api/BaseInstance'
 import { getKeyValue } from '../../logic/getKeyValue'
@@ -14,7 +14,7 @@ import { autoSuccessToaster , autoErrorToasterWithMessage } from '../Notify/Auto
 // import EditorClassVersion from '../EditorClassVersion'
 
 import dynamic from 'next/dynamic'
-import { linked_products, mentioned_users, question_value } from '../../app/feature/CreateQuestionFeatures/CreateQuestionFeatures'
+import { linked_products, mentioned_users, question_value } from '../../app/feature/CreateQuestionFeatures/CreateQuestion.slice'
 
 const DynamicComponentWithNoSSR = dynamic(
     () => import('../EditorForQuestionCreateMentions'),

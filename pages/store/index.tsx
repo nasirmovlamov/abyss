@@ -7,7 +7,7 @@ import { PageDefaultStyle } from '../../styles/pages/Page.styled'
 import SidePartOfPage from '../../components/SidePartOfPage'
 import MainPartOfPage from '../../components/MainPartOfPage'
 import { useAppSelector } from '../../app/store/hooks'
-import { is_chatbox_opened } from '../../app/feature/ChatBoxSlice'
+import { is_chatbox_opened } from '../../app/feature/ChatBox.slice'
 import ChatBox from '../../components/ChatBox'
 
 interface Props {

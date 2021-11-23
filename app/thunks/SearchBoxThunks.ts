@@ -1,5 +1,5 @@
 
-import * as types from '../constants/AppContants'
+import * as types from '../constants/App.contants'
 import { AsyncThunk, createAction, createAsyncThunk, isRejectedWithValue} from '@reduxjs/toolkit'
 import { BASE_API_INSTANCE } from '../../helpers/api/BaseInstance';
 
