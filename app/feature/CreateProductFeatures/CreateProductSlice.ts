@@ -399,7 +399,9 @@ export const CreateProductSlice = createSlice({
             )
             {
                 state.steps[5].validated = 'valid'
-            }else if(state.steps[5].validators.isPaidTypeSelected.valid && state.steps[5].payment_type ==='free' && state.steps[5].validators.isVisibilityTypeSelected)
+                return 
+            }
+            if(state.steps[5].validators.isPaidTypeSelected.valid && state.steps[5].payment_type ==='free' && state.steps[5].validators.isVisibilityTypeSelected)
             {
                 state.steps[5].validated = 'valid'
             }

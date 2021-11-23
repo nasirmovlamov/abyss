@@ -48,6 +48,12 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
     const goNextSection = async () => {
         if(1 <= currentStep && currentStep < 5)
         {
+            if(currentStep === 5){
+                await validateFunctions[`step${currentStep}`]()
+                
+            }
+
+
             if(currentStep === 1 ){
                 await validateFunctions[`step${currentStep}`]()
                 if(
@@ -88,6 +94,8 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
             {
                 dispatch(goNextStepProductCreate(null))
             }
+
+            
         }
     }
 

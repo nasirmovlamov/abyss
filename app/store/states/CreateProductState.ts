@@ -156,7 +156,7 @@ export const CreateProductState:CreateProductInterface = {
                 },
                 isVisibilityTypeSelected:{
                     valid:false,
-                    message:"Please select payment  type"
+                    message:"Please select visibility type"
                 }
             }
         },
