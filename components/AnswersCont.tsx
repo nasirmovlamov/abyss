@@ -11,7 +11,7 @@ import { getAnswers } from '../app/thunks/QuestionThunk';
 import { AnswersCont } from '../styles/pages/SingleQuestionPage.styled'
 import Answer from './Answer';
 import AnswerSkeleton from './Skeletons/AnswerSkeleton';
-
+import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 
 export interface USER_INTERFACE {
@@ -92,14 +92,31 @@ function AnswersConts({}: Props): ReactElement {
             {
                 const data:GET_ANSWER_INTERFAC = {page:downPage,direction:"previous",questionId:singleQuestionData.id}
                 dispatch(getAnswers(data))
-                window.scrollBy({top:250,behavior: "smooth"}) 
+                if(downAnswers.length > 0){
+                    scrollToLastAnswer(downAnswers[0].id)
+                }
             }
         }else{}
-    }, [inViewLoaderUp])
+    })
     
+    useEffect(() => {
+        if(inViewLoaderUp)
+        {
+            if(downAnswers.length > 3){
+                scrollToLastAnswer(downAnswers[3].id)
+            }
+        }else{}     
+    } , [inViewLoaderUp])
 
 
-
+    const scrollToLastAnswer = (id:number) => {
+        scroller.scrollTo(`answer${id}`, {
+            duration: 0,
+            delay: 0,
+            smooth: 'easeInOutQuart',
+            offset: 0
+        })
+    }
     
     
     return (

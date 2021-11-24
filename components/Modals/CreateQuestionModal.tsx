@@ -69,6 +69,7 @@ function CreateQuestionModal({}: Props): ReactElement {
             formData.append("tags" , JSON.stringify(tags))
             formData.append("linked_products" , JSON.stringify(idOFLinkedProducts))
             formData.append("mentioned_users" , JSON.stringify(idOFMentionedUsers))
+            
             const resp = await BASE_API_INSTANCE.post("/forum/create", formData) 
             autoSuccessToaster(resp.data.message)
             console.log(resp.data.message)

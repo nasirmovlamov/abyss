@@ -9,6 +9,7 @@ export interface SEARCHBOX_INTERFACE {
             results_number:number,
             fromNumber:number,
             searchOptions:{
+                sendedQuery:string | null,
                 searchValue:string,
                 filters:filterTagInterFace[],
                 forumType:string,

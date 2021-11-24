@@ -9,6 +9,7 @@ export const SEARCHBOX_STATE:SEARCHBOX_INTERFACE = {
             fromNumber:0,
             status:"loaded",
             searchOptions:{
+                sendedQuery:null,
                 searchValue:'',
                 filters:[],
                 forumType:'',

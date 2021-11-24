@@ -10,7 +10,6 @@ type Props = {
 export const GlobalStyle = createGlobalStyle<Props>`
   body{
       background-color: ${({theme}) => theme.body};
-      
     }
     *{
         box-sizing: border-box;

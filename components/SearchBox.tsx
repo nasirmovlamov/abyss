@@ -10,7 +10,7 @@ import { AddQuesitionCont, SearchBoxContainer , SearchBoxPage, SearchBoxStyle, S
 import { MainPartOfPageStyle, SidePartOfPageStyle } from '../styles/pages/Page.styled'
 import { useScrollYPosition } from 'react-use-scroll-position';
 import { forumSearch } from '../app/thunks/SearchBoxThunks'
-import {  forum_search_value, getCachedSearchBoxData, onForumSearchValue } from '../app/feature/SearchBox.slice'
+import {  forum_search_options, forum_search_value, getCachedSearchBoxData, onForumSearchValue, resetSendedQuery } from '../app/feature/SearchBox.slice'
 import { getFiltersFromCache } from '../app/feature/PageFilters.slice'
 import { createProductThunk } from '../app/thunks/CreateProductThunks'
 import { getAccessToken } from '../helpers/token/TokenHandle'
@@ -30,6 +30,8 @@ function SearchBox({}: Props): ReactElement {
     const searchNavRef = useRef<HTMLDivElement>(null)
     const dispatch = useAppDispatch()
     const scrollY = useScrollYPosition();
+    const forumSearchOptions = useAppSelector(forum_search_options)
+
     const [scrollSearchBox, setscrollSearchBox] = useState<number>(0)
     const [scrollYInside, setscrollYInside] = useState(0)
 
@@ -128,7 +130,12 @@ function SearchBox({}: Props): ReactElement {
     const searchHandleWithEnter = (key:number) => {
         if(key === 13)
         {
-            dispatch(forumSearch(searchBoxValue))
+            if(router.pathname !== '/forum'){
+                router.push('/forum')
+            }
+            if(forumSearchOptions.sendedQuery !== forumSearchOptions.searchValue){
+                dispatch(forumSearch(searchBoxValue))
+            }
         }
     }
     const searchHandleWithSubmit = () => {
@@ -165,13 +172,16 @@ function SearchBox({}: Props): ReactElement {
                 // searchBoxRef.current!.setAttribute("style" , "position:absolute;")
                 searchInputRef.current!.focus()
                 dispatch(getFiltersFromCache(null))
-                dispatch(getCachedSearchBoxData(null))
-                dispatch(forumSearch(getCookie('ForumSearchValue')))
+                if(forumSearchOptions.searchValue === ""){
+                    dispatch(getCachedSearchBoxData(null))
+                    dispatch(resetSendedQuery(null))
+                    dispatch(forumSearch(getCookie('ForumSearchValue')))
+                }
             }
         }
     }, [router])
 
-
+    
     return (
         
         <SearchBoxContainer scrollTopValue={scrollSearchBox} ref={searchContRef} path={router.asPath} style={SearchContDesign}>

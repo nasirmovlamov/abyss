@@ -76,6 +76,9 @@ export const SearchBoxSlice = createSlice({
       setCookie("ForumSortSearchOption" , action.payload , 365)
     },
 
+    resetSendedQuery (state, _) {
+      state.searchBoxData.forum.searchOptions.sendedQuery = null
+    }
     
 
 
@@ -90,6 +93,7 @@ export const SearchBoxSlice = createSlice({
       state.searchBoxData.forum.fromNumber = state.searchBoxData.forum.data.length
       state.searchBoxData.forum.results_number = payload.data.total
       state.searchBoxData.forum.status = "loaded"
+      state.searchBoxData.forum.searchOptions.sendedQuery = state.searchBoxData.forum.searchOptions.searchValue
     }),
     builder.addCase(forumSearch.pending, (state, {payload}) => {
       state.searchBoxData.forum.status = "loading"
@@ -107,7 +111,7 @@ export const SearchBoxSlice = createSlice({
       state.searchBoxData.forum.data = [... state.searchBoxData.forum.data , ...payload.data.results]
       state.searchBoxData.forum.fromNumber = state.searchBoxData.forum.data.length
       state.searchBoxData.forum.results_number = payload.data.total
-      
+      state.searchBoxData.forum.searchOptions.sendedQuery = state.searchBoxData.forum.searchOptions.searchValue
     }),
     builder.addCase(forumSearchInfinity.pending, (state, {payload}) => {
     }),
@@ -132,6 +136,7 @@ export const
   getCachedSearchBoxData,
   ifFilterWasDeleted,
   onForumSearchValue,
+  resetSendedQuery
 } = SearchBoxSlice.actions;
 
 
@@ -144,6 +149,7 @@ export const forum_search_filters = (state: RootState) => state.searchBoxReducer
 export const forum_search_value = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.searchOptions.searchValue
 export const forum_search_from_value = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.fromNumber
 export const forum_search_results_number = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.results_number
+export const forum_search_options = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.searchOptions
 
 
 

@@ -207,8 +207,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
                                 <AnswersAndProductsCont>
                                     <SinglePageTabs/>
                                     <AnswersConts />
-
-                                    PRODUCTS
+                                        PRODUCTS
                                     <ProductsConts />
                                 </AnswersAndProductsCont>
                         }
