@@ -91,7 +91,7 @@ export const updateProductThunk = createAsyncThunk(
         send_data.append('description', JSON.stringify(data.mainData.steps[2]))
         // send_data.append('category_id', '1')
         send_data.append('name', data.mainData.steps[2].details_data.product_name)
-        const resp = await BASE_API_INSTANCE.put(`store/${data.productId}/product/edit?_method=PUT` , send_data)
+        const resp = await BASE_API_INSTANCE.post(`store/${data.productId}/product/edit?_method=PUT` , send_data)
         autoSuccessToaster(resp.data.message)
         const submitproduct  = await BASE_API_INSTANCE.post(`store/${data.productId}/product/submit`)
         return submitproduct.data
