@@ -35,6 +35,6 @@ export const {
 
 
 
-export const cave_data = (state: RootState) => state.caveReducer
+// export const cave_data = (state: RootState) => state.caveReducer
 
 export default CaveSlice.reducer;
