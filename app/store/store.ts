@@ -10,7 +10,7 @@ import pageFiltersReducer from '../feature/PageFilters.slice'
 import createProductReducer from '../feature/CreateProductFeatures/CreateProduct.slice'
 import createQuestionReducer from '../feature/CreateQuestionFeatures/CreateQuestion.slice'
 import linkedProductsReducer from '../feature/LinkedProducts.slice'
-import caveReducer from '../feature/CaveFeatures/Cave.slice'
+import caveRootReducer from '../feature/CaveFeatures/Cave_Reducers/Cave.root.reducer'
 
 
 const reducer = 
@@ -26,7 +26,7 @@ const reducer =
   createProductReducer:createProductReducer,
   createQuestionReducer:createQuestionReducer,
   linkedProductsReducer:linkedProductsReducer,
-  caveReducer:caveReducer
+  caveRootReducer:caveRootReducer,
 }
 
 
@@ -38,6 +38,7 @@ export const store = configureStore({
       serializableCheck: false
     }),
 })
+
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>

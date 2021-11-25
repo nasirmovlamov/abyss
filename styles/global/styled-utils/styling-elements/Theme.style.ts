@@ -1,5 +1,5 @@
 import { ForumBoxShadowDark, SearchBoxShadowDark, BoxShadowDarkForElement, HeaderBoxShadowDark, BottomHeaderBoxShadowDark, BoxShadowDarkForTag, BoxShadowDarkForTagHover } from './BoxShadows';
-import { pageLightGray, pageBlack, pageDarkBlack, linesSideTextColor, whiteTextColor, orangeBackground, pageDarkGray, blueTitle, blueForTags, darkLinesSideTextColor, TagTextColor, TagBackColor } from './Colors';
+import { pageLightGray, pageBlack, pageDarkBlack, linesSideTextColor, whiteTextColor, orangeBackground, pageDarkGray, blueTitle, blueForTags, darkLinesSideTextColor, TagTextColor, TagBackColor, pageBlack2, pageGray3 } from './Colors';
   export const lightTheme = {
       body: pageDarkBlack,
       text: '#363537',
@@ -9,6 +9,24 @@ import { pageLightGray, pageBlack, pageDarkBlack, linesSideTextColor, whiteTextC
       themeTogglerCont: "#FFFFFF",
       themeTogglerContBorder: "black",
       backgroundMain:"#00090e",
+      colors:{
+        pageLightGray:pageLightGray,
+        pageBlack:pageBlack,
+        pageBlack2:pageBlack2,
+        pageGray3:pageGray3,
+        pageDarkBlack:pageDarkBlack,
+        linesSideTextColor:linesSideTextColor,
+        whiteTextColor:whiteTextColor,
+        orangeBackground:orangeBackground,
+        pageDarkGray:pageDarkGray,
+        blueTitle:blueTitle,
+        blueForTags:blueForTags,
+        darkLinesSideTextColor:darkLinesSideTextColor,
+        TagTextColor:TagTextColor,
+        TagBackColor:TagBackColor,
+        
+      },
+
       navbar: {
         background:pageBlack,
         navLogoText:"#f2f2f3",

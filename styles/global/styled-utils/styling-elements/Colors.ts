@@ -2,6 +2,8 @@ export const pageBlack = "#1C1E20"
 export const pageDarkBlack = "#0F1113"
 export const pageLightGray = "#949597"
 export const pageDarkGray = "#58595B"
+export const pageGray3 = "#3E4042"
+export const pageBlack2 = "#141618"
 
 
 export const linesSideTextColor = "#B4B5B7"

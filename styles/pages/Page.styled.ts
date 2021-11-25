@@ -6,7 +6,7 @@ export const MainPartOfPageStyle = styled.div<{colorConvert:boolean}>`
     position: relative;
     /* padding-top: 74px;    */
     display: flex;
-    background-color: ${({colorConvert})=> colorConvert ? 'transparent' : '#000'};
+    background-color: ${({colorConvert})=> colorConvert ? 'transparent' : 'transparent'};
 
     justify-content: center;
     /* z-index: 2; */
@@ -37,7 +37,6 @@ export const SidePartOfPageStyle = styled.aside<{side:string , colorConvert:bool
     overflow: hidden;
     flex: 0 0 ${ ({side}) => side === "left" ? "195px" : "307px"};
     background-color: ${({colorConvert})=> colorConvert ? 'transparent' : '#000'};
-
     /* background-color: gray; */
     @media only screen and (max-width: 1236px) {
         display: none;
@@ -57,7 +56,7 @@ export const CaveSidePartOfPage_Sty = styled.aside<{side:string , colorConvert:b
     overflow: hidden;
     flex: 0 0 ${ ({side}) => side === "left" ? "251px" : "307px"};
     margin-left: ${ ({side}) => side === "left" ? "0px" : "56px"};
-    background-color: ${({colorConvert})=> colorConvert ? 'transparent' : '#000'};
+    background-color: ${({colorConvert})=> colorConvert ? 'transparent' : 'transparent'};
     border: 1px solid gray;
     padding-top: 200px;
 

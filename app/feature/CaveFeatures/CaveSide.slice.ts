@@ -4,9 +4,9 @@ import { CaveState } from '../../store/states/Cave_States/Cave.state';
 
 
 
-export const CaveSlice = createSlice({
-    name: 'cave-slice',
-    initialState:CaveState ,
+export const CaveSideSlice = createSlice({
+    name: 'cave-side-slice',
+    initialState:CaveState.caveSideState ,
     reducers: {
         // ProductCreateStep1OnChanges(state, action){
         // }
@@ -31,11 +31,8 @@ export const CaveSlice = createSlice({
 // action
 export const {  
     // ProductCreateStep1OnChanges,
-} = CaveSlice.actions;
+} = CaveSideSlice.actions;
 
 
 
-export const cave_data = (state: RootState) => state.caveReducer
-
-
-export default CaveSlice.reducer;
+export default CaveSideSlice.reducer;
