@@ -4,12 +4,12 @@ interface Props {
     
 }
 
-const CaveProfile = (props: Props) => {
+const Cave_Profile_Info = (props: Props) => {
     return (
         <div>
-            Profile
+            info
         </div>
     )
 }
 
-export default CaveProfile
+export default Cave_Profile_Info

@@ -1,5 +1,5 @@
 import React from 'react'
-import {  cave_actions, cave_profile_tabs } from '../../../app/feature/CaveFeatures/CaveTabs.slice'
+import {  cave_actions, cave_tabs } from '../../../app/feature/CaveFeatures/CaveTabs.slice'
 import { useAppDispatch, useAppSelector } from '../../../app/store/hooks'
 import { Cave_Tabs_Sty, Cave_Tab_Sty , 
     Cave_Tabs_Cont_Sty,
@@ -12,24 +12,35 @@ import { Cave_Tabs_Sty, Cave_Tab_Sty ,
 import caveTabCornerNotHoveredSvg from '../../../public/caveTabCornerNotHovered.svg'
 import caveTabCornerHovered from '../../../public/caveTabCornerHovered.svg'
 import Image from 'next/image'
+import { cave_side_data } from '../../../app/feature/CaveFeatures/CaveSide.slice'
+import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 interface Props {
     
 }
 
 const Cave_Tabs = (props: Props) => {
-    const caveProfileTabs = useAppSelector(cave_profile_tabs)
+    const caveSideData = useAppSelector(cave_side_data)
+    const caveTabs = useAppSelector(cave_tabs)
+
     const dispatch = useAppDispatch()
 
-    const changeActiveTab   = (tab: any) => {
-        dispatch(cave_actions.selectTab(tab))
+    const changeActiveTab   =  (tab: any) => {
+        dispatch(cave_actions.selectTab({tab:tab , window:caveSideData.selectedWindow}))
+        const activeTab = caveTabs[caveSideData.selectedWindow].filter(tab => tab.active)[0]
+        scroller.scrollTo(`#${activeTab.name}Block`, {
+            duration: 0,
+            delay: 0,
+            smooth: 'easeInOutQuart',
+            offset: -130
+        })
     }
 
     const hoverTab = (tab: any) => {
-        dispatch(cave_actions.hoverTab(tab))
+        dispatch(cave_actions.hoverTab({tab:tab , window:caveSideData.selectedWindow}))
     }
     const unHoverTab = (tab: any) => {
-        dispatch(cave_actions.unHoverTab(tab))
+        dispatch(cave_actions.unHoverTab({tab:tab , window:caveSideData.selectedWindow}))
     }
 
 
@@ -39,7 +50,7 @@ const Cave_Tabs = (props: Props) => {
 
             <Cave_Tabs_Cont_Sty>
                 {
-                    caveProfileTabs.map((tab, index) => 
+                    caveTabs[caveSideData.selectedWindow].map((tab, index) => 
                         <>
                             <Cave_Tab_Sty               
                                 
@@ -69,13 +80,12 @@ const Cave_Tabs = (props: Props) => {
 
                             </Cave_Tab_Sty>
                             {
-                                index < caveProfileTabs.length &&
-                                <Cave_Tab_Seperator_Sty tab={tab} tabs={caveProfileTabs}/>
+                                index < caveTabs[caveSideData.selectedWindow].length &&
+                                <Cave_Tab_Seperator_Sty tab={tab} tabs={caveTabs[caveSideData.selectedWindow]}/>
                             }
                         </>
                     )
                 }
-
             </Cave_Tabs_Cont_Sty>
 
 

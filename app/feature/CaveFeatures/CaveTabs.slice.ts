@@ -9,17 +9,16 @@ export const CaveTabsSlice = createSlice({
     initialState:CaveState.caveTabsState ,
     reducers: {
         selectTab(state, {payload}){
-            console.log(payload)
-            state.profileTabs.filter(tab => tab.active === true)[0].active = false;
-            state.profileTabs.filter(tab => tab.id === payload.id)[0].active = true;
+            state[payload.window].filter(tab => tab.active === true)[0].active = false;
+            state[payload.window].filter(tab => tab.id === payload.tab.id)[0].active = true;
         },
 
         hoverTab(state, {payload}){
-            state.profileTabs.filter(tab => tab.id === payload.id)[0].hovered = true;
+            state[payload.window].filter(tab => tab.id === payload.tab.id)[0].hovered = true;
         },
 
         unHoverTab(state, {payload}){
-            state.profileTabs.filter(tab => tab.id === payload.id)[0].hovered = false;
+            state[payload.window].filter(tab => tab.id === payload.tab.id)[0].hovered = false;
         },
 
         
@@ -41,7 +40,7 @@ export const CaveTabsSlice = createSlice({
 // action
 export const  cave_actions = CaveTabsSlice.actions; 
 
-export const cave_profile_tabs = (state: RootState) => state.caveRootReducer.caveTabsReducer.profileTabs
+export const cave_tabs = (state: RootState) => state.caveRootReducer.caveTabsReducer
 
 
 export default CaveTabsSlice.reducer;

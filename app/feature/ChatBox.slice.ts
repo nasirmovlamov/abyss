@@ -23,8 +23,6 @@ export const ChatBoxSlice = createSlice({
     },
 
     extraReducers: (builder) => {
-
-
         // CHECK USER CHAT
         builder.addCase(checkRoomChat.fulfilled, (state, {payload}) => {
             if(state.rooms[payload.data.id].messages.length === 0) {

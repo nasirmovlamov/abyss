@@ -12,6 +12,7 @@ interface Props {
 }
 
 const Cave = (props: Props) => {
+
     return (
         <CavePageDefaultStyle>
             <CaveSidePartOfPage side={"left"} >

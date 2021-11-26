@@ -1,10 +1,9 @@
 
 export interface CaveTabsInterface  {
-    [key:string]:CaveTabInterface[]
+    [key:string]:CaveTabInterface[],
 }
 
-export interface CaveTabInterface
-    {
+export interface CaveTabInterface {
         id:number,
         text:string,
         icon:string,
@@ -13,4 +12,5 @@ export interface CaveTabInterface
         isLast:boolean
         isFirst:boolean
         hovered:boolean
-    }
+        name:string
+} 

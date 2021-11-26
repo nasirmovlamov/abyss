@@ -5,8 +5,9 @@ import caveMainReducer from '../Cave.slice';
 
 
 export default combineReducers({
+    caveMainReducer,
     caveSideReducer,
     caveTabsReducer,
-    caveMainReducer,
 })
+
 // This would produce the following state object

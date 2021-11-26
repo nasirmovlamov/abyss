@@ -8,8 +8,9 @@ export const CaveSideSlice = createSlice({
     name: 'cave-side-slice',
     initialState:CaveState.caveSideState ,
     reducers: {
-        // ProductCreateStep1OnChanges(state, action){
-        // }
+        selectWindow(state, action){
+            state.selectedWindow = action.payload
+        },
 
         extraReducers: (builder) => {
 
@@ -29,9 +30,10 @@ export const CaveSideSlice = createSlice({
 })
 
 // action
-export const {  
-    // ProductCreateStep1OnChanges,
-} = CaveSideSlice.actions;
+export const caveSideActions  = CaveSideSlice.actions;
+
+//data
+export const cave_side_data = (state: RootState) => state.caveRootReducer.caveSideReducer;
 
 
 
