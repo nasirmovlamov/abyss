@@ -50,7 +50,7 @@ export const Light = styled.div`
     background-color:#FFFFFF;
     border-radius:50%;
     z-index:2;
-    left:25.4px;
+    left:10.6px;
     top:13.5px;
     opacity: 0.1;
     transition: 0.2s;
@@ -70,7 +70,7 @@ export const LightShadow = styled.div`
     z-index: 2;
     fill: #FFFFFF;stroke: #8c8c8c;stroke-width: 0;
     filter: blur(5px);
-    left:20.4px;
+    left:10.4px;
     top:13.5px;
 `
 export const LightShadow2 = styled.div`
@@ -81,7 +81,7 @@ export const Logo = styled.div`
     justify-content:center;
     align-items:center;
     position:relative;
-    
+    column-gap: 16px;
     &:hover ${LightShadow} {
         opacity: 0.38;
 
@@ -94,7 +94,6 @@ export const Logo = styled.div`
     }
     img 
     {
-        width: 80px;
         z-index: 1;
         height: 48px;
     }

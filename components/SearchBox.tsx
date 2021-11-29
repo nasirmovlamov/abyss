@@ -50,17 +50,8 @@ function SearchBox({}: Props): ReactElement {
         // }
     }
 
-
-
-    
-
-
     const [direction, setDirection] = useState('visible')
     const { isScrollingUp, isScrollingDown } = useScrollDirection()
-
-
-
-   
 
     const searchSizechange = (event:string) => {
         if(router.pathname === '/')
@@ -138,7 +129,7 @@ function SearchBox({}: Props): ReactElement {
             }
         }
     }
-    
+
     const searchHandleWithSubmit = () => {
         if(searchBoxValue !== "")
         {

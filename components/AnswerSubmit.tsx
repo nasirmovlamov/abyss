@@ -37,8 +37,9 @@ function AnswerSubmitCont({id}: Props): ReactElement {
     const submitAnswer = async (e:any) => {
         e.preventDefault()
         const linkedProductsId = submitAnswerData.linkedProducts.map((item:any) => item.id) 
-        const mentionedUsersId = submitAnswerData.mentionedUsers.map((item:any) => item.id) 
-        if(id !== undefined && id !== null){
+        const mentionedUsersId = submitAnswerData.mentionedUsers.map((item:any) => item.id)
+
+        if(id !== undefined && id !== null && submitAnswerContent.length > 0){
             dispatch(addAnswer({content: submitAnswerContent, questionId: id , mentionedUsers:mentionedUsersId, linkedProducts: linkedProductsId }))
         }
     }

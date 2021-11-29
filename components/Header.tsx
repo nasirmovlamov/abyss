@@ -104,8 +104,8 @@ function Header({}: Props): ReactElement {
         <Nav>
             <NavLink href={"/"} >
                 <Logo> 
-                    <Image width="80px" src={mainLogo} height="49px"  alt={"Abyss logo"}/>  
-                    <Image width="120px" src={mainLogoText}  height="49px"  alt={"Abyss text"}/>  
+                    <Image width="48px" src={mainLogo} height="49px"  alt={"Abyss logo"}/>  
+                    <Image width="99px" src={mainLogoText}  height='40px'  alt={"Abyss text"}/>  
                     <Light/>
                     <LightShadow/>
                     <LightShadow2/> 
