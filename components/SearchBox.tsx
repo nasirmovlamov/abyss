@@ -138,10 +138,13 @@ function SearchBox({}: Props): ReactElement {
             }
         }
     }
+    
     const searchHandleWithSubmit = () => {
         if(searchBoxValue !== "")
         {
-            dispatch(forumSearch(searchBoxValue))
+            if(forumSearchOptions.sendedQuery !== forumSearchOptions.searchValue){
+                dispatch(forumSearch(searchBoxValue))
+            }
         }
     }
 

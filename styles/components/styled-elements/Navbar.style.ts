@@ -50,12 +50,11 @@ export const Light = styled.div`
     background-color:#FFFFFF;
     border-radius:50%;
     z-index:2;
-    left:24.4px;
-    top:9.4px;
+    left:25.4px;
+    top:13.5px;
     opacity: 0.1;
     transition: 0.2s;
     filter: blur(1px);
-
 `
 
 
@@ -71,8 +70,8 @@ export const LightShadow = styled.div`
     z-index: 2;
     fill: #FFFFFF;stroke: #8c8c8c;stroke-width: 0;
     filter: blur(5px);
-    left:19.4px;
-    top:5.5px;
+    left:20.4px;
+    top:13.5px;
 `
 export const LightShadow2 = styled.div`
    
