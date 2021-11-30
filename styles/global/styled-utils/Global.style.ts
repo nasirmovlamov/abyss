@@ -1,6 +1,6 @@
 
 import styled, { createGlobalStyle } from 'styled-components';
-import { ThemeType } from './styling-elements/Theme.style';
+import { ThemeType } from './settings/Theme.style';
 
 
 type Props = {
@@ -13,6 +13,10 @@ export const GlobalStyle = createGlobalStyle<Props>`
     }
     *{
         box-sizing: border-box;
+    }
+    button {
+        cursor: pointer;
+        border:none;
     }
   
 `

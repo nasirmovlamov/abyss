@@ -3,7 +3,7 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import { changeForumTabActive,  page_tabs } from '../app/feature/PageTabs.slice'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex'
-import { SingleLine,  SingleTabButton, SingleTabs, SingleTabsContainer, SingleTabTags, SingleTabTagsCont, SingleTabText } from '../styles/components/styled-elements/SinglePageTabs.styled'
+import * as SinglePageTabs_STY from '../styles/components/styled-elements/SinglePageTabs.styled'
 import NavLink from './NavLink'
 import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
@@ -19,20 +19,24 @@ function SinglePageTabs({}: Props): ReactElement {
 
 
     return (
-        <SingleTabsContainer>
-            <SingleTabs>
+        <SinglePageTabs_STY.SingleTabsContainer>
+            <SinglePageTabs_STY.SingleTabs>
                 {   
                     (
                         forumWordRegex.test(router.pathname)
                         &&
                         pageTabs.forumTabs.map( 
-                            (tabs)=>
-                            <Link key={tabs.id} to={`${tabs.link}`}>
-                                <SingleTabButton tabActive={tabs.isActive}>
-                                    <SingleTabText  >{tabs.tabName}</SingleTabText> 
-                                    <SingleLine />    
-                                </SingleTabButton>    
-                            </Link>
+                            (tabs , index)=>
+                            <>
+                                <Link key={tabs.id} to={`${tabs.link}`}>
+                                    <SinglePageTabs_STY.SingleTabButton tabActive={tabs.isActive}>
+                                        <SinglePageTabs_STY.SingleTabText  >{tabs.tabName}</SinglePageTabs_STY.SingleTabText> 
+                                        {/* <SingleLine />     */}
+                                    </SinglePageTabs_STY.SingleTabButton>    
+                                </Link>
+                                
+                                { (index+1) < pageTabs.forumTabs.length && <SinglePageTabs_STY.TabButtonSeperator_STY />   }
+                            </>
                         )
                     )
                     ||
@@ -41,18 +45,21 @@ function SinglePageTabs({}: Props): ReactElement {
                         storeWordRegex.test(router.pathname)
                         &&
                         pageTabs.productTabs.map
-                        ( (tabs)=>
-                            <NavLink key={tabs.id} href={`#${tabs.link}`}>
-                                <SingleTabButton tabActive={tabs.isActive}>
-                                    <SingleTabText  >{tabs.tabName}</SingleTabText> 
-                                    <SingleLine />    
-                                </SingleTabButton>    
-                            </NavLink>
+                        ( (tabs , index)=>
+                            <>
+                                <NavLink key={tabs.id} href={`#${tabs.link}`}>
+                                    <SinglePageTabs_STY.SingleTabButton tabActive={tabs.isActive}>
+                                        <SinglePageTabs_STY.SingleTabText  >{tabs.tabName}</SinglePageTabs_STY.SingleTabText> 
+                                        {/* <SingleLine />     */}
+                                    </SinglePageTabs_STY.SingleTabButton>    
+                                </NavLink>
+                                {(index+1) < pageTabs.productTabs.length &&  <SinglePageTabs_STY.TabButtonSeperator_STY />   }
+                            </>
                         )
                     )
                 }
-            </SingleTabs>
-        </SingleTabsContainer>  
+            </SinglePageTabs_STY.SingleTabs>
+        </SinglePageTabs_STY.SingleTabsContainer>  
     )
 }
 

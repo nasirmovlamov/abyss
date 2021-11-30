@@ -2,6 +2,9 @@ import { filterTagInterFace } from "./PageFiltersInterface";
 
 export interface SEARCHBOX_INTERFACE {
     isFocused: boolean;
+    page:'store' | 'forum' | '',
+    search_query:string,
+    filters:filterTagInterFace[],
     searchBoxData:{
         forum:{
             data:ForumQuestionInterface[],
@@ -10,15 +13,20 @@ export interface SEARCHBOX_INTERFACE {
             fromNumber:number,
             searchOptions:{
                 sendedQuery:string | null,
-                searchValue:string,
-                filters:filterTagInterFace[],
                 forumType:string,
                 forumSort:string,    
             }
         },
         store:{
-            data:[],
+            data:any[],
             status:"loading" | "loaded" | "error",
+            results_number:number,
+            fromNumber:number,
+            searchOptions:{
+                sendedQuery:string | null,
+                storeType:string,
+                storeSort:string,    
+            }
         },
     }
 }

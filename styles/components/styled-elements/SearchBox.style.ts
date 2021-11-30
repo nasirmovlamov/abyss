@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 
 
-export const SearchBoxContainer = styled.div<{path:string , scrollTopValue:number}>`
+export const SearchBoxContainer_STY = styled.div<{path:string , scrollTopValue:number}>`
     display: flex;
     width: 100%;
     padding-top: ${(props) => props.path === "/" ? "20vh" : "0vh"};
@@ -10,7 +10,7 @@ export const SearchBoxContainer = styled.div<{path:string , scrollTopValue:numbe
     justify-content: center;
     padding-right:112px;
     z-index: 555;
-    position: absolute;
+    position: fixed;
     /* top:60px; */
     /* top: 61px; */
     transform: ${({scrollTopValue})=> `translateY(${scrollTopValue}px)`};
@@ -20,16 +20,19 @@ export const SearchBoxContainer = styled.div<{path:string , scrollTopValue:numbe
     @media only screen and (max-width: 1236px) {
         padding-right: 0%;
     }
+    height: 120px;
+    position: fixed;
+    top: 0px;
+    /* top: 50px; */
 `
 
-export const SearchBoxThunkAndCont = styled.div<{direction:string}>`
+export const SearchBoxThunkAndCont_STY = styled.div<{direction:string}>`
     display: flex;
     flex-direction: column;
     /* align-items: center; */
     justify-content: space-between;
     /* transform: ${({direction}) => direction === "visible" ? "translateY(0px)" : "translateY(-51px)"}; */
     width: 810px;
-    /* position: sticky; */
     z-index: 100;
     @media only screen and (max-width: 1526px) {
         width: 52.73%;
@@ -39,11 +42,10 @@ export const SearchBoxThunkAndCont = styled.div<{direction:string}>`
         padding-right: 0%;
         width: 77%;
     }
-    /* position: sticky;
-    top: 60px; */
+    margin-top:60px ;
 `
 
-export const SearchBoxThunk = styled.button<{direction:string}>`
+export const SearchBoxThunk_STY = styled.button<{direction:string}>`
     display: flex;
     flex-direction: column;
     color: black;
@@ -64,7 +66,7 @@ export const SearchBoxThunk = styled.button<{direction:string}>`
     pointer-events: ${({direction})=>direction === "not-visible" ? "all" : "none"};
 `
 
-export const SearchBoxStyle = styled.div<{direction:string, path:string}>`
+export const SearchBox_STY = styled.div<{direction:string, path:string}>`
     display: flex;
     pointer-events: all;
     background-color: black;
@@ -81,15 +83,12 @@ export const SearchBoxStyle = styled.div<{direction:string, path:string}>`
     box-sizing: border-box;
     z-index: 9999;
     transform-origin: top;
-    background-color: ${({theme}) => theme.searchBox.background};
-    box-shadow: ${({theme}) => theme.searchBox.boxShadow};
-
-    
-    
+    background-color: ${({theme}) => theme.backgrounds.background1};
+    box-shadow: ${({theme}) => theme.boxshadows.boxshadow1};
 `
 
 
-export const SearchBoxPage = styled.div`
+export const SearchBoxPage_STY = styled.div`
     width:112px;
     height: 100%;
     display:flex;
@@ -97,15 +96,15 @@ export const SearchBoxPage = styled.div`
     align-items: center;
     padding-left: 10px;
     background-color: white;
-    color:${({theme}) => theme.searchBox.leftSideColor} ;
+    color:${({theme}) => theme.colors.gray_1} ;
     font-family: r;
     border-radius: 30px 0px 0px 30px ;
-    background-color: ${({theme}) => theme.searchBox.background};
+    background-color: ${({theme}) => theme.backgrounds.background1};
     flex: 0 0 112px; /* flex-grow, flex-shrink, flex-basis */
 `
 
 
-export const SearchButtonLupa = styled.button`
+export const SearchButtonLupa_STY = styled.button`
     width: auto;
     height: auto;
     margin:0px;
@@ -123,12 +122,12 @@ export const SearchButtonLupa = styled.button`
     }
     svg 
     {
-        color: ${({theme}) => theme.searchBox.borderAndPlaceHolderColor};
+        color: ${({theme}) => theme.colors.gray_4};
         font-size: 16px;
     }
 `
 
-export const SearchInput = styled.input<{path:string}>`
+export const SearchInput_STY = styled.input<{path:string}>`
     border-radius: ${(props) => props.path === "/" ? "0px 30px 30px 0px" : "inherit"}  ;
     height: 100%;
     padding-left: 40px;
@@ -136,24 +135,24 @@ export const SearchInput = styled.input<{path:string}>`
     color:black;
     width: 100%;
     z-index: 3;
-    background-color: ${({theme}) => theme.searchBox.background};
-    color: ${({theme}) => theme.searchBox.inputColor};
+    background-color: ${({theme}) => theme.backgrounds.background1};
+    color: ${({theme}) => theme.colors.white_1};
     &:focus {
         outline: none;
     }
     &::placeholder {
-        color: ${({theme}) => theme.searchBox.borderAndPlaceHolderColor};
+        color: ${({theme}) => theme.colors.gray_4};
     }
 `
 
-export const SearchCont = styled.div`
+export const SearchCont_STY = styled.div`
     width:100%;
     justify-self: stretch;
     height: 100%;
     display:flex;
     align-items: center;
     border-left: 1px solid red;
-    border-color:  ${({theme}) => theme.searchBox.borderAndPlaceHolderColor} !important;
+    border-color:  ${({theme}) => theme.colors.gray_4} !important;
     position: relative;
     
     input 
@@ -161,7 +160,7 @@ export const SearchCont = styled.div`
         
     }
 `
-export const SearchNav = styled.div<{path:string}>`
+export const SearchNav_STY = styled.div<{path:string}>`
     position: absolute;
     display:flex;
     flex-direction: column;
@@ -180,7 +179,7 @@ export const SearchNav = styled.div<{path:string}>`
     border: 0px;
 
 `
-export const SearchNavQuery = styled.button`
+export const SearchNavQuery_STY = styled.button`
     display: flex;
     padding: 4px 10px;
     align-items: center;
@@ -204,7 +203,7 @@ export const SearchNavQuery = styled.button`
     }
 `
 
-export const AddQuesitionCont = styled.button`
+export const AddQuesitionCont_STY = styled.button`
     flex: 0 0 112px; /* flex-grow, flex-shrink, flex-basis */
     height: 100%;
     display: flex;
@@ -216,8 +215,8 @@ export const AddQuesitionCont = styled.button`
     font-size: 15px;
     font-family: s;
     border-radius: 0px 30px 30px 0px ;
-    background-color: ${({theme}) => theme.searchBox.button};
-    color: ${({theme}) => theme.searchBox.buttonColor};
+    background-color: ${({theme}) => theme.colors.orange_1};
+    color: ${({theme}) => theme.colors.black_3};
 
 
 `

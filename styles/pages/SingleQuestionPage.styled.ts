@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 
 
-export const SingleProductMiddle = styled.main`
+export const SingleProductMiddle_STY = styled.main`
     width: 100%;
     display: flex;
     flex-direction:column;
@@ -19,7 +19,7 @@ export const SingleProductMiddle = styled.main`
 `
 
 
-export const SingleProductAside = styled.aside`
+export const SingleProductAside_STY = styled.aside`
     display: flex;
     width: 350px;
     height:500px;
@@ -35,7 +35,7 @@ export const SingleProductAside = styled.aside`
 
 
 
-export const QuestionCont = styled.div`
+export const QuestionCont_STY = styled.div`
     display: flex;
     width: 100%;
     padding-top: 5px;
@@ -45,8 +45,8 @@ export const QuestionCont = styled.div`
     box-sizing: border-box;
     /* border-radius: 6px; */
     border-radius: 10px;
-    background-color: ${({theme}) => theme.forumPage.elementBackground};
-    box-shadow: ${({theme}) => theme.forumPage.boxShadow};
+    background-color: ${({theme}) => theme.backgrounds.background1};
+    box-shadow: ${({theme}) => theme.boxshadows.boxshadow4};
     justify-content: flex-start;
     /* align-items: center; */
     @media only screen and (max-width:1375px){
@@ -56,7 +56,7 @@ export const QuestionCont = styled.div`
     }
 `
 
-export const PersonCont = styled.div`
+export const PersonCont_STY = styled.div`
     display: flex;
     flex-direction: column;
     width: 63px;
@@ -70,18 +70,18 @@ export const PersonCont = styled.div`
         column-gap: 10px;
     }
 `
-export const Avatar = styled.div`
+export const Avatar_STY = styled.div`
     width: 63px;
     height:63px;
     border-radius:50%;
     object-fit: cover;
-    background-color: ${({theme}) => theme.forumPage.darkelementBacground};
+    background-color: ${({theme}) => theme.backgrounds.background3};
     @media only screen and (max-width:1375px){
         width: 22px;
         height:22px;
     }
 `
-export const Name = styled.span`
+export const Name_STY = styled.span`
     font-size: 12px;
     margin-top: 18px;
     display: flex;
@@ -94,13 +94,13 @@ export const Name = styled.span`
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    color:  ${({theme}) => theme.forumPage.sideTextColor};
+    color:  ${({theme}) => theme.texts.text2};
     @media only screen and (max-width:1375px){
         margin: 0px;
     }
 `
 
-export const ContentCont = styled.div`
+export const ContentCont_STY = styled.div`
     display: flex;
     flex-wrap: wrap;
     width: 535px;
@@ -112,9 +112,9 @@ export const ContentCont = styled.div`
     }
 `
 
-export const QuestionTitle = styled.h2`
+export const QuestionTitle_STY = styled.h2`
     font-size: 20px;
-    color:  ${({theme}) => theme.forumPage.titleColor};
+    color:  ${({theme}) => theme.texts.title2};
     cursor: pointer;
     text-transform: capitalize;
     display: -webkit-box;
@@ -128,40 +128,40 @@ export const QuestionTitle = styled.h2`
     letter-spacing: 0.2px;
 `
 
-export const QuestionContent = styled.p`
+export const QuestionContent_STY = styled.p`
     font-size: 15px;
     width: 100%;
     /* display: -webkit-box; */
-    color:  ${({theme}) => theme.forumPage.textColor};
+    color:  ${({theme}) => theme.texts.text1};
     font-family: r;
     align-self: flex-start;
     line-height: 22px;
     margin-top: 2px;
 `
 
-export const QuestionTagsAndDate = styled.div`
+export const QuestionTagsAndDate_STY = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
     margin-top: 14px;
     align-items: center;
 `    
-export const QuestionDate = styled.p`
+export const QuestionDate_STY = styled.p`
      font-family: r;
     font-style: italic;
     font-size: 12px;
-    color: ${({theme}) => theme.forumPage.darkSideTextColor};
+    color: ${({theme}) => theme.texts.text3};
     line-height: 18px;
     margin-bottom: 3.5px;
 `    
 
-export const QuestionTags = styled.div`
+export const QuestionTags_STY = styled.div`
      display: flex;
     column-gap: 10px;
     
 `
 
-export const QuestionTag = styled.div`
+export const QuestionTag_STY = styled.div`
     height: 22px;
     color: white;
     border: none;
@@ -174,20 +174,20 @@ export const QuestionTag = styled.div`
     align-items: center;
     background-color: #e5f0f4;
     font-family: r;
-    background:  ${({theme}) => theme.forumPage.tagBackColor};
+    background:  ${({theme}) => theme.backgrounds.background4};
     cursor: pointer;
     font-size: 12px;
     text-align: center;
     transition: 10s ease-out ;
-    color:  ${({theme}) => theme.forumPage.tagTextColor};
-    box-shadow: ${({theme}) => theme.forumPage.tagBoxShadow};
+    color:  ${({theme}) => theme.texts.text4};
+    box-shadow: ${({theme}) => theme.boxshadows.boxshadow6};
     &:hover{
-        box-shadow: ${({theme}) => theme.forumPage.hover.tagBoxShadow};
+        box-shadow: ${({theme}) => theme.boxshadow_hover.hover3};
     }
     
 `
 
-export const QuestionStatistics = styled.div`
+export const QuestionStatistics_STY = styled.div`
     display: flex;
     flex-direction: column;
     align-self: flex-start;
@@ -207,14 +207,14 @@ export const QuestionStatistics = styled.div`
     }
 `
 
-export const VotePercentage = styled.div`
+export const VotePercentage_STY = styled.div`
     display: flex;
-    color:${({theme}) => theme.forumPage.sideTextColor};
+    color:${({theme}) => theme.texts.text2};
 
     margin-top: 3px;
     font-family: s;
 `
-export const StatisticContSingleQuestion = styled.div`
+export const StatisticContSingleQuestion_STY = styled.div`
      display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -232,14 +232,14 @@ export const StatisticContSingleQuestion = styled.div`
 
 `
 
-export const QuestionStatisticElement = styled.div`
+export const QuestionStatisticElement_STY = styled.div`
     display: flex;
     flex-direction: column;
     row-gap: 3px;
     column-gap: 5px;
     align-items: center;
 `
-export const QuestionStatisticButton = styled.button<{changeDirection:boolean}>`
+export const QuestionStatisticButton_STY = styled.button<{changeDirection:boolean}>`
     display: flex;
     font-size: 12px;
     justify-content: center;
@@ -255,16 +255,16 @@ export const QuestionStatisticButton = styled.button<{changeDirection:boolean}>`
 
 `
 
-export const QuestionStatisticText = styled.span`
+export const QuestionStatisticText_STY = styled.span`
     width: 100%;
     text-align: center;
-    color:${({theme}) => theme.forumPage.sideTextColor};
+    color:${({theme}) => theme.texts.text2};
 
     font-size: 12px;
 `
 
 
-export const AddAnswer = styled.textarea`
+export const AddAnswer_STY = styled.textarea`
     width: 100%;
     height: 50px;
     border: none;
@@ -281,7 +281,7 @@ export const AddAnswer = styled.textarea`
     }
 `
 
-export const AddAnswerCont = styled.form`
+export const AddAnswerCont_STY = styled.form`
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -290,20 +290,20 @@ export const AddAnswerCont = styled.form`
     height: auto;
     width: 808px;
     border-radius: 10px;
-    background-color: ${({theme}) => theme.forumPage.elementBackground};
-    box-shadow: ${({theme}) => theme.forumPage.boxShadow};
+    background-color: ${({theme}) => theme.backgrounds.background1};
+    box-shadow: ${({theme}) => theme.boxshadows.boxshadow4};
     padding: 15px 23px;
     
 `
-export const AddAnswerSubmit = styled.button`
+export const AddAnswerSubmit_STY = styled.button`
     width: 50px;
     margin: 0px;
     padding: 0px;
     height: 30px;
-    color:${({theme}) => theme.forumPage.sideTextColor};
+    color:${({theme}) => theme.texts.text2};
 
-    background-color: ${({theme}) => theme.forumPage.darkelementBacground};
-    box-shadow: ${({theme}) => theme.forumPage.boxShadowForElement};
+    background-color: ${({theme}) => theme.backgrounds.background3};
+    box-shadow: ${({theme}) => theme.boxshadows.boxshadow5};
     border: none;
     align-self:flex-end;
     border-radius:6px ;
@@ -312,44 +312,36 @@ export const AddAnswerSubmit = styled.button`
     transition: 0.5s;
     &:hover 
     {
-        background:${({theme}) => theme.forumPage.elementBackground} ;
+        background:${({theme}) => theme.background_hover.hover4} ;
     }
 `
 
 
-export const AnswersCont = styled.div`
+export const AnswersCont_STY = styled.div`
     row-gap: 10px;
     display: flex;
     flex-direction: column;
     width: 100%;
     align-items: center ;
     box-sizing: border-box;
-    padding-left: 12px ;
-    padding-right: 12px ;
 `
 
-export const AnswersAndProductsCont = styled.div`
+export const AnswersAndProductsCont_STY = styled.div`
     display: flex;
     flex-direction: column;
     width: 808px;
-    border-radius: 10px;
-    background-color: ${({theme}) => theme.forumPage.elementBackground};
-    box-shadow: ${({theme}) => theme.forumPage.boxShadow};
 `
 
 
-export const ProductsCont = styled.div`
+export const ProductsCont_STY = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
     box-sizing: border-box;
     align-items: center ;
     justify-content: center;
-    background-color: gray;
     border-radius: 6px;
     padding-top: 100px  ;
     color: white;
-    padding-left: 12px ;
-    padding-right: 12px ;
 `
 

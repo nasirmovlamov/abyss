@@ -17,6 +17,7 @@ import { closeComments, is_comment_opened } from '../app/feature/Comments.slice'
 import Cookies from 'js-cookie'
 import { getCookie } from '../logic/CookieFunctions';
 import Header from './Header';
+import { ScrollToTopButton } from './ScrollToTopButton';
 
 interface Props {
     // any props that come into the component
@@ -68,7 +69,7 @@ const Layout: FC<Props> = ({ children, ...props }) => {
                     {children}
 
 
-
+                    <ScrollToTopButton/>
 
                     {userData !== null && <button type="button" style={{position:"fixed",right:"0px",bottom:"0px"}} onClick={openUserChat}>Chat</button>}
                     <Modals/>

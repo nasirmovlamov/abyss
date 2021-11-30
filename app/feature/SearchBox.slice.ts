@@ -1,3 +1,4 @@
+import { storeSearch, storeSearchInfinity } from './../thunks/SearchBoxThunks';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store/store'
 import { SEARCHBOX_STATE } from '../store/states/SearchBoxState'
@@ -14,70 +15,104 @@ export const SearchBoxSlice = createSlice({
 
     getCachedSearchBoxData(state , action)
     { 
-      if(JSON.parse(getCookie('ForumFiltersSearchOption')))
+      if(getCookie('searchValue')){
+        state.search_query = getCookie('searchValue')
+      }else{
+        state.search_query = ''
+      }
+      if(JSON.parse(getCookie('filterSearch')))
       {
-        state.searchBoxData.forum.searchOptions.filters = JSON.parse(getCookie('ForumFiltersSearchOption')!)
+        state.filters = JSON.parse(getCookie('filterSearch')!)
+      }
+      state.page = action.payload.page
+
+      if(action.payload.page === 'forum'){
+  
+        if(getCookie('ForumTypeSearchOption'))
+        {
+          state.searchBoxData.forum.searchOptions.forumType = getCookie("ForumTypeSearchOption")!
+        }else 
+        {
+          state.searchBoxData.forum.searchOptions.forumType = "Questions"
+        }
+        
+        if(getCookie('ForumSortSearchOption'))
+        {
+          state.searchBoxData.forum.searchOptions.forumSort = getCookie("ForumSortSearchOption")!
+        }
+        else 
+        {
+          state.searchBoxData.forum.searchOptions.forumSort = "Newes"
+        }
       }
 
-      if(getCookie('ForumTypeSearchOption'))
-      {
-        state.searchBoxData.forum.searchOptions.forumType = getCookie("ForumTypeSearchOption")!
-      }else 
-      {
-        state.searchBoxData.forum.searchOptions.forumType = "Questions"
-      }
-
-      if(getCookie('ForumSearchValue'))
-      {
-        state.searchBoxData.forum.searchOptions.searchValue = getCookie('ForumSearchValue')
-      }
-      else {
-        state.searchBoxData.forum.searchOptions.searchValue = ""
-      }
-      if(getCookie('ForumSortSearchOption'))
-      {
-        state.searchBoxData.forum.searchOptions.forumSort = getCookie("ForumSortSearchOption")!
-      }
-      else 
-      {
-        state.searchBoxData.forum.searchOptions.forumSort = "Newes"
+      if(action.payload.page === 'store'){
+        if(getCookie('StoreTypeSearchOption'))
+        {
+          state.searchBoxData.store.searchOptions.storeType = getCookie("StoreTypeSearchOption")!
+        }else 
+        {
+          state.searchBoxData.store.searchOptions.storeType = "Questions"
+        }
+        if(getCookie('StoreSortSearchOption'))
+        {
+          state.searchBoxData.store.searchOptions.storeSort = getCookie("StoreSortSearchOption")!
+        }
+        else 
+        {
+          state.searchBoxData.store.searchOptions.storeSort = "Newes"
+        }
       }
     },
 
     selectFilterToSearchOption(state, action) {
-      for (let i = 0; i < state.searchBoxData.forum.searchOptions.filters.length; i++) {
-        if (state.searchBoxData.forum.searchOptions.filters[i].id === action.payload.id) {
-          state.searchBoxData.forum.searchOptions.filters = state.searchBoxData.forum.searchOptions.filters.filter(tag => tag.id !== action.payload.id)
-          setCookie("ForumFiltersSearchOption" , JSON.stringify(state.searchBoxData.forum.searchOptions.filters) , 365)
+      for (let i = 0; i < state.filters.length; i++) {
+        if (state.filters[i].id === action.payload.id) {
+          state.filters = state.filters.filter(tag => tag.id !== action.payload.id)
+          setCookie("filterSearch" , JSON.stringify(state.filters) , 365)
           return
         }
       } 
-      state.searchBoxData.forum.searchOptions.filters.push(action.payload)
-      setCookie("ForumFiltersSearchOption" , JSON.stringify(state.searchBoxData.forum.searchOptions.filters) , 365)
+      state.filters.push(action.payload)
+      setCookie("filterSearch" , JSON.stringify(state.filters) , 365)
     },
 
     ifFilterWasDeleted(state, action){
-      state.searchBoxData.forum.searchOptions.filters = state.searchBoxData.forum.searchOptions.filters.filter(tag => tag.id !== action.payload.id)
-      setCookie("ForumFiltersSearchOption" , JSON.stringify(state.searchBoxData.forum.searchOptions.filters) , 365)
+      state.filters = state.filters.filter(tag => tag.id !== action.payload.id)
+      setCookie("filterSearch" , JSON.stringify(state.filters) , 365)
     },
 
-    onForumSearchValue(state, action){
-      state.searchBoxData.forum.searchOptions.searchValue = action.payload
-      setCookie("ForumSearchValue" , action.payload , 365)
+    searchValueOnChange(state, action){
+      state.search_query = action.payload
+      setCookie("searchValue" , action.payload , 365)
     },
 
-    selectForumTypeSearchOption(state, action) {
-      state.searchBoxData.forum.searchOptions.forumType = action.payload
-      setCookie("ForumTypeSearchOption" , action.payload , 365)
+    selectTypeSearchOption(state, action) {
+      if(state.page === 'forum'){
+        state.searchBoxData.forum.searchOptions.forumType = action.payload
+        setCookie("ForumTypeSearchOption" , action.payload , 365)
+      }else if (state.page === 'store'){
+        state.searchBoxData.store.searchOptions.storeType = action.payload
+        setCookie("StoreTypeSearchOption" , action.payload , 365)
+      } 
     },
 
-    selectForumSortSearchOption(state, action) {
-      state.searchBoxData.forum.searchOptions.forumSort = action.payload
-      setCookie("ForumSortSearchOption" , action.payload , 365)
+    selectSortSearchOption(state, action) {
+      if(state.page === 'forum'){
+        state.searchBoxData.forum.searchOptions.forumSort = action.payload
+        setCookie("ForumSortSearchOption" , action.payload , 365)
+      }else if (state.page === 'store'){
+        state.searchBoxData.store.searchOptions.storeSort = action.payload
+        setCookie("StoreSortSearchOption" , action.payload , 365)
+      } 
     },
 
     resetSendedQuery (state, _) {
-      state.searchBoxData.forum.searchOptions.sendedQuery = null
+      if(state.page === 'forum'){
+        state.searchBoxData.forum.searchOptions.sendedQuery = null
+      }else if (state.page === 'store'){
+        state.searchBoxData.store.searchOptions.sendedQuery = null
+      }
     }
     
 
@@ -93,7 +128,7 @@ export const SearchBoxSlice = createSlice({
       state.searchBoxData.forum.fromNumber = state.searchBoxData.forum.data.length
       state.searchBoxData.forum.results_number = payload.data.total
       state.searchBoxData.forum.status = "loaded"
-      state.searchBoxData.forum.searchOptions.sendedQuery = state.searchBoxData.forum.searchOptions.searchValue
+      state.searchBoxData.forum.searchOptions.sendedQuery = state.search_query
     }),
     builder.addCase(forumSearch.pending, (state, {payload}) => {
       state.searchBoxData.forum.status = "loading"
@@ -111,7 +146,7 @@ export const SearchBoxSlice = createSlice({
       state.searchBoxData.forum.data = [... state.searchBoxData.forum.data , ...payload.data.results]
       state.searchBoxData.forum.fromNumber = state.searchBoxData.forum.data.length
       state.searchBoxData.forum.results_number = payload.data.total
-      state.searchBoxData.forum.searchOptions.sendedQuery = state.searchBoxData.forum.searchOptions.searchValue
+      state.searchBoxData.forum.searchOptions.sendedQuery = state.search_query
     }),
     builder.addCase(forumSearchInfinity.pending, (state, {payload}) => {
     }),
@@ -122,6 +157,38 @@ export const SearchBoxSlice = createSlice({
 
 
 
+    // Forum Search
+    builder.addCase(storeSearch.fulfilled, (state, {payload}) => {
+      state.searchBoxData.store.data = payload.data.results
+      state.searchBoxData.store.fromNumber = state.searchBoxData.store.data.length
+      state.searchBoxData.store.results_number = payload.data.total
+      state.searchBoxData.store.status = "loaded"
+      state.searchBoxData.store.searchOptions.sendedQuery = state.search_query
+    }),
+    builder.addCase(storeSearch.pending, (state, {payload}) => {
+      state.searchBoxData.store.status = "loading"
+    }),
+    builder.addCase(storeSearch.rejected, (state, {payload}) => {
+      state.searchBoxData.store.status = "error"
+      autoErrorToaster(payload)
+    })  
+
+
+
+
+    // Forum Search
+    builder.addCase(storeSearchInfinity.fulfilled, (state, {payload}) => {
+      state.searchBoxData.store.data = [... state.searchBoxData.store.data , ...payload.data.results]
+      state.searchBoxData.store.fromNumber = state.searchBoxData.store.data.length
+      state.searchBoxData.store.results_number = payload.data.total
+      state.searchBoxData.store.searchOptions.sendedQuery = state.search_query
+    }),
+    builder.addCase(storeSearchInfinity.pending, (state, {payload}) => {
+    }),
+    builder.addCase(storeSearchInfinity.rejected, (state, {payload}) => {
+      autoErrorToaster(payload)
+    })  
+
   },
 
 })
@@ -131,27 +198,20 @@ export const SearchBoxSlice = createSlice({
 export const 
 {
   selectFilterToSearchOption , 
-  selectForumTypeSearchOption , 
-  selectForumSortSearchOption,
+  selectTypeSearchOption , 
+  selectSortSearchOption,
   getCachedSearchBoxData,
   ifFilterWasDeleted,
-  onForumSearchValue,
+  searchValueOnChange,
   resetSendedQuery
 } = SearchBoxSlice.actions;
 
 
+export const search_query = (state: RootState) => state.searchBoxReducer.search_query
 // data
-export const forum_search_data = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.data  
-export const forum_data_status = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.status  
-export const forum_search_type = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.searchOptions.forumType
-export const forum_search_sort = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.searchOptions.forumSort
-export const forum_search_filters = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.searchOptions.filters
-export const forum_search_value = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.searchOptions.searchValue
-export const forum_search_from_value = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.fromNumber
-export const forum_search_results_number = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.results_number
-export const forum_search_options = (state: RootState) => state.searchBoxReducer.searchBoxData.forum.searchOptions
-
-
+export const forum_search_data = (state: RootState) => state.searchBoxReducer.searchBoxData.forum
+export const store_search_data = (state: RootState) => state.searchBoxReducer.searchBoxData.store
+export const search_filters = (state: RootState) => state.searchBoxReducer.filters
 
 
 export default SearchBoxSlice.reducer;

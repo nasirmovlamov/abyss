@@ -23,22 +23,23 @@ export const QuestionSlice = createSlice({
     changeTopAnswersStatus(state, action) {
         state.answersData.topAnswers.status = action.payload.status
     },
+
     changeDownAnswersStatus(state, action) {
       state.answersData.downAnswers.status = action.payload.status
     },
-    
-
 
     mentionUserAtAnswer(state , action){
       if(state.answerSubmitData.mentionedUsers.filter(answer => answer.id === action.payload.id).length === 0){
         state.answerSubmitData.mentionedUsers.push(action.payload)
       }
     },
+
     linkProductAtAnswer(state , action){
       if(state.answerSubmitData.linkedProducts.filter(answer => answer.id === action.payload.id).length === 0){
         state.answerSubmitData.linkedProducts.push(action.payload)
       }
     },
+    
     AnswerContentOnChange(state, action){
       state.answerSubmitData.content = action.payload
     },

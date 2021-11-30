@@ -8,6 +8,7 @@ export interface ANSWER_INTERFACE {
     content:string,
     created_at:string,
     updated_at:string ,
+    linked_products:any[]
     user_votes:{
             id:number,
             user_id:number,

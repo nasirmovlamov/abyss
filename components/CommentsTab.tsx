@@ -1,11 +1,12 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { set_overflowy } from '../app/feature/App.slice'
-import { user_data } from '../app/feature/User.slice'
+import { changeModalAction, is_Logged, user_data } from '../app/feature/User.slice'
 import { closeComments, comments,   comments_types, is_answer, is_question, showComments } from '../app/feature/Comments.slice'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { addAnswerComment, addQuestionComment } from '../app/thunks/CommentsThunk'
 import { AllCommentsCont, CommentAvatar, CommentChangeContent, CommentContent, CommentNameAndContentCont, CommentsCloseButton, CommentsForm,  CommentsTabMainNameStyle, CommentsTabStyle, CommentsTabTitleStyle, CommentStyle, CommentUserName, PostComment, TakeCommentsToSideMakeAbsolute,  } from '../styles/components/styled-elements/CommentsTab.style'
 import { errorToastFunc } from './Notify/ErrorToasts'
+import { autoErrorToasterWithMessage } from './Notify/AutoSuccessToast'
 
 interface Props {
 }
@@ -19,6 +20,8 @@ function CommentModal({}: Props): ReactElement {
     const isAnswer = useAppSelector(is_answer)
     const userData = useAppSelector(user_data)
     const dispatch = useAppDispatch()
+    const isLogged = useAppSelector(is_Logged)
+
     if(commentsType === null)
     {
         return <></>
@@ -28,14 +31,16 @@ function CommentModal({}: Props): ReactElement {
 
     const submitComment = (e:any) => {
         e.preventDefault()
+        if(!isLogged)
+        {
+            autoErrorToasterWithMessage('You must be logged in to submit an answer')
+            dispatch(changeModalAction('login'))
+            return null
+        }
+
         const comment={
             parent_id: commentsType.id,
             content: newComment
-        }
-        if(userData === null)
-        {
-            errorToastFunc("top-right","Login your account.")
-            return 0 
         }
 
         if(commentsType.type === "answer")
@@ -54,6 +59,15 @@ function CommentModal({}: Props): ReactElement {
         dispatch(closeComments(null))
         dispatch(set_overflowy(""))
     }
+
+    const commentOnChange = (e:any) => {
+        setNewComment(e.target.value)
+        if(e.keyCode === 13)
+        {
+            submitComment(e)
+        }
+    }
+
    
     return (
         <TakeCommentsToSideMakeAbsolute>
@@ -78,7 +92,7 @@ function CommentModal({}: Props): ReactElement {
                     </AllCommentsCont>
 
                     <CommentsForm onSubmit={submitComment}>
-                        <CommentChangeContent onChange={(e)=> setNewComment(e.target.value)} value={newComment} placeholder="Write a comment"></CommentChangeContent>
+                        <CommentChangeContent onChange={commentOnChange} value={newComment} placeholder="Write a comment"></CommentChangeContent>
                         <PostComment type="submit">Add Comment</PostComment>
                     </CommentsForm>
                 </CommentsTabStyle>

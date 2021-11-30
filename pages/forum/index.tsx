@@ -3,8 +3,7 @@ import { useRouter } from 'next/router'
 import React, { ReactElement, useEffect, useState } from 'react'
 import FormQuestion from '../../components/ForumQuestion'
 import PageTabs from '../../components/ForumPageTabs'
-import { TabButton, Tabs, TabsContainer, TabTags, TabTagsCont } from '../../styles/components/styled-elements/PageTabs.style'
-import { ForumPage } from '../../styles/global/styled-utils/styling-elements/Pages.style'
+import { ForumPage } from '../../styles/pages/Pages.style'
 import MainPartOfPage from '../../components/MainPartOfPage'
 import SidePartOfPage from '../../components/SidePartOfPage'
 import { PageDefaultStyle } from '../../styles/pages/Page.styled'
@@ -13,7 +12,7 @@ import { is_chatbox_opened } from '../../app/feature/ChatBox.slice'
 import ChatBox from '../../components/ChatBox'
 import PageFilters from '../../components/PageFilters'
 import CommentModal from '../../components/CommentsTab'
-import { forum_data_status, forum_search_data, forum_search_from_value, forum_search_value } from '../../app/feature/SearchBox.slice'
+import { forum_search_data, search_query } from '../../app/feature/SearchBox.slice'
 import FormQuestionSkeleton from '../../components/Skeletons/ForumQuestionSkeleton'
 import { encryptData , decryptData } from '../../logic/Cryption'
 import { useInView } from 'react-intersection-observer'
@@ -27,20 +26,20 @@ interface Props {
 
 function Forum({}: Props): ReactElement {
     const [inViewRefLoaderDown, inViewLoaderDown] = useInView()
+
+
     const dispatch = useAppDispatch()
-    const forumSearchValue = useAppSelector(forum_search_value)
-    const forumSearchFromValue = useAppSelector(forum_search_from_value)
+    const forumSearchData = useAppSelector(forum_search_data)
+    const searchQuery  = useAppSelector(search_query)
     const router = useRouter()
     const isChatBoxOpened = useAppSelector(is_chatbox_opened)
-    const forumSearchData = useAppSelector(forum_search_data)
-    const forumSearchStatus = useAppSelector(forum_data_status)
     const a = [1,2,3,4]
     
 
 
     useEffect(() => {
         if(inViewLoaderDown){
-            const data = {query:forumSearchValue , from:forumSearchFromValue} 
+            const data = {query:searchQuery , from:forumSearchData.fromNumber} 
             dispatch(forumSearchInfinity(data))
         }
     }, [inViewLoaderDown])
@@ -60,11 +59,11 @@ function Forum({}: Props): ReactElement {
                     
                     <PageTabs/>  
                     {
-                        forumSearchStatus === "loaded" && 
-                        forumSearchData.map((element , index) => <FormQuestion  key={index} data={element}/>)
+                        forumSearchData.status === "loaded" && 
+                        forumSearchData.data.map((element , index) => <FormQuestion  key={index} data={element}/>)
                     } 
                     
-                    {forumSearchStatus === "loading" && 
+                    {forumSearchData.status === "loading" && 
                         <div style={{width:"100%" , display:"flex", flexDirection:"column", rowGap:"10px"}}>
                             <FormQuestionSkeleton/>
                             <FormQuestionSkeleton/>
@@ -80,11 +79,18 @@ function Forum({}: Props): ReactElement {
                         </div>
                     } 
 
-                    {forumSearchStatus === "error" && <div>Error ...</div>} 
+                    {forumSearchData.status === "error" && <div>Error ...</div>} 
 
-                    <div ref={inViewRefLoaderDown} style={{width:"100%" , display:"flex", flexDirection:"column", rowGap:"10px"}}>
-                            <FormQuestionSkeleton/>
-                    </div>
+                    {forumSearchData.results_number >0 ?
+                        <div ref={inViewRefLoaderDown} style={{width:"100%" , display:"flex", flexDirection:"column", rowGap:"10px"}}>
+                                <FormQuestionSkeleton/>
+                        </div>
+                        :
+                        <div>
+                            No records found
+                        </div>
+                    }
+                    
 
                 </ForumPage>
             </MainPartOfPage>

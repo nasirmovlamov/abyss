@@ -10,9 +10,9 @@ import SinglePageTabs from '../../../components/SinglePageTabs'
 import StarCountShow from '../../../components/StarCountShow'
 import { LabelCont } from '../../../styles/components/styled-elements/CreateQuestionModal.style'
 import { ProductTag } from '../../../styles/components/styled-elements/ListingStoreProduct.styled'
-import { ForumPage, StorePage } from '../../../styles/global/styled-utils/styling-elements/Pages.style'
+import { ForumPage, StorePage } from '../../../styles/pages/Pages.style'
 import { PageDefaultStyle } from '../../../styles/pages/Page.styled'
-import {  SingleProductMiddle } from '../../../styles/pages/SingleQuestionPage.styled'
+import {  SingleProductMiddle_STY } from '../../../styles/pages/SingleQuestionPage.styled'
 import { 
     ClipBody, 
     ClipsCont, 

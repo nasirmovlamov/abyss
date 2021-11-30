@@ -4,7 +4,7 @@ import { CaveTabInterface } from "../../../../app/store/state-Interfaces/Cave_In
 
 export const Cave_Tabs_Sty = styled.div`
     display: flex;
-    background-color: ${({theme}) => theme.colors.pageDarkBlack};
+    background-color: ${({theme}) => theme.colors.black_3};
     position: sticky;
     top: 50px;
     padding-top: 20px;
@@ -75,8 +75,8 @@ export const Cave_Tab_Sty = styled.button<{active:boolean , order:number}>`
     padding: 22px 48px;
     font-size: 14px;
     text-transform: uppercase;
-    background-color: ${({active , theme}) => active ? theme.colors.pageBlack : theme.colors.pageDarkBlack};
-    color: ${({active , theme}) => active ? theme.colors.whiteTextColor : theme.colors.pageLightGray};
+    background-color: ${({active , theme}) => active ? theme.colors.black_1 : theme.colors.black_3};
+    color: ${({active , theme}) => active ? theme.colors.white_1 : theme.colors.gray_2};
     border: none;
     cursor: pointer;
     border-radius: ${({active , order }) => active ? "15px 15px 0px 0px !important" : (order > 0  ? "0px 0px 15px 15px" : "0px 0px 15px 0px")};
@@ -84,7 +84,7 @@ export const Cave_Tab_Sty = styled.button<{active:boolean , order:number}>`
         outline: none;
     }
     &:hover {
-        background-color: ${({theme , active}) => active ? theme.colors.pageBlack : theme.colors.pageBlack2};
+        background-color: ${({theme , active}) => active ? theme.colors.black_1 : theme.colors.black_2};
         border-radius: 15px 15px 0px 0px !important;
         ${CaveLeftCorner} , ${CaveRightCorner} {
             opacity: 1;
@@ -96,7 +96,7 @@ export const Cave_Tab_Sty = styled.button<{active:boolean , order:number}>`
 export const Cave_Tab_Seperator_Sty = styled.div<{tabs:CaveTabInterface[] , tab:CaveTabInterface}>`
     width: 1px;
     height: 25px;
-    background-color: ${({theme}) => theme.colors.pageGray3};
+    background-color: ${({theme}) => theme.colors.gray_5};
     margin-left: -1px;
     z-index:3;
     transition: 0.1s;

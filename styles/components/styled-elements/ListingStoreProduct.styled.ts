@@ -13,8 +13,8 @@ export const StoreListingProductStyle = styled.div`
     width: 100%;
     height: 182px;
     margin-bottom:20px ;
-    background-color: ${({theme}) => theme.productPage.elementBackground};
-    box-shadow: ${({theme}) => theme.productPage.boxShadow};
+    background-color: ${({theme}) => theme.backgrounds.background1};
+    box-shadow: ${({theme}) => theme.boxshadows.boxshadow4};
 
 `   
 
@@ -116,11 +116,11 @@ export const ProductContent = styled.div`
     display: flex;
     flex-direction: column;
     row-gap: 3px;
-    color:  ${({theme}) => theme.productPage.linesSideTextColor};
+    color:  ${({theme}) => theme.texts.text2};
 `
 
 export const ProductTitle = styled.a`
-    color:  ${({theme}) => theme.productPage.titleColor};
+    color:  ${({theme}) => theme.titles.title2};
     cursor: pointer;
     text-transform: capitalize;
     display: -webkit-box;
@@ -137,7 +137,7 @@ export const ProductTitle = styled.a`
 export const ProductDetailCont = styled.div`
     display: flex;
     column-gap: 35px;
-    color: ${({theme}) => theme.productPage.sideTextColor};
+    color: ${({theme}) => theme.texts.text2};
 `
 export const ProductStarCont = styled.div`
     display: flex;
@@ -178,20 +178,19 @@ export const ProductTag = styled.button`
     padding: 5px;
     border-radius: 5px;
     display: flex;
-    color:  ${({theme}) => theme.productPage.textColor};
+    color:  ${({theme}) => theme.texts.text1};
     font-family: r;
     justify-content: center;
     /* border: 1px solid lightgray; */
     align-items: center;
     font-family: r;
-    background:  ${({theme}) => theme.productPage.tagsBackground};
+    background:  ${({theme}) => theme.backgrounds.background5};
     cursor: pointer;
     font-size: 12px;
     text-align: center;
     transition: 0.2s;
     &:hover{
-        box-shadow: ${({theme}) => theme.productPage.boxShadowForElement};
-
+        box-shadow: ${({theme}) => theme.boxshadow_hover.hover2};
     }
 `
 
@@ -206,7 +205,7 @@ export const ProductDescription = styled.div`
 
 export const ProductDescriptionTitle = styled.p`
     font-size: 18px;
-    color:  ${({theme}) => theme.productPage.darkSideTextColor  };
+    color:  ${({theme}) => theme.texts.text3  };
 
 `
 export const ProductDescriptionContent = styled.p`
@@ -216,7 +215,7 @@ export const ProductDescriptionContent = styled.p`
     -webkit-box-orient: vertical;
     overflow: hidden;   
     text-overflow: ellipsis;
-    color:  ${({theme}) => theme.productPage.textColor  };
+    color:  ${({theme}) => theme.texts.text1  };
 
 `
 export const ProductSideDetailsCont = styled.div`
@@ -231,14 +230,14 @@ export const AddCave = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: ${({theme}) => theme.productPage.button};
-    color: ${({theme}) => theme.productPage.darkBlackColor};
+    background-color: ${({theme}) => theme.texts.text6};
+    color: ${({theme}) => theme.texts.text5};
     padding: 5px 10px;
     border: none;
     border-radius: 20px;
     font-family: s;
     cursor: pointer;    
-    box-shadow: ${({theme}) => theme.productPage.boxShadowForElement};
+    box-shadow: ${({theme}) => theme.boxshadows.boxshadow5};
     width: 83px;
     height: 22px;
 `
@@ -255,20 +254,20 @@ export const MentionsCont = styled.div`
 `
 
 export const MentionsCount = styled.p`
-    color: ${({theme}) => theme.productPage.sideTextColor};
+    color: ${({theme}) => theme.texts.text2};
     text-align: center;
     font-size: 18px;
 `
 
 export const MentionsText = styled.p`
-    color: ${({theme}) => theme.productPage.sideTextColor};
+    color: ${({theme}) => theme.texts.text2};
     text-align: center;
     font-size: 16px;
 `
 
 
 export const Iterations = styled.button`
-    color: ${({theme}) => theme.productPage.titleColor};
+    color: ${({theme}) => theme.titles.title2};
     text-align: center;
     font-size: 16px;
     border: none;

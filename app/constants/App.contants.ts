@@ -28,8 +28,11 @@ export const CHECK_ROOM:string = 'CHECK_ROOM'
 export const SEND_MESSAGE_TO_ROOM:string = 'SEND_MESSAGE_TO_ROOM'
 export const LOAD_MESSAGES_TO_ROOM:string = 'LOAD_MESSAGES_TO_ROOM'
 
-export const SEARCH_FORUM:string = 'SEARCH_FORUM'
-export const SEARCH_FORUM_INFINITY:string = 'SEARCH_FORUM_INFINITY'
+export const FORUM_SEARCH:string = 'FORUM_SEARCH'
+export const FORUM_SEARCH_INFINITY:string = 'FORUM_SEARCH_INFINITY'
+
+export const STORE_SEARCH:string = 'STORE_SEARCH'
+export const STORE_SEARCH_INFINITY:string = 'STORE_SEARCH_INFINITY'
 
 
 

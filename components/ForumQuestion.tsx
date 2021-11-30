@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp } from '@fortawesome/free-regular-svg-icons'
 import NavLink from './NavLink'
-import { QuestionStatisticButton, QuestionStatistics, VotePercentage } from '../styles/pages/SingleQuestionPage.styled'
+import { QuestionStatisticButton_STY, QuestionStatistics_STY, VotePercentage_STY } from '../styles/pages/SingleQuestionPage.styled'
 import thumbs_up from "/public/thumbs-up.svg"
 import { parseHtml, parseHtmlWithMention } from '../logic/htmlParser'
 
@@ -49,7 +49,7 @@ function FormQuestion({data}: Props): ReactElement {
                 </BottomSide>
             </TextCont>
 
-            <QuestionStatistics>
+            <QuestionStatistics_STY>
                     <StatisticCont>
                             <AnswerCont>
                                 <AnswerCount>7</AnswerCount>
@@ -58,7 +58,7 @@ function FormQuestion({data}: Props): ReactElement {
 
                             <HelpfulCont>
                                 <HelpfulCount>
-                                    <QuestionStatisticButton  changeDirection={false}  ><ThumbIcon><Image src={thumbs_up} width="18px" height="18px"/> </ThumbIcon></QuestionStatisticButton> 
+                                    <QuestionStatisticButton_STY  changeDirection={false}  ><ThumbIcon><Image src={thumbs_up} width="18px" height="18px"/> </ThumbIcon></QuestionStatisticButton_STY> 
                                     <QuestionStatisticPercentage  >69%</QuestionStatisticPercentage> 
                                 </HelpfulCount>
                                 <DefaultLine><PercentageLine percentage={(69/100*100)}/></DefaultLine>
@@ -73,7 +73,7 @@ function FormQuestion({data}: Props): ReactElement {
                         <QuestionStatisticText>Give Vote</QuestionStatisticText>
                         <QuestionDate> {singleQuestionData.created_at} </QuestionDate>
                     </QuestionStatisticElement> */}
-            </QuestionStatistics>
+            </QuestionStatistics_STY>
 
         </FormQuestionCont>
     )

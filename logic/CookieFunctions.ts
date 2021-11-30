@@ -14,7 +14,6 @@ export const deleteCookie = (cname:string) => {
     const encryptedCname = encryptData(cname)
     const d = new Date();
     d.setTime(d.getTime() + ((-100)*24*60*60*1000));
-    console.log(d)
     if(getCookie(cname))
     {
       setCookie('token', "", -100)

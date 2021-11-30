@@ -11,8 +11,8 @@ import AnswerSubmitCont from '../../../components/AnswerSubmit'
 import AnswerSubmit from '../../../components/AnswerSubmit'
 import ProductsConts from '../../../components/ProductsCont'
 import SinglePageTabs from '../../../components/SinglePageTabs'
-import { SingleProductPage } from '../../../styles/global/styled-utils/styling-elements/Pages.style'
-import { Avatar, Name, PersonCont, QuestionTags, ContentCont, QuestionCont, QuestionContent, QuestionDate, QuestionTag, QuestionTagsAndDate, QuestionTitle, QuestionStatistics, QuestionStatisticElement, QuestionStatisticButton, QuestionStatisticText, AddAnswer, AddAnswerCont, AddAnswerSubmit, AnswersCont, ProductsCont, SingleProductMiddle, SingleProductAside, AnswersAndProductsCont, VotePercentage, StatisticContSingleQuestion } from '../../../styles/pages/SingleQuestionPage.styled'
+import { SingleProductPage } from '../../../styles/pages/Pages.style'
+import * as SingleQuestion_STY from '../../../styles/pages/SingleQuestionPage.styled'
 import CommentModal from '../../../components/CommentsTab'
 import { closeComments, comments,   comments_status,   comments_types, is_comment_opened, showComments } from '../../../app/feature/Comments.slice'
 import { closeChat, is_chatbox_opened, openChat } from '../../../app/feature/ChatBox.slice'
@@ -28,7 +28,7 @@ import MainPartOfPage from '../../../components/MainPartOfPage'
 import SidePartOfPage from '../../../components/SidePartOfPage'
 import { PageDefaultStyle } from '../../../styles/pages/Page.styled'
 import SearchBox from '../../../components/SearchBox'
-import { AnswerCont, AnswerCount, DateCount, DefaultLine, HelpfulCont, HelpfulCount, PercentageLine, StatisticCont, Text, ThumbIcon } from '../../../styles/components/styled-elements/FormQuestion.style'
+// import { AnswerCont, AnswerCount, DateCount, DefaultLine, HelpfulCont, HelpfulCount, PercentageLine, StatisticCont, Text, ThumbIcon } from '../../../styles/components/styled-elements/FormQuestion.style'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsDown as solidfaThumbsDown  ,   faThumbsUp as solidfaThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import {faComment, faThumbsDown as regularfaThumbsDown  ,   faThumbsUp as regularfaThumbsUp  } from '@fortawesome/free-regular-svg-icons'
@@ -129,7 +129,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
             </SidePartOfPage>
 
             <MainPartOfPage>
-                <SingleProductMiddle>
+                <SingleQuestion_STY.SingleProductMiddle_STY>
                     {/* Single Question Title Content Answer Posting */}
                         <>  
                             {              
@@ -138,63 +138,64 @@ function SingleQuestionPAge({}: Props): ReactElement {
                                 <QuestionSkeleton/>
                                 
                                 :
-
                                 <>
 
-                                    <QuestionCont id={`question${singleQuestionData.id}`}>
-                                        <PersonCont>
-                                            <Avatar></Avatar>
-                                            <Name>{singleQuestionData.user.name}</Name>
-                                        </PersonCont>
+                                    <SingleQuestion_STY.QuestionCont_STY id={`question${singleQuestionData.id}`}>
+                                        <SingleQuestion_STY.PersonCont_STY>
+                                            <SingleQuestion_STY.Avatar_STY></SingleQuestion_STY.Avatar_STY>
+                                            <SingleQuestion_STY.Name_STY>{singleQuestionData.user.name}</SingleQuestion_STY.Name_STY>
+                                        </SingleQuestion_STY.PersonCont_STY>
 
-                                        <ContentCont>
-                                            <QuestionTitle> 
+                                        <SingleQuestion_STY.ContentCont_STY>
+                                            <SingleQuestion_STY.QuestionTitle_STY> 
                                                 {singleQuestionData.title}
-                                            </QuestionTitle>    
-                                            <QuestionContent> 
+                                            </SingleQuestion_STY.QuestionTitle_STY>    
+                                            <SingleQuestion_STY.QuestionContent_STY> 
                                                  {parseHtmlWithMention(singleQuestionData.content , singleQuestionData.linked_products)} 
-                                            </QuestionContent>
+                                            </SingleQuestion_STY.QuestionContent_STY>
 
-                                            <QuestionTagsAndDate>
-                                                <QuestionTags>
-                                                    {JSON.parse(singleQuestionData.tags).map( (tag:any, index:any ) =>  <QuestionTag key={tag}>{tag}</QuestionTag>)}
-                                                </QuestionTags> 
+                                            <SingleQuestion_STY.QuestionTagsAndDate_STY>
+                                                <SingleQuestion_STY.QuestionTags_STY>
+                                                    {/* {JSON.parse(singleQuestionData.tags).map( (tag:any, index:any ) =>  <SingleQuestion_STY.QuestionTag_STY key={tag}>{tag}</SingleQuestion_STY.QuestionTag_STY>)} */}
+                                                </SingleQuestion_STY.QuestionTags_STY> 
                                                 
                                                 
-                                                <ShowComments  type="button" onClick={openQuestionComments}> <FontAwesomeIcon icon={faComment} /> <span>{singleQuestionData.comment_count}</span> comment {singleQuestionData.comment_count > 1 && "s"}</ShowComments> 
+                                                <ShowComments  type="button" onClick={openQuestionComments}> 
+                                                    <FontAwesomeIcon icon={faComment} /> 
+                                                    <span>{singleQuestionData.comment_count}</span> comment {singleQuestionData.comment_count > 1 && "s"}
+                                                </ShowComments> 
 
-                                            </QuestionTagsAndDate>
-                                        </ContentCont>
+                                            </SingleQuestion_STY.QuestionTagsAndDate_STY>
+                                        </SingleQuestion_STY.ContentCont_STY>   
 
 
-                                        <QuestionStatistics>
-                                            <StatisticContSingleQuestion>
-                                                    <AnswerCont>
-                                                        <AnswerCount>7</AnswerCount>
-                                                        <Text>Answers</Text>
-                                                    </AnswerCont>
+                                        <SingleQuestion_STY.QuestionStatistics_STY>
+                                            <SingleQuestion_STY.StatisticContSingleQuestion_STY>
+                                                {/* <AnswerCont>
+                                                    <AnswerCount>7</AnswerCount>
+                                                    <Text>Answers</Text>
+                                                </AnswerCont>
 
-                                                    <HelpfulCont>
-                                                        <HelpfulCount>
-                                                            <QuestionStatisticButton  changeDirection={false} onClick={vote} ><ThumbIcon><FontAwesomeIcon  icon={singleQuestionData.user_votes?.type === "upvote" ? solidfaThumbsUp :regularfaThumbsUp} /> </ThumbIcon></QuestionStatisticButton> 
-                                                            <QuestionStatisticButton  changeDirection={true} onClick={unvote} ><ThumbIcon><FontAwesomeIcon  icon={singleQuestionData.user_votes?.type === "downvote" ? solidfaThumbsDown :regularfaThumbsDown } />  </ThumbIcon></QuestionStatisticButton> 
-                                                        </HelpfulCount>
-                                                        <DefaultLine><PercentageLine percentage={(69/100*100)}/></DefaultLine>
-                                                        <VotePercentage>
-                                                            6%
-                                                        </VotePercentage>
-                                                    </HelpfulCont>
-                                            </StatisticContSingleQuestion>
-                                            <QuestionDate>
+                                                <HelpfulCont>
+                                                    <HelpfulCount>
+                                                        <SingleQuestion_STY.QuestionStatisticButton_STY  changeDirection={false} onClick={vote} ><ThumbIcon><FontAwesomeIcon  icon={singleQuestionData.user_votes?.type === "upvote" ? solidfaThumbsUp :regularfaThumbsUp} /> </ThumbIcon></SingleQuestion_STY.QuestionStatisticButton_STY> 
+                                                        <SingleQuestion_STY.QuestionStatisticButton_STY  changeDirection={true} onClick={unvote} ><ThumbIcon><FontAwesomeIcon  icon={singleQuestionData.user_votes?.type === "downvote" ? solidfaThumbsDown :regularfaThumbsDown } />  </ThumbIcon></SingleQuestion_STY.QuestionStatisticButton_STY> 
+                                                    </HelpfulCount>
+                                                    <DefaultLine><PercentageLine percentage={(69/100*100)}/></DefaultLine>
+                                                    <SingleQuestion_STY.VotePercentage_STY>
+                                                        6%
+                                                    </SingleQuestion_STY.VotePercentage_STY>
+                                                </HelpfulCont> */}
+                                            </SingleQuestion_STY.StatisticContSingleQuestion_STY>
+                                            <SingleQuestion_STY.QuestionDate_STY>
                                                 2d 7h ago
-                                            </QuestionDate>
-                                             <QuestionStatisticElement>
-                                                {/* <QuestionStatisticButton onClick={voting} color={singleQuestionData.user_votes === null ? "red" : "green"}>like</QuestionStatisticButton> */}
-                                                <QuestionStatisticText>Give Vote</QuestionStatisticText>
-                                                <QuestionDate> {singleQuestionData.created_at} </QuestionDate>
-                                            </QuestionStatisticElement> 
-                                        </QuestionStatistics>
-                                    </QuestionCont>
+                                            </SingleQuestion_STY.QuestionDate_STY>
+                                             <SingleQuestion_STY.QuestionStatisticElement_STY>
+                                                <SingleQuestion_STY.QuestionStatisticText_STY>Give Vote</SingleQuestion_STY.QuestionStatisticText_STY>
+                                                <SingleQuestion_STY.QuestionDate_STY> {singleQuestionData.created_at} </SingleQuestion_STY.QuestionDate_STY>
+                                            </SingleQuestion_STY.QuestionStatisticElement_STY> 
+                                        </SingleQuestion_STY.QuestionStatistics_STY>
+                                    </SingleQuestion_STY.QuestionCont_STY>
 
                                     <AnswerSubmitCont id={id}/>
                                 </>
@@ -204,22 +205,23 @@ function SingleQuestionPAge({}: Props): ReactElement {
                         {              
                                 singleQuestionStatus === "idle"
                                 && 
-                                <AnswersAndProductsCont>
+                                <SingleQuestion_STY.AnswersAndProductsCont_STY>
                                     <SinglePageTabs/>
                                     <AnswersConts />
                                         PRODUCTS
                                     <ProductsConts />
-                                </AnswersAndProductsCont>
+                                </SingleQuestion_STY.AnswersAndProductsCont_STY>
                         }
 
-                </SingleProductMiddle>
+                </SingleQuestion_STY.SingleProductMiddle_STY>
             </MainPartOfPage>
 
             {isCommentsOpened && <CommentModal/>}
             <SidePartOfPage side={"right"}>
                 {
                     singleQuestionStatus=== "loading" ? 
-                    <Loader/>
+                    <></>
+                    // <Loader/>
                     :
                     <> 
                     </>

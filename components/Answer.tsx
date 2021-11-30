@@ -6,7 +6,6 @@ import { changeModalAction, user_data } from '../app/feature/User.slice';
 import { useAppDispatch, useAppSelector } from '../app/store/hooks';
 import { unVoteAnswer, voteAnswer } from '../app/thunks/QuestionThunk';
 import { AnswerContent, AnswerStyle, Avatar, LikeButton, Name, PersonCont, ShowComments } from '../styles/components/styled-elements/Answer.style';
-import { AnswersCont } from '../styles/pages/SingleQuestionPage.styled'
 import { closeComments, showComments } from '../app/feature/Comments.slice';
 import { getAnswerComments } from '../app/thunks/CommentsThunk';
 import { single_question_data } from '../app/feature/Question.slice';
@@ -80,7 +79,6 @@ function Answer({answer ,direction  }: Props): ReactElement {
         }
     }, [userData , answer])
 
-
  
 
     return (
@@ -91,7 +89,7 @@ function Answer({answer ,direction  }: Props): ReactElement {
                     <Name>{answer.user.name}</Name>
                 </PersonCont>
                 <AnswerContent>
-                    {parseHtmlWithMention(answer.content , [])}
+                    {parseHtmlWithMention(answer.content , answer.linked_products )}
                 </AnswerContent>
                 <div className="flexer fd-c a-end">
                     <LikeButton onClick={voting} style={{color:  isLiked ? "green" : "gray" }}><FontAwesomeIcon icon={faThumbsUp}/> </LikeButton>

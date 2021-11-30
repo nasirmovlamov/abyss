@@ -8,7 +8,7 @@ import {  changeDownAnswersStatus, changeTopAnswersStatus,  down_answers, down_a
 import { useAppDispatch, useAppSelector } from '../app/store/hooks';
 import { ANSWER_INTERFACE } from '../app/store/state-Interfaces/QuestionInterface';
 import { getAnswers } from '../app/thunks/QuestionThunk';
-import { AnswersCont } from '../styles/pages/SingleQuestionPage.styled'
+import { AnswersCont_STY } from '../styles/pages/SingleQuestionPage.styled'
 import Answer from './Answer';
 import AnswerSkeleton from './Skeletons/AnswerSkeleton';
 import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
@@ -120,7 +120,7 @@ function AnswersConts({}: Props): ReactElement {
     
     
     return (
-        <AnswersCont style={{ scrollMarginTop: "250px"}} ref={inViewRefAnswersCont} id="answersCont" >
+        <AnswersCont_STY style={{ scrollMarginTop: "250px"}} ref={inViewRefAnswersCont} id="answersCont" >
                 {
                     submittedAnswer.length > 0 &&  
                     <div >
@@ -166,7 +166,7 @@ function AnswersConts({}: Props): ReactElement {
                     {downAnswers.map((answer ) => <Answer key={answer.id} direction="bottom"  answer={answer}/>)} 
                 </div>
 
-        </AnswersCont>
+        </AnswersCont_STY>
     )
 }
 

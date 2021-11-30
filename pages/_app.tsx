@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import {store} from '../app/store/store'
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle, Relativer, ThemeToggler, ToggleElement,  TogglerButton } from '../styles/global/styled-utils/Global.style'
-import { darkTheme, lightTheme } from '../styles/global/styled-utils/styling-elements/Theme.style'
+import { darkTheme, lightTheme } from '../styles/global/styled-utils/settings/Theme.style'
 import { useState } from 'react'
 import ThemeSwitcher from '../components/ThemeSwitcher'
 import { useEffect } from 'react'

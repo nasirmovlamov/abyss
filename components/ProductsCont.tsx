@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { ReactElement, useEffect, useState } from 'react'
-import { AnswersCont, ProductsCont } from '../styles/pages/SingleQuestionPage.styled'
+import {  ProductsCont_STY } from '../styles/pages/SingleQuestionPage.styled'
 import { useInView } from 'react-intersection-observer';
 import { useAppDispatch, useAppSelector } from '../app/store/hooks';
 import { changeForumTabActive, forum_tabs } from '../app/feature/PageTabs.slice';
@@ -48,7 +48,7 @@ function ProductsConts({}: Props): ReactElement {
 
 
     return (
-        <ProductsCont id="productsCont"  ref={ref} style={{scrollMarginTop: "130px"}}>
+        <ProductsCont_STY id="productsCont"  ref={ref} style={{scrollMarginTop: "130px"}}>
             {
                 linkedProductsForAnswersOfQuestion.map((element , index)  => 
                     <LinkedStoreProduct key={index} data={element}/>
@@ -62,7 +62,7 @@ function ProductsConts({}: Props): ReactElement {
                     <AnswerSkeleton/>
                 </div>
             }
-        </ProductsCont>
+        </ProductsCont_STY>
     )
 }
 

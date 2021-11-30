@@ -2,6 +2,9 @@ import { SEARCHBOX_INTERFACE } from "../state-Interfaces/SearchBoxInterface";
 
 export const SEARCHBOX_STATE:SEARCHBOX_INTERFACE = {
     isFocused:false,
+    page:'',
+    search_query:"",
+    filters:[],
     searchBoxData:{
         forum:{
             data:[],
@@ -10,15 +13,20 @@ export const SEARCHBOX_STATE:SEARCHBOX_INTERFACE = {
             status:"loaded",
             searchOptions:{
                 sendedQuery:null,
-                searchValue:'',
-                filters:[],
                 forumType:'',
                 forumSort:'',    
              }
         },
         store:{
             data:[],
+            results_number:0,
+            fromNumber:0,
             status:"loaded",
+            searchOptions:{
+                sendedQuery:null,
+                storeType:'',
+                storeSort:'',    
+             }
         },
     }
 }

@@ -6,15 +6,25 @@ import { useScrollDirection } from 'react-use-scroll-direction'
 import { changeModalAction } from '../app/feature/User.slice'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex'
-import { AddQuesitionCont, SearchBoxContainer , SearchBoxPage, SearchBoxStyle, SearchBoxThunk, SearchBoxThunkAndCont, SearchButtonLupa, SearchCont, SearchInput, SearchNav, SearchNavQuery} from '../styles/components/styled-elements/SearchBox.style'
 import { MainPartOfPageStyle, SidePartOfPageStyle } from '../styles/pages/Page.styled'
 import { useScrollYPosition } from 'react-use-scroll-position';
-import { forumSearch } from '../app/thunks/SearchBoxThunks'
-import {  forum_search_options, forum_search_value, getCachedSearchBoxData, onForumSearchValue, resetSendedQuery } from '../app/feature/SearchBox.slice'
+import { forumSearch, storeSearch } from '../app/thunks/SearchBoxThunks'
+import {  forum_search_data,  getCachedSearchBoxData, searchValueOnChange, resetSendedQuery, search_query } from '../app/feature/SearchBox.slice'
 import { getFiltersFromCache } from '../app/feature/PageFilters.slice'
 import { createProductThunk } from '../app/thunks/CreateProductThunks'
 import { getAccessToken } from '../helpers/token/TokenHandle'
 import { getCookie } from '../logic/CookieFunctions'
+import { 
+    AddQuesitionCont_STY,
+    SearchBoxContainer_STY, 
+    SearchBoxPage_STY, 
+    SearchBoxThunkAndCont_STY, 
+    SearchBox_STY, 
+    SearchButtonLupa_STY, 
+    SearchCont_STY, 
+    SearchInput_STY, 
+    SearchNav_STY 
+} from '../styles/components/styled-elements/SearchBox.style'
 
 
 interface Props {
@@ -30,24 +40,21 @@ function SearchBox({}: Props): ReactElement {
     const searchNavRef = useRef<HTMLDivElement>(null)
     const dispatch = useAppDispatch()
     const scrollY = useScrollYPosition();
-    const forumSearchOptions = useAppSelector(forum_search_options)
+    const forumSearchData = useAppSelector(forum_search_data)
+
+    const {searchOptions} = forumSearchData
+    const forumSearchOptions = searchOptions
 
     const [scrollSearchBox, setscrollSearchBox] = useState<number>(0)
     const [scrollYInside, setscrollYInside] = useState(0)
 
-    const searchBoxValue = useAppSelector(forum_search_value)
+    const searchQuery = useAppSelector(search_query)
     const [searchValue, setSearchValue] = useState("")
 
     // const [searchValue, setSearchValue] = useState("")
 
     const changeSearchValue = (e:string) => {
-        dispatch(onForumSearchValue(e))
-        // setSearchValue(e)
-        // searchNavRef.current!.style.top = (router.asPath === "/" ? `65px` : "51px")
-        // if(router.pathname === '/')
-        // {
-        //     searchNavRef.current!.style.top = `66px`
-        // }
+        dispatch(searchValueOnChange(e))
     }
 
     const [direction, setDirection] = useState('visible')
@@ -121,20 +128,30 @@ function SearchBox({}: Props): ReactElement {
     const searchHandleWithEnter = (key:number) => {
         if(key === 13)
         {
-            if(router.pathname !== '/forum'){
+            if(router.pathname !== '/forum' && router.pathname !== '/store'){
                 router.push('/forum')
             }
-            if(forumSearchOptions.sendedQuery !== forumSearchOptions.searchValue){
-                dispatch(forumSearch(searchBoxValue))
+            if(forumSearchOptions.sendedQuery !== searchQuery){
+                if(router.pathname === '/forum'){
+                    dispatch(forumSearch(searchQuery))
+                }
+                if(router.pathname === '/store'){
+                    dispatch(storeSearch(searchQuery))
+                }
             }
         }
     }
 
     const searchHandleWithSubmit = () => {
-        if(searchBoxValue !== "")
+        if(searchQuery !== "")
         {
-            if(forumSearchOptions.sendedQuery !== forumSearchOptions.searchValue){
-                dispatch(forumSearch(searchBoxValue))
+            if(forumSearchOptions.sendedQuery !== searchQuery){
+                if(router.pathname !== '/forum'){
+                    dispatch(forumSearch(searchQuery))
+                }
+                if(router.pathname !== '/store'){
+                    dispatch(storeSearch(searchQuery))
+                }
             }
         }
     }
@@ -143,7 +160,7 @@ function SearchBox({}: Props): ReactElement {
     const searchScrollControl = async (router:any) => {
         if(router.asPath !== '/')
         {
-            isScrollingDown && searchBoxRef.current!.setAttribute("style", `position: sticky;top:10px;`) 
+            isScrollingDown && searchBoxRef.current!.setAttribute("style", `margin-top: 60px;`) 
             // console.log(searchContRef.current!.style.position)
         }   
     }
@@ -153,39 +170,58 @@ function SearchBox({}: Props): ReactElement {
     }
 
     useEffect( () => {
-        searchScrollControl(router.asPath)
+        if(isScrollingDown){
+            searchScrollControl(router.asPath)
+        }
+        if(isScrollingDown){
+            searchScrollControl(router.asPath)
+        }
     }, [isScrollingDown,  router.asPath , scrollY])
 
 
     useEffect(() => {
         if(router.isReady)
         {
+           
             setpagePath(pagePathDetector(router.asPath))
             if(router.asPath !== '/')
             {
+                
                 // searchBoxRef.current!.setAttribute("style" , "position:absolute;")
                 searchInputRef.current!.focus()
-                dispatch(getFiltersFromCache(null))
-                if(forumSearchOptions.searchValue === ""){
-                    dispatch(getCachedSearchBoxData(null))
+                // dispatch(getFiltersFromCache(null))
+                if(searchQuery === ""){
+                    dispatch(getCachedSearchBoxData({page:router.pathname}))
                     dispatch(resetSendedQuery(null))
-                    dispatch(forumSearch(getCookie('ForumSearchValue')))
+                    if(router.pathname === '/forum'){
+                        dispatch(forumSearch(getCookie("searchValue")))
+                    }
+                    else if(router.pathname === '/store'){   
+                        dispatch(storeSearch(getCookie("searchValue")))
+                    }else{}
+                }else{
+                    if(router.pathname === '/forum'){
+                        dispatch(forumSearch(searchQuery))
+                    }
+                    else if(router.pathname === '/store'){   
+                        dispatch(storeSearch(searchQuery))
+                    }else{}
                 }
             }
         }
-    }, [router])
+    }, [router ])
 
     
     return (
         
-        <SearchBoxContainer scrollTopValue={scrollSearchBox} ref={searchContRef} path={router.asPath} style={SearchContDesign}>
-                <SearchBoxThunkAndCont  ref={searchBoxRef} direction={direction}>
-                    <SearchBoxStyle path={router.asPath} direction={direction} > 
-                        <SearchBoxPage>{pagePath}</SearchBoxPage>
-                        <SearchCont>
-                            <SearchButtonLupa onClick={searchHandleWithSubmit}><FontAwesomeIcon  icon={faSearch}/></SearchButtonLupa>
-                            <SearchInput onKeyDown={(e:any) => searchHandleWithEnter(e.keyCode)} value={searchBoxValue}  onChange={(e:any) => changeSearchValue(e.target.value)}  path={router.asPath} placeholder="Search..." ref={searchInputRef} onFocus={() => searchSizechange('focus')} onBlur={() => searchSizechange('blur')}  type="text" /> 
-                            <SearchNav  path={router.asPath} ref={searchNavRef}>
+        <SearchBoxContainer_STY scrollTopValue={scrollSearchBox} ref={searchContRef} path={router.asPath} style={SearchContDesign}>
+                <SearchBoxThunkAndCont_STY  ref={searchBoxRef} direction={direction}>
+                    <SearchBox_STY path={router.asPath} direction={direction} > 
+                        <SearchBoxPage_STY>{pagePath}</SearchBoxPage_STY>
+                        <SearchCont_STY>
+                            <SearchButtonLupa_STY onClick={searchHandleWithSubmit}><FontAwesomeIcon  icon={faSearch}/></SearchButtonLupa_STY>
+                            <SearchInput_STY onKeyDown={(e:any) => searchHandleWithEnter(e.keyCode)} value={searchQuery}  onChange={(e:any) => changeSearchValue(e.target.value)}  path={router.asPath} placeholder="Search..." ref={searchInputRef} onFocus={() => searchSizechange('focus')} onBlur={() => searchSizechange('blur')}  type="text" /> 
+                            <SearchNav_STY  path={router.asPath} ref={searchNavRef}>
                                 {/* <SearchNavQuery>
                                     <FontAwesomeIcon  icon={faSearch}/>
                                     <span>react</span>
@@ -194,13 +230,13 @@ function SearchBox({}: Props): ReactElement {
                                     <FontAwesomeIcon  icon={faSearch}/>
                                     <span>react</span>
                                 </SearchNavQuery> */}
-                            </SearchNav>
-                        </SearchCont>
-                        {pagePath !== "Home" && <AddQuesitionCont onClick={handleAddClick}>ADD</AddQuesitionCont>}
-                    </SearchBoxStyle>
-                    {(pagePath !== "Home") && <SearchBoxThunk onMouseMove={()=>setDirection("visible")} direction={direction} >	• 	•	•</SearchBoxThunk>}
-                </SearchBoxThunkAndCont>
-        </SearchBoxContainer>
+                            </SearchNav_STY>
+                        </SearchCont_STY>
+                        {pagePath !== "Home" && <AddQuesitionCont_STY onClick={handleAddClick}>ADD</AddQuesitionCont_STY>}
+                    </SearchBox_STY>
+                    {/* {(pagePath !== "Home") && <SearchBoxThunk onMouseMove={()=>setDirection("visible")} direction={direction} >	• 	•	•</SearchBoxThunk>} */}
+                </SearchBoxThunkAndCont_STY>
+        </SearchBoxContainer_STY>
     )
 }
 

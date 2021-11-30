@@ -1,10 +1,10 @@
 import React, {ReactElement, useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks';
-import { AddAnswer, AddAnswerCont, AddAnswerSubmit } from '../styles/pages/SingleQuestionPage.styled'
-import { user_data } from '../app/feature/User.slice';
+import { AddAnswer_STY, AddAnswerCont_STY, AddAnswerSubmit_STY } from '../styles/pages/SingleQuestionPage.styled'
+import { changeModalAction, is_Logged, user_data } from '../app/feature/User.slice';
 import { errorToastFunc } from './Notify/ErrorToasts';
-import { autoSuccessToaster } from './Notify/AutoSuccessToast';
+import { autoErrorToasterWithMessage, autoSuccessToaster } from './Notify/AutoSuccessToast';
 import { autoErrorToaster } from './Notify/AutoErrorToaster';
 import { addAnswer } from '../app/thunks/QuestionThunk';
 
@@ -31,11 +31,17 @@ function AnswerSubmitCont({id}: Props): ReactElement {
     const [textAreaBlur, settextAreaBlur] = useState(true)
     const buttonRef = useRef<HTMLButtonElement>(null)
     const textAreaRef = useRef<HTMLTextAreaElement>(null)
-
+    const isLogged = useAppSelector(is_Logged)
     const submitAnswerData = useAppSelector(submit_answer_data)
 
     const submitAnswer = async (e:any) => {
         e.preventDefault()
+        if(!isLogged)
+        {
+            autoErrorToasterWithMessage('You must be logged in to submit an answer')
+            dispatch(changeModalAction('login'))
+            return null
+        }
         const linkedProductsId = submitAnswerData.linkedProducts.map((item:any) => item.id) 
         const mentionedUsersId = submitAnswerData.mentionedUsers.map((item:any) => item.id)
 
@@ -76,7 +82,7 @@ function AnswerSubmitCont({id}: Props): ReactElement {
    
     
     return (
-        <AddAnswerCont onSubmit={submitAnswer}> 
+        <AddAnswerCont_STY onSubmit={submitAnswer}> 
 
 
             {/* <AddAnswer 
@@ -90,9 +96,9 @@ function AnswerSubmitCont({id}: Props): ReactElement {
                 autoComplete="on"
             /> */}
             {/* <LabelCont> */}
-                {/* <label htmlFor="content">Content</label> */}
+            {/* <label htmlFor="content">Content</label> */}
                 <MyEditor display={"none"} content={""} onChange={(content:any) => console.log(content)} />
-                {/* <label htmlFor="content">validate</label>
+            {/* <label htmlFor="content">validate</label>
             </LabelCont> */}
 
 
@@ -102,13 +108,13 @@ function AnswerSubmitCont({id}: Props): ReactElement {
                 <label htmlFor="content">validate</label>
             </LabelCont>
                 
-            <AddAnswerSubmit   
+            <AddAnswerSubmit_STY   
                 ref={buttonRef} 
                 onMouseDown={checkTextAreaHeight}> 
                 Post 
-            </AddAnswerSubmit>
+            </AddAnswerSubmit_STY>
 
-        </AddAnswerCont>
+        </AddAnswerCont_STY>
     )
 }
 

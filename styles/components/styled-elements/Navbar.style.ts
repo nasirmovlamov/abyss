@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import { ThemeType } from "../../global/styled-utils/styling-elements/Theme.style";
+import { ThemeType } from "../../global/styled-utils/settings/Theme.style";
 
 // color = (isLogged) ? "red" : "gray"
 
 
-export const Nav = styled.nav`
+export const Nav_STY = styled.nav`
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -16,8 +16,8 @@ export const Nav = styled.nav`
     padding-right: 10px;
     padding-top: 7px;
     padding-bottom: 10px;
-    /* border-bottom: 1px solid ${({theme}) => theme.navbar.navBorder}; */
-    background-color: ${({theme}) => theme.navbar.background};
+    /* border-bottom: 1px solid ${({theme}) => theme.sidecolors.sidecolor1}; */
+    background-color: ${({theme}) => theme.backgrounds.background1};
     box-shadow: inset  0 -2px 2px -2px #949597, 0px 0px 6px 0px #000000;
     margin: 0px;
     position: sticky;
@@ -28,12 +28,12 @@ export const Nav = styled.nav`
 `
 
 
-export const NavForShadow = styled.nav`
+export const NavForShadow_STY = styled.nav`
     display:flex;
     justify-content:space-between;
     align-items:center;
-    background-color: ${({theme}) => theme.navbar.background};
-    box-shadow: ${({theme}) => theme.navbar.boxShadow};
+    background-color: ${({theme}) => theme.backgrounds.background1};
+    box-shadow: ${({theme}) => theme.boxshadows.boxshadow1};
     position: fixed;
     top:0px;
     left:0px;
@@ -43,7 +43,7 @@ export const NavForShadow = styled.nav`
 `
 
 
-export const Light = styled.div`
+export const Light_STY = styled.div`
     width:7px;
     height:7px;
     position:absolute;
@@ -58,7 +58,7 @@ export const Light = styled.div`
 `
 
 
-export const LightShadow = styled.div`
+export const LightShadow_STY = styled.div`
     width:15px;
     height:15px;
     position:absolute;
@@ -73,23 +73,22 @@ export const LightShadow = styled.div`
     left:10.4px;
     top:13.5px;
 `
-export const LightShadow2 = styled.div`
+export const LightShadow2_STY = styled.div`
    
 `
-export const Logo = styled.div`
+export const Logo_STY = styled.div`
     display:flex;
     justify-content:center;
     align-items:center;
     position:relative;
     column-gap: 16px;
-    &:hover ${LightShadow} {
+    &:hover ${LightShadow_STY} {
         opacity: 0.38;
-
     }
-    &:hover ${LightShadow2} {
+    &:hover ${LightShadow2_STY} {
         opacity: 0.169;
     }
-    &:hover ${Light} {
+    &:hover ${Light_STY} {
         opacity: 1;
     }
     img 
@@ -98,12 +97,12 @@ export const Logo = styled.div`
         height: 48px;
     }
 `
-export const LogoText = styled.p`
+export const LogoText_STY = styled.p`
     font-size: 45px;
-    color: ${({theme}) => theme.navbar.navLogoText};
+    color: ${({theme}) => theme.texts.text1};
 `
 
-export const Line =  styled.div`
+export const Line_STY =  styled.div`
     width: 10px;
     opacity: 0;
     height: 2px;
@@ -111,16 +110,16 @@ export const Line =  styled.div`
     position:absolute;
     bottom: 0px;
     transition: 0.3s;
-    background-color: ${({theme}) => theme.navbar.navLinksHovered};
+    background-color: ${({theme}) => theme.colors.gray_2};
 `
-export const LinkStyle = styled.a`
+export const LinkStyle_STY = styled.a`
     display:flex;
     justify-content:center;
     align-items:center;
     letter-spacing: 1px;
     font-weight: 600;
     cursor: pointer;
-    color: ${({theme}) => theme.navbar.navLinks};
+    color: ${({theme}) => theme.colors.gray_3};
     transition: 0.3s;
     /* margin-top: 5px; */
     font-family: s;
@@ -130,7 +129,7 @@ export const LinkStyle = styled.a`
 
 
 
-export const LiStyle = styled.li`
+export const LiStyle_STY = styled.li<{focus:boolean}>`
     display:flex;
     justify-content:center;
     align-items:flex-start;
@@ -149,7 +148,7 @@ export const LiStyle = styled.li`
     }
     a {
         font-family: s;
-        color: ${(props:{theme:ThemeType , focus:boolean}) =>  props.focus ? props.theme.navbar.navLinksHovered : props.theme.navbar.navLinks};
+        color: ${({theme, focus}) =>  focus ? theme.colors.white_2 : theme.colors.gray_2};
     }
 
     &:hover 
@@ -160,16 +159,15 @@ export const LiStyle = styled.li`
             opacity: 1 !important;
             width: 120px;
             transform: scale(1) !important;
-
         }
         a {
-            color: ${({theme}) => theme.navbar.navLinksHovered} !important;
+            color: ${({theme}) => theme.text_hover.hover2} !important;
         }
     }
 
 `
 
-export const LinksStyle = styled.ul`
+export const LinksStyle_STY = styled.ul`
     display:flex;
     /* justify-content:center; */
     justify-content: center;
@@ -177,24 +175,23 @@ export const LinksStyle = styled.ul`
     height:60px;    
     /* width:680px; */
     width: 810px;
-    &:hover ${Line}
+    &:hover ${Line_STY}
     {
         opacity: 0.2; 
         transform: scale(0.8);
-        ${({theme}) => theme.navbar.navLinks}   
     }
     &:hover
     {
         a 
         {
-            color:${({theme}) => theme.navbar.navLinks}   
+            color:${({theme}) => theme.text_hover.hover3}   
         }
     }
     @media only screen and (max-width: 1236px) {
         display:none;
     }
 `
-export const LinksStyleCenterer = styled.div`
+export const LinksStyleCenterer_STY = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
@@ -206,13 +203,13 @@ export const LinksStyleCenterer = styled.div`
 
 
 
-export const ImageStyle1 = styled.div`
+export const ImageStyle1_STY = styled.div`
     display:flex;
     justify-content:center;
     align-items:center;
     /* position: absolute; */
 `
-export const ImageStyle2 = styled.div`
+export const ImageStyle2_STY = styled.div`
     display:flex;
     /* justify-content:center; */
     /* align-items:center; */
@@ -224,18 +221,47 @@ export const ImageStyle2 = styled.div`
 `
 
 
-export const PersonName = styled.label`
+export const PersonName_STY = styled.label`
     display:flex;
     justify-content:center;
     align-items:center;
     margin-right: 15px;
-    color: ${({theme}) => theme.navbar.navLinks};
+    color: ${({theme}) => theme.colors.gray_2};
     cursor: pointer;
     margin-top: 1px;
 `
+export const HeaderIcon_STY = styled.button`
+    width: 36px;
+    height: 36px;
+    background-color: transparent;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+    &:nth-child(3) {
+        svg {
+            width: 24px;
+        }
+    }
+    svg {
+        width: 16px;
+        height: auto;
+        transition: 0.2s;
+        fill: ${({theme}) => theme.colors.gray_3};
+    }
+    &:hover {
+        background-color: ${({theme}) => theme.background_hover.hover1};
+        
+    }
 
 
-export const LoginButton = styled.button`
+    
+`
+
+
+export const LoginButton_STY = styled.button`
     display:flex;
     justify-content:center;
     align-items:center;
@@ -244,7 +270,6 @@ export const LoginButton = styled.button`
     height: 60px;
     border: none;
     background-color: transparent;
-    filter: ${({theme}) => `invert(${theme.navbar.navLogin})`};
 
     img 
     {
@@ -253,7 +278,7 @@ export const LoginButton = styled.button`
     }
     
 `
-export const RegisterButton = styled.button`
+export const RegisterButton_STY = styled.button`
     display:flex;
     justify-content:center;
     align-items:center;
@@ -262,7 +287,6 @@ export const RegisterButton = styled.button`
     height: 60px;
     border: none;
     background-color: transparent;
-    filter: ${({theme}) => `invert(${theme.navbar.navRegister})`};
     img 
     {
         width: 50px;
@@ -270,24 +294,24 @@ export const RegisterButton = styled.button`
     }
     
 `
-
-export const Enterance = styled.div`
+export const Enterance_STY = styled.div`
     display:flex;
     justify-content:center;
     align-items:center;
 `
-export const Logged = styled.div`
+export const Logged_STY = styled.div`
     display:flex;
     /* justify-content:center; */
     align-items:center;
     position: relative;
-    &:hover ${ImageStyle2} , &:hover ${PersonName}
+    column-gap: 16px;
+    &:hover ${ImageStyle2_STY} , &:hover ${PersonName_STY}
     {
         opacity: 1;
-        color: ${({theme}) => theme.navbar.navLinksHovered};   
+        color: ${({theme}) => theme.text_hover.hover2};   
     }
 `
-export const Logout = styled.button`
+export const Logout_STY = styled.button`
     display:flex;
     justify-content:center;
     align-items:center;
@@ -301,7 +325,7 @@ export const Logout = styled.button`
 
     &:hover 
     {
-        color: ${({theme}) => theme.navbar.navLinksHovered};
+        color: ${({theme}) => theme.text_hover.hover2};
     }
     &:focus 
     {
@@ -310,7 +334,7 @@ export const Logout = styled.button`
 `
 
 
-export const Guest = styled.div`
+export const Guest_STY = styled.div`
     display:flex;
     justify-content:center;
     align-items:center;

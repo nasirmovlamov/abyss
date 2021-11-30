@@ -8,7 +8,7 @@ export const Cave_Sty = styled.div`
     min-height: 1500px;
     height: auto;
     margin-top: 146.28px;
-    background-color: ${({theme}) => theme.colors.pageBlack};
+    background-color: ${({theme}) => theme.colors.black_1};
     color: #fff;
     border-radius: 10px;
 `

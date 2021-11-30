@@ -20,8 +20,8 @@ export const FormQuestionCont = styled.div`
     box-sizing: border-box;
     /* border-radius: 6px; */
     border-radius: 10px;
-    background-color: ${({theme}) => theme.forumPage.elementBackground};
-    box-shadow: ${({theme}) => theme.forumPage.boxShadow};
+    background-color: ${({theme}) => theme.backgrounds.background1};
+    box-shadow: ${({theme}) => theme.boxshadows.boxshadow4};
     justify-content: flex-start;
     height: 125px;
     align-items: center;
@@ -51,7 +51,7 @@ export const Avatar = styled.img`
     height:63px;
     border-radius:50%;
     object-fit: cover;
-    background-color: ${({theme}) => theme.forumPage.darkelementBacground};
+    background-color: ${({theme}) => theme.backgrounds.background3};
     @media only screen and (max-width:1375px){
         width: 22px;
         height:22px;
@@ -71,7 +71,7 @@ export const Name = styled.span`
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    color:  ${({theme}) => theme.forumPage.sideTextColor};
+    color:  ${({theme}) => theme.texts.text2};
     @media only screen and (max-width:1375px){
         margin: 0px;
     }
@@ -90,7 +90,7 @@ export const TextCont = styled.div`
 
 export const Title = styled.h2`
     font-size: 20px;
-    color:  ${({theme}) => theme.forumPage.titleColor};
+    color:  ${({theme}) => theme.titles.title2};
     cursor: pointer;
     text-transform: capitalize;
     display: -webkit-box;
@@ -110,7 +110,7 @@ export const Content = styled.p`
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    color:  ${({theme}) => theme.forumPage.textColor};
+    color:  ${({theme}) => theme.texts.text1};
     font-family: r;
     align-self: flex-start;
     line-height: 22px;
@@ -144,15 +144,15 @@ export const Tags = styled.button`
     align-items: center;
     background-color: #e5f0f4;
     font-family: r;
-    background:  ${({theme}) => theme.forumPage.tagBackColor};
+    background:  ${({theme}) => theme.backgrounds.background4};
     cursor: pointer;
     font-size: 12px;
     text-align: center;
     transition: 10s ease-out ;
-    color:  ${({theme}) => theme.forumPage.tagTextColor};
-    box-shadow: ${({theme}) => theme.forumPage.tagBoxShadow};
+    color:  ${({theme}) => theme.texts.text4};
+    box-shadow: ${({theme}) => theme.boxshadows.boxshadow6};
     &:hover{
-        box-shadow: ${({theme}) => theme.forumPage.hover.tagBoxShadow};
+        box-shadow: ${({theme}) => theme.boxshadow_hover.hover1};
     }
 `
 export const ProductsIcons = styled.div`
@@ -167,7 +167,7 @@ export const ProductIcon = styled.div<ProductIconProps>`
     box-shadow: 0px 1px 2px rgba(99,105,108,1), inset 0px 0px 0px rgba(99,105,108,0.61);
     border-radius: 50%;
     background-color: ${({backgroundColor}) =>  backgroundColor};
-    color:  ${({theme}) => theme.forumPage.sideTextColor};
+    color:  ${({theme}) => theme.texts.text2};
     position: absolute;
     margin-right: ${({index}) => (index * 15)}px;
 `
@@ -186,13 +186,13 @@ export const ProductCount = styled.div`
     font-size: 15px;
     line-height: 20px;
     text-decoration: none solid rgb(71, 77, 81);
-    color: ${({theme}) => theme.forumPage.titleColor};
+    color: ${({theme}) => theme.titles.title2};
     span 
     {
-        color: ${({theme}) => theme.forumPage.titleColor};
+        color: ${({theme}) => theme.titles.title2};
         font-size: 16px;
         font-family: m;
-        text-decoration: none solid ${({theme}) => theme.forumPage.titleColor};
+        text-decoration: none solid ${({theme}) => theme.titles.title2};
     }
 `
 
@@ -244,20 +244,20 @@ export const AnswerCount = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color:${({theme}) => theme.forumPage.sideTextColor};
+    color:${({theme}) => theme.texts.text2};
     font-size:20px;
 `
 
 export const Text = styled.span`
     font-size: 12px;
     line-height:14px;
-    color:${({theme}) => theme.forumPage.sideTextColor};
+    color:${({theme}) => theme.texts.text2};
     margin-top: -2px;
 
 `
 export const ThumbIcon = styled.span`
     font-size: 13px;
-    color:${({theme}) => theme.forumPage.sideTextColor};
+    color:${({theme}) => theme.texts.text2};
     font-size: 18px;
 `
 
@@ -280,7 +280,7 @@ export const HelpfulCont = styled.div`
 export const HelpfulCount = styled.div`
     /* width: 100%; */
     height: auto;
-    color: ${({theme}) => theme.forumPage.sideTextColor};
+    color: ${({theme}) => theme.texts.text2};
     border-radius: 6px;
     display: flex;
     align-items: center;
@@ -301,7 +301,7 @@ export const DefaultLine = styled.div`
 export const PercentageLine = styled.div<PercentageLineProps>`
     width: ${({percentage}) => percentage}%;
     height: 100%;
-    background-color:${({theme}) => theme.forumPage.darkSideTextColor};
+    background-color:${({theme}) => theme.texts.text3};
     @media only screen and (max-width:1375px){
         display: none;
     }
@@ -314,6 +314,6 @@ export const DateCount = styled.p`
     font-family: r;
     font-style: italic;
     font-size: 12px;
-    color: ${({theme}) => theme.forumPage.darkSideTextColor};
+    color: ${({theme}) => theme.texts.text3};
     line-height: 18px;
 `

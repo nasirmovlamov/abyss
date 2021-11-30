@@ -2,9 +2,9 @@ import React, { ReactElement, useRef, useState } from 'react'
 import {  faThumbtack } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-import { FilterCont, FilterContStyle, FilterLanguageCont, FilterLanguageContent, FilterLanguages, FilterLanguageTitle, FilterSearchCont, FilterSearchDropdown, FilterSearchDropdownElement, FilterSearchInCont, FilterSearchInput, FilterTagCont, FilterTagContent, FilterTags, FilterTagTitle, PinButton, SubjectCont, SubjectContent, Subjects, SubjectTitle } from '../styles/components/PageFilters.style'
+import { FilterCont, FilterContStyle, FilterLanguageCont, FilterLanguageContent, FilterLanguages, FilterLanguageTitle, FilterSearchCont, FilterSearchDropdown, FilterSearchDropdownElement, FilterSearchInCont, FilterSearchInput, FilterTagCont, FilterTagContent, FilterTags, FilterTagTitle, PinButton, SubjectCont, SubjectContent, Subjects, SubjectTitle } from '../styles/components/styled-elements/PageFilters.style'
 import { addFilter, changePositionOfFilters, changeToStayInFocus, filterSearchValueOnChange, filterTagsOnDelete, filterTagsSearchisFocused,  filter_search_tags, filter_search_value, filter_tags, is_focused, stay_in_focus } from '../app/feature/PageFilters.slice'
-import { forum_search_filters, ifFilterWasDeleted, selectFilterToSearchOption } from '../app/feature/SearchBox.slice'
+import { search_filters, ifFilterWasDeleted, selectFilterToSearchOption } from '../app/feature/SearchBox.slice'
 
 interface Props {
     
@@ -21,12 +21,12 @@ function PageFilters({}: Props): ReactElement {
     const isFocused = useAppSelector(is_focused)
     const stayInFocus = useAppSelector(stay_in_focus)
     const filterBlockRef = useRef<HTMLDivElement>(null)
-    const selectedForumSearchFilters = useAppSelector(forum_search_filters)
+    const searchFilters = useAppSelector(search_filters)
 
     const pinFilters = () => {
         dispatch(changeToStayInFocus(stayInFocus))
     }
-
+    
     const handleMouseOver = () => {
         if(!stayInFocus)
         {
@@ -67,7 +67,7 @@ function PageFilters({}: Props): ReactElement {
                             index < 3 && 
                             <Subjects key={element.id}>
                                 <button 
-                                style={{backgroundColor:selectedForumSearchFilters.includes(element) ? "gray" : "inherit"}} 
+                                style={{backgroundColor:searchFilters.includes(element) ? "gray" : "inherit"}} 
                                 onClick={() => dispatch(selectFilterToSearchOption(element))}> 
                                     {element.name} 
                                 </button> 
@@ -87,7 +87,7 @@ function PageFilters({}: Props): ReactElement {
                             (3 <=  index && index <= 6)  &&  
                                 <Subjects key={element.id}>  
                                     <button 
-                                    style={{backgroundColor:selectedForumSearchFilters.includes(element) ? "gray" : "inherit"}} 
+                                    style={{backgroundColor:searchFilters.includes(element) ? "gray" : "inherit"}} 
                                     onClick={() => dispatch(selectFilterToSearchOption(element))}> 
                                         {element.name} 
                                     </button>     
@@ -106,7 +106,7 @@ function PageFilters({}: Props): ReactElement {
                         {filterTags.map((element, index)=> 
                             <Subjects key={element.id}>
                                 <button 
-                                    style={{backgroundColor:selectedForumSearchFilters.find(x => x.id === element.id) ? "gray" : "inherit"}} 
+                                    style={{backgroundColor:searchFilters.find(x => x.id === element.id) ? "gray" : "inherit"}} 
                                     onClick={() => dispatch(selectFilterToSearchOption(element))}>  
 
                                     {element.name} 

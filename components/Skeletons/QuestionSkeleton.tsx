@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { SkeletonBox } from '../../styles/global/styled-utils/Global.style'
-import { ContentCont, PersonCont, QuestionCont, QuestionStatisticButton, QuestionStatisticElement, QuestionStatistics, QuestionStatisticText, QuestionTags, QuestionTagsAndDate } from '../../styles/pages/SingleQuestionPage.styled'
+import { ContentCont_STY, PersonCont_STY, QuestionCont_STY, QuestionStatisticButton_STY, QuestionStatisticElement_STY, QuestionStatistics_STY, QuestionStatisticText_STY, QuestionTags_STY, QuestionTagsAndDate_STY } from '../../styles/pages/SingleQuestionPage.styled'
 import AnswerSubmitCont from '../AnswerSubmit'
 
 interface Props {
@@ -11,51 +11,51 @@ function QuestionSkeleton({}: Props): ReactElement {
     return (
         <>
             <div style={{marginBottom:"25px"}}></div>
-            <QuestionCont>
-                <PersonCont>
+            <QuestionCont_STY>
+                <PersonCont_STY>
                     <SkeletonBox className="skeleton-box" width="62px" height="62px" borderRadius="50%"/>
                     <SkeletonBox className="skeleton-box" width="62px" height="15px" borderRadius="8px"/>
-                </PersonCont>
+                </PersonCont_STY>
 
-                <ContentCont>
+                <ContentCont_STY>
                     <SkeletonBox className="skeleton-box" width="800px" height="35px" borderRadius="8px"/>
   
                     <SkeletonBox className="skeleton-box" width="800px" height="150px" borderRadius="8px"/>
                    
-                    <QuestionTagsAndDate>
-                        <QuestionTags>
+                    <QuestionTagsAndDate_STY>
+                        <QuestionTags_STY>
                             <SkeletonBox className="skeleton-box" width="45px" height="15px" borderRadius="8px"/>
                             <SkeletonBox className="skeleton-box" width="45px" height="15px" borderRadius="8px"/>
                             <SkeletonBox className="skeleton-box" width="45px" height="15px" borderRadius="8px"/>
-                        </QuestionTags> 
+                        </QuestionTags_STY> 
                         
                         <SkeletonBox className="skeleton-box" width="35px" height="15px" borderRadius="8px"/>
-                    </QuestionTagsAndDate>
-                </ContentCont>
+                    </QuestionTagsAndDate_STY>
+                </ContentCont_STY>
 
 
-                <QuestionStatistics>
-                    <QuestionStatisticElement>
+                <QuestionStatistics_STY>
+                    <QuestionStatisticElement_STY>
                         <SkeletonBox className="skeleton-box" width="35px" height="35px" borderRadius="8px"/>
                         <SkeletonBox className="skeleton-box" width="35px" height="10px" borderRadius="8px"/>
-                    </QuestionStatisticElement>
+                    </QuestionStatisticElement_STY>
 
-                    <QuestionStatisticElement>
+                    <QuestionStatisticElement_STY>
                         <SkeletonBox className="skeleton-box" width="35px" height="35px" borderRadius="8px"/>
                         <SkeletonBox className="skeleton-box" width="35px" height="10px" borderRadius="8px"/>
-                    </QuestionStatisticElement>
+                    </QuestionStatisticElement_STY>
 
-                    <QuestionStatisticElement>
+                    <QuestionStatisticElement_STY>
                         <SkeletonBox className="skeleton-box" width="35px" height="35px" borderRadius="8px"/>
                         <SkeletonBox className="skeleton-box" width="35px" height="10px" borderRadius="8px"/>
-                    </QuestionStatisticElement>
+                    </QuestionStatisticElement_STY>
 
-                    <QuestionStatisticElement>
+                    <QuestionStatisticElement_STY>
                         <SkeletonBox className="skeleton-box" width="35px" height="35px" borderRadius="8px"/>
                         <SkeletonBox className="skeleton-box" width="35px" height="10px" borderRadius="8px"/>
-                    </QuestionStatisticElement>
-                </QuestionStatistics>
-            </QuestionCont>
+                    </QuestionStatisticElement_STY>
+                </QuestionStatistics_STY>
+            </QuestionCont_STY>
 
             
         </>

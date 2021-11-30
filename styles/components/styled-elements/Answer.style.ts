@@ -12,8 +12,8 @@ export const AnswerStyle = styled.li`
     box-sizing: border-box;
     /* border-radius: 6px; */
     border-radius: 10px;
-    background-color: ${({theme}) => theme.forumPage.elementBackground};
-    box-shadow: ${({theme}) => theme.forumPage.boxShadow};
+    background-color: ${({theme}) => theme.backgrounds.background1};
+    box-shadow: ${({theme}) => theme.boxshadows.boxshadow4};
     justify-content: flex-start;
     align-items: center;
     
@@ -49,7 +49,7 @@ export const Avatar = styled.div`
     height:63px;
     border-radius:50%;
     object-fit: cover;
-    background-color: ${({theme}) => theme.forumPage.darkelementBacground};
+    background-color: ${({theme}) => theme.backgrounds.background3};
     @media only screen and (max-width:1375px){
         width: 22px;
         height:22px;
@@ -68,7 +68,7 @@ export const Name = styled.span`
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    color:  ${({theme}) => theme.forumPage.sideTextColor};
+    color:  ${({theme}) => theme.texts.text2};
     @media only screen and (max-width:1375px){
         margin: 0px;
     }
@@ -81,7 +81,7 @@ export const AnswerContent = styled.p`
     height: 100%;
     margin-left: 22px;
     font-size: 15px;
-    color:  ${({theme}) => theme.forumPage.textColor};
+    color:  ${({theme}) => theme.texts.text1};
     font-family: r;
     align-self: flex-start;
     line-height: 22px;
@@ -102,7 +102,7 @@ export const ShowComments = styled.button`
     border: none;
     padding: 0px;
     background-color: transparent;
-    color: ${({theme}) => theme.forumPage.titleColor};
+    color: ${({theme}) => theme.texts.title2};
 
     border-radius: 6px;
     padding: 5px 7px;
@@ -110,7 +110,7 @@ export const ShowComments = styled.button`
     column-gap: 5px;
     span , svg
     {
-        color: ${({theme}) => theme.forumPage.titleColor};
+        color: ${({theme}) => theme.texts.title2};
         font-size: 15px;
     }
     svg 

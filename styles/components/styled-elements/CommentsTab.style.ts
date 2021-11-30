@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import { HeaderHeight } from "../../global/styled-utils/styling-elements/Sizes";
+import { HeaderHeight } from "../../global/styled-utils/settings/Sizes";
 
 
 export const TakeCommentsToSideMakeAbsolute = styled.div`
     position: fixed;
     width: 358px;
     height: calc(100% - ${HeaderHeight});
-    background-color: ${({theme}) => theme.forumPage.elementBackground};
-    box-shadow: ${({theme}) => theme.forumPage.boxShadow};
+    background-color: ${({theme}) => theme.backgrounds.background1};
+    box-shadow: ${({theme}) => theme.boxshadows.boxshadow4};
     border-radius: 20px;
     display: flex;
     flex-wrap: wrap;
@@ -28,7 +28,7 @@ export const CommentsTabStyle = styled.div`
 
 export const CommentsTabMainNameStyle = styled.div`
     height: 48px;
-    box-shadow: ${({theme}) => theme.forumPage.boxShadow};
+    box-shadow: ${({theme}) => theme.boxshadows.boxshadow4};
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -82,17 +82,17 @@ export const AllCommentsCont = styled.div`
 
     /* Handle on hover */
     &::-webkit-scrollbar-thumb:hover {
-    background: #555;
+        background: #555;
     }
 `
 export const CommentStyle = styled.div`
     display: flex;
     margin-top: 5px;
     border-bottom: 1px solid lightgray;
-    border-color: ${({theme}) => theme.forumPage.commentsBorder} !important;
+    border-color: ${({theme}) => theme.sidecolors.sidecolor3} !important;
     padding: 10px;
     margin: 5px;
-    color:  ${({theme}) => theme.forumPage.textColor};
+    color:  ${({theme}) => theme.texts.text1};
     column-gap: 5px;
     &:last-child {
         border:none;
@@ -103,7 +103,7 @@ export const CommentAvatar = styled.div`
     height: 20px;
     border-radius:50%;
     object-fit: cover;
-    background-color: ${({theme}) => theme.forumPage.darkelementBacground};
+    background-color: ${({theme}) => theme.backgrounds.background3};
 `
 
 export const CommentNameAndContentCont = styled.div`
@@ -122,11 +122,11 @@ export const CommentUserName = styled.div`
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    color:  ${({theme}) => theme.forumPage.sideTextColor};
+    color:  ${({theme}) => theme.texts.text2};
 `
 export const CommentContent = styled.div`
     font-size: 15px;
-    color:  ${({theme}) => theme.forumPage.textColor};
+    color:  ${({theme}) => theme.texts.text1};
     font-family: r;
     align-self: flex-start;
 `
@@ -147,10 +147,10 @@ export const CommentChangeContent = styled.textarea`
     border:none;
     height:140px;
     padding: 10px;
-    color: ${({theme}) => theme.forumPage.textColor};
+    color: ${({theme}) => theme.texts.text1};
     font-size: 18px;
     border-top: 1px solid gray;
-    border-color: ${({theme}) => theme.forumPage.textColor};
+    border-color: ${({theme}) => theme.texts.text1};
     &:focus 
     {
         outline: none;
@@ -162,11 +162,11 @@ export const PostComment = styled.button`
     width: 100%;
     overflow: hidden;
     height: 50px;
-    background-color: ${({theme}) => theme.forumPage.darkelementBacground};
+    background-color: ${({theme}) => theme.backgrounds.background3};
     border: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: ${({theme}) => theme.forumPage.textColor};
+    color: ${({theme}) => theme.texts.text1};
 
 `

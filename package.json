@@ -20,6 +20,7 @@
     "@types/highlightjs": "^9.12.2",
     "@types/js-cookie": "^3.0.0",
     "@types/react-beautiful-dnd": "^13.1.2",
+    "@types/react-dom": "^17.0.11",
     "@types/react-scroll": "^1.8.3",
     "@types/styled-components": "^5.1.12",
     "@uiw/react-codemirror": "^4.1.0",
