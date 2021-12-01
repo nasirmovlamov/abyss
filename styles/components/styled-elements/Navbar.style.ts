@@ -290,6 +290,8 @@ export const RegisterButton_STY = styled.button`
     width: 50px;
     height: 50px;
     background-color: transparent;
+    border-radius:10px;
+
     &:hover {
         background-color: ${({theme}) => theme.background_hover.hover1};
     }
