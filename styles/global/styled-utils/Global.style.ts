@@ -17,6 +17,9 @@ export const GlobalStyle = createGlobalStyle<Props>`
     button {
         cursor: pointer;
         border:none;
+        &:focus {
+            outline:none
+        }
     }
   
 `

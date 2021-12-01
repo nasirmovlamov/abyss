@@ -266,38 +266,43 @@ export const LoginButton_STY = styled.button`
     justify-content:center;
     align-items:center;
     cursor: pointer;
-    width: 100px;
-    height: 60px;
     border: none;
     background-color: transparent;
-
-    img 
-    {
-        width: 50px;
-        height: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius:10px;
+    svg {
+        width: 24px;
+        fill: white;
     }
-    
+    &:hover {
+        background-color: ${({theme}) => theme.background_hover.hover1};
+    }
 `
 export const RegisterButton_STY = styled.button`
     display:flex;
     justify-content:center;
     align-items:center;
     cursor: pointer;
-    width: 100px;
-    height: 60px;
     border: none;
     background-color: transparent;
-    img 
-    {
-        width: 50px;
-        height: 40px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    &:hover {
+        background-color: ${({theme}) => theme.background_hover.hover1};
     }
-    
+    svg {
+        width: 24px;
+        fill: white;
+    }
 `
 export const Enterance_STY = styled.div`
     display:flex;
     justify-content:center;
     align-items:center;
+    z-index: 2;
 `
 export const Logged_STY = styled.div`
     display:flex;

@@ -66,10 +66,20 @@ function Header({}: Props): ReactElement {
             const view = 
             <Header_STY.Guest_STY>  
                 <Header_STY.LoginButton_STY      onClick={() => dispatch(changeModalAction("login"))}>
-                    <Image layout="fill" src={"/login.svg"} alt={"login"}/> 
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
+                        <g>
+                            <rect fill="none" height="24" width="24"/>
+                        </g>
+                        <g>
+                            <path d="M11,7L9.6,8.4l2.6,2.6H2v2h10.2l-2.6,2.6L11,17l5-5L11,7z M20,19h-8v2h8c1.1,0,2-0.9,2-2V5c0-1.1-0.9-2-2-2h-8v2h8V19z"/>
+                        </g>
+                    </svg> 
                 </Header_STY.LoginButton_STY>
                 <Header_STY.RegisterButton_STY   onClick={() => dispatch(changeModalAction("register"))}>
-                    <Image layout="fill" src={"/register-icon.svg"} alt={"register"}/> 
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
+                        <path d="M0 0h24v24H0V0z" fill="none"/>
+                        <path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0-6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 8c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4zm-6 4c.22-.72 3.31-2 6-2 2.7 0 5.8 1.29 6 2H9zm-3-3v-3h3v-2H6V7H4v3H1v2h3v3z"/>
+                    </svg>
                 </Header_STY.RegisterButton_STY>
             </Header_STY.Guest_STY>
             setnavView(view)
