@@ -16,7 +16,7 @@ import * as SingleQuestion_STY from '../../../styles/pages/SingleQuestionPage.st
 import CommentModal from '../../../components/CommentsTab'
 import { closeComments, comments,   comments_status,   comments_types, is_comment_opened, showComments } from '../../../app/feature/Comments.slice'
 import { closeChat, is_chatbox_opened, openChat } from '../../../app/feature/ChatBox.slice'
-import { ShowComments } from '../../../styles/components/styled-elements/Answer.style'
+import { ShowComments } from '../../../styles/components/styled-blocks/Answer.style'
 import { getQuestionComments } from '../../../app/thunks/CommentsThunk'
 import { single_question_data, single_question_status } from '../../../app/feature/Question.slice'
 import { getSingleQuestion, unVoteQuestion, voteQuestion } from '../../../app/thunks/QuestionThunk'

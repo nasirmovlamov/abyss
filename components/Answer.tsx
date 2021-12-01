@@ -5,7 +5,7 @@ import { changeForumTabActive } from '../app/feature/PageTabs.slice';
 import { changeModalAction, user_data } from '../app/feature/User.slice';
 import { useAppDispatch, useAppSelector } from '../app/store/hooks';
 import { unVoteAnswer, voteAnswer } from '../app/thunks/QuestionThunk';
-import { AnswerContent, AnswerStyle, Avatar, LikeButton, Name, PersonCont, ShowComments } from '../styles/components/styled-elements/Answer.style';
+import { AnswerContent, AnswerStyle, Avatar, LikeButton, Name, PersonCont, ShowComments } from '../styles/components/styled-blocks/Answer.style';
 import { closeComments, showComments } from '../app/feature/Comments.slice';
 import { getAnswerComments } from '../app/thunks/CommentsThunk';
 import { single_question_data } from '../app/feature/Question.slice';

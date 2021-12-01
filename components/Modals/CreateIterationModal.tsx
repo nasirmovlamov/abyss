@@ -3,8 +3,9 @@ import { changeModalAction } from '../../app/feature/User.slice'
 import { useAppDispatch } from '../../app/store/hooks'
 import {BASE_API_INSTANCE} from '../../helpers/api/BaseInstance'
 import { getKeyValue } from '../../logic/getKeyValue'
-import { LabelCont, QuestionCreateForm, QuestionCreateModal } from '../../styles/components/styled-elements/CreateQuestionModal.style'
-import { Title } from '../../styles/components/styled-elements/FormQuestion.style'
+import { LabelCont, QuestionCreateForm, QuestionCreateModal } from '../../styles/components/styled-blocks/CreateQuestionModal.style'
+import { Title } from '../../styles/components/styled-blocks/FormQuestion.style'
+import { ModalFORM_STY } from '../../styles/components/styled-blocks/Modal_Style/ModalCont.style'
 import MyEditor from '../MyEditor'
 import { autoErrorToaster } from '../Notify/AutoErrorToaster'
 import { autoSuccessToaster } from '../Notify/AutoSuccessToast'
@@ -50,28 +51,26 @@ function CreateIterationModal({}: Props): ReactElement {
     }
 
     return (
-        <QuestionCreateModal>
-            <QuestionCreateForm onSubmit={sendCreateQuestionModal}>
-                <div style={{display:'flex',flexDirection:"column",alignItems:'flex-end',marginTop:"0px",marginBottom:"10px"}}>
-                    <button type="button" onClick={() => dispatch(changeModalAction('iterationCreate'))} style={{background:"none",border:"none",cursor:"pointer"}}>X</button>
-                </div>
-                <LabelCont>
-                    <label htmlFor="title">iteration Title</label>
-                    <input onChange={questionChange}  value={questionValue.title}  type="text" name="title"/>
-                    <label htmlFor="title">validate</label>
-                </LabelCont>
+        <ModalFORM_STY onSubmit={sendCreateQuestionModal}>
+            <div style={{display:'flex',flexDirection:"column",alignItems:'flex-end',marginTop:"0px",marginBottom:"10px"}}>
+                <button type="button" onClick={() => dispatch(changeModalAction('iterationCreate'))} style={{background:"none",border:"none",cursor:"pointer"}}>X</button>
+            </div>
+            <LabelCont>
+                <label htmlFor="title">iteration Title</label>
+                <input onChange={questionChange}  value={questionValue.title}  type="text" name="title"/>
+                <label htmlFor="title">validate</label>
+            </LabelCont>
 
-                <LabelCont>
-                    <label htmlFor="content">iteration Content</label>
-                    <textarea></textarea>
-                    <label htmlFor="content">validate</label>
-                </LabelCont>
-
+            <LabelCont>
+                <label htmlFor="content">iteration Content</label>
+                <textarea></textarea>
+                <label htmlFor="content">validate</label>
+            </LabelCont>
 
 
-                <button type="submit">Post</button>
-            </QuestionCreateForm>
-        </QuestionCreateModal>
+
+            <button type="submit">Post</button>
+        </ModalFORM_STY>
     )
 }
 

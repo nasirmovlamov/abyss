@@ -24,7 +24,7 @@ import {
     SearchCont_STY, 
     SearchInput_STY, 
     SearchNav_STY 
-} from '../styles/components/styled-elements/SearchBox.style'
+} from '../styles/components/styled-blocks/SearchBox.style'
 
 
 interface Props {

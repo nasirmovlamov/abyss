@@ -1,4 +1,5 @@
 import React, { ReactChild, ReactElement } from 'react'
+import { ModalCont_BLUR_STY, ModalCont_STY } from '../../styles/components/styled-blocks/Modal_Style/ModalCont.style'
 
 interface Props {
     children:any
@@ -6,8 +7,9 @@ interface Props {
 
 export default function ModalCont({children}: Props): ReactElement {
     return (
-        <div style={{width:"100vw", height:"100vh" ,  display: 'flex', justifyContent: 'center',  position:'fixed', background:"rgba(0,0,0,0.5)", left:0,top:0, zIndex:999, }}>
+        <ModalCont_STY>
+            <ModalCont_BLUR_STY/>
             {children}
-        </div>
+        </ModalCont_STY>
     )
 }

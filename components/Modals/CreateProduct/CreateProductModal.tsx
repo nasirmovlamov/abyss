@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect} from 'react'
 
 import { changeModalAction } from '../../../app/feature/User.slice'
 import { useAppDispatch, useAppSelector } from '../../../app/store/hooks'
-import { ProductCreateForm, ProductCreateModal, ProductLabelCont } from '../../../styles/components/styled-elements/CreateProductModal.style'
+import { ProductCreateForm, ProductCreateModal, ProductLabelCont } from '../../../styles/components/styled-blocks/CreateProductModal.style'
 import ProductStepsRouter from './StepsForProductCreate/ProductCreateStepsRouter'
 import ProductCreate_Tabs from './StepsForProductCreate/ProductCreate_Tabs'
 import { 
@@ -118,45 +118,21 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
 
 
     return (
-        <ProductCreateModal>
-            {/* {
-                isProductCreated.status === 'pending' &&  
-                <ProductCreateForm>
-                    <div style={{display:'flex',flexDirection:"column",alignItems:'flex-end',marginTop:"0px",marginBottom:"10px"}}>
-                            <button type="button" onClick={() => dispatch(changeModalAction('productCreate'))} style={{background:"none",border:"none",cursor:"pointer"}}>X</button>
-                    </div>
-                    Loading
-                </ProductCreateForm>} 
-            {
-                isProductCreated.status === 'failed' && 
-                <ProductCreateForm>
-                     <div style={{display:'flex',flexDirection:"column",alignItems:'flex-end',marginTop:"0px",marginBottom:"10px"}}>
-                        <button type="button" onClick={() => dispatch(changeModalAction('productCreate'))} style={{background:"none",border:"none",cursor:"pointer"}}>X</button>
-                    </div>
-                    Please Login your account
-                </ProductCreateForm>
-            }  */}
+        <ProductCreateForm>
+            <div style={{display:'flex',flexDirection:"column",alignItems:'flex-end',marginTop:"0px",marginBottom:"10px"}}>
+                <button type="button" onClick={() => dispatch(changeModalAction('productCreate'))} style={{background:"none",border:"none",cursor:"pointer"}}>X</button>
+            </div>
+            
 
+            <ProductCreate_Tabs/>
+            <ProductStepsRouter/>
+            
 
-            {
-                true &&
-                <ProductCreateForm>
-                    <div style={{display:'flex',flexDirection:"column",alignItems:'flex-end',marginTop:"0px",marginBottom:"10px"}}>
-                        <button type="button" onClick={() => dispatch(changeModalAction('productCreate'))} style={{background:"none",border:"none",cursor:"pointer"}}>X</button>
-                    </div>
-                    
-
-                    <ProductCreate_Tabs/>
-                    <ProductStepsRouter/>
-                    
-
-                    <div style={{display:'flex' , justifyContent:'space-between' , width:'100%'}}>
-                        <button onClick={goPrevoiusSection} type="button">Previous</button>
-                        {currentStep !== 5 ? <button onClick={goNextSection} type="button"> Next</button> :<button onClick={goNextSection} type="button"> Submit </button>}
-                    </div>
-                </ProductCreateForm>
-            }       
-        </ProductCreateModal>
+            <div style={{display:'flex' , justifyContent:'space-between' , width:'100%'}}>
+                <button onClick={goPrevoiusSection} type="button">Previous</button>
+                {currentStep !== 5 ? <button onClick={goNextSection} type="button"> Next</button> :<button onClick={goNextSection} type="button"> Submit </button>}
+            </div>
+        </ProductCreateForm>
     )
 }
 

@@ -4,7 +4,7 @@ import CaveWindowRouter from '../components/Cave/Cave_Windows/CaveWindowRouter'
 import CaveSidePartOfPage from '../components/CaveSidePartOfPage'
 import MainPartOfPage from '../components/MainPartOfPage'
 import SidePartOfPage from '../components/SidePartOfPage'
-import { Cave_Sty } from '../styles/components/styled-elements/Cave.style'
+import { Cave_Sty } from '../styles/components/styled-blocks/Cave.style'
 import { CavePageDefaultStyle } from '../styles/pages/Page.styled'
 
 interface Props {

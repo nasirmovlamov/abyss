@@ -1,6 +1,6 @@
 import React, { ReactElement} from 'react'
 import Image from 'next/image'
-import { AnswerCount,  Avatar, BottomSide, Content,  FormQuestionCont, Name, PersonCont, QuestionTags, StatisticCont, Tags, TextCont, Title, Text, HelpfulCont, HelpfulCount, AnswerCont, ViewsCont,  } from '../styles/components/styled-elements/FormQuestion.style'
+import { AnswerCount,  Avatar, BottomSide, Content,  FormQuestionCont, Name, PersonCont, QuestionTags, StatisticCont, Tags, TextCont, Title, Text, HelpfulCont, HelpfulCount, AnswerCont, ViewsCont,  } from '../styles/components/styled-blocks/FormQuestion.style'
 import { 
     AddCave,  
     AddCaveAndMentionsCont,  
@@ -29,7 +29,7 @@ import {
     ProductStarCont, 
     ProductTag, 
     ProductTags, 
-    ProductTitle, ProductViewCont, StoreListingProductStyle } from '../styles/components/styled-elements/ListingStoreProduct.styled'
+    ProductTitle, ProductViewCont, StoreListingProductStyle } from '../styles/components/styled-blocks/ListingStoreProduct.styled'
 import NavLink from './NavLink'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDownload, faEye, faLaptopCode } from '@fortawesome/free-solid-svg-icons'

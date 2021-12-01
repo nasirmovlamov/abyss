@@ -3,7 +3,7 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import { changeForumTabActive,  page_tabs } from '../app/feature/PageTabs.slice'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex'
-import * as SinglePageTabs_STY from '../styles/components/styled-elements/SinglePageTabs.styled'
+import * as SinglePageTabs_STY from '../styles/components/styled-blocks/SinglePageTabs.styled'
 import NavLink from './NavLink'
 import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 

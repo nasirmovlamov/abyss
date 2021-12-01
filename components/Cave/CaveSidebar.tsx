@@ -1,7 +1,7 @@
 import React from 'react'
 import { caveSideActions } from '../../app/feature/CaveFeatures/CaveSide.slice'
 import { useAppDispatch } from '../../app/store/hooks'
-import { CaveSidebar_Sty, CaveSide_section_Sty } from '../../styles/components/styled-elements/Cave_Style/CaveSidebar.style'
+import { CaveSidebar_Sty, CaveSide_section_Sty } from '../../styles/components/styled-blocks/Cave_Style/CaveSidebar.style'
 
 interface Props {
     

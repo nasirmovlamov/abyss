@@ -231,8 +231,8 @@ export const PersonName_STY = styled.label`
     margin-top: 1px;
 `
 export const HeaderIcon_STY = styled.button`
-    width: 36px;
-    height: 36px;
+    width: 46px;
+    height: 46px;
     background-color: transparent;
     border-radius: 5px;
     display: flex;
@@ -240,13 +240,14 @@ export const HeaderIcon_STY = styled.button`
     align-items: center;
     cursor: pointer;
     transition: 0.3s;
-    &:nth-child(3) {
+    position: relative;
+    &:nth-child(2) {
         svg {
-            width: 24px;
+            width: 28px;
         }
     }
     svg {
-        width: 16px;
+        width: 20px;
         height: auto;
         transition: 0.2s;
         fill: ${({theme}) => theme.colors.gray_3};
@@ -260,6 +261,27 @@ export const HeaderIcon_STY = styled.button`
     
 `
 
+export const NotifyNumber_STY = styled.div`
+    display:flex;
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: ${({theme}) => theme.colors.orange_1};
+    color: ${({theme}) => theme.texts.text5};
+    font-size: 12px;
+    justify-content: center;
+    align-items: center;
+    font-weight: 800;
+    z-index: 1;
+    transition: 0.3s;
+    &:hover {
+        background-color: ${({theme}) => theme.background_hover.hover1};
+    }
+`
+
 
 export const LoginButton_STY = styled.button`
     display:flex;
@@ -268,16 +290,33 @@ export const LoginButton_STY = styled.button`
     cursor: pointer;
     border: none;
     background-color: transparent;
-    width: 50px;
-    height: 50px;
+    width:auto;
     background-color: transparent;
     border-radius:10px;
+    background-color:${({theme}) => theme.backgrounds.background6};
+    padding:5px 10px;
+    column-gap:5px;
+    transition:0.5s;
     svg {
-        width: 24px;
-        fill: white;
+        transition:0.5s;
+
+    }
+    span{
+    transition:0.5s;
+
     }
     &:hover {
         background-color: ${({theme}) => theme.background_hover.hover1};
+        box-shadow:${({theme}) => theme.boxshadows.boxshadow1};
+        svg {
+            fill: ${({theme}) => theme.backgrounds.background6};
+            transition:0.5s;
+        }
+        span {
+            color:${({theme}) => theme.texts.text1};
+            transition:0.5s;
+
+        }
     }
 `
 export const RegisterButton_STY = styled.button`
@@ -287,18 +326,33 @@ export const RegisterButton_STY = styled.button`
     cursor: pointer;
     border: none;
     background-color: transparent;
-    width: 50px;
-    height: 50px;
-    background-color: transparent;
     border-radius:10px;
-
-    &:hover {
-        background-color: ${({theme}) => theme.background_hover.hover1};
-    }
+    padding:5px 10px;
+    column-gap:5px;
+    background-color:${({theme}) => theme.backgrounds.background6};
+    transition:0.5s;
+    width:100%;
     svg {
         width: 24px;
-        fill: white;
+        fill: ${({theme}) => theme.backgrounds.background2};
+        transition:0.5s;
     }
+    span{
+        transition:0.5s;
+    }
+    &:hover {
+        background-color: ${({theme}) => theme.background_hover.hover1};
+        box-shadow:${({theme}) => theme.boxshadows.boxshadow1};
+        svg {
+            fill: ${({theme}) => theme.backgrounds.background6};
+            transition:0.5s;
+        }
+        span {
+            color:${({theme}) => theme.texts.text1};
+            transition:0.5s;
+        }
+    }
+    
 `
 export const Enterance_STY = styled.div`
     display:flex;
@@ -311,7 +365,7 @@ export const Logged_STY = styled.div`
     /* justify-content:center; */
     align-items:center;
     position: relative;
-    column-gap: 16px;
+    column-gap: 30px;
     &:hover ${ImageStyle2_STY} , &:hover ${PersonName_STY}
     {
         opacity: 1;
@@ -345,4 +399,5 @@ export const Guest_STY = styled.div`
     display:flex;
     justify-content:center;
     align-items:center;
+    column-gap:15px;
 `

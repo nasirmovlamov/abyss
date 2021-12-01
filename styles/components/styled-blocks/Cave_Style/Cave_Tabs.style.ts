@@ -1,4 +1,4 @@
-import { CaveTabsInterface } from './../../../../app/store/state-Interfaces/Cave_Interfaces/CaveTabs.interface';
+import { CaveTabsInterface } from '../../../../app/store/state-Interfaces/Cave_Interfaces/CaveTabs.interface';
 import styled from "styled-components"
 import { CaveTabInterface } from "../../../../app/store/state-Interfaces/Cave_Interfaces/CaveTabs.interface"
 

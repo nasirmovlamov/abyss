@@ -4,7 +4,7 @@ import { changeModalAction, is_Logged, user_data } from '../app/feature/User.sli
 import { closeComments, comments,   comments_types, is_answer, is_question, showComments } from '../app/feature/Comments.slice'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { addAnswerComment, addQuestionComment } from '../app/thunks/CommentsThunk'
-import { AllCommentsCont, CommentAvatar, CommentChangeContent, CommentContent, CommentNameAndContentCont, CommentsCloseButton, CommentsForm,  CommentsTabMainNameStyle, CommentsTabStyle, CommentsTabTitleStyle, CommentStyle, CommentUserName, PostComment, TakeCommentsToSideMakeAbsolute,  } from '../styles/components/styled-elements/CommentsTab.style'
+import { AllCommentsCont, CommentAvatar, CommentChangeContent, CommentContent, CommentNameAndContentCont, CommentsCloseButton, CommentsForm,  CommentsTabMainNameStyle, CommentsTabStyle, CommentsTabTitleStyle, CommentStyle, CommentUserName, PostComment, TakeCommentsToSideMakeAbsolute,  } from '../styles/components/styled-blocks/CommentsTab.style'
 import { errorToastFunc } from './Notify/ErrorToasts'
 import { autoErrorToasterWithMessage } from './Notify/AutoSuccessToast'
 

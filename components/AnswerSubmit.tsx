@@ -10,7 +10,7 @@ import { addAnswer } from '../app/thunks/QuestionThunk';
 
 import MyEditor from './MyEditor';
 import dynamic from 'next/dynamic'
-import { LabelCont } from '../styles/components/styled-elements/CreateQuestionModal.style';
+import { LabelCont } from '../styles/components/styled-blocks/CreateQuestionModal.style';
 import { single_question_data, submit_answer_content, submit_answer_data } from '../app/feature/Question.slice';
 
 const DynamicComponentWithNoSSR = dynamic(

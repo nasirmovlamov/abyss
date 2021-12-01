@@ -7,8 +7,8 @@ import { faRulerVertical } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { getClipsIndex } from '../../../../../logic/createProduct'
 import EditorForProductCreate from '../../../../EditorForProductCreate'
-import { Title } from '../../../../../styles/components/styled-elements/FormQuestion.style'
-import {  ProductLabelCont } from '../../../../../styles/components/styled-elements/CreateProductModal.style'
+import { Title } from '../../../../../styles/components/styled-blocks/FormQuestion.style'
+import {  ProductLabelCont } from '../../../../../styles/components/styled-blocks/CreateProductModal.style'
 import { addFile } from '../../../../../app/thunks/CreateProductThunks';
 
 

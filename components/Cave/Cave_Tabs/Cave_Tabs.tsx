@@ -8,7 +8,7 @@ import { Cave_Tabs_Sty, Cave_Tab_Sty ,
     CaveRightCornerForHover,
     CaveLeftCornerForHover, 
     Cave_Tab_Seperator_Sty
-} from '../../../styles/components/styled-elements/Cave_Style/Cave_Tabs.style'
+} from '../../../styles/components/styled-blocks/Cave_Style/Cave_Tabs.style'
 import caveTabCornerNotHoveredSvg from '../../../public/caveTabCornerNotHovered.svg'
 import caveTabCornerHovered from '../../../public/caveTabCornerHovered.svg'
 import Image from 'next/image'

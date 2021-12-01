@@ -7,7 +7,7 @@ import { chat_rooms, closeChat, opened_chat_room_id, setRoomId } from '../app/fe
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { openRooms, reqRoomMessages, checkRoomChat, sendMessageToRoom, loadArchieveMessages } from '../app/thunks/ChatBoxThunks'
 import { getLastMessageId,  getRooms } from '../logic/chatBoxLogic'
-import { ChatMain, ChatMessage, ChatMessages, ChatMessagesFix, ChatMessagesTab, ChatNav, ChatNavName, ChatRoom, ChatRooms, ChatSendMessage, ChatWindow, CloseChatBox } from '../styles/components/styled-elements/ChatBox.style'
+import { ChatMain, ChatMessage, ChatMessages, ChatMessagesFix, ChatMessagesTab, ChatNav, ChatNavName, ChatRoom, ChatRooms, ChatSendMessage, ChatWindow, CloseChatBox } from '../styles/components/styled-blocks/ChatBox.style'
 
 interface Props {
     

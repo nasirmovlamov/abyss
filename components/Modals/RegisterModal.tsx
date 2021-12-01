@@ -3,6 +3,8 @@ import * as authThunk from '../../app/thunks/AuthThunk'
 import { useAppSelector, useAppDispatch } from '../../app/store/hooks';
 import axios from 'axios';
 import { changeModalAction, register_errors,  register_form, register_Form_OnChange, user_modals } from '../../app/feature/User.slice';
+import { ModalFORM_STY } from '../../styles/components/styled-blocks/Modal_Style/ModalCont.style';
+import * as Form_STY from '../../styles/components/styled-elements/Form.style';
 
 interface Props {
 }
@@ -24,34 +26,47 @@ function RegisterModal({}: Props):ReactElement {
 
 
     return (
-        <div style={{width:"100vw", height:"100vh" , display: 'flex', justifyContent: 'center', alignItems: 'center', position:'absolute', background:"rgba(0,0,0,0.5)", left:0,top:0,zIndex:5}}>
-            <form style={{background:"rgba(255,255,255,0.7)" , padding:"25px", borderRadius:"20px"}} onSubmit={formSubmit} >
+            <ModalFORM_STY onSubmit={formSubmit} >
                 <div style={{display:'flex',flexDirection:"column",alignItems:'flex-end',marginTop:"0px",marginBottom:"10px"}}>
-                    <button onClick={() => dispatch(changeModalAction('register'))} type="button" style={{background:"none",border:"none",cursor:"pointer"}}>X</button>
+                    <Form_STY.F_CloseButton_STY type="button" onClick={() => dispatch(changeModalAction('register'))} >
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+                    </Form_STY.F_CloseButton_STY>
                 </div>
-                <div style={{display:'flex',flexDirection:"column",alignItems:'center',marginTop:"20px",marginBottom:"10px"}}>
-                    <h2>Register </h2>
-                </div>
-                <div style={{display:'flex',flexDirection:"column",alignItems:'center',marginTop:"20px",marginBottom:"10px"}}>
-                    <label style={{width:"150px",marginBottom:"10px",alignSelf:"flex-start"}} htmlFor="">username</label>
-                    <input name="name" value={registerForm.name} onChange={(e)=> dispatch(register_Form_OnChange({name:e.target.name , value:e.target.value}))}  />
-                    { registerErrors.name !== undefined && registerErrors.name.map((error , index) => <label style={{color:"red", fontSize:"12px",marginTop:"10px",marginBottom:"10px"}} key={index}>{error}</label>)}
-                </div>
-                <div style={{display:'flex',flexDirection:"column",alignItems:'center',marginTop:"20px",marginBottom:"10px"}}> 
-                    <label style={{width:"150px",marginBottom:"10px",alignSelf:"flex-start"}} htmlFor="">email</label>
-                    <input name="email" value={registerForm.email} onChange={(e)=> dispatch(register_Form_OnChange({name:e.target.name , value:e.target.value}))} />
-                    { registerErrors.email !== undefined &&  registerErrors.email.map((error , index) => <label style={{color:"red", fontSize:"12px",marginTop:"10px",marginBottom:"10px"}} key={index}>{error}</label>)}
-                </div>
-                <div style={{display:'flex',flexDirection:"column",alignItems:'center',marginTop:"20px",marginBottom:"10px"}}>
-                    <label style={{width:"150px",marginBottom:"10px",alignSelf:"flex-start"}} htmlFor="">password</label>
-                    <input name="password" value={registerForm.password} onChange={(e)=> dispatch(register_Form_OnChange({name:e.target.name , value:e.target.value}))} />
-                    { registerErrors.password !== undefined &&  registerErrors.password.map((error , index) => <label style={{color:"red", fontSize:"12px",marginTop:"10px",marginBottom:"10px"}} key={index}>{error}</label>)}
-                </div>
-                <div style={{width:"100%", display:'flex',justifyContent:'center',marginTop:"20px"}}>
-                    <button type="submit">Submit</button>
-                </div>
-            </form>
-        </div>
+
+                <Form_STY.F_Title_STY>Register</Form_STY.F_Title_STY>
+
+
+                <Form_STY.InputGroup_STY>
+                    <Form_STY.Label_STY  htmlFor="username">Username</Form_STY.Label_STY>
+                    <Form_STY.Input_STY error={registerErrors.name.length > 0} name="name" value={registerForm.name} onChange={(e)=> dispatch(register_Form_OnChange({name:e.target.name , value:e.target.value}))}  />
+                    <Form_STY.Error_STY error={registerErrors.name.length > 0} >{ registerErrors.name.length > 0 && registerErrors.name.map((error , index) => <span key={index}> {error}</span>)}</Form_STY.Error_STY>
+                </Form_STY.InputGroup_STY>
+
+                <Form_STY.InputGroup_STY> 
+                    <Form_STY.Label_STY  htmlFor="">Email</Form_STY.Label_STY >
+                    <Form_STY.Input_STY error={registerErrors.email.length > 0} name="email" value={registerForm.email} onChange={(e)=> dispatch(register_Form_OnChange({name:e.target.name , value:e.target.value}))} />
+                    <Form_STY.Error_STY error={registerErrors.name.length > 0}>{ registerErrors.email.length > 0 &&  registerErrors.email.map((error , index) =>  <span key={index}>{error}</span>)}</Form_STY.Error_STY>
+                </Form_STY.InputGroup_STY>
+
+                <Form_STY.InputGroup_STY>
+                    <Form_STY.Label_STY  htmlFor="password">Password</Form_STY.Label_STY >
+                    <Form_STY.Input_STY error={registerErrors.password.length > 0} name="password" value={registerForm.password} onChange={(e)=> dispatch(register_Form_OnChange({name:e.target.name , value:e.target.value}))} />
+                    <Form_STY.Error_STY error={registerErrors.name.length > 0}>{ registerErrors.password.length > 0 &&  registerErrors.password.map((error , index) =>  <span key={index}>{error}</span>)}</Form_STY.Error_STY>
+                </Form_STY.InputGroup_STY>
+
+                <Form_STY.F_ButtonCont_STY>
+                    <Form_STY.F_Button_STY type="submit">
+                        <span>Submit</span>
+                    </Form_STY.F_Button_STY>
+
+                    <Form_STY.F_Button_STY onClick={() => dispatch(changeModalAction('login'))}>
+                        <span>Go Back</span>
+                    </Form_STY.F_Button_STY>
+                    
+                </Form_STY.F_ButtonCont_STY>
+
+                
+            </ModalFORM_STY>
     )
 }
 

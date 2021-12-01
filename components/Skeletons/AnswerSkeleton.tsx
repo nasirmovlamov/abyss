@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { AnswerContent, AnswerContentSkeleton, AnswerStyle, PersonCont } from '../../styles/components/styled-elements/Answer.style'
+import { AnswerContent, AnswerContentSkeleton, AnswerStyle, PersonCont } from '../../styles/components/styled-blocks/Answer.style'
 import { SkeletonBox } from '../../styles/global/styled-utils/Global.style'
 
 interface Props {

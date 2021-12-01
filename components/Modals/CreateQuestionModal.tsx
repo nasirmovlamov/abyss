@@ -3,8 +3,8 @@ import { changeModalAction } from '../../app/feature/User.slice'
 import { useAppDispatch, useAppSelector } from '../../app/store/hooks'
 import {BASE_API_INSTANCE} from '../../helpers/api/BaseInstance'
 import { getKeyValue } from '../../logic/getKeyValue'
-import { LabelCont, QuestionCreateForm, QuestionCreateModal } from '../../styles/components/styled-elements/CreateQuestionModal.style'
-import { Title } from '../../styles/components/styled-elements/FormQuestion.style'
+import { LabelCont, QuestionCreateForm, QuestionCreateModal } from '../../styles/components/styled-blocks/CreateQuestionModal.style'
+import { Title } from '../../styles/components/styled-blocks/FormQuestion.style'
 import MyEditor from '../MyEditor'
 import {  autoErrorToaster } from '../Notify/AutoErrorToaster'
 import { errorToastFunc } from '../Notify/ErrorToasts'
@@ -15,6 +15,7 @@ import { autoSuccessToaster , autoErrorToasterWithMessage } from '../Notify/Auto
 
 import dynamic from 'next/dynamic'
 import { linked_products, mentioned_users, question_value } from '../../app/feature/CreateQuestionFeatures/CreateQuestion.slice'
+import { ModalFORM_STY } from '../../styles/components/styled-blocks/Modal_Style/ModalCont.style'
 
 const DynamicComponentWithNoSSR = dynamic(
     () => import('../EditorForQuestionCreateMentions'),
@@ -160,8 +161,7 @@ function CreateQuestionModal({}: Props): ReactElement {
     // }
 
     return (
-        <QuestionCreateModal>
-            <QuestionCreateForm onSubmit={sendCreateQuestionModal}>
+            <ModalFORM_STY onSubmit={sendCreateQuestionModal}>
                 <div style={{display:'flex',flexDirection:"column",alignItems:'flex-end',marginTop:"0px",marginBottom:"10px"}}>
                     <button type="button" onClick={() => dispatch(changeModalAction('questionCreate'))} style={{background:"none",border:"none",cursor:"pointer"}}>X</button>
                 </div>
@@ -243,8 +243,7 @@ function CreateQuestionModal({}: Props): ReactElement {
                 </LabelCont>
 
                 <button type="submit">Post</button>
-            </QuestionCreateForm>
-        </QuestionCreateModal>
+            </ModalFORM_STY>
     )
 }
 
