@@ -10,6 +10,27 @@ type Props = {
 export const GlobalStyle = createGlobalStyle<Props>`
   body{
       background-color: ${({theme}) => theme.body};
+      &::-webkit-scrollbar {
+        width: 10px;
+        }
+
+        /* Track */
+        &::-webkit-scrollbar-track {
+            background: #000;
+            border-radius: 5px;
+        }
+
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 5px;
+
+        }
+
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+        background: #555;
+        }
     }
     *{
         box-sizing: border-box;

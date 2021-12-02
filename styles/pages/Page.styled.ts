@@ -31,9 +31,9 @@ export const SidePartOfPageStyle = styled.aside<{side:string , colorConvert:bool
     /* padding-top: 115px; */
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    position: sticky;
-    top:0px;
+    height: 100%;
+    position: relative;
+    /* top:0px; */ 
     overflow: hidden;
     flex: 0 0 ${ ({side}) => side === "left" ? "195px" : "307px"};
     background-color: ${({colorConvert})=> colorConvert ? 'transparent' : '#000'};
@@ -76,6 +76,7 @@ export const PageDefaultStyle = styled.main`
     justify-content: center;
     column-gap: 56px;
     width: 100%;
+    height: 100%;
     /* padding-right: 7.2917%; */
     box-sizing: border-box;
     /* background-color: lightgray; */

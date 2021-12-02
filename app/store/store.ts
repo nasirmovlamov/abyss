@@ -11,6 +11,7 @@ import createProductReducer from '../feature/CreateProductFeatures/CreateProduct
 import createQuestionReducer from '../feature/CreateQuestionFeatures/CreateQuestion.slice'
 import linkedProductsReducer from '../feature/LinkedProducts.slice'
 import caveRootReducer from '../feature/CaveFeatures/Cave_Reducers/Cave.root.reducer'
+import sideProductReducer from '../feature/SideProducts.slice'
 
 
 const reducer = 
@@ -27,6 +28,7 @@ const reducer =
   createQuestionReducer:createQuestionReducer,
   linkedProductsReducer:linkedProductsReducer,
   caveRootReducer:caveRootReducer,
+  sideProductReducer:sideProductReducer,
 }
 
 

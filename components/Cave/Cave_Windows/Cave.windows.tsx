@@ -10,12 +10,12 @@ import Cave_Profile_Subscription from "./CaveProfile/Cave_Profile_Subscription";
 import Cave_Profile_Settings from "./CaveProfile/Cave_Profile_Settings";
 
 export const cave_windows:any = {
-    'profile':<Cave_Profile/>,
-    'inventory':<Cave_Inventory/>,
-    'library':<Cave_Library/>,
-    'notes':<Cave_Notes/>,
-    'shop' : <Cave_Shop/>,
-    'guide': <Cave_Guide/>
+    'profile':      <Cave_Profile/>,
+    'inventory':    <Cave_Inventory/>,
+    'library':      <Cave_Library/>,
+    'notes':        <Cave_Notes/>,
+    'shop' :        <Cave_Shop/>,
+    'guide':        <Cave_Guide/>
 }
 
 export const cave_profile_sections:any = {

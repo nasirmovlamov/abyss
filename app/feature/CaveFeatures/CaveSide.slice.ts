@@ -1,3 +1,4 @@
+import { selectAsyncCaveWindow } from './../../thunks/Cave/Cave.thunk';
 import { RootState } from '../../store/store';
 import { createSlice } from '@reduxjs/toolkit';
 import { CaveState } from '../../store/states/Cave_States/Cave.state';
@@ -12,18 +13,21 @@ export const CaveSideSlice = createSlice({
             state.selectedWindow = action.payload
         },
 
-        extraReducers: (builder) => {
+        
 
-
-            // ADD CLIP
-            // builder.addCase(addFile.fulfilled, (state, {payload}) => {
-            // }),
-            // builder.addCase(addFile.pending, (state, {payload}) => {
-            // }),
-            // builder.addCase(addFile.rejected, (state, action:any) => {
-            // })
-
-        }
+    },
+    extraReducers: (builder) => {
+        // ASYNC SELECT TAB
+        builder.addCase(selectAsyncCaveWindow.fulfilled, (state, {payload}) => {
+            state.selectedWindow = payload
+            state.status = 'loaded'
+        }),
+        builder.addCase(selectAsyncCaveWindow.pending, (state, {payload}) => {
+            state.status = 'loading'
+        }),
+        builder.addCase(selectAsyncCaveWindow.rejected, (state, action:any) => {
+            state.status = 'error'
+        })
 
     }
 

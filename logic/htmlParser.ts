@@ -122,6 +122,7 @@ export const parseHtmlWithMention = (html: string , linkedProducts: any[] ) => {
     if(linkedProducts.length > 0){
         finalHtml = replaceAllSpanWithItsContentTagWhicClassIsEqualToMention(html)
     }
-
-    return parse(finalHtml);
+    const removedImageTags = finalHtml.replace(/<img(.*?)>/g, '')
+    const removedCodeTags = removedImageTags.replace(/<code(.*?)>/g, '')
+    return parse(removedCodeTags);
 }  

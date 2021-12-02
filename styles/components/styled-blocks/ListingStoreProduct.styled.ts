@@ -17,6 +17,22 @@ export const StoreListingProductStyle = styled.div`
     box-shadow: ${({theme}) => theme.boxshadows.boxshadow4};
 
 `   
+export const StoreSideProductStyle = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 14px 45px 21px  14px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    column-gap: 5px;
+    row-gap: 15px;
+    width: 100%;
+    height: 182px;
+    margin-bottom:20px ;
+    background-color: ${({theme}) => theme.backgrounds.background1};
+    box-shadow: ${({theme}) => theme.boxshadows.boxshadow4};
+
+`   
 
 export const ProductImageAndContent = styled.div`
     column-gap: 20px;
@@ -225,6 +241,12 @@ export const ProductSideDetailsCont = styled.div`
     height: 100%;
 `
 
+export const Side_ProductSideDetailsCont = styled.div`
+    display: flex;
+    justify-content: space-between;
+    column-gap: 10px;
+`
+
 
 export const AddCave = styled.button`
     display: flex;
@@ -251,6 +273,11 @@ export const MentionsCont = styled.div`
     display: flex;
     flex-direction: column;
     row-gap: 4.5px;
+`
+
+export const Side_MentionsCont = styled.div`
+    display: flex;
+    column-gap: 4.5px;
 `
 
 export const MentionsCount = styled.p`

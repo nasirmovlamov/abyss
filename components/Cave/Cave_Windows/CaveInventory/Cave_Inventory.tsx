@@ -13,10 +13,10 @@ interface Props {
 }
 
 const Cave_Inventory = (props: Props) => {
-    const [inViewRefSavedBlock, inViewSavedBlock] = useInView()
-    const [inViewRefCreatedBlock, inViewCreatedBlock] = useInView()
-    const [inViewRefPlaylistBlock, inViewPlaylistBlock] = useInView()
-    const [inViewRefHistoryBlock, inViewHistoryBlock] = useInView()
+    const [inViewRefInventorySavedBlock, inViewInventorySavedBlock] = useInView()
+    const [inViewRefInventoryCreatedBlock, inViewInventoryCreatedBlock] = useInView()
+    const [inViewRefInventoryPlaylistBlock, inViewInventoryPlaylistBlock] = useInView()
+    const [inViewRefInventoryHistoryBlock, inViewInventoryHistoryBlock] = useInView()
 
     const caveSideData = useAppSelector(cave_side_data)
     const dispatch = useAppDispatch()
@@ -32,42 +32,54 @@ const Cave_Inventory = (props: Props) => {
     const playlistTab= inventoryTabs.filter(tab => tab.name === 'playlist')[0]
     const historyTab= inventoryTabs.filter(tab => tab.name === 'history')[0]
     
-    // const changeActiveTab = async (tab: any) => {
-    //     await dispatch(cave_actions.selectTab({tab:tab , window:caveSideData.selectedWindow}))
-    // }
+    const changeActiveTab = (tab: any) => {
+        dispatch(cave_actions.selectTab({tab:tab , window:caveSideData.selectedWindow}))
+    }
 
-    // useEffect(() => {
-    //     if(inViewSavedBlock){
-    //         changeActiveTab(savedTab)
-    //     }
-    //     if(inViewCreatedBlock){
-    //         changeActiveTab(createdTab)
-    //     }
-    //     if(inViewPlaylistBlock){
-    //         changeActiveTab(playlistTab)
-    //     }
-    //     if(inViewHistoryBlock){
-    //         changeActiveTab(historyTab)
-    //     }
-    // }, [inViewSavedBlock , inViewCreatedBlock , inViewPlaylistBlock , inViewHistoryBlock])
+    useEffect(() => {
+        scroller.scrollTo(`#${caveSideData.selectedWindow}${activeTab.name}Block`, {
+            duration: 0,
+            delay: 0,
+            smooth: 'easeInOutQuart',
+            offset: -130
+        })
+    }, [])
+
+
+    useEffect(() => {
+        if(inViewInventorySavedBlock){
+            changeActiveTab(savedTab)
+        }
+        if(inViewInventoryCreatedBlock){
+            changeActiveTab(createdTab)
+        }
+        if(inViewInventoryPlaylistBlock){
+            changeActiveTab(playlistTab)
+        }
+        if(inViewInventoryHistoryBlock){
+            changeActiveTab(historyTab)
+        }
+    }, [scrollY])
+
+    
 
    
 
     return (
         <CaveInventoryBlocks_Sty>
-            <CaveInventoryDefaultBlock_Sty ref={inViewRefSavedBlock}    id='#savedBlock'>
+            <CaveInventoryDefaultBlock_Sty ref={inViewRefInventorySavedBlock}    id='#inventorysavedBlock'>
                 Saved Block
             </CaveInventoryDefaultBlock_Sty>  
            
-            <CaveInventoryDefaultBlock_Sty ref={inViewRefCreatedBlock}  id='#createdBlock'>
+            <CaveInventoryDefaultBlock_Sty ref={inViewRefInventoryCreatedBlock}  id='#inventorycreatedBlock'>
                 Created Block
             </CaveInventoryDefaultBlock_Sty>  
            
-            <CaveInventoryDefaultBlock_Sty ref={inViewRefPlaylistBlock} id='#playlistBlock'>
+            <CaveInventoryDefaultBlock_Sty ref={inViewRefInventoryPlaylistBlock} id='#inventoryplaylistBlock'>
                 Playlist Block
             </CaveInventoryDefaultBlock_Sty>  
            
-            <CaveInventoryDefaultBlock_Sty ref={inViewRefHistoryBlock}  id='#historyBlock'>
+            <CaveInventoryDefaultBlock_Sty ref={inViewRefInventoryHistoryBlock}  id='#inventoryhistoryBlock'>
                 History Block
             </CaveInventoryDefaultBlock_Sty>  
         </CaveInventoryBlocks_Sty>

@@ -181,7 +181,7 @@ export const CountOfProducts = styled.div`
     top: -2px;
     /* margin-top: 2px; */
 `
-export const ProductCount = styled.div`
+export const ProductCount = styled.button`
     font-family: r;
     font-size: 15px;
     line-height: 20px;

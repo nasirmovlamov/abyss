@@ -11,11 +11,15 @@ interface Props {
 
 
 const CaveWindowRouter = (props: Props) => {
-    const caveSideTabs = useAppSelector(cave_side_data)
+    const caveSideData = useAppSelector(cave_side_data)
+    
     return (
         <>
             <Cave_Tabs/>
-            {cave_windows[caveSideTabs.selectedWindow]}
+            {
+                caveSideData.status === 'loaded' &&
+                cave_windows[caveSideData.selectedWindow]
+            }
         </>
     )
 }

@@ -19,14 +19,17 @@ import { useInView } from 'react-intersection-observer'
 import { dispatch } from 'react-hot-toast/dist/core/store'
 import { forumSearch, forumSearchInfinity } from '../../app/thunks/SearchBoxThunks'
 import { getCookie } from '../../logic/CookieFunctions'
-
+import { side_product_data } from '../../app/feature/SideProducts.slice'
+import ListingStoreProduct from '../../components/ListingStoreProduct'
+import SideProduct from '../../components/SideProduct'
+import SideProductCont from '../../components/SideProductCont'
 interface Props {
     
 }
 
 function Forum({}: Props): ReactElement {
     const [inViewRefLoaderDown, inViewLoaderDown] = useInView()
-
+    const sideProductContData = useAppSelector(side_product_data)
 
     const dispatch = useAppDispatch()
     const forumSearchData = useAppSelector(forum_search_data)
@@ -44,7 +47,7 @@ function Forum({}: Props): ReactElement {
         }
     }, [inViewLoaderDown])
     
-   
+    
 
     return (
         <PageDefaultStyle>
@@ -97,11 +100,20 @@ function Forum({}: Props): ReactElement {
 
 
             <SidePartOfPage side={"right"}>
+
                 {
+                    (sideProductContData.status === "loaded" && sideProductContData.selectedID !== null  && sideProductContData.products.length > 0)
+                    &&
+                    <SideProductCont/>
+                } 
+
+
+
+                {/* {
                     <>
                         {isChatBoxOpened  && <ChatBox/>}
                     </>
-                }
+                } */}
             </SidePartOfPage>
         </PageDefaultStyle>
     )

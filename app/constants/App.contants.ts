@@ -34,6 +34,9 @@ export const FORUM_SEARCH_INFINITY:string = 'FORUM_SEARCH_INFINITY'
 export const STORE_SEARCH:string = 'STORE_SEARCH'
 export const STORE_SEARCH_INFINITY:string = 'STORE_SEARCH_INFINITY'
 
+export const GET_SIDE_PRODUCTS:string = 'GET_SIDE_PRODUCTS'
+export const SELECT_CAVE_WINDOW:string = 'SELECT_CAVE_WINDOW'
+
 
 
 export const ADD_FILE:string = 'ADD_FILE'

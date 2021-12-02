@@ -26,12 +26,14 @@ export const CaveTabsSlice = createSlice({
     },
 
     extraReducers: (builder) => {
-        // ADD CLIP
-        // builder.addCase(addFile.fulfilled, (state, {payload}) => {
+        // // ASYNC SELECT TAB
+        // builder.addCase(selectAsyncCaveWindow.fulfilled, (state, {payload}) => {
+        //     state[payload.window].filter(tab => tab.active === true)[0].active = false;
+        //     state[payload.window].filter(tab => tab.id === payload.tab.id)[0].active = true;
         // }),
-        // builder.addCase(addFile.pending, (state, {payload}) => {
+        // builder.addCase(selectAsyncCaveWindow.pending, (state, {payload}) => {
         // }),
-        // builder.addCase(addFile.rejected, (state, action:any) => {
+        // builder.addCase(selectAsyncCaveWindow.rejected, (state, action:any) => {
         // })
     }
 })  

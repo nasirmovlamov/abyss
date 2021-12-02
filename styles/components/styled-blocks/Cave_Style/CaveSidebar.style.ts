@@ -8,12 +8,12 @@ export const CaveSidebar_Sty = styled.aside`
 `
 
 
-export const CaveSide_section_Sty = styled.button`
+export const CaveSide_section_Sty = styled.button<{selected:boolean}>`
     width: 100%;
     text-align: center;
     box-sizing: border-box;
     padding: 10px;
-    background-color: black;
+    background-color: ${({selected}) => selected ? "orange" : "black" };
     border:1px solid gray;
     color: white;
     cursor: pointer;

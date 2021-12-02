@@ -26,14 +26,14 @@ const Cave_Tabs = (props: Props) => {
     const dispatch = useAppDispatch()
 
     const changeActiveTab   =  (tab: any) => {
-        dispatch(cave_actions.selectTab({tab:tab , window:caveSideData.selectedWindow}))
-        const activeTab = caveTabs[caveSideData.selectedWindow].filter(tab => tab.active)[0]
-        scroller.scrollTo(`#${activeTab.name}Block`, {
+        const activeTab = caveTabs[caveSideData.selectedWindow].filter((tab: any) => tab.active)[0]
+        scroller.scrollTo(`#${caveSideData.selectedWindow}${tab.name}Block`, {
             duration: 0,
             delay: 0,
             smooth: 'easeInOutQuart',
             offset: -130
         })
+        dispatch(cave_actions.selectTab({tab:tab , window:caveSideData.selectedWindow}))
     }
 
     const hoverTab = (tab: any) => {
