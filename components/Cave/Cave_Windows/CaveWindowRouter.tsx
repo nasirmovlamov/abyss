@@ -15,7 +15,6 @@ const CaveWindowRouter = (props: Props) => {
     
     return (
         <>
-            <Cave_Tabs/>
             {
                 caveSideData.status === 'loaded' &&
                 cave_windows[caveSideData.selectedWindow]

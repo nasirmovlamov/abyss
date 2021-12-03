@@ -5,9 +5,10 @@ import { CaveTabInterface } from "../../../../app/store/state-Interfaces/Cave_In
 export const Cave_Tabs_Sty = styled.div`
     display: flex;
     background-color: ${({theme}) => theme.colors.black_3};
-    position: sticky;
-    top: 50px;
-    padding-top: 20px;
+    position: fixed;
+    padding-top: 220px;
+    top: 0px;
+    width: 100%;
 `
 export const Cave_Tabs_Cont_Sty = styled.div`
     display: flex;
@@ -19,8 +20,6 @@ export const Cave_Tabs_Cont_Sty = styled.div`
     position: relative;
     align-items: center;
 `
-
-
 
 export const CaveLeftCorner = styled.div<{ tab:CaveTabInterface}>`
     width: auto;
@@ -54,7 +53,6 @@ export const CaveLeftCornerForHover = styled.div<{ tab:CaveTabInterface}>`
     z-index: 2;
     opacity: ${({tab }) => tab.active ? 0:  tab.hovered  ? 1 : 0};
 `
-
 export const CaveRightCornerForHover = styled.div<{ tab:CaveTabInterface}>`
     width: auto;
     position: absolute;
@@ -91,7 +89,6 @@ export const Cave_Tab_Sty = styled.button<{active:boolean , order:number}>`
         }
     }
 `
-
 
 export const Cave_Tab_Seperator_Sty = styled.div<{tabs:CaveTabInterface[] , tab:CaveTabInterface}>`
     width: 1px;

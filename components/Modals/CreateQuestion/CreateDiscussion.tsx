@@ -1,22 +1,22 @@
 import React, { ReactElement, useEffect, useState } from 'react'
-import { changeModalAction } from '../../app/feature/User.slice'
-import { useAppDispatch } from '../../app/store/hooks'
-import {BASE_API_INSTANCE} from '../../helpers/api/BaseInstance'
-import { getKeyValue } from '../../logic/getKeyValue'
-import { LabelCont, QuestionCreateForm, QuestionCreateModal } from '../../styles/components/styled-blocks/CreateQuestionModal.style'
-import { Title } from '../../styles/components/styled-blocks/FormQuestion.style'
-import { ModalFORM_STY } from '../../styles/components/styled-blocks/Modal_Style/ModalCont.style'
-import MyEditor from '../MyEditor'
-import { autoErrorToaster } from '../Notify/AutoErrorToaster'
-import { autoSuccessToaster } from '../Notify/AutoSuccessToast'
-import { errorToastFunc } from '../Notify/ErrorToasts'
+import { changeModalAction } from '../../../app/feature/User.slice'
+import { useAppDispatch } from '../../../app/store/hooks'
+import {BASE_API_INSTANCE} from '../../../helpers/api/BaseInstance'
+import { getKeyValue } from '../../../logic/getKeyValue'
+import { LabelCont, QuestionCreateForm, QuestionCreateModal } from '../../../styles/components/styled-blocks/CreateQuestionModal.style'
+import { Title } from '../../../styles/components/styled-blocks/FormQuestion.style'
+import { ModalFORM_STY } from '../../../styles/components/styled-blocks/Modal_Style/ModalCont.style'
+import MyEditor from '../../MyEditor'
+import { autoErrorToaster } from '../../Notify/AutoErrorToaster'
+import { autoSuccessToaster } from '../../Notify/AutoSuccessToast'
+import { errorToastFunc } from '../../Notify/ErrorToasts'
 
 
 interface Props {
 }
 
 
-function CreateDiscussionModal({}: Props): ReactElement {
+function CreateDiscussion({}: Props): ReactElement {
     const [questionValue, setQuestionValue] = useState({title:"", content:""})
     const [tags, settags] = useState<string[]>([])
     const [category, setCategory] = useState<string>("1")
@@ -90,4 +90,4 @@ function CreateDiscussionModal({}: Props): ReactElement {
     )
 }
 
-export default CreateDiscussionModal
+export default CreateDiscussion

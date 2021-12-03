@@ -3,8 +3,11 @@ import styled from "styled-components";
 export const CaveSidebar_Sty = styled.aside`
     display: flex;
     flex-direction: column;
-    width: 100%;
+    /* width: 100%; */
+    width: 251px;
     color: white;
+    position: fixed;
+    top: 280px;
 `
 
 

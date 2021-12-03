@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import {  cave_actions, cave_tabs } from '../../../app/feature/CaveFeatures/CaveTabs.slice'
 import { useAppDispatch, useAppSelector } from '../../../app/store/hooks'
 import { Cave_Tabs_Sty, Cave_Tab_Sty , 
@@ -14,6 +14,8 @@ import caveTabCornerHovered from '../../../public/caveTabCornerHovered.svg'
 import Image from 'next/image'
 import { cave_side_data } from '../../../app/feature/CaveFeatures/CaveSide.slice'
 import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+import { useScrollDirection } from 'react-use-scroll-direction'
+import { useScrollYPosition } from 'react-use-scroll-position'
 
 interface Props {
     
@@ -22,8 +24,22 @@ interface Props {
 const Cave_Tabs = (props: Props) => {
     const caveSideData = useAppSelector(cave_side_data)
     const caveTabs = useAppSelector(cave_tabs)
+    const tabContRef = useRef<HTMLDivElement>(null)
+    const { isScrollingUp, isScrollingDown } = useScrollDirection()
+    const scrollY = useScrollYPosition()
+
 
     const dispatch = useAppDispatch()
+
+    
+    const hoverTab = (tab: any) => {
+        dispatch(cave_actions.hoverTab({tab:tab , window:caveSideData.selectedWindow}))
+    }
+    const unHoverTab = (tab: any) => {
+        dispatch(cave_actions.unHoverTab({tab:tab , window:caveSideData.selectedWindow}))
+    }
+
+    
 
     const changeActiveTab   =  (tab: any) => {
         const activeTab = caveTabs[caveSideData.selectedWindow].filter((tab: any) => tab.active)[0]
@@ -33,19 +49,30 @@ const Cave_Tabs = (props: Props) => {
             smooth: 'easeInOutQuart',
             offset: -130
         })
+        if(activeTab.id !== tab.id && scrollY === 0){
+            tabContRef.current?.setAttribute('style', 'position: fixed; top: 0px;')
+        }
         dispatch(cave_actions.selectTab({tab:tab , window:caveSideData.selectedWindow}))
     }
 
-    const hoverTab = (tab: any) => {
-        dispatch(cave_actions.hoverTab({tab:tab , window:caveSideData.selectedWindow}))
-    }
-    const unHoverTab = (tab: any) => {
-        dispatch(cave_actions.unHoverTab({tab:tab , window:caveSideData.selectedWindow}))
-    }
+    
 
+    useEffect(() => {
+        window.addEventListener('wheel', () => {
+            if(isScrollingDown ){
+                tabContRef.current?.setAttribute('style', 'position: sticky; top: -150px;margin-top: -10px;')
+            }
+        })
+    }, [isScrollingDown , isScrollingUp])
+
+    useEffect(() => {
+        if(scrollY ===0){
+            tabContRef.current?.setAttribute('style', 'position:fixed;top:0px;margin-top: 0px;')
+        }
+    }, [scrollY])
 
     return (
-        <Cave_Tabs_Sty>
+        <Cave_Tabs_Sty ref={tabContRef}>
             {/* <Cave_Tabs_Default_Color_Maker_Sty/> */}
 
             <Cave_Tabs_Cont_Sty>

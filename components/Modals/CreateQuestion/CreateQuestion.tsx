@@ -1,31 +1,31 @@
 import React, { ReactElement, useEffect, useState } from 'react'
-import { changeModalAction } from '../../app/feature/User.slice'
-import { useAppDispatch, useAppSelector } from '../../app/store/hooks'
-import {BASE_API_INSTANCE} from '../../helpers/api/BaseInstance'
-import { getKeyValue } from '../../logic/getKeyValue'
-import { LabelCont, QuestionCreateForm, QuestionCreateModal } from '../../styles/components/styled-blocks/CreateQuestionModal.style'
-import { Title } from '../../styles/components/styled-blocks/FormQuestion.style'
-import MyEditor from '../MyEditor'
-import {  autoErrorToaster } from '../Notify/AutoErrorToaster'
-import { errorToastFunc } from '../Notify/ErrorToasts'
+import { changeModalAction } from '../../../app/feature/User.slice'
+import { useAppDispatch, useAppSelector } from '../../../app/store/hooks'
+import {BASE_API_INSTANCE} from '../../../helpers/api/BaseInstance'
+import { getKeyValue } from '../../../logic/getKeyValue'
+import { LabelCont, QuestionCreateForm, QuestionCreateModal } from '../../../styles/components/styled-blocks/CreateQuestionModal.style'
+import { Title } from '../../../styles/components/styled-blocks/FormQuestion.style'
+import MyEditor from '../../MyEditor'
+import {  autoErrorToaster } from '../../Notify/AutoErrorToaster'
+import { errorToastFunc } from '../../Notify/ErrorToasts'
 import Image from 'next/image'
-import { autoSuccessToaster , autoErrorToasterWithMessage } from '../Notify/AutoSuccessToast'
+import { autoSuccessToaster , autoErrorToasterWithMessage } from '../../Notify/AutoSuccessToast'
 // import {EditorNewVersion} from '../EditorNewVersion'
 // import EditorClassVersion from '../EditorClassVersion'
 
 import dynamic from 'next/dynamic'
-import { linked_products, mentioned_users, question_value } from '../../app/feature/CreateQuestionFeatures/CreateQuestion.slice'
-import { ModalFORM_STY } from '../../styles/components/styled-blocks/Modal_Style/ModalCont.style'
+import { linked_products, mentioned_users, question_value } from '../../../app/feature/CreateQuestionFeatures/CreateQuestion.slice'
+import { ModalFORM_STY } from '../../../styles/components/styled-blocks/Modal_Style/ModalCont.style'
 
 const DynamicComponentWithNoSSR = dynamic(
-    () => import('../EditorForQuestionCreateMentions'),
+    () => import('../../EditorForQuestionCreateMentions'),
     { ssr: false }
 )
 interface Props {
 }
 
 
-function CreateQuestionModal({}: Props): ReactElement {
+function CreateQuestion({}: Props): ReactElement {
     const [inBrowser, setinBrowser] = useState(false)
     const linkedProducts = useAppSelector(linked_products)
     const mentionedUsers = useAppSelector(mentioned_users)
@@ -247,4 +247,4 @@ function CreateQuestionModal({}: Props): ReactElement {
     )
 }
 
-export default CreateQuestionModal
+export default CreateQuestion
