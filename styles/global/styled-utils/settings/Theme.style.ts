@@ -43,7 +43,8 @@ export const lightTheme = {
       background4:colors.gray_6,
       background5:colors.blue_3,
       background6:colors.white_1,
-      background7:colors.gray_2
+      background7:colors.gray_2,
+      background8:colors.orange_2
     },
 
     boxshadows:{
@@ -70,12 +71,16 @@ export const lightTheme = {
       text5:colors.black_3,
       text6:colors.orange_1,
       text7:colors.gray_2,
+      text8:colors.orange_2,
+      text9:colors.blue_1,
+      text10:colors.red_1,
     },
   
     sidecolors:{
       sidecolor1:colors.gray_1,
       sidecolor2:colors.gray_2,
       sidecolor3:colors.gray_3,
+      sidecolor4:colors.orange_2,
     },
     
 

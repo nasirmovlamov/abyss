@@ -8,6 +8,8 @@ export const MainPartOfPageStyle = styled.div<{colorConvert:boolean}>`
     display: flex;
     background-color: ${({colorConvert})=> colorConvert ? 'transparent' : 'transparent'};
     flex-direction:column;
+    height: calc(100vh - 60px);
+    overflow: hidden;
     /* z-index: 2; */
     @media only screen and (max-width: 1526px) {
         flex: 0 0 52.73%;

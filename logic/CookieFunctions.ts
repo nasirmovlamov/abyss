@@ -3,7 +3,6 @@ import { decryptData, encryptData } from "./Cryption";
 export const setCookie = (cname:string, cvalue:string, exdays:number) => {
     const d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    console.log(d)
     let expires = "expires="+ d.toUTCString();
     const encryptedCvalue = encryptData(cvalue)
     const encryptedCName = encryptData(cname)

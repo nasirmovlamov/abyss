@@ -2,6 +2,7 @@ import { CreateThread_Interface } from './../../state-Interfaces/CreateThread/Cr
 
 export const CreateThread_STATE:CreateThread_Interface = {
     threadType: 'not-selected',
+    currentStage:1,
     validation:{
         1:{
             isValid: 'not-selected',
@@ -16,5 +17,4 @@ export const CreateThread_STATE:CreateThread_Interface = {
             message: 'Error occured during creation. Please try again',
         },
     },
-    currentStage:1,
 } 

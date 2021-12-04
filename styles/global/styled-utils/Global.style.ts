@@ -35,7 +35,7 @@ export const GlobalStyle = createGlobalStyle<Props>`
     *{
         box-sizing: border-box;
     }
-    button {
+    button, input , select, textarea{
         cursor: pointer;
         border:none;
         &:focus {

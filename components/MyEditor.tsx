@@ -150,13 +150,6 @@ function MyEditor({content , onChange, display}: Props){
 
   return (
     <>
-      <select value={editor_theme} onChange={handleChange}>
-        <option value="red">red</option>
-        <option value="green">green</option>
-        <option value="blue">blue</option>
-        <option value="black">black</option>
-      </select>
-
       <div style={{ width: "100%",minHeight:"100",display:display}}>
         <div style={{}} ref={quillRef} />
       </div>
