@@ -61,27 +61,27 @@ function SearchBox({}: Props): ReactElement {
     const { isScrollingUp, isScrollingDown } = useScrollDirection()
 
     const searchSizechange = (event:string) => {
-        if(router.pathname === '/')
-        {
+        // if(router.pathname === '/')
+        // {
 
-            if(event === 'focus')
-            {
-                searchContRef.current!.style.paddingTop = `1vh`
-                searchNavRef.current!.style.top = `65px`
-                return 0
-            }
-            if(event === 'blur')
-            {
-                searchContRef.current!.style.paddingTop = `20vh`
-                searchNavRef.current!.style.top = `0px`
-            }
-        }
+        //     if(event === 'focus')
+        //     {
+        //         searchContRef.current!.style.paddingTop = `1vh`
+        //         searchNavRef.current!.style.top = `165px`
+        //         return 0
+        //     }
+        //     if(event === 'blur')
+        //     {
+        //         searchContRef.current!.style.paddingTop = `20vh`
+        //         searchNavRef.current!.style.top = `164px`
+        //     }
+        // }
        
-        if(event === 'blur')
-        {
-            searchNavRef.current!.style.top = `0px`
-            return 0
-        }
+        // if(event === 'blur')
+        // {
+        //     searchNavRef.current!.style.top = `0px`
+        //     return 0
+        // }
 
     } 
 
@@ -105,9 +105,11 @@ function SearchBox({}: Props): ReactElement {
     }
 
     const SearchContDesign = {
-        paddingTop: pagePath === "Home" ? "20vh" : "0vh",
+        paddingBottom: pagePath === "Home" ? "0vh" : "0vh",
+        height: pagePath === "Home" ? "auto" : "",
+        position: pagePath === "Home" ? "relative" : "fixed",
     }
-     
+
 
 
     const handleAddClick = () => {
@@ -188,7 +190,7 @@ function SearchBox({}: Props): ReactElement {
             {
                 
                 // searchBoxRef.current!.setAttribute("style" , "position:absolute;")
-                searchInputRef.current!.focus()
+                // searchInputRef.current!.focus()
                 // dispatch(getFiltersFromCache(null))
                 if(searchQuery === ""){
                     dispatch(getCachedSearchBoxData({page:router.pathname}))
@@ -236,6 +238,7 @@ function SearchBox({}: Props): ReactElement {
                     </SearchBox_STY>
                     {/* {(pagePath !== "Home") && <SearchBoxThunk onMouseMove={()=>setDirection("visible")} direction={direction} >	• 	•	•</SearchBoxThunk>} */}
                 </SearchBoxThunkAndCont_STY>
+                
         </SearchBoxContainer_STY>
     )
 }

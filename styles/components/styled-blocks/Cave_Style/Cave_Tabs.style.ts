@@ -3,12 +3,28 @@ import styled from "styled-components"
 import { CaveTabInterface } from "../../../../app/store/state-Interfaces/Cave_Interfaces/CaveTabs.interface"
 
 export const Cave_Tabs_Sty = styled.div`
-    display: flex;
+    /* display: flex; */
     background-color: ${({theme}) => theme.colors.black_3};
     position: sticky;
-    padding-top: 220px;
     top: 20px;
+    padding-top: 138px;
     width: 100%;
+
+    .tabFilters{
+        position: absolute;
+        top: 160px;
+        right:40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: 15px;
+        font-size: 20px;
+        color: ${({theme}) => theme.texts.text2};
+        background-color: transparent;
+        cursor: pointer;        
+
+    }
+
 `
 export const Cave_Tabs_Cont_Sty = styled.div`
     display: flex;

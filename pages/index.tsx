@@ -7,13 +7,10 @@ interface Props {
 }
 
 function Index({}: Props): ReactElement {
-    useEffect(() => {
-        console.log(getCookie('token'))
-    }, [getCookie('token')])
+    
     return (
         <div>
-            <button onClick={() => console.log(getCookie('token'))}>show token</button>
-            Index
+            Hello
         </div>
     )
 }

@@ -61,7 +61,7 @@ const Layout: FC<Props> = ({ children, ...props }) => {
         return (
             <div style={{display:'flex' , flexDirection:"column" , width:'100%'}}>
                 
-                <div style={{width:"100%" , minHeight:"100vh", display:'flex', flexDirection:'column', justifyContent:'space-between' }}>
+                <div style={{width:"100%" , minHeight:"100vh", display:'flex', flexDirection:'column' }}>
                     <Header/>
 
                     <SearchBox/>

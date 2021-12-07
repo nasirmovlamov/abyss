@@ -16,6 +16,8 @@ import { cave_side_data } from '../../../app/feature/CaveFeatures/CaveSide.slice
 import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 import { useScrollDirection } from 'react-use-scroll-direction'
 import { useScrollYPosition } from 'react-use-scroll-position'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFilter } from '@fortawesome/free-solid-svg-icons'
 
 interface Props {
     
@@ -116,7 +118,7 @@ const Cave_Tabs = (props: Props) => {
             </Cave_Tabs_Cont_Sty>
 
 
-                
+            {caveSideData.selectedWindow === 'profile' && <button className='tabFilters'> <FontAwesomeIcon icon={faFilter}/>  <p>Filter</p>  </button>}
         </Cave_Tabs_Sty>
     )
 }
