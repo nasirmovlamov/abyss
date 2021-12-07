@@ -107,7 +107,7 @@ function SearchBox({}: Props): ReactElement {
     const SearchContDesign = {
         paddingBottom: pagePath === "Home" ? "0vh" : "0vh",
         height: pagePath === "Home" ? "auto" : "",
-        position: pagePath === "Home" ? "relative" : "fixed",
+        // position: pagePath === "Home" ? "relative" : "",
     }
 
 
@@ -216,14 +216,14 @@ function SearchBox({}: Props): ReactElement {
     
     return (
         
-        <SearchBoxContainer_STY scrollTopValue={scrollSearchBox} ref={searchContRef} path={router.asPath} style={SearchContDesign}>
+        <SearchBoxContainer_STY  scrollTopValue={scrollSearchBox} ref={searchContRef} path={router.asPath} style={SearchContDesign}>
                 <SearchBoxThunkAndCont_STY  ref={searchBoxRef} direction={direction}>
                     <SearchBox_STY path={router.asPath} direction={direction} > 
-                        <SearchBoxPage_STY>{pagePath}</SearchBoxPage_STY>
-                        <SearchCont_STY>
+                       {router.asPath !=='/' &&  <SearchBoxPage_STY>{pagePath}</SearchBoxPage_STY>}
+                        <SearchCont_STY path={router.asPath}>
                             <SearchButtonLupa_STY onClick={searchHandleWithSubmit}><FontAwesomeIcon  icon={faSearch}/></SearchButtonLupa_STY>
-                            <SearchInput_STY onKeyDown={(e:any) => searchHandleWithEnter(e.keyCode)} value={searchQuery}  onChange={(e:any) => changeSearchValue(e.target.value)}  path={router.asPath} placeholder="Search..." ref={searchInputRef} onFocus={() => searchSizechange('focus')} onBlur={() => searchSizechange('blur')}  type="text" /> 
-                            <SearchNav_STY  path={router.asPath} ref={searchNavRef}>
+                            <SearchInput_STY  path={router.asPath} onKeyDown={(e:any) => searchHandleWithEnter(e.keyCode)} value={searchQuery}  onChange={(e:any) => changeSearchValue(e.target.value)}   placeholder="Search..." ref={searchInputRef} onFocus={() => searchSizechange('focus')} onBlur={() => searchSizechange('blur')}  type="text" /> 
+                            {router.asPath !=='/' && <SearchNav_STY  path={router.asPath} ref={searchNavRef}>
                                 {/* <SearchNavQuery>
                                     <FontAwesomeIcon  icon={faSearch}/>
                                     <span>react</span>
@@ -232,7 +232,7 @@ function SearchBox({}: Props): ReactElement {
                                     <FontAwesomeIcon  icon={faSearch}/>
                                     <span>react</span>
                                 </SearchNavQuery> */}
-                            </SearchNav_STY>
+                            </SearchNav_STY>}
                         </SearchCont_STY>
                         {pagePath !== "Home" && <AddQuesitionCont_STY onClick={handleAddClick}>ADD</AddQuesitionCont_STY>}
                     </SearchBox_STY>

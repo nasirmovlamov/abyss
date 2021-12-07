@@ -7,11 +7,13 @@ import { BASE_API_INSTANCE } from "../helpers/api/BaseInstance";
 import ReactQuill, {Quill} from 'react-quill';
 import dynamic from 'next/dynamic'
 import { useAppDispatch, useAppSelector } from "../app/store/hooks";
-import { mentionProductAtQuestionCreate, mentionUserAtQuestionCreate, questionContentOnChangeHandler, question_value } from "../app/feature/CreateQuestionFeatures/CreateQuestion.slice";
+import {  question_value } from "../app/feature/CreateQuestionFeatures/CreateQuestion.slice";
 import { AnswerContentOnChange, linked_products_at_anwser_submit, linkProductAtAnswer, mentioned_users_at_anwser_submit, mentionUserAtAnswer, submit_answer_content } from "../app/feature/Question.slice";
 import javascript from 'highlight.js/lib/languages/javascript';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/a11y-dark.css'
+import { EditorWraper_STY } from "../styles/components/styled-blocks/CreateProduct_Style/Steps/CreateProduct_Step2.style";
+import { CreateAddAnswerEDITORWrapper_STY, CreateThreadEDITORWrapper_STY } from "../styles/components/Editors/CreateThread.style";
 
 
 
@@ -154,18 +156,18 @@ const EditorAddAnswer = ({}: Props): ReactElement => {
   
   
   return (
-    <div>
-      <ReactQuill 
-        id='ql-editor-id'
-        onFocus={editorOnFocusHandle}
-        onBlur={editorOnBlurHandle}
-        modules={modules} 
-        theme="snow" 
-        value={answerContent} 
-        onChange={editorOnChageHandle}
+      <CreateAddAnswerEDITORWrapper_STY>
+          <ReactQuill 
+            id='ql-editor-id'
+            onFocus={editorOnFocusHandle}
+            onBlur={editorOnBlurHandle}
+            modules={modules} 
+            theme="snow" 
+            value={answerContent} 
+            onChange={editorOnChageHandle}
 
-      />
-    </div>
+          />
+      </CreateAddAnswerEDITORWrapper_STY>
   );
 
 }

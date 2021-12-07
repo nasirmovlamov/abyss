@@ -194,19 +194,21 @@ export const ProductTag = styled.button`
     padding: 5px;
     border-radius: 5px;
     display: flex;
-    color:  ${({theme}) => theme.texts.text1};
     font-family: r;
     justify-content: center;
     /* border: 1px solid lightgray; */
     align-items: center;
+    background-color: #e5f0f4;
     font-family: r;
-    background:  ${({theme}) => theme.backgrounds.background5};
+    background:  ${({theme}) => theme.backgrounds.background4};
     cursor: pointer;
     font-size: 12px;
     text-align: center;
-    transition: 0.2s;
+    transition: 10s ease-out ;
+    color:  ${({theme}) => theme.texts.text4};
+    box-shadow: ${({theme}) => theme.boxshadows.boxshadow6};
     &:hover{
-        box-shadow: ${({theme}) => theme.boxshadow_hover.hover2};
+        box-shadow: ${({theme}) => theme.boxshadow_hover.hover3};
     }
 `
 

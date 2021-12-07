@@ -27,4 +27,11 @@ export const LabelCont = styled.div`
     display: flex;
     flex-direction: column;
     row-gap: 10px;
+    width: 100%;
+    label {
+        color:${({theme}) => theme.texts.text1};
+    }
+    .buttonSubmit{
+        margin-top: 30px;
+    }
 `

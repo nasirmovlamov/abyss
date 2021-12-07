@@ -13,7 +13,7 @@ export const SingleProductMiddle_STY = styled.main`
     align-items: center;
     row-gap: 20px;
     padding-bottom: 50px;
-    padding-top: 187px;
+    padding-top: 100px;
     box-sizing: initial;
     
 `
@@ -114,7 +114,7 @@ export const ContentCont_STY = styled.div`
 
 export const QuestionTitle_STY = styled.h2`
     font-size: 20px;
-    color:  ${({theme}) => theme.texts.title2};
+    color:  ${({theme}) => theme.texts.text1};
     cursor: pointer;
     text-transform: capitalize;
     display: -webkit-box;

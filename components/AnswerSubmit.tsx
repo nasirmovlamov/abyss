@@ -103,13 +103,14 @@ function AnswerSubmitCont({id}: Props): ReactElement {
 
 
             <LabelCont>
-                <label htmlFor="content">Content</label>
+                <label className='title' htmlFor="content">Content</label>
                 <DynamicComponentWithNoSSR/>
-                <label htmlFor="content">validate</label>
+                {/* <label htmlFor="content">validate</label> */}
             </LabelCont>
                 
             <AddAnswerSubmit_STY   
                 ref={buttonRef} 
+                className="buttonSubmit"
                 onMouseDown={checkTextAreaHeight}> 
                 Post 
             </AddAnswerSubmit_STY>

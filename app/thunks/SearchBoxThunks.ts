@@ -7,7 +7,7 @@ import { BASE_API_INSTANCE } from '../../helpers/api/BaseInstance';
 export const forumSearch = createAsyncThunk(
     types.FORUM_SEARCH, async (query:string, {rejectWithValue}) => {
           try {
-            const resp = await BASE_API_INSTANCE.get(`forum/search/?query=${query}&tags=laravel,php`)
+            const resp = await BASE_API_INSTANCE.get(`forum/search/?query=${query}`)
             console.log(resp.data)
             return resp.data
           } catch (error:any) {
@@ -20,7 +20,7 @@ export const forumSearch = createAsyncThunk(
 export const forumSearchInfinity = createAsyncThunk(
     types.FORUM_SEARCH_INFINITY, async (data:{query:string,from:number}, {rejectWithValue}) => {
         try {
-          const resp = await BASE_API_INSTANCE.get(`forum/search/?query=${data.query}&from=${data.from}&tags=laravel,php`)
+          const resp = await BASE_API_INSTANCE.get(`forum/search/?query=${data.query}&from=${data.from}`)
           console.log(resp.data)
           return resp.data
         } catch (error:any) {

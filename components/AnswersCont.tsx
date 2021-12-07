@@ -121,13 +121,13 @@ function AnswersConts({}: Props): ReactElement {
     
     return (
         <AnswersCont_STY style={{ scrollMarginTop: "250px"}} ref={inViewRefAnswersCont} id="answersCont" >
-                {
+                {/* {
                     submittedAnswer.length > 0 &&  
                     <div >
                         {submittedAnswer.map((answer) => 
                             <Answer key={answer.id} direction="new-submitted"  answer={answer}/>)} 
                     </div>
-                }
+                } */}
                 
                 <div style={{width:"100%", display:"flex" , flexDirection:"column", rowGap:"40px", marginTop:"30px"}}>
                     {topAnswers.map((answer) => <Answer key={answer.id} direction="top"  answer={answer}/>)} 

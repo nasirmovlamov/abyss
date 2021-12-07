@@ -53,38 +53,40 @@ function SideProduct({data}: Props): ReactElement {
     
     
     return (
-        <StoreSideProductStyle>
+        <StoreSideProductStyle style={{height:"auto", padding:'15px', rowGap:'5px'}}>
 
             <ProductImageAndContent>
                 <ProductContentCont>
                         <ProductContent>
                             <NavLink href={"store/1/test"}><ProductTitle>{data.name}</ProductTitle></NavLink>
                             <ProductDetailCont>
-                                <ProductStarCont><StarCountShow count={4.3}/> {data.starCount}</ProductStarCont>
+                                <ProductStarCont><StarCountShow count={4.3}/> {data.starCount} 612</ProductStarCont>
                                 <ProductSoldCont><FontAwesomeIcon icon={faDownload}/> {data.download_count}</ProductSoldCont>
-                                <ProductViewCont><FontAwesomeIcon icon={faEye}/> {data.view_count}</ProductViewCont>
+                                <ProductViewCont><FontAwesomeIcon icon={faEye}/> {data.view_count} 25</ProductViewCont>
                             </ProductDetailCont>
                             <ProductTags>
-                                {/* {data.tags.map((tag , index) => index < 3 && <ProductTag>{tag}</ProductTag>)} */}
                             </ProductTags>
                             {/* <ProductPriceCont>{data.price}$</ProductPriceCont> */}
                         </ProductContent>
                         
-                        <ProductDescription>
+                        {/* <ProductDescription>
                             <ProductDescriptionTitle>Description</ProductDescriptionTitle>
                             <ProductDescriptionContent>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa animi expedita minima velit nemo sint fuga voluptatem reprehenderit quas blanditiis repellendus dicta modi iste, laudantium nam cupiditate, tenetur, dolorem cumque.</ProductDescriptionContent>
-                        </ProductDescription>
+                        </ProductDescription> */}
                 </ProductContentCont>
             </ProductImageAndContent>
 
 
-            <Side_ProductSideDetailsCont>
+            <Side_ProductSideDetailsCont style={{display:'flex'}}>
+                    <div className='tags' style={{display:'flex' , width:'100px' ,  columnGap:'10px'}}>
+                        {['php' , 'laravel' , 'react' , 'javascript'].map((tag , index) => index < 3 && <ProductTag>{tag}</ProductTag>)}
+                    </div>
                     <AddCave>+ Cave</AddCave>
-                    <Side_MentionsCont>
+                    {/* <Side_MentionsCont>
                         <MentionsCount>8</MentionsCount>
                         <MentionsText>Mentions</MentionsText>
                     </Side_MentionsCont>
-                    <Iterations>Iterations</Iterations>
+                    <Iterations>Iterations</Iterations> */}
             </Side_ProductSideDetailsCont>
            
         </StoreSideProductStyle> 

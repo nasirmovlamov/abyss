@@ -36,7 +36,7 @@ export const SidePartOfPageStyle = styled.aside<{side:string , colorConvert:bool
     /* top:0px; */ 
     overflow: hidden;
     flex: 0 0 ${ ({side}) => side === "left" ? "195px" : "307px"};
-    background-color: ${({colorConvert})=> colorConvert ? 'transparent' : '#000'};
+    /* background-color: ${({colorConvert})=> colorConvert ? 'transparent' : '#000'}; */
     /* background-color: gray; */
     @media only screen and (max-width: 1236px) {
         display: none;

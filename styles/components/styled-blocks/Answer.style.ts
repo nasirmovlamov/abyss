@@ -102,7 +102,7 @@ export const ShowComments = styled.button`
     border: none;
     padding: 0px;
     background-color: transparent;
-    color: ${({theme}) => theme.texts.title2};
+    color: ${({theme}) => theme.texts.text2};
 
     border-radius: 6px;
     padding: 5px 7px;

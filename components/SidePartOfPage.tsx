@@ -25,7 +25,7 @@ function SidePartOfPage({children , side}: Props): ReactElement {
             {side ==="left" && 
             <>
                 <PageFilters/>
-                <button onClick={() => dispatch(changeColor(!colorConvert))}>Convert Color</button>
+                {/* <button onClick={() => dispatch(changeColor(!colorConvert))}>Convert Color</button> */}
             </>
             }
             {side ==="right" && 

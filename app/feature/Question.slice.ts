@@ -213,8 +213,8 @@ export const QuestionSlice = createSlice({
 
     //ADD NEW ANSWER to Question Reducers
     builder.addCase(addAnswer.fulfilled, (state, {payload}) => {
-        successToast("top-right" ,payload.message)
-        state.answersData.topAnswers.answers = [  payload.data , ...state.answersData.topAnswers.answers ]
+        successToast("top-right" , payload.message)
+        // state.answersData.topAnswers.answers = [  payload.data , ...state.answersData.topAnswers.answers ]
     }),
     builder.addCase(addAnswer.pending, (state, {payload}) => {
       

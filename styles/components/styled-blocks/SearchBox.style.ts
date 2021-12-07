@@ -10,7 +10,7 @@ export const SearchBoxContainer_STY = styled.div<{path:string , scrollTopValue:n
     justify-content: center;
     padding-right:112px;
     z-index: 555;
-    position: fixed;
+    position: ${(props) => props.path === "/" ? "relative" : "fixed"};
     /* top:60px; */
     /* top: 61px; */
     transform: ${({scrollTopValue})=> `translateY(${scrollTopValue}px)`};
@@ -21,7 +21,6 @@ export const SearchBoxContainer_STY = styled.div<{path:string , scrollTopValue:n
         padding-right: 0%;
     }
     height: 120px;
-    position: fixed;
     top: 0px;
     /* top: 50px; */
 `
@@ -72,10 +71,9 @@ export const SearchBox_STY = styled.div<{direction:string, path:string}>`
     background-color: black;
     width: 100%;
     transform: translateX(0px);
-    height: ${(props) => props.path === "/" ? "65px" : "48px"};
+    height: ${(props) => props.path === "/" ? "83px" : "48px"};
     color: white;
-    border-radius: 5px;
-    border-radius: 30px 30px 30px 30px ;
+    border-radius: ${(props) => props.path === "/" ? "10px" : "30px"};
     border: none;
     background-color: white;
     align-items: flex-start;
@@ -128,7 +126,7 @@ export const SearchButtonLupa_STY = styled.button`
 `
 
 export const SearchInput_STY = styled.input<{path:string}>`
-    border-radius: ${(props) => props.path === "/" ? "0px 30px 30px 0px" : "inherit"}  ;
+    border-radius: ${(props) => props.path === "/" ? "10px" : "inherit"}  ;
     height: 100%;
     padding-left: 40px;
     border: none;
@@ -145,16 +143,18 @@ export const SearchInput_STY = styled.input<{path:string}>`
     }
 `
 
-export const SearchCont_STY = styled.div`
+export const SearchCont_STY = styled.div<{path:string}>`
     width:100%;
     justify-self: stretch;
     height: 100%;
     display:flex;
     align-items: center;
     border-left: 1px solid red;
+    border-width: ${({theme , path}) => path =='/' ? ' 0px' : '1px'} ;
     border-color:  ${({theme}) => theme.colors.gray_4} !important;
     position: relative;
-    
+    border-radius: ${({theme , path}) => path =='/' ? '10px' : '0px'} !important ;
+    padding: ${({theme , path}) => path =='/' ? ' 2px' : '0px'} !important;
     input 
     {
         

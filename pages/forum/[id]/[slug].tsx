@@ -34,7 +34,8 @@ import { faThumbsDown as solidfaThumbsDown  ,   faThumbsUp as solidfaThumbsUp } 
 import {faComment, faThumbsDown as regularfaThumbsDown  ,   faThumbsUp as regularfaThumbsUp  } from '@fortawesome/free-regular-svg-icons'
 import { set_overflowy } from '../../../app/feature/App.slice'
 import { parseHtmlWithMention } from '../../../logic/htmlParser'
-
+import abyssLogo from '../../../public/main-logo.svg'
+import Image from 'next/image'
 interface Props {
 }
 
@@ -142,7 +143,9 @@ function SingleQuestionPAge({}: Props): ReactElement {
 
                                     <SingleQuestion_STY.QuestionCont_STY id={`question${singleQuestionData.id}`}>
                                         <SingleQuestion_STY.PersonCont_STY>
-                                            <SingleQuestion_STY.Avatar_STY></SingleQuestion_STY.Avatar_STY>
+                                            <SingleQuestion_STY.Avatar_STY>
+                                                <div style={{opacity:0.618}}><Image  src={abyssLogo} width='65px' height="65px" /></div>
+                                            </SingleQuestion_STY.Avatar_STY>
                                             <SingleQuestion_STY.Name_STY>{singleQuestionData.user.name}</SingleQuestion_STY.Name_STY>
                                         </SingleQuestion_STY.PersonCont_STY>
 
