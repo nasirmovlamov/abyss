@@ -36,13 +36,15 @@ export const addFile = createAsyncThunk(
   
 
 export const startPlagirismChecker = createAsyncThunk(
-    types.CHECK_PLAGIAT, async (bring_data:{product_id:number , source_code:string}, {rejectWithValue}) => {
+    types.CHECK_PLAGIAT, async (bring_data:{product_id:number , source_code:string , extension:string}, {rejectWithValue}) => {
         try {
-            const {product_id , source_code} = bring_data
-            const send_data = new FormData()
-            send_data.append('source_code', source_code)
-            const resp_start_plagirism = await BASE_API_INSTANCE.post(`/store/${product_id}/product/plagiarism` , send_data)
-            return {data: resp_start_plagirism.data , source_code:source_code}
+          const {product_id , source_code , extension} = bring_data
+          console.log(extension)
+          const send_data = new FormData()
+          send_data.append('source_code', source_code)
+          send_data.append('extension', extension)
+          const resp_start_plagirism = await BASE_API_INSTANCE.post(`/store/${product_id}/product/plagiarism` , send_data)
+          return {data: resp_start_plagirism.data , source_code:source_code}
         } catch (error:any) {
           return rejectWithValue(error.response.data)
         }
@@ -51,13 +53,14 @@ export const startPlagirismChecker = createAsyncThunk(
   
 
 export const createProductThunk = createAsyncThunk(
-    types.CREATE_PRODUCT, async (source_code :string, {rejectWithValue}) => {
+    types.CREATE_PRODUCT, async (bring_data :any, {rejectWithValue}) => {
         try {
             const resp_product_create = await BASE_API_INSTANCE.post(`/store/create`)
             autoSuccessToaster(resp_product_create.data.message)
             const product_id = resp_product_create.data.data.id
             const send_data = new FormData()
-            send_data.append('source_code', source_code)
+            send_data.append('source_code', bring_data.source_code)
+            send_data.append('extension', bring_data.extension)
             const resp_start_plagirism = await BASE_API_INSTANCE.post(`/store/${product_id}/product/plagiarism` , send_data)
             const data:{
                 product_status:"pending" | "created" | "failed" , 
@@ -69,7 +72,7 @@ export const createProductThunk = createAsyncThunk(
                 product_status:'created' , 
                 product_id:product_id , 
                 isPlagiat:"valid",
-                source_code:source_code,
+                source_code:bring_data.source_code,
                 message:resp_start_plagirism.data.message
             }
             return data

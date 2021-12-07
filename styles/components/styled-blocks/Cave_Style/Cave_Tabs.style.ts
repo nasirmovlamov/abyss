@@ -5,9 +5,9 @@ import { CaveTabInterface } from "../../../../app/store/state-Interfaces/Cave_In
 export const Cave_Tabs_Sty = styled.div`
     display: flex;
     background-color: ${({theme}) => theme.colors.black_3};
-    position: fixed;
+    position: sticky;
     padding-top: 220px;
-    top: 0px;
+    top: 20px;
     width: 100%;
 `
 export const Cave_Tabs_Cont_Sty = styled.div`

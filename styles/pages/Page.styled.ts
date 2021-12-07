@@ -8,7 +8,6 @@ export const MainPartOfPageStyle = styled.div<{colorConvert:boolean}>`
     display: flex;
     background-color: ${({colorConvert})=> colorConvert ? 'transparent' : 'transparent'};
     flex-direction:column;
-    height: calc(100vh - 60px);
     overflow: hidden;
     /* z-index: 2; */
     @media only screen and (max-width: 1526px) {
@@ -58,7 +57,7 @@ export const CaveSidePartOfPage_Sty = styled.aside<{side:string , colorConvert:b
     flex: 0 0 ${ ({side}) => side === "left" ? "251px" : "307px"};
     margin-left: ${ ({side}) => side === "left" ? "0px" : "56px"};
     background-color: ${({colorConvert})=> colorConvert ? 'transparent' : 'transparent'};
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
     /* padding-top: 200px; */
 
     /* background-color: gray; */

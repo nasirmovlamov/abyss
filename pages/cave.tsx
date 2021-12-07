@@ -19,17 +19,7 @@ const Cave = (props: Props) => {
     const caveRef = React.useRef<HTMLDivElement>(null)
     const scrollY = useScrollYPosition()
 
-    useEffect(() => {
-        if(isScrollingDown){
-            caveRef.current?.setAttribute('style', 'margin-top:-10px;')
-        }
-    }, [isScrollingDown , isScrollingUp])
-
-    useEffect(() => {
-        if(scrollY ===0){
-            caveRef.current?.setAttribute('style', 'margin-top: 0px;')
-        }
-    }, [scrollY])
+    
 
     return (
         <CavePageDefaultStyle>
@@ -41,8 +31,8 @@ const Cave = (props: Props) => {
 
 
             <MainPartOfPage>
-                <Cave_Tabs/>
-                <Cave_Sty ref={caveRef}>
+                <Cave_Sty >
+                    <Cave_Tabs/>
                     <CaveWindowRouter/>
                 </Cave_Sty>
             </MainPartOfPage>

@@ -18,6 +18,7 @@ export const CreateProductState:CreateProductInterface = {
             step_active:false,
             validated:'not-checked',
             source_code:"",
+            lang_type:"py",
             validators:{
                 isCodeFilled:{
                     valid:false,

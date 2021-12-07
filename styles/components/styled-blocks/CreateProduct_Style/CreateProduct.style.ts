@@ -18,3 +18,15 @@ export const CreateProduct_Tab = styled.div`
    border-radius: 50%;
 `
 
+export const CreateProduct_Tab_Seperator = styled.div`
+  width: 50px;
+  height: 1px;
+  background-color: ${({theme}) => theme.sidecolors.sidecolor1};
+`
+
+export const CreateProduict_Tab_STY = styled.div<{validated:boolean , currentStage:boolean}>`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 5px solid ${({theme , validated, currentStage}) =>validated ? theme.colors.red_1 : (currentStage ? theme.sidecolors.sidecolor4 : theme.sidecolors.sidecolor1)};
+`

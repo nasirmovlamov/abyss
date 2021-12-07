@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const FooterStyle = styled.footer`
     display:flex;
     width: 100%;
-    height: 300px;
-    background-color: rgb(3, 39, 40);
+    height: calc((100vh - 60px) * 0.382);
+    background-color: ${({theme}) => theme.backgrounds.background2};
     justify-content:center;
     align-items:center;
     padding-top: 10px;
@@ -32,5 +32,5 @@ export const FooterColumn = styled.div`
 `
 export const FooterElement = styled.p`
     font-size: 18px;
-    color: white;
+    color: ${({theme}) => theme.texts.text1};
 `

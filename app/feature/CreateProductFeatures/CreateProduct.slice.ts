@@ -23,6 +23,10 @@ export const CreateProductSlice = createSlice({
             }
         }
         ,
+        selectCreateProductLanguage(state, action){
+            state.steps[1].lang_type = action.payload
+        }
+        ,
         ProductCreateStep1OnBlurs(state, action){
             state.steps[1].source_code = action.payload
             if(state.steps[1].source_code.length > 0)
@@ -545,7 +549,8 @@ export const {
     ProductCreateStep5OnChage,
     ProductCreateStep5Validate,
     goNextStepProductCreate,
-    goPreviousStepProductCreate
+    goPreviousStepProductCreate,
+    selectCreateProductLanguage
 } = CreateProductSlice.actions;
 
 

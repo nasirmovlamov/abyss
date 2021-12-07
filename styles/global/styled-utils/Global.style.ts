@@ -17,6 +17,7 @@ export const GlobalStyle = createGlobalStyle<Props>`
         /* Track */
         &::-webkit-scrollbar-track {
             background: #000;
+            opacity: 0.4;
             border-radius: 5px;
         }
 
@@ -34,6 +35,27 @@ export const GlobalStyle = createGlobalStyle<Props>`
     }
     *{
         box-sizing: border-box;
+        &::-webkit-scrollbar {
+        width: 10px;
+        }
+
+        /* Track */
+        &::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 5px;
+
+        }
+
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+        background: #555;
+        }
     }
     button, input , select, textarea{
         cursor: pointer;

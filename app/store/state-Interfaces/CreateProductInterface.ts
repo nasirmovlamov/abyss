@@ -14,6 +14,7 @@ export interface CreateProductInterface {
             step_name:string
             step_active:boolean            
             source_code:string
+            lang_type:string
             validated:'not-checked' | 'valid' | 'not-valid' | 'loading' | 'failed' ,
             validators:{
                 isCodeFilled:{

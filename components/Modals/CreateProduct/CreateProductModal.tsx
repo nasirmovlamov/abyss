@@ -2,7 +2,8 @@ import React, { ReactElement, useEffect} from 'react'
 
 import { changeModalAction } from '../../../app/feature/User.slice'
 import { useAppDispatch, useAppSelector } from '../../../app/store/hooks'
-import { ProductCreateForm, ProductCreateModal, ProductLabelCont } from '../../../styles/components/styled-blocks/CreateProductModal.style'
+import * as ProductCR_STY  from '../../../styles/components/styled-blocks/CreateProduct_Style/CreateProductModal.style'
+// { CreateProduct_Buttons_Cont, ProductCreateForm, ProductCreateModal, ProductLabelCont }
 import ProductStepsRouter from './StepsForProductCreate/ProductCreateStepsRouter'
 import ProductCreate_Tabs from './StepsForProductCreate/ProductCreate_Tabs'
 import { 
@@ -22,6 +23,7 @@ import {
 } from '../../../app/feature/CreateProductFeatures/CreateProduct.slice'
 
 import { createProductThunk, startPlagirismChecker, updateProductThunk } from '../../../app/thunks/CreateProductThunks'
+import { CreateProduct_CloseButton_STY } from '../../../styles/components/styled-blocks/CreateProduct_Style/CreateProduct_Steps.style'
 
 
 interface Props {
@@ -78,14 +80,14 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
                     isProductCreated.status === "created"
                 )
                 {
-                   await  dispatch(startPlagirismChecker({product_id: isProductCreated.id,source_code:productCreateStep1Data.source_code}))
+                   await  dispatch(startPlagirismChecker({product_id: isProductCreated.id,source_code:productCreateStep1Data.source_code, extension:productCreateStep1Data.lang_type}))
                    return 
                 }
 
                 if(isProductCreated.sendend_source_code !== productCreateStep1Data.source_code &&
                     isProductCreated.id === null && 
                     productCreateStep1Data.source_code.length > 0){
-                   await  dispatch(createProductThunk(productCreateStep1Data.source_code))
+                   await  dispatch(createProductThunk({source_code :productCreateStep1Data.source_code , extension:productCreateStep1Data.lang_type}))
                    return 
                 }else {
                     return              
@@ -118,21 +120,21 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
 
 
     return (
-        <ProductCreateForm>
-            <div style={{display:'flex',flexDirection:"column",alignItems:'flex-end',marginTop:"0px",marginBottom:"10px"}}>
-                <button type="button" onClick={() => dispatch(changeModalAction('productCreate'))} style={{background:"none",border:"none",cursor:"pointer"}}>X</button>
-            </div>
+        <ProductCR_STY.ProductCreateForm>
+            <CreateProduct_CloseButton_STY type="button" onClick={() => dispatch(changeModalAction('productCreate'))} >
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+            </CreateProduct_CloseButton_STY>
             
 
             <ProductCreate_Tabs/>
             <ProductStepsRouter/>
             
 
-            <div style={{display:'flex' , justifyContent:'space-between' , width:'100%'}}>
-                <button onClick={goPrevoiusSection} type="button">Previous</button>
-                {currentStep !== 5 ? <button onClick={goNextSection} type="button"> Next</button> :<button onClick={goNextSection} type="button"> Submit </button>}
-            </div>
-        </ProductCreateForm>
+            <ProductCR_STY.CreateProduct_Buttons_Cont style={{display:'flex' , justifyContent:'space-between' , width:'100%'}}>
+                {currentStep > 1 ? <ProductCR_STY.CreateProduct_Button_PREVOIUS onClick={goPrevoiusSection} type="button">Previous</ProductCR_STY.CreateProduct_Button_PREVOIUS> : <div></div>}
+                {currentStep !== 5 ? <ProductCR_STY.CreateProduct_Button_NEXT  onClick={goNextSection} type="button"> Next</ProductCR_STY.CreateProduct_Button_NEXT> :<button onClick={goNextSection} type="button"> Submit </button>}
+            </ProductCR_STY.CreateProduct_Buttons_Cont>
+        </ProductCR_STY.ProductCreateForm>
     )
 }
 

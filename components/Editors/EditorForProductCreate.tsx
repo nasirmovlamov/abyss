@@ -5,6 +5,7 @@ import hljs from 'highlight.js';
 import javascript from 'highlight.js/lib/languages/javascript';
 import { Head } from "next/document";
 import dynamic from 'next/dynamic';
+import { EditorWraper_STY } from "../../styles/components/styled-blocks/CreateProduct_Style/Steps/CreateProduct_Step2.style";
 
 interface Props {
   content:any
@@ -31,11 +32,10 @@ function EditorForProductCreate({content , onChange, display}: Props){
   
   const modules = {
         toolbar: [
-        [{ 'header': [1, 2, false] }],
-        ['bold', 'italic', 'underline','strike', 'blockquote' , 'code-block'],
-        [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
-        ['link', 'image'],
-        ['clean']
+          ['bold', 'italic'],
+          [ 'link', 'blockquote' ,  'code-block' ,  'image',],
+          [ {'indent': '-1'}, {'indent': '+1'} ,{'list': 'ordered'}, {'list': 'bullet'} , { 'header': [1, 2, false] } ,],
+          ['clean']
         ],
         syntax: {
         highlight: (code:any) => hljs.highlightAuto(code).value,
@@ -44,10 +44,21 @@ function EditorForProductCreate({content , onChange, display}: Props){
 }
 
   const formats = [
-    'header',
-    'bold', 'italic', 'underline', 'strike', 'blockquote', 'code-block',
-    'list', 'bullet', 'indent',
-    'link', 'image'
+    "header",
+    "font",
+    "size",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+    "mention",
+    "emoji",
+    "code-block"
   ]
 
   const { quill, quillRef , Quill } = useQuill({modules,formats });
@@ -65,7 +76,6 @@ function EditorForProductCreate({content , onChange, display}: Props){
     {
       quill.root.innerHTML = content
       quill.on('text-change', (content) => {
-        console.log(content)
         onChange(quill.root.innerHTML); 
         let qlSyntaxes = document.querySelectorAll('.ql-syntax')
         for (let index = 0; index < qlSyntaxes.length; index++) {
@@ -90,16 +100,9 @@ function EditorForProductCreate({content , onChange, display}: Props){
 
   return (
     <>
-      <select value={editor_theme} onChange={handleChange}>
-        <option value="red">red</option>
-        <option value="green">green</option>
-        <option value="blue">blue</option>
-        <option value="black">black</option>
-      </select>
-
-      <div style={{ width: "100%",minHeight:"100",display:display}}>
+      <EditorWraper_STY style={{ width: "100%",display:display}}>
         <div style={{}} ref={quillRef} />
-      </div>
+      </EditorWraper_STY>
     </>
   );
 }

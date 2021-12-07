@@ -50,26 +50,26 @@ const Cave_Tabs = (props: Props) => {
             offset: -130
         })
         if(activeTab.id !== tab.id && scrollY === 0){
-            tabContRef.current?.setAttribute('style', 'position: fixed; top: 0px;')
+            // tabContRef.current?.setAttribute('style', 'position: fixed; top: 0px;')
         }
         dispatch(cave_actions.selectTab({tab:tab , window:caveSideData.selectedWindow}))
     }
 
     
 
-    useEffect(() => {
-        window.addEventListener('wheel', () => {
-            if(isScrollingDown ){
-                tabContRef.current?.setAttribute('style', 'position: sticky; top: -150px;margin-top: -10px;')
-            }
-        })
-    }, [isScrollingDown , isScrollingUp])
+    // useEffect(() => {
+    //     // window.addEventListener('wheel', () => {
+    //     //     if(isScrollingDown ){
+    //     //         tabContRef.current?.setAttribute('style', 'position: sticky; top: -150px;margin-top: -10px;')
+    //     //     }
+    //     // })
+    // }, [isScrollingDown , isScrollingUp])
 
-    useEffect(() => {
-        if(scrollY ===0){
-            tabContRef.current?.setAttribute('style', 'position:fixed;top:0px;margin-top: 0px;')
-        }
-    }, [scrollY])
+    // useEffect(() => {
+    //     // if(scrollY ===0){
+    //     //     tabContRef.current?.setAttribute('style', 'position:fixed;top:0px;margin-top: 0px;')
+    //     // }
+    // }, [scrollY])
 
     return (
         <Cave_Tabs_Sty ref={tabContRef}>

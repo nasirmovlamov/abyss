@@ -3,13 +3,14 @@ import {  addNewSection, deleteSection, deleteClip, sections_product, updateKey,
 import { useAppDispatch, useAppSelector } from '../../../../../app/store/hooks';
 import {DragDropContext, Droppable , Draggable} from 'react-beautiful-dnd'
 import { SectionOfProduct } from '../../../../../app/store/state-Interfaces/CreateProductInterface'
-import { faRulerVertical } from '@fortawesome/free-solid-svg-icons'
+import { faCartPlus, faEllipsisH, faEllipsisV, faPlusSquare, faRulerVertical } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { getClipsIndex } from '../../../../../logic/createProduct'
-import EditorForProductCreate from '../../../../EditorForProductCreate'
+import EditorForProductCreate from '../../../../Editors/EditorForProductCreate'
 import { Title } from '../../../../../styles/components/styled-blocks/FormQuestion.style'
-import {  ProductLabelCont } from '../../../../../styles/components/styled-blocks/CreateProductModal.style'
+import {  ProductLabelCont } from '../../../../../styles/components/styled-blocks/CreateProduct_Style/CreateProductModal.style'
 import { addFile } from '../../../../../app/thunks/CreateProductThunks';
+import { CreateProductLabelCont, CreateProductStep2_CONT_STY, CreateProduct_ClipsCont_STY, CreateProduct_DragCont_STY, CreateProduct_TagsCont_STY, CreateProduct_Tags_STY } from '../../../../../styles/components/styled-blocks/CreateProduct_Style/Steps/CreateProduct_Step2.style';
 
 
 interface Props {
@@ -91,96 +92,60 @@ export const ProductCreate_Step2 = (props: Props) => {
     }
 
     return (
-        <div>
+        <CreateProductStep2_CONT_STY>
             
             
-            <div  key={0}   style={{
-                userSelect: "none",
-                padding: 16,
-                margin: "0 0 8px 0",
-                backgroundColor: "#263B4A",
-                color: "white",
-                height: "auto",
-                }}>   
-                <ProductLabelCont >
-                    <span   style={{marginRight:"10px" , color:"gray"}} ><FontAwesomeIcon  icon={faRulerVertical} /> block</span>
-                    <input value={productName} onChange={productNameHandle} type="text"/>
-                    <label style={{color:"red"}} htmlFor="title">{(validated === 'not-valid' && !validators.isNameFilled.valid) && validators.isNameFilled.message}</label>
-                </ProductLabelCont>
-            </div>
+            <CreateProductLabelCont  key={0}>   
+                    <label className='title' htmlFor="title">Title</label>
+                    <input className='input1' value={productName} onChange={productNameHandle} type="text"/>
+                    <label className='error' htmlFor="title">{(validated === 'not-valid' && !validators.isNameFilled.valid) && validators.isNameFilled.message}</label>
+            </CreateProductLabelCont>
 
 
 
-            <div  key={0}   style={{
-                userSelect: "none",
-                padding: 16,
-                margin: "0 0 8px 0",
-                backgroundColor: "#263B4A",
-                color: "white",
-                height: "auto",
-                }}>   
-                <ProductLabelCont >
-                    <span   style={{marginRight:"10px" , color:"gray"}} ><FontAwesomeIcon  icon={faRulerVertical} /> block</span>
-                    {sectionsProduct[0].isEditor && <input type='text' value={sectionsProduct[0].label_key}  />}
+            <CreateProductLabelCont  key={0}   >   
+                    {sectionsProduct[0].isEditor && <input className='title editorTitle' type='text' value={sectionsProduct[0].label_key}  />}
                     {sectionsProduct[0].isEditor && <EditorForProductCreate  display={"block"} content={sectionsProduct[0].label_value} onChange={(content:any) => dispatch(updateLabel({index:0 , content:content}))}/>}
-                    {sectionsProduct[0].isEditor && <label style={{color:"red"}} htmlFor="title">{(validated === 'not-valid' && !validators.isDescriptionFilled.valid) && validators.isDescriptionFilled.message}</label>}
-                </ProductLabelCont>
-            </div>
+                    {sectionsProduct[0].isEditor && <label className='error' htmlFor="title">{(validated === 'not-valid' && !validators.isDescriptionFilled.valid) && validators.isDescriptionFilled.message}</label>}
+            </CreateProductLabelCont>
 
-            <div  key={1}   style={{
-                userSelect: "none",
-                padding: 16,
-                margin: "0 0 8px 0",
-                backgroundColor: "#263B4A",
-                color: "white",
-                height: "auto",
-                }}>   
-                <ProductLabelCont >
-                    <span   style={{marginRight:"10px" , color:"gray"}} ><FontAwesomeIcon  icon={faRulerVertical}  />block</span>
-                    {sectionsProduct[1].isEditor && <input type='text' value={sectionsProduct[1].label_key}  />}
+            <CreateProductLabelCont  key={1}   >   
+                    {sectionsProduct[1].isEditor && <input className='title editorTitle' type='text' value={sectionsProduct[1].label_key}  />}
                     {sectionsProduct[1].isEditor && <EditorForProductCreate display={"block"} content={sectionsProduct[1].label_value}  onChange={(content:any) => dispatch(updateLabel({index:1 , content:content}))}/>}
-                    {sectionsProduct[1].isEditor && <label style={{color:"red"}} htmlFor="title">{(validated === 'not-valid' && !validators.isApplicabilityFilled.valid) && validators.isApplicabilityFilled.message}</label>}
-                </ProductLabelCont>
-            </div>
+                    {sectionsProduct[1].isEditor && <label className='error' htmlFor="title">{(validated === 'not-valid' && !validators.isApplicabilityFilled.valid) && validators.isApplicabilityFilled.message}</label>}
+            </CreateProductLabelCont>
 
-            <div  key={2}   style={{
-                userSelect: "none",
-                padding: 16,
-                margin: "0 0 8px 0",
-                backgroundColor: "#263B4A",
-                color: "white",
-                height: "auto",
-                }}>   
-                <ProductLabelCont >
-                    <span   style={{marginRight:"10px" , color:"gray"}} ><FontAwesomeIcon  icon={faRulerVertical}  />block</span>
-                    {sectionsProduct[2].isEditor && <input type='text' value={sectionsProduct[2].label_key}  />}
+            <CreateProductLabelCont  key={2}   >   
+                    {sectionsProduct[2].isEditor && <input className='title editorTitle' type='text' value={sectionsProduct[2].label_key}  />}
                     {sectionsProduct[2].isEditor && <EditorForProductCreate display={"block"} content={sectionsProduct[2].label_value}  onChange={(content:any) => dispatch(updateLabel({index:2 , content:content}))}/>}
-                    {sectionsProduct[2].isEditor && <label style={{color:"red"}} htmlFor="title">{(validated === 'not-valid' && !validators.isProblemFormulationFilled.valid) && validators.isProblemFormulationFilled.message}</label>}
-                </ProductLabelCont>
-            </div>
+                    {sectionsProduct[2].isEditor && <label className='error' htmlFor="title">{(validated === 'not-valid' && !validators.isProblemFormulationFilled.valid) && validators.isProblemFormulationFilled.message}</label>}
+            </CreateProductLabelCont>
 
-            <div>
-                <input onKeyDown={createTag}/>
-                <div style={{display:"flex" , columnGap:"10px"}}>{product_tags.map
-                (element => 
-                    <div key={element.id} style={{display:"flex" , columnGap:"2px" , border:"1px solid gray"}}>
-                        {element.value} 
-                        <button onClick={() => deleteTag(element.id)}>del</button>
-                    </div>
-                )}
-                </div>
-                <div style={{color:'red'}}>{(validated === 'not-valid' && !validators.isTagsFilled.valid) && validators.isTagsFilled.message}</div>
-            </div>
+
+
+            <CreateProduct_TagsCont_STY>
+                <label htmlFor="" className='titleTags'>Tags</label>
+                <CreateProduct_Tags_STY style={{display:"flex" , columnGap:"10px"}}>
+                    {product_tags.map
+                    (element => 
+                        <div key={element.id} className='tag'>
+                            {element.value} 
+                            <button onClick={() => deleteTag(element.id)} className='deleteTag'>x</button>
+                        </div>
+                    )}
+                    <input onKeyDown={createTag}/>
+                </CreateProduct_Tags_STY>
+                <label className='error'>{(validated === 'not-valid' && !validators.isTagsFilled.valid) && validators.isTagsFilled.message}</label>
+            </CreateProduct_TagsCont_STY>
 
 
             <DragDropContext onDragEnd={handleOnDragEnd}>
                 <Droppable droppableId="main" >
                     {(provided , snapshot) => (
-                        <div key={"77"}  style={{
-                            background: snapshot.isDraggingOver
-                                ? "lightblue"
-                                : "lightgrey",
-                            padding: 4,
+                        <CreateProduct_DragCont_STY key={"77"}  style={{
+                            // background: snapshot.isDraggingOver
+                            //     ? "black"
+                            //     : "gray",
                             width: "100%",
                             }} {...provided.droppableProps} ref={provided.innerRef}>
                             {sectionsProduct.map(({id , label_key , label_value , isEditor , isClips}:SectionOfProduct, index) => {
@@ -191,56 +156,43 @@ export const ProductCreate_Step2 = (props: Props) => {
                                             {(provided , snapshot) => (
                                                 <div  key={id}  ref={provided.innerRef} {...provided.draggableProps} style={{
                                                     userSelect: "none",
-                                                    padding: 16,
                                                     margin: "0 0 8px 0",
                                                     minHeight: "50px",
-                                                    backgroundColor: snapshot.isDragging
-                                                        ? "#263B4A"
-                                                        : "#456C86",
-                                                    color: "white",
                                                     ...provided.draggableProps.style
                                                     }}>   
-                                                    <ProductLabelCont >
-                                                        {isEditor &&<button disabled={id === 1 ||  id === 2 || id === 3} type='button' onClick={()=>dispatch(deleteSection({index:index}))}>x</button>}
-                                                        <span {...provided.dragHandleProps}  style={{marginRight:"10px" , color:"black"}} ><FontAwesomeIcon  icon={faRulerVertical}  />block</span>
-                                                        {isClips.status && <input type='text' disabled={true} value={label_key} />}
-                                                        {isEditor &&<input type='text' value={label_key} onChange={(e:any) => dispatch(updateKey({index:index , content:e.target.value}))} />}
+                                                    <CreateProductLabelCont className='customBlock'>
+                                                        {isEditor &&<button className='delEditorBtn'  disabled={id === 1 ||  id === 2 || id === 3} type='button' onClick={()=>dispatch(deleteSection({index:index}))}>x</button>}
+                                                        <span {...provided.dragHandleProps}   className='dragEditorBtn'><FontAwesomeIcon  icon={faEllipsisH}  /></span>
+                                                        {isEditor &&<input className='title editorTitle' type='text' value={label_key} onChange={(e:any) => dispatch(updateKey({index:index , content:e.target.value}))} />}
                                                         {isEditor && <EditorForProductCreate display={"block"} content={label_value}  onChange={(content:any) => dispatch(updateLabel({index:index , content:content}))}/>}
-                                                        {isEditor &&<label htmlFor="title">validate</label>}
+                                                        {/* {isEditor &&<label htmlFor="title">validate</label>} */}
                                                         {isClips.status && 
-                                                            <div style={{display:"flex" , flexDirection:"column"}}>
-                                                                <div style={{width:'100%', minHeight:'450px', display:'flex' }}>
-                                                                            <div  style={{
-                                                                                width: "100%",
-                                                                                backgroundColor: snapshot.draggingOver
-                                                                                                ? "lightred"
-                                                                                                : "green",
-                                                                            }} >
-                                                                            <div  style={{
-                                                                                userSelect: "none",
-                                                                                padding: 16,
-                                                                                margin: "0 0 8px 0",
-                                                                                backgroundColor: snapshot.isDragging
-                                                                                ? "red"
-                                                                                : "pink",
-                                                                                color: "white",
-                                                                                width: "100%",
-                                                                                ...provided.draggableProps.style
-                                                                            }}>
-                                                                                {isClips.clips[0] && <img width={"100%"}  className="imgPreview" id="imgPreview" src={isClips.clips[0].src} alt=""/>}
-                                                                                
-                                                                                <button type="button" onClick={() => dispatch(deleteClip(index))}>delete img</button>
-                                                                            </div>  
-                                                                            </div>
-                                                                                
+                                                            <CreateProduct_ClipsCont_STY >
+                                                                {isClips.status && <input className='titleClips' type='text' disabled={true} value={label_key} />}
+                                                                <div className='clipsSectionCont'>
+                                                                        <Droppable droppableId="main-clip"  type={`main-clip`}>
+                                                                            {(provided , snapshot) => (
+                                                                                <div {...provided.droppableProps} ref={provided.innerRef}>
+                                                                                    <div className='clipsLeftSection' style={{
+                                                                                        userSelect: "none",
+                                                                                        // backgroundColor: snapshot.isDragging
+                                                                                        // ? "red"
+                                                                                        // : "pink",
+                                                                                        width: "100%",
+                                                                                    }}>
+                                                                                        {isClips.clips[0] && <img width={"450px"}  className="imgPreview" id="imgPreview" src={isClips.clips[0].src} alt=""/>}
+                                                                                    </div>  
+                                                                                </div>
+                                                                            )}
+                                                                        </Droppable>
+
                                                                         <Droppable droppableId="clips"  type={`clips`}>
                                                                             {(provided , snapshot) => (
-                                                                                <div  style={{
-                                                                                    background: snapshot.isDraggingOver
-                                                                                    ? "lightblue"
-                                                                                    : "lightgrey",
-                                                                                    padding: 4,
-                                                                                    width: "500px",
+                                                                                <div className='clipsRightSection'  style={{
+                                                                                    // background: snapshot.isDraggingOver
+                                                                                    // // ? "lightblue"
+                                                                                    // // : "lightgrey",
+                                                                                    width: "100%",
                                                                                 }} {...provided.droppableProps} ref={provided.innerRef}>
                                                                                     
 
@@ -254,19 +206,17 @@ export const ProductCreate_Step2 = (props: Props) => {
                                                                                                 {(provided , snapshot) => (
                                                                                                     <div  ref={provided.innerRef} {...provided.draggableProps} style={{
                                                                                                         userSelect: "none",
-                                                                                                        padding: 16,
                                                                                                         margin: "0 0 8px 0",
-                                                                                                        backgroundColor: snapshot.isDragging
-                                                                                                        ? "#263B4A"
-                                                                                                        : "#456C86",
+                                                                                                        // backgroundColor: snapshot.isDragging
+                                                                                                        // ? "#263B4A"
+                                                                                                        // : "#456C86",
                                                                                                         color: "white",
-                                                                                                        
                                                                                                         ...provided.draggableProps.style
-                                                                                                    }}>
+                                                                                                    }} className='clipItem'>
                                                                                                         <img className="imgPreview" id="imgPreview" src={src} width="auto" height="100px" alt=""/>
-                                                                                                        <span style={{marginRight:"10px" , color:"black"}} {...provided.dragHandleProps}><FontAwesomeIcon icon={faRulerVertical}  />block</span>
+                                                                                                        <span className='move' style={{marginRight:"10px" , color:"black"}} {...provided.dragHandleProps}><FontAwesomeIcon icon={faEllipsisH}  /></span>
                                                                                                         {id}
-                                                                                                        <button type="button" onClick={() => dispatch(deleteClip({index:index}))}>delete img</button>
+                                                                                                        <button type="button" className='del' onClick={() => dispatch(deleteClip({index:index}))}>x</button>
                                                                                                     </div>  
                                                                                                 )}
                                                                                             </Draggable>
@@ -280,13 +230,14 @@ export const ProductCreate_Step2 = (props: Props) => {
                                                                         </Droppable>
 
                                                                 </div>
-                                                                <button><input onChangeCapture={(e:any) => dispatch(addFile(e.target.files[0]))} value={""} type="file" placeholder="add Image"/></button>
-                                                            </div>
+                        
+                                                                <button className='addClipImage'>
+                                                                    <p className='text'>Upload File</p>
+                                                                    <input onChangeCapture={(e:any) => dispatch(addFile(e.target.files[0]))} value={""} type="file" placeholder="add Image"/>
+                                                                </button>
+                                                            </CreateProduct_ClipsCont_STY>
                                                         }
-
-
-
-                                                    </ProductLabelCont>
+                                                    </CreateProductLabelCont>
                                                 </div>
                                             )}
                                         </Draggable>
@@ -294,19 +245,19 @@ export const ProductCreate_Step2 = (props: Props) => {
                                 } 
                                 else 
                                 {
-                                    return <div></div>
+                                    return null
                                 }
                             })}
                             {provided.placeholder}
-                        </div>
+                        </CreateProduct_DragCont_STY>
                     )}
                 </Droppable>
             </DragDropContext>
 
 
-            <button type="button"  onClick={addNewBlock} disabled={sectionsProduct.length > 7} >add new block</button>
+            <button type="button" className='addNewSection'  onClick={addNewBlock} disabled={sectionsProduct.length > 7} ><p>Add new block</p> </button>
             
-        </div>
+        </CreateProductStep2_CONT_STY>
     )
 }
 

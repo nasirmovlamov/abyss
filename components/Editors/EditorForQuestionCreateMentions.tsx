@@ -3,30 +3,30 @@ import "quill-mention";
 import  'quill-magic-url'
 import "quill-mention/dist/quill.mention.css";
 import axios from "axios";
-import { BASE_API_INSTANCE } from "../helpers/api/BaseInstance";
+import { BASE_API_INSTANCE } from "../../helpers/api/BaseInstance";
 import ReactQuill, {Quill} from 'react-quill';
 import dynamic from 'next/dynamic'
-import { useAppDispatch, useAppSelector } from "../app/store/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/store/hooks";
 import { 
+  CreateQuestionActions,
   linked_products, 
   mentioned_users, 
-  mentionProductAtQuestionCreate, 
-  mentionUserAtQuestionCreate, 
-  questionContentOnChangeHandler, 
-  question_value } from "../app/feature/CreateQuestionFeatures/CreateQuestion.slice";
+  question_value } from "../../app/feature/CreateQuestionFeatures/CreateQuestion.slice";
+import { CreateThreadEDITORWrapper_STY } from "../../styles/components/Editors/CreateThread.style";
 
 interface Props {
 }
 
 const modules = {
   toolbar: [
-    [{ header: [1, 2, false] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [{ list: "ordered" }, { list: "bullet" }],
-    ["link", "image"]
+    ['bold', 'italic'],
+    [ 'link', 'blockquote' ,  'code-block' ,  'image',],
+    [ {'indent': '-1'}, {'indent': '+1'} ,{'list': 'ordered'}, {'list': 'bullet'} , { 'header': [1, 2, false] } ,],
+    ['clean']
   ],
   mention: {
     allowedChars: /^[A-Za-z\sÅÄÖåäö]*$/,
+    spaceAfterInsert:true,
     mentionDenotationChars: ["@", "#" , "https://"],
     linkTarget:'_blank',
     source: async (searchTerm:any, renderItem:any, mentionChar:any) => {
@@ -82,6 +82,23 @@ const modules = {
 };
 
 
+const formats = [
+  "header",
+  "font",
+  "size",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "blockquote",
+  "list",
+  "bullet",
+  "indent",
+  "link",
+  "mention",
+  "emoji",
+  "code-block"
+]
 
 
 const EditorNewVersion = ({}: Props): ReactElement => {
@@ -94,7 +111,7 @@ const EditorNewVersion = ({}: Props): ReactElement => {
   const [value, setvalue] = useState('')
 
 
-  const editorOnChageHandle = async (content:any, delta:any, source:any, editor:any) => {
+  const editorOnChageHandle =  (content:any, delta:any, source:any, editor:any) => {
     const editorData = editor.getContents().ops;
 
     for (let i = 0; i < editorData.length; i++) {
@@ -102,44 +119,34 @@ const EditorNewVersion = ({}: Props): ReactElement => {
       {
         if(editorData[i].insert.mention.denotationChar === '@')
         {
-          await dispatch(mentionProductAtQuestionCreate({id:editorData[i].insert.mention.id}))
+          dispatch(CreateQuestionActions.mentionProductAtQuestionCreate({id:editorData[i].insert.mention.id}))
         }
         else if (editorData[i].insert.mention.denotationChar === '#')
         {
-          await dispatch(mentionUserAtQuestionCreate({id:editorData[i].insert.mention.id}))
+          dispatch(CreateQuestionActions.mentionUserAtQuestionCreate({id:editorData[i].insert.mention.id}))
         }else {
         }
       }
     }
     console.log(content)
-    dispatch(questionContentOnChangeHandler(content))
+    dispatch(CreateQuestionActions.questionContentOnChangeHandler(content))
   }
 
-  const editorOnFocusHandle = (range:any, source:any, editor:any) => {
-  }
-
-  const editorOnBlurHandle = (previousRange:any, source:any, editor:any) => {
-  }
-
-  useEffect(() => {
-    
-  }, [])
 
   
   
   return (
-    <div>
+    <CreateThreadEDITORWrapper_STY>
       <ReactQuill 
         id='ql-editor-id'
-        onFocus={editorOnFocusHandle}
-        onBlur={editorOnBlurHandle}
         modules={modules} 
+        formats={formats}
         theme="snow" 
         value={questionValue} 
         onChange={editorOnChageHandle}
 
       />
-    </div>
+    </CreateThreadEDITORWrapper_STY>
   );
 
 }

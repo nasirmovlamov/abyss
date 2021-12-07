@@ -57,7 +57,7 @@ function Forum({}: Props): ReactElement {
            
 
 
-            <MainPartOfPage>
+        <MainPartOfPage>
                 <ForumPage>
                     
                     <PageTabs/>  

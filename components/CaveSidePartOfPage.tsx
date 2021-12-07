@@ -24,7 +24,7 @@ function CaveSidePartOfPage({children , side}: Props): ReactElement {
             {children}
             {side ==="left" && 
             <>
-                <button onClick={() => dispatch(changeColor(!colorConvert))}>Convert Color</button>
+                {/* <button onClick={() => dispatch(changeColor(!colorConvert))}>Convert Color</button> */}
             </>
             }
             {side ==="right" && 

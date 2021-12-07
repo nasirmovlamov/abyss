@@ -1,9 +1,11 @@
 import { faCommentAlt, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { CreateQuestionActions, create_question_data } from '../../../app/feature/CreateQuestionFeatures/CreateQuestion.slice'
 import { CreateThreadActions, create_thread_data } from '../../../app/feature/CreateThread/CreateThread.slice'
 import { changeModalAction } from '../../../app/feature/User.slice'
 import { useAppDispatch, useAppSelector } from '../../../app/store/hooks'
+import { createQuestionThunk } from '../../../app/thunks/CreateThread/CreateQuestion.thunk'
 import { CreateProduct_Tabs } from '../../../styles/components/styled-blocks/CreateProduct_Style/CreateProduct.style'
 import { CreateThreadFORM_STY } from '../../../styles/components/styled-blocks/CreateThread_Style/CreateThread.style'
 import { 
@@ -21,6 +23,7 @@ import CreateDiscussion from './CreateDiscussion'
 import CreateQuestion from './CreateQuestion'
 import CreateRequest from './CreateRequest'
 import CreateThread_Step1 from './Steps/CreateThread_Step1'
+import CreateThread_Step3 from './Steps/CreateThread_Step3'
 
 interface Props {
     
@@ -28,8 +31,9 @@ interface Props {
 
 const CreateThreadModal = (props: Props) => {
     const dispatch = useAppDispatch()
-
+    const [disabledCheck, setdisabledCheck] = useState(true)
     const  threadData = useAppSelector(create_thread_data)
+    const  createQuestionData = useAppSelector(create_question_data)
 
     const ThreadsType = {
         'not-selected': <CreateThread_Step1/>,
@@ -41,7 +45,7 @@ const CreateThreadModal = (props: Props) => {
     const createThreadSteps:{[key:number]:JSX.Element} = {
         1:<CreateThread_Step1/>,
         2:ThreadsType[threadData.threadType],
-        3:<CreateThread_Step1/>
+        3:<CreateThread_Step3/>
     }
 
     const stepValidations:{[key:number]:any} = {
@@ -58,12 +62,46 @@ const CreateThreadModal = (props: Props) => {
     const prevoiusStep_CreateThread = () => {
         dispatch(CreateThreadActions.goPrevoiusStep(null))
     }
-    console.log(stepValidations)
+
+    const submitThread = (e:any) => {
+        e.preventDefault()
+        if(threadData.threadType === 'question'){
+            if(createQuestionData.validation_check === 'valid'){
+                dispatch(createQuestionThunk(createQuestionData))
+            }
+        }
+        if(threadData.threadType === 'discussion'){
+        }
+        if(threadData.threadType === 'request'){
+        }
+    }
+
+    const disabledChecker = () => {
+        if(threadData.threadType === 'question'){
+            if(createQuestionData.validation_check === 'valid'){
+                setdisabledCheck(false)
+            }
+        }
+        if(threadData.threadType === 'discussion'){
+            if(createQuestionData.validation_check === 'valid'){
+                setdisabledCheck(false)
+            }
+        }
+        if(threadData.threadType === 'request'){
+            if(createQuestionData.validation_check === 'valid'){
+                setdisabledCheck(false)
+            }
+        }
+    }
 
     
 
+    useEffect(() => {
+        disabledChecker()
+    }, [createQuestionData.validation_check])
+
     return (
-        <CreateThreadFORM_STY onSubmit={()=> console.log('hello')}>
+        <CreateThreadFORM_STY onSubmit={submitThread}>
             <CreateThread_CloseButton_STY type="button" onClick={() => dispatch(changeModalAction('questionCreate'))} >
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
             </CreateThread_CloseButton_STY>
@@ -88,7 +126,12 @@ const CreateThreadModal = (props: Props) => {
                 <CreateThread_RightButtons_flexer>
                     <FontAwesomeIcon icon={faCommentAlt}/>
                     <FontAwesomeIcon icon={faQuestionCircle}/>
-                    <CreateThread_Button_NEXT type='button' onClick={nextStep_CreateThread}>Next</CreateThread_Button_NEXT>
+                    {
+                        threadData.currentStage < 3 ?
+                        <CreateThread_Button_NEXT type='button' onClick={nextStep_CreateThread}>Next</CreateThread_Button_NEXT>
+                        :
+                        <CreateThread_Button_NEXT disabled={disabledCheck} type='button' onClick={submitThread}>Submit</CreateThread_Button_NEXT>
+                    }
                 </CreateThread_RightButtons_flexer>
             </CreateThread_Buttons_Cont>
 

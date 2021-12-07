@@ -7,7 +7,7 @@ export const Cave_Sty = styled.div`
     flex-direction: column;
     min-height: 1500px;
     height: auto;
-    margin-top: 220.28px;
+    /* margin-top: 220.28px; */
     background-color: ${({theme}) => theme.colors.black_1};
     color: #fff;
     border-radius: 10px;

@@ -1,3 +1,6 @@
+import { autoErrorToaster } from './../../../components/Notify/AutoErrorToaster';
+import { autoSuccessToaster } from './../../../components/Notify/AutoSuccessToast';
+import { createQuestionThunk } from './../../thunks/CreateThread/CreateQuestion.thunk';
 import { RootState } from "../../store/store";
 import { createSlice} from '@reduxjs/toolkit'
 import { CreateQuestionState } from "../../store/states/CreateQuestionState";
@@ -14,15 +17,99 @@ export const CreateQuestionSlice = createSlice({
                 state.linkedProducts.push(action.payload)
             }
         },
+
         mentionUserAtQuestionCreate(state, action){
             if(state.mentionedUsers.filter(product => product.id === action.payload.id).length === 0){
                 state.mentionedUsers.push(action.payload)
             }
         },
 
+        questionTitleOnChange(state, action){
+            state.questionTitle = action.payload
+            if(state.questionTitle === ''){
+                state.validations.questionTitle.isValid = false
+            }else{
+                state.validations.questionTitle.isValid = true
+            }
+        },
+
+
         questionContentOnChangeHandler(state,action){
             state.questionValue = action.payload
-        }
+            if(state.questionValue === "<p><br></p>"){
+                state.validations.questionValue.isValid = false
+            }else{
+                state.validations.questionValue.isValid = true
+            }
+        },
+
+
+        questionTagValueOnChangeHandler(state,action){
+            state.tagValue = action.payload
+        },
+
+
+        questionCreateTagOnClickHandler(state,action){
+            const newTag = {
+                id: new Date().getTime(),
+                name: state.tagValue.replaceAll(' ',''),
+            }
+            state.tags.push(newTag)
+            if(state.tags.length === 0){
+                state.validations.tags.isValid = false
+            }else{
+                state.validations.tags.isValid = true
+            }
+        },
+
+        questionDeleteTagOnClickHandler(state,action){
+            state.tags = state.tags.filter(tag => tag.id !== action.payload.id)
+            if(state.tags.length === 0){
+                state.validations.tags.isValid = false
+            }else{
+                state.validations.tags.isValid = true
+            }
+        },
+
+        questionDeleteLastTagOnClickHandler(state,action){
+            state.tags.pop()
+            if(state.tags.length === 0){
+                state.validations.tags.isValid = false
+            }else{
+                state.validations.tags.isValid = true
+            }
+        },
+
+        validateQuestionCreate (state, action){
+            if(state.questionTitle === ''){
+                state.validations.questionTitle.isValid = false
+            }else{
+                state.validations.questionTitle.isValid = true
+            }
+            if(state.questionValue === ''){
+                state.validations.questionValue.isValid = false
+            }else{
+                state.validations.questionValue.isValid = true
+            }
+            if(state.tags.length === 0){
+                state.validations.tags.isValid = false
+            }else{
+                state.validations.tags.isValid = true
+            }
+            if(
+                state.validations.questionTitle.isValid &&
+                state.validations.questionValue.isValid &&
+                state.validations.tags.isValid
+            ){
+                state.validation_check = 'valid'
+            }else{
+                state.validation_check = 'not-valid'
+            }
+        },
+
+
+
+
 
         // ProductCreateStep1OnChanges(state, action){
         //     state.steps[1].source_code = action.payload
@@ -38,15 +125,15 @@ export const CreateQuestionSlice = createSlice({
     extraReducers: (builder) => {
 
 
-        // ADD CLIP
-        // builder.addCase(addFile.fulfilled, (state, {payload}) => {
-        //     console.log(payload)
-        //     state.steps[2].details_data.sections_product[getClipsIndex(state.steps[2].details_data.sections_product)].isClips.clips.push({id: Date.now(), src: payload!.base64! , alt:payload!.alt}) 
-        // }),
-        // builder.addCase(addFile.pending, (state, {payload}) => {
-        // }),
-        // builder.addCase(addFile.rejected, (state, action:any) => {
-        // })
+        // CREATE QUESTION
+        builder.addCase(createQuestionThunk.fulfilled, (state, {payload}) => {
+            autoSuccessToaster(payload.message)
+        }),
+        builder.addCase(createQuestionThunk.pending, (state, {payload}) => {
+        }),
+        builder.addCase(createQuestionThunk.rejected, (state, {payload}) => {
+            autoErrorToaster(payload)
+        })
 
 
 
@@ -66,7 +153,8 @@ export const CreateQuestionSlice = createSlice({
 
 
 // action
-export const {mentionProductAtQuestionCreate , mentionUserAtQuestionCreate, questionContentOnChangeHandler} = CreateQuestionSlice.actions;
+
+export const CreateQuestionActions = CreateQuestionSlice.actions ;
 
 
 
@@ -75,6 +163,8 @@ export const {mentionProductAtQuestionCreate , mentionUserAtQuestionCreate, ques
 export const linked_products = (state: RootState) => state.createQuestionReducer.linkedProducts
 export const mentioned_users = (state: RootState) => state.createQuestionReducer.mentionedUsers
 export const question_value = (state: RootState) => state.createQuestionReducer.questionValue
+export const create_question_data = (state: RootState) => state.createQuestionReducer
+
 
 export default CreateQuestionSlice.reducer;
 

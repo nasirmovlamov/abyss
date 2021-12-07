@@ -59,9 +59,9 @@ const Layout: FC<Props> = ({ children, ...props }) => {
 
     if(userStatus === "logged" || userStatus === "not-logged") {
         return (
-            <>
+            <div style={{display:'flex' , flexDirection:"column" , width:'100%'}}>
                 
-                <div style={{width:"100%" , minHeight:"100vh" }}>
+                <div style={{width:"100%" , minHeight:"100vh", display:'flex', flexDirection:'column', justifyContent:'space-between' }}>
                     <Header/>
 
                     <SearchBox/>
@@ -73,8 +73,8 @@ const Layout: FC<Props> = ({ children, ...props }) => {
 
                     {userData !== null && <button type="button" style={{position:"fixed",right:"0px",bottom:"0px"}} onClick={openUserChat}>Chat</button>}
                     <Modals/>
-                    {/* <Footer/> */}
                 </div>   
+                <Footer/>
                 
 
 
@@ -88,7 +88,7 @@ const Layout: FC<Props> = ({ children, ...props }) => {
                 )
                 } */}
 
-            </>
+            </div>
         )
     }
     return(

@@ -1,6 +1,7 @@
 import React from 'react'
 import { product_create_current_step } from '../../../../app/feature/CreateProductFeatures/CreateProduct.slice'
 import { useAppSelector } from '../../../../app/store/hooks'
+import { CreateProduct_StepCont } from '../../../../styles/components/styled-blocks/CreateProduct_Style/CreateProduct_Steps.style'
 import { ProductCreate_Step1  } from './Steps/ProductCreate_Step1'
 import { ProductCreate_Step2  } from './Steps/ProductCreate_Step2'
 import { ProductCreate_Step3  } from './Steps/ProductCreate_Step3'
@@ -23,7 +24,7 @@ const ProductStepsRouter = (props: Props) => {
     }
     const currentStep =  useAppSelector(product_create_current_step)
 
-    return (<div>{ProductCreateSteps[currentStep]}</div>)
+    return (<CreateProduct_StepCont>{ProductCreateSteps[currentStep]}</CreateProduct_StepCont>)
 }
 
 export default ProductStepsRouter
