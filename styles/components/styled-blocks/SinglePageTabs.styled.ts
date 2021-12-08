@@ -3,7 +3,7 @@ import { ThemeType } from '../../global/styled-utils/settings/Theme.style';
 
 
 
-export const SingleTabsContainer  = styled.div`
+export const SingleTabsContainer  = styled.div<{isSearchBarVisible:string}>`
     /* height:103px; */
     display: flex;
     background-color: ${({theme}) => theme.colors.black_1};
@@ -11,9 +11,13 @@ export const SingleTabsContainer  = styled.div`
     /* padding-left: 17px; */
     box-shadow: ${({theme}) => theme.boxshadows.boxshadow4};
     height: 54px;
-    align-items: flex-end;
     overflow: hidden;
     background-color: ${({theme}) => theme.backgrounds.background1};
+    position: -webkit-sticky;
+    position: sticky;
+    top: ${({isSearchBarVisible}) => isSearchBarVisible === "visible" ? '-120px' : "74px"} ;
+    z-index: 3;
+    transition: 0.5s;
 `
 
 

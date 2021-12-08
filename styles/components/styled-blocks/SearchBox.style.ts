@@ -9,10 +9,9 @@ export const SearchBoxContainer_STY = styled.div<{path:string , scrollTopValue:n
     height: ${(props) => props.path === "/" ? "70vh" : "auto"};
     justify-content: center;
     padding-right:112px;
-    z-index: 555;
+    z-index: 3;
+    transition: 0.1s;
     position: ${(props) => props.path === "/" ? "relative" : "fixed"};
-    /* top:60px; */
-    /* top: 61px; */
     transform: ${({scrollTopValue})=> `translateY(${scrollTopValue}px)`};
     @media only screen and (max-width: 1526px) {
         box-sizing:border-box;
@@ -22,7 +21,6 @@ export const SearchBoxContainer_STY = styled.div<{path:string , scrollTopValue:n
     }
     height: 120px;
     top: 0px;
-    /* top: 50px; */
 `
 
 export const SearchBoxThunkAndCont_STY = styled.div<{direction:string}>`
@@ -32,37 +30,39 @@ export const SearchBoxThunkAndCont_STY = styled.div<{direction:string}>`
     justify-content: space-between;
     /* transform: ${({direction}) => direction === "visible" ? "translateY(0px)" : "translateY(-51px)"}; */
     width: 810px;
-    z-index: 100;
-    @media only screen and (max-width: 1526px) {
-        width: 52.73%;
-        box-sizing:border-box;
-    }
-    @media only screen and (max-width: 1236px) {
-        padding-right: 0%;
-        width: 77%;
-    }
-    margin-top:60px ;
+    height: 100%;
+    margin-top:0px ;
 `
 
-export const SearchBoxThunk_STY = styled.button<{direction:string}>`
+export const SearchBoxThunk_STY = styled.button<{direction:string , isBackVisible:boolean}>`
+    width: 840px;
     display: flex;
     flex-direction: column;
     color: black;
     pointer-events: all;
     border: none;
-    background-color: #00090e;
     color: gray;
-    width: 200px;
     text-align: center;
     display: flex;
     align-items: center;
     align-self: center;
     justify-content: center;
-    height: 16px;
     /* opacity: 0; */
-    border-radius: 0px 0px 5px 5px;
-    transform: ${({direction})=>direction === "not-visible" ? "translateY(0px)" : "translateY(-10px)"};
-    pointer-events: ${({direction})=>direction === "not-visible" ? "all" : "none"};
+    transform: ${({direction})=>direction === "not-visible" ? "translateY(0px)" : "translateY(-20px)"};
+    position: absolute;
+    top: 50px;
+    transition: 0.5s;
+    height: 30px;
+    background-color: ${({theme , isBackVisible}) => isBackVisible ? theme.backgrounds.background3 : "transparent"};
+    div {
+        width: 200px;
+        background-color: ${({theme}) => theme.backgrounds.background4};
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0px 0px 5px 5px;
+    }
 `
 
 export const SearchBox_STY = styled.div<{direction:string, path:string}>`
@@ -74,6 +74,8 @@ export const SearchBox_STY = styled.div<{direction:string, path:string}>`
     height: ${(props) => props.path === "/" ? "83px" : "48px"};
     color: white;
     border-radius: ${(props) => props.path === "/" ? "10px" : "30px"};
+    margin-top: ${({direction}) => direction==='visible' ? "60px" : "0px"};
+    transition: 0.5s;
     border: none;
     background-color: white;
     align-items: flex-start;

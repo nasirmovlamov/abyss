@@ -1,11 +1,13 @@
-import { useRouter } from 'next/router'
-import React, { ReactElement, useEffect, useState } from 'react'
+import { Router, useRouter } from 'next/router'
+import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import { changeForumTabActive,  page_tabs } from '../app/feature/PageTabs.slice'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex'
 import * as SinglePageTabs_STY from '../styles/components/styled-blocks/SinglePageTabs.styled'
 import NavLink from './NavLink'
 import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+import { changeThunkBackVisibilty, search_data } from '../app/feature/SearchBox.slice'
+import { useScrollYPosition } from 'react-use-scroll-position'
 
 
 interface Props {
@@ -13,13 +15,31 @@ interface Props {
 }
 
 function SinglePageTabs({}: Props): ReactElement {
-    
+    const searchData = useAppSelector(search_data)
     const pageTabs = useAppSelector(page_tabs);
     const router = useRouter()
+    const pageTabsContRef = useRef<HTMLDivElement>(null)
+    const scrollY = useScrollYPosition()
+    const dispatch = useAppDispatch()
 
+
+    // Dive deep into the abyss 
+    //Explore unknown
+
+
+    useEffect(() => {
+        if(router.isReady){
+            if(pageTabsContRef.current!.getBoundingClientRect().top <= 74 && searchData.thunkBackground === 'not-visible'){
+                dispatch(changeThunkBackVisibilty('visible'))
+            }else if(pageTabsContRef.current!.getBoundingClientRect().top > 74 && searchData.thunkBackground === 'visible') {
+                dispatch(changeThunkBackVisibilty('not-visible'))
+            }
+        }
+    }, [scrollY , router])
+        
 
     return (
-        <SinglePageTabs_STY.SingleTabsContainer>
+        <SinglePageTabs_STY.SingleTabsContainer ref={pageTabsContRef} isSearchBarVisible={searchData.isSearchVisible}>
             <SinglePageTabs_STY.SingleTabs>
                 {   
                     (

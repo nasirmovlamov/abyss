@@ -2,8 +2,10 @@ import { filterTagInterFace } from "./PageFiltersInterface";
 
 export interface SEARCHBOX_INTERFACE {
     isFocused: boolean;
-    page:'store' | 'forum' | '',
+    page:'/store' | '/forum' | '',
     search_query:string,
+    isSearchVisible:"visible" | "not-visible",
+    thunkBackground:"visible" | "not-visible",
     filters:filterTagInterFace[],
     searchBoxData:{
         forum:{

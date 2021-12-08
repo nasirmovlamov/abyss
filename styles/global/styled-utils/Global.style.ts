@@ -10,29 +10,32 @@ type Props = {
 export const GlobalStyle = createGlobalStyle<Props>`
   body{
       background-color: ${({theme}) => theme.body};
-      &::-webkit-scrollbar {
+       &::-webkit-scrollbar {
         width: 10px;
         }
 
-        /* Track */
+         /* Track  */
         &::-webkit-scrollbar-track {
-            background: #000;
+            background: #0f1113;
             opacity: 0.4;
             border-radius: 5px;
         }
 
-        /* Handle */
+        /* Handle  */
         &::-webkit-scrollbar-thumb {
-        background: #888;
+        background: #949597;
         border-radius: 5px;
 
         }
 
-        /* Handle on hover */
+         /* Handle on hover  */
         &::-webkit-scrollbar-thumb:hover {
-        background: #555;
+        background: #6c6d6f;
         }
-    }
+    } 
+
+
+
     *{
         box-sizing: border-box;
         &::-webkit-scrollbar {
@@ -41,20 +44,20 @@ export const GlobalStyle = createGlobalStyle<Props>`
 
         /* Track */
         &::-webkit-scrollbar-track {
-            background: rgba(0,0,0,0.1);
+            background: #949597;
             border-radius: 5px;
         }
 
         /* Handle */
         &::-webkit-scrollbar-thumb {
-        background: #888;
+        background: #949597;
         border-radius: 5px;
 
         }
 
         /* Handle on hover */
         &::-webkit-scrollbar-thumb:hover {
-        background: #555;
+            background: #6c6d6f;
         }
     }
     button, input , select, textarea{

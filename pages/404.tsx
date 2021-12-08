@@ -1,0 +1,21 @@
+import router from 'next/router'
+import React from 'react'
+
+interface Props {
+    
+}
+
+const Page404 = (props: Props) => {
+    const goHome = () => {
+        router.push('/')
+    }
+
+    return (
+        <div style={{fontSize:"60px", marginTop:'240px' , width:'100%' , color:"white", display:"flex" , flexDirection:"column", rowGap:"20px", alignItems:"center", justifyContent:"center", paddingRight:'120px'}}> 
+            This page is not found
+            <button onClick={goHome} style={{padding:"10px 50px",borderRadius:"10px",fontSize:"20px"}}>Go Home</button>
+        </div>
+    )
+}
+
+export default Page404

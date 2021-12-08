@@ -29,6 +29,7 @@ function FormQuestion({data}: Props): ReactElement {
     }
     
     return (
+        <NavLink href={`/forum/${data.id}/${data.slug}`}>
         <FormQuestionCont id={`forumQuestion${data.id}`}>
             <PersonCont>
                 <Avatar src={data.avatar}></Avatar>
@@ -88,6 +89,7 @@ function FormQuestion({data}: Props): ReactElement {
             </QuestionStatistics_STY>
 
         </FormQuestionCont>
+        </NavLink>
     )
 }
 

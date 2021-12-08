@@ -187,12 +187,14 @@ export const ProductCount = styled.button`
     line-height: 20px;
     text-decoration: none solid rgb(71, 77, 81);
     color: ${({theme}) => theme.titles.title2};
+    background-color: transparent;
     span 
     {
         color: ${({theme}) => theme.titles.title2};
         font-size: 16px;
         font-family: m;
         text-decoration: none solid ${({theme}) => theme.titles.title2};
+        background-color: transparent;
     }
 `
 

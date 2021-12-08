@@ -3,7 +3,8 @@ import styled from 'styled-components'
 
 export const CaveInventoryDefaultBlock_Sty = styled.div`
     width: 100%;
-    height: 1200px;
+    /* height: 1200px; */
+    margin-top: 30px;
 `
 export const CaveInventoryBlocks_Sty = styled.div`
     width: 100%;

@@ -90,12 +90,17 @@ const Cave_Tabs = (props: Props) => {
                                 onMouseEnter={() => hoverTab(tab)}
                                 onMouseLeave={() => unHoverTab(tab)}
                             >
-                                <CaveLeftCorner tab={tab}>
-                                    <Image width='25px' height='15px' src={caveTabCornerNotHoveredSvg} alt="caveLeftCornerSvg" /> 
-                                </CaveLeftCorner>
-                                <CaveLeftCornerForHover tab={tab}>
-                                    <Image width='25px' height='15px' src={caveTabCornerHovered} alt="caveLeftCornerSvg" /> 
-                                </CaveLeftCornerForHover>
+                                {
+                                    tab.id > 0 && 
+                                    <>
+                                        <CaveLeftCorner tab={tab}>
+                                            <Image width='25px' height='15px' src={caveTabCornerNotHoveredSvg} alt="caveLeftCornerSvg" /> 
+                                        </CaveLeftCorner>
+                                        <CaveLeftCornerForHover tab={tab}>
+                                            <Image width='25px' height='15px' src={caveTabCornerHovered} alt="caveLeftCornerSvg" /> 
+                                        </CaveLeftCornerForHover>
+                                    </>
+                                }
 
                                 {tab.text} 
 
@@ -103,6 +108,8 @@ const Cave_Tabs = (props: Props) => {
                                     <Image  width='25px' height='15px'  src={caveTabCornerNotHoveredSvg} alt="caveLeftCornerSvg" /> 
                                 </CaveRightCorner>
 
+                                {tab.hovered && <div style={{position:'absolute' , bottom:"-2px" , width:"100%" , height:"2px" , backgroundColor:"#1C1E20"}}></div>}
+                                {tab.active && <div style={{position:'absolute' , bottom:"-2px" , width:"100%" , height:"2px" , backgroundColor:"#1C1E20"}}></div>}
                                 <CaveRightCornerForHover  tab={tab}>
                                     <Image width='25px' height='15px' src={caveTabCornerHovered} alt="caveLeftCornerSvg" /> 
                                 </CaveRightCornerForHover>

@@ -88,34 +88,40 @@ export const SearchBoxSlice = createSlice({
     },
 
     selectTypeSearchOption(state, action) {
-      if(state.page === 'forum'){
+      if(state.page === '/forum'){
         state.searchBoxData.forum.searchOptions.forumType = action.payload
         setCookie("ForumTypeSearchOption" , action.payload , 365)
-      }else if (state.page === 'store'){
+      }else if (state.page === '/store'){
         state.searchBoxData.store.searchOptions.storeType = action.payload
         setCookie("StoreTypeSearchOption" , action.payload , 365)
       } 
     },
 
     selectSortSearchOption(state, action) {
-      if(state.page === 'forum'){
+      console.log(state.page)
+      if(state.page === '/forum'){
         state.searchBoxData.forum.searchOptions.forumSort = action.payload
         setCookie("ForumSortSearchOption" , action.payload , 365)
-      }else if (state.page === 'store'){
+      }else if (state.page === '/store'){
         state.searchBoxData.store.searchOptions.storeSort = action.payload
         setCookie("StoreSortSearchOption" , action.payload , 365)
       } 
     },
 
     resetSendedQuery (state, _) {
-      if(state.page === 'forum'){
+      if(state.page === '/forum'){
         state.searchBoxData.forum.searchOptions.sendedQuery = null
-      }else if (state.page === 'store'){
+      }else if (state.page === '/store'){
         state.searchBoxData.store.searchOptions.sendedQuery = null
       }
-    }
+    },
     
-
+    changeSearchVisibilty(state, action) {
+      state.isSearchVisible = action.payload  
+    },
+    changeThunkBackVisibilty(state, action) {
+      state.thunkBackground = action.payload  
+    }
 
   },
 
@@ -203,12 +209,15 @@ export const
   getCachedSearchBoxData,
   ifFilterWasDeleted,
   searchValueOnChange,
-  resetSendedQuery
+  resetSendedQuery,
+  changeSearchVisibilty,
+  changeThunkBackVisibilty
 } = SearchBoxSlice.actions;
 
 
 export const search_query = (state: RootState) => state.searchBoxReducer.search_query
 // data
+export const search_data = (state: RootState) => state.searchBoxReducer
 export const forum_search_data = (state: RootState) => state.searchBoxReducer.searchBoxData.forum
 export const store_search_data = (state: RootState) => state.searchBoxReducer.searchBoxData.store
 export const search_filters = (state: RootState) => state.searchBoxReducer.filters

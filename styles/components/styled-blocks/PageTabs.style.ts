@@ -10,6 +10,7 @@ export const TabsContainer_STY  = styled.div`
     row-gap:14px;
     border-radius: 6px;
     margin-top: 0px;
+
 `
 
 
@@ -26,7 +27,6 @@ export const TabText_STY = styled.p`
     align-items: center;
     /* align-items: center; */
     color: #63696c;
-    transition:0.4s;
     font-size: 14px;    
     text-transform: uppercase;
     line-height: 18px;
@@ -44,7 +44,6 @@ export const Line_STY = styled.div`
     opacity:1;
     height: 2px;
     background-color: ${({theme }) =>theme.colors.white_1 };
-    transition:0.4s;
 `
 
 export const TabTagsAndResults_STY = styled.div`
@@ -91,7 +90,6 @@ export const TabTags_STY = styled.button`
     border-radius: 10px;
     cursor: pointer;
     background-color: transparent;
-    transition: 0.4s;
     font-size: 14px;
     font-family: r;
     background-color:${(props:{theme:ThemeType , tagFocus:boolean}) => props.tagFocus ? props.theme.backgrounds.background3 : "transparent"};
@@ -142,7 +140,7 @@ export const TabButtonSeperator_STY = styled.div`
     background-color: #63696c;
 `
 
-export const TabButton_STY = styled.button`
+export const TabButton_STY = styled.button<{tabFocus:boolean}>`
     display: flex;
     justify-content: space-between;
     border: none;
@@ -150,7 +148,6 @@ export const TabButton_STY = styled.button`
     line-height: 18px;
     font-family: s;
     background-color: transparent;
-    color: #63696c;
     cursor: pointer;
     font-weight: 600;
     align-items:center;
@@ -164,13 +161,16 @@ export const TabButton_STY = styled.button`
     }
     div
     {
-        height: ${(props : {tabFocus:boolean}) => props.tabFocus ? "2px" : "0px"};
-        width: ${(props:{tabFocus:boolean}) => props.tabFocus && '100%'};
+        height: ${({tabFocus}) => tabFocus ? "2px" : "0px"};
+        width: ${({tabFocus}) => tabFocus && '100%'};
     }
-p {
+    p {
         color: ${({theme , tabFocus}) => tabFocus ? theme.colors.orange_1 : theme.colors.gray_2};
     }
-    
+    ${TabText_STY}
+    {
+        color: ${({theme , tabFocus}) =>  tabFocus ? theme.text_hover.hover1 : theme.texts.text2 };
+    }
     &:hover{
        
             ${Line_STY}

@@ -6,13 +6,14 @@ export const Cave_Tabs_Sty = styled.div`
     /* display: flex; */
     background-color: ${({theme}) => theme.colors.black_3};
     position: sticky;
-    top: 20px;
-    padding-top: 138px;
-    width: 100%;
-
+    top: 60px;
+    padding-top: 65.5px;
+    width: 101%;
+    margin-left: -0.5px;
+    z-index: 5;
     .tabFilters{
         position: absolute;
-        top: 160px;
+        top: 83px;
         right:40px;
         display: flex;
         justify-content: center;
@@ -22,16 +23,15 @@ export const Cave_Tabs_Sty = styled.div`
         color: ${({theme}) => theme.texts.text2};
         background-color: transparent;
         cursor: pointer;        
-
     }
 
 `
 export const Cave_Tabs_Cont_Sty = styled.div`
     display: flex;
     background-color: transparent;
-    z-index: 2;
+    z-index: 5;
     width: auto;
-    overflow: hidden;
+    /* overflow: hidden; */
     padding-right: 5px;
     position: relative;
     align-items: center;
@@ -86,12 +86,15 @@ export const Cave_Tab_Sty = styled.button<{active:boolean , order:number}>`
     justify-content: center;
     padding-bottom: 53px;
     position: relative;
+    height: 54px;
+    box-sizing: border-box;
     padding: 22px 48px;
     font-size: 14px;
     text-transform: uppercase;
     background-color: ${({active , theme}) => active ? theme.colors.black_1 : theme.colors.black_3};
     color: ${({active , theme}) => active ? theme.colors.white_1 : theme.colors.gray_2};
     border: none;
+    /* margin-bottom: ${({active}) => active ? '0px' : '-6px'}; */
     cursor: pointer;
     border-radius: ${({active , order }) => active ? "15px 15px 0px 0px !important" : (order > 0  ? "0px 0px 15px 15px" : "0px 0px 15px 0px")};
     &:focus {

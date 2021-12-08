@@ -9,7 +9,7 @@ import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex'
 import { MainPartOfPageStyle, SidePartOfPageStyle } from '../styles/pages/Page.styled'
 import { useScrollYPosition } from 'react-use-scroll-position';
 import { forumSearch, storeSearch } from '../app/thunks/SearchBoxThunks'
-import {  forum_search_data,  getCachedSearchBoxData, searchValueOnChange, resetSendedQuery, search_query } from '../app/feature/SearchBox.slice'
+import {  forum_search_data,  getCachedSearchBoxData, searchValueOnChange, resetSendedQuery, search_query, search_data, changeSearchVisibilty } from '../app/feature/SearchBox.slice'
 import { getFiltersFromCache } from '../app/feature/PageFilters.slice'
 import { createProductThunk } from '../app/thunks/CreateProductThunks'
 import { getAccessToken } from '../helpers/token/TokenHandle'
@@ -19,6 +19,7 @@ import {
     SearchBoxContainer_STY, 
     SearchBoxPage_STY, 
     SearchBoxThunkAndCont_STY, 
+    SearchBoxThunk_STY, 
     SearchBox_STY, 
     SearchButtonLupa_STY, 
     SearchCont_STY, 
@@ -34,11 +35,16 @@ interface Props {
 function SearchBox({}: Props): ReactElement {
     const router = useRouter()
     const [pagePath, setpagePath] = useState("")
+    const dispatch = useAppDispatch()
+    const searchData = useAppSelector(search_data)
+
+    const {isSearchVisible} = searchData
+
+    const [boxFocused, setboxFocused] = useState(false)
     const searchBoxRef = useRef<HTMLDivElement>(null)
     const searchContRef = useRef<HTMLDivElement>(null)
     const searchInputRef = useRef<HTMLInputElement>(null)
     const searchNavRef = useRef<HTMLDivElement>(null)
-    const dispatch = useAppDispatch()
     const scrollY = useScrollYPosition();
     const forumSearchData = useAppSelector(forum_search_data)
 
@@ -57,7 +63,6 @@ function SearchBox({}: Props): ReactElement {
         dispatch(searchValueOnChange(e))
     }
 
-    const [direction, setDirection] = useState('visible')
     const { isScrollingUp, isScrollingDown } = useScrollDirection()
 
     const searchSizechange = (event:string) => {
@@ -160,25 +165,27 @@ function SearchBox({}: Props): ReactElement {
 
     
     const searchScrollControl = async (router:any) => {
-        if(router.asPath !== '/')
-        {
-            isScrollingDown && searchBoxRef.current!.setAttribute("style", `margin-top: 60px;`) 
-            // console.log(searchContRef.current!.style.position)
-        }   
+            if(isScrollingDown && !boxFocused)
+              dispatch(changeSearchVisibilty('not-visible'))
     }
 
     const thunkHasHovered = async (router:any) => {
-        searchContRef.current!.setAttribute("style", `top: 60px;`) 
+        // searchContRef.current!.setAttribute("style", `top: 60px;`) 
+        dispatch(changeSearchVisibilty('not-visible'))
     }
 
     useEffect( () => {
         if(isScrollingDown){
             searchScrollControl(router.asPath)
         }
-        if(isScrollingDown){
-            searchScrollControl(router.asPath)
-        }
+        
     }, [isScrollingDown,  router.asPath , scrollY])
+
+    useEffect( () => {
+        if(scrollY === 0){
+            dispatch(changeSearchVisibilty('visible'))
+        }
+    }, [scrollY])
 
 
     useEffect(() => {
@@ -217,12 +224,12 @@ function SearchBox({}: Props): ReactElement {
     return (
         
         <SearchBoxContainer_STY  scrollTopValue={scrollSearchBox} ref={searchContRef} path={router.asPath} style={SearchContDesign}>
-                <SearchBoxThunkAndCont_STY  ref={searchBoxRef} direction={direction}>
-                    <SearchBox_STY path={router.asPath} direction={direction} > 
+                <SearchBoxThunkAndCont_STY   ref={searchBoxRef} direction={isSearchVisible}>
+                    <SearchBox_STY  onMouseLeave={() => (!boxFocused && scrollY > 0) ? dispatch(changeSearchVisibilty('not-visible')) : null} path={router.asPath} direction={isSearchVisible} > 
                        {router.asPath !=='/' &&  <SearchBoxPage_STY>{pagePath}</SearchBoxPage_STY>}
                         <SearchCont_STY path={router.asPath}>
                             <SearchButtonLupa_STY onClick={searchHandleWithSubmit}><FontAwesomeIcon  icon={faSearch}/></SearchButtonLupa_STY>
-                            <SearchInput_STY  path={router.asPath} onKeyDown={(e:any) => searchHandleWithEnter(e.keyCode)} value={searchQuery}  onChange={(e:any) => changeSearchValue(e.target.value)}   placeholder="Search..." ref={searchInputRef} onFocus={() => searchSizechange('focus')} onBlur={() => searchSizechange('blur')}  type="text" /> 
+                            <SearchInput_STY onFocus={() => setboxFocused(true)} onBlur={() => setboxFocused(false)}  path={router.asPath} onKeyDown={(e:any) => searchHandleWithEnter(e.keyCode)} value={searchQuery}  onChange={(e:any) => changeSearchValue(e.target.value)}   placeholder="Search..." ref={searchInputRef}   type="text" /> 
                             {router.asPath !=='/' && <SearchNav_STY  path={router.asPath} ref={searchNavRef}>
                                 {/* <SearchNavQuery>
                                     <FontAwesomeIcon  icon={faSearch}/>
@@ -236,7 +243,8 @@ function SearchBox({}: Props): ReactElement {
                         </SearchCont_STY>
                         {pagePath !== "Home" && <AddQuesitionCont_STY onClick={handleAddClick}>ADD</AddQuesitionCont_STY>}
                     </SearchBox_STY>
-                    {/* {(pagePath !== "Home") && <SearchBoxThunk onMouseMove={()=>setDirection("visible")} direction={direction} >	• 	•	•</SearchBoxThunk>} */}
+                    
+                    {(pagePath !== "Home") && <SearchBoxThunk_STY isBackVisible={searchData.thunkBackground === 'visible'}  onMouseMove={()=>dispatch(changeSearchVisibilty("visible"))} direction={isSearchVisible} ><div>	• 	•	• </div></SearchBoxThunk_STY>}
                 </SearchBoxThunkAndCont_STY>
                 
         </SearchBoxContainer_STY>

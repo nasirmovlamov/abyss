@@ -1,7 +1,9 @@
+import { blue_1 } from './../styles/global/styled-utils/settings/Colors';
 import { autoErrorToaster } from './../components/Notify/AutoErrorToaster';
 import parse from 'html-react-parser';
 import { autoErrorToasterWithMessage } from '../components/Notify/AutoSuccessToast';
 import ReactDOMServer from 'react-dom/server';
+import StarCountShow from '../components/StarCountShow';
 
 export const parseHtml = (html: string) => {
 
@@ -30,7 +32,7 @@ export const parseHtml = (html: string) => {
             if(dataDenotationCharOfSpan === '@'){
                 newHtml = newHtml.replace(mentionsArray[i] , `
                     <div  style="column-gap:10px;border-radius:10px;color:red; width:100%;background:white;height:50px;display:flex;justify-content:center;align-items:center;"> 
-                        <img src="https://i.mycdn.me/image?id=559642968917&t=0&plc=MOBILE&tkn=*t5nkwHOj9wB3Z-oh7v8wpLITnGs"  width="30px" height="30px" style="object-fit:cover;"/>  
+                        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.producthunt.com%2Fposts%2Favatar-maker-2&psig=AOvVaw0P88q8euO2gYA-rO8AB0w8&ust=1638971346069000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCKC7vPrq0fQCFQAAAAAdAAAAABAI"  width="30px" height="30px" style="object-fit:cover;"/>  
                         <a href="${hrefOfSpan}" target="_blank" style="text-decoration:none;">PRODUCT ${dataIdOfSpan}</a>
                     </div>
                 `)
@@ -94,11 +96,17 @@ export const parseHtmlWithMention = (html: string , linkedProducts: any[] ) => {
 
             if(dataDenotationCharOfSpan === '@'){
                 newHtml = newHtml.replace(mentionsArray[i] , `
-                    <div  style="padding-top:10px;padding-bottom:10px;column-gap:10px;border-radius:10px;color:red; width:100%;background:white;height:auto;display:flex;justify-content:center;align-items:flex-start;"> 
-                        <img src="https://icon-library.com/images/product-icon-vector/product-icon-vector-10.jpg"  width="70px"  style="object-fit:cover;height:100%;"/>  
+                    <div  style="padding:10px;padding-bottom:10px;column-gap:10px;border-radius:10px;color:red; width:100%;background:#141618;height:auto;display:flex;align-items:flex-start;overflow:hidden;"> 
+                        <div>
+                            <img src="https://musacivak.com/assets/images/avatar.png"  width="70px" height="70px" style="object-fit:cover;"/>  
+                            <p style='color:gray;'>Username</p>
+                        </div>    
+                    
                         <div style="display:flex;flex-direction:column;row-gap:5px;">
-                            <a href="${hrefOfSpan}" target="_blank" style="font-size:20px;">${productName}</a>
-                            <p href="${hrefOfSpan}" target="_blank" style="font-size:15px;">${productDescription}</p>
+                            <a href="${hrefOfSpan}" target="_blank" style="font-size:20px;color:${blue_1};text-decoration:none;white-space:nowrap;">${productName}</a>
+                            <div style="display:flex;">
+                                
+                            </div>
                         </div>
                     </div>
                 `)
@@ -106,7 +114,7 @@ export const parseHtmlWithMention = (html: string , linkedProducts: any[] ) => {
             }else if(dataDenotationCharOfSpan  === "#")
             {
                 newHtml = newHtml.replace(mentionsArray[i] , `
-                <div  style="column-gap:10px;border-radius:10px;color:red; width:100%;background:green;height:50px;display:flex;justify-content:center;align-items:center;"> 
+                <div  style="column-gap:10px;border-radius:10px;color:red; width:100%;background:#141618;height:50px;display:flex;justify-content:center;align-items:center;"> 
                     <img src=""  width="30px" height="30px" style="object-fit:cover;"/>  
                     <a href="${hrefOfSpan}" target="_blank" style="text-decoration:none;">User ${dataIdOfSpan}</a>
                     <button>salam qaqa</button>
@@ -124,5 +132,5 @@ export const parseHtmlWithMention = (html: string , linkedProducts: any[] ) => {
     }
     const removedImageTags = finalHtml.replace(/<img(.*?)>/g, '')
     const removedCodeTags = removedImageTags.replace(/<code(.*?)>/g, '')
-    return parse(removedCodeTags);
+    return parse(finalHtml);
 }  
