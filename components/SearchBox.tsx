@@ -38,6 +38,16 @@ function SearchBox({}: Props): ReactElement {
     const dispatch = useAppDispatch()
     const searchData = useAppSelector(search_data)
 
+
+
+
+
+
+
+
+
+
+
     const {isSearchVisible} = searchData
 
     const [boxFocused, setboxFocused] = useState(false)

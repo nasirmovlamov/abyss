@@ -5,6 +5,7 @@ import { ThemeType } from '../../global/styled-utils/settings/Theme.style';
 
 export const SingleTabsContainer  = styled.div<{isSearchBarVisible:string}>`
     /* height:103px; */
+    width:100%;
     display: flex;
     background-color: ${({theme}) => theme.colors.black_1};
     border-radius:10px;

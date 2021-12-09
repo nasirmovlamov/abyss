@@ -1,6 +1,6 @@
 import { Router, useRouter } from 'next/router'
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
-import { changeForumTabActive,  page_tabs } from '../app/feature/PageTabs.slice'
+import { changeForumTabActive,  changeProductTabActive,  page_tabs } from '../app/feature/PageTabs.slice'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex'
 import * as SinglePageTabs_STY from '../styles/components/styled-blocks/SinglePageTabs.styled'
@@ -67,12 +67,9 @@ function SinglePageTabs({}: Props): ReactElement {
                         pageTabs.productTabs.map
                         ( (tabs , index)=>
                             <>
-                                <NavLink key={tabs.id} href={`#${tabs.link}`}>
-                                    <SinglePageTabs_STY.SingleTabButton tabActive={tabs.isActive}>
+                                <SinglePageTabs_STY.SingleTabButton onClick={() => dispatch(changeProductTabActive(tabs))} tabActive={tabs.isActive}>
                                         <SinglePageTabs_STY.SingleTabText  >{tabs.tabName}</SinglePageTabs_STY.SingleTabText> 
-                                        {/* <SingleLine />     */}
-                                    </SinglePageTabs_STY.SingleTabButton>    
-                                </NavLink>
+                                </SinglePageTabs_STY.SingleTabButton>    
                                 {(index+1) < pageTabs.productTabs.length &&  <SinglePageTabs_STY.TabButtonSeperator_STY />   }
                             </>
                         )

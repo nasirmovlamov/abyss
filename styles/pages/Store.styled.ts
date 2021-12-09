@@ -10,12 +10,68 @@ export const StorePage = styled.div`
     padding-bottom: 50px;
     padding-top: 50px;
     box-sizing: border-box;
+    
 `
+
+export const StoreStatistics_STY = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    .element {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 15px;
+        /* width: 100px; */
+        /* height: 100px; */
+        .element-title{
+            font-size: 15px;
+            color:${({theme}) => theme.texts.text2};
+        }
+        .element-value{
+            font-size: 35px;
+            color:${({theme}) => theme.texts.text3};
+        }
+        .element-subtitle{
+            font-size: 15px;
+            color:${({theme}) => theme.texts.text2};
+            svg {
+                color: ${({theme}) => theme.texts.text3};
+            }
+        }
+    }
+`
+
 export const StoreTop = styled.div`
     width: 100%;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     row-gap: 11px;
+    background-color: ${({theme}) => theme.backgrounds.background1};
+    box-shadow: ${({theme}) => theme.boxshadows.boxshadow4};
+    border-radius: 10px;
+    padding: 20px;
+    .add-cave-cont
+    {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+    }
+    .add-cave-btn
+    {
+        width: 90px;
+        padding: 2px 15px;
+        background-color: ${({ theme }) => theme.backgrounds.background8};
+        box-shadow: ${({ theme }) => theme.boxshadows.boxshadow2};
+        position: relative; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        border-radius: 20px;
+        font-size: 18px;
+    }
 `
 
 export const StoreTopImgCont = styled.div`
@@ -24,17 +80,17 @@ export const StoreTopImgCont = styled.div`
     position: relative;
     justify-content: space-between;
     padding: 3px;
-    background-color: #d649ca;
     width: 238px;
     height: 137px;
-    border-top-right-radius: 17px;
-    border-bottom-left-radius: 4px;
+    border-radius: 15px;
     overflow: hidden;
+    background-color: ${({theme}) => theme.backgrounds.background3};
+    background-repeat: no-repeat;
+    background-size: cover;
 `
 
 
 export const StoreTopImg = styled.div`
-    position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -47,16 +103,13 @@ export const StoreTopAvatar = styled.div`
     border-radius: 50%;
     position: absolute;
     z-index: 2;
-    background-color: green;
     top:0px;
-    right: 0px;
-
+    left: 0px;
+    margin: 10px;
+    background-color: ${({theme}) => theme.backgrounds.background1};
 `
 export const StoreTopCodeLines = styled.div`
-    position: absolute;
     z-index: 2;
-    bottom:0px;
-    left: 0px;
     display: flex;
     flex-direction: column;
     padding: 5px;
@@ -72,10 +125,11 @@ export const StoreTopContent = styled.div`
     display: flex;
     flex-direction: column;
     position: relative;
-    padding: 3px;
+    row-gap: 10px;
 `
 export const StoreTopTitle = styled.h2`
-    
+    color: ${({theme}) => theme.texts.text4};
+    font-size: 20px;
 `
 export const Flexer = styled.div`
     display: flex;
@@ -83,10 +137,19 @@ export const Flexer = styled.div`
 `
 export const StoreTopRatingCont = styled.div`
     display: flex;
-    column-gap: 10px;
+    column-gap: 20px;
+    svg{
+        color: ${({theme}) => theme.colors.orange_2};
+    }
+    a {
+        color: ${({theme}) => theme.texts.text9};
+        text-decoration: none;
+    }
 `
 export const StoreTopRatingStars = styled.div`
     display: flex;
+    column-gap: 7px;
+    color: ${({theme}) => theme.texts.text2};
 `
 export const StoreTopRatingBought = styled.div`
     display: flex;
@@ -137,35 +200,38 @@ export const LabelCont = styled.div`
 
 export const LabelKey = styled.h3`
     font-size: 25px;
-    color: #032728;
+    color: ${({theme}) => theme.texts.text3};
 `
 
 export const LabelContent = styled.p`
     text-align: justify;
     font-size: 18px;
-    color: #032728;
+    color: ${({theme}) => theme.texts.text2};
 
 `
 
 export const ClipsCont = styled.p`
     display:flex;
-    height: 329px;
     width: 100%;
     flex-direction: column;
     row-gap: 10px;
 `
 export const ClipTitle = styled.h3`
     font-size: 25px;
-    color: #032728;
+    color: ${({theme}) => theme.texts.text3};
 `
 export const ClipBody = styled.div`
     display: flex;
     justify-content: space-between;
+    height: auto;
 `
 export const MainClip = styled.div`
     height: 100%;
-    background-color: gray;
     width: 532px;
+    img {
+        width: 100%;
+        object-fit: cover;
+    }
 `
 export const SideClips = styled.div`
     height: 100%;
@@ -179,7 +245,10 @@ export const SideClips = styled.div`
 export const SideClip = styled.div`
     width: 135px;
     height: 84px;
-    background-color: gray;
+    img {
+        width: 135px;
+        height: 100%;
+    }
 `
 
 
@@ -192,7 +261,7 @@ export const StoreForumCont = styled.div`
 
 export const StoreForumTitle = styled.h3`
     font-size: 25px;
-    color: #032728;
+    color:  ${({theme}) => theme.texts.text3};
 `
 
 export const StoreForumBody = styled.div`
@@ -212,7 +281,7 @@ export const StoreDiscussionCont = styled.div`
 
 export const StoreDiscussionTitle = styled.h3`
     font-size: 25px;
-    color: #032728;
+    color:  ${({theme}) => theme.texts.text3};
 `
 
 export const StoreDiscussionBody = styled.div`

@@ -301,13 +301,12 @@ export const AddAnswerSubmit_STY = styled.button`
     padding: 0px;
     height: 30px;
     color:${({theme}) => theme.texts.text2};
-
     background-color: ${({theme}) => theme.backgrounds.background3};
     box-shadow: ${({theme}) => theme.boxshadows.boxshadow5};
     border: none;
     align-self:flex-end;
     border-radius:6px ;
-    margin-top: 10px;
+    margin-top: 30px;
     cursor: pointer;
     transition: 0.5s;
     &:hover 

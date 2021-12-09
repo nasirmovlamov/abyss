@@ -16,6 +16,11 @@ export const StoreListingProductStyle = styled.div`
     background-color: ${({theme}) => theme.backgrounds.background1};
     box-shadow: ${({theme}) => theme.boxshadows.boxshadow4};
 
+    &:hover {
+        box-shadow: ${({theme}) => theme.boxshadows.boxshadow8};
+    }
+    cursor: pointer;
+
 `   
 export const StoreSideProductStyle = styled.div`
     display: flex;

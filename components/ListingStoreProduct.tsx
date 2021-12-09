@@ -53,8 +53,8 @@ function ListingStoreProduct({data}: Props): ReactElement {
     
     
     return (
+        <NavLink href={`store/${data.id}/${data.slug}`}>
         <StoreListingProductStyle>
-
             <ProductImageAndContent>
                 <ProductLanguageAndImage>
                     {/* <ProductPerson src={data.avatar}/> */}
@@ -76,7 +76,7 @@ function ListingStoreProduct({data}: Props): ReactElement {
 
                 <ProductContentCont>
                         <ProductContent>
-                            <NavLink href={"store/1/test"}><ProductTitle>{data.name}</ProductTitle></NavLink>
+                            <ProductTitle>{data.name}</ProductTitle>
                             <ProductDetailCont>
                                 <ProductStarCont><StarCountShow count={4.3}/> {data.starCount}</ProductStarCont>
                                 <ProductSoldCont><FontAwesomeIcon icon={faDownload}/> {data.download_count}</ProductSoldCont>
@@ -109,6 +109,7 @@ function ListingStoreProduct({data}: Props): ReactElement {
             </ProductSideDetailsCont>
            
         </StoreListingProductStyle> 
+        </NavLink>
     )
 }
 

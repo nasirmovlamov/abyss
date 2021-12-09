@@ -33,7 +33,7 @@ export const NavForShadow_STY = styled.nav`
     justify-content:space-between;
     align-items:center;
     background-color: ${({theme}) => theme.backgrounds.background1};
-    box-shadow: ${({theme}) => theme.boxshadows.boxshadow1};
+    box-shadow: ${({theme}) => theme.boxshadows.boxshadow9};
     position: fixed;
     top:0px;
     left:0px;

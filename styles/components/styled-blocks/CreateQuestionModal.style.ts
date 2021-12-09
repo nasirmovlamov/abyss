@@ -22,6 +22,17 @@ export const QuestionCreateForm = styled.form`
     border-radius:10px;
     height: auto;
 `
+export const DetailsCont_STY = styled.div`
+    display: flex;
+    width: 100%;
+    border-radius: 10px;
+    padding: 25px 48px;
+    box-sizing: border-box;
+    flex-direction: column;
+    background-color: ${({theme}) => theme.backgrounds.background2};
+    box-shadow: ${({theme}) => theme.boxshadows.boxshadow1};
+    row-gap: 50px;
+`
 
 export const LabelCont = styled.div`
     display: flex;

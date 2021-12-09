@@ -60,6 +60,11 @@ export const CodeMirror_STY = styled.div`
         border-radius: 10px;
         overflow: hidden;
         max-height: 389px;
+
+        &:hover {
+            box-shadow: ${({theme}) => theme.boxshadows.boxshadow8};
+        }
+        
     }
 `
 
@@ -69,6 +74,9 @@ export const SelectLangType_STY = styled.select`
     color: ${({ theme }) => theme.texts.text1};
     width: 150px;
     border-radius: 10px;
+    &:hover {
+            box-shadow: ${({theme}) => theme.boxshadows.boxshadow8};
+        }
     
 `
 

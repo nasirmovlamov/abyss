@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 export const CreateThreadEDITORWrapper_STY = styled.div`
     display: flex;
+    &:hover {
+            box-shadow: ${({theme}) => theme.boxshadows.boxshadow8};
+    }
+    border-radius: 10px;
     .quill{
         width: 100%;
         box-shadow: ${({theme}) => theme.boxshadows.boxshadow1};
@@ -32,9 +36,13 @@ export const CreateThreadEDITORWrapper_STY = styled.div`
 
 export const CreateAddAnswerEDITORWrapper_STY = styled.div`
     display: flex;
+    &:hover {
+        box-shadow: ${({theme}) => theme.boxshadows.boxshadow8};
+
+    }
+    border-radius: 10px;
     .quill{
         width: 100%;
-        overflow: hidden;
         box-shadow: ${({theme}) => theme.boxshadows.boxshadow1};
         border-radius:10px 10px 10px 10px;
         .ql-toolbar{
@@ -50,7 +58,6 @@ export const CreateAddAnswerEDITORWrapper_STY = styled.div`
             border-radius:0px 0px 10px 10px;
             max-height:350px;
             padding-bottom:20px;
-            overflow-y:auto;
             .ql-editor {
                 color:${({theme}) => theme.texts.text1};
             }

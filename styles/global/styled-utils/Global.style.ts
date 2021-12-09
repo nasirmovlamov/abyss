@@ -44,7 +44,7 @@ export const GlobalStyle = createGlobalStyle<Props>`
 
         /* Track */
         &::-webkit-scrollbar-track {
-            background: #949597;
+            background: #0f1113;
             border-radius: 5px;
         }
 

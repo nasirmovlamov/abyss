@@ -55,6 +55,8 @@ export const lightTheme = {
       boxshadow5:boxshadows.bx_shadow_dark5,
       boxshadow6:boxshadows.bx_shadow_dark6,
       boxshadow7:boxshadows.bx_shadow_dark7,
+      boxshadow8:boxshadows.bx_shadow_dark8,
+      boxshadow9:boxshadows.bx_shadow_dark9,
     },
 
     titles:{

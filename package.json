@@ -49,6 +49,7 @@
     "react-quilljs": "^1.2.17",
     "react-redux": "^7.2.4",
     "react-scroll": "^1.8.4",
+    "react-spinners": "^0.11.0",
     "react-use-scroll-direction": "^0.1.0",
     "react-use-scroll-position": "^2.0.0",
     "redux": "^4.1.1",

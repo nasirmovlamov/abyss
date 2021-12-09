@@ -66,8 +66,13 @@ export const CreateProductStep2_CONT_STY = styled.div`
         background-color: transparent;
         box-shadow: ${({theme}) => theme.boxshadows.boxshadow1};
         color: ${({theme}) => theme.texts.text2};
-        &:focus{
+       
+        &:focus {
             color: ${({theme}) => theme.texts.text1};
+            background-color: ${({theme}) => theme.backgrounds.background3};
+        }
+        &:hover {
+            box-shadow: ${({theme}) => theme.boxshadows.boxshadow8};
         }
     }
     .error {
@@ -126,6 +131,9 @@ export const EditorWraper_STY = styled.div`
     width: 100%;
     box-shadow: ${({theme}) => theme.boxshadows.boxshadow1};
     border-radius:10px 10px 10px 10px;
+    &:hover {
+            box-shadow: ${({theme}) => theme.boxshadows.boxshadow8};
+        }
     .ql-toolbar{
         border-radius:10px 10px 0px 0px;
         border-color: transparent;
@@ -168,6 +176,9 @@ export const CreateProduct_ClipsCont_STY = styled.div`
     border-radius: 10px 10px 10px 10px;
     row-gap: 10px;
     box-shadow: ${({theme}) => theme.boxshadows.boxshadow1};
+    &:hover {
+            box-shadow: ${({theme}) => theme.boxshadows.boxshadow8};
+        }
     .clipsSectionCont {
         width:100%;
         max-height: 400px;
@@ -279,6 +290,7 @@ export const CreateProduct_TagsCont_STY = styled.div`
     width: 100%;
     flex-direction: column;
     row-gap: 10px;
+    
 `
 
 export const CreateProduct_Tags_STY = styled.div`
@@ -294,6 +306,9 @@ export const CreateProduct_Tags_STY = styled.div`
     row-gap: 10px;
     flex-wrap: wrap;
     align-items: center;
+    &:hover {
+            box-shadow: ${({theme}) => theme.boxshadows.boxshadow8};
+        }
     .tag {
         padding: 5px;
         background-color: ${({theme}) => theme.backgrounds.background4};

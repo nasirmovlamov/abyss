@@ -30,6 +30,11 @@ export const FormQuestionCont = styled.div`
         height: auto;
         justify-content: flex-start;
     }
+    
+    &:hover {
+        box-shadow: ${({theme}) => theme.boxshadows.boxshadow8};
+    }
+    cursor: pointer;
 `
 
 export const PersonCont = styled.div`

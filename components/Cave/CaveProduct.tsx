@@ -1,0 +1,63 @@
+import React from 'react'
+import { CaveProduct_STY } from '../../styles/components/styled-blocks/Cave_Style/CaveProduct.style'
+import Image from 'next/image'
+import StarCountShow from '../StarCountShow'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit, faHeart } from '@fortawesome/free-solid-svg-icons'
+import mainLogo from '../../public/main-logo.svg'
+interface Props {
+    
+}
+
+const CaveProduct = (props: Props) => {
+    return (
+        <CaveProduct_STY>
+            <p className="title">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, laborum delectus molestiae commodi numquam eligendi dolorem distinctio perferendis tempora nulla fugit expedita deleniti molestias voluptas, odio necessitatibus ullam. Sapiente, temporibus?
+            </p>
+
+            <div className="details">
+                <div className="logo">
+                    <Image src={mainLogo} width='22' height='22' alt='company-logo'/>
+                </div>
+
+                <div className="flex">
+                    <StarCountShow count={4.5}/>
+                    <span className='text'>621</span>
+                </div>
+
+                <div className="flex">
+                    <span className='number'>17.3K</span>
+                    <span className='text'>views</span>
+                </div>
+
+                <div className="flex">
+                    <span className='number'>9</span>
+                    <span className='text'>iterations</span>
+                </div>
+            </div>
+
+            <div className="actions">
+                <div className="tags">
+                    <button className="tag">python</button>
+                    <button className="tag">nodejs</button>
+                    <button className="tag">react</button>
+                </div>
+
+                <div className="editCont">
+                    <button className='free'>FREE</button>
+                    <div className="buttonsCont">
+                        <div className="button">
+                            <FontAwesomeIcon icon={faEdit}/>
+                        </div>
+                        <div className="button">
+                            <FontAwesomeIcon icon={faHeart}/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </CaveProduct_STY>
+    )
+}
+
+export default CaveProduct

@@ -10,6 +10,7 @@ import { inventoryTabs } from '../../../../app/store/states/Cave_States/CaveTabs
 import AnswerSkeleton from '../../../Skeletons/AnswerSkeleton'
 import { BASE_API_INSTANCE } from '../../../../helpers/api/BaseInstance'
 import ListingStoreProduct from '../../../ListingStoreProduct'
+import CaveProduct from '../../CaveProduct'
 
 interface Props {
     
@@ -110,7 +111,7 @@ const Cave_Inventory = (props: Props) => {
     return (
         <CaveInventoryBlocks_Sty>
             <CaveInventoryDefaultBlock_Sty ref={inViewRefInventorySavedBlock}    id='#inventorysavedBlock'>
-                {inventoryData.map((item: any, index: number) => <ListingStoreProduct key={index} data={item}/>)}
+                {inventoryData.map((item: any, index: number) => <CaveProduct key={index}/>)}
                 
                 {
                     inventoryStatus === 'pending' &&

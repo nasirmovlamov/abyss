@@ -23,6 +23,7 @@ import { side_product_data } from '../../app/feature/SideProducts.slice'
 import ListingStoreProduct from '../../components/ListingStoreProduct'
 import SideProduct from '../../components/SideProduct'
 import SideProductCont from '../../components/SideProductCont'
+import BeatLoader from "react-spinners/ClipLoader";
 interface Props {
     
 }
@@ -67,26 +68,17 @@ function Forum({}: Props): ReactElement {
                     } 
                     
                     {forumSearchData.status === "loading" && 
-                        <div style={{width:"100%" , display:"flex", flexDirection:"column", rowGap:"10px"}}>
-                            <FormQuestionSkeleton/>
-                            <FormQuestionSkeleton/>
-                            <FormQuestionSkeleton/>
-                            <FormQuestionSkeleton/>
-                            <FormQuestionSkeleton/>
-                            <FormQuestionSkeleton/>
-                            <FormQuestionSkeleton/>
-                            <FormQuestionSkeleton/>
-                            <FormQuestionSkeleton/>
-                            <FormQuestionSkeleton/>
-                            <FormQuestionSkeleton/>
+                        <div style={{width:"100%" , display:"flex", flexDirection:"column", rowGap:"10px", alignItems:'center'}}>
+                            <BeatLoader color={'white'} loading={forumSearchData.status === "loading"}  size={150} />
                         </div>
                     } 
 
                     {forumSearchData.status === "error" && <div>Error ...</div>} 
 
-                    {forumSearchData.results_number >0 ?
+                    {
+                        forumSearchData.results_number >0 ?
                         <div ref={inViewRefLoaderDown} style={{width:"100%" , display:"flex", flexDirection:"column", rowGap:"10px"}}>
-                                <FormQuestionSkeleton/>
+                            <BeatLoader color={'white'} loading={forumSearchData.status === "loading"}  size={150} />
                         </div>
                         :
                         <div>

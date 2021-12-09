@@ -73,6 +73,8 @@ export const SelectThreadType = styled.button<{selected :boolean}>`
         }
         .textBlock {
             background-color:${({theme , selected}) => selected ? theme.backgrounds.background2 :theme.backgrounds.background2} ;
+            box-shadow: ${({theme}) => theme.boxshadows.boxshadow8};
+        
         }
     }
     

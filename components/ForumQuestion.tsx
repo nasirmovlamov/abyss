@@ -7,7 +7,7 @@ import { faThumbsUp } from '@fortawesome/free-regular-svg-icons'
 import NavLink from './NavLink'
 import { QuestionStatisticButton_STY, QuestionStatistics_STY, VotePercentage_STY } from '../styles/pages/SingleQuestionPage.styled'
 import thumbs_up from "/public/thumbs-up.svg"
-import { parseHtml, parseHtmlWithMention } from '../logic/htmlParser'
+import { parseHtml, parseHtmlWithMention, parseHtmlWithMentionremoveImgAndCodeBlock } from '../logic/htmlParser'
 import { useAppDispatch } from '../app/store/hooks'
 import {  set_side_product_data } from '../app/feature/SideProducts.slice'
 import { getSideProducts } from '../app/thunks/SideProducts.thunk'
@@ -43,7 +43,7 @@ function FormQuestion({data}: Props): ReactElement {
                     </Title>
                 </NavLink>
                 <Content> 
-                    {parseHtmlWithMention(data.content , [])}
+                    {parseHtmlWithMentionremoveImgAndCodeBlock(data.content , [])}
                 </Content>
 
                 <BottomSide>
