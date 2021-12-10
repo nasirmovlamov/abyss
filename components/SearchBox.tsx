@@ -20,6 +20,7 @@ import {
     SearchBoxPage_STY, 
     SearchBoxThunkAndCont_STY, 
     SearchBoxThunk_STY, 
+    SearchBoxThunk_STY2, 
     SearchBox_STY, 
     SearchButtonLupa_STY, 
     SearchCont_STY, 
@@ -57,7 +58,10 @@ function SearchBox({}: Props): ReactElement {
     const searchNavRef = useRef<HTMLDivElement>(null)
     const scrollY = useScrollYPosition();
     const forumSearchData = useAppSelector(forum_search_data)
-
+    const focusSearchHandle= (e:any) => {
+        setboxFocused(true)
+        e.target.select()
+    }
     const {searchOptions} = forumSearchData
     const forumSearchOptions = searchOptions
 
@@ -240,7 +244,7 @@ function SearchBox({}: Props): ReactElement {
                        {router.asPath !=='/' &&  <SearchBoxPage_STY>{pagePath}</SearchBoxPage_STY>}
                         <SearchCont_STY path={router.asPath}>
                             <SearchButtonLupa_STY onClick={searchHandleWithSubmit}><FontAwesomeIcon  icon={faSearch}/></SearchButtonLupa_STY>
-                            <SearchInput_STY onFocus={() => setboxFocused(true)} onBlur={() => setboxFocused(false)}  path={router.asPath} onKeyDown={(e:any) => searchHandleWithEnter(e.keyCode)} value={searchQuery}  onChange={(e:any) => changeSearchValue(e.target.value)}   placeholder="Search..." ref={searchInputRef}   type="text" /> 
+                            <SearchInput_STY onFocus={focusSearchHandle} onBlur={() => setboxFocused(false)}  path={router.asPath} onKeyDown={(e:any) => searchHandleWithEnter(e.keyCode)} value={searchQuery}  onChange={(e:any) => changeSearchValue(e.target.value)}   placeholder="Search..." ref={searchInputRef}   type="text" /> 
                             {router.asPath !=='/' && <SearchNav_STY  path={router.asPath} ref={searchNavRef}>
                                 {/* <SearchNavQuery>
                                     <FontAwesomeIcon  icon={faSearch}/>
@@ -260,7 +264,7 @@ function SearchBox({}: Props): ReactElement {
                 
         </SearchBoxContainer_STY>
         
-        {(pagePath !== "Home") && <SearchBoxThunk_STY isBackVisible={searchData.thunkBackground === 'visible'}  onMouseMove={()=>dispatch(changeSearchVisibilty("visible"))} direction={isSearchVisible} ></SearchBoxThunk_STY>}
+        {(pagePath !== "Home") && <SearchBoxThunk_STY2 isBackVisible={searchData.thunkBackground === 'visible'}  onMouseMove={()=>dispatch(changeSearchVisibilty("visible"))} direction={isSearchVisible} ></SearchBoxThunk_STY2>}
 
         </>
     )

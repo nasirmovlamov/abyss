@@ -38,7 +38,7 @@ export const NavForShadow_STY = styled.nav`
     top:0px;
     left:0px;
     height: 60px;
-    z-index: 1;
+    z-index: 8;
     width: 100%;
 `
 
@@ -81,7 +81,7 @@ export const Logo_STY = styled.div`
     justify-content:center;
     align-items:center;
     position:relative;
-    column-gap: 16px;
+    column-gap: 13px;
     &:hover ${LightShadow_STY} {
         opacity: 0.38;
     }
@@ -93,8 +93,10 @@ export const Logo_STY = styled.div`
     }
     img 
     {
+    margin-top: 6px;
+
         z-index: 1;
-        height: 48px;
+        
     }
 `
 export const LogoText_STY = styled.p`

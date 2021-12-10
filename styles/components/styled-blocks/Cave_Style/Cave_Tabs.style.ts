@@ -8,9 +8,9 @@ export const Cave_Tabs_Sty = styled.div`
     position: sticky;
     top: 60px;
     padding-top: 65.5px;
-    width: 101%;
-    margin-left: -0.5px;
-    z-index: 5;
+    width: 104%;
+    margin-left:-2px;
+    z-index: 7;
     .tabFilters{
         position: absolute;
         top: 83px;

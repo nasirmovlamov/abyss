@@ -3,8 +3,8 @@ import React, { ReactElement, useEffect,  useState } from 'react'
 import * as Header_STY from '../styles/components/styled-blocks/Navbar.style'
 //#endregion import styles
 import Image from 'next/image'
-import mainLogo from '/public/main-logo.svg'
-import mainLogoText from '/public/abyss-logo-side-text.svg'
+import mainLogo from '/public/main-logo-new.svg'
+import mainLogoText from '/public/main-logo-side-text-new.svg'
 import RegisterModal from './Modals/RegisterModal'
 import LoginModal from './Modals/LoginModal'
 import Modals from './Modals/Modals'
@@ -136,8 +136,12 @@ function Header({}: Props): ReactElement {
         <Header_STY.Nav_STY>
             <NavLink href={"/"} >
                 <Header_STY.Logo_STY> 
-                    <Image width="48px" src={mainLogo} height="49px"  alt={"Abyss logo"}/>  
+                    <div style={{marginTop:'6px'}}>
+                    <Image  width="49px" src={mainLogo} height="49px"  alt={"Abyss logo"}/>  
+                    </div>
+                    <div  style={{marginTop:'12px'}}>
                     <Image width="99px" src={mainLogoText}  height='40px'  alt={"Abyss text"}/>  
+                    </div>
                     <Header_STY.Light_STY/>
                     <Header_STY.LightShadow_STY/>
                     <Header_STY.LightShadow2_STY/> 

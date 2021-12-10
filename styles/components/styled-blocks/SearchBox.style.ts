@@ -9,7 +9,7 @@ export const SearchBoxContainer_STY = styled.div<{path:string , scrollTopValue:n
     height: ${(props) => props.path === "/" ? "70vh" : "auto"};
     justify-content: center;
     padding-right:112px;
-    z-index: 3;
+    z-index: 8;
     transition: 0.1s;
     position: ${(props) => props.path === "/" ? "relative" : "fixed"};
     transform: ${({scrollTopValue})=> `translateY(${scrollTopValue}px)`};
@@ -52,6 +52,41 @@ export const SearchBoxThunk_STY = styled.button<{direction:string , isBackVisibl
     position: fixed;
     top: 50px;
     height: 38px;
+    background-color: ${({theme , isBackVisible}) => "transparent"};
+    div {
+        width: 88px;
+        background-color: ${({theme}) => theme.backgrounds.background9};
+        height: 1   0px;
+        display: flex;
+        height: 14px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0px 0px 10px 10px;
+        box-shadow:${({theme}) => theme.boxshadows.boxshadow10} ;
+        color:black;
+    }
+`
+
+export const SearchBoxThunk_STY2 = styled.button<{direction:string , isBackVisible:boolean}>`
+    width: 840px;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    pointer-events: all;
+    border: none;
+    color: gray;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    /* opacity: 0; */
+    transform: ${({direction})=>direction === "not-visible" ? "translateY(0px)" : "translateY(-30px)"};
+    position: fixed;
+    top: 50px;
+    height: 38px;
+    margin-right: 112px;
+    z-index: 2;
     background-color: ${({theme , isBackVisible}) => isBackVisible ? theme.backgrounds.background3 : "transparent"};
     div {
         width: 88px;
