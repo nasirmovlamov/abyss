@@ -88,10 +88,7 @@ const SingleProductPage = (props: Props) => {
             const id = router.pathname.split('/')[2]
             const slug =  router.pathname.split('/')[3]
             dispatch(getSingleProduct({id: router.query.id , slug: router.query.slug}))
-            
-            setTimeout(() => {
-                getQuestions()
-            }, 500); 
+            getQuestions()
         }
     }, [])
 
@@ -254,7 +251,7 @@ const SingleProductPage = (props: Props) => {
                                 <StoreForumCont >
                                     <StoreForumTitle>Forum</StoreForumTitle>
                                     <StoreForumBody>
-                                        {/* {formQuestionsAPI.map((element , index) => <FormQuestion key={index} data={element}/>)}  */}
+                                        {formQuestionsAPI.map((element , index) => <FormQuestion key={index} data={element}/>)} 
                                     </StoreForumBody>
                                 </StoreForumCont>
                             </DetailsCont_STY>
