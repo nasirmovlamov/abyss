@@ -10,7 +10,6 @@ export const TabsContainer_STY  = styled.div`
     row-gap:14px;
     border-radius: 6px;
     margin-top: 0px;
-
 `
 
 

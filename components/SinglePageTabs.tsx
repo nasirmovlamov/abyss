@@ -39,7 +39,7 @@ function SinglePageTabs({}: Props): ReactElement {
         
 
     return (
-        <SinglePageTabs_STY.SingleTabsContainer ref={pageTabsContRef} isSearchBarVisible={searchData.isSearchVisible}>
+        <SinglePageTabs_STY.SingleTabsContainer scrollFromTop={pageTabsContRef.current!.getBoundingClientRect().top} ref={pageTabsContRef} isSearchBarVisible={searchData.isSearchVisible}>
             <SinglePageTabs_STY.SingleTabs>
                 {   
                     (

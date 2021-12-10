@@ -21,7 +21,7 @@ export const StorePage = styled.main`
     flex-direction: column;
     margin: auto;
     align-items: center;
-    row-gap: 15px;
+    row-gap: 14px;
     padding-top: 70px;   
 
     /* padding-top: 100px; */

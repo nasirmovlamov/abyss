@@ -4,7 +4,7 @@ export const black_3 = "#0F1113"
 
 export const gray_1 = "#B4B5B7"
 export const gray_2 = "#A3A6A8"
-export const gray_3 = "#9C9FA1"
+export const gray_3 = "#949597"
 export const gray_4 = "#6c6d6f"
 export const gray_5 = "#49505B"
 export const gray_6 = "#373a3f"

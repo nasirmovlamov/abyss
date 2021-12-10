@@ -306,7 +306,7 @@ export const AddAnswerSubmit_STY = styled.button`
     border: none;
     align-self:flex-end;
     border-radius:6px ;
-    margin-top: 30px;
+    margin-top: 14px;
     cursor: pointer;
     transition: 0.5s;
     &:hover 
@@ -317,7 +317,7 @@ export const AddAnswerSubmit_STY = styled.button`
 
 
 export const AnswersCont_STY = styled.div`
-    row-gap: 10px;
+    row-gap: 14px;
     display: flex;
     flex-direction: column;
     width: 100%;

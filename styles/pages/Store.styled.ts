@@ -205,9 +205,10 @@ export const LabelKey = styled.h3`
 
 export const LabelContent = styled.p`
     text-align: justify;
-    font-size: 18px;
-    color: ${({theme}) => theme.texts.text2};
-
+    font-size: 14px;
+    line-height: 26px;
+    color: ${({theme}) => theme.texts.text1};
+    text-ident:12px;
 `
 
 export const ClipsCont = styled.p`

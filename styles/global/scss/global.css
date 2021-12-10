@@ -48,13 +48,11 @@
 @font-face {
   font-family: m;
   src: local("system-ui"), local("-apple-system"), local("BlinkMacSystemFont"), local("Segoe UI"), local("Roboto"), local("Helvetica Neue"), local("Arial"), local("sans-serif"), local("Apple Color Emoji"), local("Segoe UI Emoji"), local("Segoe UI Symbol"), local("Noto Color Emoji");
-  font-weight: bolder;
 }
 
 @font-face {
   font-family: s;
   src: local("system-ui"), local("-apple-system"), local("BlinkMacSystemFont"), local("Segoe UI"), local("Roboto"), local("Helvetica Neue"), local("Arial"), local("sans-serif"), local("Apple Color Emoji"), local("Segoe UI Emoji"), local("Segoe UI Symbol"), local("Noto Color Emoji");
-  font-weight: bold;
 }
 
 @font-face {

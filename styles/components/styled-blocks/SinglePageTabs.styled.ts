@@ -3,7 +3,7 @@ import { ThemeType } from '../../global/styled-utils/settings/Theme.style';
 
 
 
-export const SingleTabsContainer  = styled.div<{isSearchBarVisible:string}>`
+export const SingleTabsContainer  = styled.div<{isSearchBarVisible:string , scrollFromTop:any}>`
     /* height:103px; */
     width:100%;
     display: flex;
@@ -16,7 +16,8 @@ export const SingleTabsContainer  = styled.div<{isSearchBarVisible:string}>`
     background-color: ${({theme}) => theme.backgrounds.background1};
     position: -webkit-sticky;
     position: sticky;
-    top: ${({isSearchBarVisible}) => isSearchBarVisible === "visible" ? '-120px' : "84px"} ;
+    transform: ${({isSearchBarVisible , scrollFromTop}) => (isSearchBarVisible  === "visible"  && scrollFromTop <= 84) ? 'translateY(-120px)' : "translateY(0px)"} ;
+    top: 84px ;
     z-index: 3;
     transition: 0.5s;
 `

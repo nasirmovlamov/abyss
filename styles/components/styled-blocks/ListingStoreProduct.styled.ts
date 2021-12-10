@@ -12,7 +12,6 @@ export const StoreListingProductStyle = styled.div`
     row-gap: 15px;
     width: 100%;
     height: 182px;
-    margin-bottom:20px ;
     background-color: ${({theme}) => theme.backgrounds.background1};
     box-shadow: ${({theme}) => theme.boxshadows.boxshadow4};
 
@@ -81,7 +80,7 @@ export const LanguageInfo = styled.div`
     bottom: 0px;
     margin: 10px;
     display: flex;
-    z-index: 3;
+    z-index: 2;
     width: 100%;
 `
 
