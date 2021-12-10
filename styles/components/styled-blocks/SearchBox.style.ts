@@ -48,20 +48,22 @@ export const SearchBoxThunk_STY = styled.button<{direction:string , isBackVisibl
     align-self: center;
     justify-content: center;
     /* opacity: 0; */
-    transform: ${({direction})=>direction === "not-visible" ? "translateY(0px)" : "translateY(-20px)"};
-    position: absolute;
+    transform: ${({direction})=>direction === "not-visible" ? "translateY(0px)" : "translateY(-30px)"};
+    position: fixed;
     top: 50px;
-    transition: 0.5s;
-    height: 30px;
+    height: 38px;
     background-color: ${({theme , isBackVisible}) => isBackVisible ? theme.backgrounds.background3 : "transparent"};
     div {
-        width: 200px;
-        background-color: ${({theme}) => theme.backgrounds.background4};
-        height: 20px;
+        width: 88px;
+        background-color: ${({theme}) => theme.backgrounds.background9};
+        height: 1   0px;
         display: flex;
+        height: 14px;
         align-items: center;
         justify-content: center;
-        border-radius: 0px 0px 5px 5px;
+        border-radius: 0px 0px 10px 10px;
+        box-shadow:${({theme}) => theme.boxshadows.boxshadow10} ;
+        color:black;
     }
 `
 

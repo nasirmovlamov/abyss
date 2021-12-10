@@ -44,7 +44,8 @@ export const lightTheme = {
       background5:colors.blue_3,
       background6:colors.white_1,
       background7:colors.gray_2,
-      background8:colors.orange_2
+      background8:colors.orange_2,
+      background9:colors.gray_4
     },
 
     boxshadows:{
@@ -57,6 +58,7 @@ export const lightTheme = {
       boxshadow7:boxshadows.bx_shadow_dark7,
       boxshadow8:boxshadows.bx_shadow_dark8,
       boxshadow9:boxshadows.bx_shadow_dark9,
+      boxshadow10:boxshadows.bx_shadow_dark10,
     },
 
     titles:{

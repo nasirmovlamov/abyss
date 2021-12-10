@@ -16,7 +16,7 @@ export const SingleTabsContainer  = styled.div<{isSearchBarVisible:string}>`
     background-color: ${({theme}) => theme.backgrounds.background1};
     position: -webkit-sticky;
     position: sticky;
-    top: ${({isSearchBarVisible}) => isSearchBarVisible === "visible" ? '-120px' : "74px"} ;
+    top: ${({isSearchBarVisible}) => isSearchBarVisible === "visible" ? '-120px' : "84px"} ;
     z-index: 3;
     transition: 0.5s;
 `

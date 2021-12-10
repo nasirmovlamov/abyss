@@ -18,6 +18,8 @@ export const  ModalCont_STY  = styled.div`
   /* justify-content: center; */
   /* align-items: center; */
   z-index: 999;
+  padding-right: 112px;
+
   background-color: rgba(0,0,0,0.8);
 ` 
 

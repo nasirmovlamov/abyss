@@ -29,9 +29,9 @@ function SinglePageTabs({}: Props): ReactElement {
 
     useEffect(() => {
         if(router.isReady){
-            if(pageTabsContRef.current!.getBoundingClientRect().top <= 74 && searchData.thunkBackground === 'not-visible'){
+            if(pageTabsContRef.current!.getBoundingClientRect().top <= 84 && searchData.thunkBackground === 'not-visible'){
                 dispatch(changeThunkBackVisibilty('visible'))
-            }else if(pageTabsContRef.current!.getBoundingClientRect().top > 74 && searchData.thunkBackground === 'visible') {
+            }else if(pageTabsContRef.current!.getBoundingClientRect().top > 84 && searchData.thunkBackground === 'visible') {
                 dispatch(changeThunkBackVisibilty('not-visible'))
             }
         }

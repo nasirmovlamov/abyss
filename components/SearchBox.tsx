@@ -233,7 +233,7 @@ function SearchBox({}: Props): ReactElement {
 
     
     return (
-        
+        <>
         <SearchBoxContainer_STY  scrollTopValue={scrollSearchBox} ref={searchContRef} path={router.asPath} style={SearchContDesign}>
                 <SearchBoxThunkAndCont_STY   ref={searchBoxRef} direction={isSearchVisible}>
                     <SearchBox_STY  onMouseLeave={() => (!boxFocused && scrollY > 0) ? dispatch(changeSearchVisibilty('not-visible')) : null} path={router.asPath} direction={isSearchVisible} > 
@@ -259,6 +259,10 @@ function SearchBox({}: Props): ReactElement {
                 </SearchBoxThunkAndCont_STY>
                 
         </SearchBoxContainer_STY>
+        
+        {(pagePath !== "Home") && <SearchBoxThunk_STY isBackVisible={searchData.thunkBackground === 'visible'}  onMouseMove={()=>dispatch(changeSearchVisibilty("visible"))} direction={isSearchVisible} ></SearchBoxThunk_STY>}
+
+        </>
     )
 }
 
