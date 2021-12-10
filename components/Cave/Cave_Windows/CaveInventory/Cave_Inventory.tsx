@@ -100,7 +100,6 @@ const Cave_Inventory = (props: Props) => {
     useEffect(() => {
         if(inViewInventoryLoaderBlock)
         {
-            console.log("YES")
             getInventoryData()
         }
     })
