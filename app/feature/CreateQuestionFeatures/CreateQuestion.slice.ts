@@ -128,11 +128,13 @@ export const CreateQuestionSlice = createSlice({
         // CREATE QUESTION
         builder.addCase(createQuestionThunk.fulfilled, (state, {payload}) => {
             autoSuccessToaster(payload.message)
+
         }),
         builder.addCase(createQuestionThunk.pending, (state, {payload}) => {
         }),
         builder.addCase(createQuestionThunk.rejected, (state, {payload}) => {
             autoErrorToaster(payload)
+            return  
         })
 
 

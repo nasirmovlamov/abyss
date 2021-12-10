@@ -19,6 +19,7 @@ import {
     CreateThread_Button_PREVOIUS, 
     CreateThread_RightButtons_flexer,
     CreateThread_StepCont} from '../../../styles/components/styled-blocks/Modal_Style/ModalCont.style'
+import { autoErrorToasterWithMessage } from '../../Notify/AutoSuccessToast'
 import CreateDiscussion from './CreateDiscussion'
 import CreateQuestion from './CreateQuestion'
 import CreateRequest from './CreateRequest'
@@ -67,7 +68,12 @@ const CreateThreadModal = (props: Props) => {
         e.preventDefault()
         if(threadData.threadType === 'question'){
             if(createQuestionData.validation_check === 'valid'){
-                dispatch(createQuestionThunk(createQuestionData))
+                try {
+                    dispatch(createQuestionThunk(createQuestionData))
+                    dispatch(changeModalAction('questionCreate'))
+                } catch (error) {
+                    autoErrorToasterWithMessage('Please try again.')                    
+                }
             }
         }
         if(threadData.threadType === 'discussion'){

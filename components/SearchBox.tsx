@@ -208,7 +208,7 @@ function SearchBox({}: Props): ReactElement {
                 
                 // searchBoxRef.current!.setAttribute("style" , "position:absolute;")
                 // searchInputRef.current!.focus()
-                // dispatch(getFiltersFromCache(null))
+                dispatch(getFiltersFromCache(null))
                 if(searchQuery === ""){
                     dispatch(getCachedSearchBoxData({page:router.pathname}))
                     dispatch(resetSendedQuery(null))

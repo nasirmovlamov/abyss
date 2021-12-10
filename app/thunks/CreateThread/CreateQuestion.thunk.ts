@@ -13,6 +13,7 @@ export const createQuestionThunk = createAsyncThunk(
             form_data.append('title', data.questionTitle);
             form_data.append('content', data.questionValue);
             form_data.append('tags', JSON.stringify(data.tags));
+            form_data.append('type', '1');
             const resp = await BASE_API_INSTANCE.post(`/forum/create` , form_data)
             return resp.data
         } catch (error:any) {

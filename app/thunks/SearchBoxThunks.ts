@@ -48,7 +48,6 @@ export const storeSearchInfinity = createAsyncThunk(
   types.STORE_SEARCH_INFINITY, async (data:{query:string,from:number}, {rejectWithValue}) => {
       try {
         const resp = await BASE_API_INSTANCE.get(`store/search?query=${data.query}&from=${data.from}`)
-        console.log(resp.data)
         return resp.data
       } catch (error:any) {
         return rejectWithValue(error.response.data)

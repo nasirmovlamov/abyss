@@ -89,7 +89,6 @@ export const updateProductThunk = createAsyncThunk(
   types.UPDATE_PRODUCT, async (data:any, {rejectWithValue}) => {
       try {
         const send_data = new FormData()
-        
         send_data.append('price', '0')
         send_data.append('description', JSON.stringify(data.mainData.steps[2]))
         // send_data.append('category_id', '1')

@@ -126,10 +126,10 @@ export const TabButtonsCont_STY = styled.div`
            transform: translateY(1.3px);
            width: 80%;
        }
-       ${TabText_STY}
+       /* ${TabText_STY}
        {
            color: ${({theme}) => theme.title_hover.hover1};
-       }
+       } */
     }
 `
 
@@ -167,34 +167,34 @@ export const TabButton_STY = styled.button<{tabFocus:boolean}>`
     p {
         color: ${({theme , tabFocus}) => tabFocus ? theme.colors.orange_1 : theme.colors.gray_2};
     }
-    ${TabText_STY}
+    /* ${TabText_STY}
     {
         color: ${({theme , tabFocus}) =>  tabFocus ? theme.text_hover.hover1 : theme.texts.text2 };
-    }
+    } */
     &:hover{
        
-            ${Line_STY}
+            /* ${Line_STY}
             {
                 transform: translateY(1.3px);
                 width: 80%;
-            }
+            } */
             ${TabText_STY}
             {
-                color: ${({theme}) =>  theme.text_hover.hover1 };
+                color: ${({theme , tabFocus}) =>  tabFocus ? theme.colors.orange_1  : theme.texts.text1 };
             }
     }
     
     &:hover
     {
-        &:hover ${Line_STY}{
+        /* &:hover ${Line_STY}{
             opacity:1 ;
             width: 100% ;
             height: 2px ;
             transform:translateY(0px);
-        }
-        &:hover ${TabText_STY}
+        } */
+        /* &:hover ${TabText_STY}
         {
             color: ${({theme}) =>  theme.text_hover.hover1 };
-        }
+        } */
     }
 `

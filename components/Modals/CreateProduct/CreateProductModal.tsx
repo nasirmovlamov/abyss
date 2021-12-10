@@ -56,7 +56,11 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
             if(currentStep === 5){
                 await validateFunctions[`step${currentStep}`]()
                 if(productCreateStepsData[5].validated === 'valid'){
-                    dispatch(updateProductThunk({mainData:productCreateData , productId: productCreateId}))
+                    try {
+                        dispatch(updateProductThunk({mainData:productCreateData , productId: productCreateId}))
+                        dispatch(changeModalAction('productCreate'))
+                    } catch (error) {
+                    }
                 }
                 return
             }   

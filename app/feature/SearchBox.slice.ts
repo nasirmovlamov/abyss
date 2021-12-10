@@ -27,7 +27,7 @@ export const SearchBoxSlice = createSlice({
       state.page = action.payload.page
 
       if(action.payload.page === 'forum'){
-  
+        console.log(getCookie("ForumTypeSearchOption"))
         if(getCookie('ForumTypeSearchOption'))
         {
           state.searchBoxData.forum.searchOptions.forumType = getCookie("ForumTypeSearchOption")!
@@ -42,7 +42,7 @@ export const SearchBoxSlice = createSlice({
         }
         else 
         {
-          state.searchBoxData.forum.searchOptions.forumSort = "Newes"
+          state.searchBoxData.forum.searchOptions.forumSort = "New"
         }
       }
 
@@ -167,7 +167,7 @@ export const SearchBoxSlice = createSlice({
 
     // Forum Search
     builder.addCase(forumSearchInfinity.fulfilled, (state, {payload}) => {
-      if(payload.data.from === 0){
+      if(payload.data.from == 0){
         state.searchBoxData.forum.data = []
         state.searchBoxData.forum.fromNumber=0
         state.searchBoxData.forum.results_number=0
@@ -187,7 +187,6 @@ export const SearchBoxSlice = createSlice({
     builder.addCase(forumSearchInfinity.rejected, (state, {payload}) => {
       autoErrorToaster(payload)
       state.searchBoxData.forum.status = "error"
-
     })  
 
     // Store Search Infinity
