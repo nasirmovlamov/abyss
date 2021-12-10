@@ -60,6 +60,9 @@ import HTMLReactParser from 'html-react-parser'
 import { CodeMirror_ReadOnly_STY } from '../../../styles/components/styled-blocks/CreateProduct_Style/Steps/ProductCreate_Step1.style'
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
+import { BASE_API_INSTANCE } from '../../../helpers/api/BaseInstance'
+import { autoErrorToaster } from '../../../components/Notify/AutoErrorToaster'
+import { autoSuccessToaster } from '../../../components/Notify/AutoSuccessToast'
 
 interface Props {
     
@@ -102,6 +105,17 @@ const SingleProductPage = (props: Props) => {
             })
         }
     }, [activeStoreTab.id])
+
+    const addcave = async () => {
+        try {
+            const resp = await BASE_API_INSTANCE.post(`/profile/cave/${singleProductData.data.id}/create` )
+            autoSuccessToaster(resp.data.message)
+        } catch (error:any) {
+            console.log(error)
+            // autoErrorToaster(error)
+        }
+    }
+
 
     if(singleProductData.data === null) {
         return <></>
@@ -184,9 +198,9 @@ const SingleProductPage = (props: Props) => {
                                 </StoreTopContent>
     
                             </Flexer>
-                                <div className='add-cave-cont'>
-                                    <button className='add-cave-btn'>+ Cave</button>
-                                </div>    
+                            <div className='add-cave-cont'>
+                                <button onClick={addcave} className='add-cave-btn'>+ Cave</button>
+                            </div>    
                             
                             
                         </StoreTop>

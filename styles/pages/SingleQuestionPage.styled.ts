@@ -9,7 +9,7 @@ export const SingleProductMiddle_STY = styled.main`
     width: 100%;
     display: flex;
     flex-direction:column;
-    margin: auto;
+    /* margin: auto; */
     align-items: center;
     row-gap: 20px;
     padding-bottom: 50px;

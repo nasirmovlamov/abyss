@@ -6,14 +6,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faHeart } from '@fortawesome/free-solid-svg-icons'
 import mainLogo from '../../public/main-logo.svg'
 interface Props {
-    
+    data:any
 }
 
 const CaveProduct = (props: Props) => {
+    const {data} = props
     return (
         <CaveProduct_STY>
             <p className="title">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, laborum delectus molestiae commodi numquam eligendi dolorem distinctio perferendis tempora nulla fugit expedita deleniti molestias voluptas, odio necessitatibus ullam. Sapiente, temporibus?
+                {data.product.name}
             </p>
 
             <div className="details">

@@ -19,7 +19,7 @@ export const SingleTabsContainer  = styled.div<{isSearchBarVisible:string , scro
     transform: ${({isSearchBarVisible , scrollFromTop}) => (isSearchBarVisible  === "visible"  && scrollFromTop <= 84) ? 'translateY(-120px)' : "translateY(0px)"} ;
     top: 84px ;
     z-index: 9;
-    transition: 0.5s transform;
+    transition:${({isSearchBarVisible , scrollFromTop}) => (isSearchBarVisible  === "visible"  && scrollFromTop <= 84) ? ' 0.5s' : "initial"};
 `
 
 

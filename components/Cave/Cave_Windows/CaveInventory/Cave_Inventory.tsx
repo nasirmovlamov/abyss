@@ -76,7 +76,6 @@ const Cave_Inventory = (props: Props) => {
     // }, [scrollY])
     //#endregion ScrollSpy
     const getInventoryData = async () => {
-        console.log("HELLO")
         try {
             if(inventoryStatus !== 'pending'){
                 return false
@@ -111,7 +110,7 @@ const Cave_Inventory = (props: Props) => {
     return (
         <CaveInventoryBlocks_Sty>
             <CaveInventoryDefaultBlock_Sty ref={inViewRefInventorySavedBlock}    id='#inventorysavedBlock'>
-                {inventoryData.map((item: any, index: number) => <CaveProduct key={index}/>)}
+                {inventoryData.map((item: any, index: number) => <CaveProduct data={item} key={index}/>)}
                 
                 {
                     inventoryStatus === 'pending' &&
