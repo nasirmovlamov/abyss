@@ -65,7 +65,7 @@ function MyApp({ Component, pageProps }: AppProps) {
               <Toaster/>
               <GlobalStyle/>
               <Layout>
-                  <ThemeSwitcher theme={theme} setTheme={changeTheme}/>
+                  {/* <ThemeSwitcher theme={theme} setTheme={changeTheme}/> */}
                   <Component {...pageProps} />
               </Layout>
             </>

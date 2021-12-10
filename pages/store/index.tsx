@@ -13,6 +13,7 @@ import { useInView } from 'react-intersection-observer'
 import { forumSearchInfinity, storeSearchInfinity } from '../../app/thunks/SearchBoxThunks'
 import { search_query, store_search_data } from '../../app/feature/SearchBox.slice'
 import FormQuestionSkeleton from '../../components/Skeletons/ForumQuestionSkeleton'
+import BeatLoader from "react-spinners/BeatLoader";
 
 interface Props {
     
@@ -54,41 +55,26 @@ function Store({}: Props): ReactElement {
                 <StorePage>
                     <PageTabs/>  
                     {
-                        storeSearchData.status === "loaded" && 
                         storeSearchData.data.map((element , index) => <ListingStoreProduct  key={index} data={element}/>)
                     } 
-                    
-                    {storeSearchData.status === "loading" && 
-                        <div style={{width:"100%" , display:"flex", flexDirection:"column", rowGap:"10px"}}>
-                            <FormQuestionSkeleton/>
-                            <FormQuestionSkeleton/>
-                            <FormQuestionSkeleton/>
-                            <FormQuestionSkeleton/>
-                            <FormQuestionSkeleton/>
-                            <FormQuestionSkeleton/>
-                            <FormQuestionSkeleton/>
-                            <FormQuestionSkeleton/>
-                            <FormQuestionSkeleton/>
-                            <FormQuestionSkeleton/>
-                            <FormQuestionSkeleton/>
-                        </div>
+
+                    {
+                        storeSearchData.status === "loaded" && 
+                        (
+                            storeSearchData.results_number > storeSearchData.data.length &&
+                            <div  ref={inViewRefLoaderDown} style={{width:"100%" , display:"flex",alignItems:'center', flexDirection:"column", rowGap:"10px", marginTop:"50px"}}>
+                                <BeatLoader color={'#b4b5b7'} loading={storeSearchData.status === "loaded"}  size={10} />
+                            </div>  
+                        )
                     } 
 
                     {storeSearchData.status === "error" && <div>Error ...</div>} 
-                    {storeSearchData.data.length !== storeSearchData.results_number ?
-
-                        (
-                            storeSearchData.results_number > 0  ?
-                            <div ref={inViewRefLoaderDown} style={{width:"100%" , display:"flex", flexDirection:"column", rowGap:"10px"}}>
-                                    <FormQuestionSkeleton/>
-                            </div>
-                            :
-                            <div>
-                                No records found
-                            </div>
-                        )
-                        :
-                        <></>
+                    
+                    {
+                       storeSearchData.status === "loaded" &&
+                       <div style={{color:"gray", fontSize:"20px" , }}>
+                           No more records found
+                       </div>
                     }
                 </StorePage>
             </MainPartOfPage>

@@ -9,7 +9,7 @@ import OverlayBackground from './Overlay';
 import SearchBox from './SearchBox';
 import { is_chatbox_opened, openChat } from '../app/feature/ChatBox.slice'
 import { useRouter } from 'next/router';
-import { forumWordRegex } from '../logic/regex/NavbarRegex';
+import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex';
 import Head from 'next/head'
 import CommentModal from './CommentsTab';
 import ChatBox from './ChatBox';
@@ -74,6 +74,13 @@ const Layout: FC<Props> = ({ children, ...props }) => {
                     {userData !== null && <button type="button" style={{position:"fixed",right:"0px",bottom:"0px"}} onClick={openUserChat}>Chat</button>}
                     <Modals/>
                 </div>   
+                
+                {
+                    (router.pathname === '/forum' || router.pathname === '/store')
+                    && 
+                    <div style={{marginTop:'250px'}}>
+                    </div>
+                }
                 <Footer/>
                 
 

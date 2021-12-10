@@ -128,72 +128,98 @@ export const SearchBoxSlice = createSlice({
 
   extraReducers: (builder) => {
 
-    // Forum Search
-    builder.addCase(forumSearch.fulfilled, (state, {payload}) => {
-      state.searchBoxData.forum.data = payload.data.results
-      state.searchBoxData.forum.fromNumber = state.searchBoxData.forum.data.length
-      state.searchBoxData.forum.results_number = payload.data.total
-      state.searchBoxData.forum.status = "loaded"
-      state.searchBoxData.forum.searchOptions.sendedQuery = state.search_query
-    }),
-    builder.addCase(forumSearch.pending, (state, {payload}) => {
-      state.searchBoxData.forum.status = "loading"
-    }),
-    builder.addCase(forumSearch.rejected, (state, {payload}) => {
-      state.searchBoxData.forum.status = "error"
-      autoErrorToaster(payload)
-    })  
+    // // Forum Search
+    // builder.addCase(forumSearch.fulfilled, (state, {payload}) => {
+    //   state.searchBoxData.forum.data = payload.data.results
+    //   state.searchBoxData.forum.fromNumber = state.searchBoxData.forum.data.length
+    //   state.searchBoxData.forum.results_number = payload.data.total
+    //   state.searchBoxData.forum.searchOptions.sendedQuery = state.search_query
+    // }),
+    // builder.addCase(forumSearch.pending, (state, {payload}) => {
+    //   state.searchBoxData.forum.status = "loading"
+    // }),
+    // builder.addCase(forumSearch.rejected, (state, {payload}) => {
+    //   state.searchBoxData.forum.status = "error"
+    //   autoErrorToaster(payload)
+    // })  
+
+    // // Forum Search
+    // builder.addCase(storeSearch.fulfilled, (state, {payload}) => {
+    //   if(payload.data.results === state.searchBoxData.store.data.length){
+    //     state.searchBoxData.store.status = "loaded"
+    //     return
+    //   }
+    //   state.searchBoxData.store.data = payload.data.results
+    //   state.searchBoxData.store.fromNumber = state.searchBoxData.store.data.length
+    //   state.searchBoxData.store.results_number = payload.data.total
+    //   state.searchBoxData.store.searchOptions.sendedQuery = state.search_query
+    // }),
+    // builder.addCase(storeSearch.pending, (state, {payload}) => {
+    //   state.searchBoxData.store.status = "loading"
+    // }),
+    // builder.addCase(storeSearch.rejected, (state, {payload}) => {
+    //   state.searchBoxData.store.status = "error"
+    //   autoErrorToaster(payload)
+    // })  
 
 
 
 
     // Forum Search
     builder.addCase(forumSearchInfinity.fulfilled, (state, {payload}) => {
+      if(payload.data.from === 0){
+        state.searchBoxData.forum.data = []
+        state.searchBoxData.forum.fromNumber=0
+        state.searchBoxData.forum.results_number=0
+        state.searchBoxData.forum.searchOptions.sendedQuery = ""
+      }
+
       state.searchBoxData.forum.data = [... state.searchBoxData.forum.data , ...payload.data.results]
       state.searchBoxData.forum.fromNumber = state.searchBoxData.forum.data.length
       state.searchBoxData.forum.results_number = payload.data.total
       state.searchBoxData.forum.searchOptions.sendedQuery = state.search_query
+      state.searchBoxData.forum.status = "loaded"
     }),
     builder.addCase(forumSearchInfinity.pending, (state, {payload}) => {
+      state.searchBoxData.forum.status = "loading"
+
     }),
     builder.addCase(forumSearchInfinity.rejected, (state, {payload}) => {
       autoErrorToaster(payload)
+      state.searchBoxData.forum.status = "error"
+
     })  
 
-
-
-
-    // Forum Search
-    builder.addCase(storeSearch.fulfilled, (state, {payload}) => {
-      state.searchBoxData.store.data = payload.data.results
+    // Store Search Infinity
+    builder.addCase(storeSearchInfinity.fulfilled, (state, {payload}) => {
+      console.log(payload.data.from == 0)
+      if(payload.data.from == 0){
+        state.searchBoxData.store.data = []
+        state.searchBoxData.store.fromNumber=0
+        state.searchBoxData.store.results_number=0
+        state.searchBoxData.store.searchOptions.sendedQuery = ""
+      }
+      state.searchBoxData.store.status = "loaded" 
+      state.searchBoxData.store.data = [... state.searchBoxData.store.data , ...payload.data.results]
       state.searchBoxData.store.fromNumber = state.searchBoxData.store.data.length
       state.searchBoxData.store.results_number = payload.data.total
-      state.searchBoxData.store.status = "loaded"
       state.searchBoxData.store.searchOptions.sendedQuery = state.search_query
+    
     }),
-    builder.addCase(storeSearch.pending, (state, {payload}) => {
+    builder.addCase(storeSearchInfinity.pending, (state, {payload}) => {
       state.searchBoxData.store.status = "loading"
     }),
-    builder.addCase(storeSearch.rejected, (state, {payload}) => {
+    builder.addCase(storeSearchInfinity.rejected, (state, {payload}) => {
       state.searchBoxData.store.status = "error"
       autoErrorToaster(payload)
     })  
 
 
+    
 
 
-    // Forum Search
-    builder.addCase(storeSearchInfinity.fulfilled, (state, {payload}) => {
-      state.searchBoxData.store.data = [... state.searchBoxData.store.data , ...payload.data.results]
-      state.searchBoxData.store.fromNumber = state.searchBoxData.store.data.length
-      state.searchBoxData.store.results_number = payload.data.total
-      state.searchBoxData.store.searchOptions.sendedQuery = state.search_query
-    }),
-    builder.addCase(storeSearchInfinity.pending, (state, {payload}) => {
-    }),
-    builder.addCase(storeSearchInfinity.rejected, (state, {payload}) => {
-      autoErrorToaster(payload)
-    })  
+
+    
 
   },
 

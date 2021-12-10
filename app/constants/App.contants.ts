@@ -41,6 +41,7 @@ export const SELECT_CAVE_WINDOW:string = 'SELECT_CAVE_WINDOW'
 
 export const ADD_FILE:string = 'ADD_FILE'
 export const CREATE_QUESTION:string = 'CREATE_QUESTION'
+export const GET_SINGLE_PRODUCT:string = 'GET_SINGLE_PRODUCT'
 
 
 

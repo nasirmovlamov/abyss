@@ -65,7 +65,7 @@ function FormQuestion({data}: Props): ReactElement {
             <QuestionStatistics_STY>
                     <StatisticCont>
                             <AnswerCont>
-                                <AnswerCount>7</AnswerCount>
+                                <AnswerCount>{data.answer_count}</AnswerCount>
                                 <Text>Answers</Text>
                             </AnswerCont>
 

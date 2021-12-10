@@ -13,7 +13,7 @@ import linkedProductsReducer from '../feature/LinkedProducts.slice'
 import caveRootReducer from '../feature/CaveFeatures/Cave_Reducers/Cave.root.reducer'
 import sideProductReducer from '../feature/SideProducts.slice'
 import createThreadReducer from '../feature/CreateThread/CreateThread.slice'
-
+import singleProductReducer from '../feature/SingleProduct.slice'
 
 const reducer = 
 {  
@@ -31,6 +31,7 @@ const reducer =
   caveRootReducer:caveRootReducer,
   sideProductReducer:sideProductReducer,
   createThreadReducer:createThreadReducer,
+  singleProductReducer:singleProductReducer,
 }
 
 

@@ -23,7 +23,7 @@ import { side_product_data } from '../../app/feature/SideProducts.slice'
 import ListingStoreProduct from '../../components/ListingStoreProduct'
 import SideProduct from '../../components/SideProduct'
 import SideProductCont from '../../components/SideProductCont'
-import BeatLoader from "react-spinners/ClipLoader";
+import BeatLoader from "react-spinners/BeatLoader";
 interface Props {
     
 }
@@ -63,29 +63,30 @@ function Forum({}: Props): ReactElement {
                     
                     <PageTabs/>  
                     {
-                        forumSearchData.status === "loaded" && 
                         forumSearchData.data.map((element , index) => <FormQuestion  key={index} data={element}/>)
                     } 
-                    
-                    {forumSearchData.status === "loading" && 
-                        <div style={{width:"100%" , display:"flex", flexDirection:"column", rowGap:"10px", alignItems:'center'}}>
-                            <BeatLoader color={'white'} loading={forumSearchData.status === "loading"}  size={150} />
-                        </div>
+
+
+
+                    {
+                        forumSearchData.status === "loaded" && 
+                        (
+                            forumSearchData.results_number > forumSearchData.data.length &&
+                            <div  ref={inViewRefLoaderDown} style={{width:"100%" , display:"flex",alignItems:'center', flexDirection:"column", rowGap:"10px", marginTop:"50px"}}>
+                                <BeatLoader color={'#b4b5b7'} loading={forumSearchData.status === "loaded"}  size={10} />
+                            </div>  
+                        )
                     } 
 
                     {forumSearchData.status === "error" && <div>Error ...</div>} 
-
-                    {
-                        forumSearchData.results_number >0 ?
-                        <div ref={inViewRefLoaderDown} style={{width:"100%" , display:"flex", flexDirection:"column", rowGap:"10px"}}>
-                            <BeatLoader color={'white'} loading={forumSearchData.status === "loading"}  size={150} />
-                        </div>
-                        :
-                        <div>
-                            No records found
-                        </div>
-                    }
                     
+                    {
+                       forumSearchData.status === "loaded" &&
+                       <div style={{color:"gray", fontSize:"20px" , }}>
+                           No more records found
+                       </div>
+                    }
+
 
                 </ForumPage>
             </MainPartOfPage>

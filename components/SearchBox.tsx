@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex'
 import { MainPartOfPageStyle, SidePartOfPageStyle } from '../styles/pages/Page.styled'
 import { useScrollYPosition } from 'react-use-scroll-position';
-import { forumSearch, storeSearch } from '../app/thunks/SearchBoxThunks'
+import { forumSearch, forumSearchInfinity, storeSearch, storeSearchInfinity } from '../app/thunks/SearchBoxThunks'
 import {  forum_search_data,  getCachedSearchBoxData, searchValueOnChange, resetSendedQuery, search_query, search_data, changeSearchVisibilty } from '../app/feature/SearchBox.slice'
 import { getFiltersFromCache } from '../app/feature/PageFilters.slice'
 import { createProductThunk } from '../app/thunks/CreateProductThunks'
@@ -150,10 +150,10 @@ function SearchBox({}: Props): ReactElement {
             }
             if(forumSearchOptions.sendedQuery !== searchQuery){
                 if(router.pathname === '/forum'){
-                    dispatch(forumSearch(searchQuery))
+                    dispatch(forumSearchInfinity({query:searchQuery , from:0}))
                 }
                 if(router.pathname === '/store'){
-                    dispatch(storeSearch(searchQuery))
+                    dispatch(storeSearchInfinity({query:searchQuery , from:0}))
                 }
             }
         }
@@ -164,10 +164,10 @@ function SearchBox({}: Props): ReactElement {
         {
             if(forumSearchOptions.sendedQuery !== searchQuery){
                 if(router.pathname !== '/forum'){
-                    dispatch(forumSearch(searchQuery))
+                    dispatch(forumSearchInfinity({query:searchQuery , from:0}))
                 }
                 if(router.pathname !== '/store'){
-                    dispatch(storeSearch(searchQuery))
+                    dispatch(storeSearchInfinity({query:searchQuery , from:0}))
                 }
             }
         }
@@ -213,17 +213,18 @@ function SearchBox({}: Props): ReactElement {
                     dispatch(getCachedSearchBoxData({page:router.pathname}))
                     dispatch(resetSendedQuery(null))
                     if(router.pathname === '/forum'){
-                        dispatch(forumSearch(getCookie("searchValue")))
+                        dispatch(forumSearchInfinity({query:getCookie("searchValue") , from:0}))
                     }
                     else if(router.pathname === '/store'){   
-                        dispatch(storeSearch(getCookie("searchValue")))
+                        dispatch(storeSearchInfinity({query:getCookie("searchValue") , from:0}))
                     }else{}
                 }else{
                     if(router.pathname === '/forum'){
-                        dispatch(forumSearch(searchQuery))
+                        
+                        dispatch(forumSearchInfinity({query:searchQuery , from:0}))
                     }
                     else if(router.pathname === '/store'){   
-                        dispatch(storeSearch(searchQuery))
+                        dispatch(storeSearchInfinity({query:searchQuery , from:0}))
                     }else{}
                 }
             }

@@ -58,7 +58,7 @@ function PageTabs({}: Props): ReactElement {
             </PAGE_STY.Tabs_STY>
 
             <PAGE_STY.TabTagsAndResults_STY>
-                <PAGE_STY.TabResults_STY>{status === "loaded" && <>{results_number} results</>}  </PAGE_STY.TabResults_STY>
+                <PAGE_STY.TabResults_STY>{<>{results_number} results</>}  </PAGE_STY.TabResults_STY>
 
                 <PAGE_STY.TabTagsCont_STY>
                     <PAGE_STY.TabTags_STY name="tag" tagFocus={forumSort.includes(searchSorts[0])} onClick={() =>selectSort(searchSorts[0])}>{searchSorts[0]}</PAGE_STY.TabTags_STY>

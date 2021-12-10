@@ -68,6 +68,18 @@ export const CodeMirror_STY = styled.div`
     }
 `
 
+export const CodeMirror_ReadOnly_STY = styled.div`
+    .cm-editor{
+        border-radius: 10px;
+        overflow: hidden;
+        height: auto;
+        &:hover {
+            box-shadow: ${({theme}) => theme.boxshadows.boxshadow8};
+        }
+        
+    }
+`
+
 export const SelectLangType_STY = styled.select`
     padding:7px 10px;
     background: ${({ theme }) => theme.backgrounds.background3};
