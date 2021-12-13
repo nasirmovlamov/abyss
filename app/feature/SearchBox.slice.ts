@@ -121,7 +121,16 @@ export const SearchBoxSlice = createSlice({
     },
     changeThunkBackVisibilty(state, action) {
       state.thunkBackground = action.payload  
-    }
+    },
+
+    setScrollPositionYForum(state , action){
+      state.searchBoxData.forum.scrollY = action.payload
+    },
+    setScrollPositionYStore(state , action){
+      state.searchBoxData.store.scrollY = action.payload
+    },
+
+    
 
   },
 
@@ -173,16 +182,21 @@ export const SearchBoxSlice = createSlice({
         state.searchBoxData.forum.results_number=0
         state.searchBoxData.forum.searchOptions.sendedQuery = ""
       }
-
+      
       state.searchBoxData.forum.data = [... state.searchBoxData.forum.data , ...payload.data.results]
       state.searchBoxData.forum.fromNumber = state.searchBoxData.forum.data.length
       state.searchBoxData.forum.results_number = payload.data.total
       state.searchBoxData.forum.searchOptions.sendedQuery = state.search_query
-      state.searchBoxData.forum.status = "loaded"
+      state.searchBoxData.forum.initialLoader = false
+      if(state.searchBoxData.forum.data.length >= state.searchBoxData.forum.results_number){
+        state.searchBoxData.forum.status = "loaded"
+      }
     }),
     builder.addCase(forumSearchInfinity.pending, (state, {payload}) => {
       state.searchBoxData.forum.status = "loading"
-
+      if(state.searchBoxData.forum.searchOptions.sendedQuery !==  state.search_query){
+        state.searchBoxData.forum.initialLoader = true
+      }
     }),
     builder.addCase(forumSearchInfinity.rejected, (state, {payload}) => {
       autoErrorToaster(payload)
@@ -198,12 +212,14 @@ export const SearchBoxSlice = createSlice({
         state.searchBoxData.store.results_number=0
         state.searchBoxData.store.searchOptions.sendedQuery = ""
       }
-      state.searchBoxData.store.status = "loaded" 
+      
       state.searchBoxData.store.data = [... state.searchBoxData.store.data , ...payload.data.results]
       state.searchBoxData.store.fromNumber = state.searchBoxData.store.data.length
       state.searchBoxData.store.results_number = payload.data.total
       state.searchBoxData.store.searchOptions.sendedQuery = state.search_query
-    
+      if(state.searchBoxData.store.data.length >= state.searchBoxData.store.results_number){
+        state.searchBoxData.store.status = "loaded"
+      }
     }),
     builder.addCase(storeSearchInfinity.pending, (state, {payload}) => {
       state.searchBoxData.store.status = "loading"
@@ -236,7 +252,9 @@ export const
   searchValueOnChange,
   resetSendedQuery,
   changeSearchVisibilty,
-  changeThunkBackVisibilty
+  changeThunkBackVisibilty,
+  setScrollPositionYForum,
+  setScrollPositionYStore,
 } = SearchBoxSlice.actions;
 
 

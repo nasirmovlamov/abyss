@@ -130,7 +130,11 @@ function Header({}: Props): ReactElement {
         }
     }
 
-
+    const goPage = (link:string) => {
+        if(router.pathname !== link){
+            router.push(link)
+        }
+    }
     return (
         <>
         <Header_STY.Nav_STY>
@@ -150,26 +154,20 @@ function Header({}: Props): ReactElement {
             
             <Header_STY.LinksStyleCenterer_STY>
                 <Header_STY.LinksStyle_STY>
-                    <NavLink href={"/store"}>
-                        <Header_STY.LiStyle_STY focus={pathname === "/store" ? true: false}>
-                            <Header_STY.LinkStyle_STY>Store</Header_STY.LinkStyle_STY>
-                            <Header_STY.Line_STY />
-                        </Header_STY.LiStyle_STY>
-                    </NavLink> 
+                    <Header_STY.LiStyle_STY onClick={() => goPage('/store')}  focus={pathname === "/store" ? true: false}>
+                        <Header_STY.LinkStyle_STY>Store</Header_STY.LinkStyle_STY>
+                        <Header_STY.Line_STY />
+                    </Header_STY.LiStyle_STY>
 
-                    <NavLink href={"/forum"}>
-                        <Header_STY.LiStyle_STY focus={forumWordRegex.test(pathname) ? true: false}>
-                            <Header_STY.LinkStyle_STY>Community</Header_STY.LinkStyle_STY>
-                            <Header_STY.Line_STY/>
-                        </Header_STY.LiStyle_STY>
-                    </NavLink>
-                    
-                    <NavLink href={"/pedi"}>
-                        <Header_STY.LiStyle_STY focus={pathname === "/pedi" ? true: false}>
-                            <Header_STY.LinkStyle_STY>Pedia</Header_STY.LinkStyle_STY>
-                            <Header_STY.Line_STY/>
-                        </Header_STY.LiStyle_STY>
-                    </NavLink> 
+                    <Header_STY.LiStyle_STY onClick={() => goPage('/forum')} focus={forumWordRegex.test(pathname) ? true: false}>
+                        <Header_STY.LinkStyle_STY>Community</Header_STY.LinkStyle_STY>
+                        <Header_STY.Line_STY/>
+                    </Header_STY.LiStyle_STY>
+                
+                    <Header_STY.LiStyle_STY onClick={() => goPage('/pedia')} focus={pathname === "/pedi" ? true: false}>
+                        <Header_STY.LinkStyle_STY>Pedia</Header_STY.LinkStyle_STY>
+                        <Header_STY.Line_STY/>
+                    </Header_STY.LiStyle_STY>
                 </Header_STY.LinksStyle_STY>
             </Header_STY.LinksStyleCenterer_STY>
             <Header_STY.Enterance_STY>

@@ -75,25 +75,17 @@ const Layout: FC<Props> = ({ children, ...props }) => {
                     <Modals/>
                 </div>   
                 
-                {
-                    (router.pathname === '/forum' || router.pathname === '/store')
-                    && 
-                    <div style={{marginTop:'250px'}}>
-                    </div>
-                }
-                <Footer/>
                 
 
-
-
-                {/* {
-                (pageOverflowY === "hidden" 
+                {
+                    (router.pathname === '/')
                     && 
-                    <div style={{width:"10px" , height:"100vh" , background:"white", right:"0px",  zIndex:9999999, backgroundColor:"transparent"}}>
-                        <div style={{width:"100%" , height:"59.4px" , backgroundColor:"#00090e"}}></div>
-                    </div> 
-                )
-                } */}
+                    <Footer/>
+                }   
+
+
+
+               
 
             </div>
         )

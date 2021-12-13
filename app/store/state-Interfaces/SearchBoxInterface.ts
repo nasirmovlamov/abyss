@@ -13,6 +13,9 @@ export interface SEARCHBOX_INTERFACE {
             status:"loading" | "loaded" | "error",
             results_number:number,
             fromNumber:number,
+            allDataLoaded:boolean, 
+            initialLoader:boolean,
+            scrollY:number,
             searchOptions:{
                 sendedQuery:string | null,
                 forumType:string,
@@ -24,6 +27,9 @@ export interface SEARCHBOX_INTERFACE {
             status:"loading" | "loaded" | "error",
             results_number:number,
             fromNumber:number,
+            allDataLoaded:false,
+            scrollY:number,
+
             searchOptions:{
                 sendedQuery:string | null,
                 storeType:string,

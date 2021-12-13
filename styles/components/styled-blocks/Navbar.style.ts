@@ -131,10 +131,11 @@ export const LinkStyle_STY = styled.a`
 
 
 
-export const LiStyle_STY = styled.li<{focus:boolean}>`
+export const LiStyle_STY = styled.button<{focus:boolean}>`
     display:flex;
     justify-content:center;
     align-items:flex-start;
+    background-color: transparent;
     height:100%;    
     padding-top: 22px;
     column-gap: 40px;

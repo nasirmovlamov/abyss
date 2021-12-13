@@ -12,7 +12,10 @@ export const SEARCHBOX_STATE:SEARCHBOX_INTERFACE = {
             data:[],
             results_number:0,
             fromNumber:0,
-            status:"loaded",
+            allDataLoaded:false,
+            initialLoader:true,
+            status:"loading",
+            scrollY:0,
             searchOptions:{
                 sendedQuery:null,
                 forumType:'',
@@ -23,7 +26,9 @@ export const SEARCHBOX_STATE:SEARCHBOX_INTERFACE = {
             data:[],
             results_number:0,
             fromNumber:0,
-            status:"loaded",
+            allDataLoaded:false,
+            status:"loading",
+            scrollY:0,
             searchOptions:{
                 sendedQuery:null,
                 storeType:'',
