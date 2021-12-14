@@ -9,7 +9,6 @@ export const TabsContainer_STY  = styled.div`
     flex-direction: column;
     row-gap:14px;
     border-radius: 6px;
-    margin-top: 0px;
 `
 
 

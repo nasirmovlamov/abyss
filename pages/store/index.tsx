@@ -14,6 +14,7 @@ import { forumSearchInfinity, storeSearchInfinity } from '../../app/thunks/Searc
 import { search_query, store_search_data } from '../../app/feature/SearchBox.slice'
 import FormQuestionSkeleton from '../../components/Skeletons/ForumQuestionSkeleton'
 import BeatLoader from "react-spinners/BeatLoader";
+import SearchBoxStaticVersion from '../../components/SearchBoxStaticVersion'
 
 interface Props {
     
@@ -52,7 +53,11 @@ function Store({}: Props): ReactElement {
             </SidePartOfPage>
 
             <MainPartOfPage>
+
                 <StorePage>
+                    <SearchBoxStaticVersion/>
+
+
                     <PageTabs/>  
                     {
                         storeSearchData.data.map((element , index) => <ListingStoreProduct  key={index} data={element}/>)

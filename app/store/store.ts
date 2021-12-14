@@ -14,6 +14,7 @@ import caveRootReducer from '../feature/CaveFeatures/Cave_Reducers/Cave.root.red
 import sideProductReducer from '../feature/SideProducts.slice'
 import createThreadReducer from '../feature/CreateThread/CreateThread.slice'
 import singleProductReducer from '../feature/SingleProduct.slice'
+import toolTipReducer from '../feature/Tooltip.slice'
 
 const reducer = 
 {  
@@ -32,6 +33,7 @@ const reducer =
   sideProductReducer:sideProductReducer,
   createThreadReducer:createThreadReducer,
   singleProductReducer:singleProductReducer,
+  toolTipReducer:toolTipReducer,
 }
 
 

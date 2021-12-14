@@ -129,7 +129,7 @@ function AnswersConts({}: Props): ReactElement {
                     </div>
                 } */}
                 
-                <div style={{width:"100%", display:"flex" , flexDirection:"column", rowGap:"40px", marginTop:"30px"}}>
+                <div style={{width:"100%", display:"flex" , flexDirection:"column", rowGap:"14px", marginTop:"14px"}}>
                     {topAnswers.map((answer) => <Answer key={answer.id} direction="top"  answer={answer}/>)} 
                 </div>
                 

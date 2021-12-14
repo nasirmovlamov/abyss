@@ -15,6 +15,11 @@ export const SearchBoxSlice = createSlice({
 
     getCachedSearchBoxData(state , action)
     { 
+      console.log(action.payload.page)
+      console.log(getCookie("ForumTypeSearchOption"))
+      console.log(getCookie('ForumSortSearchOption'))
+
+
       if(getCookie('searchValue')){
         state.search_query = getCookie('searchValue')
       }else{
@@ -26,8 +31,7 @@ export const SearchBoxSlice = createSlice({
       }
       state.page = action.payload.page
 
-      if(action.payload.page === 'forum'){
-        console.log(getCookie("ForumTypeSearchOption"))
+      if(action.payload.page === '/forum'){
         if(getCookie('ForumTypeSearchOption'))
         {
           state.searchBoxData.forum.searchOptions.forumType = getCookie("ForumTypeSearchOption")!
@@ -46,7 +50,7 @@ export const SearchBoxSlice = createSlice({
         }
       }
 
-      if(action.payload.page === 'store'){
+      if(action.payload.page === '/store'){
         if(getCookie('StoreTypeSearchOption'))
         {
           state.searchBoxData.store.searchOptions.storeType = getCookie("StoreTypeSearchOption")!

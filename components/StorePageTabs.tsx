@@ -15,7 +15,7 @@ function PageTabs({}: Props): ReactElement {
     
 
 
-    const  searchTypes = ['Requests' , 'Questions' , 'Discussion']
+    const  searchTypes = ['All' , 'Free' , 'Paid']
     const  searchSorts = ['Newes' , 'Most Visited' , 'Most Helpful' , "Recently"]
     const {searchOptions} = storeSearchData
     const {storeSort , storeType} = searchOptions

@@ -16,10 +16,10 @@ export const SingleTabsContainer  = styled.div<{isSearchBarVisible:string , scro
     background-color: ${({theme}) => theme.backgrounds.background1};
     position: -webkit-sticky;
     position: sticky;
-    transform: ${({isSearchBarVisible , scrollFromTop}) => (isSearchBarVisible  === "visible"  && scrollFromTop <= 84) ? 'translateY(-120px)' : "translateY(0px)"} ;
+    transform: ${({isSearchBarVisible , scrollFromTop}) => !scrollFromTop ?  "translateY(0px)" : ( (isSearchBarVisible  === "visible"  && scrollFromTop <= 124) ? 'translateY(-120px)' : "translateY(0px)")} ;
     top: 84px ;
     z-index: 9;
-    transition:${({isSearchBarVisible , scrollFromTop}) => (isSearchBarVisible  === "visible"  && scrollFromTop <= 84) ? ' 0.5s' : "initial"};
+    transition:0.5s;
 `
 
 

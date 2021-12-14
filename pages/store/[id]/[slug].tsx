@@ -63,6 +63,7 @@ import { javascript } from '@codemirror/lang-javascript';
 import { BASE_API_INSTANCE } from '../../../helpers/api/BaseInstance'
 import { autoErrorToaster } from '../../../components/Notify/AutoErrorToaster'
 import { autoSuccessToaster } from '../../../components/Notify/AutoSuccessToast'
+import SearchBoxStaticVersion from '../../../components/SearchBoxStaticVersion'
 
 interface Props {
     
@@ -129,6 +130,8 @@ const SingleProductPage = (props: Props) => {
     
                 <MainPartOfPage>
                     <StorePage>
+                        <SearchBoxStaticVersion/>
+                        
                         <StoreStatistics_STY>
                             <div className="element">
                                 <p className="element-title">1.3K RATINGS</p>

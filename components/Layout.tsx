@@ -1,4 +1,4 @@
-import React, { ReactElement, FC, useEffect } from 'react'
+import React, { ReactElement, FC, useEffect, useState } from 'react'
 import { page_overflowy } from '../app/feature/App.slice';
 import {  user_data, user_status, user_status_not_logged } from '../app/feature/User.slice';
 import { useAppDispatch, useAppSelector } from '../app/store/hooks';
@@ -18,6 +18,8 @@ import Cookies from 'js-cookie'
 import { getCookie } from '../logic/CookieFunctions';
 import Header from './Header';
 import { ScrollToTopButton } from './ScrollToTopButton';
+import SearchBoxForHome from './SearchBoxForHome';
+import ToolTip from './ToolTip';
 
 interface Props {
     // any props that come into the component
@@ -26,6 +28,7 @@ interface Props {
 const Layout: FC<Props> = ({ children, ...props }) => {
     const router = useRouter();
     const dispatch = useAppDispatch()
+    const [trig, settrig] = useState(true)
     const userStatus = useAppSelector(user_status)
     const pageOverflowY = useAppSelector(page_overflowy)
     const userData = useAppSelector(user_data)
@@ -62,13 +65,15 @@ const Layout: FC<Props> = ({ children, ...props }) => {
             <div style={{display:'flex' , flexDirection:"column" , width:'100%'}}>
                 
                 <div style={{width:"100%" , minHeight:"100vh", display:'flex', flexDirection:'column' }}>
+                    
                     <Header/>
 
-                    <SearchBox/>
+                    
+                    {/* {router.pathname !== '/' && <SearchBox/>} */}
                     {isChatBoxOpened && <ChatBox/>}
                     {children}
 
-
+                    <ToolTip/>
                     <ScrollToTopButton/>
 
                     {userData !== null && <button type="button" style={{position:"fixed",right:"0px",bottom:"0px"}} onClick={openUserChat}>Chat</button>}

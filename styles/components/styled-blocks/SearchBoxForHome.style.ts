@@ -2,40 +2,17 @@ import styled from "styled-components";
 
 
 
-export const SearchBoxContainer_STY = styled.div<{path:string}>`
-    display: flex;
-    width: 100%;
-    padding-top: 0vh;
-    height: auto;
-    justify-content: center;
-    padding-right:112px;
-    z-index: 8;
-    transition: 0.1s;
-    position: fixed;
-    @media only screen and (max-width: 1526px) {
-        box-sizing:border-box;
-    }
-    @media only screen and (max-width: 1236px) {
-        padding-right: 0%;
-    }
-    height: 120px;
-    top: 0px;
-`
-
-export const SearchBoxThunkAndCont_STY = styled.div<{direction:string , scrollFromTop:number}>`
+export const SearchBoxThunkAndCont_STY = styled.div`
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     justify-content: space-between;
-    /* transform: ${({direction}) => direction === "visible" ? "translateY(0px)" : "translateY(-51px)"}; */
     width: 810px;
     height: 100%;
     margin-top:0px ;
-    display:${({scrollFromTop}) => scrollFromTop > 400 ? "flex" : "none"};
-
+    z-index: 8;
 `
 
-export const SearchBoxThunk_STY = styled.button<{direction:string , isBackVisible:boolean , scrollFromTop:number}>`
+export const SearchBoxThunk_STY = styled.button<{direction:string , isBackVisible:boolean}>`
     width: 840px;
     display: flex;
     flex-direction: column;
@@ -49,8 +26,7 @@ export const SearchBoxThunk_STY = styled.button<{direction:string , isBackVisibl
     align-self: center;
     justify-content: center;
     /* opacity: 0; */
-    display:${({scrollFromTop}) => scrollFromTop > 400 ? "flex" : "none"};
-    transform: ${({direction , scrollFromTop})=>scrollFromTop < 400 ? "translateY(-30px)" : (direction === "not-visible" ? "translateY(0px)" : "translateY(-30px)")};
+    transform: ${({direction})=>direction === "not-visible" ? "translateY(0px)" : "translateY(-30px)"};
     position: fixed;
     top: 50px;
     height: 38px;
@@ -69,51 +45,17 @@ export const SearchBoxThunk_STY = styled.button<{direction:string , isBackVisibl
     }
 `
 
-export const SearchBoxThunk_STY2 = styled.button<{direction:string , isBackVisible:boolean}>`
-    width: 840px;
-    display: flex;
-    flex-direction: column;
-    color: black;
-    pointer-events: all;
-    border: none;
-    color: gray;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    align-self: center;
-    justify-content: center;
-    /* opacity: 0; */
-    transform: ${({direction})=>direction === "not-visible" ? "translateY(0px)" : "translateY(-30px)"};
-    position: fixed;
-    top: 50px;
-    height: 38px;
-    margin-right: 112px;
-    z-index: 2;
-    background-color: ${({theme , isBackVisible}) => isBackVisible ? theme.backgrounds.background3 : "transparent"};
-    div {
-        width: 88px;
-        background-color: ${({theme}) => theme.backgrounds.background9};
-        height: 1   0px;
-        display: flex;
-        height: 14px;
-        align-items: center;
-        justify-content: center;
-        border-radius: 0px 0px 10px 10px;
-        box-shadow:${({theme}) => theme.boxshadows.boxshadow10} ;
-        color:black;
-    }
-`
 
-export const SearchBox_STY = styled.div<{direction:string, path:string}>`
+export const SearchBox_STY = styled.div`
     display: flex;
     pointer-events: all;
     background-color: black;
     width: 100%;
     transform: translateX(0px);
-    height: 48px;
+    height: 83px;
     color: white;
-    border-radius: 30px;
-    transform: ${({direction}) => direction==='visible' ? "translateY(60px)" : "translate(0px)"};
+    border-radius: 10px;
+    margin-top:60px;
     transition: 0.5s;
     border: none;
     background-color: white;
@@ -123,10 +65,11 @@ export const SearchBox_STY = styled.div<{direction:string, path:string}>`
     z-index: 9999;
     transform-origin: top;
     background-color: ${({theme}) => theme.backgrounds.background1};
-    padding:1px;
+    box-shadow: ${({theme}) => theme.boxshadows.boxshadow1};
     &:hover {
         box-shadow: ${({theme}) => theme.boxshadows.boxshadow8};
     }
+
 `
 
 
@@ -249,12 +192,11 @@ export const SearchNavQuery_STY = styled.button`
 
 export const AddQuesitionCont_STY = styled.button`
     flex: 0 0 112px; /* flex-grow, flex-shrink, flex-basis */
-    height: 48px;
-    margin-right:-1px;
-    margin-top:-1px;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #00578b;
     color: white;
     border: none;
     font-size: 15px;

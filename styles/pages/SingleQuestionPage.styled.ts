@@ -11,9 +11,8 @@ export const SingleProductMiddle_STY = styled.main`
     flex-direction:column;
     /* margin: auto; */
     align-items: center;
-    row-gap: 20px;
+    row-gap: 22px;
     padding-bottom: 50px;
-    padding-top: 100px;
     box-sizing: initial;
     
 `
@@ -118,8 +117,8 @@ export const QuestionTitle_STY = styled.h2`
     cursor: pointer;
     text-transform: capitalize;
     display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
+    /* -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical; */
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
@@ -135,6 +134,8 @@ export const QuestionContent_STY = styled.p`
     color:  ${({theme}) => theme.texts.text1};
     font-family: r;
     align-self: flex-start;
+    -webkit-line-clamp: 1;
+    word-wrap: break-word;
     line-height: 22px;
     margin-top: 2px;
 `

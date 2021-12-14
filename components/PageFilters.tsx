@@ -27,19 +27,8 @@ function PageFilters({}: Props): ReactElement {
         dispatch(changeToStayInFocus(stayInFocus))
     }
     
-    const handleMouseOver = () => {
-        if(!stayInFocus)
-        {
-            dispatch(changePositionOfFilters(false))
-        }
-    }
-
-    const handleMouseLeave = () => {
-        if(!stayInFocus)
-        {
-            dispatch(changePositionOfFilters(true))
-        }
-    }
+    
+    
     const handleStayInFocus = () => {
         
     }
@@ -57,7 +46,7 @@ function PageFilters({}: Props): ReactElement {
     // filterTagsOnDelete
 
     return (
-        <FilterContStyle onMouseEnter={handleMouseOver} onMouseLeave={handleMouseLeave} ref={filterBlockRef}>
+        <FilterContStyle  ref={filterBlockRef}>
             <FilterCont stayInFocus={stayInFocus}  isFocused={isFocused}>
                 <PinButton  stayInFocus={stayInFocus} isFocused={isFocused} onClick={pinFilters}><FontAwesomeIcon icon={faThumbtack}/></PinButton>
                 {/* <SubjectCont>

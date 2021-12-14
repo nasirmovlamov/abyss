@@ -109,7 +109,7 @@ export const Title = styled.h2`
     letter-spacing: 0.2px;
 `
 export const Content = styled.p`
-    font-size: 15px;
+    font-size: 16px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -120,6 +120,8 @@ export const Content = styled.p`
     align-self: flex-start;
     line-height: 22px;
     margin-top: 2px;
+    word-wrap: break-word;
+
 `
 
 export const BottomSide = styled.div`

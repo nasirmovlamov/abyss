@@ -36,6 +36,7 @@ import { set_overflowy } from '../../../app/feature/App.slice'
 import { parseHtmlWithMention } from '../../../logic/htmlParser'
 import abyssLogo from '../../../public/main-logo.svg'
 import Image from 'next/image'
+import SearchBoxStaticVersion from '../../../components/SearchBoxStaticVersion'
 interface Props {
 }
 
@@ -140,7 +141,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
                                 
                                 :
                                 <>
-
+                                    <SearchBoxStaticVersion/>
                                     <SingleQuestion_STY.QuestionCont_STY id={`question${singleQuestionData.id}`}>
                                         <SingleQuestion_STY.PersonCont_STY>
                                             <SingleQuestion_STY.Avatar_STY>
@@ -191,11 +192,12 @@ function SingleQuestionPAge({}: Props): ReactElement {
                                                 </HelpfulCont> */}
                                             </SingleQuestion_STY.StatisticContSingleQuestion_STY>
                                             <SingleQuestion_STY.QuestionDate_STY>
-                                                2d 7h ago
+                                                {singleQuestionData.created_at}
+                                                {console.log(singleQuestionData)}
                                             </SingleQuestion_STY.QuestionDate_STY>
                                              <SingleQuestion_STY.QuestionStatisticElement_STY>
                                                 <SingleQuestion_STY.QuestionStatisticText_STY>Give Vote</SingleQuestion_STY.QuestionStatisticText_STY>
-                                                <SingleQuestion_STY.QuestionDate_STY> {singleQuestionData.created_at} </SingleQuestion_STY.QuestionDate_STY>
+                                                {/* <SingleQuestion_STY.QuestionDate_STY> {singleQuestionData.created_at} </SingleQuestion_STY.QuestionDate_STY> */}
                                             </SingleQuestion_STY.QuestionStatisticElement_STY> 
                                         </SingleQuestion_STY.QuestionStatistics_STY>
                                     </SingleQuestion_STY.QuestionCont_STY>
@@ -206,7 +208,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
                         </>
                     
                         {              
-                                singleQuestionStatus === "idle"
+                               ( singleQuestionStatus === "idle" && singleQuestionData.answer_count > 0)
                                 && 
                                 <SingleQuestion_STY.AnswersAndProductsCont_STY>
                                     <SinglePageTabs/>

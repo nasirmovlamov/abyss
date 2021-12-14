@@ -1,4 +1,4 @@
-import React, { ReactElement} from 'react'
+import React, { ReactElement, useState} from 'react'
 import Image from 'next/image'
 import { AnswerCount,  Avatar, BottomSide, Content, FormQuestionCont, Name, PersonCont, QuestionTags, StatisticCont, Tags, TextCont, Title, Text, HelpfulCont, HelpfulCount, AnswerCont, ViewsCont,  CountOfProducts, ProductCount, ProductsIcons, ProductIcon, ThumbIcon, DefaultLine, PercentageLine, DateCount, QuestionStatisticPercentage } from '../styles/components/styled-blocks/FormQuestion.style'
 import Link from 'next/link'
@@ -11,7 +11,7 @@ import { parseHtml, parseHtmlWithMention, parseHtmlWithMentionremoveImgAndCodeBl
 import { useAppDispatch } from '../app/store/hooks'
 import {  set_side_product_data } from '../app/feature/SideProducts.slice'
 import { getSideProducts } from '../app/thunks/SideProducts.thunk'
-
+import mainlogo from '../public/main-logo.svg'
 interface Props {
     data:any
 }
@@ -19,6 +19,7 @@ interface Props {
 function FormQuestion({data}: Props): ReactElement {
 
     const dispatch = useAppDispatch()
+    const [isToolTip, setshowToolTip] = useState(false)
 
     const setSideProductData = async (e:any) => {
         // document.getElementById(`forumQuestion${data.id}`)!.getBoundingClientRect().top
@@ -27,68 +28,75 @@ function FormQuestion({data}: Props): ReactElement {
         await dispatch(set_side_product_data({id:questionID, distanceFromTop:distanceFromTopOfBrowser}))
         await dispatch(getSideProducts({id:questionID, page:1}))
     }
-    
-    return (
-        <NavLink href={`/forum/${data.id}/${data.slug}`}>
-        <FormQuestionCont id={`forumQuestion${data.id}`}>
-            <PersonCont>
-                <Avatar src={data.avatar}></Avatar>
-                <Name>{data.name}</Name>
-            </PersonCont>
 
-            <TextCont>
-                <NavLink href={`/forum/${data.id}/${data.slug}`}>
+    const showToolTip = () => {
+        setshowToolTip(true)
+    }
+
+    const hideToolTip = () => {
+        setshowToolTip(true)
+    }
+
+    return (
+        <NavLink content="forum question" href={`/forum/${data.id}/${data.slug}`}>
+            <FormQuestionCont onMouseEnter={showToolTip} onMouseLeave={hideToolTip}  id={`forumQuestion${data.id}`}>
+                <div style={{position:'absolute', top:-20 , right:-20 , display:isToolTip ? 'flex' : 'none'}}>Show ToolTip</div>
+                <PersonCont>
+                    <Avatar src={mainlogo.src} />
+                    <Name>{data.name}</Name>
+                </PersonCont>
+
+                <TextCont>
                     <Title> 
                         {data.title}
                     </Title>
-                </NavLink>
-                <Content> 
-                    {parseHtmlWithMentionremoveImgAndCodeBlock(data.content , [])}
-                </Content>
+                    <Content> 
+                        {parseHtmlWithMentionremoveImgAndCodeBlock(data.content , [])}
+                    </Content>
 
-                <BottomSide>
-                    <QuestionTags>
-                        {data.tags.map( (tag:any, index:any ) =>  index < 3 && <Tags>{tag}</Tags>)}
-                    </QuestionTags>
+                    <BottomSide>
+                        <QuestionTags>
+                            {data.tags.map( (tag:any, index:any ) =>  index < 3 && <Tags>{tag}</Tags>)}
+                        </QuestionTags>
 
-                    <CountOfProducts> 
-                        <ProductsIcons>
-                            <ProductIcon index={3} backgroundColor="#2E4951"></ProductIcon>
-                            <ProductIcon index={2} backgroundColor="#0F1113"></ProductIcon>
-                            <ProductIcon index={1} backgroundColor="#EFF2F4"></ProductIcon>
-                        </ProductsIcons>
-                        <ProductCount onClick={setSideProductData}> 11 Products</ProductCount>
-                    </CountOfProducts>
-                </BottomSide>
-            </TextCont>
+                        <CountOfProducts> 
+                            <ProductsIcons>
+                                <ProductIcon index={3} backgroundColor="#2E4951"></ProductIcon>
+                                <ProductIcon index={2} backgroundColor="#0F1113"></ProductIcon>
+                                <ProductIcon index={1} backgroundColor="#EFF2F4"></ProductIcon>
+                            </ProductsIcons>
+                            <ProductCount onClick={setSideProductData}> 11 Products</ProductCount>
+                        </CountOfProducts>
+                    </BottomSide>
+                </TextCont>
 
-            <QuestionStatistics_STY>
-                    <StatisticCont>
-                            <AnswerCont>
-                                <AnswerCount>{data.answer_count}</AnswerCount>
-                                <Text>Answers</Text>
-                            </AnswerCont>
+                <QuestionStatistics_STY>
+                        <StatisticCont>
+                                <AnswerCont>
+                                    <AnswerCount>{data.answer_count}</AnswerCount>
+                                    <Text>Answers</Text>
+                                </AnswerCont>
 
-                            <HelpfulCont>
-                                <HelpfulCount>
-                                    <QuestionStatisticButton_STY  changeDirection={false}  ><ThumbIcon><Image src={thumbs_up} width="18px" height="18px" alt="like button"/> </ThumbIcon></QuestionStatisticButton_STY> 
-                                    <QuestionStatisticPercentage  >69%</QuestionStatisticPercentage> 
-                                </HelpfulCount>
-                                <DefaultLine><PercentageLine percentage={(69/100*100)}/></DefaultLine>
-                                
-                            </HelpfulCont>
-                    </StatisticCont>
-                    <DateCount>
-                        2d 7h ago
-                    </DateCount>
-                    {/* <QuestionStatisticElement>
-                        <QuestionStatisticButton onClick={voting} color={singleQuestionData.user_votes === null ? "red" : "green"}>like</QuestionStatisticButton>
-                        <QuestionStatisticText>Give Vote</QuestionStatisticText>
-                        <QuestionDate> {singleQuestionData.created_at} </QuestionDate>
-                    </QuestionStatisticElement> */}
-            </QuestionStatistics_STY>
+                                <HelpfulCont>
+                                    <HelpfulCount>
+                                        <QuestionStatisticButton_STY  changeDirection={false}  ><ThumbIcon><Image src={thumbs_up} width="18px" height="18px" alt="like button"/> </ThumbIcon></QuestionStatisticButton_STY> 
+                                        <QuestionStatisticPercentage  >69%</QuestionStatisticPercentage> 
+                                    </HelpfulCount>
+                                    <DefaultLine><PercentageLine percentage={(69/100*100)}/></DefaultLine>
+                                    
+                                </HelpfulCont>
+                        </StatisticCont>
+                        <DateCount>
+                            2d 7h ago
+                        </DateCount>
+                        {/* <QuestionStatisticElement>
+                            <QuestionStatisticButton onClick={voting} color={singleQuestionData.user_votes === null ? "red" : "green"}>like</QuestionStatisticButton>
+                            <QuestionStatisticText>Give Vote</QuestionStatisticText>
+                            <QuestionDate> {singleQuestionData.created_at} </QuestionDate>
+                        </QuestionStatisticElement> */}
+                </QuestionStatistics_STY>
 
-        </FormQuestionCont>
+            </FormQuestionCont>
         </NavLink>
     )
 }

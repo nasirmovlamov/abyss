@@ -177,7 +177,7 @@ export const LinksStyle_STY = styled.ul`
     align-items:flex-end;
     height:60px;    
     /* width:680px; */
-    width: 810px;
+    /* width: 810px; */
     &:hover ${Line_STY}
     {
         opacity: 0.2; 
@@ -232,6 +232,9 @@ export const PersonName_STY = styled.label`
     color: ${({theme}) => theme.colors.gray_2};
     cursor: pointer;
     margin-top: 1px;
+    &:hover {
+        color: ${({theme}) => theme.colors.white_2};
+    }
 `
 export const HeaderIcon_STY = styled.button`
     width: 46px;
@@ -372,7 +375,7 @@ export const Logged_STY = styled.div`
     &:hover ${ImageStyle2_STY} , &:hover ${PersonName_STY}
     {
         opacity: 1;
-        color: ${({theme}) => theme.text_hover.hover2};   
+        /* color: ${({theme}) => theme.text_hover.hover2};    */
     }
 `
 export const Logout_STY = styled.button`

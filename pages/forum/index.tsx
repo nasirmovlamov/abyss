@@ -26,6 +26,8 @@ import SideProductCont from '../../components/SideProductCont'
 import BeatLoader from "react-spinners/PacmanLoader";
 import { useScrollYPosition } from 'react-use-scroll-position'
 import { scroller } from 'react-scroll'
+import { changePositionOfFilters, stay_in_focus } from '../../app/feature/PageFilters.slice'
+import SearchBoxStaticVersion from '../../components/SearchBoxStaticVersion'
 interface Props {
     
 }
@@ -40,6 +42,7 @@ function Forum({}: Props): ReactElement {
     const router = useRouter()
     const isChatBoxOpened = useAppSelector(is_chatbox_opened)
     const a = [1,2,3,4]
+    const stayInFocus = useAppSelector(stay_in_focus)
     
     const scrollToY = () => {
         window.scrollTo({
@@ -65,10 +68,24 @@ function Forum({}: Props): ReactElement {
     }, [scrollY])
 
     
+    const handleMouseOver = () => {
+        if(!stayInFocus)
+        {
+            dispatch(changePositionOfFilters(false))
+        }
+    }
+
+    const handleMouseLeave = () => {
+        if(!stayInFocus)
+        {
+            dispatch(changePositionOfFilters(true))
+        }
+    }
+
 
     return (
         <PageDefaultStyle>
-            <SidePartOfPage side={"left"}>
+            <SidePartOfPage onMouseEnter={handleMouseOver} onMouseLeave={handleMouseLeave} side={"left"}>
             </SidePartOfPage>
             
            
@@ -76,7 +93,7 @@ function Forum({}: Props): ReactElement {
 
         <MainPartOfPage>
                 <ForumPage>
-                    
+                    <SearchBoxStaticVersion/>
                     <PageTabs/> 
                     {
                         forumSearchData.initialLoader

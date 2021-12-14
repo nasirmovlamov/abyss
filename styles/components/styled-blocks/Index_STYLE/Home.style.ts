@@ -5,7 +5,7 @@ export const Home_STYLE = styled.div`
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding-top: 30px;
+    padding-top: 250px;
     padding-right: 100px;
     box-sizing: border-box;
     .title {

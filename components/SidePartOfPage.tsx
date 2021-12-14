@@ -11,16 +11,18 @@ import PageFilters from './PageFilters'
 interface Props {
     children:any,
     side:string
+    onMouseEnter?:()=>void
+    onMouseLeave?:()=>void
 }
 
-function SidePartOfPage({children , side}: Props): ReactElement {
+function SidePartOfPage({children , side , onMouseEnter , onMouseLeave}: Props): ReactElement {
     const isChatBoxOpened = useAppSelector(is_chatbox_opened) 
     const isCommentOpened = useAppSelector(is_comment_opened) 
     const colorConvert = useAppSelector(color_convert)
     const dispatch = useAppDispatch()
 
     return (
-        <SidePartOfPageStyle colorConvert={colorConvert} side={side} >
+        <SidePartOfPageStyle onMouseEnter={onMouseEnter}  onMouseLeave={onMouseLeave} colorConvert={colorConvert} side={side} >
             {children}
             {side ==="left" && 
             <>
