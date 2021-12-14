@@ -78,7 +78,7 @@ function LinkedStoreProduct({data}: Props): ReactElement {
 
                 <ProductContentCont>
                         <ProductContent>
-                            <NavLink href={"store/1/test"}><ProductTitle>{data.name}</ProductTitle></NavLink>
+                            <NavLink content="product" href={"store/1/test"}><ProductTitle>{data.name}</ProductTitle></NavLink>
                             <ProductDetailCont>
                                 <ProductStarCont><StarCountShow count={4.3}/> {data.starCount}</ProductStarCont>
                                 <ProductSoldCont><FontAwesomeIcon icon={faDownload}/> {data.download_count}</ProductSoldCont>

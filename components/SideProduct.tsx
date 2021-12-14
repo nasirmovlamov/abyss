@@ -58,7 +58,7 @@ function SideProduct({data}: Props): ReactElement {
             <ProductImageAndContent>
                 <ProductContentCont>
                         <ProductContent>
-                            <NavLink href={"store/1/test"}><ProductTitle>{data.name}</ProductTitle></NavLink>
+                            <NavLink content="text" href={"store/1/test"}><ProductTitle>{data.name}</ProductTitle></NavLink>
                             <ProductDetailCont>
                                 <ProductStarCont><StarCountShow count={4.3}/> {data.starCount} 612</ProductStarCont>
                                 <ProductSoldCont><FontAwesomeIcon icon={faDownload}/> {data.download_count}</ProductSoldCont>

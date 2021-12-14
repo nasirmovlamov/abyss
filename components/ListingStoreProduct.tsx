@@ -53,7 +53,7 @@ function ListingStoreProduct({data}: Props): ReactElement {
     
     
     return (
-        <NavLink href={`store/${data.id}/${data.slug}`}>
+        <NavLink content="product" href={`store/${data.id}/${data.slug}`}>
         <StoreListingProductStyle>
             <ProductImageAndContent>
                 <ProductLanguageAndImage>
