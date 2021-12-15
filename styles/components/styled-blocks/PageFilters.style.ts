@@ -8,15 +8,12 @@ export const FilterContStyle  = styled.div`
     height: auto;
     box-sizing: border-box;
     z-index: 2;
-    height: 200px;
-    
+    height: auto;
     /* box-shadow: 190px 190px 190px 190px red; */
     /* position: sticky; */
     /* top: 90px; */
     position: sticky;
-    overflow: hidden;
-
-    top: 188px;
+    top: 286px;
 `
 
 
@@ -26,7 +23,9 @@ export const FilterCont  = styled.div<{isFocused:boolean , stayInFocus:boolean}>
     background-color: white;
     padding: 11px 16px;
     border-radius: 20px;
-    box-shadow: 0px 1px 1px rgba(99,105,108,0.61), inset 0px 0px 0px rgba(99,105,108,0.61);
+    box-shadow: ${({theme}) => theme.boxshadows.boxshadow1};
+    background-color: ${({theme}) => theme.backgrounds.background1};
+
     width: 100%;
     /* height: 100%; */
     row-gap: 10px;
@@ -41,10 +40,10 @@ export const PinButton  = styled.button<{isFocused:boolean , stayInFocus:boolean
     right: 0px;
     margin-right: 10px;
     margin-top: 10px;
-    color: ${({isFocused}) => isFocused ? "black" :"gray" };
-    color: ${({stayInFocus}) => stayInFocus ? "black !important" :"gray" };
+    /* color: ${({isFocused , theme}) => isFocused ?  theme.backgrounds.background1 :"gray" }; */
+    color: ${({stayInFocus , theme}) => stayInFocus ? theme.backgrounds.background2 :theme.backgrounds.background4 };
     padding: 3px ;
-    background-color: transparent;
+    background-color: ${({theme}) => theme.backgrounds.background7};
     border:1px solid gray;
     border-radius: 5px;
 `
@@ -150,8 +149,7 @@ export const FilterLanguageTitle  = styled.h5`
     font-size: 18px;
     display: flex;
     flex-direction: column;
-    color: #474D51;
-
+    color: ${({theme}) => theme.texts.text2};
 `
 export const FilterLanguageContent  = styled.div`
     display: flex;
@@ -192,8 +190,11 @@ export const FilterSearchInCont  = styled.div`
 export const FilterSearchInput  = styled.input`
     width: 100%;
    box-sizing: border-box;
-   padding: 5px;
-   height: 20px;
+   padding: 10px;
+   height: 25px;
+   border-radius: 10px;
+   background-color: ${({theme}) => theme.backgrounds.background1};
+   box-shadow: ${({theme}) => theme.boxshadows.boxshadow1};
 `
 
 
@@ -203,6 +204,7 @@ export const FilterSearchDropdown  = styled.div`
     width: 100%;
     /* height: 200px; */
     border: 1px solid #E6E6E6;
+    position: absolute;
     row-gap: 5px;
 `
 

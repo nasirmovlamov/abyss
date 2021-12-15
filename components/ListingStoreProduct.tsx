@@ -78,7 +78,7 @@ function ListingStoreProduct({data}: Props): ReactElement {
                         <ProductContent>
                             <ProductTitle>{data.name}</ProductTitle>
                             <ProductDetailCont>
-                                <ProductStarCont><StarCountShow count={4.3}/> {data.starCount}</ProductStarCont>
+                                <ProductStarCont><StarCountShow count={2.3}/> {data.starCount}</ProductStarCont>
                                 <ProductSoldCont><FontAwesomeIcon icon={faDownload}/> {data.download_count}</ProductSoldCont>
                                 <ProductViewCont><FontAwesomeIcon icon={faEye}/> {data.view_count}</ProductViewCont>
                             </ProductDetailCont>

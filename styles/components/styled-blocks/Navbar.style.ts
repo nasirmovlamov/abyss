@@ -119,12 +119,12 @@ export const LinkStyle_STY = styled.a`
     justify-content:center;
     align-items:center;
     letter-spacing: 1px;
-    font-weight: 600;
+    /* font-weight: 600; */
     cursor: pointer;
     color: ${({theme}) => theme.colors.gray_3};
     transition: 0.3s;
     /* margin-top: 5px; */
-    font-family: s;
+    /* font-family: s; */
     font-size: 18px;
     line-height: 24px;
 `
@@ -150,7 +150,7 @@ export const LiStyle_STY = styled.button<{focus:boolean}>`
         width: ${(props:{focus:boolean}) =>  props.focus ? '120px' : '0px'};
     }
     a {
-        font-family: s;
+        /* font-family: s; */
         color: ${({theme, focus}) =>  focus ? theme.colors.white_2 : theme.colors.gray_2};
     }
 

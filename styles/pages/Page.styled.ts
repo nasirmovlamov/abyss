@@ -30,7 +30,7 @@ export const SidePartOfPageStyle = styled.aside<{side:string , colorConvert:bool
     flex-direction: column;
     flex: 0 0 ${ ({side}) => side === "left" ? "195px" : "307px"};
     height: 100%;
-    align-self:stretch;
+    overflow: hidden;
     /* top:0px; */ 
     /* background-color: ${({colorConvert})=> colorConvert ? 'transparent' : '#000'}; */
     /* background-color: gray; */

@@ -20,6 +20,7 @@ import Header from './Header';
 import { ScrollToTopButton } from './ScrollToTopButton';
 import SearchBoxForHome from './SearchBoxForHome';
 import ToolTip from './ToolTip';
+import LinearProgres from './LinearProgres';
 
 interface Props {
     // any props that come into the component
@@ -66,8 +67,8 @@ const Layout: FC<Props> = ({ children, ...props }) => {
                 
                 <div style={{width:"100%" , minHeight:"100vh", display:'flex', flexDirection:'column' }}>
                     
-                    <Header/>
-
+                    {router.pathname !== '/login' && router.pathname !== '/register' &&  <Header/>}
+                    {router.pathname === '/forum' && <LinearProgres/>}
                     
                     {/* {router.pathname !== '/' && <SearchBox/>} */}
                     {isChatBoxOpened && <ChatBox/>}

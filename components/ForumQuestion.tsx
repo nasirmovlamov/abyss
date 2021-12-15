@@ -38,9 +38,9 @@ function FormQuestion({data}: Props): ReactElement {
     }
 
     return (
-        <NavLink content="forum question" href={`/forum/${data.id}/${data.slug}`}>
-            <FormQuestionCont onMouseEnter={showToolTip} onMouseLeave={hideToolTip}  id={`forumQuestion${data.id}`}>
-                <div style={{position:'absolute', top:-20 , right:-20 , display:isToolTip ? 'flex' : 'none'}}>Show ToolTip</div>
+        // <NavLink key={data.id} content="forum question" href={`/forum/${data.id}/${data.slug}`}>
+            <FormQuestionCont key={data.id} onMouseEnter={showToolTip} onMouseLeave={hideToolTip}  id={`forumQuestion${data.id}`}>
+                {/* <div style={{position:'absolute', top:-20 , right:-20 , display:isToolTip ? 'flex' : 'none'}}>Show ToolTip</div> */}
                 <PersonCont>
                     <Avatar src={mainlogo.src} />
                     <Name>{data.name}</Name>
@@ -51,12 +51,12 @@ function FormQuestion({data}: Props): ReactElement {
                         {data.title}
                     </Title>
                     <Content> 
-                        {parseHtmlWithMentionremoveImgAndCodeBlock(data.content , [])}
+                        {data.description}
                     </Content>
 
                     <BottomSide>
                         <QuestionTags>
-                            {data.tags.map( (tag:any, index:any ) =>  index < 3 && <Tags>{tag}</Tags>)}
+                            {data.tags.map( (tag:any, index:any ) =>  index < 3 && <Tags key={index}>{tag}</Tags>)}
                         </QuestionTags>
 
                         <CountOfProducts> 
@@ -80,9 +80,9 @@ function FormQuestion({data}: Props): ReactElement {
                                 <HelpfulCont>
                                     <HelpfulCount>
                                         <QuestionStatisticButton_STY  changeDirection={false}  ><ThumbIcon><Image src={thumbs_up} width="18px" height="18px" alt="like button"/> </ThumbIcon></QuestionStatisticButton_STY> 
-                                        <QuestionStatisticPercentage  >69%</QuestionStatisticPercentage> 
+                                        <QuestionStatisticPercentage  >{data.downvote + data.upvote > 0 ?  (data.upvote / (data.downvote + data.upvote )) : 0}%</QuestionStatisticPercentage> 
                                     </HelpfulCount>
-                                    <DefaultLine><PercentageLine percentage={(69/100*100)}/></DefaultLine>
+                                    <DefaultLine><PercentageLine percentage={data.downvote + data.upvote > 0 ? (data.upvote / (data.downvote + data.upvote )) : 0}/></DefaultLine>
                                     
                                 </HelpfulCont>
                         </StatisticCont>
@@ -97,7 +97,7 @@ function FormQuestion({data}: Props): ReactElement {
                 </QuestionStatistics_STY>
 
             </FormQuestionCont>
-        </NavLink>
+        // </NavLink>
     )
 }
 

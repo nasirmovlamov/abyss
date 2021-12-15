@@ -90,7 +90,7 @@ function PageFilters({}: Props): ReactElement {
                 </FilterTagCont> */}
 
                 <FilterLanguageCont>
-                    <FilterLanguageTitle>Language</FilterLanguageTitle>
+                    <FilterLanguageTitle>Filtered by Tags</FilterLanguageTitle>
                     <FilterLanguageContent>
                         {filterTags.map((element, index)=> 
                             <Subjects key={element.id}>

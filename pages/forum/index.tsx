@@ -23,7 +23,7 @@ import { side_product_data } from '../../app/feature/SideProducts.slice'
 import ListingStoreProduct from '../../components/ListingStoreProduct'
 import SideProduct from '../../components/SideProduct'
 import SideProductCont from '../../components/SideProductCont'
-import BeatLoader from "react-spinners/PacmanLoader";
+import BeatLoader from "react-spinners/BeatLoader";
 import { useScrollYPosition } from 'react-use-scroll-position'
 import { scroller } from 'react-scroll'
 import { changePositionOfFilters, stay_in_focus } from '../../app/feature/PageFilters.slice'

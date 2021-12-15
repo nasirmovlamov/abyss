@@ -151,6 +151,9 @@ function SearchBox({}: Props): ReactElement {
             if(router.pathname !== '/forum' && router.pathname !== '/store'){
                 router.push('/forum')
             }
+            window.scrollTo({
+                top: 0,
+            })
             if(forumSearchOptions.sendedQuery !== searchQuery){
                 if(router.pathname === '/forum'){
                     dispatch(forumSearchInfinity({query:searchQuery , from:0}))
@@ -162,9 +165,14 @@ function SearchBox({}: Props): ReactElement {
         }
     }
 
+    
+
     const searchHandleWithSubmit = () => {
         if(searchQuery !== "")
         {
+            window.scrollTo({
+                top: 0,
+            })
             if(forumSearchOptions.sendedQuery !== searchQuery){
                 if(router.pathname !== '/forum'){
                     dispatch(forumSearchInfinity({query:searchQuery , from:0}))
@@ -173,6 +181,7 @@ function SearchBox({}: Props): ReactElement {
                     dispatch(storeSearchInfinity({query:searchQuery , from:0}))
                 }
             }
+           
         }
     }
 

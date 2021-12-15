@@ -16,14 +16,17 @@ function PageTabs({}: Props): ReactElement {
     const {searchOptions , status , results_number} = forumSearchData
     const {forumSort , forumType} = searchOptions
     const  searchTypes = ['Requests' , 'Questions' , 'Discussion']
-    const  searchSorts = ['Best' , 'New' , 'Top' ]
+    const  searchSorts = ['Best' , 'New' , 'Top']
+
+    // console.log(forumSort)
+    // console.log(forumType)
 
 
     const selectType = (type:string) => {
-        dispatch(selectTypeSearchOption(type))
+        dispatch(selectTypeSearchOption({type:type , page:'forum'}))
     }
     const selectSort = (sort:string) => {
-        dispatch(selectSortSearchOption(sort))
+        dispatch(selectSortSearchOption({sort:sort , page:'forum'}))
     }
     
     return (

@@ -15,11 +15,6 @@ export const SearchBoxSlice = createSlice({
 
     getCachedSearchBoxData(state , action)
     { 
-      console.log(action.payload.page)
-      console.log(getCookie("ForumTypeSearchOption"))
-      console.log(getCookie('ForumSortSearchOption'))
-
-
       if(getCookie('searchValue')){
         state.search_query = getCookie('searchValue')
       }else{
@@ -31,7 +26,6 @@ export const SearchBoxSlice = createSlice({
       }
       state.page = action.payload.page
 
-      if(action.payload.page === '/forum'){
         if(getCookie('ForumTypeSearchOption'))
         {
           state.searchBoxData.forum.searchOptions.forumType = getCookie("ForumTypeSearchOption")!
@@ -46,17 +40,15 @@ export const SearchBoxSlice = createSlice({
         }
         else 
         {
-          state.searchBoxData.forum.searchOptions.forumSort = "New"
+          state.searchBoxData.forum.searchOptions.forumSort = "Best"
         }
-      }
 
-      if(action.payload.page === '/store'){
         if(getCookie('StoreTypeSearchOption'))
         {
           state.searchBoxData.store.searchOptions.storeType = getCookie("StoreTypeSearchOption")!
         }else 
         {
-          state.searchBoxData.store.searchOptions.storeType = "Questions"
+          state.searchBoxData.store.searchOptions.storeType = "All"
         }
         if(getCookie('StoreSortSearchOption'))
         {
@@ -64,9 +56,8 @@ export const SearchBoxSlice = createSlice({
         }
         else 
         {
-          state.searchBoxData.store.searchOptions.storeSort = "Newes"
+          state.searchBoxData.store.searchOptions.storeSort = "Best"
         }
-      }
     },
 
     selectFilterToSearchOption(state, action) {
@@ -92,23 +83,25 @@ export const SearchBoxSlice = createSlice({
     },
 
     selectTypeSearchOption(state, action) {
-      if(state.page === '/forum'){
-        state.searchBoxData.forum.searchOptions.forumType = action.payload
-        setCookie("ForumTypeSearchOption" , action.payload , 365)
-      }else if (state.page === '/store'){
-        state.searchBoxData.store.searchOptions.storeType = action.payload
-        setCookie("StoreTypeSearchOption" , action.payload , 365)
+      console.log(action.payload.type)
+      if(action.payload.page === 'forum'){
+        state.searchBoxData.forum.searchOptions.forumType = action.payload.type
+        setCookie("ForumTypeSearchOption" , action.payload.type , 365)
+      }else if (action.payload.page === 'store'){
+        state.searchBoxData.store.searchOptions.storeType = action.payload.type
+        setCookie("StoreTypeSearchOption" , action.payload.type , 365)
       } 
     },
 
     selectSortSearchOption(state, action) {
-      console.log(state.page)
-      if(state.page === '/forum'){
-        state.searchBoxData.forum.searchOptions.forumSort = action.payload
-        setCookie("ForumSortSearchOption" , action.payload , 365)
-      }else if (state.page === '/store'){
-        state.searchBoxData.store.searchOptions.storeSort = action.payload
-        setCookie("StoreSortSearchOption" , action.payload , 365)
+      console.log(action.payload.sort)
+
+      if(action.payload.page === 'forum'){
+        state.searchBoxData.forum.searchOptions.forumSort = action.payload.sort
+        setCookie("ForumSortSearchOption" , action.payload.sort , 365)
+      }else if (action.payload.page === 'store'){
+        state.searchBoxData.store.searchOptions.storeSort = action.payload.sort
+        setCookie("StoreSortSearchOption" , action.payload.sort , 365)
       } 
     },
 
@@ -195,9 +188,11 @@ export const SearchBoxSlice = createSlice({
       if(state.searchBoxData.forum.data.length >= state.searchBoxData.forum.results_number){
         state.searchBoxData.forum.status = "loaded"
       }
+      state.searchBoxData.forum.infinityLoader = "loaded"
     }),
     builder.addCase(forumSearchInfinity.pending, (state, {payload}) => {
       state.searchBoxData.forum.status = "loading"
+      state.searchBoxData.forum.infinityLoader = "loading"
       if(state.searchBoxData.forum.searchOptions.sendedQuery !==  state.search_query){
         state.searchBoxData.forum.initialLoader = true
       }
@@ -205,11 +200,11 @@ export const SearchBoxSlice = createSlice({
     builder.addCase(forumSearchInfinity.rejected, (state, {payload}) => {
       autoErrorToaster(payload)
       state.searchBoxData.forum.status = "error"
+      state.searchBoxData.forum.infinityLoader = "error"
     })  
 
     // Store Search Infinity
     builder.addCase(storeSearchInfinity.fulfilled, (state, {payload}) => {
-      console.log(payload.data.from == 0)
       if(payload.data.from == 0){
         state.searchBoxData.store.data = []
         state.searchBoxData.store.fromNumber=0
@@ -224,12 +219,17 @@ export const SearchBoxSlice = createSlice({
       if(state.searchBoxData.store.data.length >= state.searchBoxData.store.results_number){
         state.searchBoxData.store.status = "loaded"
       }
+      state.searchBoxData.store.infinityLoader = "loaded"
+
     }),
     builder.addCase(storeSearchInfinity.pending, (state, {payload}) => {
       state.searchBoxData.store.status = "loading"
+      state.searchBoxData.store.infinityLoader = "loading"
+
     }),
     builder.addCase(storeSearchInfinity.rejected, (state, {payload}) => {
       state.searchBoxData.store.status = "error"
+      state.searchBoxData.store.infinityLoader = "error"
       autoErrorToaster(payload)
     })  
 

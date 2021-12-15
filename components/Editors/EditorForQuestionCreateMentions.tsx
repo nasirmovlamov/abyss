@@ -21,7 +21,7 @@ const modules = {
   toolbar: [
     ['bold', 'italic'],
     [ 'link', 'blockquote' ,  'code-block' ,  'image',],
-    [ {'indent': '-1'}, {'indent': '+1'} ,{'list': 'ordered'}, {'list': 'bullet'} , { 'header': [1, 2, false] } ,],
+    [ {'indent': '-1'}, {'indent': '+1'} ,{'list': 'ordered'}, {'list': 'bullet'}  ,],
     ['clean']
   ],
   mention: {

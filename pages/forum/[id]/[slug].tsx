@@ -53,13 +53,14 @@ function SingleQuestionPAge({}: Props): ReactElement {
     const commentsStatus = useAppSelector(comments_status)
     const isCommentsOpened = useAppSelector(is_comment_opened)
     const isChatBoxOpened = useAppSelector(is_chatbox_opened)
-
+    const [isBrowserReady, setisBrowserReady] = useState(false)
 
     
     useEffect(() => {
         if(router.isReady)
         {
             dispatch(getSingleQuestion(router.asPath))
+            setisBrowserReady(true)
         }
     }, [router , userData])
 
@@ -115,6 +116,13 @@ function SingleQuestionPAge({}: Props): ReactElement {
             dispatch(getQuestionComments(singleQuestionData.id))
         }
 
+    }
+
+    if(!isBrowserReady)
+    {
+        return(
+            <></>
+        )
     }
 
     if(singleQuestionData.status === "loading")
@@ -193,7 +201,6 @@ function SingleQuestionPAge({}: Props): ReactElement {
                                             </SingleQuestion_STY.StatisticContSingleQuestion_STY>
                                             <SingleQuestion_STY.QuestionDate_STY>
                                                 {singleQuestionData.created_at}
-                                                {console.log(singleQuestionData)}
                                             </SingleQuestion_STY.QuestionDate_STY>
                                              <SingleQuestion_STY.QuestionStatisticElement_STY>
                                                 <SingleQuestion_STY.QuestionStatisticText_STY>Give Vote</SingleQuestion_STY.QuestionStatisticText_STY>

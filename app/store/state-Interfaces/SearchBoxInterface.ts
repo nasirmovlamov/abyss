@@ -11,6 +11,7 @@ export interface SEARCHBOX_INTERFACE {
         forum:{
             data:ForumQuestionInterface[],
             status:"loading" | "loaded" | "error",
+            infinityLoader:'loading' | 'loaded' | 'error',
             results_number:number,
             fromNumber:number,
             allDataLoaded:boolean, 
@@ -29,6 +30,7 @@ export interface SEARCHBOX_INTERFACE {
             fromNumber:number,
             allDataLoaded:false,
             scrollY:number,
+            infinityLoader:'loading' | 'loaded' | 'error',
 
             searchOptions:{
                 sendedQuery:string | null,

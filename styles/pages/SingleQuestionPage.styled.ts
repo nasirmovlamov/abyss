@@ -47,6 +47,7 @@ export const QuestionCont_STY = styled.div`
     background-color: ${({theme}) => theme.backgrounds.background1};
     box-shadow: ${({theme}) => theme.boxshadows.boxshadow4};
     justify-content: flex-start;
+    margin-top:127px;
     /* align-items: center; */
     @media only screen and (max-width:1375px){
         flex-wrap: wrap;

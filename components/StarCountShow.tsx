@@ -15,23 +15,26 @@ function StarCountShow({count}: Props): ReactElement {
     useEffect(() => {
         let stars = []
         for (let i = 1; i <= 5; i++) {
+            
             if (i <= Math.floor(count)) {
-                stars.push(<FontAwesomeIcon icon={solidStar} key={i}/>)
-            }
-            if(Math.floor(count) === i-1 && count < 1)
-            {
-                stars.push(<FontAwesomeIcon key={i} icon={faStarHalfAlt}/>)
+                stars.push(<FontAwesomeIcon key={i+Date.now()+40} icon={solidStar} />)
             }
             if(i === Math.floor(count) && i < 5)
             {
                 if(count % 1 !== 0)
                 {
-                    stars.push(<FontAwesomeIcon key={i} icon={faStarHalfAlt}/>)
+                    stars.push(<FontAwesomeIcon key={i+Date.now()+20} icon={faStarHalfAlt}/>)
                 }
             }
+            if(Math.floor(count) === i-1 && count < 1)
+            {
+                stars.push(<FontAwesomeIcon key={i+Date.now()+30} icon={faStarHalfAlt}/>)
+            }
+            
             if(i > Math.ceil(count))
             {
-                    stars.push(<FontAwesomeIcon key={i} icon={regularStar}/>)
+                stars.push(<FontAwesomeIcon key={i+Date.now()+10} icon={regularStar}/>)
+
             }
         }
         

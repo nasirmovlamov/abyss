@@ -111,6 +111,9 @@ function SearchBoxStaticVersion({}: Props): ReactElement {
     const searchHandleWithEnter = (key:number) => {
         if(key === 13)
         {
+            window.scrollTo({
+                top: 0,
+            })
             if(router.pathname !== '/forum' && router.pathname !== '/store'){
                 router.push('/forum')
             }
@@ -128,6 +131,9 @@ function SearchBoxStaticVersion({}: Props): ReactElement {
     const searchHandleWithSubmit = () => {
         if(searchQuery !== "")
         {
+            window.scrollTo({
+                top: 0,
+            })
             if(forumSearchOptions.sendedQuery !== searchQuery){
                 if(router.pathname !== '/forum'){
                     dispatch(forumSearchInfinity({query:searchQuery , from:0}))

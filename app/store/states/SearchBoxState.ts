@@ -14,6 +14,7 @@ export const SEARCHBOX_STATE:SEARCHBOX_INTERFACE = {
             fromNumber:0,
             allDataLoaded:false,
             initialLoader:true,
+            infinityLoader:'loading',
             status:"loading",
             scrollY:0,
             searchOptions:{
@@ -27,6 +28,7 @@ export const SEARCHBOX_STATE:SEARCHBOX_INTERFACE = {
             results_number:0,
             fromNumber:0,
             allDataLoaded:false,
+            infinityLoader:'loading',
             status:"loading",
             scrollY:0,
             searchOptions:{

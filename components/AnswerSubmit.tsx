@@ -97,7 +97,7 @@ function AnswerSubmitCont({id}: Props): ReactElement {
             /> */}
             {/* <LabelCont> */}
             {/* <label htmlFor="content">Content</label> */}
-                <MyEditor display={"none"} content={""} onChange={(content:any) => console.log(content)} />
+            <MyEditor display={"none"} content={""} onChange={(content:any) => console.log(content)} />
             {/* <label htmlFor="content">validate</label>
             </LabelCont> */}
 

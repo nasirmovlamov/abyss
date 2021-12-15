@@ -9,6 +9,7 @@ interface Props {
     // any props that come into the component
     href:string
     content:string
+    key?:string | number
 }
 
 
@@ -66,7 +67,7 @@ const NavLink: FC<Props> = ({ children, ...props }) => {
         // <a 
         //     // onMouseMove={mouseEnterHandle} onMouseEnter={mouseEnterHandle} onMouseLeave={mouseLeaveHandle}
         // >
-            <Link href={props.href} passHref>
+            <Link key={props.key} href={props.href} passHref>
                 {children}
             </Link>
         // </a>

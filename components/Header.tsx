@@ -158,6 +158,7 @@ function Header({}: Props): ReactElement {
     }
 
     const goPage = (link:string) => {
+        window.scrollTo(0, 0)
         if(router.pathname !== link){
             router.push(link)
         }

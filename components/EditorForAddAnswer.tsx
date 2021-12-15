@@ -22,7 +22,6 @@ interface Props {
 
 const modules = {
   toolbar: [
-    [{ 'header': [1, 2, false] }],
     ['bold', 'italic', 'underline','strike', 'blockquote' , 'code-block'],
     [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
     ['link', 'image'],
@@ -123,28 +122,49 @@ const EditorAddAnswer = ({}: Props): ReactElement => {
 
 
   const editorOnChageHandle = async (content:any, delta:any, source:any, editor:any) => {
-    const editorData = editor.getContents().ops;
+    try {
+      const editorData = editor.getContents().ops;
 
-    for (let i = 0; i < editorData.length; i++) {
-      if(editorData[i].insert.hasOwnProperty('mention'))
-      {
-        if(editorData[i].insert.mention.denotationChar === '@')
+      for (let i = 0; i < editorData.length; i++) {
+        if(editorData[i].insert.hasOwnProperty('mention'))
         {
-          await dispatch(linkProductAtAnswer({id:editorData[i].insert.mention.id}))
-        }
-        else if (editorData[i].insert.mention.denotationChar === '#')
-        {
-          await dispatch(mentionUserAtAnswer({id:editorData[i].insert.mention.id}))
-        }else {
+          if(editorData[i].insert.mention.denotationChar === '@')
+          {
+            await dispatch(linkProductAtAnswer({id:editorData[i].insert.mention.id}))
+          }
+          else if (editorData[i].insert.mention.denotationChar === '#')
+          {
+            await dispatch(mentionUserAtAnswer({id:editorData[i].insert.mention.id}))
+          }else {
+          }
         }
       }
+      dispatch(AnswerContentOnChange(content))
+    } catch (error) {
+      
     }
-    console.log(content)
-    dispatch(AnswerContentOnChange(content))
+   
   }
 
   const editorOnFocusHandle = (range:any, source:any, editor:any) => {
   }
+
+  // const quillEditorOnPaste = (event:any, editor:any, html:any):any => {
+  //   const data = event.clipboardData.getData('text/plain');
+  //   const dataHtml = event.clipboardData.getData('text/html');
+  //   if (dataHtml) {
+  //     const div = document.createElement('div');
+  //     div.innerHTML = dataHtml;
+  //     const text = div.textContent;
+  //     if (text) {
+  //       editor.insertText(text);
+  //     }
+  //   } else if (data) {
+  //     editor.insertText(data);
+  //   }
+  // }
+
+         
 
   const editorOnBlurHandle = (previousRange:any, source:any, editor:any) => {
   }
@@ -165,7 +185,6 @@ const EditorAddAnswer = ({}: Props): ReactElement => {
             theme="snow" 
             value={answerContent} 
             onChange={editorOnChageHandle}
-
           />
       </CreateAddAnswerEDITORWrapper_STY>
   );
