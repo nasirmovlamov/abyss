@@ -12,6 +12,7 @@ import { useAppDispatch } from '../app/store/hooks'
 import {  set_side_product_data } from '../app/feature/SideProducts.slice'
 import { getSideProducts } from '../app/thunks/SideProducts.thunk'
 import mainlogo from '../public/main-logo.svg'
+import router from 'next/router'
 interface Props {
     data:any
 }
@@ -38,8 +39,7 @@ function FormQuestion({data}: Props): ReactElement {
     }
 
     return (
-        // <NavLink key={data.id} content="forum question" href={`/forum/${data.id}/${data.slug}`}>
-            <FormQuestionCont key={data.id} onMouseEnter={showToolTip} onMouseLeave={hideToolTip}  id={`forumQuestion${data.id}`}>
+        <FormQuestionCont onClick={() => router.push(`/forum/${data.id}/${data.slug}`)} key={data.id} onMouseEnter={showToolTip} onMouseLeave={hideToolTip}  id={`forumQuestion${data.id}`}>
                 {/* <div style={{position:'absolute', top:-20 , right:-20 , display:isToolTip ? 'flex' : 'none'}}>Show ToolTip</div> */}
                 <PersonCont>
                     <Avatar src={mainlogo.src} />
@@ -83,11 +83,10 @@ function FormQuestion({data}: Props): ReactElement {
                                         <QuestionStatisticPercentage  >{data.downvote + data.upvote > 0 ?  (data.upvote / (data.downvote + data.upvote )) : 0}%</QuestionStatisticPercentage> 
                                     </HelpfulCount>
                                     <DefaultLine><PercentageLine percentage={data.downvote + data.upvote > 0 ? (data.upvote / (data.downvote + data.upvote )) : 0}/></DefaultLine>
-                                    
                                 </HelpfulCont>
                         </StatisticCont>
                         <DateCount>
-                            2d 7h ago
+                            {data.created_at.slice(0,10)}
                         </DateCount>
                         {/* <QuestionStatisticElement>
                             <QuestionStatisticButton onClick={voting} color={singleQuestionData.user_votes === null ? "red" : "green"}>like</QuestionStatisticButton>
@@ -95,9 +94,7 @@ function FormQuestion({data}: Props): ReactElement {
                             <QuestionDate> {singleQuestionData.created_at} </QuestionDate>
                         </QuestionStatisticElement> */}
                 </QuestionStatistics_STY>
-
             </FormQuestionCont>
-        // </NavLink>
     )
 }
 

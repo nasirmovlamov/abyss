@@ -47,7 +47,7 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
         step3: () => dispatch(ProductCreateStep3Validate(null)),
         step5: () => dispatch(ProductCreateStep5Validate(null)),
     }
-    
+    const productCreation = useAppSelector(is_product_created)
 
 
     const goNextSection = async () => {
@@ -136,7 +136,7 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
 
             <ProductCR_STY.CreateProduct_Buttons_Cont style={{display:'flex' , justifyContent:'space-between' , width:'100%'}}>
                 {currentStep > 1 ? <ProductCR_STY.CreateProduct_Button_PREVOIUS onClick={goPrevoiusSection} type="button">Previous</ProductCR_STY.CreateProduct_Button_PREVOIUS> : <div></div>}
-                {currentStep !== 5 ? <ProductCR_STY.CreateProduct_Button_NEXT  onClick={goNextSection} type="button"> Next</ProductCR_STY.CreateProduct_Button_NEXT> :<button onClick={goNextSection} type="button"> Submit </button>}
+                {currentStep !== 5 ? <ProductCR_STY.CreateProduct_Button_NEXT disabled={productCreation.status ==='pending' ||productCreation.plagirismLoading === 'loading'}  onClick={goNextSection} type="button"> Next</ProductCR_STY.CreateProduct_Button_NEXT> :<button onClick={goNextSection} type="button"> Submit </button>}
             </ProductCR_STY.CreateProduct_Buttons_Cont>
         </ProductCR_STY.ProductCreateForm>
     )

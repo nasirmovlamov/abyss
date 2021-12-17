@@ -89,10 +89,16 @@ export const updateProductThunk = createAsyncThunk(
   types.UPDATE_PRODUCT, async (data:any, {rejectWithValue}) => {
       try {
         const send_data = new FormData()
+        
+        const tags = data.mainData.steps[2].details_data['product_tags'].map((tag:any , index:any) => (tag.value)).join(',')
+        console.log(tags)
+
         send_data.append('price', '0')
         send_data.append('description', JSON.stringify(data.mainData.steps[2]))
-        // send_data.append('category_id', '1')
         send_data.append('name', data.mainData.steps[2].details_data.product_name)
+        send_data.append('tags', tags)
+        // send_data.append('category_id', '1')
+        
         const resp = await BASE_API_INSTANCE.post(`store/${data.productId}/product/edit?_method=PUT` , send_data)
         autoSuccessToaster(resp.data.message)
         const submitproduct  = await BASE_API_INSTANCE.post(`store/${data.productId}/product/submit`)

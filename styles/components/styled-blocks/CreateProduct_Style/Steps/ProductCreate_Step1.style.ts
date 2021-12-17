@@ -15,6 +15,11 @@ export const ProductCreate_Step1_Style = styled.div`
     .codeWord{
         font-size: 24px;
         color: ${({ theme }) => theme.texts.text2};
+        column-gap: 20px;
+        width: 100px;
+        display: flex;
+        column-gap: 10px;
+        align-items: center;
     }
 
     .upload{

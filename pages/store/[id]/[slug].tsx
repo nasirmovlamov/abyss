@@ -77,6 +77,8 @@ const SingleProductPage = (props: Props) => {
     const storeTabs = useAppSelector(store_tabs)
     const singleProductData = useAppSelector(single_product_data)
     const activeStoreTab = storeTabs.filter(tab => tab.isActive)[0]
+    const [mainClip, setmainClip] = useState('')
+
 
     const getQuestions = async () => {
         try {
@@ -97,15 +99,12 @@ const SingleProductPage = (props: Props) => {
     }, [])
 
     useEffect(() => {
-        if(activeStoreTab.id === 2){
-            scroller.scrollTo(`${activeStoreTab.tabName}` , {
-                duration: 500,
-                delay: 0,
-                smooth: 'easeInOutQuart',
-                offset: -450,
-            })
+        if(singleProductData.data !== null) {
+            setmainClip(JSON.parse(singleProductData.data.description).details_data['sections_product'][3]['isClips']['clips'][0].src)
         }
-    }, [activeStoreTab.id])
+    }, [singleProductData.data])
+
+    
 
     const addcave = async () => {
         try {
@@ -115,6 +114,10 @@ const SingleProductPage = (props: Props) => {
             console.log(error)
             // autoErrorToaster(error)
         }
+    }
+
+    const mainClipChanger = (src: any) => {
+        setmainClip(src)
     }
 
 
@@ -245,15 +248,15 @@ const SingleProductPage = (props: Props) => {
                                     <LabelContent>{HTMLReactParser(JSON.parse(singleProductData.data.description).details_data.sections_product[2].label_value)}</LabelContent>
                                 </LabelCont>
     
-    
                                 <ClipsCont id={storeTabs[3].tabName}>
+                                {console.log()}
                                     <ClipTitle>Clips</ClipTitle>
                                     <ClipBody>
-                                        <MainClip><Image src={clip1} /></MainClip>
+                                        <MainClip><img  src={mainClip} alt='main-image'/></MainClip>
                                         <SideClips>
-                                            <SideClip><Image src={clip1} /></SideClip>
-                                            <SideClip><Image src={clip1} /></SideClip>
-                                            <SideClip><Image src={clip1} /></SideClip>
+                                            <SideClip onClick={() =>mainClipChanger(JSON.parse(singleProductData.data.description).details_data['sections_product'][3]['isClips']['clips'][0].src)}><img src={JSON.parse(singleProductData.data.description).details_data['sections_product'][3]['isClips']['clips'][0].src} alt="side-image"/></SideClip>
+                                            <SideClip onClick={() =>mainClipChanger(JSON.parse(singleProductData.data.description).details_data['sections_product'][3]['isClips']['clips'][1].src)}><img src={JSON.parse(singleProductData.data.description).details_data['sections_product'][3]['isClips']['clips'][1].src} alt="side-image"/></SideClip>
+                                            <SideClip onClick={() =>mainClipChanger(JSON.parse(singleProductData.data.description).details_data['sections_product'][3]['isClips']['clips'][2].src)}><img  src={JSON.parse(singleProductData.data.description).details_data['sections_product'][3]['isClips']['clips'][2].src} alt="side-image"/></SideClip>
                                         </SideClips>
                                     </ClipBody>
                                 </ClipsCont>
@@ -265,10 +268,10 @@ const SingleProductPage = (props: Props) => {
                                     </StoreDiscussionBody>
                                 </StoreDiscussionCont> */}
     
-                                <StoreForumCont >
+                                <StoreForumCont id={storeTabs[2].tabName}>
                                     <StoreForumTitle>Forum</StoreForumTitle>
                                     <StoreForumBody>
-                                        {formQuestionsAPI.map((element , index) => <FormQuestion key={index} data={element}/>)} 
+                                        {/* {formQuestionsAPI.map((element , index) => <FormQuestion key={index} data={element}/>)}  */}
                                     </StoreForumBody>
                                 </StoreForumCont>
                             </DetailsCont_STY>

@@ -236,6 +236,38 @@ export const PersonName_STY = styled.label`
         color: ${({theme}) => theme.colors.white_2};
     }
 `
+
+export const HeaderIconHOVER_BLOCK_MSG_STY = styled.button`
+    position:absolute;
+    bottom:-30px;
+    color:black; 
+    background:gray;
+    padding:5px;
+    border-radius:5px;
+    display:none;
+`
+
+export const HeaderIconHOVER_BLOCK_NTF_STY = styled.button`
+    position:absolute;
+    bottom:-30px;
+    color:black; 
+    background:gray;
+    padding:5px;
+    border-radius:5px;
+    display:none;
+`
+
+export const HeaderIconHOVER_BLOCK_MENU_STY = styled.button`
+    position:absolute;
+    bottom:-30px;
+    color:black; 
+    background:gray;
+    padding:5px;
+    border-radius:5px;
+    display:none;
+`
+
+
 export const HeaderIcon_STY = styled.button`
     width: 46px;
     height: 46px;
@@ -252,19 +284,41 @@ export const HeaderIcon_STY = styled.button`
             width: 28px;
         }
     }
+    &:nth-child(1) {
+        &:hover {
+                ${HeaderIconHOVER_BLOCK_MSG_STY}
+                {
+                    display:flex;
+                }
+        }
+        
+    }
+    &:nth-child(2) {
+        &:hover {
+            ${HeaderIconHOVER_BLOCK_NTF_STY}
+            {
+                display:flex;
+            }
+        }
+    }
+    &:nth-child(3) {
+        &:hover {
+            ${HeaderIconHOVER_BLOCK_MENU_STY}
+            {
+                display:flex;
+            }
+        }
+    }
     svg {
         width: 20px;
         height: auto;
         transition: 0.2s;
         fill: ${({theme}) => theme.colors.gray_3};
+        
     }
     &:hover {
         background-color: ${({theme}) => theme.background_hover.hover1};
-        
     }
-
-
-    
 `
 
 export const NotifyNumber_STY = styled.div`

@@ -4,7 +4,7 @@ export interface CreateProductInterface {
     product_created:{
         isPlagiat: "not-checked" | "valid"  | "not-valid" | "changed" ,
         plagirismLoading: "loading" | "valid" | "not-checked" | "not-valid",
-        status:'created' | 'failed' | 'pending'
+        status:'created' | 'failed' | 'pending' | 'not-created'
         id:number | null,
         sendend_source_code:string
     },

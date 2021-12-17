@@ -198,9 +198,9 @@ export const SearchBoxSlice = createSlice({
       }
     }),
     builder.addCase(forumSearchInfinity.rejected, (state, {payload}) => {
-      autoErrorToaster(payload)
       state.searchBoxData.forum.status = "error"
       state.searchBoxData.forum.infinityLoader = "error"
+      console.log(payload)
     })  
 
     // Store Search Infinity
@@ -230,7 +230,7 @@ export const SearchBoxSlice = createSlice({
     builder.addCase(storeSearchInfinity.rejected, (state, {payload}) => {
       state.searchBoxData.store.status = "error"
       state.searchBoxData.store.infinityLoader = "error"
-      autoErrorToaster(payload)
+      console.log(payload)
     })  
 
 

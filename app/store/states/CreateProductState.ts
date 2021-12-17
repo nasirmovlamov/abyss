@@ -6,7 +6,7 @@ export const CreateProductState:CreateProductInterface = {
     current_step:1,
     product_created:{
         isPlagiat:"not-checked",
-        status:'pending',
+        status:'not-created',
         plagirismLoading: "not-checked",
         id:null,
         sendend_source_code:""

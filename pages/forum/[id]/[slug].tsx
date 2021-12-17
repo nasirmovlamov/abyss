@@ -37,6 +37,7 @@ import { parseHtmlWithMention } from '../../../logic/htmlParser'
 import abyssLogo from '../../../public/main-logo.svg'
 import Image from 'next/image'
 import SearchBoxStaticVersion from '../../../components/SearchBoxStaticVersion'
+import { AnswerCont, AnswerCount, DefaultLine, HelpfulCont, HelpfulCount, PercentageLine, Text, ThumbIcon } from '../../../styles/components/styled-blocks/FormQuestion.style'
 interface Props {
 }
 
@@ -66,6 +67,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
 
     
     const vote = () => {
+        console.log(singleQuestionData)
         if(userData === null)
         {
             dispatch(changeModalAction('login'))
@@ -75,11 +77,15 @@ function SingleQuestionPAge({}: Props): ReactElement {
         {
             return null
         }
-        dispatch(voteQuestion({id:id , type:"upvote"}))
+        if(singleQuestionData.user_votes === null){
+            dispatch(voteQuestion({id:id , type:"upvote"}))
+        }else {
+            dispatch(unVoteQuestion({id:id , type:"upvote"}) )
+        }
         return null
     }
 
-    const unvote = () => {
+    const downvote = () => {
         if(userData === null)
         {
             dispatch(changeModalAction('login'))
@@ -89,7 +95,11 @@ function SingleQuestionPAge({}: Props): ReactElement {
         {
             return null
         }
-        dispatch(unVoteQuestion({id:id , type:"upvote"}) )
+        if(singleQuestionData.user_votes === null){
+            dispatch(voteQuestion({id:id , type:"downvote"}))
+        }else {
+            dispatch(unVoteQuestion({id:id , type:"downvote"}))
+        }
         return null
     }
 
@@ -183,7 +193,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
 
                                         <SingleQuestion_STY.QuestionStatistics_STY>
                                             <SingleQuestion_STY.StatisticContSingleQuestion_STY>
-                                                {/* <AnswerCont>
+                                                <AnswerCont>
                                                     <AnswerCount>7</AnswerCount>
                                                     <Text>Answers</Text>
                                                 </AnswerCont>
@@ -191,13 +201,13 @@ function SingleQuestionPAge({}: Props): ReactElement {
                                                 <HelpfulCont>
                                                     <HelpfulCount>
                                                         <SingleQuestion_STY.QuestionStatisticButton_STY  changeDirection={false} onClick={vote} ><ThumbIcon><FontAwesomeIcon  icon={singleQuestionData.user_votes?.type === "upvote" ? solidfaThumbsUp :regularfaThumbsUp} /> </ThumbIcon></SingleQuestion_STY.QuestionStatisticButton_STY> 
-                                                        <SingleQuestion_STY.QuestionStatisticButton_STY  changeDirection={true} onClick={unvote} ><ThumbIcon><FontAwesomeIcon  icon={singleQuestionData.user_votes?.type === "downvote" ? solidfaThumbsDown :regularfaThumbsDown } />  </ThumbIcon></SingleQuestion_STY.QuestionStatisticButton_STY> 
+                                                        <SingleQuestion_STY.QuestionStatisticButton_STY  changeDirection={true} onClick={downvote} ><ThumbIcon><FontAwesomeIcon  icon={singleQuestionData.user_votes?.type === "downvote" ? solidfaThumbsDown :regularfaThumbsDown } />  </ThumbIcon></SingleQuestion_STY.QuestionStatisticButton_STY> 
                                                     </HelpfulCount>
                                                     <DefaultLine><PercentageLine percentage={(69/100*100)}/></DefaultLine>
                                                     <SingleQuestion_STY.VotePercentage_STY>
                                                         6%
                                                     </SingleQuestion_STY.VotePercentage_STY>
-                                                </HelpfulCont> */}
+                                                </HelpfulCont>
                                             </SingleQuestion_STY.StatisticContSingleQuestion_STY>
                                             <SingleQuestion_STY.QuestionDate_STY>
                                                 {singleQuestionData.created_at}

@@ -1,4 +1,4 @@
-import React, { ReactElement} from 'react'
+import React, { ReactElement, useEffect, useState} from 'react'
 import Image from 'next/image'
 import { AnswerCount,  Avatar, BottomSide, Content,  FormQuestionCont, Name, PersonCont, QuestionTags, StatisticCont, Tags, TextCont, Title, Text, HelpfulCont, HelpfulCount, AnswerCont, ViewsCont,  } from '../styles/components/styled-blocks/FormQuestion.style'
 import { 
@@ -32,9 +32,11 @@ import {
     ProductTitle, ProductViewCont, StoreListingProductStyle } from '../styles/components/styled-blocks/ListingStoreProduct.styled'
 import NavLink from './NavLink'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDownload, faEye, faLaptopCode } from '@fortawesome/free-solid-svg-icons'
+import { faCopy, faDownload, faEye, faLaptopCode } from '@fortawesome/free-solid-svg-icons'
 import { faPython } from '@fortawesome/free-brands-svg-icons'
 import StarCountShow from './StarCountShow'
+import HTMLReactParser from 'html-react-parser'
+import router from 'next/router'
 
 interface Props {
     data:{
@@ -50,47 +52,60 @@ interface Props {
 }
 
 function ListingStoreProduct({data}: Props): ReactElement {
-    
-    
+    const [description, setdescription] = useState<any>()
+
+    const getDescription = () => {
+        try {
+            if(JSON.parse(data.description).hasOwnProperty('details_data'))
+            {
+                setdescription(HTMLReactParser(JSON.parse(data.description).details_data['sections_product'][0].label_value))
+            }
+        } catch (error) {
+            setdescription(HTMLReactParser(data.description))
+        }
+    }
+
+    useEffect(() => {
+        getDescription()
+    }, [])
     return (
-        <NavLink content="product" href={`store/${data.id}/${data.slug}`}>
-        <StoreListingProductStyle>
-            <ProductImageAndContent>
+        <StoreListingProductStyle key={data.id} onClick={() => router.push(`store/${data.id}/${data.slug}`)}>
+            <ProductImageAndContent >
                 <ProductLanguageAndImage>
-                    {/* <ProductPerson src={data.avatar}/> */}
 
                     <ProductImageOverlay></ProductImageOverlay>
                     <LanguageInfo>
                         <LanguageContForTextAndIcon>
-                            <FontAwesomeIcon icon={faLaptopCode}/>
-                            {/* <LanguageText>{data.programingLanguage}</LanguageText> */}
+
+                            <FontAwesomeIcon icon={faCopy}/>
+                             <LanguageText>4 İterations{data.programingLanguage}</LanguageText>
                         </LanguageContForTextAndIcon>
                         
                         <LinesofCodeContForIconAndText>
                             <FontAwesomeIcon icon={faPython}/>
-                            {/* <LinesofCodeText>{data.lineCount}</LinesofCodeText> */}
+                            <LinesofCodeText>Python {data.lineCount}</LinesofCodeText> 
                         </LinesofCodeContForIconAndText>
                     </LanguageInfo>
                 </ProductLanguageAndImage>
 
 
-                <ProductContentCont>
+                <ProductContentCont >
                         <ProductContent>
                             <ProductTitle>{data.name}</ProductTitle>
                             <ProductDetailCont>
-                                <ProductStarCont><StarCountShow count={2.3}/> {data.starCount}</ProductStarCont>
-                                <ProductSoldCont><FontAwesomeIcon icon={faDownload}/> {data.download_count}</ProductSoldCont>
-                                <ProductViewCont><FontAwesomeIcon icon={faEye}/> {data.view_count}</ProductViewCont>
+                                <ProductStarCont><StarCountShow count={2.3}/> {data.starCount} 2.3</ProductStarCont>
+                                <ProductViewCont> <span>{data.view_count}K</span> <span>views</span> </ProductViewCont>
                             </ProductDetailCont>
                             <ProductTags>
-                                {/* {data.tags.map((tag , index) => index < 3 && <ProductTag>{tag}</ProductTag>)} */}
+                                {!data.tags.some((tag:any) => tag === '') && data.tags.map((tag:any , index:any) => index < 3 && <ProductTag key={tag}>{tag}</ProductTag>)}
                             </ProductTags>
-                            {/* <ProductPriceCont>{data.price}$</ProductPriceCont> */}
                         </ProductContent>
-                        
                         <ProductDescription>
-                            <ProductDescriptionTitle>Description</ProductDescriptionTitle>
-                            <ProductDescriptionContent>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa animi expedita minima velit nemo sint fuga voluptatem reprehenderit quas blanditiis repellendus dicta modi iste, laudantium nam cupiditate, tenetur, dolorem cumque.</ProductDescriptionContent>
+                            <ProductDescriptionContent>
+                                {
+                                    description
+                                }
+                            </ProductDescriptionContent>
                         </ProductDescription>
                 </ProductContentCont>
             </ProductImageAndContent>
@@ -98,18 +113,14 @@ function ListingStoreProduct({data}: Props): ReactElement {
 
             <ProductSideDetailsCont>
                     <AddCaveAndMentionsCont>
-                        <AddCave>+ Cave</AddCave>
-                        <MentionsCont>
-                            <MentionsCount>8</MentionsCount>
-                            <MentionsText>Mentions</MentionsText>
-                        </MentionsCont>
-
+                        <AddCave type="button">+ Cave</AddCave>
                     </AddCaveAndMentionsCont>
-                    <Iterations>Iterations</Iterations>
+
+                    <Iterations>8 Mentions</Iterations>
+
             </ProductSideDetailsCont>
            
         </StoreListingProductStyle> 
-        </NavLink>
     )
 }
 

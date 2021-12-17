@@ -156,10 +156,20 @@ function SearchBox({}: Props): ReactElement {
             })
             if(forumSearchOptions.sendedQuery !== searchQuery){
                 if(router.pathname === '/forum'){
-                    dispatch(forumSearchInfinity({query:searchQuery , from:0}))
+                    dispatch(forumSearchInfinity({
+                        query:searchQuery , 
+                        from:0, 
+                        forumType:searchData.searchBoxData.forum.searchOptions.forumType,
+                        filterTags:searchData.filters,
+                    }))
                 }
                 if(router.pathname === '/store'){
-                    dispatch(storeSearchInfinity({query:searchQuery , from:0}))
+                    dispatch(storeSearchInfinity({
+                        query:searchQuery , 
+                        from:0,
+                        storeType:searchData.searchBoxData.store.searchOptions.storeType,
+                        filterTags:searchData.filters,
+                    }))
                 }
             }
         }
@@ -175,10 +185,10 @@ function SearchBox({}: Props): ReactElement {
             })
             if(forumSearchOptions.sendedQuery !== searchQuery){
                 if(router.pathname !== '/forum'){
-                    dispatch(forumSearchInfinity({query:searchQuery , from:0}))
+                    dispatch(forumSearchInfinity({query:searchQuery , from:0,forumType:searchData.searchBoxData.forum.searchOptions.forumType,filterTags:searchData.filters,}))
                 }
                 if(router.pathname !== '/store'){
-                    dispatch(storeSearchInfinity({query:searchQuery , from:0}))
+                    dispatch(storeSearchInfinity({query:searchQuery , from:0 ,storeType:searchData.searchBoxData.store.searchOptions.storeType,filterTags:searchData.filters,}))
                 }
             }
            
@@ -226,23 +236,23 @@ function SearchBox({}: Props): ReactElement {
                     dispatch(resetSendedQuery(null))
                     if(router.pathname === '/forum'){
                         if(searchData.searchBoxData.forum.fromNumber === 0){
-                            dispatch(forumSearchInfinity({query:getCookie("searchValue") , from:0}))
+                            // dispatch(forumSearchInfinity({query:getCookie("searchValue") , from:0}))
                         }
                     }
                     else if(router.pathname === '/store'){  
                         if(searchData.searchBoxData.store.fromNumber === 0){
-                            dispatch(storeSearchInfinity({query:getCookie("searchValue") , from:0}))
+                            // dispatch(storeSearchInfinity({query:getCookie("searchValue") , from:0}))
                         }
                     }else{}
                 }else{
                     if(router.pathname === '/forum'){
                         if(searchData.searchBoxData.forum.fromNumber === 0){
-                            dispatch(forumSearchInfinity({query:searchQuery , from:0}))
+                            // dispatch(forumSearchInfinity({query:searchQuery , from:0}))
                         }
                     }
                     else if(router.pathname === '/store'){   
                         if(searchData.searchBoxData.store.fromNumber === 0){
-                            dispatch(storeSearchInfinity({query:searchQuery , from:0}))
+                            // dispatch(storeSearchInfinity({query:searchQuery , from:0}))
                         }
                     }else{}
                 }

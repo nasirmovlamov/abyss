@@ -28,17 +28,17 @@ export const PageTabsSlice = createSlice({
     changeProductTabActive: (state , action) => {
         const prevActiveTab = state.page_tabs.productTabs.filter(tab => tab.isActive === true)[0]
         if(prevActiveTab.id !== action.payload.id){
-            scroller.scrollTo(`${action.payload.tabName}` , {
-                    duration: 500,
-                    delay: 0,
-                    smooth: 'easeInOutQuart',
-                    offset: -150,
+            setTimeout(() => {
+                scroller.scrollTo(`${action.payload.tabName}` , {
+                        duration: 500,
+                        delay: 0,
+                        smooth: 'easeInOutQuart',
+                        offset: -250,
                 })
+            }, 10);
         }
         state.page_tabs.productTabs.map(tab => tab.isActive = false)
         state.page_tabs.productTabs.filter(tab => tab.id === action.payload.id)[0].isActive = true
-        
-
     },
   },  
   

@@ -5,7 +5,7 @@ import styled from "styled-components";
 export const StoreListingProductStyle = styled.div`
     display: flex;
     justify-content: space-between;
-    padding: 14px 45px 21px  14px;
+    padding: 18px 57px 19px  27px;
     box-sizing: border-box;
     border-radius: 10px;
     column-gap: 5px;
@@ -27,7 +27,6 @@ export const StoreSideProductStyle = styled.div`
     justify-content: space-between;
     padding: 14px 45px 21px  14px;
     box-sizing: border-box;
-    border-radius: 10px;
     column-gap: 5px;
     row-gap: 15px;
     width: 100%;
@@ -47,13 +46,12 @@ export const ProductImageOverlay = styled.div`
     height: 100%;
     position: absolute;
     z-index: 2;
-    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.4) 30%, rgba(0,212,255,0) 100%);
     transform: rotate(180deg);
 `
 
 export const ProductLanguageAndImage = styled.div`
     background-color: #2ab280;
-    border-radius: 17px 1px 1px 1px;
+    border-radius: 10px 0px 10px 10px;
     position: relative;
     width: 176px;
     height: 154px;
@@ -78,10 +76,14 @@ export const LanguageInfo = styled.div`
     position: absolute;
     left: 0px;
     bottom: 0px;
-    margin: 10px;
     display: flex;
     z-index: 2;
-    width: 100%;
+    width: 176px;
+    height: 57px;
+    background-color: ${({theme}) => theme.backgrounds.background2};
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 0px 0px 5px 5px;
 `
 
 export const LanguageContForTextAndIcon = styled.div`
@@ -89,7 +91,7 @@ export const LanguageContForTextAndIcon = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    row-gap: 10px;
+    row-gap: 3px;
     svg 
     {
         color: white;
@@ -106,7 +108,7 @@ export const LinesofCodeContForIconAndText = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    row-gap: 10px;
+    row-gap: 3px;
     svg 
     {
         color: white;
@@ -230,7 +232,7 @@ export const ProductDescriptionTitle = styled.p`
     color:  ${({theme}) => theme.texts.text3  };
 
 `
-export const ProductDescriptionContent = styled.p`
+export const ProductDescriptionContent = styled.div`
     font-size: 18px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -238,6 +240,7 @@ export const ProductDescriptionContent = styled.p`
     overflow: hidden;   
     text-overflow: ellipsis;
     color:  ${({theme}) => theme.texts.text1  };
+    width: 350px;
 
 `
 export const ProductSideDetailsCont = styled.div`

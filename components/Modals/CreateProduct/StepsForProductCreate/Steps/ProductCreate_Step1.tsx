@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react'
-import {  ProductCreateStep1OnChanges, product_create_step1_data,  product_create_steps, selectCreateProductLanguage } from '../../../../../app/feature/CreateProductFeatures/CreateProduct.slice'
+import {  is_product_created, ProductCreateStep1OnChanges, product_create_step1_data,  product_create_steps, selectCreateProductLanguage } from '../../../../../app/feature/CreateProductFeatures/CreateProduct.slice'
 import { useAppDispatch, useAppSelector } from '../../../../../app/store/hooks'
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { CodeMirror_STY, CreateProduct_Step1_Error, ProductCreate_Step1_Style, SelectLangType_STY } from '../../../../../styles/components/styled-blocks/CreateProduct_Style/Steps/ProductCreate_Step1.style';
-
+import HashLoader from 'react-spinners/HashLoader';
 
 
 interface Props {
@@ -17,6 +17,7 @@ export const ProductCreate_Step1 = ({}: Props): ReactElement => {
     const Step1Data = ProductCreateSteps['1']
     const sourceCode = Step1Data.source_code
     const productCreateStep1Data = useAppSelector(product_create_step1_data)
+    const productCreation = useAppSelector(is_product_created)
     const {validators} = productCreateStep1Data
 
 
@@ -37,7 +38,7 @@ export const ProductCreate_Step1 = ({}: Props): ReactElement => {
     return (
         <ProductCreate_Step1_Style>
             <div className='topCont'> 
-                <p className='codeWord'>Code</p>  
+                <p className='codeWord'><span> Code </span> </p>  
                 <div className="upload"> 
                     <p className='info'>Upload your code as a file (e.g js php c) or enter it below</p>  
                     <button> 
@@ -64,6 +65,14 @@ export const ProductCreate_Step1 = ({}: Props): ReactElement => {
                 <option value="cpp">C++</option>
                 <option value="py">Python</option>
             </SelectLangType_STY>
+
+
+            <div>
+                {productCreation.status === 'pending' && <div> <span>Product is creating </span> <HashLoader size={15}  loading={productCreation.status ==='pending'}  /></div>}
+                {productCreation.plagirismLoading === 'loading' && <div> <span>Plagirism is checking </span>   <HashLoader size={15}  loading={productCreation.plagirismLoading === "loading"}  /></div>}
+                {productCreation.plagirismLoading === 'valid' && <div> <span>Plagirism is not Detected </span>  </div>}
+                {productCreation.status === 'created' && <div> <span>Product is created </span> </div>}
+            </div>
 
             <CreateProduct_Step1_Error>{ (productCreateStep1Data.validated === 'not-valid'  &&  !validators.isCodeFilled.valid) && validators.isCodeFilled.message  } </CreateProduct_Step1_Error>
         </ProductCreate_Step1_Style>

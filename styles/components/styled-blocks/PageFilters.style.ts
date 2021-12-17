@@ -9,6 +9,8 @@ export const FilterContStyle  = styled.div`
     box-sizing: border-box;
     z-index: 2;
     height: auto;
+    overflow: hidden;
+    height: 500px;
     /* box-shadow: 190px 190px 190px 190px red; */
     /* position: sticky; */
     /* top: 90px; */
@@ -140,6 +142,8 @@ export const FilterLanguageCont  = styled.div`
     row-gap: 10px;
     display: flex;
     flex-direction: column;
+    height: 250px;
+    overflow-y: auto;
 `
 export const FilterLanguageTitle  = styled.h5`
     display: flex;
@@ -159,6 +163,10 @@ export const FilterLanguageContent  = styled.div`
     display: flex;
     flex-direction: column;
     color: #474D51;
+    .title {
+        color:${({theme}) => theme.texts.text2};
+        margin: 5px 0px;
+    }
 `
 export const FilterLanguages  = styled.button`
     display: flex;
@@ -201,11 +209,21 @@ export const FilterSearchInput  = styled.input`
 export const FilterSearchDropdown  = styled.div`
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 150px;
+    max-height: 100px;
+    margin-left: 7px;
     /* height: 200px; */
-    border: 1px solid #E6E6E6;
     position: absolute;
     row-gap: 5px;
+    margin-top: 25px;
+    overflow-y: auto;
+    border-radius: 0px 0px 10px 10px;
+    background-color: ${({theme}) => theme.backgrounds.background1};
+    padding-bottom: 10px;
+    padding-top: 5px;
+    ::-webkit-scrollbar{
+        width: 4px;
+    }
 `
 
 export const FilterSearchDropdownElement  = styled.p`
@@ -217,4 +235,62 @@ export const FilterSearchDropdownElement  = styled.p`
     display: flex;
     justify-content: space-between;
     align-items: center;
+`
+
+export const FilterSearchAddElement  = styled.button`
+    height: 100%;
+    width: 30px;
+    background-color: transparent;
+    color: ${({theme}) => theme.texts.text2};
+`
+
+export const FilterTagsCont  = styled.div`
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    row-gap: 10px;
+    padding: 2px;
+`
+
+export const FilterTag  = styled.button<{selected:any , tagType:'exclude'|'include'}>`
+    height: 22px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    font-family: r;
+    align-items: center;
+    background-color: #e5f0f4;
+    font-family: r;
+    cursor: pointer;
+    font-size: 12px;
+    text-align: center;
+    color:  ${({theme , tagType}) => tagType === "include" ? theme.texts.text6 : theme.texts.text10};
+    box-shadow: ${({theme}) => theme.boxshadows.boxshadow6};
+    &:hover{
+        box-shadow: ${({theme}) => theme.boxshadow_hover.hover1};
+    }
+    position: relative;
+    padding-left: 10px;
+    column-gap: 10px;
+    background:  ${({theme , selected , tagType}) => selected ? theme.backgrounds.background1 : (tagType === "include" ?  theme.backgrounds.background4 : theme.backgrounds.background3)};
+`
+
+export const FilterDel  = styled.button`
+    background-color: transparent;
+    color: ${({theme}) => theme.texts.text2};
+    width: 20px;
+    height:100%;
+    font-size: 7px;
+    padding-bottom: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    right: 0px;
+    border-radius: 0px 5px 5px 0px ;
+    &:hover{
+        background-color: ${({theme}) => theme.backgrounds.background10};
+    }
 `

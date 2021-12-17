@@ -17,14 +17,17 @@ export const TopLogoContainer_STY = styled.div`
 export const LoginContainer_STY = styled.div`
     display: flex;
     width:810px;
-    height:480px
+    height:480px;
     box-sizing: border-box;
     border-radius: 10px;
     overflow:hidden;
     min-height:486px;   
     padding:1px;
     box-shadow:${({theme}) => theme.boxshadows.boxshadow4};
-
+    a {
+        color:${({theme}) => theme.texts.text9};
+        text-decoration: none;
+    }
     .part1 {
         display:flex;
         flex-direction:column;
@@ -76,9 +79,7 @@ export const LoginContainer_STY = styled.div`
             text-align:center;
             witdth:100%;
             font-size:11px;
-            a {
-
-            }
+            
         }
     }
     .part2 {
@@ -93,11 +94,68 @@ export const LoginContainer_STY = styled.div`
         width:50%;
         box-sizing: border-box;
         border-radius: 0px 10px 10px 0px;
-
-        .formCont {
+        .title{
+                color:${({theme}) => theme.texts.text3};
+                font-size: 14px;
+                font-weight: bold;
+        } 
+        form {
             display:flex;
             flex-direction:column;
-            margin-top:40px;
+            align-items: center;
+            margin-top: 15px;
+            width: 100%;
+            .form-cont {
+                width: 100%;
+                display:flex;
+                flex-direction:column;
+                row-gap: 7px;
+                margin-top: 25px;
+                box-sizing: border-box;
+                label {
+                    color:${({theme}) => theme.texts.text3};
+                }
+                input {
+                    height: 50px;
+                    padding-left: 10px;
+                    border-radius: 10px;
+                    background-color: ${({theme}) => theme.backgrounds.background1};
+                    box-shadow: ${({theme}) => theme.boxshadows.boxshadow1};
+                    color: ${({theme}) => theme.texts.text3};
+                }
+                .error{
+                    height: 18px;
+                    color: ${({theme}) => theme.texts.text10};
+                    margin-left: 5px;
+                }
+            }
+            .forgot-pass-cont
+            {
+                width: 100%;
+                display: flex;
+                margin-top: 10px;
+                justify-content: flex-end;
+                a {
+                    font-size: 12px;
+                }
+            }
+            .login-button{
+                margin-top: 50px;
+                height: 35px;
+                width: 160px;
+                border-radius: 10px;
+                background-color: ${({theme}) => theme.backgrounds.background8};
+                font-size: 15px;
+            }
+            .signup-button{
+                margin-top: 15px;
+                height: 35px;
+                width: 160px;
+                border-radius: 10px;
+                background-color: transparent;
+                color: ${({theme}) => theme.texts.text3};
+                font-size: 15px;
+            }
         }
         .authButtonCont {
             display:flex;

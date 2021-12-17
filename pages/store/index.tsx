@@ -41,7 +41,7 @@ function Store({}: Props): ReactElement {
     useEffect(() => {
         if(inViewLoaderDown){
             const data = {query:searchQuery , from:storeSearchData.fromNumber} 
-            dispatch(storeSearchInfinity(data))
+            // dispatch(storeSearchInfinity(data))
         }
     }, [inViewLoaderDown])
     

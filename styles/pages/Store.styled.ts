@@ -224,11 +224,16 @@ export const ClipTitle = styled.h3`
 export const ClipBody = styled.div`
     display: flex;
     justify-content: space-between;
+    column-gap: 10px;
     height: auto;
 `
 export const MainClip = styled.div`
     height: 100%;
-    width: 532px;
+    width: 632px;
+    border:1px solid gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     img {
         width: 100%;
         object-fit: cover;
@@ -238,17 +243,19 @@ export const SideClips = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     width: 138px;
     row-gap: 10px;
 
 `
-export const SideClip = styled.div`
-    width: 135px;
-    height: 84px;
+export const SideClip = styled.button`
+    background-color: transparent;
+    border: 1px solid gray;
+    width: 75px;
+    padding: 10px;
+    box-sizing: border-box;
     img {
-        width: 135px;
-        height: 100%;
+        width: 100%;
+        height: auto;
     }
 `
 

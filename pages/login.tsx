@@ -39,7 +39,28 @@ const login = (props: Props) => {
                 </div>
 
                 <div className="part2">
+                    <p className='title'>Please Log in or <a href="#">Sign Up</a></p>
 
+                    <form action="">
+                        <div className="form-cont">
+                            <label htmlFor="email">Email</label>
+                            <input  type="email" id="email" placeholder=""/>
+                            <p className='error'>error</p>
+                        </div>
+
+                        <div className="form-cont">
+                            <label htmlFor="password">Password</label>
+                            <input  type="password" id="password" placeholder=""/>
+                            <p className='error'>error</p>
+                        </div>
+
+                        <div className="forgot-pass-cont">
+                            <a href="">Forgot Password</a>
+                        </div>
+
+                        <button className="login-button">Log in</button>
+                        <button className="signup-button">Sign Up</button>
+                    </form>
                 </div>
             </LoginPage_STY.LoginContainer_STY>
 

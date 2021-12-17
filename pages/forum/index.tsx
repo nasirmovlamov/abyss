@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement, useEffect, useLayoutEffect, useState } from 'react'
 import FormQuestion from '../../components/ForumQuestion'
 import PageTabs from '../../components/ForumPageTabs'
 import { ForumPage } from '../../styles/pages/Pages.style'
@@ -12,7 +12,7 @@ import { is_chatbox_opened } from '../../app/feature/ChatBox.slice'
 import ChatBox from '../../components/ChatBox'
 import PageFilters from '../../components/PageFilters'
 import CommentModal from '../../components/CommentsTab'
-import { forum_search_data, search_query, setScrollPositionYForum,  } from '../../app/feature/SearchBox.slice'
+import { forum_search_data, search_data, search_query, setScrollPositionYForum,  } from '../../app/feature/SearchBox.slice'
 import FormQuestionSkeleton from '../../components/Skeletons/ForumQuestionSkeleton'
 import { encryptData , decryptData } from '../../logic/Cryption'
 import { useInView } from 'react-intersection-observer'
@@ -43,7 +43,8 @@ function Forum({}: Props): ReactElement {
     const isChatBoxOpened = useAppSelector(is_chatbox_opened)
     const a = [1,2,3,4]
     const stayInFocus = useAppSelector(stay_in_focus)
-    
+    const searchData = useAppSelector(search_data)
+
     const scrollToY = () => {
         window.scrollTo({
             top: forumSearchData.scrollY,
@@ -57,11 +58,26 @@ function Forum({}: Props): ReactElement {
 
     useEffect(() => {
         if(inViewLoaderDown){
-            const data = {query:searchQuery , from:forumSearchData.fromNumber} 
+            const data = {
+                query:searchQuery , 
+                from:forumSearchData.fromNumber,
+                forumType:forumSearchData.searchOptions.forumType,
+                filterTags:searchData.filters,} 
             dispatch(forumSearchInfinity(data))
         }
     }, [inViewLoaderDown])
     
+
+    useLayoutEffect(() => {
+        if(forumSearchData.searchOptions.forumSort !== "" && forumSearchData.searchOptions.forumType !== ""){
+            dispatch(forumSearchInfinity({
+                query:searchQuery , 
+                from:0, 
+                forumType:forumSearchData.searchOptions.forumType,
+                filterTags:searchData.filters,
+            }))
+        }
+    }, [forumSearchData.searchOptions.forumSort , forumSearchData.searchOptions.forumType , searchData.filters])
 
     useEffect(() => {
         dispatch(setScrollPositionYForum(scrollY))

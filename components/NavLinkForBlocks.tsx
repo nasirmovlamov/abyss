@@ -1,9 +1,6 @@
 import React, { ReactElement, FC, useEffect } from 'react'
-import Link from 'next/link'
-import styled from 'styled-components'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-import { ToolTipActions, tooltip_data } from '../app/feature/Tooltip.slice'
 
+import Link from 'next/link'
 
 interface Props {
     // any props that come into the component
@@ -12,10 +9,7 @@ interface Props {
     key?:string | number
 }
 
-
-const NavLink: FC<Props> = ({ children, ...props }) => {
-    const dispatch = useAppDispatch()
-    const toolTipData = useAppSelector(tooltip_data)
+const NavLinkForBlocks: FC<Props> = ({ children, ...props }) => {
 
     // var hideVar:any;
 
@@ -64,11 +58,11 @@ const NavLink: FC<Props> = ({ children, ...props }) => {
     // }
 
     return(
-        <Link key={props.key} href={props.href} passHref>
+        <Link  key={props.key} href={props.href} passHref>
             {children}
         </Link>
     )
 
 };
 
-export default NavLink
+export default NavLinkForBlocks

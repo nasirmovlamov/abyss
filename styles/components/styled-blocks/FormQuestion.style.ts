@@ -12,10 +12,12 @@ export interface ProductIconProps {
 
 export const FormQuestionCont = styled.div`
     display: flex;
+    position: relative;
     width: 100%;
     padding-top: 5px;
     padding-bottom: 8px;
     padding-left: 20px;
+    user-select: text;
     padding-right: 44px;
     box-sizing: border-box;
     /* border-radius: 6px; */
