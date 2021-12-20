@@ -188,6 +188,7 @@ export const register_form = (state: RootState) => state.userReducer.forms.regis
 
 
 export const is_Logged = (state: RootState) => state.userReducer.loggedIn
+export const is_logged = (state: RootState) => state.userReducer.loggedIn
 export const is_loading = (state: RootState) => state.userReducer.status
 export const user_status = (state: RootState) => state.userReducer.user_status
 

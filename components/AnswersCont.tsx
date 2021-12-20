@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios';
-import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer';
 import { changeForumTabActive } from '../app/feature/PageTabs.slice';

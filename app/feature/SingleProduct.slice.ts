@@ -10,9 +10,14 @@ export const SingleProduct_Slice = createSlice({
   initialState:SingleProductState,
   reducers: {
 
-    // set_side_product_data(state, action) {
-        
-    // },
+    goProductPage(state, action) {
+      if(state.selectedID !==  action.payload.id){
+        state.selectedID = action.payload.id;
+        state.status = 'loading';
+        state.data = null;
+        state.code = '';
+      }
+    },
 
     
 
@@ -30,7 +35,6 @@ export const SingleProduct_Slice = createSlice({
   extraReducers: (builder) => {
         // GET SIDE PRODUCTS Reducers
         builder.addCase(getSingleProduct.fulfilled, (state, {payload}) => {
-          console.log(payload)
             state.data = payload.data;
             state.code = payload.message.code;
             state.status = 'loaded';
@@ -48,7 +52,7 @@ export const SingleProduct_Slice = createSlice({
 
 
 // action
-// export const {set_side_product_data} = SideProductSlice.actions;
+export const {goProductPage} = SingleProduct_Slice.actions;
 
 
 // data

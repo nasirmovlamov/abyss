@@ -2,7 +2,6 @@ import { faPlus, faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from 'next/router'
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
-import router from 'next/router';
 import { useScrollDirection } from 'react-use-scroll-direction'
 import { changeModalAction } from '../app/feature/User.slice'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'

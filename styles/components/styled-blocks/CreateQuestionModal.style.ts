@@ -46,3 +46,27 @@ export const LabelCont = styled.div`
         margin-top: 30px;
     }
 `
+
+export const BlurredEditor = styled.div<{image:any}>`
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    p {
+        font-size: 20px;
+        color: ${({theme}) => theme.texts.text1};
+    }
+    width: 100%;
+    height: 300px;
+    background-image: url(${({image}) => image});
+    background-size: cover;
+    background-color: ${({theme}) => theme.backgrounds.background2};
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    button{
+        background-color: ${({theme}) => theme.backgrounds.background8};
+        padding: 8px 15px;
+        border-radius: 10px;
+        color: ${({theme}) => theme.texts.text5};
+    }
+`

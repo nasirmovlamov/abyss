@@ -36,7 +36,11 @@ import { faCopy, faDownload, faEye, faLaptopCode } from '@fortawesome/free-solid
 import { faPython } from '@fortawesome/free-brands-svg-icons'
 import StarCountShow from './StarCountShow'
 import HTMLReactParser from 'html-react-parser'
-import router from 'next/router'
+import  { useRouter } from 'next/router'
+import { goProductPage, single_product_data } from '../app/feature/SingleProduct.slice'
+import { useAppDispatch, useAppSelector } from '../app/store/hooks'
+import { getSingleProduct } from '../app/thunks/SingleProductThunk'
+import { changeProductTabActiveWithoutScroll } from '../app/feature/PageTabs.slice'
 
 interface Props {
     data:{
@@ -52,8 +56,10 @@ interface Props {
 }
 
 function ListingStoreProduct({data}: Props): ReactElement {
+    const singleProductData = useAppSelector(single_product_data)
+    const router = useRouter()
     const [description, setdescription] = useState<any>()
-
+    const dispatch = useAppDispatch()
     const getDescription = () => {
         try {
             if(JSON.parse(data.description).hasOwnProperty('details_data'))
@@ -68,8 +74,18 @@ function ListingStoreProduct({data}: Props): ReactElement {
     useEffect(() => {
         getDescription()
     }, [])
+
+    const goProduct = () => {
+        dispatch(changeProductTabActiveWithoutScroll({id:2}))
+        if(singleProductData.selectedID !== data.id) {
+            dispatch(getSingleProduct({id: data.id , slug: data.slug}))
+        }
+        dispatch(goProductPage({id: data.id}))
+        router.push(`store/${data.id}/${data.slug}`)
+    }
+
     return (
-        <StoreListingProductStyle key={data.id} onClick={() => router.push(`store/${data.id}/${data.slug}`)}>
+        <StoreListingProductStyle key={data.id} onClick={goProduct}>
             <ProductImageAndContent >
                 <ProductLanguageAndImage>
 

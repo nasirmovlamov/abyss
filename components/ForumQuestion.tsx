@@ -12,13 +12,13 @@ import { useAppDispatch } from '../app/store/hooks'
 import {  set_side_product_data } from '../app/feature/SideProducts.slice'
 import { getSideProducts } from '../app/thunks/SideProducts.thunk'
 import mainlogo from '../public/main-logo.svg'
-import router from 'next/router'
+import {useRouter} from 'next/router'
 interface Props {
     data:any
 }
 
 function FormQuestion({data}: Props): ReactElement {
-
+    const router = useRouter()
     const dispatch = useAppDispatch()
     const [isToolTip, setshowToolTip] = useState(false)
 

@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import React, { ReactElement, useEffect, useState } from 'react'
 import {  forum_search_data, selectSortSearchOption, selectTypeSearchOption } from '../app/feature/SearchBox.slice'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'

@@ -1,7 +1,7 @@
 import { faShopify } from '@fortawesome/free-brands-svg-icons'
 import { faBookReader, faBox, faInfoCircle, faShoppingBag, faSignOutAlt, faStickyNote, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import router from 'next/router'
+import {useRouter} from 'next/router'
 import React from 'react'
 import { cave_main_data } from '../../app/feature/CaveFeatures/Cave.slice'
 import { caveSideActions, cave_side_data } from '../../app/feature/CaveFeatures/CaveSide.slice'
@@ -18,7 +18,7 @@ interface Props {
 const CaveSidebar = (props: Props) => {
     const dispatch = useAppDispatch()
     const caveSideData = useAppSelector(cave_side_data)
-   
+    const router = useRouter()
     const selectWindow = (page_window: any) => {
         dispatch(selectAsyncCaveWindow(page_window))
         window.scrollTo(0, 0)

@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer';
 import { changeForumTabActive } from '../app/feature/PageTabs.slice';

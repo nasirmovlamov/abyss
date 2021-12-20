@@ -67,7 +67,6 @@ function SingleQuestionPAge({}: Props): ReactElement {
 
     
     const vote = () => {
-        console.log(singleQuestionData)
         if(userData === null)
         {
             dispatch(changeModalAction('login'))
