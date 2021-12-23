@@ -21,6 +21,8 @@ import { ScrollToTopButton } from './ScrollToTopButton';
 import SearchBoxForHome from './SearchBoxForHome';
 import ToolTip from './ToolTip';
 import LinearProgres from './LinearProgres';
+import { hoverWindow, unhoverWindow } from '../app/feature/SearchBox.slice';
+import { hoverWindowAsync } from '../app/thunks/SearchBoxThunks';
 
 interface Props {
     // any props that come into the component
@@ -63,12 +65,12 @@ const Layout: FC<Props> = ({ children, ...props }) => {
 
     if(userStatus === "logged" || userStatus === "not-logged") {
         return (
-            <div style={{display:'flex' , flexDirection:"column" , width:'100%'}}>
+            <div style={{display:'flex' , flexDirection:"column" , width:'100%'}} onMouseEnter={() => dispatch(hoverWindowAsync(null))} onMouseLeave={() => dispatch(unhoverWindow(null))}>
                 
                 <div style={{width:"100%" , minHeight:"100vh", display:'flex', flexDirection:'column' }}>
                     
                     {router.pathname !== '/login' && router.pathname !== '/register' &&  <Header/>}
-                    {router.pathname === '/forum' && <LinearProgres/>}
+                    {/* {router.pathname === '/forum' && <LinearProgres/>} */}
                     
                     {/* {router.pathname !== '/' && <SearchBox/>} */}
                     {isChatBoxOpened && <ChatBox/>}

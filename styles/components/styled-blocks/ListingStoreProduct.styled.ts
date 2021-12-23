@@ -2,21 +2,20 @@ import styled from "styled-components";
 
 
 
-export const StoreListingProductStyle = styled.div`
+export const StoreListingProductStyle = styled.div<{touchDown:boolean}>`
     display: flex;
     justify-content: space-between;
-    padding: 18px 57px 19px  27px;
+    padding: 6px 57px 11px  27px;
     box-sizing: border-box;
-    border-radius: 10px;
+    border-radius: ${({theme , touchDown}) => touchDown ? "10px" :"10px"};
     column-gap: 5px;
     row-gap: 15px;
     width: 100%;
     height: 182px;
     background-color: ${({theme}) => theme.backgrounds.background1};
     box-shadow: ${({theme}) => theme.boxshadows.boxshadow4};
-
     &:hover {
-        box-shadow: ${({theme}) => theme.boxshadows.boxshadow8};
+        box-shadow: ${({theme , touchDown}) => touchDown ?  theme.boxshadows.boxshadow11 : theme.boxshadows.boxshadow8};
     }
     cursor: pointer;
 
@@ -43,15 +42,29 @@ export const ProductImageAndContent = styled.div`
 `
 export const ProductImageOverlay = styled.div`
     width: 100%;
-    height: 100%;
+    height: 108px;
+    border-radius: 10px 10px 0px 0px;
     position: absolute;
     z-index: 2;
-    transform: rotate(180deg);
+    color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
-
+export const CompanyLogoImageOverlay = styled.img`
+    width: 50px;
+    height: auto;
+    border-radius: 10px 10px 0px 0px;
+    position: absolute;
+    z-index: 2;
+    color: red;
+    fill:red;
+`
 export const ProductLanguageAndImage = styled.div`
-    background-color: #2ab280;
+    background-color: ${({theme}) => theme.backgrounds.background3};
     border-radius: 10px 0px 10px 10px;
+    margin-top: 8px;
+    margin-bottom: 2px;
     position: relative;
     width: 176px;
     height: 154px;
@@ -79,7 +92,7 @@ export const LanguageInfo = styled.div`
     display: flex;
     z-index: 2;
     width: 176px;
-    height: 57px;
+    height: 46px;
     background-color: ${({theme}) => theme.backgrounds.background2};
     justify-content: space-around;
     align-items: center;
@@ -87,11 +100,18 @@ export const LanguageInfo = styled.div`
 `
 
 export const LanguageContForTextAndIcon = styled.div`
-    width: 50%;
+    width: 100%;
+    padding-left: 10px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    row-gap: 3px;
+    .shopName{
+        font-size: 16px;
+        color: ${({theme}) => theme.texts.text4};
+    }
+    .creatorName{
+        font-size: 14px;
+        color: ${({theme}) => theme.texts.text3};
+    }
     svg 
     {
         color: white;
@@ -137,7 +157,7 @@ export const ProductContentCont = styled.div`
 export const ProductContent = styled.div`
     display: flex;
     flex-direction: column;
-    row-gap: 3px;
+    row-gap: 7px;
     color:  ${({theme}) => theme.texts.text2};
 `
 
@@ -146,13 +166,15 @@ export const ProductTitle = styled.a`
     cursor: pointer;
     text-transform: capitalize;
     display: -webkit-box;
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 2;
+    line-height: 27px;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
     text-decoration: none;
     font-size: 20px;
+    margin-top: 2px;
 `
 
 
@@ -165,10 +187,11 @@ export const ProductStarCont = styled.div`
     display: flex;
     column-gap: 5px;
     font-size: 12px;
-    font-family:s;
+    align-items: center;
+
     svg 
     {
-        color: yellow;
+        color: ${({theme}) => theme.backgrounds.background8};
     }
 `
 export const ProductSoldCont = styled.div`
@@ -181,6 +204,7 @@ export const ProductViewCont = styled.div`
     display: flex;
     column-gap: 5px;
     font-size: 12px;
+    line-height: 24px;
 `
 export const ProductPriceCont = styled.div`
     display: flex;
@@ -190,7 +214,6 @@ export const ProductPriceCont = styled.div`
 export const ProductTags = styled.div`
     display: flex;
     column-gap: 10px;
-    margin-top: 6px;
 `
 
 export const ProductTag = styled.button`
@@ -205,7 +228,6 @@ export const ProductTag = styled.button`
     /* border: 1px solid lightgray; */
     align-items: center;
     background-color: #e5f0f4;
-    font-family: r;
     background:  ${({theme}) => theme.backgrounds.background4};
     cursor: pointer;
     font-size: 12px;
@@ -233,7 +255,8 @@ export const ProductDescriptionTitle = styled.p`
 
 `
 export const ProductDescriptionContent = styled.div`
-    font-size: 18px;
+    font-size: 14px;
+    line-height: 22px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -241,6 +264,7 @@ export const ProductDescriptionContent = styled.div`
     text-overflow: ellipsis;
     color:  ${({theme}) => theme.texts.text1  };
     width: 350px;
+    margin-bottom: 2px;
 
 `
 export const ProductSideDetailsCont = styled.div`
@@ -248,6 +272,11 @@ export const ProductSideDetailsCont = styled.div`
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    .flex {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 `
 
 export const Side_ProductSideDetailsCont = styled.div`
@@ -266,7 +295,7 @@ export const AddCave = styled.button`
     padding: 5px 10px;
     border: none;
     border-radius: 20px;
-    font-family: s;
+    font-size: 15px;
     cursor: pointer;    
     box-shadow: ${({theme}) => theme.boxshadows.boxshadow5};
     width: 83px;
@@ -309,4 +338,10 @@ export const Iterations = styled.button`
     border: none;
     background-color: transparent;
     cursor: pointer;
+`
+export const DateCount = styled.p`
+    font-style: italic;
+    font-size: 12px;
+    color: ${({theme}) => theme.texts.text3};
+    line-height: 18px;
 `

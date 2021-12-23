@@ -1,9 +1,10 @@
 import React, { ReactElement, useEffect, useState} from 'react'
 import Image from 'next/image'
-import { AnswerCount,  Avatar, BottomSide, Content,  FormQuestionCont, Name, PersonCont, QuestionTags, StatisticCont, Tags, TextCont, Title, Text, HelpfulCont, HelpfulCount, AnswerCont, ViewsCont,  } from '../styles/components/styled-blocks/FormQuestion.style'
+import { AnswerCount,  Avatar, BottomSide, Content,  FormQuestionCont, Name, PersonCont, QuestionTags, StatisticCont, Tags, TextCont, Title, Text, HelpfulCont, HelpfulCount, AnswerCont, ViewsCont, DateCount,  } from '../styles/components/styled-blocks/FormQuestion.style'
 import { 
     AddCave,  
     AddCaveAndMentionsCont,  
+    CompanyLogoImageOverlay,  
     Iterations,  
     LanguageContForTextAndIcon, 
     LanguageInfo, 
@@ -41,7 +42,7 @@ import { goProductPage, single_product_data } from '../app/feature/SingleProduct
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { getSingleProduct } from '../app/thunks/SingleProductThunk'
 import { changeProductTabActiveWithoutScroll } from '../app/feature/PageTabs.slice'
-
+import abyssLogo from '../public/main-logo.svg'
 interface Props {
     data:{
         avatar:string,
@@ -60,6 +61,9 @@ function ListingStoreProduct({data}: Props): ReactElement {
     const router = useRouter()
     const [description, setdescription] = useState<any>()
     const dispatch = useAppDispatch()
+
+    const [touchDown, settouchDown] = useState(false)
+
     const getDescription = () => {
         try {
             if(JSON.parse(data.description).hasOwnProperty('details_data'))
@@ -81,26 +85,38 @@ function ListingStoreProduct({data}: Props): ReactElement {
             dispatch(getSingleProduct({id: data.id , slug: data.slug}))
         }
         dispatch(goProductPage({id: data.id}))
-        router.push(`store/${data.id}/${data.slug}`)
+        setTimeout(() => {
+            router.push(`store/${data.id}/${data.slug}`) 
+        }, 250);
+    }
+
+    const mouseDownHandler = () => {
+        settouchDown(true)
+    }
+
+    const mouseUpHandler = () => {
+        settouchDown(false)
     }
 
     return (
-        <StoreListingProductStyle key={data.id} onClick={goProduct}>
+        <StoreListingProductStyle touchDown={touchDown} id={`listingProduct${data.id}`} key={data.id} onClick={goProduct} onMouseDown={mouseDownHandler} onMouseUp={mouseUpHandler}> 
             <ProductImageAndContent >
                 <ProductLanguageAndImage>
 
-                    <ProductImageOverlay></ProductImageOverlay>
+                    <ProductImageOverlay>
+                        <CompanyLogoImageOverlay src={abyssLogo.src}/>
+                    </ProductImageOverlay>
+
                     <LanguageInfo>
                         <LanguageContForTextAndIcon>
-
-                            <FontAwesomeIcon icon={faCopy}/>
-                             <LanguageText>4 İterations{data.programingLanguage}</LanguageText>
+                             <p className='shopName'>Shops name</p>
+                             <p className='creatorName'>Creators username</p>
                         </LanguageContForTextAndIcon>
                         
-                        <LinesofCodeContForIconAndText>
+                        {/* <LinesofCodeContForIconAndText>
                             <FontAwesomeIcon icon={faPython}/>
                             <LinesofCodeText>Python {data.lineCount}</LinesofCodeText> 
-                        </LinesofCodeContForIconAndText>
+                        </LinesofCodeContForIconAndText> */}
                     </LanguageInfo>
                 </ProductLanguageAndImage>
 
@@ -110,7 +126,8 @@ function ListingStoreProduct({data}: Props): ReactElement {
                             <ProductTitle>{data.name}</ProductTitle>
                             <ProductDetailCont>
                                 <ProductStarCont><StarCountShow count={2.3}/> {data.starCount} 2.3</ProductStarCont>
-                                <ProductViewCont> <span>{data.view_count}K</span> <span>views</span> </ProductViewCont>
+                                <ProductViewCont> <span>{data.view_count}17K</span> <span>views</span> </ProductViewCont>
+                                <ProductViewCont> <span>{data.view_count}4</span> <span>iterations</span> </ProductViewCont>
                             </ProductDetailCont>
                             <ProductTags>
                                 {!data.tags.some((tag:any) => tag === '') && data.tags.map((tag:any , index:any) => index < 3 && <ProductTag key={tag}>{tag}</ProductTag>)}
@@ -132,7 +149,10 @@ function ListingStoreProduct({data}: Props): ReactElement {
                         <AddCave type="button">+ Cave</AddCave>
                     </AddCaveAndMentionsCont>
 
-                    <Iterations>8 Mentions</Iterations>
+                    <div className="flex">
+                        <Iterations>8 Mentions</Iterations>
+                        <DateCount>{data.created_at.slice(0,10)}</DateCount>
+                    </div>
 
             </ProductSideDetailsCont>
            

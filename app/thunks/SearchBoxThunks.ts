@@ -2,6 +2,7 @@
 import * as types from '../constants/App.contants'
 import { AsyncThunk, createAction, createAsyncThunk, isRejectedWithValue} from '@reduxjs/toolkit'
 import { BASE_API_INSTANCE } from '../../helpers/api/BaseInstance';
+import { unhoverSearchBox } from '../feature/SearchBox.slice';
 
 
 export const forumSearch = createAsyncThunk(
@@ -40,7 +41,30 @@ export const forumSearchInfinity = createAsyncThunk(
     }
 )
 
+export const unHoverSearchAsync = createAsyncThunk(
+  types.UN_HOVER_SEARCH, async (data:any, {rejectWithValue}) => {
+      setTimeout(() => {
+        return true
+      }, 100);
+  }
+)
 
+export const unHoverHeaderAsync = createAsyncThunk(
+  types.UN_HOVER_HEADER, async (data:any, {rejectWithValue}) => {
+      setTimeout(() => {
+        return true
+      }, 150);
+  }
+)
+
+
+export const hoverWindowAsync = createAsyncThunk(
+  types.HOVER_WINDOW, async (data:any, {rejectWithValue}) => {
+      setTimeout(() => {
+        return true
+      }, 150);
+  }
+)
 
 
 
@@ -56,6 +80,8 @@ export const storeSearchInfinity = createAsyncThunk(
       }
   }
 )
+
+
 
 
 

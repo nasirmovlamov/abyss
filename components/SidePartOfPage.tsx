@@ -26,7 +26,7 @@ function SidePartOfPage({children , side , onMouseEnter , onMouseLeave}: Props):
             {children}
             {side ==="left" && 
             <>
-                <PageFilters/>
+                {/* <PageFilters/> */}
                 {/* <button onClick={() => dispatch(changeColor(!colorConvert))}>Convert Color</button> */}
             </>
             }

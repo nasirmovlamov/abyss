@@ -17,6 +17,8 @@ import { useRouter } from 'next/router'
 import NavLink from './NavLink'
 import { forumWordRegex } from '../logic/regex/NavbarRegex'
 import chat_icon from '../public/chat_bubble.svg'
+import { hoverHeader, search_data, unhoverHeader, unhoverSearchBox } from '../app/feature/SearchBox.slice'
+import { unHoverHeaderAsync, unHoverSearchAsync } from '../app/thunks/SearchBoxThunks'
 interface Props {
 }
 
@@ -32,6 +34,21 @@ function Header({}: Props): ReactElement {
     const [notificationToolTip, setnotificationToolTip] = useState(false)
     const [messageToolTip, setmessageToolTip] = useState(false)
     const [menuToolTip, setmenuToolTip] = useState(false)
+    const searchData = useAppSelector(search_data)
+
+    const goPage = (link:string) => {
+        window.scrollTo(0, 0)
+        if(router.pathname !== link){
+            router.push(link)
+        }
+    }
+
+    const unHoverHeader = () => {
+        dispatch(unHoverHeaderAsync(null))
+    }
+
+    
+
 
     const notfTipHoverHandle = () => {
         setnotificationToolTip(true)
@@ -162,15 +179,11 @@ function Header({}: Props): ReactElement {
         }
     }
 
-    const goPage = (link:string) => {
-        window.scrollTo(0, 0)
-        if(router.pathname !== link){
-            router.push(link)
-        }
-    }
+   
+
     return (
         <>
-        <Header_STY.Nav_STY>
+        <Header_STY.Nav_STY onMouseEnter={() => dispatch(hoverHeader(null))} onMouseLeave={unHoverHeader}>
             <NavLink   href={"/"} content="Home">
                 <Header_STY.Logo_STY> 
                     <div style={{marginTop:'6px'}}>

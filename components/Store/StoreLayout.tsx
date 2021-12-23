@@ -39,23 +39,23 @@ const StoreLayout:FC <Props> = ({children , ...props}) => {
 
     return (
         <PageDefaultStyle>
-                    <SidePartOfPage side={"left"}>
-                    </SidePartOfPage>
-    
-                <MainPartOfPage>
-                    {singleProductData.data !== null && <>{children}</>}
-                    {
-                        (loading || singleProductData.status === 'loading')
-                        &&
-                        <p style={{fontSize:"30px" , color:"white", textAlign:'center' , padding:"30px"}}>LOADING ...</p>
-                    } 
-                    {singleProductData.status === 'error' && <p style={{fontSize:"30px" , color:"red",textAlign:'center', padding:"30px"}}>ERROR ...</p>}
-                    {singleProductData.data === null && <></>}
-                </MainPartOfPage>
-    
-                <SidePartOfPage side={"right"}>
+                <SidePartOfPage side={"left"}>
                 </SidePartOfPage>
-            </PageDefaultStyle>
+
+            <MainPartOfPage>
+                {singleProductData.data !== null && <>{children}</>}
+                {
+                    (loading || singleProductData.status === 'loading')
+                    &&
+                    <p style={{fontSize:"30px" , color:"white", textAlign:'center' , padding:"30px"}}>LOADING ...</p>
+                } 
+                {singleProductData.status === 'error' && <p style={{fontSize:"30px" , color:"red",textAlign:'center', padding:"30px"}}>ERROR ...</p>}
+                {singleProductData.data === null && <></>}
+            </MainPartOfPage>
+
+            <SidePartOfPage side={"right"}>
+            </SidePartOfPage>
+        </PageDefaultStyle>
         ) 
   
 }

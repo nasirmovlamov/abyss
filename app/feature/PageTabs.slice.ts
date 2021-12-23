@@ -41,7 +41,6 @@ export const PageTabsSlice = createSlice({
         state.page_tabs.productTabs.filter(tab => tab.id === action.payload.id)[0].isActive = true
     },
     changeProductTabActiveWithoutScroll: (state , action) => {
-        console.log(state.page_tabs.productTabs)
         state.page_tabs.productTabs.map(tab => tab.isActive = false)
         state.page_tabs.productTabs.filter(tab => tab.id === action.payload.id)[0].isActive = true
     },

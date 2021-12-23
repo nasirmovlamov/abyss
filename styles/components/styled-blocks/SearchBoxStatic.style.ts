@@ -8,11 +8,10 @@ export const SearchBoxThunkAndCont_STY = styled.div<{scrollFromTop:number , boxF
     justify-content: space-between;
     width: 810px;
     z-index: 8;
-    height:75px;
+    height:60px;
     position:sticky;
-    top: ${({theme  , scrollFromTop , boxFocused , thunkHovered}) => scrollFromTop > 0 ? (boxFocused ? '60px' : (thunkHovered ? '60px' : '0px')): '0px'};
-    transition:${({theme  , scrollFromTop , boxFocused}) => boxFocused ? '0' : '0.2s'};
-    /* background-color: ${({theme}) => theme.backgrounds.background3}; */
+    top: ${({theme  , scrollFromTop , boxFocused , thunkHovered}) => (boxFocused ? '60px' : (thunkHovered ? '60px' : '0px'))};
+    transition:${({theme  , scrollFromTop , boxFocused}) => '0.2s'};
 `
 
 export const SearchBoxThunk_STY = styled.button<{isBackVisible:boolean, scrollFromTop:number , thunkHovered:boolean , boxFocused:boolean}>`
@@ -28,11 +27,12 @@ export const SearchBoxThunk_STY = styled.button<{isBackVisible:boolean, scrollFr
     align-items: center;
     align-self: center;
     justify-content: center;
-    opacity:${({scrollFromTop , thunkHovered , boxFocused}) => boxFocused ? '0': (scrollFromTop > 150 ? (thunkHovered ? '0' : '1') : "0")};
+    /* opacity:${({scrollFromTop , thunkHovered , boxFocused}) => boxFocused ? '0': (scrollFromTop > 150 ? (thunkHovered ? '0' : '1') : "0")}; */
     background-color: ${({theme , isBackVisible}) => "transparent"};
-    transition:${({theme , thunkHovered}) => thunkHovered ? "0" : ' 0' };
-    transition-delay: ${({theme , thunkHovered}) => thunkHovered ? "0" : '0.1s' } ;
-    display:${({scrollFromTop , thunkHovered , boxFocused}) => scrollFromTop > 200 ? "flex" : "none"};
+    transition:${({scrollFromTop , thunkHovered , boxFocused}) => boxFocused ? '0.1s': ( (thunkHovered ? '0.2s' : '0.2s'))};
+    position: absolute;
+    bottom: ${({scrollFromTop , thunkHovered , boxFocused}) => boxFocused ? '15px': (scrollFromTop > 200 ? (thunkHovered ? '15px' : '-13px') : "15px") };
+    // scrollFromTop > 150 ? "-15px" : '-0px'
     div {
         width: 88px;
         background-color: ${({theme}) => theme.backgrounds.background9};
@@ -54,7 +54,7 @@ export const SearchBox_STY = styled.div`
     background-color: black;
     width: 100%;
     /* top: translateX(0px); */
-    height: 60px;
+    height: 48px;
     color: white;
     border-radius: 30px;
     transition: 0.5s;
@@ -150,44 +150,50 @@ export const SearchCont_STY = styled.div<{path:string}>`
 `
 export const SearchNav_STY = styled.div<{path:string}>`
     position: absolute;
+    top: 60px;
     display:flex;
     flex-direction: column;
-    border-left: 1px solid #E5E6E6;
-    border-right: 1px solid #E5E6E6;
-    background-color: white;
     z-index: 1;
     /* opacity: 0; */
     /* top:50px; */
-    border: 1px solid gray;
-    border-top: 1px solid lightgray ;
-    width: ${(props) => props.path === "/" ? "95%" : "100%"}  ;
     align-self: flex-end;
     margin: 0px;
     padding: 0px;
     border: 0px;
-
+    width: 585px;
+    border-top: 1px solid white;
+    border-radius: 0px 0px 10px 10px;
+    box-shadow: ${({theme}) => theme.boxshadows.boxshadow1};
+    background-color: ${({theme}) => theme.backgrounds.background1};
+    padding: 5px;
 `
 export const SearchNavQuery_STY = styled.button`
     display: flex;
     padding: 4px 10px;
     align-items: center;
-    background-color: white;
     border: none;
-
+    background-color: ${({theme}) => theme.backgrounds.background1};
+    width: 100%;
+    height: auto;
     svg 
     {
         z-index: 4;
-        color: white;
+        color: ${({theme}) => theme.texts.text2};
         position: absolute;
         margin-left: 0px;
-        color: #d9dadb;
+    }
+    p{
+        color: ${({theme}) => theme.texts.text4};
+        font-weight: bold;
+        padding-left: 30px;
+        color: ${({theme}) => theme.texts.text3};
     }
     span 
     {
         height: 100%;
-        padding-left: 30px;
         border: none;
-        color: lightgray;
+        font-weight: bold;
+        color: ${({theme}) => theme.texts.text11};
     }
 `
 
@@ -205,8 +211,6 @@ export const AddQuesitionCont_STY = styled.button`
     border-radius: 0px 30px 30px 0px ;
     background-color: ${({theme}) => theme.colors.orange_1};
     color: ${({theme}) => theme.colors.black_3};
-
-
 `
 
 

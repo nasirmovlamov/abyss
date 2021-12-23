@@ -9,7 +9,7 @@ import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex'
 import { MainPartOfPageStyle, SidePartOfPageStyle } from '../styles/pages/Page.styled'
 import { useScrollYPosition } from 'react-use-scroll-position';
 import { forumSearch, forumSearchInfinity, storeSearch, storeSearchInfinity } from '../app/thunks/SearchBoxThunks'
-import {  forum_search_data,  getCachedSearchBoxData, searchValueOnChange, resetSendedQuery, search_query, search_data, changeSearchVisibilty } from '../app/feature/SearchBox.slice'
+import {  forum_search_data,  getCachedSearchBoxData, searchValueOnChange, resetSendedQuery, search_query, search_data, changeSearchVisibilty, hoverSearchNav, unhoverSearchNav } from '../app/feature/SearchBox.slice'
 import { getFiltersFromCache } from '../app/feature/PageFilters.slice'
 import { createProductThunk } from '../app/thunks/CreateProductThunks'
 import { getAccessToken } from '../helpers/token/TokenHandle'
@@ -278,7 +278,7 @@ function SearchBox({}: Props): ReactElement {
                         <SearchCont_STY path={router.asPath}>
                             <SearchButtonLupa_STY onClick={searchHandleWithSubmit}><FontAwesomeIcon  icon={faSearch}/></SearchButtonLupa_STY>
                             <SearchInput_STY onFocus={focusSearchHandle} onBlur={() => setboxFocused(false)}  path={router.asPath} onKeyDown={(e:any) => searchHandleWithEnter(e.keyCode)} value={searchQuery}  onChange={(e:any) => changeSearchValue(e.target.value)}   placeholder="Search..." ref={searchInputRef}   type="text" /> 
-                            {router.asPath !=='/' && <SearchNav_STY  path={router.asPath} ref={searchNavRef}>
+                            {router.asPath !=='/' && <SearchNav_STY onMouseEnter={() => dispatch(hoverSearchNav(null))} onMouseLeave={() => dispatch(unhoverSearchNav(null))} path={router.asPath} ref={searchNavRef}>
                                 {/* <SearchNavQuery>
                                     <FontAwesomeIcon  icon={faSearch}/>
                                     <span>react</span>
@@ -297,7 +297,6 @@ function SearchBox({}: Props): ReactElement {
                 
         </SearchBoxContainer_STY>
         
-        {(pagePath !== "Home") && <SearchBoxThunk_STY2 isBackVisible={searchData.thunkBackground === 'visible'}  onMouseMove={()=>dispatch(changeSearchVisibilty("visible"))} direction={isSearchVisible} ></SearchBoxThunk_STY2>}
 
         </>
     )

@@ -51,4 +51,7 @@ export const CREATE_PRODUCT:string = 'CREATE_PRODUCT'
 export const UPDATE_PRODUCT:string = 'UPDATE_PRODUCT'
 
 export const CHECK_PLAGIAT:string = 'CHECK_PLAGIAT'
+export const UN_HOVER_HEADER:string = 'UN_HOVER_HEADER'
+export const UN_HOVER_SEARCH:string = 'UN_HOVER_SEARCH'
+export const HOVER_WINDOW:string = 'HOVER_WINDOW'
 

@@ -149,7 +149,6 @@ function SingleQuestionPAge({}: Props): ReactElement {
 
             <MainPartOfPage>
                 <SingleQuestion_STY.SingleProductMiddle_STY>
-                    {/* Single Question Title Content Answer Posting */}
                         <>  
                             {              
                                 singleQuestionStatus === "loading" ? 

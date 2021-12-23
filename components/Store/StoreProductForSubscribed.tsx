@@ -9,7 +9,6 @@ import { getSingleProduct } from '../../app/thunks/SingleProductThunk'
 import { autoSuccessToaster } from '../Notify/AutoSuccessToast'
 import { ClipBody, ClipsCont, ClipTitle, Flexer, LabelCont, LabelContent, LabelKey, MainClip, ProductTag, SideClip, SideClips, StoreForumBody, StoreForumCont, StoreForumTitle, StorePage, StoreStatistics_STY, StoreTop, StoreTopAvatar, StoreTopCodeLines, StoreTopContent, StoreTopImg, StoreTopImgCont, StoreTopRatingCont, StoreTopRatingStars, StoreTopTags, StoreTopTitle } from '../../styles/pages/Store.styled'
 import SearchBoxStaticVersion from '../SearchBoxStaticVersion'
-import StarCountShow from '../StarCountShow'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPython } from '@fortawesome/free-brands-svg-icons'
 import SinglePageTabs from '../SinglePageTabs'
@@ -74,148 +73,65 @@ const StoreProductForSubscribed = (props: Props) => {
     }
     
     return (
-        <StorePage>
-                <SearchBoxStaticVersion/>
-                    {console.log(singleProductData.data)}
-                <StoreStatistics_STY>
-                    <div className="element">
-                        <p className="element-title">1.3K RATINGS</p>
-                        <p className="element-value">4.7</p>
-                        <p className="element-subtitle"><StarCountShow count={4.5}/></p>
-                    </div>
+        <DetailsCont_STY >   
+            {
+                subscribe &&
+                <LabelCont id={storeTabs[0].tabName}>
+                    <CodeMirror_ReadOnly_STY>
+                        <CodeMirror
+                            value={singleProductData.code}
+                            theme="dark"
+                            editable={false}
+                        />    
+                    </CodeMirror_ReadOnly_STY>
+                    <LabelContent></LabelContent>
+                </LabelCont>
+            }
 
-                    <div className="element">
-                        <p className="element-title">LANGUAGE</p>
-                        <p className="element-value"><FontAwesomeIcon icon={faPython}/></p>
-                        <p className="element-subtitle">Python</p>
-                    </div>
+            <LabelCont id={storeTabs[1].tabName}>
+                <LabelKey>Description</LabelKey>
+                <LabelContent>{HTMLReactParser(JSON.parse(singleProductData.data.description).details_data.sections_product[0].label_value)}</LabelContent>
+            </LabelCont>
 
-                    <div className="element">
-                        <p className="element-title">Chart</p>
-                        <p className="element-value">N17</p>
-                        <p className="element-subtitle">controller functions</p>
-                    </div>
+            <LabelCont>
+                <LabelKey>Applicability</LabelKey>
+                <LabelContent>{HTMLReactParser(JSON.parse(singleProductData.data.description).details_data.sections_product[1].label_value)}</LabelContent>
+            </LabelCont>
 
-                    <div className="element">
-                        <p className="element-title">TOTAL</p>
-                        <p className="element-value">31.8K</p>
-                        <p className="element-subtitle">views</p>
-                    </div>
+            <LabelCont>
+                <LabelKey>Problem Formulation</LabelKey>
+                <LabelContent>{HTMLReactParser(JSON.parse(singleProductData.data.description).details_data.sections_product[2].label_value)}</LabelContent>
+            </LabelCont>
 
-                    <div className="element">
-                        <p className="element-title">PREFORMANCE</p>
-                        <p className="element-value">7/10</p>
-                        <p className="element-subtitle">abyss score</p>
-                    </div>
-                </StoreStatistics_STY>
+            <ClipsCont id={storeTabs[3].tabName}>
+                <ClipTitle>Clips</ClipTitle>
+                <ClipBody>
+                    <MainClip><img  src={mainClip} alt='main-image'/></MainClip>
+                    <SideClips>
+                        {
+                            JSON.parse(singleProductData.data.description).details_data['sections_product'][3]['isClips']['clips'].map((item:any, index:any) => 
+                            <SideClip key={item.id} onClick={() => mainClipChanger(item.src)} >
+                                <img src={item.src} alt="side-image"/>
+                            </SideClip> 
+                            )
+                        }
+                    </SideClips>
+                </ClipBody>
+            </ClipsCont>
+            {/* <StoreDiscussionCont id={storeTabs[2].tabName}>
+                <StoreDiscussionTitle>Discussion  </StoreDiscussionTitle>
+                <StoreDiscussionBody>
+                    {formQuestionsAPI.map((element , index) => <FormQuestion key={index} data={element}/>)} 
+                </StoreDiscussionBody>
+            </StoreDiscussionCont> */}
 
-                    <StoreTop>
-                        <Flexer>
-                            <div>
-
-                                <StoreTopImgCont>
-                                    <StoreTopImg>
-                                        <StoreTopAvatar>
-                                            <Image width='32' height='32' src={mainLogo}/>
-                                        </StoreTopAvatar>
-                                    </StoreTopImg>
-                                </StoreTopImgCont>
-
-                                <StoreTopCodeLines>
-                                    <p>{singleProductData.data.user.name}</p>
-                                    <p>{singleProductData.data.user.email   }</p>
-                                </StoreTopCodeLines>
-                            </div>
-
-
-                            <StoreTopContent>
-                                <StoreTopTitle>{singleProductData.data.name}</StoreTopTitle>
-                                <StoreTopRatingCont>
-                                    <StoreTopRatingStars><FontAwesomeIcon icon={faStar} /> <p>1</p></StoreTopRatingStars>
-                                    <a href="">see Reviews</a>
-                                    <StoreTopRatingStars><span>17.3K</span> <span>views</span></StoreTopRatingStars>
-
-                                </StoreTopRatingCont>
-                                <StoreTopTags>
-                                    {JSON.parse(singleProductData.data.description).details_data.product_tags.map((item:any, index:any) => 
-                                        <ProductTag key={item.id}>{item.value}</ProductTag>
-                                    )}
-                                </StoreTopTags>
-                            </StoreTopContent>
-
-                        </Flexer>
-                        <div className='add-cave-cont'>
-                            <button onClick={addcave} className='add-cave-btn'>+ Cave</button>
-                        </div>    
-                        
-                        
-                    </StoreTop>
-
-                    <SinglePageTabs/>
-
-
-                    
-                        <DetailsCont_STY >   
-                            {
-                                subscribe &&
-                                <LabelCont id={storeTabs[0].tabName}>
-                                    <CodeMirror_ReadOnly_STY>
-                                        <CodeMirror
-                                            value={singleProductData.code}
-                                            theme="dark"
-                                            editable={false}
-                                        />    
-                                    </CodeMirror_ReadOnly_STY>
-                                    <LabelContent></LabelContent>
-                                </LabelCont>
-                            }
-
-                            <LabelCont id={storeTabs[1].tabName}>
-                                <LabelKey>Description</LabelKey>
-                                <LabelContent>{HTMLReactParser(JSON.parse(singleProductData.data.description).details_data.sections_product[0].label_value)}</LabelContent>
-                            </LabelCont>
-
-                            <LabelCont>
-                                <LabelKey>Applicability</LabelKey>
-                                <LabelContent>{HTMLReactParser(JSON.parse(singleProductData.data.description).details_data.sections_product[1].label_value)}</LabelContent>
-                            </LabelCont>
-
-                            <LabelCont>
-                                <LabelKey>Problem Formulation</LabelKey>
-                                <LabelContent>{HTMLReactParser(JSON.parse(singleProductData.data.description).details_data.sections_product[2].label_value)}</LabelContent>
-                            </LabelCont>
-
-                            <ClipsCont id={storeTabs[3].tabName}>
-                                <ClipTitle>Clips</ClipTitle>
-                                <ClipBody>
-                                    <MainClip><img  src={mainClip} alt='main-image'/></MainClip>
-                                    <SideClips>
-                                        {
-                                            JSON.parse(singleProductData.data.description).details_data['sections_product'][3]['isClips']['clips'].map((item:any, index:any) => 
-                                            <SideClip key={item.id} onClick={() => mainClipChanger(item.src)} >
-                                                <img src={item.src} alt="side-image"/>
-                                            </SideClip> 
-                                            )
-                                        }
-                                    </SideClips>
-                                </ClipBody>
-                            </ClipsCont>
-                            {console.log(JSON.parse(singleProductData.data.description))}
-                            {/* <StoreDiscussionCont id={storeTabs[2].tabName}>
-                                <StoreDiscussionTitle>Discussion  </StoreDiscussionTitle>
-                                <StoreDiscussionBody>
-                                    {formQuestionsAPI.map((element , index) => <FormQuestion key={index} data={element}/>)} 
-                                </StoreDiscussionBody>
-                            </StoreDiscussionCont> */}
-
-                            <StoreForumCont id={storeTabs[2].tabName}>
-                                <StoreForumTitle>Forum</StoreForumTitle>
-                                <StoreForumBody>
-                                    {/* {formQuestionsAPI.map((element , index) => <FormQuestion key={index} data={element}/>)}  */}
-                                </StoreForumBody>
-                            </StoreForumCont>
-                        </DetailsCont_STY>
-            </StorePage>
+            <StoreForumCont id={storeTabs[2].tabName}>
+                <StoreForumTitle>Forum</StoreForumTitle>
+                <StoreForumBody>
+                    {/* {formQuestionsAPI.map((element , index) => <FormQuestion key={index} data={element}/>)}  */}
+                </StoreForumBody>
+            </StoreForumCont>
+        </DetailsCont_STY>
     )
 }
 

@@ -1,4 +1,4 @@
-import { storeSearch, storeSearchInfinity } from './../thunks/SearchBoxThunks';
+import { storeSearch, storeSearchInfinity, unHoverSearchAsync, unHoverHeaderAsync, hoverWindowAsync } from './../thunks/SearchBoxThunks';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store/store'
 import { SEARCHBOX_STATE } from '../store/states/SearchBoxState'
@@ -127,7 +127,68 @@ export const SearchBoxSlice = createSlice({
       state.searchBoxData.store.scrollY = action.payload
     },
 
+
+
+    hoverSearchBox(state, action) {
+      state.isHovered = true
+      if(state.isHeaderHovered){
+        state.isFromHeaderToSearch = true
+      }else{
+        state.isFromHeaderToSearch = false
+      }
+    },
+
+    unhoverSearchBox(state, action) {
+        state.isHovered = false
+    },
+
+    hoverSearchNav(state, action) {
+      state.isNavHovered = true
+    },
+    unhoverSearchNav(state, action) {
+      state.isNavHovered = false
+    },
+
+    focusSearchBox(state, action) {
+      state.isFocused = true
+    },
+    blurSearchBox(state, action) {
+      if(!state.isNavHovered){
+        state.isFocused = false
+      }
+    },
+
+    hoverHeader(state, action) {
+      state.isHeaderHovered = true
+    },
+    unhoverHeader(state, action) {
+      if(state.isFromHeaderToSearch){
+        state.isHovered = true
+      }else{
+        state.isHovered = false
+      }
+      state.isFromHeaderToSearch = false
+      state.isHeaderHovered = false
+    },
     
+
+    hoverWindow(state, action) {
+      state.isinWindow = true
+      state.isHovered = false
+
+      if(state.isHeaderHovered){
+          state.isHovered = true
+      }else {
+        state.isHovered = false
+      }
+    },
+    unhoverWindow(state, action) {
+      state.isinWindow = false
+    },
+    
+
+
+
 
   },
 
@@ -231,11 +292,38 @@ export const SearchBoxSlice = createSlice({
       state.searchBoxData.store.status = "error"
       state.searchBoxData.store.infinityLoader = "error"
       console.log(payload)
-    })  
-
-
+    }),
     
-
+    
+    builder.addCase(unHoverSearchAsync.fulfilled, (state, {payload}) => {
+        if(!state.isHeaderHovered){
+          state.isHovered = false
+        }
+    })
+    
+    builder.addCase(hoverWindowAsync.fulfilled, (state, {payload}) => {
+      state.isinWindow = true
+      if(state.isHeaderHovered){
+        state.isHovered = true
+      }else {
+        state.isHovered = false
+      }
+  })
+  
+    builder.addCase(unHoverHeaderAsync.fulfilled, (state, {payload}) => {
+      if(state.isinWindow){
+        if(state.isFromHeaderToSearch){
+          state.isHovered = true
+        }else{
+          state.isHovered = false
+        }
+        state.isFromHeaderToSearch = false
+        state.isHeaderHovered = false
+      }else{
+        state.isHeaderHovered = false
+        state.isFromHeaderToSearch = false
+      }
+    })
 
 
     
@@ -259,12 +347,23 @@ export const
   changeThunkBackVisibilty,
   setScrollPositionYForum,
   setScrollPositionYStore,
+  hoverSearchBox,
+  unhoverSearchBox,
+  focusSearchBox,
+  blurSearchBox,
+  unhoverHeader,
+  hoverHeader,
+  hoverSearchNav,
+  unhoverSearchNav,
+  hoverWindow,
+  unhoverWindow
 } = SearchBoxSlice.actions;
 
 
 export const search_query = (state: RootState) => state.searchBoxReducer.search_query
 // data
 export const search_data = (state: RootState) => state.searchBoxReducer
+
 export const forum_search_data = (state: RootState) => state.searchBoxReducer.searchBoxData.forum
 export const store_search_data = (state: RootState) => state.searchBoxReducer.searchBoxData.store
 export const search_filters = (state: RootState) => state.searchBoxReducer.filters

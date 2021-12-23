@@ -8,13 +8,14 @@ import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex'
 import { MainPartOfPageStyle, SidePartOfPageStyle } from '../styles/pages/Page.styled'
 import { useScrollYPosition } from 'react-use-scroll-position';
-import { forumSearch, forumSearchInfinity, storeSearch, storeSearchInfinity } from '../app/thunks/SearchBoxThunks'
-import {  forum_search_data,  getCachedSearchBoxData, searchValueOnChange, resetSendedQuery, search_query, search_data, changeSearchVisibilty } from '../app/feature/SearchBox.slice'
+import { forumSearch, forumSearchInfinity, storeSearch, storeSearchInfinity,  unHoverSearchAsync } from '../app/thunks/SearchBoxThunks'
+import {  forum_search_data,  getCachedSearchBoxData, searchValueOnChange, resetSendedQuery, search_query, search_data, changeSearchVisibilty, focusSearchBox, hoverSearchBox, unhoverSearchBox, blurSearchBox, hoverSearchNav, unhoverSearchNav } from '../app/feature/SearchBox.slice'
 import { getFiltersFromCache } from '../app/feature/PageFilters.slice'
 import { createProductThunk } from '../app/thunks/CreateProductThunks'
 import { getAccessToken } from '../helpers/token/TokenHandle'
 import { getCookie } from '../logic/CookieFunctions'
 import * as SearchForStaticVersion_STY from '../styles/components/styled-blocks/SearchBoxStatic.style'
+import { SearchBoxThunk_STY2, SearchNavQuery_STY } from '../styles/components/styled-blocks/SearchBox.style'
 
 
 interface Props {
@@ -37,18 +38,14 @@ function SearchBoxStaticVersion({}: Props): ReactElement {
 
 
 
-    const {isSearchVisible} = searchData
-
-    const [boxFocused, setboxFocused] = useState(false)
-    const [thunkHovered, setthunkHovered] = useState(false)
+    const {isSearchVisible, isFocused , isHovered} = searchData
     const searchBoxRef = useRef<HTMLDivElement>(null)
     const searchContRef = useRef<HTMLDivElement>(null)
     const searchInputRef = useRef<HTMLInputElement>(null)
-    const searchNavRef = useRef<HTMLDivElement>(null)
     const scrollY = useScrollYPosition();
     const forumSearchData = useAppSelector(forum_search_data)
     const focusSearchHandle= (e:any) => {
-        setboxFocused(true)
+        dispatch(focusSearchBox(null))
         e.target.select()
     }
     const {searchOptions} = forumSearchData
@@ -59,7 +56,6 @@ function SearchBoxStaticVersion({}: Props): ReactElement {
 
     const searchQuery = useAppSelector(search_query)
     const [searchValue, setSearchValue] = useState("")
-
     // const [searchValue, setSearchValue] = useState("")
 
     const changeSearchValue = (e:string) => {
@@ -148,22 +144,22 @@ function SearchBoxStaticVersion({}: Props): ReactElement {
     }
 
     
-    const searchScrollControl = async (router:any) => {
-            if(isScrollingDown && boxFocused)
-              dispatch(changeSearchVisibilty('not-visible'))
-    }
+    // const searchScrollControl = async (router:any) => {
+    //         if(isScrollingDown && isFocused)
+    //           dispatch(changeSearchVisibilty('not-visible'))
+    // }
 
-    const thunkHasHovered = async (router:any) => {
-        // searchContRef.current!.setAttribute("style", `top: 60px;`) 
-        dispatch(changeSearchVisibilty('not-visible'))
-    }
+    // const thunkHasHovered = async (router:any) => {
+    //     // searchContRef.current!.setAttribute("style", `top: 60px;`) 
+    //     dispatch(changeSearchVisibilty('not-visible'))
+    // }
 
-    useEffect( () => {
-        if(isScrollingDown){
-            searchScrollControl(router.asPath)
-        }
-        
-    }, [isScrollingDown,  router.asPath , scrollY])
+    // useEffect( () => {
+    //     if(isScrollingDown){
+    //         searchScrollControl(router.asPath)
+    //         console.log("HEELO1")
+    //     }
+    // }, [isScrollingDown,  router.asPath , scrollY])
 
     
 
@@ -210,38 +206,125 @@ function SearchBoxStaticVersion({}: Props): ReactElement {
     }, [router ])
 
     
+    const unHoverSearchBox = () => {
+        dispatch(unHoverSearchAsync(null))
+    }
+
+    const dammyDataForSearch = [
+        'how to javascript test 1', 
+        'how to javascript test 2', 
+        'how to javascript test 3', 
+        'how to javascript test 4', 
+        'how to react test 1', 
+        'how to react test 2', 
+        'how to react test 3', 
+        'how to react test 4', 
+        'how to php test 1', 
+        'how to php test 2', 
+        'how to php test 3', 
+        'how to php test 4', 
+        'how to nextjs test 1', 
+        'how to nextjs test 2', 
+        'how to how to test 3', 
+        'how to how to test 4', 
+        'how to react test 2', 
+        'how to nextjs test 1', 
+        'php test 3', 
+        'javascript test 1', 
+        'javascript test 2', 
+        'javascript test 3', 
+        'javascript test 4', 
+        'react test 1', 
+        'react test 2', 
+        'react test 3', 
+        'react test 4', 
+        'php test 1', 
+        'php test 2', 
+        'php test 3', 
+        'php test 4', 
+        'nextjs test 1', 
+        'nextjs test 2', 
+        'test 3', 
+        'test 4', 
+        'react test 2', 
+        'nextjs test 1', 
+        'php test 3', 
+
+    ]
+    
+    const isStartWithQueryRegex = new RegExp(`^${searchData.search_query}`)
+
+    const searchNavClick = (item:any) => {
+        window.scrollTo({
+            top: 0,
+        })
+        dispatch(searchValueOnChange(item))
+        if(router.pathname === '/forum'){
+            dispatch(forumSearchInfinity({query:item , from:0,forumType:searchData.searchBoxData.forum.searchOptions.forumType,filterTags:searchData.filters,}))
+            return
+        }
+        if(router.pathname === '/store'){
+            dispatch(storeSearchInfinity({query:item , from:0,storeType:searchData.searchBoxData.store.searchOptions.storeType,filterTags:searchData.filters}))
+            return
+        }
+    }
+    
     return (
         <>
-            <SearchForStaticVersion_STY.SearchBoxThunkAndCont_STY scrollFromTop={scrollY} boxFocused={boxFocused} thunkHovered={thunkHovered}
-            onMouseEnter={() => setthunkHovered(true)} 
-            onMouseLeave={() => setthunkHovered(false)} 
+            <SearchForStaticVersion_STY.SearchBoxThunkAndCont_STY 
+            scrollFromTop={scrollY} 
+            boxFocused={isFocused} 
+            thunkHovered={isHovered}
+            onMouseEnter={() => dispatch(hoverSearchBox(null))} 
+            onMouseLeave={unHoverSearchBox} 
             >
-                <SearchForStaticVersion_STY.SearchBox_STY  
-                    onMouseLeave={() => (!boxFocused && scrollY > 0) ? dispatch(changeSearchVisibilty('not-visible')) : null} 
-                    > 
+                <SearchForStaticVersion_STY.SearchBox_STY> 
                     {router.asPath !=='/' &&  <SearchForStaticVersion_STY.SearchBoxPage_STY>{pagePath}</SearchForStaticVersion_STY.SearchBoxPage_STY>}
                     <SearchForStaticVersion_STY.SearchCont_STY path={router.asPath}>
                         <SearchForStaticVersion_STY.SearchButtonLupa_STY onClick={searchHandleWithSubmit}><FontAwesomeIcon  icon={faSearch}/></SearchForStaticVersion_STY.SearchButtonLupa_STY>
-                        <SearchForStaticVersion_STY.SearchInput_STY onFocus={focusSearchHandle} onBlur={() => setboxFocused(false)}  path={router.asPath} onKeyDown={(e:any) => searchHandleWithEnter(e.keyCode)} value={searchQuery}  onChange={(e:any) => changeSearchValue(e.target.value)}   placeholder="Search..." ref={searchInputRef}   type="text" /> 
-                        {router.asPath !=='/' && <SearchForStaticVersion_STY.SearchNav_STY  path={router.asPath} ref={searchNavRef}>
-                            {/* <SearchNavQuery>
-                                <FontAwesomeIcon  icon={faSearch}/>
-                                <span>react</span>
-                            </SearchNavQuery>
-                            <SearchNavQuery>
-                                <FontAwesomeIcon  icon={faSearch}/>
-                                <span>react</span>
-                            </SearchNavQuery> */}
+                        <SearchForStaticVersion_STY.SearchInput_STY 
+                        onFocus={focusSearchHandle} 
+                        onBlur={() => dispatch(blurSearchBox(null))}  
+                        path={router.asPath} 
+                        onKeyDown={(e:any) => searchHandleWithEnter(e.keyCode)} 
+                        value={searchQuery}  
+                        onChange={(e:any) => changeSearchValue(e.target.value)}   
+                        placeholder="Search..." 
+                        ref={searchInputRef}   
+                        type="text" 
+                        /> 
+                        {(router.asPath !=='/' && searchData.isFocused && searchData.search_query.length > 0) && 
+                        <SearchForStaticVersion_STY.SearchNav_STY 
+                            onMouseEnter={() => dispatch(hoverSearchNav(null))} 
+                            onMouseLeave={() => dispatch(unhoverSearchNav(null))}  
+                            path={router.asPath} > 
+                                   
+                            {
+                                dammyDataForSearch.map((item:string, index:number) =>
+                                    isStartWithQueryRegex.test(item) &&
+                                    <SearchForStaticVersion_STY.SearchNavQuery_STY    onClick={() => searchNavClick(item)}>
+                                        <FontAwesomeIcon  icon={faSearch}/>
+                                        <p><span>{searchData.search_query}</span>{item.replace(searchData.search_query , "")}</p>
+                                    </SearchForStaticVersion_STY.SearchNavQuery_STY>
+                                )
+                            }
+                           
                         </SearchForStaticVersion_STY.SearchNav_STY>}
                         <SearchForStaticVersion_STY.AddQuesitionCont_STY onClick={handleAddClick}>ADD</SearchForStaticVersion_STY.AddQuesitionCont_STY>
                     </SearchForStaticVersion_STY.SearchCont_STY>
                 </SearchForStaticVersion_STY.SearchBox_STY>
+                {(pagePath !== "Home") && 
+                    <SearchForStaticVersion_STY.SearchBoxThunk_STY 
+                        thunkHovered={isHovered}  
+                        boxFocused={isFocused} 
+                        scrollFromTop={scrollY}  
+                        isBackVisible={searchData.thunkBackground === 'visible'} 
+                    >
+                        <div>	• 	•	• </div>
+                    </SearchForStaticVersion_STY.SearchBoxThunk_STY>}
 
-                {(pagePath !== "Home") && <SearchForStaticVersion_STY.SearchBoxThunk_STY thunkHovered={thunkHovered}  boxFocused={boxFocused} scrollFromTop={scrollY}  isBackVisible={searchData.thunkBackground === 'visible'}  
-                
-                
-                ><div>	• 	•	• </div></SearchForStaticVersion_STY.SearchBoxThunk_STY>}
             </SearchForStaticVersion_STY.SearchBoxThunkAndCont_STY>
+            {/* {(pagePath !== "Home") && <SearchBoxThunk_STY2  thunkHovered={isHovered} ></SearchBoxThunk_STY2>} */}
         </>
     )
 }

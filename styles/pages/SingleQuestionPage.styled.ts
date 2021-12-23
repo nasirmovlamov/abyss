@@ -330,6 +330,7 @@ export const AnswersCont_STY = styled.div`
 export const AnswersAndProductsCont_STY = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 808px;
 `
 

@@ -8,7 +8,7 @@ export const StorePage = styled.div`
     align-items: center;
     row-gap: 20px;
     padding-bottom: 50px;
-    padding-top: 50px;
+    padding-top: 20px;
     box-sizing: border-box;
     
 `
@@ -17,12 +17,11 @@ export const StoreStatistics_STY = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-around;
-    margin-bottom: 20px;
     .element {
         display: flex;
         flex-direction: column;
         align-items: center;
-        row-gap: 15px;
+        row-gap: 8.5px;
         /* width: 100px; */
         /* height: 100px; */
         .element-title{
@@ -165,24 +164,28 @@ export const StoreTopTags = styled.div`
 `
 
 export const ProductTag = styled.div`
-    height: 22px;
+     height: 22px;
     color: white;
     border: none;
     padding: 5px;
     border-radius: 5px;
     display: flex;
-    color: #00578b;
     font-family: r;
     justify-content: center;
-    border: 1px solid lightgray;
+    /* border: 1px solid lightgray; */
     align-items: center;
-    box-shadow: 0px 0px 0px 0.5px rgba(158,161,163,0.38), inset 0px 0px 1px rgba(158,161,163,1);
     background-color: #e5f0f4;
     font-family: r;
+    background:  ${({theme}) => theme.backgrounds.background4};
+    cursor: pointer;
     font-size: 12px;
-    text-decoration: none solid rgb(0, 87, 139);
     text-align: center;
-    
+    transition: 10s ease-out ;
+    color:  ${({theme}) => theme.texts.text4};
+    box-shadow: ${({theme}) => theme.boxshadows.boxshadow6};
+    &:hover{
+        box-shadow: ${({theme}) => theme.boxshadow_hover.hover1};
+    }
 `
 
 
@@ -203,7 +206,7 @@ export const LabelKey = styled.h3`
     color: ${({theme}) => theme.texts.text3};
 `
 
-export const LabelContent = styled.p`
+export const LabelContent = styled.div`
     text-align: justify;
     font-size: 14px;
     line-height: 26px;

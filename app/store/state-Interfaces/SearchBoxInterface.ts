@@ -1,7 +1,12 @@
 import { filterTagInterFace } from "./PageFiltersInterface";
 
 export interface SEARCHBOX_INTERFACE {
+    isHovered:boolean,
     isFocused: boolean;
+    isNavHovered:boolean
+    isHeaderHovered:boolean
+    isFromHeaderToSearch:boolean
+    isinWindow:boolean
     page:'/store' | '/forum' | '',
     search_query:string,
     isSearchVisible:"visible" | "not-visible",

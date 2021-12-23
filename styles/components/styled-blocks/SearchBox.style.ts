@@ -69,7 +69,7 @@ export const SearchBoxThunk_STY = styled.button<{direction:string , isBackVisibl
     }
 `
 
-export const SearchBoxThunk_STY2 = styled.button<{direction:string , isBackVisible:boolean}>`
+export const SearchBoxThunk_STY2 = styled.div<{thunkHovered:boolean}>`
     width: 840px;
     display: flex;
     flex-direction: column;
@@ -83,13 +83,12 @@ export const SearchBoxThunk_STY2 = styled.button<{direction:string , isBackVisib
     align-self: center;
     justify-content: center;
     /* opacity: 0; */
-    transform: ${({direction})=>direction === "not-visible" ? "translateY(0px)" : "translateY(-30px)"};
     position: fixed;
     top: 50px;
     height: 38px;
-    margin-right: 112px;
-    z-index: 2;
-    background-color: ${({theme , isBackVisible}) => isBackVisible ? theme.backgrounds.background3 : "transparent"};
+    padding-right: 112px;
+    z-index: 1;
+    background-color: ${({theme , thunkHovered}) => !thunkHovered ? theme.backgrounds.background3 : "transparent"};
     div {
         width: 88px;
         background-color: ${({theme}) => theme.backgrounds.background9};
@@ -227,13 +226,11 @@ export const SearchNavQuery_STY = styled.button`
     display: flex;
     padding: 4px 10px;
     align-items: center;
-    background-color: white;
     border: none;
-
+    
     svg 
     {
         z-index: 4;
-        color: white;
         position: absolute;
         margin-left: 0px;
         color: #d9dadb;
@@ -244,6 +241,7 @@ export const SearchNavQuery_STY = styled.button`
         padding-left: 30px;
         border: none;
         color: lightgray;
+        background-color: red;
     }
 `
 

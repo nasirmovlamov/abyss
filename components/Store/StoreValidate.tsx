@@ -25,6 +25,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 import StoreProductForNonSubscribed from './StoreProductForNonSubscribed'
 import { is_logged, user_data } from '../../app/feature/User.slice'
 import StoreProductForSubscribed from './StoreProductForSubscribed'
+import StoreMiddlePartLayout from './StoreMiddlePartLayout'
 
 interface Props {
     
@@ -37,16 +38,16 @@ const StoreValidate = (props: Props) => {
   if(isLogged)
   {
       return (
-          <>
+          <StoreMiddlePartLayout>
             <StoreProductForSubscribed />  
-          </>
+          </StoreMiddlePartLayout>
       )
   }
   
   return (
-      <>
+      <StoreMiddlePartLayout>
         <StoreProductForNonSubscribed />  
-      </>
+      </StoreMiddlePartLayout>
   )
 }
 

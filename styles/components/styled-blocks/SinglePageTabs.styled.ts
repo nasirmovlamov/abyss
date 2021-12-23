@@ -1,11 +1,27 @@
 import styled from 'styled-components';
 import { ThemeType } from '../../global/styled-utils/settings/Theme.style';
 
-
-
-export const SingleTabsContainer  = styled.div<{isSearchBarVisible:string , scrollFromTop:any}>`
+export const SingleTabsContForBG  = styled.div`
     /* height:103px; */
-    width:100%;
+    width:820px;
+    display: flex;
+    height: 30px;
+    margin-bottom: 50px;
+    justify-content: center;
+    /* padding-left: 17px; */
+    background-color: ${({theme}) => theme.backgrounds.background3};
+    position: -webkit-sticky;
+    position: sticky;
+    top: 60px ;
+    padding-top: 24px;
+    border-radius: 0px 0px 10px 10px;
+    transition:0.2s transform;
+    z-index: 2;
+`
+
+export const SingleTabsContainer  = styled.div<{isSearchBarVisible:string , scrollFromTop:any, isSearchFocused:boolean,isSearchHovered:boolean ,initialdistanceFromTop:number, distanceFromTop:number , isScrollingUp:boolean}>`
+    /* height:103px; */
+    width:810px;
     display: flex;
     background-color: ${({theme}) => theme.colors.black_1};
     border-radius:10px;
@@ -16,10 +32,10 @@ export const SingleTabsContainer  = styled.div<{isSearchBarVisible:string , scro
     background-color: ${({theme}) => theme.backgrounds.background1};
     position: -webkit-sticky;
     position: sticky;
-    transform: ${({isSearchBarVisible , scrollFromTop}) => !scrollFromTop ?  "translateY(0px)" : ( (isSearchBarVisible  === "visible"  && scrollFromTop <= 124) ? 'translateY(-120px)' : "translateY(0px)")} ;
-    top: 84px ;
-    z-index: 9;
-    transition:0.5s;
+    top: 64px ;
+    transform: ${({isSearchFocused , isSearchHovered, scrollFromTop , distanceFromTop ,initialdistanceFromTop , isScrollingUp}) =>((distanceFromTop - initialdistanceFromTop) < 1)  ? "translateY(0px)" : (scrollFromTop < 120 ? ((isSearchFocused || isSearchHovered) ?  "translateY(-80px)" :"translateY(0px)") : "translateY(0px)")};
+    z-index: ${({isSearchFocused , isSearchHovered, scrollFromTop}) => (isSearchFocused || isSearchHovered) ? "1":"9"};
+    transition:0.2s transform;
 `
 
 
