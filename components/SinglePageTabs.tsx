@@ -61,10 +61,10 @@ function SinglePageTabs({}: Props): ReactElement {
 
     const getDistanceFromParent = () => {
         // Our element
-        var elem = pageTabsContBGRef.current!
+        let elem:any = pageTabsContBGRef.current!
 
         // Set our distance placeholder
-        var distance = 0;
+        let distance = 0;
 
         // Loop up the dom
         do {
@@ -77,10 +77,10 @@ function SinglePageTabs({}: Props): ReactElement {
     }
     const getinitialDistanceFromParent = () => {
         // Our element
-        var elem = pageTabsContBGRef.current!
+        let elem:any = pageTabsContBGRef.current!
 
         // Set our distance placeholder
-        var distance = 0;
+        let distance = 0;
 
         // Loop up the dom
         do {
@@ -96,15 +96,16 @@ function SinglePageTabs({}: Props): ReactElement {
         <SinglePageTabs_STY.SingleTabsContForBG 
         ref={pageTabsContBGRef} 
         >   
+
             <SinglePageTabs_STY.SingleTabsContainer 
-                scrollFromTop={pageTabsContRef.current !==null && pageTabsContRef.current!.getBoundingClientRect().top} 
-                ref={pageTabsContRef} 
                 isSearchBarVisible={searchData.isSearchVisible}
+                scrollFromTop={pageTabsContRef.current !== null ? pageTabsContRef.current!.getBoundingClientRect().top : 0} 
                 isSearchFocused={searchData.isFocused}
                 isSearchHovered={searchData.isHovered}
                 initialdistanceFromTop={initialdistanceFromTop}
                 distanceFromTop={distanceFromTop}
                 isScrollingUp={scrollUp}
+                ref={pageTabsContRef} 
                 >
                     {console.log(distanceFromTop)}
                     {console.log(initialdistanceFromTop)}

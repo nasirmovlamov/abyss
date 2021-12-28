@@ -8,7 +8,6 @@ interface Props {
 export default function ModalCont({children}: Props): ReactElement {
     return (
         <ModalCont_STY>
-            <ModalCont_BLUR_STY/>
             {children}
         </ModalCont_STY>
     )

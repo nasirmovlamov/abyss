@@ -19,7 +19,18 @@ export const SingleTabsContForBG  = styled.div`
     z-index: 2;
 `
 
-export const SingleTabsContainer  = styled.div<{isSearchBarVisible:string , scrollFromTop:any, isSearchFocused:boolean,isSearchHovered:boolean ,initialdistanceFromTop:number, distanceFromTop:number , isScrollingUp:boolean}>`
+// {
+//     
+// }
+export const SingleTabsContainer  = styled.div<{
+    isSearchBarVisible:string, 
+    scrollFromTop:any, 
+    isSearchFocused:boolean,
+    isSearchHovered:boolean ,
+    initialdistanceFromTop:any, 
+    distanceFromTop:any , 
+    isScrollingUp:boolean
+}>`
     /* height:103px; */
     width:810px;
     display: flex;

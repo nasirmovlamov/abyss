@@ -7,6 +7,7 @@ export const  ModalCont_STY  = styled.div`
   display: flex; 
   justify-content: center;  
   position:fixed; 
+  align-items: flex-start;
   background-image: none;
   background-position: center;
   background-repeat: no-repeat;
@@ -19,7 +20,6 @@ export const  ModalCont_STY  = styled.div`
   /* align-items: center; */
   z-index: 999;
   padding-right: 112px;
-
   background-color: rgba(0,0,0,0.8);
 ` 
 

@@ -55,7 +55,7 @@ function LinkedStoreProduct({data}: Props): ReactElement {
 
 
     return (
-        <StoreListingProductStyle>
+        <StoreListingProductStyle touchDown={false}>
 
             <ProductImageAndContent>
                 <ProductLanguageAndImage>

@@ -21,14 +21,19 @@ function Modals({}: Props):ReactElement {
     
     return (
         <>
-            {allModals.login && <ModalCont> <LoginModal /></ModalCont>}
-            {allModals.register && <ModalCont><RegisterModal /></ModalCont>}
-            {allModals.forgetPassword && <ModalCont><ForgetPasswordModal /></ModalCont>}
-            {allModals.isEmailSend && <ModalCont><IsEmailSendModal /></ModalCont>}
-            {allModals.questionCreate && <ModalCont><CreateThreadModal /></ModalCont>}        
-            {allModals.productCreate && <ModalCont><CreateProductModal /></ModalCont>}        
-            {allModals.iterationCreate && <ModalCont><CreateIterationModal /></ModalCont>}        
-            {allModals.productMentions && <ModalCont><MentionsListModal /></ModalCont>}        
+            {
+            (allModals.login || allModals.register || allModals.forgetPassword || allModals.forgetPassword || allModals.isEmailSend || allModals.questionCreate || allModals.productCreate || allModals.productMentions) &&
+                <ModalCont>
+                    {allModals.login && <LoginModal />}
+                    {allModals.register && <RegisterModal />}
+                    {allModals.forgetPassword && <ForgetPasswordModal />}
+                    {allModals.isEmailSend && <IsEmailSendModal />}
+                    {allModals.questionCreate && <CreateThreadModal />}        
+                    {allModals.productCreate && <CreateProductModal />}        
+                    {allModals.iterationCreate && <CreateIterationModal />}        
+                    {allModals.productMentions && <MentionsListModal />}        
+                </ModalCont>
+            }
         </>
     )
 }
