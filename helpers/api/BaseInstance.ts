@@ -2,6 +2,7 @@ import axios from "axios";
 import { getCookie } from "../../logic/CookieFunctions";
 import { decryptUserToken } from "../../logic/Cryption";
 import { BASE_API_URL } from "../urls/BASE_URL";
+import { changeModalAction } from '../../app/feature/User.slice';
 
 export const BASE_API_INSTANCE = axios.create({baseURL:'https://api.abysshub.com/api'});
 
@@ -22,10 +23,12 @@ BASE_API_INSTANCE.interceptors.request.use(
     if(accessToken !== null && accessToken !== "")
     {
       config.headers['Authorization'] = `Bearer ${accessToken}` 
+    }else{
     }
     return config;
   },
   error => {
     Promise.reject(error)
 });
+
 

@@ -43,7 +43,6 @@ export default function ChatBox({}: Props): ReactElement {
     useEffect(() => {
         if(openedChatRoomId)
         {
-            console.log("scroll")
             scrollToBottom()
         }
     }, [openedChatRoomId ])
@@ -51,7 +50,6 @@ export default function ChatBox({}: Props): ReactElement {
     
 
     useEffect(() => {
-        console.log(inViewChatLoaderCont)
         if(inViewChatLoaderCont && openedChatRoomId !== null && chatRooms[openedChatRoomId].messages.length > 0)
         {   
             dispatch(loadArchieveMessages({roomId:chatRooms[openedChatRoomId].id , lastMessageId:chatRooms[openedChatRoomId].messages[0].id}))   

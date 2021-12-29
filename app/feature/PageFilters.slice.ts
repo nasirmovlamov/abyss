@@ -1,3 +1,4 @@
+import { searchFiltersThunk } from './../thunks/PageFiltersThunk';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { getCookie, setCookie } from '../../logic/CookieFunctions';
 import { PAGE_FILTERS_STATE } from '../store/states/PageFiltersState';
@@ -28,6 +29,16 @@ export const PageFiltersSlice = createSlice({
         state.isShown = !action.payload
         setCookie('FiltersAreShown', JSON.stringify(state.isShown) , 1)
     },
+
+    inChangePositionOfFilters(state, action) {
+      state.isShown = true
+      setCookie('FiltersAreShown', JSON.stringify(state.isShown) , 1)
+    },
+    outChangePositionOfFilters(state, action) {
+      state.isShown = false
+      setCookie('FiltersAreShown', JSON.stringify(state.isShown) , 1)
+    },
+
     changeToStayInFocus(state, action) {
       state.stayInFocus= !action.payload
       setCookie('stayInFocusFiltersBlock', JSON.stringify(state.stayInFocus) , 1)
@@ -49,13 +60,26 @@ export const PageFiltersSlice = createSlice({
     },
     
     filterTagsSearchisFocused(state, action){
-      state.filterSearchValue.isTouched = !action.payload
+      state.filterSearchValue.isTouched = true
+    },
+
+    filterTagsSearchisBlur(state, action){
+      state.filterSearchValue.isTouched = false
     },
     
+    filterDropisHovered(state, action){
+      state.filterSearchValue.isDropHovered = true
+    },
+
+    filterDropisUnHovered(state, action){
+      state.filterSearchValue.isDropHovered = false
+    },
+
     filterTagsOnClick(state, action){
       // state.filterTagsOnClick=action.payload
     },
     filterTagsOnDelete(state, action){
+      state.filterTags = state.filterTags.filter(tag => tag.id !== action.payload)
       state.filterTags = state.filterTags.filter(tag => tag.id !== action.payload)
       setCookie('filterTags', JSON.stringify(state.filterTags), 1)
     },
@@ -81,6 +105,19 @@ export const PageFiltersSlice = createSlice({
     //   autoErrorToaster(payload)
     // })  
 
+    builder.addCase(searchFiltersThunk.fulfilled, (state, {payload}) => {
+      state.filterSearch.filters = payload.data
+      state.filterSearch.searchStatus = 'idle'
+    }),
+    builder.addCase(searchFiltersThunk.pending, (state, {payload}) => {
+      state.filterSearch.searchStatus = 'pending'
+      
+    }),
+    builder.addCase(searchFiltersThunk.rejected, (state, {payload}) => {
+      state.filterSearch.searchStatus = 'failed'
+      state.filterSearch.filters = []
+    })  
+
   },
 
 })
@@ -93,9 +130,14 @@ export const {
   addFilter , 
   filterSearchValueOnChange,
   filterTagsSearchisFocused,
+  filterTagsSearchisBlur,
   filterTagsOnClick,
   filterTagsOnDelete,
-  getFiltersFromCache
+  getFiltersFromCache,
+  inChangePositionOfFilters,
+  outChangePositionOfFilters,
+  filterDropisHovered,
+  filterDropisUnHovered
 } = PageFiltersSlice.actions;
 
 

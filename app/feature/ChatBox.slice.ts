@@ -58,14 +58,11 @@ export const ChatBoxSlice = createSlice({
 
         // LOAD MESSAGES ROOM
         builder.addCase(loadArchieveMessages.fulfilled, (state, {payload}) => {
-            console.log(payload.data)
-            // console.log(state.rooms[state.openedChatRoomId!].messages)
             state.rooms[state.openedChatRoomId!].messages = [...payload.data , ...state.rooms[state.openedChatRoomId!].messages]
         }),
         builder.addCase(loadArchieveMessages.pending, (state, {payload}) => {
         }),
         builder.addCase(loadArchieveMessages.rejected, (state, action:any) => {
-            console.log(action.payload)
             // autoErrorToaster(action.payload)
         })
 

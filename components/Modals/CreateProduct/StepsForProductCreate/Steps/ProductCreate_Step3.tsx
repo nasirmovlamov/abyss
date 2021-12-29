@@ -42,7 +42,6 @@ export const ProductCreate_Step3 = (props: Props) => {
     }   
     return (
         <div>
-            {/* {console.log(iterations_of_product)} */}
             <div style={{display:"flex" , flexDirection:"column" , rowGap:"25px"}}>
                 <button onClick={productIterationADD}>add new iteration</button>
 

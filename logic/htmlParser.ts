@@ -10,7 +10,6 @@ export const parseHtml = (html: string) => {
     const replaceAllSpanWithItsContentTagWhicClassIsEqualToMention = (html:any) => {
         const regex = /<span class="mention" (.*?)>(.*?)<\/span>(.*?)<\/span>/g;
         let mentionsArray = [];
-        console.log(html.match(regex))
 
         if(html.match(regex)){
             mentionsArray = html.match(regex)
@@ -24,10 +23,9 @@ export const parseHtml = (html: string) => {
             const dataDenotationCharOfSpan = mentionsArray[i].match(/data-denotation-char="(.*?)"/)[1];
             
             const consoler = () => {
-                console.log('hello')
                 autoErrorToasterWithMessage('salam')
             }
-            // const AddCaveButtonElement = <button onClick={() => console.log("hello")}>add cave</button>
+            // const AddCaveButtonElement = <button>add cave</button>
 
             if(dataDenotationCharOfSpan === '@'){
                 newHtml = newHtml.replace(mentionsArray[i] , `
@@ -66,7 +64,6 @@ export const parseHtmlWithMention = (html: string , linkedProducts: any[] ) => {
     const replaceAllSpanWithItsContentTagWhicClassIsEqualToMention = (html:any) => {
         const regex = /<span class="mention" (.*?)>(.*?)<\/span>(.*?)<\/span>/g;
         let mentionsArray = [];
-        console.log(html.match(regex))
         if(html.match(regex)){
             mentionsArray = html.match(regex)
         }else{
@@ -81,15 +78,12 @@ export const parseHtmlWithMention = (html: string , linkedProducts: any[] ) => {
             const productDescription = linkedProducts.filter(element => element.product_id === parseInt(dataIdOfSpan))[0].product.description
 
             const myFunction = () => {
-                console.log('hello')
             }
 
             var but = document.createElement("button");
 
             but.value="salam";
             but.innerHTML = "salam";
-            but.onclick = function(){console.log('hello')};
-            but.onload = function(){console.log('hello')};
 
             var inputTag = document.createElement("div");              
             inputTag.innerHTML = "<input type = 'button' value = 'oooh' onClick = 'your_function_name()'>";    
@@ -139,7 +133,6 @@ export const parseHtmlWithMentionremoveImgAndCodeBlock = (html: string , linkedP
     const replaceAllSpanWithItsContentTagWhicClassIsEqualToMention = (html:any) => {
         const regex = /<span class="mention" (.*?)>(.*?)<\/span>(.*?)<\/span>/g;
         let mentionsArray = [];
-        console.log(html.match(regex))
         if(html.match(regex)){
             mentionsArray = html.match(regex)
         }else{
@@ -154,15 +147,12 @@ export const parseHtmlWithMentionremoveImgAndCodeBlock = (html: string , linkedP
             const productDescription = linkedProducts.filter(element => element.product_id === parseInt(dataIdOfSpan))[0].product.description
 
             const myFunction = () => {
-                console.log('hello')
             }
 
             var but = document.createElement("button");
 
             but.value="salam";
             but.innerHTML = "salam";
-            but.onclick = function(){console.log('hello')};
-            but.onload = function(){console.log('hello')};
 
             var inputTag = document.createElement("div");              
             inputTag.innerHTML = "<input type = 'button' value = 'oooh' onClick = 'your_function_name()'>";    

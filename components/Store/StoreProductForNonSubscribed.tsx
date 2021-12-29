@@ -56,7 +56,7 @@ const StoreProductForNonSubscribed = (props: Props) => {
    
 
     useEffect(() => {
-        setmainClip(JSON.parse(singleProductData.data.description).details_data['sections_product'][3]['isClips']['clips'][0].src)
+        JSON.parse(singleProductData.data.description).details_data['sections_product'][3]['isClips']['clips'].length > 0 && setmainClip(JSON.parse(singleProductData.data.description).details_data['sections_product'][3]['isClips']['clips'][0].src)
     }, [])
 
     
@@ -66,7 +66,6 @@ const StoreProductForNonSubscribed = (props: Props) => {
             const resp = await BASE_API_INSTANCE.post(`/profile/cave/${singleProductData.data.id}/create` )
             autoSuccessToaster(resp.data.message)
         } catch (error:any) {
-            console.log(error)
             // autoErrorToaster(error)
         }
     }
@@ -113,21 +112,24 @@ const StoreProductForNonSubscribed = (props: Props) => {
                     </LabelCont>
 
 
-                    <ClipsCont key={storeTabs[3].tabName} id={storeTabs[3].tabName}>
+                    {
+                        JSON.parse(singleProductData.data.description).details_data['sections_product'][3]['isClips']['clips'].length > 0 && 
+                        <ClipsCont key={storeTabs[3].tabName} id={storeTabs[3].tabName}>
                         <ClipTitle>Clips</ClipTitle>
                         <ClipBody>
                             <MainClip><img  src={mainClip} alt='main-image'/></MainClip>
                             <SideClips>
-                        {
-                            JSON.parse(singleProductData.data.description).details_data['sections_product'][3]['isClips']['clips'].map((item:any, index:any) => 
-                            <SideClip key={item.id} onClick={() => mainClipChanger(item.src)} >
-                                <img src={item.src} alt="side-image"/>
-                            </SideClip> 
-                            )
-                        }
-                    </SideClips>
+                                {
+                                    JSON.parse(singleProductData.data.description).details_data['sections_product'][3]['isClips']['clips'].length > 0 &&
+                                    (JSON.parse(singleProductData.data.description).details_data['sections_product'][3]['isClips']['clips'].map((item:any, index:any) => 
+                                    <SideClip key={item.id} onClick={() => mainClipChanger(item.src)} >
+                                        <img src={item.src} alt="side-image"/>
+                                    </SideClip> 
+                                    ))
+                                }
+                            </SideClips>
                         </ClipBody>
-                    </ClipsCont>
+                    </ClipsCont>}
 
                     {
                         JSON.parse(singleProductData.data.description).details_data.sections_product.map((section: any, index: number) => 

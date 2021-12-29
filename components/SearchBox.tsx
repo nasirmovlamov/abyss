@@ -160,6 +160,7 @@ function SearchBox({}: Props): ReactElement {
                         from:0, 
                         forumType:searchData.searchBoxData.forum.searchOptions.forumType,
                         filterTags:searchData.filters,
+                        excludedFilters:searchData.exculudedFilters
                     }))
                 }
                 if(router.pathname === '/store'){
@@ -168,6 +169,7 @@ function SearchBox({}: Props): ReactElement {
                         from:0,
                         storeType:searchData.searchBoxData.store.searchOptions.storeType,
                         filterTags:searchData.filters,
+                        excludedFilters:searchData.exculudedFilters
                     }))
                 }
             }
@@ -184,10 +186,15 @@ function SearchBox({}: Props): ReactElement {
             })
             if(forumSearchOptions.sendedQuery !== searchQuery){
                 if(router.pathname !== '/forum'){
-                    dispatch(forumSearchInfinity({query:searchQuery , from:0,forumType:searchData.searchBoxData.forum.searchOptions.forumType,filterTags:searchData.filters,}))
+                    dispatch(forumSearchInfinity({
+                        query:searchQuery , 
+                        from:0,
+                        forumType:searchData.searchBoxData.forum.searchOptions.forumType,
+                        filterTags:searchData.filters,
+                        excludedFilters:searchData.exculudedFilters}))
                 }
                 if(router.pathname !== '/store'){
-                    dispatch(storeSearchInfinity({query:searchQuery , from:0 ,storeType:searchData.searchBoxData.store.searchOptions.storeType,filterTags:searchData.filters,}))
+                    dispatch(storeSearchInfinity({query:searchQuery , from:0 ,storeType:searchData.searchBoxData.store.searchOptions.storeType,filterTags:searchData.filters,excludedFilters:searchData.exculudedFilters}))
                 }
             }
            

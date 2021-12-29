@@ -36,6 +36,9 @@ export const FilterCont  = styled.div<{isFocused:boolean , stayInFocus:boolean}>
     transition: 0.5s;
 `
 
+
+
+
 export const PinButton  = styled.button<{isFocused:boolean , stayInFocus:boolean}>`
     position: absolute;
     top: 0px;
@@ -99,6 +102,7 @@ export const FilterTagCont  = styled.div`
     display: flex;
     flex-direction: column;
 `
+
 export const FilterTagTitle  = styled.h5`
     display: flex;
     flex-direction: column;
@@ -206,7 +210,7 @@ export const FilterSearchInput  = styled.input`
 `
 
 
-export const FilterSearchDropdown  = styled.div`
+export const FilterSearchDropdown  = styled.div<{filtersLength:number}>`
     display: flex;
     flex-direction: column;
     width: 150px;
@@ -221,6 +225,7 @@ export const FilterSearchDropdown  = styled.div`
     background-color: ${({theme}) => theme.backgrounds.background1};
     padding-bottom: 10px;
     padding-top: 5px;
+    display: ${({filtersLength}) => filtersLength > 0 ? "flex" : "none"};
     ::-webkit-scrollbar{
         width: 4px;
     }
@@ -254,6 +259,13 @@ export const FilterTagsCont  = styled.div`
 `
 
 export const FilterTag  = styled.button<{selected:any , tagType:'exclude'|'include'}>`
+    height: 100%;
+    background-color: transparent;
+    color:  ${({theme , tagType}) => tagType === "include" ? theme.texts.text6 : theme.texts.text10};
+    padding-left: 10px;
+`
+
+export const FilterTagElementCont  = styled.div<{selected:any , tagType:'exclude'|'include'}>`
     height: 22px;
     color: white;
     border: none;
@@ -266,13 +278,12 @@ export const FilterTag  = styled.button<{selected:any , tagType:'exclude'|'inclu
     cursor: pointer;
     font-size: 12px;
     text-align: center;
-    color:  ${({theme , tagType}) => tagType === "include" ? theme.texts.text6 : theme.texts.text10};
     box-shadow: ${({theme}) => theme.boxshadows.boxshadow6};
     &:hover{
         box-shadow: ${({theme}) => theme.boxshadow_hover.hover1};
     }
     position: relative;
-    padding-left: 10px;
+    /* padding-left: 10px; */
     column-gap: 10px;
     background:  ${({theme , selected , tagType}) => selected ? theme.backgrounds.background1 : (tagType === "include" ?  theme.backgrounds.background4 : theme.backgrounds.background3)};
 `

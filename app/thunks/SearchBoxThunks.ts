@@ -28,12 +28,38 @@ export const storeSearch = createAsyncThunk(
 )
 
 
+export const unHoverSearchAsync = createAsyncThunk(
+  types.UN_HOVER_SEARCH, async (data:any, {rejectWithValue}) => {
+    setTimeout(() => {
+      return true
+    }, 100);
+  }
+  )
+  
+export const unHoverHeaderAsync = createAsyncThunk(
+  types.UN_HOVER_HEADER, async (data:any, {rejectWithValue}) => {
+    setTimeout(() => {
+      return true
+    }, 150);
+  }
+)
+
+
+export const hoverWindowAsync = createAsyncThunk(
+  types.HOVER_WINDOW, async (data:any, {rejectWithValue}) => {
+    setTimeout(() => {
+      return true
+    }, 150);
+  }
+)
+      
+      
 export const forumSearchInfinity = createAsyncThunk(
-    types.FORUM_SEARCH_INFINITY, async (data:{query:string,from:number , forumType:string, filterTags:any[]}, {rejectWithValue}) => {
+    types.FORUM_SEARCH_INFINITY, async (data:{query:string,from:number , forumType:string, filterTags:any[] , excludedFilters:any[]}, {rejectWithValue}) => {
         try {
           const type = forumTypeDeterminer(data.forumType)
           // const sort = forumsortDeterminer(data.sort)
-          const resp = await BASE_API_INSTANCE.get(`forum/search/?query=${data.query}&from=${data.from}&type=${type}&tags=${data.filterTags.map(  (tag , index) => `${tag.name}`)}`)
+          const resp = await BASE_API_INSTANCE.get(`forum/search/?query=${data.query}&from=${data.from}&type=${type}&tags=${data.filterTags.map(  (tag , index) => `${tag.name}`)}${data.excludedFilters.length > 0 ? '&must_not=' : ""}${data.excludedFilters.map(  (tag , index) => `${tag.name}`)}`)
           return resp.data
         } catch (error:any) {
           return rejectWithValue(error.response.data)
@@ -41,39 +67,13 @@ export const forumSearchInfinity = createAsyncThunk(
     }
 )
 
-export const unHoverSearchAsync = createAsyncThunk(
-  types.UN_HOVER_SEARCH, async (data:any, {rejectWithValue}) => {
-      setTimeout(() => {
-        return true
-      }, 100);
-  }
-)
-
-export const unHoverHeaderAsync = createAsyncThunk(
-  types.UN_HOVER_HEADER, async (data:any, {rejectWithValue}) => {
-      setTimeout(() => {
-        return true
-      }, 150);
-  }
-)
-
-
-export const hoverWindowAsync = createAsyncThunk(
-  types.HOVER_WINDOW, async (data:any, {rejectWithValue}) => {
-      setTimeout(() => {
-        return true
-      }, 150);
-  }
-)
-
-
 
 export const storeSearchInfinity = createAsyncThunk(
-  types.STORE_SEARCH_INFINITY, async (data:{query:string,from:number, storeType:string, filterTags:any[]}, {rejectWithValue}) => {
+  types.STORE_SEARCH_INFINITY, async (data:{query:string,from:number, storeType:string, filterTags:any[] , excludedFilters:any[]}, {rejectWithValue}) => {
       try {
         const type = forumTypeDeterminer(data.storeType)
         // const resp = await BASE_API_INSTANCE.get(`store/search?query=${data.query}&from=${data.from}&type=${type}&tags=${data.filterTags.map(  (tag , index) => `${tag.name}${index < data.filterTags.length}`)}`)
-        const resp = await BASE_API_INSTANCE.get(`store/search?query=${data.query}&from=${data.from}`)
+        const resp = await BASE_API_INSTANCE.get(`store/search?query=${data.query}&from=${data.from}&tags=${data.filterTags.map(  (tag , index) => `${tag.name}`)}${data.excludedFilters.length > 0 ? '&must_not=': ""}${data.excludedFilters.map(  (tag , index) => `${tag.name}`)}`)
         return resp.data
       } catch (error:any) {
         return rejectWithValue(error.response.data)

@@ -39,8 +39,6 @@ export const CommentsSlice = createSlice({
 
         },
         closeComments(state, {payload}) {
-            console.log(state.isQuestion)
-            console.log(state.commentsType)
             if(state.isQuestion)
             {
                 document.querySelector(`#question${state.commentsType!.id}`)?.setAttribute("style","z-index: 1 !important;position:inherit;")

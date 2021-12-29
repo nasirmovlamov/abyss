@@ -62,7 +62,8 @@ function Forum({}: Props): ReactElement {
                 query:searchQuery , 
                 from:forumSearchData.fromNumber,
                 forumType:forumSearchData.searchOptions.forumType,
-                filterTags:searchData.filters,} 
+                filterTags:searchData.filters,
+                excludedFilters:searchData.exculudedFilters} 
             dispatch(forumSearchInfinity(data))
         }
     }, [inViewLoaderDown])
@@ -75,6 +76,7 @@ function Forum({}: Props): ReactElement {
                 from:0, 
                 forumType:forumSearchData.searchOptions.forumType,
                 filterTags:searchData.filters,
+                excludedFilters:searchData.exculudedFilters
             }))
         }
     }, [forumSearchData.searchOptions.forumSort , forumSearchData.searchOptions.forumType , searchData.filters])

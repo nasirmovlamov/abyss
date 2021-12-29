@@ -39,7 +39,6 @@ export const startPlagirismChecker = createAsyncThunk(
     types.CHECK_PLAGIAT, async (bring_data:{product_id:number , source_code:string , extension:string}, {rejectWithValue}) => {
         try {
           const {product_id , source_code , extension} = bring_data
-          console.log(extension)
           const send_data = new FormData()
           send_data.append('source_code', source_code)
           send_data.append('extension', extension)
@@ -91,7 +90,6 @@ export const updateProductThunk = createAsyncThunk(
         const send_data = new FormData()
         
         const tags = data.mainData.steps[2].details_data['product_tags'].map((tag:any , index:any) => (tag.value)).join(',')
-        console.log(tags)
 
         send_data.append('price', '0')
         send_data.append('description', JSON.stringify(data.mainData.steps[2]))

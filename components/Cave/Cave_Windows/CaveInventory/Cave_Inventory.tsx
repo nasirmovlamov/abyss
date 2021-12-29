@@ -81,7 +81,6 @@ const Cave_Inventory = (props: Props) => {
                 return false
             }
             const resp = await BASE_API_INSTANCE(`/profile/cave?page=${inventoryCurrentPage}`)
-            console.log(resp)
             setinventoryData([...inventoryData , ...resp.data.data])
             if(inventoryCurrentPage === 1){
                 setinventoryLastPage(resp.data.meta.last_page)

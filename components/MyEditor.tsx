@@ -67,7 +67,6 @@ function MyEditor({content , onChange, display}: Props){
         }
       },
       onSelect: function (item:any, insertItem:any) {
-        console.log(item)
         insertItem(item)
       }
     },
@@ -114,7 +113,6 @@ function MyEditor({content , onChange, display}: Props){
     {
       quill.root.innerHTML = content
       quill.on('text-change', (content) => {
-        console.log(content)
         onChange(quill.root.innerHTML); 
         let qlSyntaxes = document.querySelectorAll('.ql-syntax')
         for (let index = 0; index < qlSyntaxes.length; index++) {

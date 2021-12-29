@@ -242,7 +242,6 @@ export default EditorAddAnswer
   //   {
   //     if(editor.getContents().ops[i].insert.hasOwnProperty('mention'))
   //     {
-  //       // console.log(editor.getContents().ops[i].insert.mention)
   //       newmentions.push({id:editor.getContents().ops[i].insert.mention.id})
   //     }
   //   }

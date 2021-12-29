@@ -37,7 +37,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     {
       settheme("light")
     }
-    // console.log("%cDont try stupid things which you heard from uncle toms or etc!","font-size: 30px; color: red; -webkit-text-stroke:1px black; font-weight: bold;")
   }, [])
 
 

@@ -36,7 +36,7 @@ export const SingleProduct_Slice = createSlice({
         // GET SIDE PRODUCTS Reducers
         builder.addCase(getSingleProduct.fulfilled, (state, {payload}) => {
             state.data = payload.data;
-            state.code = payload.message.code;
+            // state.code = payload.message.code;
             state.status = 'loaded';
         }),
         builder.addCase(getSingleProduct.pending, (state, {payload}) => {

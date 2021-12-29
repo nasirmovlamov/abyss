@@ -311,7 +311,6 @@ export const CreateProductSlice = createSlice({
 
                 }
             }
-            console.log(state.steps[3].iterations_of_product.filter(element => element.validators.areAllFilled.valid === 'failed').length)
             if(state.steps[3].iterations_of_product.filter(element => element.validators.areAllFilled.valid === 'failed').length > 0)
             {
                 state.steps[3].validated = 'not-valid'
@@ -452,7 +451,6 @@ export const CreateProductSlice = createSlice({
 
         // ADD CLIP
         builder.addCase(addFile.fulfilled, (state, {payload}) => {
-            console.log(payload)
             state.steps[2].details_data.sections_product[getClipsIndex(state.steps[2].details_data.sections_product)].isClips.clips.push({id: Date.now(), src: payload!.base64! , alt:payload!.alt}) 
         }),
         builder.addCase(addFile.pending, (state, {payload}) => {

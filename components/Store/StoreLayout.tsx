@@ -9,6 +9,7 @@ import { PageDefaultStyle } from '../../styles/pages/Page.styled'
 import MainPartOfPage from '../MainPartOfPage'
 import SidePartOfPage from '../SidePartOfPage'
 import { useRouter  } from 'next/router'
+import { inChangePositionOfFilters, outChangePositionOfFilters } from '../../app/feature/PageFilters.slice'
 
 interface Props {
     
@@ -37,10 +38,19 @@ const StoreLayout:FC <Props> = ({children , ...props}) => {
         }
     }, [router])
 
+    const hoverSideLeft = () => {
+        dispatch(inChangePositionOfFilters(null))
+    }
+
+    const hoverSideRight = () => {
+        dispatch(outChangePositionOfFilters(null))
+    }
+
+
     return (
         <PageDefaultStyle>
-                <SidePartOfPage side={"left"}>
-                </SidePartOfPage>
+            <SidePartOfPage onMouseEnter={hoverSideLeft} onMouseLeave={hoverSideRight}  side={"left"}>
+            </SidePartOfPage>
 
             <MainPartOfPage>
                 {singleProductData.data !== null && <>{children}</>}
@@ -53,8 +63,8 @@ const StoreLayout:FC <Props> = ({children , ...props}) => {
                 {singleProductData.data === null && <></>}
             </MainPartOfPage>
 
-            <SidePartOfPage side={"right"}>
-            </SidePartOfPage>
+            {/* <SidePartOfPage side={"right"}>
+            </SidePartOfPage> */}
         </PageDefaultStyle>
         ) 
   

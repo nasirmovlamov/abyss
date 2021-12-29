@@ -41,7 +41,6 @@ function CreateQuestion({}: Props): ReactElement {
 
     const questionTitleChange = (e:any) => {
         if(!spaceCheckerRegex.test(e.target.value)){
-            console.log(e.target.value)
         }
         dispatch(CreateQuestionActions.questionTitleOnChange(e.target.value))
     }
@@ -87,7 +86,7 @@ function CreateQuestion({}: Props): ReactElement {
                 <LabelCont>
                     <label htmlFor="content" className='title'>Content</label>
                     {<DynamicComponentWithNoSSR/>}
-                    <MyEditor  display={"none"} content={''} onChange={(content:any) => console.log(content)} />
+                    <MyEditor  display={"none"} content={''} onChange={(content:any) => content} />
                     {/* <EditorNewVersion/> */}
                     <ErrorLabel 
                         validation={validation_check} 

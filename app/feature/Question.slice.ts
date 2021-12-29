@@ -161,7 +161,6 @@ export const QuestionSlice = createSlice({
       }
 
       state.linkedProductsData.current_page += 1
-      console.log(action.payload)
       if(state.linkedProductsData.current_page < action.payload.meta.last_page){
         state.linkedProductsData.last_page = action.payload.meta.last_page
         state.linkedProductsData.total = action.payload.meta.total  
@@ -191,7 +190,6 @@ export const QuestionSlice = createSlice({
           state.mentionsOfLinkedProduct.status = 'loading'
         }
         state.mentionsOfLinkedProduct.current_page += 1
-        console.log(action.payload)
         if(state.mentionsOfLinkedProduct.current_page < action.payload.meta.last_page){
           state.mentionsOfLinkedProduct.last_page = action.payload.meta.last_page
           state.mentionsOfLinkedProduct.total = action.payload.meta.total  

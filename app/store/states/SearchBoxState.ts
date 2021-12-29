@@ -12,6 +12,7 @@ export const SEARCHBOX_STATE:SEARCHBOX_INTERFACE = {
     isFromHeaderToSearch:false,
     thunkBackground:"not-visible",
     filters:[],
+    exculudedFilters:[],
     searchBoxData:{
         forum:{
             data:[],

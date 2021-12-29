@@ -61,6 +61,9 @@ export const SearchBoxSlice = createSlice({
     },
 
     selectFilterToSearchOption(state, action) {
+      console.log("HELLO sELEECt")
+
+      state.exculudedFilters = state.exculudedFilters.filter(tag => tag.id !== action.payload.id)
       for (let i = 0; i < state.filters.length; i++) {
         if (state.filters[i].id === action.payload.id) {
           state.filters = state.filters.filter(tag => tag.id !== action.payload.id)
@@ -69,11 +72,29 @@ export const SearchBoxSlice = createSlice({
         }
       } 
       state.filters.push(action.payload)
+      state.filters.sort((a, b) => a.name.localeCompare(b.name))
       setCookie("filterSearch" , JSON.stringify(state.filters) , 365)
+    },
+
+    selectFilterToExcludeOption(state, action) {
+      console.log("HELLO sELEECt")
+
+      state.filters = state.filters.filter(tag => tag.id !== action.payload.id)
+      for (let i = 0; i < state.exculudedFilters.length; i++) {
+        if (state.exculudedFilters[i].id === action.payload.id) {
+          state.exculudedFilters = state.exculudedFilters.filter(tag => tag.id !== action.payload.id)
+          setCookie("exculudedFilters" , JSON.stringify(state.exculudedFilters) , 365)
+          return
+        }
+      } 
+      state.exculudedFilters.push(action.payload)
+      state.exculudedFilters.sort((a, b) => a.name.localeCompare(b.name))
+      setCookie("exculudedFilters" , JSON.stringify(state.exculudedFilters) , 365)
     },
 
     ifFilterWasDeleted(state, action){
       state.filters = state.filters.filter(tag => tag.id !== action.payload.id)
+      state.exculudedFilters = state.exculudedFilters.filter(tag => tag.id !== action.payload.id)
       setCookie("filterSearch" , JSON.stringify(state.filters) , 365)
     },
 
@@ -83,7 +104,6 @@ export const SearchBoxSlice = createSlice({
     },
 
     selectTypeSearchOption(state, action) {
-      console.log(action.payload.type)
       if(action.payload.page === 'forum'){
         state.searchBoxData.forum.searchOptions.forumType = action.payload.type
         setCookie("ForumTypeSearchOption" , action.payload.type , 365)
@@ -94,8 +114,6 @@ export const SearchBoxSlice = createSlice({
     },
 
     selectSortSearchOption(state, action) {
-      console.log(action.payload.sort)
-
       if(action.payload.page === 'forum'){
         state.searchBoxData.forum.searchOptions.forumSort = action.payload.sort
         setCookie("ForumSortSearchOption" , action.payload.sort , 365)
@@ -261,7 +279,6 @@ export const SearchBoxSlice = createSlice({
     builder.addCase(forumSearchInfinity.rejected, (state, {payload}) => {
       state.searchBoxData.forum.status = "error"
       state.searchBoxData.forum.infinityLoader = "error"
-      console.log(payload)
     })  
 
     // Store Search Infinity
@@ -291,7 +308,6 @@ export const SearchBoxSlice = createSlice({
     builder.addCase(storeSearchInfinity.rejected, (state, {payload}) => {
       state.searchBoxData.store.status = "error"
       state.searchBoxData.store.infinityLoader = "error"
-      console.log(payload)
     }),
     
     
@@ -356,7 +372,8 @@ export const
   hoverSearchNav,
   unhoverSearchNav,
   hoverWindow,
-  unhoverWindow
+  unhoverWindow,
+  selectFilterToExcludeOption
 } = SearchBoxSlice.actions;
 
 
@@ -367,6 +384,7 @@ export const search_data = (state: RootState) => state.searchBoxReducer
 export const forum_search_data = (state: RootState) => state.searchBoxReducer.searchBoxData.forum
 export const store_search_data = (state: RootState) => state.searchBoxReducer.searchBoxData.store
 export const search_filters = (state: RootState) => state.searchBoxReducer.filters
+export const search_exclude_filters = (state: RootState) => state.searchBoxReducer.exculudedFilters
 
 
 export default SearchBoxSlice.reducer;

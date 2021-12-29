@@ -2,9 +2,10 @@ import React, { ReactElement, useRef, useState } from 'react'
 import {  faThumbtack } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-import { FilterCont, FilterContStyle, FilterDel, FilterLanguageCont, FilterLanguageContent, FilterLanguages, FilterLanguageTitle, FilterSearchAddElement, FilterSearchCont, FilterSearchDropdown, FilterSearchDropdownElement, FilterSearchInCont, FilterSearchInput, FilterTag, FilterTagCont, FilterTagContent, FilterTags, FilterTagsCont, FilterTagTitle, PinButton, SubjectCont, SubjectContent, Subjects, SubjectTitle } from '../styles/components/styled-blocks/PageFilters.style'
-import { addFilter, changePositionOfFilters, changeToStayInFocus, filterSearchValueOnChange, filterTagsOnDelete, filterTagsSearchisFocused,  filter_search_tags, filter_search_value, filter_tags, is_focused, stay_in_focus } from '../app/feature/PageFilters.slice'
-import { search_filters, ifFilterWasDeleted, selectFilterToSearchOption, search_data } from '../app/feature/SearchBox.slice'
+import { FilterCont, FilterContStyle, FilterDel, FilterLanguageCont, FilterLanguageContent, FilterLanguages, FilterLanguageTitle, FilterSearchAddElement, FilterSearchCont, FilterSearchDropdown, FilterSearchDropdownElement, FilterSearchInCont, FilterSearchInput, FilterTag, FilterTagCont, FilterTagContent, FilterTagElementCont, FilterTags, FilterTagsCont, FilterTagTitle, PinButton, SubjectCont, SubjectContent, Subjects, SubjectTitle } from '../styles/components/styled-blocks/PageFilters.style'
+import { addFilter, changePositionOfFilters, changeToStayInFocus, filterDropisHovered, filterDropisUnHovered, filterSearchValueOnChange, filterTagsOnDelete, filterTagsSearchisBlur, filterTagsSearchisFocused,  filter_search_tags, filter_search_value, filter_tags, inChangePositionOfFilters, is_focused, outChangePositionOfFilters, stay_in_focus } from '../app/feature/PageFilters.slice'
+import { search_filters, ifFilterWasDeleted, selectFilterToSearchOption, search_data, search_exclude_filters, selectFilterToExcludeOption } from '../app/feature/SearchBox.slice'
+import { searchFiltersThunk } from '../app/thunks/PageFiltersThunk'
 
 interface Props {
     
@@ -21,7 +22,8 @@ function PageFilters({}: Props): ReactElement {
     const isFocused = useAppSelector(is_focused)
     const stayInFocus = useAppSelector(stay_in_focus)
     const filterBlockRef = useRef<HTMLDivElement>(null)
-    const searchFilters = useAppSelector(search_filters)
+    const searchIncludeFilters = useAppSelector(search_filters)
+    const searchExcludeFilters = useAppSelector(search_exclude_filters)
     const searchData = useAppSelector(search_data)
     const includedTags = searchData.filters
 
@@ -31,17 +33,64 @@ function PageFilters({}: Props): ReactElement {
     
     
     
-    const handleStayInFocus = () => {
-        
+    const enterhandleStayInFocus = () => {
+        dispatch(inChangePositionOfFilters(null))
+    }
+
+    const leavehandleStayInFocus = () => {
+        dispatch(outChangePositionOfFilters(null))
     }
 
     const deleteFilterTag = (tag: any) => {
         dispatch(ifFilterWasDeleted(tag))
         dispatch(filterTagsOnDelete(tag.id))
+        console.log("HELLO DEL")
+    }
+
+    let searchForFiltersTimeout:any;
+
+    const searchFilterTags = (query: any) => {
+        dispatch(searchFiltersThunk({query:query}))
+    }
+    
+
+    const filterOnChange = (e: any) => {
+        clearTimeout(searchForFiltersTimeout)
+        console.log("HELLOChange")
+        dispatch(filterSearchValueOnChange(e.target.value))
+    }
+
+    
+    const filterOnKeyDown = (e: any) => {
+        clearTimeout(searchForFiltersTimeout)
+        console.log("HELLODown")
+
+    }
+
+    const filterOnKeyUp = (e: any) => {
+        clearTimeout(searchForFiltersTimeout)
+        searchForFiltersTimeout =   setTimeout(() => searchFilterTags(e.target.value) , 350)
+    }
+
+    const filterOnFocus = (e: any) => {
+        dispatch(filterTagsSearchisFocused(null))
+    }
+
+    const filterOnBlur = (e: any) => {
+        if(!filterSearchValue.isDropHovered)
+        dispatch(filterTagsSearchisBlur(null))
+    }
+
+    const filterDropOnHover = (e: any) => {
+        dispatch(filterDropisHovered(null))
+    }
+
+    const filterOnUnHover = (e: any) => {
+        dispatch(filterDropisUnHovered(null))
     }
 
     return (
-        <FilterContStyle  ref={filterBlockRef}>
+        <FilterContStyle onMouseLeave={leavehandleStayInFocus} onMouseEnter={enterhandleStayInFocus} ref={filterBlockRef}>
             <FilterCont stayInFocus={stayInFocus}  isFocused={isFocused}>
                 <PinButton  stayInFocus={stayInFocus} isFocused={isFocused} onClick={pinFilters}><FontAwesomeIcon icon={faThumbtack}/></PinButton>
                
@@ -53,40 +102,48 @@ function PageFilters({}: Props): ReactElement {
                     <FilterLanguageContent>
                         <p className="title">Include</p>
                         <FilterTagsCont>
-                            {filterTags.map((element, index)=> 
-                                <FilterTag 
-                                    key={element.id}
-                                    onClick={() => dispatch(selectFilterToSearchOption(element))}
-                                    selected={searchFilters.find(x => x.id === element.id)}
-                                    tagType="include"
-                                    >  
+                            {searchIncludeFilters.map((element, index)=> 
+                                <FilterTagElementCont key={element.id}
+                                selected={searchIncludeFilters.find(x => x.id === element.id)}
+                                        tagType="include">
+                                    <FilterTag 
+                                        
+                                        onClick={() => dispatch(selectFilterToExcludeOption(element))}
+                                        selected={searchIncludeFilters.find(x => x.id === element.id)}
+                                        tagType="include"
+                                        >  
 
-                                    {element.name} 
+                                        {element.name} 
+                                        
+                                    </FilterTag>  
                                     <FilterDel 
-                                    onClick={() => deleteFilterTag(element)}>
+                                        onClick={() => deleteFilterTag(element)}>
                                         x
-                                    </FilterDel>
-                                </FilterTag>   
+                                    </FilterDel> 
+                                </FilterTagElementCont>
                             )}
                         </FilterTagsCont>
-                    </FilterLanguageContent>
-
-                    <FilterLanguageContent>
                         <p className="title">Exclude</p>
                         <FilterTagsCont>
-                            {filterTags.map((element, index)=> 
+                            {searchExcludeFilters.map((element, index)=> 
+                                <FilterTagElementCont key={element.id}
+                                    selected={searchExcludeFilters.find(x => x.id === element.id)}
+                                    tagType="exclude">
+
                                     <FilterTag 
                                         onClick={() => dispatch(selectFilterToSearchOption(element))}
-                                        key={element.id}
-                                        selected={searchFilters.find(x => x.id === element.id)}
+                                        selected={searchExcludeFilters.find(x => x.id === element.id)}
                                         tagType="exclude"
                                         >  
+
                                         {element.name} 
-                                        <FilterDel 
+                                        
+                                    </FilterTag>  
+                                    <FilterDel 
                                         onClick={() => deleteFilterTag(element)}>
-                                            x
-                                        </FilterDel>
-                                    </FilterTag>   
+                                        x
+                                    </FilterDel> 
+                                </FilterTagElementCont>
                             )}
                         </FilterTagsCont>
                         
@@ -96,16 +153,26 @@ function PageFilters({}: Props): ReactElement {
 
                 <FilterSearchCont>
                     <FilterSearchInCont>
-                        <FilterSearchInput onFocus={() => dispatch(filterTagsSearchisFocused(filterSearchValue.isTouched ))}  type="text" value={filterSearchValue.value} onChange={(e) => dispatch(filterSearchValueOnChange(e.target.value))}  placeholder="Search..."/>
+                        <FilterSearchInput 
+                            onFocus={filterOnFocus}  
+                            onBlur={filterOnBlur}  
+                            // onKeyUp  ={() => {}}
+                            onKeyUp={filterOnKeyUp}
+                            onKeyDown={filterOnKeyDown}
+                            type="text" 
+                            value={filterSearchValue.value} 
+                            onChange={filterOnChange}  
+                            placeholder="Search..."/>
                     </FilterSearchInCont>
-                    {filterSearchValue.isTouched && 
-                    <FilterSearchDropdown>
-                        {
-                            filterSearchTags.map((element , index) => 
-                                element.name.includes(filterSearchValue.value) && <FilterSearchDropdownElement key={element.id}>{element.name} <FilterSearchAddElement  type="button" onClick={() => dispatch(addFilter(element))}>add</FilterSearchAddElement></FilterSearchDropdownElement>
-                            )
-                        }
-                    </FilterSearchDropdown>
+                    {
+                        filterSearchValue.isTouched && 
+                        <FilterSearchDropdown filtersLength={filterSearchTags.filters.length} onMouseEnter={filterDropOnHover} onMouseLeave={filterOnUnHover}>
+                            {
+                                filterSearchTags.filters.map((element , index) => 
+                                    element.name.includes(filterSearchValue.value) && <FilterSearchDropdownElement key={element.id}>{element.name} <FilterSearchAddElement  type="button" onClick={() => dispatch(selectFilterToSearchOption(element))}>add</FilterSearchAddElement></FilterSearchDropdownElement>
+                                )
+                            }
+                        </FilterSearchDropdown>
                     }
                 </FilterSearchCont>
             

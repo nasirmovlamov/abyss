@@ -115,11 +115,11 @@ function SearchBoxStaticVersion({}: Props): ReactElement {
             }
             if(forumSearchOptions.sendedQuery !== searchQuery){
                 if(router.pathname === '/forum'){
-                    dispatch(forumSearchInfinity({query:searchQuery , from:0,forumType:searchData.searchBoxData.forum.searchOptions.forumType,filterTags:searchData.filters,}))
+                    dispatch(forumSearchInfinity({query:searchQuery , from:0,forumType:searchData.searchBoxData.forum.searchOptions.forumType,filterTags:searchData.filters, excludedFilters:searchData.exculudedFilters}))
 
                 }
                 if(router.pathname === '/store'){
-                    dispatch(storeSearchInfinity({query:searchQuery , from:0, storeType:searchData.searchBoxData.store.searchOptions.storeType,filterTags:searchData.filters}))
+                    dispatch(storeSearchInfinity({query:searchQuery , from:0, storeType:searchData.searchBoxData.store.searchOptions.storeType,filterTags:searchData.filters , excludedFilters:searchData.exculudedFilters}))
                 }
             }
         }
@@ -133,11 +133,11 @@ function SearchBoxStaticVersion({}: Props): ReactElement {
             })
             if(forumSearchOptions.sendedQuery !== searchQuery){
                 if(router.pathname !== '/forum'){
-                    dispatch(forumSearchInfinity({query:searchQuery , from:0,forumType:searchData.searchBoxData.forum.searchOptions.forumType,filterTags:searchData.filters,}))
+                    dispatch(forumSearchInfinity({query:searchQuery , from:0,forumType:searchData.searchBoxData.forum.searchOptions.forumType,filterTags:searchData.filters, excludedFilters:searchData.exculudedFilters}))
 
                 }
                 if(router.pathname !== '/store'){
-                    dispatch(storeSearchInfinity({query:searchQuery , from:0,storeType:searchData.searchBoxData.store.searchOptions.storeType,filterTags:searchData.filters}))
+                    dispatch(storeSearchInfinity({query:searchQuery , from:0,storeType:searchData.searchBoxData.store.searchOptions.storeType,filterTags:searchData.filters , excludedFilters:searchData.exculudedFilters}))
                 }
             }
         }
@@ -157,7 +157,6 @@ function SearchBoxStaticVersion({}: Props): ReactElement {
     // useEffect( () => {
     //     if(isScrollingDown){
     //         searchScrollControl(router.asPath)
-    //         console.log("HEELO1")
     //     }
     // }, [isScrollingDown,  router.asPath , scrollY])
 
@@ -180,24 +179,24 @@ function SearchBoxStaticVersion({}: Props): ReactElement {
                     dispatch(resetSendedQuery(null))
                     if(router.pathname === '/forum'){
                         if(searchData.searchBoxData.forum.fromNumber === 0){
-                            dispatch(forumSearchInfinity({query:getCookie("searchValue") , from:0,forumType:searchData.searchBoxData.forum.searchOptions.forumType,filterTags:searchData.filters}))
+                            dispatch(forumSearchInfinity({query:getCookie("searchValue") , from:0,forumType:searchData.searchBoxData.forum.searchOptions.forumType,filterTags:searchData.filters,excludedFilters:searchData.exculudedFilters}))
                         }
                     }
                     else if(router.pathname === '/store'){  
                         if(searchData.searchBoxData.store.fromNumber === 0){
-                            dispatch(storeSearchInfinity({query:getCookie("searchValue") , from:0, storeType:searchData.searchBoxData.store.searchOptions.storeType,filterTags:searchData.filters}))
+                            dispatch(storeSearchInfinity({query:getCookie("searchValue") , from:0, storeType:searchData.searchBoxData.store.searchOptions.storeType,filterTags:searchData.filters,excludedFilters:searchData.exculudedFilters}))
                         }
                     }else{}
                 }else{
                     if(router.pathname === '/forum'){
                         if(searchData.searchBoxData.forum.fromNumber === 0){
-                            dispatch(forumSearchInfinity({query:searchQuery , from:0,forumType:searchData.searchBoxData.forum.searchOptions.forumType,filterTags:searchData.filters,}))
+                            dispatch(forumSearchInfinity({query:searchQuery , from:0,forumType:searchData.searchBoxData.forum.searchOptions.forumType,filterTags:searchData.filters, excludedFilters:searchData.exculudedFilters}))
 
                         }
                     }
                     else if(router.pathname === '/store'){   
                         if(searchData.searchBoxData.store.fromNumber === 0){
-                            dispatch(storeSearchInfinity({query:searchQuery , from:0, storeType:searchData.searchBoxData.store.searchOptions.storeType,filterTags:searchData.filters}))
+                            dispatch(storeSearchInfinity({query:searchQuery , from:0, storeType:searchData.searchBoxData.store.searchOptions.storeType,filterTags:searchData.filters , excludedFilters:searchData.exculudedFilters}))
                         }
                     }else{}
                 }
@@ -260,11 +259,11 @@ function SearchBoxStaticVersion({}: Props): ReactElement {
         })
         dispatch(searchValueOnChange(item))
         if(router.pathname === '/forum'){
-            dispatch(forumSearchInfinity({query:item , from:0,forumType:searchData.searchBoxData.forum.searchOptions.forumType,filterTags:searchData.filters,}))
+            dispatch(forumSearchInfinity({query:item , from:0,forumType:searchData.searchBoxData.forum.searchOptions.forumType,filterTags:searchData.filters,excludedFilters:searchData.exculudedFilters}))
             return
         }
         if(router.pathname === '/store'){
-            dispatch(storeSearchInfinity({query:item , from:0,storeType:searchData.searchBoxData.store.searchOptions.storeType,filterTags:searchData.filters}))
+            dispatch(storeSearchInfinity({query:item , from:0,storeType:searchData.searchBoxData.store.searchOptions.storeType,filterTags:searchData.filters,excludedFilters:searchData.exculudedFilters}))
             return
         }
     }

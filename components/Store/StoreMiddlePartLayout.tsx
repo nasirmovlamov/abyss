@@ -36,8 +36,8 @@ const StoreMiddlePartLayout:FC <Props> = ({children , ...props}) => {
     const dispatch = useAppDispatch() 
     const storeTabs = useAppSelector(store_tabs)
     const singleProductData = useAppSelector(single_product_data)
+    const {data} = singleProductData
     const activeStoreTab = storeTabs.filter(tab => tab.isActive)[0]
-    const [mainClip, setmainClip] = useState('')
 
     const getQuestions = async () => {
         try {
@@ -49,30 +49,28 @@ const StoreMiddlePartLayout:FC <Props> = ({children , ...props}) => {
     }
 
     
-
-    useEffect(() => {
-        if(singleProductData.data !== null) {
-            setmainClip(JSON.parse(singleProductData.data.description).details_data['sections_product'][3]['isClips']['clips'][0].src)
-        }
-    }, [singleProductData.data])
-
     
     
 
     const addcave = async () => {
-        console.log(singleProductData.data.id)
         try {
-            const resp = await BASE_API_INSTANCE.post(`/profile/cave/${singleProductData.data.id}/create` )
+            const resp = await BASE_API_INSTANCE.post(`/profile/inventory/${singleProductData.data.id}/create` )
             autoSuccessToaster(resp.data.message)
         } catch (error:any) {
-            console.log(error)
             // autoErrorToaster(error)
         }
     }
 
-    const mainClipChanger = (src: any) => {
-        setmainClip(src)
+
+    const removeFromCave = async () => {
+        try {
+            const resp = await BASE_API_INSTANCE.post(`/profile/inventory/${singleProductData.data.id}/delete` )
+            autoSuccessToaster(resp.data.message)
+        } catch (error:any) {
+            // autoErrorToaster(error)
+        }
     }
+    
 
     return (
         <StorePage>
@@ -144,7 +142,13 @@ const StoreMiddlePartLayout:FC <Props> = ({children , ...props}) => {
 
                 </Flexer>
                 <div className='add-cave-cont'>
-                    <button onClick={addcave} className='add-cave-btn'>+ Cave</button>
+                    {console.log(data)}
+                    {
+                        data?.user_check?.cave ?
+                        <button onClick={removeFromCave} className='add-cave-btn'>- Cave</button>
+                        :
+                        <button onClick={addcave} className='add-cave-btn'>+ Cave</button>
+                    }
                 </div>    
                 
                 

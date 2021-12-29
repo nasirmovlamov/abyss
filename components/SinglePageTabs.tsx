@@ -107,9 +107,6 @@ function SinglePageTabs({}: Props): ReactElement {
                 isScrollingUp={scrollUp}
                 ref={pageTabsContRef} 
                 >
-                    {console.log(distanceFromTop)}
-                    {console.log(initialdistanceFromTop)}
-                    {console.log(scrollUp)}
                 <SinglePageTabs_STY.SingleTabs>
                     {   
                         (

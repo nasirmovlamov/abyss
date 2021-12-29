@@ -17,8 +17,6 @@ function PageTabs({}: Props): ReactElement {
     const  searchTypes = ['Requests' , 'Questions' , 'Discussion']
     const  searchSorts = ['Best' , 'New' , 'Top']
 
-    // console.log(forumSort)
-    // console.log(forumType)
 
 
     const selectType = (type:string) => {

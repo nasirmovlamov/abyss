@@ -31,7 +31,6 @@ export const ProductCreate_Step2 = (props: Props) => {
         if(result.source.droppableId === 'main')
         {
             if (!result.destination) return;
-            console.log(result)
             const items = Array.from(sectionsProduct);
             const [reorderedItem] = items.splice(result.source.index, 1);
             items.splice(result.destination.index, 0, reorderedItem);
@@ -43,7 +42,6 @@ export const ProductCreate_Step2 = (props: Props) => {
             const items = Array.from(sectionsProduct[getClipsIndex(sectionsProduct)].isClips.clips)
             const [reorderedItem] = items.splice(result.source.index, 1);
             items.splice(result.destination.index-1, 0, reorderedItem);
-            console.log(items)
             dispatch(changeClipPosition(items))
         }
         else if (result.source.droppableId === 'clips')
@@ -69,7 +67,6 @@ export const ProductCreate_Step2 = (props: Props) => {
         return null
     }
     const deleteBlock = (index:number) =>{
-        console.log(index)
         dispatch(deleteSection(index))
     }
     const createTag = (event:any) => {
@@ -87,7 +84,6 @@ export const ProductCreate_Step2 = (props: Props) => {
         // dispatch(ProductCreateStep2OnBlurs({type:type}))
     } 
     const productNameHandle = (e:any) => {  
-        console.log(e.target.value)
         dispatch(ProductCreateStep2OnChanges({type:"product_name" , value:e.target.value}))
     }
 

@@ -11,7 +11,8 @@ export interface SEARCHBOX_INTERFACE {
     search_query:string,
     isSearchVisible:"visible" | "not-visible",
     thunkBackground:"visible" | "not-visible",
-    filters:filterTagInterFace[],
+    filters:any[],
+    exculudedFilters:any[],
     searchBoxData:{
         forum:{
             data:ForumQuestionInterface[],
