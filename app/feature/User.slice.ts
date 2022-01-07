@@ -1,3 +1,4 @@
+import { verifyEmail, resendEmail } from './../thunks/AuthThunk';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { forgetPasswordThunk, userCheck, userLogin, userLogout, userRegister,  } from '../thunks/AuthThunk'
 import { RootState } from '../store/store'
@@ -105,10 +106,63 @@ export const UserSlice = createSlice({
                 state.user_errors.loginErrors.errors = action.payload.errors
                 state.user_errors.loginErrors.message = action.payload.message
                 state.user = null
-                autoErrorToaster(action.payload)
+                // autoErrorToaster(action.payload)
             }
         })  
 
+
+        //VErify Reducers
+        builder.addCase(verifyEmail.fulfilled, (state, {payload}) => {
+            console.log(payload)
+            state.user!.isVerified = true
+            state.user_verify = {
+                status: 'success',
+                message: payload.message,
+                errors: payload.errors
+            }
+            autoSuccessToaster(payload.message)
+        }),
+
+        builder.addCase(verifyEmail.pending, (state, {payload}) => {
+            // state.user_verify!.status = 'pending'
+        }),
+        builder.addCase(verifyEmail.rejected, (state,{payload}:any) => {
+            console.log(payload)
+            state.user_verify = {
+                status: 'failed',
+                message: payload.message,
+                errors: payload.errors
+            }
+
+            // state.user_verify!.errors = action.payload.data
+            // removeAccessToken()
+        })  
+
+
+        //Resend MAIL  Reducers
+         builder.addCase(resendEmail.fulfilled, (state, {payload}) => {
+            state.resend_email = {
+                status: 'success',
+                message: payload.message,
+                errors: payload.errors
+            }
+            autoSuccessToaster(payload.message)
+        }),
+        builder.addCase(resendEmail.pending, (state, {payload}) => {
+            state.resend_email = {
+                status: 'pending',
+                message: "",
+                errors: {}
+            }
+        }),
+        builder.addCase(resendEmail.rejected, (state,{payload}:any) => {
+            console.log(payload)
+            state.resend_email = {
+                status: 'failed',
+                message: payload.message,
+                errors: payload.errors
+            }
+        })  
 
         //Register Reducers
         builder.addCase(userRegister.fulfilled, (state, {payload}) => {
@@ -122,15 +176,13 @@ export const UserSlice = createSlice({
         builder.addCase(userRegister.pending, (state, {payload}) => {
             state.status = 'loading'
         }),
-        builder.addCase(userRegister.rejected, (state, action) => {
+        builder.addCase(userRegister.rejected, (state, {payload}:any) => {
             state.status = 'failed'
             state.loggedIn = false
             removeAccessToken()
-            if (action.payload) {                    
-                state.user_errors.registerErrors = action.payload      
-                state.user = null
-                autoErrorToaster(action.payload)
-            } 
+            state.user_errors.registerErrors = payload      
+            state.user = null
+            // autoErrorToaster(payload)
         })
 
 
@@ -149,15 +201,26 @@ export const UserSlice = createSlice({
         //Forget Password Reducers
         builder.addCase(forgetPasswordThunk.fulfilled, (state, {payload}) => {
             state.userModals = {...state.userModals, 'forgetPassword':false , 'isEmailSend':true}
-            state.status = 'idle'
+            state.user_forget_pass = {
+                status: 'success',
+                message: payload.message,
+                errors: payload.errors
+            }
+            autoSuccessToaster(payload.message)
         }),
         builder.addCase(forgetPasswordThunk.pending, (state, {payload}) => {
-            state.status = 'loading'
+            state.user_forget_pass = {
+                status: 'pending',
+                message: "",
+                errors: {}
+            }
         }),
-        builder.addCase(forgetPasswordThunk.rejected, (state, action) => {
-            state.status = 'failed'
-            state.loggedIn = false
-            autoErrorToaster(action.payload)
+        builder.addCase(forgetPasswordThunk.rejected, (state, {payload}:any) => {
+            state.user_forget_pass = {
+                status: 'failed',
+                message: payload.message,
+                errors: payload.errors
+            }
         })  
     }
 
@@ -181,6 +244,9 @@ export const login_errors = (state: RootState) => state.userReducer.user_errors.
 export const forget_Password_Errors = (state: RootState) => state.userReducer.user_errors.forgetPasswordErrors.errors;
 export const user_data = (state: RootState) => state.userReducer.user
 export const user_modals = (state: RootState) => state.userReducer.userModals
+export const user_verify = (state: RootState) => state.userReducer.user_verify
+export const resend_mail = (state: RootState) => state.userReducer.resend_email
+export const user_forget_pass = (state: RootState) => state.userReducer.user_forget_pass
 
 export const login_form = (state: RootState) => state.userReducer.forms.loginForm
 export const register_form = (state: RootState) => state.userReducer.forms.registerForm

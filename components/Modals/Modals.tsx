@@ -12,6 +12,9 @@ import CreateDiscussionModal from './CreateQuestion/CreateDiscussion'
 import CreateIterationModal from './CreateIterationModal'
 import MentionsListModal from './MentionsListModal'
 import CreateThreadModal from './CreateQuestion/CreateThreadModal'
+import AreYouSureDeleteQuestionModal from './AreYouSureDeleteQuestionModal'
+import AreYouSureDeleteAnswerModal from './AreYouSureDeleteAnswerModal'
+import AreYouSureDeleteCommentModal from './AreYouSureDeleteCommentModal'
 
 interface Props {
 }
@@ -22,7 +25,7 @@ function Modals({}: Props):ReactElement {
     return (
         <>
             {
-            (allModals.login || allModals.register || allModals.forgetPassword || allModals.forgetPassword || allModals.isEmailSend || allModals.questionCreate || allModals.productCreate || allModals.productMentions) &&
+            (   allModals.login || allModals.register || allModals.forgetPassword || allModals.forgetPassword || allModals.isEmailSend || allModals.questionCreate || allModals.productCreate || allModals.productMentions || allModals.areYouSureDelete_Thread || allModals.areYouSureDelete_Answer || allModals.areYouSureDelete_Comment) &&
                 <ModalCont>
                     {allModals.login && <LoginModal />}
                     {allModals.register && <RegisterModal />}
@@ -32,6 +35,9 @@ function Modals({}: Props):ReactElement {
                     {allModals.productCreate && <CreateProductModal />}        
                     {allModals.iterationCreate && <CreateIterationModal />}        
                     {allModals.productMentions && <MentionsListModal />}        
+                    {allModals.areYouSureDelete_Thread && <AreYouSureDeleteQuestionModal />}        
+                    {allModals.areYouSureDelete_Answer && <AreYouSureDeleteAnswerModal />}        
+                    {allModals.areYouSureDelete_Comment && <AreYouSureDeleteCommentModal />}        
                 </ModalCont>
             }
         </>

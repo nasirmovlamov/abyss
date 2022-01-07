@@ -33,15 +33,15 @@ function LoginModal({}: Props):ReactElement {
                 
                 <Form_STY.InputGroup_STY>
                     <Form_STY.Label_STY  htmlFor="">Email</Form_STY.Label_STY>
-                    <Form_STY.Input_STY error={loginErrors.email.length > 0} type="email" name="email" value={loginForm.email} onChange={(e)=>dispatch(login_Form_OnChange({name:e.target.name , value:e.target.value}))}/>
-                    <Form_STY.Error_STY error={loginErrors.email.length > 0}>{loginErrors.email.length > 0 && loginErrors.email.map((error:any  , index:any ) => <span key={index}>{error}</span>)}</Form_STY.Error_STY>
+                    <Form_STY.Input_STY error={loginErrors.email ? true: false } type="email" name="email" value={loginForm.email} onChange={(e)=>dispatch(login_Form_OnChange({name:e.target.name , value:e.target.value}))}/>
+                    <Form_STY.Error_STY error={loginErrors.email ? true :false}>{loginErrors.email  && loginErrors.email.map((error:any  , index:any ) => <span key={index}>{error}</span>)}</Form_STY.Error_STY>
                 </Form_STY.InputGroup_STY>
                 
 
                 <Form_STY.InputGroup_STY>
                     <Form_STY.Label_STY htmlFor="password">Password</Form_STY.Label_STY>
-                    <Form_STY.Input_STY error={loginErrors.password.length  > 0 }  type="password" name="password" value={loginForm.password} onChange={(e)=>dispatch(login_Form_OnChange({name:e.target.name , value:e.target.value}))}/>
-                    <Form_STY.Error_STY error={loginErrors.email.length > 0}>{loginErrors.password.length  > 0 && loginErrors.password.map((error:any , index:number) => <span key={index}>{error}</span>)}</Form_STY.Error_STY>
+                    <Form_STY.Input_STY error={loginErrors.password ? true: false }  type="password" name="password" value={loginForm.password} onChange={(e)=>dispatch(login_Form_OnChange({name:e.target.name , value:e.target.value}))}/>
+                    <Form_STY.Error_STY error={loginErrors.password? true: false}>{loginErrors.password && loginErrors.password.map((error:any , index:number) => <span key={index}>{error}</span>)}</Form_STY.Error_STY>
                 </Form_STY.InputGroup_STY>
 
 

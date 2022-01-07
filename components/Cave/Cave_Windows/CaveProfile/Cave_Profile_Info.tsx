@@ -5,14 +5,42 @@ import * as CavePInfo from '../../../../styles/components/styled-blocks/Cave_Sty
 import Image from 'next/image'
 import rank from '../../../../public/tridentRANK_01.png'
 import abyss_logo from '../../../../public/main-logo.svg'
+import { useAppDispatch, useAppSelector } from '../../../../app/store/hooks'
+import { resend_mail, user_data } from '../../../../app/feature/User.slice'
+import { resendEmail } from '../../../../app/thunks/AuthThunk'
+import Loader from 'react-spinners/BeatLoader'
 interface Props {
     
 }
 
 const Cave_Profile_Info = (props: Props) => {
+    const dispatch = useAppDispatch()
+    const userData:any = useAppSelector(user_data)
+    const resendMailData = useAppSelector(resend_mail)
+    const resendEmailFunc = () => {
+        dispatch(resendEmail(null))
+    } 
     return (
+        <>
+        {
+                !userData.isVerified && 
+                <div style={{width:"100%", display:"flex", justifyContent:"center",height:"auto", background:"black", marginTop:"30px" ,color:"yellow", alignItems:"center", flexDirection:"column"}}>
+                    <p style={{textAlign:"center", margin:"0px"}}> Your email is not verified please enter your email and verify it.  {resendMailData?.status === "pending" && <Loader color={"white"} size={2} loading={resendMailData?.status === "pending"}/>}</p>
+                    <button onClick={resendEmailFunc}>Resend email</button>
+                    
+                    {resendMailData?.status === "success" && <p style={{color:'green'}}>Check your mail address for verification link.</p>}
+                    {resendMailData?.errors  && 
+                        Object.keys(resendMailData.errors).map((key) => {
+                            return <p key={key} style={{color:"red"}}>{resendMailData.errors[key]}</p>
+                        })
+                    }
+                </div>
+        }
         <CavePInfo.CaveProfileInfo_Cont>
+            
             <CavePInfo.CaveProfile_User>
+                
+                <div className="seperator" style={{height:"25px"}}></div>
                 <div className='profileImage'>
                     <Image  src={abyss_logo} width='120' height='120' alt='rank user'/>
                 </div>
@@ -52,8 +80,9 @@ const Cave_Profile_Info = (props: Props) => {
                 </CavePInfo.CaveTags_STY>
             </CavePInfo.CaveProfile_User_Data>
 
-
+            
         </CavePInfo.CaveProfileInfo_Cont>
+        </>
     )
 }
 

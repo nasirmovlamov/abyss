@@ -7,66 +7,19 @@ import { addAnswerComment, addQuestionComment } from '../app/thunks/CommentsThun
 import { AllCommentsCont, CommentAvatar, CommentChangeContent, CommentContent, CommentNameAndContentCont, CommentsCloseButton, CommentsForm,  CommentsTabMainNameStyle, CommentsTabStyle, CommentsTabTitleStyle, CommentStyle, CommentUserName, PostComment, TakeCommentsToSideMakeAbsolute,  } from '../styles/components/styled-blocks/CommentsTab.style'
 import { errorToastFunc } from './Notify/ErrorToasts'
 import { autoErrorToasterWithMessage } from './Notify/AutoSuccessToast'
+import Comment from './Comment'
+import { useCommentsTabHook } from '../hooks/useCommentsTabHook'
 
 interface Props {
 }
 
 
 function CommentModal({}: Props): ReactElement {
-    const [newComment, setNewComment] = useState("")
-    const commentsType = useAppSelector(comments_types)
+    const commentsType:any = useAppSelector(comments_types)
     const Comments = useAppSelector(comments)
-    const isQuestion = useAppSelector(is_question)
-    const isAnswer = useAppSelector(is_answer)
-    const userData = useAppSelector(user_data)
-    const dispatch = useAppDispatch()
-    const isLogged = useAppSelector(is_Logged)
+    const {dontShowComments, setNewComment, newComment , commentOnChange , submitComment} = useCommentsTabHook(commentsType)
 
-    if(commentsType === null)
-    {
-        return <></>
-    }
-
-   
-
-    const submitComment = (e:any) => {
-        e.preventDefault()
-        if(!isLogged)
-        {
-            autoErrorToasterWithMessage('You must be logged in to submit an answer')
-            dispatch(changeModalAction('login'))
-            return null
-        }
-
-        const comment={
-            parent_id: commentsType.id,
-            content: newComment
-        }
-
-        if(commentsType.type === "answer")
-        {
-            dispatch(addAnswerComment(comment))
-        }
-        else if(commentsType.type === "question")
-        {
-            dispatch(addQuestionComment(comment))
-            setNewComment("")
-        }
-    }
-
-
-    const dontShowComments = () => {
-        dispatch(closeComments(null))
-        dispatch(set_overflowy(""))
-    }
-
-    const commentOnChange = (e:any) => {
-        setNewComment(e.target.value)
-        if(e.keyCode === 13)
-        {
-            submitComment(e)
-        }
-    }
+    
 
    
     return (
@@ -79,16 +32,9 @@ function CommentModal({}: Props): ReactElement {
                     </CommentsTabMainNameStyle>
                     
                     <AllCommentsCont>
-                        {Comments.map(comment => 
-                        <CommentStyle key={comment.id}>
-                            <CommentAvatar>
-
-                            </CommentAvatar>
-                            <CommentNameAndContentCont>
-                                <CommentUserName>{comment.user.name}</CommentUserName>
-                                <CommentContent>{comment.content}</CommentContent>
-                            </CommentNameAndContentCont>
-                        </CommentStyle>)}
+                        {
+                            Comments.map(comment => <Comment  key={comment.id} comment={comment}/>)
+                        }
                     </AllCommentsCont>
 
                     <CommentsForm onSubmit={submitComment}>

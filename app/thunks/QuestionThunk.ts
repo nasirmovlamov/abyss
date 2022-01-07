@@ -17,6 +17,46 @@ export const getSingleQuestion = createAsyncThunk(
   }
 )
 
+export const deleteQuestion = createAsyncThunk(
+  types.DELETE_QUESTION, async (data:any, {rejectWithValue}) => {
+      try {
+        const resp = await BASE_API_INSTANCE.delete(`/forum/${data.id}/thread/delete`)
+        return resp.data
+      } catch (error:any) {
+        return rejectWithValue(error.response.data)
+      }
+  }
+)
+
+export const deleteAnswer = createAsyncThunk(
+  types.DELETE_ANSWER, async (data:any, {rejectWithValue}) => {
+      try {
+        const resp = await BASE_API_INSTANCE.delete(`/forum/${data.answer_id}/answer/delete`)
+        return {data:resp.data , direction:data.direction, id:data.answer_id}
+      } catch (error:any) {
+        return rejectWithValue(error.response.data)
+      }
+  }
+)
+
+export const deleteComment = createAsyncThunk(
+  types.DELETE_COMMENT, async ({id,comment_type}:any, {rejectWithValue}) => {
+      try {
+        const resp = await BASE_API_INSTANCE.delete(`/forum/${id}/${comment_type}/comment/delete`)
+        return {data:resp.data , id:id}
+      } catch (error:any) {
+        return rejectWithValue(error.response.data)
+      }
+  }
+)
+
+
+
+
+
+
+
+
 
 
 
@@ -41,12 +81,12 @@ export const getAnswers = createAsyncThunk(
 
 
 export const addAnswer = createAsyncThunk(
-  types.ADD_ANSWER, async (data:{content:string , questionId:any , linkedProducts:number[], mentionedUsers:number[]}, {rejectWithValue}) => {
+  types.ADD_ANSWER, async (data:{content:string , questionId:number , linkedProducts:string, mentionedUsers:string}, {rejectWithValue}) => {
       try {
         const formData = new FormData()
         formData.append('content', data.content)
-        formData.append('linked_products', JSON.stringify(data.linkedProducts))
-        formData.append('mentioned_users', JSON.stringify(data.mentionedUsers))
+        if(data.linkedProducts)   formData.append('linked_products', JSON.stringify(data.linkedProducts))
+        if(data.mentionedUsers)  formData.append('mentioned_users', JSON.stringify(data.mentionedUsers))
         const resp = await BASE_API_INSTANCE.post(`/forum/${data.questionId}/answer/submit` , formData)
         return resp.data
       } catch (error:any) {
@@ -62,7 +102,7 @@ export const addAnswer = createAsyncThunk(
 
 
 export const voteQuestion = createAsyncThunk(
-    types.VOTE_QUESTION, async (vote:{id:string | string[] | undefined , type:string}, {rejectWithValue}) => {
+    types.VOTE_QUESTION, async (vote:{id:number , type:string}, {rejectWithValue}) => {
         try {
           const formData = new FormData()
           formData.append("type" , vote.type)
@@ -76,7 +116,7 @@ export const voteQuestion = createAsyncThunk(
   
   
   export const unVoteQuestion = createAsyncThunk(
-    types.UN_VOTE_QUESTION, async (vote:{id:string | string[] | undefined , type:string}, {rejectWithValue}) => {
+    types.UN_VOTE_QUESTION, async (vote:{id:number , type:string}, {rejectWithValue}) => {
         try {
           const formData = new FormData()
           formData.append("type" , vote.type)
@@ -96,7 +136,7 @@ export const voteQuestion = createAsyncThunk(
           const formData = new FormData()
           formData.append("type" , vote.type)
           const resp = await BASE_API_INSTANCE.post(`/forum/${vote.id}/answer/vote` , formData)
-          return {data:resp.data , direction:vote.direction}
+          return {data:resp.data , direction:vote.direction ,  id:vote.id}
         } catch (error:any) {
           return rejectWithValue(error.response.data)
         }

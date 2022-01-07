@@ -18,8 +18,7 @@ function ProductsConts({}: Props): ReactElement {
     const linkedProductsStatus = useAppSelector(linked_products_status);
     const [inViewRefProductsLoad, inViewProductsLoader] = useInView()
 
-    const singleQuestionData = useAppSelector(single_question_data)
-    
+    const question_data:any = useAppSelector(single_question_data)
     const currentPageLinkedProducts = useAppSelector(current_page_linked_products)
     const totalLinkedProducts = useAppSelector(total_linked_products)
     const lastPageLinkedProducts = useAppSelector(last_page_linked_products)
@@ -41,7 +40,7 @@ function ProductsConts({}: Props): ReactElement {
 
     useEffect(() => {
         if (inViewProductsLoader) {
-            const data = {question_id: singleQuestionData.id , current_page:currentPageLinkedProducts , total:totalLinkedProducts, last_page:lastPageLinkedProducts}
+            const data = {question_id: question_data.id , current_page:currentPageLinkedProducts , total:totalLinkedProducts, last_page:lastPageLinkedProducts}
             dispatch(getLinkedProducts(data))
         }
     }, [inViewProductsLoader])
@@ -49,6 +48,7 @@ function ProductsConts({}: Props): ReactElement {
 
     return (
         <ProductsCont_STY id="productsCont"  ref={ref} style={{scrollMarginTop: "130px"}}>
+            <h1>Products</h1>
             {
                 linkedProductsForAnswersOfQuestion.map((element , index)  => 
                     <LinkedStoreProduct key={index} data={element}/>

@@ -38,20 +38,20 @@ function RegisterModal({}: Props):ReactElement {
 
                 <Form_STY.InputGroup_STY>
                     <Form_STY.Label_STY  htmlFor="username">Username</Form_STY.Label_STY>
-                    <Form_STY.Input_STY error={registerErrors.name.length > 0} name="name" value={registerForm.name} onChange={(e)=> dispatch(register_Form_OnChange({name:e.target.name , value:e.target.value}))}  />
-                    <Form_STY.Error_STY error={registerErrors.name.length > 0} >{ registerErrors.name.length > 0 && registerErrors.name.map((error , index) => <span key={index}> {error}</span>)}</Form_STY.Error_STY>
+                    <Form_STY.Input_STY error={registerErrors.name } name="name" value={registerForm.name} onChange={(e)=> dispatch(register_Form_OnChange({name:e.target.name , value:e.target.value}))}  />
+                    <Form_STY.Error_STY error={registerErrors.name} >{ registerErrors.name  && registerErrors.name.map((error , index) => <span key={index}> {error}</span>)}</Form_STY.Error_STY>
                 </Form_STY.InputGroup_STY>
 
                 <Form_STY.InputGroup_STY> 
                     <Form_STY.Label_STY  htmlFor="">Email</Form_STY.Label_STY >
-                    <Form_STY.Input_STY error={registerErrors.email.length > 0} name="email" value={registerForm.email} onChange={(e)=> dispatch(register_Form_OnChange({name:e.target.name , value:e.target.value}))} />
-                    <Form_STY.Error_STY error={registerErrors.name.length > 0}>{ registerErrors.email.length > 0 &&  registerErrors.email.map((error , index) =>  <span key={index}>{error}</span>)}</Form_STY.Error_STY>
+                    <Form_STY.Input_STY error={registerErrors.email} name="email" value={registerForm.email} onChange={(e)=> dispatch(register_Form_OnChange({name:e.target.name , value:e.target.value}))} />
+                    <Form_STY.Error_STY error={registerErrors.email}>{ registerErrors.email  &&  registerErrors.email.map((error , index) =>  <span key={index}>{error}</span>)}</Form_STY.Error_STY>
                 </Form_STY.InputGroup_STY>
 
                 <Form_STY.InputGroup_STY>
                     <Form_STY.Label_STY  htmlFor="password">Password</Form_STY.Label_STY >
-                    <Form_STY.Input_STY error={registerErrors.password.length > 0} name="password" value={registerForm.password} onChange={(e)=> dispatch(register_Form_OnChange({name:e.target.name , value:e.target.value}))} />
-                    <Form_STY.Error_STY error={registerErrors.name.length > 0}>{ registerErrors.password.length > 0 &&  registerErrors.password.map((error , index) =>  <span key={index}>{error}</span>)}</Form_STY.Error_STY>
+                    <Form_STY.Input_STY error={registerErrors.password} name="password" value={registerForm.password} onChange={(e)=> dispatch(register_Form_OnChange({name:e.target.name , value:e.target.value}))} />
+                    <Form_STY.Error_STY error={registerErrors.password}>{ registerErrors.password  &&  registerErrors.password.map((error , index) =>  <span key={index}>{error}</span>)}</Form_STY.Error_STY>
                 </Form_STY.InputGroup_STY>
 
                 <Form_STY.F_ButtonCont_STY>

@@ -2,52 +2,75 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import React, { ReactElement, useEffect, useState } from 'react'
+import { useAppDispatch, useAppSelector } from '../../../../app/store/hooks'
+import { verifyEmail } from '../../../../app/thunks/AuthThunk'
 import { BASE_API_INSTANCE } from '../../../../helpers/api/BaseInstance'
 import { getAccessToken } from '../../../../helpers/token/TokenHandle'
 import { BASE_API_URL } from '../../../../helpers/urls/BASE_URL'
+import { white_1 } from '../../../../styles/global/styled-utils/settings/Colors'
+import * as authThunk from '../../../../app/thunks/AuthThunk'
+import { user_verify } from '../../../../app/feature/User.slice'
 
 interface Props {
     
 }
 
 function EMAIL_VERIFY({}: Props): ReactElement {
+    const dispatch = useAppDispatch()
     const router = useRouter()
-    const [status, setstatus] = useState<"idle" | "loading" | "error">("loading")
-    const [errors, seterrors] = useState([])
-    const [message, setmessage] = useState()
-
-    const makeVerify = async () => {
-        try {
-            const resp = await BASE_API_INSTANCE.get(`${router.asPath}`)
-            setmessage(resp.data)
-            setstatus("idle")
-        } catch (error:any) {
-            setstatus("error")
-            seterrors(error.response.data.errors)
-        }
-    }
-    
+    const userVerify:any = useAppSelector(user_verify)
     useEffect(() => {
         if(router.isReady)
         {
-            makeVerify()
+            dispatch(authThunk.verifyEmail(router.asPath))
         }
     }, [router])
+    if(!userVerify){
+        return <></>
+    }
 
-    if(status ==="loading")
-    {
-        return <div style={{width:"200px", height:"200px" , backgroundColor:"black", color:"white", display:"flex",justifyContent:"center", marginTop:"50px",marginBottom:"50px"}}>loading</div>
+
+    const {errors, message} = userVerify
+    
+
+    const goHome = () => {
+        router.push("/")
     }
-    else if(status === "error")
-    {
-        return <div><p  style={{width:"200px", height:"200px" , backgroundColor:"black", color:"white", display:"flex",justifyContent:"center", marginTop:"50px",marginBottom:"50px"}}>{JSON.stringify(errors)}</p></div>
-    }
-    else 
+
+    if(userVerify.status ==="pending")
     {
         return (
-            <div style={{width:"200px", height:"200px" , backgroundColor:"black", color:"white", display:"flex",justifyContent:"center", marginTop:"50px",marginBottom:"50px"}}>{JSON.stringify(message)}</div>
+            <div style={{paddingTop:'25px', rowGap:"10px" , width:"100%", height:"200px" , backgroundColor:"black", color:"white", display:"flex",alignItems:"center", marginTop:"50px",marginBottom:"50px", flexDirection:"column"}}>
+                <h1 style={{color:'white',fontSize:"45px",padding:"40px"}}> LOADING </h1>
+            </div>)
+    }
+    else if(userVerify.status === "failed")
+    {
+        return( 
+            <div style={{paddingTop:'25px', rowGap:"10px" , width:"100%", height:"200px" , backgroundColor:"black", color:"white", display:"flex",alignItems:"center", marginTop:"50px",marginBottom:"50px", flexDirection:"column"}}>
+                <p>
+                    {Object.keys(errors).map((key:any) => 
+                            <p style={{textAlign:"center", color:"red", fontSize:"25px"}} key={key}>{errors[key]}</p>
+                    )}
+                    <p style={{textAlign:"center", color:"red", fontSize:"25px"}} key={'message'}>{message}</p>
+                </p>
+                <button style={{}} onClick={goHome}>Go back to homepage</button>
+            </div>
+        )
+    }
+    else if(userVerify.status === "success")
+    {
+        return (
+            <div  style={{paddingTop:'25px', rowGap:"10px" , width:"100%", height:"200px" , backgroundColor:"black", color:"white", display:"flex",alignItems:"center", marginTop:"50px",marginBottom:"50px", flexDirection:"column"}}>
+                <p  style={{fontSize:'25px',color:"green"}}>
+                    {message}
+                </p>
+                <button style={{}} onClick={goHome}>Go back to homepage</button>
+            </div>
         )   
 
+    }else{
+        return <>Ups, something went wrong...</>
     }
 }
 

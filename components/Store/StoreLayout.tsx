@@ -4,7 +4,6 @@ import { goProductPage, single_product_data } from '../../app/feature/SingleProd
 import { is_logged, user_data } from '../../app/feature/User.slice'
 import { useAppDispatch, useAppSelector } from '../../app/store/hooks'
 import { getSingleProduct } from '../../app/thunks/SingleProductThunk'
-import { useSubscribe } from '../../hooks/useSubscribe'
 import { PageDefaultStyle } from '../../styles/pages/Page.styled'
 import MainPartOfPage from '../MainPartOfPage'
 import SidePartOfPage from '../SidePartOfPage'
@@ -17,7 +16,6 @@ interface Props {
 
 const StoreLayout:FC <Props> = ({children , ...props}) => {
     const router = useRouter()
-    const [loading , subscribe] = useSubscribe()
     const singleProductData = useAppSelector(single_product_data)
     const dispatch = useAppDispatch()
     const isLogged = useAppSelector(is_logged)
@@ -55,7 +53,7 @@ const StoreLayout:FC <Props> = ({children , ...props}) => {
             <MainPartOfPage>
                 {singleProductData.data !== null && <>{children}</>}
                 {
-                    (loading || singleProductData.status === 'loading')
+                    (singleProductData.status === 'loading')
                     &&
                     <p style={{fontSize:"30px" , color:"white", textAlign:'center' , padding:"30px"}}>LOADING ...</p>
                 } 
@@ -63,8 +61,8 @@ const StoreLayout:FC <Props> = ({children , ...props}) => {
                 {singleProductData.data === null && <></>}
             </MainPartOfPage>
 
-            {/* <SidePartOfPage side={"right"}>
-            </SidePartOfPage> */}
+            <SidePartOfPage side={"right"}>
+            </SidePartOfPage>
         </PageDefaultStyle>
         ) 
   

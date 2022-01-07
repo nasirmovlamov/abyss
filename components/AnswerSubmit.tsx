@@ -19,7 +19,7 @@ const DynamicComponentWithNoSSR = dynamic(
 )
 
 interface Props {
-    id:string | string[] | undefined
+    id:number
 }
 
 function AnswerSubmitCont({id}: Props): ReactElement {
@@ -44,9 +44,15 @@ function AnswerSubmitCont({id}: Props): ReactElement {
         }
         const linkedProductsId = submitAnswerData.linkedProducts.map((item:any) => item.id) 
         const mentionedUsersId = submitAnswerData.mentionedUsers.map((item:any) => item.id)
-
-        if(id !== undefined && id !== null && submitAnswerContent.length > 0){
-            dispatch(addAnswer({content: submitAnswerContent, questionId: id , mentionedUsers:mentionedUsersId, linkedProducts: linkedProductsId }))
+        const linkedProductsIdString = linkedProductsId.join(',')
+        const mentionedUsersIdString = mentionedUsersId.join(',')
+        const data:any = {}
+        data.content = submitAnswerContent
+        data.questionId = id
+        if(linkedProductsId.length > 0)  {data.linkedProducts = linkedProductsIdString};
+        if(mentionedUsersId.length > 0)  {data.mentionedUsers = mentionedUsersIdString};
+        if(submitAnswerContent.length > 0){
+            dispatch(addAnswer(data))
         }
     }
 
@@ -84,28 +90,11 @@ function AnswerSubmitCont({id}: Props): ReactElement {
     return (
         <AddAnswerCont_STY onSubmit={submitAnswer}> 
 
-
-            {/* <AddAnswer 
-                ref={textAreaRef}  
-                style={{height:`${textAreaHeight}px`}} 
-                onClick={changeTextAreaHeight}
-                onBlur={blurToggler} 
-                placeholder='Add new answer' 
-                value={answer} 
-                onChange={(e)=> textAreaChange(e.target)}
-                autoComplete="on"
-            /> */}
-            {/* <LabelCont> */}
-            {/* <label htmlFor="content">Content</label> */}
             <MyEditor display={"none"} content={""} onChange={(content:any) => content} />
-            {/* <label htmlFor="content">validate</label>
-            </LabelCont> */}
-
 
             <LabelCont>
                 <label className='title' htmlFor="content">Content</label>
                 <DynamicComponentWithNoSSR/>
-                {/* <label htmlFor="content">validate</label> */}
             </LabelCont>
                 
             <AddAnswerSubmit_STY   

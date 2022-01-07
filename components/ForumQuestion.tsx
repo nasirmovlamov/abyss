@@ -65,7 +65,7 @@ function FormQuestion({data}: Props): ReactElement {
                                 <ProductIcon index={2} backgroundColor="#0F1113"></ProductIcon>
                                 <ProductIcon index={1} backgroundColor="#EFF2F4"></ProductIcon>
                             </ProductsIcons>
-                            <ProductCount onClick={setSideProductData}> 11 Products</ProductCount>
+                            <ProductCount onClick={setSideProductData}> {data.product_count} Products</ProductCount>
                         </CountOfProducts>
                     </BottomSide>
                 </TextCont>
@@ -80,9 +80,9 @@ function FormQuestion({data}: Props): ReactElement {
                                 <HelpfulCont>
                                     <HelpfulCount>
                                         <QuestionStatisticButton_STY  changeDirection={false}  ><ThumbIcon><Image src={thumbs_up} width="18px" height="18px" alt="like button"/> </ThumbIcon></QuestionStatisticButton_STY> 
-                                        <QuestionStatisticPercentage  >{data.downvote + data.upvote > 0 ?  (data.upvote / (data.downvote + data.upvote )) : 0}%</QuestionStatisticPercentage> 
+                                        <QuestionStatisticPercentage  >{data.downvote + data.upvote > 0 ?  (data.upvote / (data.downvote + data.upvote ) * 100) : 0}%</QuestionStatisticPercentage> 
                                     </HelpfulCount>
-                                    <DefaultLine><PercentageLine percentage={data.downvote + data.upvote > 0 ? (data.upvote / (data.downvote + data.upvote )) : 0}/></DefaultLine>
+                                    <DefaultLine><PercentageLine percentage={data.downvote + data.upvote > 0 ? (data.upvote / (data.downvote + data.upvote ) * 100) : 0}/></DefaultLine>
                                 </HelpfulCont>
                         </StatisticCont>
                         <DateCount>

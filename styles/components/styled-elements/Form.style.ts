@@ -9,7 +9,7 @@ export const InputGroup_STY = styled.div`
     row-gap: 5px;
 `;
 
-export const Input_STY = styled.input<{error:boolean}>`
+export const Input_STY = styled.input<{error:any}>`
     width: 100%;
     height: 40px;
     border: 1px solid #ccc;
@@ -37,7 +37,7 @@ export const Label_STY = styled.label`
 `;
 
 
-export const Error_STY = styled.div<{error:boolean}>`
+export const Error_STY = styled.div<{error:any}>`
     font-size: 12px;    
     height: 12px;
     color: ${({theme}) => theme.colors.red_1};

@@ -3,7 +3,6 @@ import { useInView } from 'react-intersection-observer'
 import { changeProductTabActiveWithoutScroll, store_tabs } from '../../app/feature/PageTabs.slice'
 import { single_product_data } from '../../app/feature/SingleProduct.slice'
 import { useAppDispatch, useAppSelector } from '../../app/store/hooks'
-import { useSubscribe } from '../../hooks/useSubscribe'
 import {useRouter}  from 'next/router'
 import { getSingleProduct } from '../../app/thunks/SingleProductThunk'
 import { autoSuccessToaster } from '../Notify/AutoSuccessToast'
@@ -28,7 +27,6 @@ interface Props {
 
 const StoreProductForSubscribed = (props: Props) => {
     const router = useRouter()
-    const [loading , subscribe] = useSubscribe()
     const [inViewRefCodeBlock, inViewCodeBlock] = useInView()
     const [formQuestionsAPI, setformQuestionsAPI] = useState([])
     const dispatch = useAppDispatch() 
@@ -73,7 +71,6 @@ const StoreProductForSubscribed = (props: Props) => {
     return (
         <DetailsCont_STY >   
             {
-                subscribe &&
                 <LabelCont id={storeTabs[0].tabName}>
                     <CodeMirror_ReadOnly_STY>
                         <CodeMirror

@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect } from 'react'
 import { useInView } from 'react-intersection-observer';
-import {  mentions_of_linked_product, single_question_data, single_question_id } from '../../app/feature/Question.slice'
+import {  mentions_of_linked_product, single_question_data } from '../../app/feature/Question.slice'
 import { changeModalAction } from '../../app/feature/User.slice';
 import { useAppDispatch, useAppSelector } from '../../app/store/hooks'
 import { getMentionsOfProduct } from '../../app/thunks/LinkedProductsTunks';
@@ -15,13 +15,13 @@ function MentionsListModal({}: Props):ReactElement {
     const dispatch = useAppDispatch()
     const singleQuestionData = useAppSelector(single_question_data)
     const mentionsOfLinkedProduct = useAppSelector(mentions_of_linked_product)
-    const questionId = useAppSelector(single_question_id) 
+    const question_data:any = useAppSelector(single_question_data) 
     const {productId, mentions , status , current_page , last_page , total} = mentionsOfLinkedProduct
 
 
     useEffect(() => {
         if(inViewMentionsLoader){
-            const data = {question_id: singleQuestionData.id ,product_id:mentionsOfLinkedProduct.productId! ,  current_page:mentionsOfLinkedProduct.current_page , total:mentionsOfLinkedProduct.total, last_page:mentionsOfLinkedProduct.last_page}
+            const data = {question_id: question_data.id , product_id:mentionsOfLinkedProduct.productId! ,  current_page:mentionsOfLinkedProduct.current_page , total:mentionsOfLinkedProduct.total, last_page:mentionsOfLinkedProduct.last_page}
             dispatch(getMentionsOfProduct(data))
         }
     })

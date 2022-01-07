@@ -34,7 +34,6 @@ interface Props {
 
 
 function AnswersConts({}: Props): ReactElement {
-    const singleQuestionData = useAppSelector(single_question_data)
     const [inViewRefAnswersCont, inViewAnswersCont] = useInView()
     const [inViewRefLoaderDown, inViewLoaderDown] = useInView()
     const [inViewRefLoaderUp, inViewLoaderUp] = useInView()
@@ -54,7 +53,7 @@ function AnswersConts({}: Props): ReactElement {
 
 
     const dispatch = useAppDispatch();
-    const SingleQuestionData = useAppSelector(single_question_data)
+    const question_data:any = useAppSelector(single_question_data)
 
 
 
@@ -77,7 +76,7 @@ function AnswersConts({}: Props): ReactElement {
         {
             if(topAnswersStatus ==="loading")
             {
-                const data:GET_ANSWER_INTERFAC ={page:topPage,direction:"next",questionId:singleQuestionData.id}
+                const data:GET_ANSWER_INTERFAC ={page:topPage,direction:"next",questionId:question_data.id}
                 dispatch(getAnswers(data))
             }
         }
@@ -89,7 +88,7 @@ function AnswersConts({}: Props): ReactElement {
         {
             if(downAnswersStatus ==="loading")
             {
-                const data:GET_ANSWER_INTERFAC = {page:downPage,direction:"previous",questionId:singleQuestionData.id}
+                const data:GET_ANSWER_INTERFAC = {page:downPage,direction:"previous",questionId:question_data.id}
                 dispatch(getAnswers(data))
                 if(downAnswers.length > 0){
                     scrollToLastAnswer(downAnswers[0].id)
@@ -120,13 +119,13 @@ function AnswersConts({}: Props): ReactElement {
     
     return (
         <AnswersCont_STY style={{ scrollMarginTop: "250px"}} ref={inViewRefAnswersCont} id="answersCont" >
-                {/* {
-                    submittedAnswer.length > 0 &&  
-                    <div >
-                        {submittedAnswer.map((answer) => 
-                            <Answer key={answer.id} direction="new-submitted"  answer={answer}/>)} 
-                    </div>
-                } */}
+                
+                <div style={{width:"100%", display:"flex" , flexDirection:"column", rowGap:"14px", marginTop:"14px"}}>
+                    {
+                        submittedAnswer.map((answer) => 
+                        <Answer key={answer.id} direction="new-submitted"  answer={answer}/>)
+                    } 
+                </div>
                 
                 <div style={{width:"100%", display:"flex" , flexDirection:"column", rowGap:"14px", marginTop:"14px"}}>
                     {topAnswers.map((answer) => <Answer key={answer.id} direction="top"  answer={answer}/>)} 

@@ -7,7 +7,7 @@ import { RootState } from '../store/store'
 import { getKeyValue } from '../../logic/getKeyValue'
 import toast from 'react-hot-toast'
 import { ToastPosition } from 'react-hot-toast/dist/core/types'
-import { addAnswer, getAnswers, unVoteAnswer, unVoteQuestion, voteAnswer, voteQuestion } from '../thunks/QuestionThunk'
+import { addAnswer, deleteAnswer, deleteQuestion, getAnswers, unVoteAnswer, unVoteQuestion, voteAnswer, voteQuestion } from '../thunks/QuestionThunk'
 import { getSingleQuestion } from '../thunks/QuestionThunk'
 import { autoErrorToaster } from '../../components/Notify/AutoErrorToaster'
 import { QUESTION_STATE } from '../store/states/QuestionState'
@@ -26,6 +26,10 @@ export const QuestionSlice = createSlice({
 
     changeDownAnswersStatus(state, action) {
       state.answersData.downAnswers.status = action.payload.status
+    },
+
+    setDeleteOptions(state, action) {
+      state.delete_options = action.payload
     },
 
     mentionUserAtAnswer(state , action){
@@ -64,54 +68,53 @@ export const QuestionSlice = createSlice({
 
   extraReducers: (builder) => {
 
-    //GET SINGLE QUESTION Reducers
+    //GET SINGLE QUESTION 
     builder.addCase(getSingleQuestion.fulfilled, (state, {payload}) => {
-      state.singleQuestionData = payload.data
-      state.singleQuestionData.status = 'idle'  
-      if(state.singleQuestionData.id !== state.answersData.questionId){
-        state.answersData.topAnswers.answers= []
-        state.answersData.downAnswers.answers= []
-        state.answersData.topAnswers.status= 'loading'
-        state.answersData.downAnswers.status= 'loading'
-        state.answersData.topPage = 1
-        state.answersData.downPage = 0
-        state.answersData.totalPage = 0
+      state.question_data = payload.data
+      state.status = 'idle'  
+      // if(state.question_data.id !== state.answersData.questionId){
+      //   state.answersData.topAnswers.answers= []
+      //   state.answersData.downAnswers.answers= []
+      //   state.answersData.topAnswers.status= 'loading'
+      //   state.answersData.downAnswers.status= 'loading'
+      //   state.answersData.topPage = 1
+      //   state.answersData.downPage = 0
+      //   state.answersData.totalPage = 0
 
-        state.linkedProductsData.status = 'loading'
-        state.linkedProductsData.current_page = 1
-        state.linkedProductsData.last_page = 1
-        state.linkedProductsData.total = 0
-        state.linkedProductsData.linkedProducts = []
-
-      }
+      //   state.linkedProductsData.status = 'loading'
+      //   state.linkedProductsData.current_page = 1
+      //   state.linkedProductsData.last_page = 1
+      //   state.linkedProductsData.total = 0
+      //   state.linkedProductsData.linkedProducts = []
+      // }
     }),
     builder.addCase(getSingleQuestion.pending, (state, {payload}) => {
-      state.singleQuestionData.status = 'loading'
+      state.status = 'loading'
     }),
     builder.addCase(getSingleQuestion.rejected, (state, action) => {
-      state.singleQuestionData.status = 'failed'
+      state.status = 'failed'
+      state.errors = action.payload
     })  
 
 
 
 
 
-
-
-
-
-
-    //GET  QUESTION ANSWERS Reducers
+    //GET  QUESTION ANSWERS 
     builder.addCase(getAnswers.fulfilled, (state, {payload}) => {
       const topAnswers = state.answersData.topAnswers
       const downAnswers = state.answersData.downAnswers
-      state.answersData.questionId = state.singleQuestionData.id
+      state.answersData.questionId = state.question_data!.id
       if(payload === null)
       {
         
       }
       else 
       {
+        if(payload.data.data.length === 0){
+          topAnswers.status = 'idle'
+          downAnswers.status = 'idle'
+        }
         if(payload.next)
         {
             topAnswers.answers = [... topAnswers.answers , ...payload.data.data]
@@ -143,6 +146,13 @@ export const QuestionSlice = createSlice({
     }),
     builder.addCase(getAnswers.pending, (state, {payload}) => {
       state.answersData.topAnswers.status = 'loading'
+      const topAnswers = state.answersData.topAnswers
+      const downAnswers = state.answersData.downAnswers
+      if(topAnswers.answers.length + downAnswers.answers.length === state.answersData.totalPage && state.answersData.topPage > 1)
+      {
+          topAnswers.status = 'idle'
+          downAnswers.status = 'idle'
+      }
 
     }),
     builder.addCase(getAnswers.rejected, (state, action) => {
@@ -151,8 +161,7 @@ export const QuestionSlice = createSlice({
     }) 
 
 
-
-
+    //GET LINKED PRODUCTS 
     builder.addCase(getLinkedProducts.fulfilled, (state, action) => {
       state.linkedProductsData.linkedProducts = [...state.linkedProductsData.linkedProducts , ...action.payload.data] 
       if(state.linkedProductsData.current_page === action.payload.meta.last_page){
@@ -179,7 +188,6 @@ export const QuestionSlice = createSlice({
 
 
     //getMentionsOfProduct
-
     builder.addCase(getMentionsOfProduct.fulfilled, (state, action) => {
         state.mentionsOfLinkedProduct.mentions = [...state.mentionsOfLinkedProduct.mentions , ...action.payload.data]
 
@@ -203,16 +211,10 @@ export const QuestionSlice = createSlice({
     }) 
 
 
-
-
-
-
-
-
     //ADD NEW ANSWER to Question Reducers
     builder.addCase(addAnswer.fulfilled, (state, {payload}) => {
         successToast("top-right" , payload.message)
-        // state.answersData.topAnswers.answers = [  payload.data , ...state.answersData.topAnswers.answers ]
+        state.answersData.submittedAnswer = [  payload.data , ...state.answersData.submittedAnswer ]
     }),
     builder.addCase(addAnswer.pending, (state, {payload}) => {
       
@@ -224,10 +226,10 @@ export const QuestionSlice = createSlice({
 
     //VOTE QUESTION Reducers
     builder.addCase(voteQuestion.fulfilled, (state, {payload}) => {
-      if(state.singleQuestionData !== null)
+      if(state.question_data !== null)
       {
-        state.singleQuestionData.user_votes = payload.data
-        state.singleQuestionData.upvote += 1
+        state.question_data.user_votes = payload.data
+        state.question_data.upvote += 1
       }
       successToast("top-right" ,payload.message)
 
@@ -241,10 +243,10 @@ export const QuestionSlice = createSlice({
 
     //UN VOTE QUESTION Reducers
     builder.addCase(unVoteQuestion.fulfilled, (state, {payload}) => {
-      if(state.singleQuestionData !== null)
+      if(state.question_data !== null)
       {
-        state.singleQuestionData.user_votes = null
-        state.singleQuestionData.upvote -= 1
+        state.question_data.user_votes = null
+        state.question_data.upvote -= 1
       }
       successToast("top-right" ,payload.message)
     }),
@@ -257,10 +259,11 @@ export const QuestionSlice = createSlice({
 
     //VOTE ANSWER Reducers
     builder.addCase(voteAnswer.fulfilled, (state, {payload}) => {
+      console.log(payload)
       if(payload.direction === "bottom")
       {
         for (let i = 0; i < state.answersData.downAnswers.answers.length; i++) {
-          if(state.answersData.downAnswers.answers[i].id === payload.data.data.answer_id)
+          if(state.answersData.downAnswers.answers[i].id === payload.id)
           {
             state.answersData.downAnswers.answers[i].user_votes = payload.data.data
           } 
@@ -269,7 +272,7 @@ export const QuestionSlice = createSlice({
       else if (payload.direction === "top")
       {
         for (let i = 0; i < state.answersData.topAnswers.answers.length; i++) {
-          if(state.answersData.topAnswers.answers[i].id === payload.data.data.answer_id)
+          if(state.answersData.topAnswers.answers[i].id === payload.id)
           {
             state.answersData.topAnswers.answers[i].user_votes = payload.data.data
           } 
@@ -278,7 +281,7 @@ export const QuestionSlice = createSlice({
       else if (payload.direction === "new-submitted")
       {
         for (let i = 0; i < state.answersData.submittedAnswer.length; i++) {
-          if(state.answersData.submittedAnswer[i].id === payload.data.data.answer_id)
+          if(state.answersData.submittedAnswer[i].id === payload.id)
           {
             state.answersData.submittedAnswer[i].user_votes = payload.data.data
           } 
@@ -292,7 +295,7 @@ export const QuestionSlice = createSlice({
     builder.addCase(voteAnswer.rejected, (state, {payload}) => {
       autoErrorToaster(payload)
     })  
-
+    
 
     //UN VOTE ANSWER Reducers
     builder.addCase(unVoteAnswer.fulfilled, (state, {payload}) => {
@@ -317,7 +320,7 @@ export const QuestionSlice = createSlice({
       else if (payload.direction === "new-submitted")
       {
         for (let i = 0; i < state.answersData.topAnswers.answers.length; i++) {
-          if(state.answersData.submittedAnswer[i].id === payload.data.data.answer_id)
+          if(state.answersData.submittedAnswer[i].id === payload.id)
           {
             state.answersData.submittedAnswer[i].user_votes = null
           } 
@@ -332,6 +335,54 @@ export const QuestionSlice = createSlice({
       autoErrorToaster(payload)
     }) 
 
+
+    //Delete Question THUNK
+    builder.addCase(deleteQuestion.fulfilled, (state, {payload}) => {
+      state.question_data = null
+      successToast("top-right" ,payload.message)
+      state.delete_options = null
+      state.status = 'loading'
+    }),
+    builder.addCase(deleteQuestion.pending, (state, {payload}) => {
+    }),
+    builder.addCase(deleteQuestion.rejected, (state, {payload}) => {
+      autoErrorToaster(payload)
+    }) 
+
+
+    //Delete Answer THUNK
+    builder.addCase(deleteAnswer.fulfilled, (state, {payload}) => {
+      const topAnswers = state.answersData.topAnswers
+      const downAnswers = state.answersData.downAnswers
+      
+      if(payload.direction === "bottom")
+      {
+        state.answersData.downAnswers.answers = state.answersData.downAnswers.answers.filter(answer => answer.id !== payload.id)
+      }
+      else if (payload.direction === "top")
+      {
+        state.answersData.topAnswers.answers = state.answersData.topAnswers.answers.filter(answer => answer.id !== payload.id)
+      }
+      else if (payload.direction === "new-submitted")
+      {
+        state.answersData.submittedAnswer = state.answersData.submittedAnswer.filter(answer => answer.id !== payload.id)
+      }
+      successToast("top-right" ,payload.data.message)
+      if(state.delete_options) state.delete_options.answer_delete_status = 'success';
+      if(topAnswers.answers.length + downAnswers.answers.length === state.answersData.totalPage && state.answersData.topPage > 1)
+      {
+          topAnswers.status = 'idle'
+          downAnswers.status = 'idle'
+      }
+
+    }),
+    builder.addCase(deleteAnswer.pending, (state, {payload}) => {
+      if(state.delete_options) state.delete_options.answer_delete_status = 'pending';
+    }),
+    builder.addCase(deleteAnswer.rejected, (state, {payload}) => {
+      if(state.delete_options) state.delete_options.answer_delete_status = 'failed';
+      autoErrorToaster(payload)
+    }) 
 
 
 
@@ -350,14 +401,16 @@ export const {
   linkProductAtAnswer, 
   changeDownAnswersStatus , 
   AnswerContentOnChange , 
-  getOptionsForMentionOfProduct
+  getOptionsForMentionOfProduct,
+  setDeleteOptions
 } = QuestionSlice.actions;
 
 
 // data
-export const single_question_data = (state: RootState) => state.questionReducer.singleQuestionData
-export const single_question_id = (state: RootState) => state.questionReducer.singleQuestionData.id
-export const single_question_status = (state: RootState) => state.questionReducer.singleQuestionData.status
+export const single_question_data = (state: RootState) => state.questionReducer.question_data
+export const question_status = (state: RootState) => state.questionReducer.status
+export const question_errors = (state: RootState) => state.questionReducer.errors
+export const thread_delete_options = (state: RootState) => state.questionReducer.delete_options
 
 export const submitted_answer = (state: RootState) => state.questionReducer.answersData.submittedAnswer
 export const down_answers = (state: RootState) => state.questionReducer.answersData.downAnswers.answers

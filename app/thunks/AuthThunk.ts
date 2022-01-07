@@ -22,7 +22,9 @@ export const userCheck= createAsyncThunk(
 export const forgetPasswordThunk= createAsyncThunk(
   types.FORGET_PASSWORD, async (email:string, {rejectWithValue}) => {
       try {
-        const resp = await BASE_API_INSTANCE.post(URL.PASSWORD_RESET , {email:email})
+        const formData= new FormData()
+        formData.append('email', email)
+        const resp = await BASE_API_INSTANCE.post(URL.PASSWORD_RESET , formData)
         return resp.data
       } catch (error:any) {
         return rejectWithValue(error.response.data)
@@ -47,40 +49,62 @@ export const userLogout = createAsyncThunk(
 )
 
 
-
-
-
-
-  
-  
-  
-  export const userLogin = createAsyncThunk(
-    types.LOGIN, async (user:{email:string,password:string} , {rejectWithValue}) => {
-      try {
-        const login_form = new FormData()
-        login_form.append("email",user.email)
-        login_form.append("password",user.password)
-        const data = await BASE_API_INSTANCE.post(URL.LOGIN, login_form) 
-        return data.data
-      } catch (error:any) {
-        return rejectWithValue(error.response.data)          
-      }
+export const verifyEmail= createAsyncThunk(
+  types.VERIFY_EMAIL, async (url:any, {rejectWithValue}) => {
+    try {
+      const resp = await BASE_API_INSTANCE.get(url) 
+      return  resp.data
+    } catch (e:any) {
+      return rejectWithValue(e.response.data)
     }
-  )
+  }
+)
+
+
+export const resendEmail= createAsyncThunk(
+  types.RESEND_EMAIL, async (data:null, {rejectWithValue}) => {
+    try {
+      const resp = await BASE_API_INSTANCE.post('/email/resend') 
+      return  resp.data
+    } catch (e:any) {
+      return rejectWithValue(e.response.data)
+    }
+  }
+)
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+export const userLogin = createAsyncThunk(
+  types.LOGIN, async (user:{email:string,password:string} , {rejectWithValue}) => {
+    try {
+      const login_form = new FormData()
+      login_form.append("email",user.email)
+      login_form.append("password",user.password)
+      const data = await BASE_API_INSTANCE.post(URL.LOGIN, login_form) 
+      return data.data
+    } catch (error:any) {
+      return rejectWithValue(error.response.data)          
+    }
+  }
+)
 
 
 
 
 
 
-export const userRegister = createAsyncThunk<
-MyData , 
-RegisterAttributes , 
-{
-  rejectValue: RegisterAuthError 
-}>
-(
-  types.REGISTER, async (user, {rejectWithValue}) => {
+export const userRegister = createAsyncThunk(
+  types.REGISTER, async (user:any, {rejectWithValue}:any) => {
     try {
 
       const login_form = new FormData()

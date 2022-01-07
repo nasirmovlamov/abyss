@@ -148,3 +148,9 @@ export const CreateThread_StepCont = styled.div`
   height: 525px;
   overflow-y: auto;
 `
+export const AreYouSureButtonsCont = styled.div`
+  display: flex;
+  column-gap: 10px;
+  width: 100%;
+  justify-content: center;
+`

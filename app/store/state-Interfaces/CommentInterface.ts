@@ -8,7 +8,7 @@ export interface CommentsInterface {
     comments:CommentInterface[],
     commentsType:{
         id:number, 
-        type:"answer" | "question"  
+        type:"answer" | "thread"  
         showComments:boolean , 
         title:string , 
         user:USER_INTERFACE
@@ -17,6 +17,9 @@ export interface CommentsInterface {
     isCommentOpened:boolean,
     isAnswer:number | null,
     isQuestion:number | null,
+    delete_options:{
+        id:number,
+    } | null
     commentsErrors:{
         email:string[],
         content:string[]

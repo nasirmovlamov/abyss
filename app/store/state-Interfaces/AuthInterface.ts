@@ -6,6 +6,7 @@ export interface AUTH_INTERFACE {
         name:string
         id:number
         email:string
+        isVerified:boolean
     } | null,
     status:'idle'| 'loading' | 'failed',
     changeColor:boolean
@@ -21,7 +22,12 @@ export interface AUTH_INTERFACE {
         productCreate:boolean,
         discussionCreate:boolean,
         iterationCreate:boolean,
-        productMentions:boolean
+        productMentions:boolean,
+        areYouSureDelete_Comment_of_Question:boolean,
+        areYouSureDelete_Comment_of_Answer:boolean,
+        areYouSureDelete_Answer:boolean,
+        areYouSureDelete_Thread:boolean,
+        areYouSureDelete_Comment:boolean,
     }
     forms:{
         registerForm:{
@@ -38,6 +44,22 @@ export interface AUTH_INTERFACE {
         registerErrors: RegisterAuthError , 
         loginErrors: LoginAuthError
         forgetPasswordErrors: ForgetPasswordError ,
-    }
+    },
+    user_verify:{
+        status:"pending" | "success" | "failed" | "not-verified" | "verified",
+        message:null|string,
+        errors:any
+    } | null,
+    resend_email:{
+        status:"pending" | "success" | "failed" | "not-verified" | "verified",
+        message:null|string,
+        errors:any
+    } | null
+    user_forget_pass:{
+        status:"pending" | "success" | "failed" | "idle",
+        message:null|string,
+        errors:any
+    } 
+
 }
 

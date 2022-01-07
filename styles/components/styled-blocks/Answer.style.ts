@@ -8,25 +8,32 @@ export const AnswerStyle = styled.li`
     padding-top: 5px;
     padding-bottom: 8px;
     padding-left: 20px;
-    padding-right: 44px;
+    padding-right: 20px;
     box-sizing: border-box;
     /* border-radius: 6px; */
     border-radius: 10px;
     background-color: ${({theme}) => theme.backgrounds.background1};
     box-shadow: ${({theme}) => theme.boxshadows.boxshadow4};
-    justify-content: flex-start;
     align-items: center;
-    
-
+    justify-content: space-between;
 `
-export const LikeButton = styled.button`
+
+export const LikeButtonsCont = styled.div`
+    display: flex;
+    column-gap: 5px;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 10px;
+`
+
+export const LikeButton = styled.button<{changeDirection:boolean}>`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 5px 10px;
-    border: 1px solid black;
     border-radius: 5px;
     background-color: transparent;
+    transform: ${({changeDirection})=> changeDirection ? "rotateY(180deg)" : "rotate(0deg)"};
+
 `
 
 
@@ -75,8 +82,6 @@ export const Name = styled.span`
 `
 
 export const AnswerContent = styled.p`
-    /* display: flex; */
-    /* display: -webkit-box; */
     width: 535px;
     height: 100%;
     margin-left: 22px;
@@ -86,6 +91,7 @@ export const AnswerContent = styled.p`
     align-self: flex-start;
     line-height: 22px;
     margin-top: 2px;
+    word-wrap: break-word;
 `
 
 
@@ -97,6 +103,14 @@ export const AnswerContentSkeleton = styled.div`
     margin-top: 10px;
     color: black;
 
+`
+
+export const ShowCommentsCont = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    row-gap: 15px;
 `
 export const ShowComments = styled.button`
     border: none;

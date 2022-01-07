@@ -3,26 +3,8 @@ import { ANSWER_INTERFACE} from "../state-Interfaces/QuestionInterface";
 
 export const QUESTION_STATE:QUESTION_INTERFACE = {
     status:'loading',
-    singleQuestionData:{
-        status:"loading",
-        linked_products:[],
-        id:-1 ,
-        answer_count:0,
-        category:{id:0, name:"", slug:"",sort:0},
-        closed_at:null,
-        comment_count:0,
-        content:"",
-        created_at:"",
-        last_active_at:"",
-        upvote:0,
-        slug:"",
-        tags:"",
-        title:"",
-        updated_at:"",
-        user:{id:0,email:"",name:""},
-        user_votes:null,
-        view_count:0
-    } ,
+    errors:null,
+    question_data:null ,
     answersData:{
         questionId:null,
         topPage:1,
@@ -38,6 +20,7 @@ export const QUESTION_STATE:QUESTION_INTERFACE = {
             answers:[]
         },
     },
+    delete_options:null,
     answerSubmitData:{
         linkedProducts:[],
         mentionedUsers:[],

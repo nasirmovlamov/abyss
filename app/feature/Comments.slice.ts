@@ -1,9 +1,11 @@
+import { successToast } from './../../components/Notify/SuccessToast';
 import { RootState } from '../store/store'
 import { createSlice} from '@reduxjs/toolkit'
 import { autoErrorToaster } from '../../components/Notify/AutoErrorToaster'
 import { autoSuccessToaster } from '../../components/Notify/AutoSuccessToast'
 import { CommentsState } from '../store/states/CommentState'
 import { addAnswerComment, addQuestionComment, getAnswerComments, getQuestionComments } from '../thunks/CommentsThunk'
+import { deleteComment } from '../thunks/QuestionThunk'
 
 
 
@@ -12,17 +14,7 @@ export const CommentsSlice = createSlice({
     initialState:CommentsState ,
     reducers: {
         showComments(state, {payload}) {
-            if(state.isQuestion)
-            {
-                document.querySelector(`#question${state.commentsType!.id}`)?.setAttribute("style","z-index: 1 !important;position:inherit;")
-            }
-            else if(state.isAnswer)
-            {
-                document.querySelector(`#answer${state.commentsType!.id}`)?.setAttribute("style","z-index: 1 !important;position:inherit;")
-            }
             state.isCommentOpened = true
-
-
             if(payload)
             {
                 const {id , type , showComments, title, user , isQuestion , isAnswer}  = payload
@@ -34,21 +26,10 @@ export const CommentsSlice = createSlice({
             else
             {
                 state.commentsType = payload 
-                document.body.setAttribute("style" , "overflow-y: scroll")
             }
 
         },
         closeComments(state, {payload}) {
-            if(state.isQuestion)
-            {
-                document.querySelector(`#question${state.commentsType!.id}`)?.setAttribute("style","z-index: 1 !important;position:inherit;")
-            }
-            else if(state.isAnswer)
-            {
-                document.querySelector(`#answer${state.commentsType!.id}`)?.setAttribute("style","z-index: 1 !important;position:inherit;")
-            }
-            else{}
-            document.body.setAttribute("style" , "overflow-y: scroll")
             state.commentsType = null 
             state.isCommentOpened = false
             state.isAnswer = null
@@ -120,6 +101,20 @@ export const CommentsSlice = createSlice({
         builder.addCase(addAnswerComment.rejected, (state, action) => {
             autoErrorToaster(action.payload)
         }) 
+
+
+        //Delete Comment THUNK
+        builder.addCase(deleteComment.fulfilled, (state, {payload}) => {
+            state.comments = state.comments.filter(answer => answer.id !== payload.id)
+            successToast("top-right" ,payload.data.message)
+        }),
+        builder.addCase(deleteComment.pending, (state, {payload}) => {
+        }),
+        builder.addCase(deleteComment.rejected, (state, {payload}) => {
+            autoErrorToaster(payload)
+        }) 
+
+
     }
 
 })

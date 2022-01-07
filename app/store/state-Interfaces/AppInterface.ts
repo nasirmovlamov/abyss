@@ -21,6 +21,7 @@ export interface MyData {
           id:number,
           name:string,
           email:string
+          verify:boolean
         }
         access_token:string,
         token_type:string,

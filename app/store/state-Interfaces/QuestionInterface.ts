@@ -7,6 +7,7 @@ export interface ANSWER_INTERFACE {
     user:USER_INTERFACE ,
     content:string,
     created_at:string,
+    comment_count:number,
     updated_at:string ,
     linked_products:any[]
     user_votes:{
@@ -27,9 +28,18 @@ export interface ANSWER_SUBMIT_INTERFACE {
 
 export interface QUESTION_INTERFACE {
     status:"idle" | "loading" | "failed",
-    singleQuestionData:SingleFormDataInterface
+    errors:any
+    question_data:question_data_interface | null,
     answersData:AnswerDataInterface
-    answerSubmitData:ANSWER_SUBMIT_INTERFACE
+    answerSubmitData:ANSWER_SUBMIT_INTERFACE,
+    delete_options:{
+        id:number , 
+        answer_id: number | undefined , 
+        question_id: number | undefined, 
+        comment_id: number | undefined,
+        answer_delete_status: 'success' | 'failed' | 'pending'
+        question_delete_status: 'success' | 'failed' | 'pending'
+    } | null,
     linkedProductsData:{
         linkedProducts:any[],
         status:"loading" | "idle" | "failed",
@@ -66,9 +76,11 @@ export interface AnswerDataInterface{
 
 
 
-export interface SingleFormDataInterface{
+export interface question_data_interface{
     status:"loading" | "idle" | "failed",
     id:number ,
+    upvote:number,
+    downvote:number,
     answer_count:number,
     category:{id:number, name:string, slug:string,sort:number}
     linked_products:{[key:string] : any}[],
@@ -77,7 +89,6 @@ export interface SingleFormDataInterface{
     content:string,
     created_at:string,
     last_active_at:string,
-    upvote:number,
     slug:string,
     tags:string,
     title:string,
@@ -91,6 +102,6 @@ export interface SingleFormDataInterface{
         updated_at:string
         user_id: number}|null
     view_count:number
-}
+} 
 
 

@@ -9,17 +9,17 @@ export const user_errors_data = {
         name:[]
     }, 
     message:"" 
-},
-loginErrors:{
-    errors:{
-        email:[],
-        password:[],
-    }, 
-    message:"" 
-},
-forgetPasswordErrors:{
-    errors:{
-        attempt:[],
+    },
+    loginErrors:{
+        errors:{
+            email:[],
+            password:[],
+        }, 
+        message:"" 
+    },
+    forgetPasswordErrors:{
+        errors:{
+            attempt:[],
     }, 
     message:"" 
 }}
@@ -41,6 +41,11 @@ export const AUTH_STATE:AUTH_INTERFACE = {
         discussionCreate:false,
         iterationCreate:false,
         productMentions:false,
+        areYouSureDelete_Comment_of_Question:false,
+        areYouSureDelete_Comment_of_Answer:false,
+        areYouSureDelete_Answer:false,
+        areYouSureDelete_Thread:false,
+        areYouSureDelete_Comment:false,
     },
     forms:{
         registerForm:{
@@ -54,5 +59,12 @@ export const AUTH_STATE:AUTH_INTERFACE = {
         }
     },
     user_errors: user_errors_data ,
+    user_verify:null,
+    user_forget_pass:{
+        status:"idle",
+        message:'',
+        errors:{}
+    } ,
+    resend_email:null
 }
 

@@ -8,6 +8,7 @@ export const CommentsState:CommentsInterface = {
     isCommentOpened:false,
     isAnswer:null,    
     isQuestion:null,    
+    delete_options:null,
     commentsErrors:{
         email:[],
         content:[],

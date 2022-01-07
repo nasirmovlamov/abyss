@@ -19,6 +19,8 @@ import { forumWordRegex } from '../logic/regex/NavbarRegex'
 import chat_icon from '../public/chat_bubble.svg'
 import { hoverHeader, search_data, unhoverHeader, unhoverSearchBox } from '../app/feature/SearchBox.slice'
 import { unHoverHeaderAsync, unHoverSearchAsync } from '../app/thunks/SearchBoxThunks'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faExclamation } from '@fortawesome/free-solid-svg-icons'
 interface Props {
 }
 
@@ -165,7 +167,7 @@ function Header({}: Props): ReactElement {
 
                         <NavLink content="username" href="/cave">
                             <Header_STY.PersonName_STY>
-                                {userData.name}
+                                <span > {userData.name} {!userData.isVerified && <span style={{fontSize:"13px",color:"orange"}}>* <sup>not verified</sup></span>}</span>
                             </Header_STY.PersonName_STY>
                         </NavLink>
                     </Header_STY.Logged_STY>

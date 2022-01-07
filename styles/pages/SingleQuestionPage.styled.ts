@@ -236,9 +236,8 @@ export const StatisticContSingleQuestion_STY = styled.div`
 
 export const QuestionStatisticElement_STY = styled.div`
     display: flex;
-    flex-direction: column;
     row-gap: 3px;
-    column-gap: 5px;
+    column-gap: 15px;
     align-items: center;
 `
 export const QuestionStatisticButton_STY = styled.button<{changeDirection:boolean}>`
@@ -345,5 +344,24 @@ export const ProductsCont_STY = styled.div`
     border-radius: 6px;
     padding-top: 100px  ;
     color: white;
+`
+
+
+
+
+export const Delete_Question_STY = styled.button`
+    background-color: transparent;
+    svg {
+        color: red;
+    }
+`
+
+
+
+export const Edit_Question_STY = styled.button`
+    background-color: transparent;
+    svg {
+        color: white;
+    }
 `
 
