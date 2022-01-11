@@ -59,12 +59,47 @@ export const AUTH_STATE:AUTH_INTERFACE = {
         }
     },
     user_errors: user_errors_data ,
-    user_verify:null,
+    user_verify:{
+        status:"pending",
+        message:"",
+        errors:{}
+    },
     user_forget_pass:{
         status:"idle",
         message:'',
         errors:{}
     } ,
-    resend_email:null
+    user_check_pass_token:{
+        data:null,
+        status:"idle",
+        message:'',
+        errors:{}
+    },
+    resend_email:{
+        status:"pending",
+        message:'',
+        errors:{}
+    },
+    on_change_password:{
+        isValid:false,
+        data:{
+            password:"",
+            password_confirmation:""
+        },
+        errors:{
+            password:{
+                errorMessage:""
+            },
+            password_confirmation:{
+                errorMessage:""
+            }          
+        }
+    },
+    change_password:{
+        data:null,
+        status:"pending",
+        message:'',
+        errors:{}
+    }
 }
 

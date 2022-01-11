@@ -9,16 +9,17 @@ import { getAccessToken } from '../../../../helpers/token/TokenHandle'
 import { BASE_API_URL } from '../../../../helpers/urls/BASE_URL'
 import { white_1 } from '../../../../styles/global/styled-utils/settings/Colors'
 import * as authThunk from '../../../../app/thunks/AuthThunk'
-import { user_verify } from '../../../../app/feature/User.slice'
+import { user_data, user_verify } from '../../../../app/feature/User.slice'
 
 interface Props {
     
 }
 
-function EMAIL_VERIFY({}: Props): ReactElement {
+function EmailVerify({}: Props): ReactElement {
     const dispatch = useAppDispatch()
     const router = useRouter()
     const userVerify:any = useAppSelector(user_verify)
+    const userData = useAppSelector(user_data)
     useEffect(() => {
         if(router.isReady)
         {
@@ -65,6 +66,7 @@ function EMAIL_VERIFY({}: Props): ReactElement {
                 <p  style={{fontSize:'25px',color:"green"}}>
                     {message}
                 </p>
+                {userData?.isVerified}
                 <button style={{}} onClick={goHome}>Go back to homepage</button>
             </div>
         )   
@@ -74,4 +76,4 @@ function EMAIL_VERIFY({}: Props): ReactElement {
     }
 }
 
-export default EMAIL_VERIFY
+export default EmailVerify

@@ -24,7 +24,7 @@ export const forgetPasswordThunk= createAsyncThunk(
       try {
         const formData= new FormData()
         formData.append('email', email)
-        const resp = await BASE_API_INSTANCE.post(URL.PASSWORD_RESET , formData)
+        const resp = await BASE_API_INSTANCE.post(URL.PASSWORD_RESET_EMAIL , formData)
         return resp.data
       } catch (error:any) {
         return rejectWithValue(error.response.data)
@@ -34,6 +34,29 @@ export const forgetPasswordThunk= createAsyncThunk(
 
 
 
+export const checkForgetPasswordTokenThunk= createAsyncThunk(
+  types.CHECK_FORGET_PASSWORD_THUNK, async (url:string, {rejectWithValue}) => {
+      try {
+        const resp = await BASE_API_INSTANCE.get(url)
+        return resp.data
+      } catch (error:any) {
+        return rejectWithValue(error.response.data)
+      }
+  }
+)
+
+
+
+export const changePasswordThunk= createAsyncThunk(
+  types.CHANGE_PASSWORD, async (form_data:FormData, {rejectWithValue}) => {
+      try {
+        const resp = await BASE_API_INSTANCE.post(URL.PASSWORD_RESET , form_data)
+        return resp.data
+      } catch (error:any) {
+        return rejectWithValue(error.response.data)
+      }
+  }
+)
 
 
 

@@ -8,7 +8,8 @@ interface URL_INTERFACE {
     REGISTER: string,
     CHECK_USER: string,
     ABOUT: string,
-    PASSWORD_RESET: string
+    PASSWORD_RESET: string,
+    PASSWORD_RESET_EMAIL:string
 }
 
 export const URL:URL_INTERFACE = {
@@ -18,5 +19,6 @@ export const URL:URL_INTERFACE = {
     REGISTER: '/register',
     CHECK_USER: '/user',
     ABOUT: '/about',
-    PASSWORD_RESET: '/password/create/'
+    PASSWORD_RESET: '/password/reset/',
+    PASSWORD_RESET_EMAIL: '/password/create/'
 }

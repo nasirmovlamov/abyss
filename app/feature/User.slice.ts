@@ -1,4 +1,5 @@
-import { verifyEmail, resendEmail } from './../thunks/AuthThunk';
+import { AUTH_INTERFACE } from './../store/state-Interfaces/AuthInterface';
+import { verifyEmail, resendEmail, checkForgetPasswordTokenThunk, changePasswordThunk } from './../thunks/AuthThunk';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { forgetPasswordThunk, userCheck, userLogin, userLogout, userRegister,  } from '../thunks/AuthThunk'
 import { RootState } from '../store/store'
@@ -10,6 +11,7 @@ import { autoSuccessToaster } from '../../components/Notify/AutoSuccessToast'
 import { autoErrorToaster } from '../../components/Notify/AutoErrorToaster'
 import { removeAccessToken, setAccessToken } from '../../helpers/token/TokenHandle'
 import { deleteCookie } from '../../logic/CookieFunctions'
+import { on_change_password_interface } from '../store/state-Interfaces/AuthInterface';
 
 
 
@@ -43,6 +45,38 @@ export const UserSlice = createSlice({
         login_Form_OnChange(state, action) {
             state.forms.loginForm =  {...state.forms.loginForm , [action.payload.name]:action.payload.value}
         },
+
+        form_change_password_onChange(state:any, {payload}) {
+            state.on_change_password.data[payload.name] = payload.value
+        },
+
+        form_change_password_onBlur(state:any, {payload}) {
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+            if(!state.on_change_password.data[payload.name].length){
+                state.on_change_password.errors[payload.name] = { errorMessage:`${payload.name} is required`}
+            }
+            else if(!passwordRegex.test(state.on_change_password.data[payload.name])){
+                state.on_change_password.errors[payload.name] = { errorMessage:`${payload.name} must be at least 8 characters long, contain at least one number, one uppercase letter, one lowercase letter and one special character`}
+            }else{
+                state.on_change_password.errors[payload.name] =  {errorMessage:``}
+            }
+
+            if(payload.name === 'password_confirmation'){
+                if(state.on_change_password.data.password !== state.on_change_password.data.password_confirmation){
+                    state.on_change_password.errors[payload.name] =  {isTouched:true, errorMessage:`${payload.name} must be same as password`}
+                }
+            }
+
+            state.on_change_password.isValid = true 
+
+            Object.keys(state.on_change_password.errors).map(key => {
+                if(state.on_change_password.errors[key].errorMessage){
+                    state.on_change_password.isValid = false
+                }
+            })
+
+        }
+
     },
 
     extraReducers: (builder) => {
@@ -113,13 +147,12 @@ export const UserSlice = createSlice({
 
         //VErify Reducers
         builder.addCase(verifyEmail.fulfilled, (state, {payload}) => {
-            console.log(payload)
-            state.user!.isVerified = true
             state.user_verify = {
                 status: 'success',
                 message: payload.message,
                 errors: payload.errors
             }
+            state.user!.isVerified = true
             autoSuccessToaster(payload.message)
         }),
 
@@ -133,7 +166,6 @@ export const UserSlice = createSlice({
                 message: payload.message,
                 errors: payload.errors
             }
-
             // state.user_verify!.errors = action.payload.data
             // removeAccessToken()
         })  
@@ -222,18 +254,81 @@ export const UserSlice = createSlice({
                 errors: payload.errors
             }
         })  
+
+
+         //Forget Password CHECK TOKEN Reducers
+         builder.addCase(checkForgetPasswordTokenThunk.fulfilled, (state, {payload}) => {
+            state.user_check_pass_token = {
+                data:payload.data,
+                status: 'success',
+                message: payload.message,
+                errors: payload.errors
+            }
+            autoSuccessToaster(payload.message)
+        }),
+        builder.addCase(checkForgetPasswordTokenThunk.pending, (state, {payload}) => {
+            state.user_check_pass_token = {
+                data:null,
+                status: 'pending',
+                message: "",
+                errors: {}
+            }
+        }),
+        builder.addCase(checkForgetPasswordTokenThunk.rejected, (state, {payload}:any) => {
+            state.user_check_pass_token = {
+                data:null,
+                status: 'failed',
+                message: payload.message,
+                errors: payload.errors
+            }
+        })  
+
+
+
+        //Forget Password CHECK TOKEN Reducers
+        builder.addCase(changePasswordThunk.fulfilled, (state, {payload}) => {
+            state.change_password = {
+                data:payload.data,
+                status: 'success',
+                message: payload.message,
+                errors: null
+            }
+            setAccessToken(payload.data.access_token)
+            state.user =  payload.data.user
+            state.loggedIn = true
+            autoSuccessToaster(payload.message)
+        }),
+
+        builder.addCase(changePasswordThunk.pending, (state, {payload}) => {
+            state.change_password = {
+                data:null,
+                status: 'pending',
+                message: "Loading ...",
+                errors: null
+            }
+        }),
+        builder.addCase(changePasswordThunk.rejected, (state, {payload}:any) => {
+            state.change_password = {
+                data:null,
+                status: 'failed',
+                message: payload.message,
+                errors: payload.errors
+            }
+        })  
     }
 
 })
 
 
 // action
-export const { changeModalAction } = UserSlice.actions;
-export const { login_Form_OnChange } = UserSlice.actions;
-export const { register_Form_OnChange } = UserSlice.actions;
-export const { user_status_not_logged } = UserSlice.actions;
-export const { changeColor } = UserSlice.actions;
-
+export const { 
+    changeModalAction,
+    form_change_password_onChange,
+    form_change_password_onBlur,
+    login_Form_OnChange,
+    register_Form_OnChange,
+    user_status_not_logged,
+    changeColor } = UserSlice.actions;
 
 
 
@@ -247,6 +342,9 @@ export const user_modals = (state: RootState) => state.userReducer.userModals
 export const user_verify = (state: RootState) => state.userReducer.user_verify
 export const resend_mail = (state: RootState) => state.userReducer.resend_email
 export const user_forget_pass = (state: RootState) => state.userReducer.user_forget_pass
+export const user_forget_pass_check_token = (state: RootState) => state.userReducer.user_check_pass_token
+export const change_password_data = (state: RootState) => state.userReducer.change_password
+export const form_change_password_data = (state: RootState) => state.userReducer.on_change_password
 
 export const login_form = (state: RootState) => state.userReducer.forms.loginForm
 export const register_form = (state: RootState) => state.userReducer.forms.registerForm

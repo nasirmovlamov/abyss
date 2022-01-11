@@ -75,7 +75,7 @@ function Header({}: Props): ReactElement {
     useEffect(() => {
         loginChecker()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isLogged])
+    }, [isLogged , userData])
     
 
     const pathChecker = (path:string) => {
@@ -98,8 +98,8 @@ function Header({}: Props): ReactElement {
     }
 
     const exit = async () => {
+        router.push('/')
         await dispatch(userLogout())
-        // window.location.reload() 
     }
 
     const loginChecker = () => {

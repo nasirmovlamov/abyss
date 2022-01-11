@@ -74,6 +74,8 @@ const StoreProductForNonSubscribed = (props: Props) => {
     
     return (
         <>
+            {console.log(JSON.parse(singleProductData.data.description))}
+
             {
                 activeStoreTab.id === 2 &&
                 <DetailsCont_STY ref={inViewRefCodeBlock} key={'details1'}>   
