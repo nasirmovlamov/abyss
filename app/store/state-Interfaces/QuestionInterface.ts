@@ -55,6 +55,15 @@ export interface QUESTION_INTERFACE {
         last_page:1,
         total:0,
     }
+    edit_answer:{
+        id:number,
+        new_content:string,
+        direction:string
+        status:"pending" | "success" | "failed"
+        errors:any,
+        linkedProducts:any[],
+        mentionedUsers:any[],
+    } | null
 }
 
 export interface AnswerDataInterface{

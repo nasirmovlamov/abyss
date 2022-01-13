@@ -94,15 +94,14 @@ export const QuestionMiddleLayout = (props: Props) => {
                     </SingleQuestion_STY.QuestionDate_STY>
                     {
                         (question_data.user.id === userData?.id) &&
-                        <SingleQuestion_STY.QuestionStatisticElement_STY>
-                            {/* <SingleQuestion_STY.QuestionStatisticText_STY>Give Vote</SingleQuestion_STY.QuestionStatisticText_STY> */}
-                            <SingleQuestion_STY.Edit_Question_STY>
-                                <FontAwesomeIcon icon={faEdit} />
-                            </SingleQuestion_STY.Edit_Question_STY>
-                            <SingleQuestion_STY.Delete_Question_STY onClick={deleteQuestion}>
-                                <FontAwesomeIcon icon={faTrash} />
-                            </SingleQuestion_STY.Delete_Question_STY>
-                        </SingleQuestion_STY.QuestionStatisticElement_STY>
+                            <SingleQuestion_STY.QuestionStatisticElement_STY visible={true}>
+                                <SingleQuestion_STY.Edit_Question_STY>
+                                    <FontAwesomeIcon icon={faEdit} />
+                                </SingleQuestion_STY.Edit_Question_STY>
+                                <SingleQuestion_STY.Delete_Question_STY onClick={deleteQuestion}>
+                                    <FontAwesomeIcon icon={faTrash} />
+                                </SingleQuestion_STY.Delete_Question_STY>
+                            </SingleQuestion_STY.QuestionStatisticElement_STY>
                     }
                 </SingleQuestion_STY.QuestionStatistics_STY>
             </SingleQuestion_STY.QuestionCont_STY>

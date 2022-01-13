@@ -3,7 +3,7 @@ import { CommentAvatar, CommentContent, CommentNameAndContentCont, CommentStyle,
 import { useCommentHook } from '../hooks/useCommentHook'
 import * as SingleQuestion_STY from '../styles/pages/SingleQuestionPage.styled'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faEdit, faEllipsisV, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useAppSelector } from '../app/store/hooks'
 import { user_data } from '../app/feature/User.slice'
 import { comments_types } from '../app/feature/Comments.slice'
@@ -15,7 +15,13 @@ interface Props {
 const Comment = ({comment}: Props) => {
     const userData = useAppSelector(user_data)
     const commentType = useAppSelector(comments_types)
-    const {deleteComment} = useCommentHook({comment:comment , commentType:commentType})
+    const {
+        deleteComment , 
+        editComment, 
+        enableEditingFunc,  
+        saveCommentEditingFunc,
+        cancelCommentEditingFunc
+    } = useCommentHook({comment:comment , commentType:commentType})
 
     return (
         <CommentStyle>
@@ -24,20 +30,43 @@ const Comment = ({comment}: Props) => {
             </CommentAvatar>
             <CommentNameAndContentCont>
                 <CommentUserName>{comment.user.name}</CommentUserName>
-                <CommentContent>{comment.content}</CommentContent>
+                {
+                        (!(editCommentData === null) && comment.id === editCommentData.id  ) 
+                        ? 
+                        <div>
+                            <textarea value={editCommentData.new_content} name="" id="" cols="30" rows="10"></textarea>
+                        <div>
+                            <button onClick={cancelCommentEditingFunc}>cancel</button>
+                            <button onClick={saveCommentEditingFunc} disabled={!(editCommentData.new_content.length > 0)}>save</button>
+                        </div>
+                        </div>
+                        :
+                         <>
+                            <CommentContent>{comment.content}</CommentContent>
+                        </>
+                       
+                    }
             </CommentNameAndContentCont>
             {
                 (comment.user.id === userData?.id) &&
-                <SingleQuestion_STY.QuestionStatisticElement_STY>
-                    {/* <SingleQuestion_STY.QuestionStatisticText_STY>Give Vote</SingleQuestion_STY.QuestionStatisticText_STY> */}
-                    <SingleQuestion_STY.Edit_Question_STY>
-                        <FontAwesomeIcon icon={faEdit} />
-                    </SingleQuestion_STY.Edit_Question_STY>
-                    <SingleQuestion_STY.Delete_Question_STY onClick={deleteComment}>
-                        <FontAwesomeIcon icon={faTrash} />
-                    </SingleQuestion_STY.Delete_Question_STY>
-                </SingleQuestion_STY.QuestionStatisticElement_STY>
+
+                    <SingleQuestion_STY.QuestionStatisticOptForUser_STY >
+                        <SingleQuestion_STY.QuestionStatisticDotsButton_STY >
+                            <FontAwesomeIcon icon={faEllipsisV} color='white'/>
+                        </SingleQuestion_STY.QuestionStatisticDotsButton_STY>
+
+                        <SingleQuestion_STY.QuestionStatisticElement_STY visible={true} >
+                                <SingleQuestion_STY.Edit_Question_STY onClick={enableEditingFunc}>
+                                    <FontAwesomeIcon icon={faEdit}  />
+                                </SingleQuestion_STY.Edit_Question_STY>
+                                <SingleQuestion_STY.Delete_Question_STY onClick={deleteComment}>
+                                    <FontAwesomeIcon icon={faTrash} />
+                                </SingleQuestion_STY.Delete_Question_STY>
+                        </SingleQuestion_STY.QuestionStatisticElement_STY>
+                    </SingleQuestion_STY.QuestionStatisticOptForUser_STY>
             }
+
+            
         </CommentStyle>
     )
 }

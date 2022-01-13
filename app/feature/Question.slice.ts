@@ -1,3 +1,4 @@
+import { editAnswerThunk } from './../thunks/QuestionThunk';
 import { getMentionsOfProduct } from './../thunks/LinkedProductsTunks';
 import { getLinkedProducts } from '../thunks/LinkedProductsTunks';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
@@ -24,6 +25,10 @@ export const QuestionSlice = createSlice({
         state.answersData.topAnswers.status = action.payload.status
     },
 
+    editAnswerContent_onChange(state, action) {
+        state.edit_answer!.new_content = action.payload
+    },
+
     changeDownAnswersStatus(state, action) {
       state.answersData.downAnswers.status = action.payload.status
     },
@@ -48,6 +53,14 @@ export const QuestionSlice = createSlice({
       state.answerSubmitData.content = action.payload
     },
 
+    enableEditing(state, action){
+      state.edit_answer = action.payload
+    },
+
+    disableEditing(state, action){
+      state.edit_answer = null
+    },
+
     getOptionsForMentionOfProduct(state, action){
       if(state.mentionsOfLinkedProduct.productId !== action.payload.productId){
         state.mentionsOfLinkedProduct.productId = action.payload.productId
@@ -57,7 +70,20 @@ export const QuestionSlice = createSlice({
         state.mentionsOfLinkedProduct.total = 0
         state.mentionsOfLinkedProduct.status = 'loading'
       }
-    }
+    },
+
+    mentionProductAtAnswerEdit(state, action){
+      if(state.edit_answer!.linkedProducts.filter(product => product.id === action.payload.id).length === 0){
+          state.edit_answer!.linkedProducts.push(action.payload)
+      }
+  },
+
+  mentionUserAtQuestionCreate(state, action){
+      if(state.edit_answer!.mentionedUsers.filter(product => product.id === action.payload.id).length === 0){
+          state.edit_answer!.mentionedUsers.push(action.payload)
+      }
+  },
+
 
 
   },
@@ -385,6 +411,56 @@ export const QuestionSlice = createSlice({
     }) 
 
 
+     //Edit Answer THUNK
+     builder.addCase(editAnswerThunk.fulfilled, (state, {payload}) => {
+      const topAnswers = state.answersData.topAnswers
+      const downAnswers = state.answersData.downAnswers
+      console.log(payload.data.content)
+      if(payload.direction === "bottom")
+      {
+        state.answersData.downAnswers.answers = state.answersData.downAnswers.answers.map(answer =>  {
+          if(answer.id === payload.id)
+          {
+            answer.content = payload.data.content
+            answer.updated_at = payload.data.updated_at
+          }
+          return answer
+        })
+      }
+      else if (payload.direction === "top")
+      {
+        state.answersData.topAnswers.answers = state.answersData.topAnswers.answers.map(answer => {
+          if(answer.id === payload.id)
+          {
+            answer.content = payload.data.content
+            answer.updated_at = payload.data.updated_at
+          }
+          return answer
+        })
+      }
+      else if (payload.direction === "new-submitted")
+      {
+        state.answersData.submittedAnswer = state.answersData.submittedAnswer.map(answer => {
+          if(answer.id === payload.id)
+          {
+            answer.content = payload.data.content
+            answer.updated_at = payload.data.updated_at
+          }
+          return answer
+        })
+      }
+      successToast("top-right" ,payload.data.message)
+      state.edit_answer = null;
+    }),
+    builder.addCase(editAnswerThunk.pending, (state, {payload}) => {
+      state.edit_answer!.status = 'pending';
+    }),
+    builder.addCase(editAnswerThunk.rejected, (state, {payload}:any) => {
+      state.edit_answer!.status = 'failed';
+      state.edit_answer!.errors = payload.errors;
+      autoErrorToaster(payload)
+    }) 
+
 
 
     
@@ -402,7 +478,12 @@ export const {
   changeDownAnswersStatus , 
   AnswerContentOnChange , 
   getOptionsForMentionOfProduct,
-  setDeleteOptions
+  setDeleteOptions,
+  editAnswerContent_onChange,
+  enableEditing,
+  disableEditing,
+  mentionProductAtAnswerEdit,
+  mentionUserAtQuestionCreate
 } = QuestionSlice.actions;
 
 
@@ -421,6 +502,7 @@ export const mentioned_users_at_anwser_submit = (state: RootState) => state.ques
 export const linked_products_at_anwser_submit = (state: RootState) => state.questionReducer.answerSubmitData.linkedProducts
 export const submit_answer_content = (state: RootState) => state.questionReducer.answerSubmitData.content
 export const submit_answer_data = (state: RootState) => state.questionReducer.answerSubmitData
+export const edit_answer_data = (state: RootState) => state.questionReducer.edit_answer
 
 
 export const top_page = (state: RootState) => state.questionReducer.answersData.topPage

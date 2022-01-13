@@ -1,3 +1,4 @@
+import { edit_Answer_CommentThunk, edit_Question_CommentThunk } from './../thunks/CommentsThunk';
 import { successToast } from './../../components/Notify/SuccessToast';
 import { RootState } from '../store/store'
 import { createSlice} from '@reduxjs/toolkit'
@@ -35,6 +36,16 @@ export const CommentsSlice = createSlice({
             state.isAnswer = null
             state.isQuestion = null
         },
+
+        enableCommentEditing(state, action){
+            state.edit_comment = action.payload
+          },
+      
+        disableCommentEditing(state, action){
+        state.edit_comment = null
+        },
+
+
     },
 
     extraReducers: (builder) => {
@@ -115,13 +126,60 @@ export const CommentsSlice = createSlice({
         }) 
 
 
+
+        //EDIT Answer Comment THUNK
+        builder.addCase(edit_Answer_CommentThunk.fulfilled, (state, {payload}) => {
+            state.comments = state.comments.map(comment =>  {
+                if(comment.id === payload.id)
+                {
+                    comment.content = payload.data.content
+                    comment.updated_at = payload.data.updated_at
+                }
+                return comment
+            })
+            state.edit_comment!.status = "success"
+            successToast("top-right" ,payload.data.message)
+            state.edit_comment = null
+        }),
+        builder.addCase(edit_Answer_CommentThunk.pending, (state, {payload}) => {
+            state.edit_comment!.status = "pending"
+        }),
+        builder.addCase(edit_Answer_CommentThunk.rejected, (state, {payload}) => {
+            state.edit_comment!.status = "failed"
+            autoErrorToaster(payload)
+        }) 
+
+
+        //EDIT Question Comment THUNK
+        builder.addCase(edit_Question_CommentThunk.fulfilled, (state, {payload}) => {
+            state.comments = state.comments.map(comment =>  {
+                if(comment.id === payload.id)
+                {
+                    comment.content = payload.data.content
+                    comment.updated_at = payload.data.updated_at
+                }
+                return comment
+            })
+            state.edit_comment!.status = "success"
+            successToast("top-right" ,payload.data.message)
+            state.edit_comment = null
+        }),
+        builder.addCase(edit_Question_CommentThunk.pending, (state, {payload}) => {
+            state.edit_comment!.status = "pending"
+        }),
+        builder.addCase(edit_Question_CommentThunk.rejected, (state, {payload}) => {
+            state.edit_comment!.status = "failed"
+            autoErrorToaster(payload)
+        }) 
+
+
     }
 
 })
 
 
 // action
-export const { showComments , closeComments } = CommentsSlice.actions;
+export const { showComments , closeComments,enableCommentEditing, disableCommentEditing } = CommentsSlice.actions;
 
 
 

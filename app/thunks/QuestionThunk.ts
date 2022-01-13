@@ -52,6 +52,18 @@ export const deleteComment = createAsyncThunk(
 
 
 
+export const editAnswerThunk = createAsyncThunk(
+  types.EDIT_ANSWER, async (data:any, {rejectWithValue}) => {
+      try {
+        const resp = await BASE_API_INSTANCE.post(`/forum/${data.id}/answer/edit?_method=PUT` , data.form_data)
+        return {data:resp.data , direction:data.direction, id:data.id}
+      } catch (error:any) {
+        return rejectWithValue(error.response.data)
+      }
+  }
+)
+
+
 
 
 

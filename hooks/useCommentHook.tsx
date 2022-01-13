@@ -18,5 +18,26 @@ export const useCommentHook = ({comment, commentType}:any) =>  {
         dispatch(changeModalAction('areYouSureDelete_Comment'))
     }
 
-    return {deleteComment}
+
+    const editComment = (content:string) => {
+        dispatch(editCommentContent_onChange(content))
+    }
+
+    const enableEditingFunc = () => {
+        dispatch(enableCommentEditing({id:answer.id , new_content:answer.content,direction:direction}))
+    }
+
+    const cancelCommentEditingFunc = () => {
+        dispatch(disableEditing(null))
+    }
+
+
+    const saveCommentEditingFunc = () => {
+        const form_data = new FormData()
+        form_data.append("content", editAnswerData!.new_content)
+        dispatch(editAnswerThunk({id:answer.id , new_content:answer.new_content, direction:direction, form_data:form_data}))
+    }
+
+
+    return {deleteComment , editComment, enableEditingFunc, saveCommentEditingFunc, cancelCommentEditingFunc}
 }

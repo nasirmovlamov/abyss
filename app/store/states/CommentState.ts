@@ -13,5 +13,6 @@ export const CommentsState:CommentsInterface = {
         email:[],
         content:[],
         token:[]
-    } 
+    },
+    edit_comment:null
 }

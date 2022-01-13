@@ -24,7 +24,13 @@ export interface CommentsInterface {
         email:string[],
         content:string[]
         token:string[]
-    } 
+    } ,
+    edit_comment:{
+        id:number,
+        new_content:string,
+        status:"pending" | "success" | "failed"
+        errors:any,
+    }  | null
 }
 
 export interface CommentInterface {

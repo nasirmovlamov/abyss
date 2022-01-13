@@ -115,12 +115,7 @@ const StoreProductForSubscribed = (props: Props) => {
                     </ClipBody>
                 </ClipsCont>
             }
-            {/* <StoreDiscussionCont id={storeTabs[2].tabName}>
-                <StoreDiscussionTitle>Discussion  </StoreDiscussionTitle>
-                <StoreDiscussionBody>
-                    {formQuestionsAPI.map((element , index) => <FormQuestion key={index} data={element}/>)} 
-                </StoreDiscussionBody>
-            </StoreDiscussionCont> */}
+            
 
             <StoreForumCont id={storeTabs[2].tabName}>
                 <StoreForumTitle>Forum</StoreForumTitle>

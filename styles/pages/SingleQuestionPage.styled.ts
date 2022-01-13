@@ -233,12 +233,34 @@ export const StatisticContSingleQuestion_STY = styled.div`
     }
 
 `
-
-export const QuestionStatisticElement_STY = styled.div`
+export const QuestionStatisticOptForUser_STY = styled.div`
     display: flex;
     row-gap: 3px;
     column-gap: 15px;
     align-items: center;
+    position: relative;
+    background-color: transparent;
+    align-self: flex-start;
+    padding-top: 8px;
+    justify-content: center;
+`
+export const QuestionStatisticDotsButton_STY = styled.button`
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color: transparent;
+`
+export const QuestionStatisticElement_STY = styled.div<{visible:boolean}>`
+    display: flex;
+    row-gap: 3px;
+    column-gap: 15px;
+    align-items: center;
+    display: ${({visible}) => visible ? 'flex' : 'none'};
+    position: absolute;
+    top:25px;
+    background-color: gray;
+    padding: 5px;
+    border-radius: 5px;
 `
 export const QuestionStatisticButton_STY = styled.button<{changeDirection:boolean}>`
     display: flex;
@@ -251,7 +273,7 @@ export const QuestionStatisticButton_STY = styled.button<{changeDirection:boolea
     transform: ${({changeDirection})=> changeDirection ? "rotateY(180deg)" : "rotate(0deg)"};
     svg 
     {
-        color: ${({voted}:any)=> voted ? "rotateY(180deg)" : "rotate(0deg)"};
+        color: ${({voted}:any)=> voted ? "black" : "gray"};
     }
 
 `

@@ -40,6 +40,7 @@ export const QUESTION_STATE:QUESTION_INTERFACE = {
         current_page:1,
         last_page:1,
         total:0,
-    }
+    },
+    edit_answer:null
 }
 

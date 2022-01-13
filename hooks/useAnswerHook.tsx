@@ -2,12 +2,12 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { showComments } from '../app/feature/Comments.slice';
-import { question_status, setDeleteOptions, single_question_data } from '../app/feature/Question.slice';
+import { disableEditing, editAnswerContent_onChange, edit_answer_data, enableEditing, question_status, setDeleteOptions, single_question_data } from '../app/feature/Question.slice';
 import { changeModalAction, user_data } from '../app/feature/User.slice';
 import { useAppDispatch, useAppSelector } from '../app/store/hooks';
 import { question_data_interface } from '../app/store/state-Interfaces/QuestionInterface';
 import { getAnswerComments, getQuestionComments } from '../app/thunks/CommentsThunk';
-import { unVoteAnswer, unVoteQuestion, voteAnswer, voteQuestion } from '../app/thunks/QuestionThunk';
+import { editAnswerThunk, unVoteAnswer, unVoteQuestion, voteAnswer, voteQuestion } from '../app/thunks/QuestionThunk';
 import { BASE_API_INSTANCE } from '../helpers/api/BaseInstance';
 
 
@@ -15,7 +15,7 @@ import { BASE_API_INSTANCE } from '../helpers/api/BaseInstance';
 export const useAnswerHook = ({answer, direction}:{answer:any, direction:string}) =>  {
     const dispatch = useAppDispatch()
     const userData = useAppSelector(user_data)
-    
+    const editAnswerData = useAppSelector(edit_answer_data)
     const vote = () => {
         if(userData === null)
         {
@@ -67,7 +67,26 @@ export const useAnswerHook = ({answer, direction}:{answer:any, direction:string}
     const deleteAnswer = () => {
         dispatch(setDeleteOptions({answer_id:answer.id , direction:direction}))
         dispatch(changeModalAction('areYouSureDelete_Answer'))
-    }            
+    }         
+    
+    const editAnswer = (content:string) => {
+        dispatch(editAnswerContent_onChange(content))
+    }
 
-    return {clickToOpenComments , vote , downvote , deleteAnswer}
+    const enableEditingFunc = () => {
+        dispatch(enableEditing({id:answer.id , new_content:answer.content,direction:direction}))
+    }
+
+    const cancelEditingFunc = () => {
+        dispatch(disableEditing(null))
+    }
+
+
+    const saveEditingFunc = () => {
+        const form_data = new FormData()
+        form_data.append("content", editAnswerData!.new_content)
+        dispatch(editAnswerThunk({id:answer.id , new_content:answer.new_content, direction:direction, form_data:form_data}))
+    }
+
+    return {clickToOpenComments , vote , downvote , deleteAnswer ,editAnswer,enableEditingFunc , cancelEditingFunc, saveEditingFunc}
 }
