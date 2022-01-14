@@ -2,12 +2,12 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { showComments } from '../app/feature/Comments.slice';
-import { question_status, setDeleteOptions, single_question_data } from '../app/feature/Question.slice';
+import { disableQuestionEditing, edit_question_data,  enableQuestionEditing, question_status, setDeleteOptions, single_question_data } from '../app/feature/Question.slice';
 import { changeModalAction, user_data } from '../app/feature/User.slice';
 import { useAppDispatch, useAppSelector } from '../app/store/hooks';
 import { question_data_interface } from '../app/store/state-Interfaces/QuestionInterface';
 import { getQuestionComments } from '../app/thunks/CommentsThunk';
-import { unVoteQuestion, voteQuestion } from '../app/thunks/QuestionThunk';
+import { editQuestionThunk, unVoteQuestion, voteQuestion } from '../app/thunks/QuestionThunk';
 import { BASE_API_INSTANCE } from '../helpers/api/BaseInstance';
 
 
@@ -17,7 +17,7 @@ export const useQuestionHooks = () =>  {
     const questionStatus = useAppSelector(question_status)
     const questionData:any = useAppSelector(single_question_data)
     const userData = useAppSelector(user_data)
-
+    const editQuestionData = useAppSelector(edit_question_data)
     const vote = () => {
         if (userData === null) {
             dispatch(changeModalAction('login'))
@@ -76,7 +76,22 @@ export const useQuestionHooks = () =>  {
         dispatch(setDeleteOptions({id:questionData.id, type:"question"}))
         dispatch(changeModalAction('areYouSureDelete_Thread'))
         
-    }            
+    }        
+    
+    const enableEditingFunc = () => {
+        dispatch(enableQuestionEditing({id:questionData.id , new_content:questionData.content}))
+    }
 
-    return {openQuestionComments , vote , downvote , deleteQuestion}
+    const cancelEditingFunc = () => {
+        dispatch(disableQuestionEditing(null))
+    }
+
+    const saveEditingFunc = () => {
+        const form_data = new FormData()
+        form_data.append("content", editQuestionData!.new_content)
+        dispatch(editQuestionThunk({id:editQuestionData!.id , new_content:editQuestionData!.new_content,  form_data:form_data}))
+    }
+
+
+    return {openQuestionComments , vote , downvote , deleteQuestion, enableEditingFunc, cancelEditingFunc,saveEditingFunc,}
 }

@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { showComments } from '../app/feature/Comments.slice';
-import { disableEditing, editAnswerContent_onChange, edit_answer_data, enableEditing, question_status, setDeleteOptions, single_question_data } from '../app/feature/Question.slice';
+import { disableAnswerEditing, editAnswerContent_onChange, edit_answer_data, enableAnswerEditing, question_status, setDeleteOptions, single_question_data } from '../app/feature/Question.slice';
 import { changeModalAction, user_data } from '../app/feature/User.slice';
 import { useAppDispatch, useAppSelector } from '../app/store/hooks';
 import { question_data_interface } from '../app/store/state-Interfaces/QuestionInterface';
@@ -74,11 +74,11 @@ export const useAnswerHook = ({answer, direction}:{answer:any, direction:string}
     }
 
     const enableEditingFunc = () => {
-        dispatch(enableEditing({id:answer.id , new_content:answer.content,direction:direction}))
+        dispatch(enableAnswerEditing({id:answer.id , new_content:answer.content,direction:direction}))
     }
 
     const cancelEditingFunc = () => {
-        dispatch(disableEditing(null))
+        dispatch(disableAnswerEditing(null))
     }
 
 

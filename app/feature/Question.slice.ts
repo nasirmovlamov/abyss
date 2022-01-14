@@ -1,4 +1,4 @@
-import { editAnswerThunk } from './../thunks/QuestionThunk';
+import { editAnswerThunk, editQuestionThunk } from './../thunks/QuestionThunk';
 import { getMentionsOfProduct } from './../thunks/LinkedProductsTunks';
 import { getLinkedProducts } from '../thunks/LinkedProductsTunks';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
@@ -25,8 +25,37 @@ export const QuestionSlice = createSlice({
         state.answersData.topAnswers.status = action.payload.status
     },
 
+    mentionProductAtQuestionEdit(state, action){
+        if(state.edit_question!.linkedProducts.filter(product => product.id === action.payload.id).length === 0){
+            state.edit_question!.linkedProducts.push(action.payload)
+        }
+    },
+
+    mentionUserAtQuestionEdit(state, action){
+        if(state.edit_question!.mentionedUsers.filter(product => product.id === action.payload.id).length === 0){
+            state.edit_question!.mentionedUsers.push(action.payload)
+        }
+    },
+
+    mentionProductAtAnswerEdit(state, action){
+        if(state.edit_answer!.linkedProducts.filter(product => product.id === action.payload.id).length === 0){
+            state.edit_answer!.linkedProducts.push(action.payload)
+        }
+    },
+
+    mentionUserAtAnswerEdit(state, action){
+        if(state.edit_answer!.mentionedUsers.filter(product => product.id === action.payload.id).length === 0){
+            state.edit_answer!.mentionedUsers.push(action.payload)
+        }
+    },
+
+
     editAnswerContent_onChange(state, action) {
         state.edit_answer!.new_content = action.payload
+    },
+
+    editQuestionContent_onChange(state, action) {
+      state.edit_question!.new_content = action.payload
     },
 
     changeDownAnswersStatus(state, action) {
@@ -53,12 +82,20 @@ export const QuestionSlice = createSlice({
       state.answerSubmitData.content = action.payload
     },
 
-    enableEditing(state, action){
+    enableAnswerEditing(state, action){
       state.edit_answer = action.payload
     },
 
-    disableEditing(state, action){
+    disableAnswerEditing(state, action){
       state.edit_answer = null
+    },
+
+    enableQuestionEditing(state, action){
+      state.edit_question = action.payload
+    },
+
+    disableQuestionEditing(state, action){
+      state.edit_question = null
     },
 
     getOptionsForMentionOfProduct(state, action){
@@ -72,17 +109,13 @@ export const QuestionSlice = createSlice({
       }
     },
 
-    mentionProductAtAnswerEdit(state, action){
-      if(state.edit_answer!.linkedProducts.filter(product => product.id === action.payload.id).length === 0){
-          state.edit_answer!.linkedProducts.push(action.payload)
-      }
-  },
+    
 
-  mentionUserAtQuestionCreate(state, action){
-      if(state.edit_answer!.mentionedUsers.filter(product => product.id === action.payload.id).length === 0){
-          state.edit_answer!.mentionedUsers.push(action.payload)
-      }
-  },
+    mentionUserAtQuestionCreate(state, action){
+        if(state.edit_answer!.mentionedUsers.filter(product => product.id === action.payload.id).length === 0){
+            state.edit_answer!.mentionedUsers.push(action.payload)
+        }
+    },
 
 
 
@@ -461,6 +494,23 @@ export const QuestionSlice = createSlice({
     }) 
 
 
+    //Edit Question THUNK
+    builder.addCase(editQuestionThunk.fulfilled, (state, {payload}) => {
+      state.question_data!.content = payload.data.data.content
+      successToast("top-right" ,payload.data.data.message)
+      state.edit_answer = null;
+    }),
+    builder.addCase(editQuestionThunk.pending, (state, {payload}) => {
+      state.edit_question!.status = 'pending';
+    }),
+    builder.addCase(editQuestionThunk.rejected, (state, {payload}:any) => {
+      state.edit_question!.status = 'failed';
+      state.edit_question!.errors = payload.errors;
+      autoErrorToaster(payload)
+    }) 
+
+
+
 
     
   },
@@ -479,10 +529,18 @@ export const {
   getOptionsForMentionOfProduct,
   setDeleteOptions,
   editAnswerContent_onChange,
-  enableEditing,
-  disableEditing,
+  enableAnswerEditing,
+  disableAnswerEditing,
+
+  mentionProductAtQuestionEdit,
+  mentionUserAtQuestionEdit,
   mentionProductAtAnswerEdit,
-  mentionUserAtQuestionCreate
+  mentionUserAtQuestionCreate,
+
+  editQuestionContent_onChange,
+  enableQuestionEditing,
+  disableQuestionEditing
+
 } = QuestionSlice.actions;
 
 
@@ -502,6 +560,7 @@ export const linked_products_at_anwser_submit = (state: RootState) => state.ques
 export const submit_answer_content = (state: RootState) => state.questionReducer.answerSubmitData.content
 export const submit_answer_data = (state: RootState) => state.questionReducer.answerSubmitData
 export const edit_answer_data = (state: RootState) => state.questionReducer.edit_answer
+export const edit_question_data = (state: RootState) => state.questionReducer.edit_question
 
 
 export const top_page = (state: RootState) => state.questionReducer.answersData.topPage

@@ -63,6 +63,14 @@ export interface QUESTION_INTERFACE {
         errors:any,
         linkedProducts:any[],
         mentionedUsers:any[],
+    } | null,
+    edit_question:{
+        id:number,
+        new_content:string,
+        status:"pending" | "success" | "failed"
+        errors:any,
+        linkedProducts:any[],
+        mentionedUsers:any[],
     } | null
 }
 

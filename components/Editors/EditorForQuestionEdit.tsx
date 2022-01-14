@@ -13,10 +13,9 @@ import {
   mentioned_users, 
   question_value } from "../../app/feature/CreateQuestionFeatures/CreateQuestion.slice";
 import { CreateThreadEDITORWrapper_STY } from "../../styles/components/Editors/CreateThread.style";
-import { editAnswerContent_onChange, edit_answer_data, mentionProductAtAnswerEdit, mentionUserAtQuestionCreate } from "../../app/feature/Question.slice";
+import { editAnswerContent_onChange, editQuestionContent_onChange, edit_answer_data, edit_question_data, mentionProductAtQuestionEdit, mentionUserAtQuestionEdit } from "../../app/feature/Question.slice";
 
-interface Props {
-}
+interface Props {}
 
 const modules = {
   toolbar: [
@@ -82,7 +81,6 @@ const modules = {
   magicUrl: true,
 };
 
-
 const formats = [
   "header",
   "font",
@@ -102,12 +100,11 @@ const formats = [
 ]
 
 
-const EditorForAnswerEdit = ({}: Props): ReactElement => {
+const EditorForQuestionEdit= ({}: Props): ReactElement => {
   const dispatch = useAppDispatch();
-
-  const answerdata = useAppSelector(edit_answer_data)
-  const linkedProducts = answerdata!.linkedProducts
-  const mentionedUsers = answerdata!.mentionedUsers
+  const questiondata = useAppSelector(edit_question_data)
+  const linkedProducts = questiondata!.linkedProducts
+  const mentionedUsers = questiondata!.mentionedUsers
 
 
 
@@ -119,16 +116,16 @@ const EditorForAnswerEdit = ({}: Props): ReactElement => {
       {
         if(editorData[i].insert.mention.denotationChar === '@')
         {
-          dispatch(mentionProductAtAnswerEdit({id:editorData[i].insert.mention.id}))
+          dispatch(mentionProductAtQuestionEdit({id:editorData[i].insert.mention.id}))
         }
         else if (editorData[i].insert.mention.denotationChar === '#')
         {
-          dispatch(mentionUserAtQuestionCreate({id:editorData[i].insert.mention.id}))
+          dispatch(mentionUserAtQuestionEdit({id:editorData[i].insert.mention.id}))
         }else {
         }
       }
     }
-    dispatch(editAnswerContent_onChange(content))
+    dispatch(editQuestionContent_onChange(content))
   }
 
 
@@ -141,7 +138,7 @@ const EditorForAnswerEdit = ({}: Props): ReactElement => {
         modules={modules} 
         formats={formats}
         theme="snow" 
-        value={answerdata!.new_content} 
+        value={questiondata!.new_content} 
         onChange={editorOnChageHandle}
       />
     </CreateThreadEDITORWrapper_STY>
@@ -151,7 +148,7 @@ const EditorForAnswerEdit = ({}: Props): ReactElement => {
 
 
 
-export default EditorForAnswerEdit
+export default EditorForQuestionEdit
 
 
 
