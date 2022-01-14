@@ -35,7 +35,7 @@ function QuestionSkeleton({}: Props): ReactElement {
 
 
                 <QuestionStatistics_STY>
-                    <QuestionStatisticElement_STY>
+                    {/* <QuestionStatisticElement_STY>
                         <SkeletonBox className="skeleton-box" width="35px" height="35px" borderRadius="8px"/>
                         <SkeletonBox className="skeleton-box" width="35px" height="10px" borderRadius="8px"/>
                     </QuestionStatisticElement_STY>
@@ -53,7 +53,7 @@ function QuestionSkeleton({}: Props): ReactElement {
                     <QuestionStatisticElement_STY>
                         <SkeletonBox className="skeleton-box" width="35px" height="35px" borderRadius="8px"/>
                         <SkeletonBox className="skeleton-box" width="35px" height="10px" borderRadius="8px"/>
-                    </QuestionStatisticElement_STY>
+                    </QuestionStatisticElement_STY> */}
                 </QuestionStatistics_STY>
             </QuestionCont_STY>
 

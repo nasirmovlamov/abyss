@@ -415,14 +415,13 @@ export const QuestionSlice = createSlice({
      builder.addCase(editAnswerThunk.fulfilled, (state, {payload}) => {
       const topAnswers = state.answersData.topAnswers
       const downAnswers = state.answersData.downAnswers
-      console.log(payload.data.content)
       if(payload.direction === "bottom")
       {
         state.answersData.downAnswers.answers = state.answersData.downAnswers.answers.map(answer =>  {
           if(answer.id === payload.id)
           {
-            answer.content = payload.data.content
-            answer.updated_at = payload.data.updated_at
+            answer.content = payload.data.data.content
+            answer.updated_at = payload.data.data.updated_at
           }
           return answer
         })
@@ -432,8 +431,8 @@ export const QuestionSlice = createSlice({
         state.answersData.topAnswers.answers = state.answersData.topAnswers.answers.map(answer => {
           if(answer.id === payload.id)
           {
-            answer.content = payload.data.content
-            answer.updated_at = payload.data.updated_at
+            answer.content = payload.data.data.content
+            answer.updated_at = payload.data.data.updated_at
           }
           return answer
         })
@@ -443,13 +442,13 @@ export const QuestionSlice = createSlice({
         state.answersData.submittedAnswer = state.answersData.submittedAnswer.map(answer => {
           if(answer.id === payload.id)
           {
-            answer.content = payload.data.content
-            answer.updated_at = payload.data.updated_at
+            answer.content = payload.data.data.content
+            answer.updated_at = payload.data.data.updated_at
           }
           return answer
         })
       }
-      successToast("top-right" ,payload.data.message)
+      successToast("top-right" ,payload.data.data.message)
       state.edit_answer = null;
     }),
     builder.addCase(editAnswerThunk.pending, (state, {payload}) => {

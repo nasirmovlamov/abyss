@@ -45,6 +45,10 @@ export const CommentsSlice = createSlice({
         state.edit_comment = null
         },
 
+        edit_Comment_onChange(state, action) {
+            state.edit_comment!.new_content = action.payload
+        },
+
 
     },
 
@@ -130,7 +134,7 @@ export const CommentsSlice = createSlice({
         //EDIT Answer Comment THUNK
         builder.addCase(edit_Answer_CommentThunk.fulfilled, (state, {payload}) => {
             state.comments = state.comments.map(comment =>  {
-                if(comment.id === payload.id)
+                if(comment.id === payload.data.id)
                 {
                     comment.content = payload.data.content
                     comment.updated_at = payload.data.updated_at
@@ -153,7 +157,7 @@ export const CommentsSlice = createSlice({
         //EDIT Question Comment THUNK
         builder.addCase(edit_Question_CommentThunk.fulfilled, (state, {payload}) => {
             state.comments = state.comments.map(comment =>  {
-                if(comment.id === payload.id)
+                if(comment.id === payload.data.id)
                 {
                     comment.content = payload.data.content
                     comment.updated_at = payload.data.updated_at
@@ -179,7 +183,13 @@ export const CommentsSlice = createSlice({
 
 
 // action
-export const { showComments , closeComments,enableCommentEditing, disableCommentEditing } = CommentsSlice.actions;
+export const { 
+    showComments , 
+    closeComments,
+    enableCommentEditing, 
+    disableCommentEditing,
+    edit_Comment_onChange
+ } = CommentsSlice.actions;
 
 
 
@@ -192,6 +202,8 @@ export const is_comment_opened = (state: RootState) => state.commentsReducer.isC
 export const is_question = (state: RootState) => state.commentsReducer.isQuestion
 export const is_answer = (state: RootState) => state.commentsReducer.isAnswer
 export const comments_status = (state: RootState) => state.commentsReducer.commentsStatus
+export const edit_comment_data = (state: RootState) => state.commentsReducer.edit_comment
+
 
 
 export default CommentsSlice.reducer;

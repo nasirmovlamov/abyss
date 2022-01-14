@@ -64,7 +64,7 @@ export const addQuestionComment = createAsyncThunk(
 export const edit_Answer_CommentThunk = createAsyncThunk(
     types.EDIT_ANSWER_COMMENT, async (data:any, {rejectWithValue}) => {
       try {
-          const resp = await BASE_API_INSTANCE.post(`/forum/${data.id}/answer/comment/edit?_method=PUT`,   data.formdata)
+          const resp = await BASE_API_INSTANCE.post(`/forum/${data.id}/answer/comment/edit?_method=PUT`,   data.form_data)
           return resp.data
       } catch (error:any) {
           return rejectWithValue(error.response.data)
@@ -75,7 +75,7 @@ export const edit_Answer_CommentThunk = createAsyncThunk(
 export const edit_Question_CommentThunk = createAsyncThunk(
     types.EDIT_QUESTION_COMMENT, async (data:any, {rejectWithValue}) => {
       try {
-          const resp = await BASE_API_INSTANCE.post(`/forum/${data.id}/thread/comment/edit?_method=PUT`,   data.formdata)
+          const resp = await BASE_API_INSTANCE.post(`/forum/${data.id}/thread/comment/edit?_method=PUT`,   data.form_data)
           return resp.data
       } catch (error:any) {
           return rejectWithValue(error.response.data)

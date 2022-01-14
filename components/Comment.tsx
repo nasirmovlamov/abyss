@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faEllipsisV, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useAppSelector } from '../app/store/hooks'
 import { user_data } from '../app/feature/User.slice'
-import { comments_types } from '../app/feature/Comments.slice'
+import { comments_types, edit_comment_data } from '../app/feature/Comments.slice'
 
 interface Props {
     comment:any
@@ -15,9 +15,10 @@ interface Props {
 const Comment = ({comment}: Props) => {
     const userData = useAppSelector(user_data)
     const commentType = useAppSelector(comments_types)
+    const editCommentData = useAppSelector(edit_comment_data)
     const {
         deleteComment , 
-        editComment, 
+        editComment_change_func, 
         enableEditingFunc,  
         saveCommentEditingFunc,
         cancelCommentEditingFunc
@@ -34,7 +35,7 @@ const Comment = ({comment}: Props) => {
                         (!(editCommentData === null) && comment.id === editCommentData.id  ) 
                         ? 
                         <div>
-                            <textarea value={editCommentData.new_content} name="" id="" cols="30" rows="10"></textarea>
+                            <textarea value={editCommentData.new_content} onChange={(e:any) => editComment_change_func(e.target.value)} name="" id="" cols={30} rows={10}></textarea>
                         <div>
                             <button onClick={cancelCommentEditingFunc}>cancel</button>
                             <button onClick={saveCommentEditingFunc} disabled={!(editCommentData.new_content.length > 0)}>save</button>

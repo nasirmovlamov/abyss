@@ -25,7 +25,7 @@ import MyEditor from './MyEditor'
 
 
 const DynamicComponentWithNoSSR = dynamic(
-    () => import('./Editors/EditorForQuestionCreateMentions'),
+    () => import('./Editors/EditorForAnswerEdit'),
     { ssr: false }
 )
 
@@ -93,8 +93,9 @@ function Answer({answer ,direction  }: Props): ReactElement {
                         </div>
                         :
                          <>
+                            {console.log(answer)}
                             { 
-                            answer.linked_products  ? 
+                                answer.linked_products  ? 
                                 parseHtmlWithMention(answer.content , answer.linked_products )
                                 :
                                 HTMLReactParser(answer.content)
