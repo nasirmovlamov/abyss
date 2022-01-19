@@ -1,9 +1,7 @@
-import { blue_1 } from './../styles/global/styled-utils/settings/Colors'
-import { autoErrorToaster } from './../components/Notify/AutoErrorToaster'
-import parse from 'html-react-parser'
-import { autoErrorToasterWithMessage } from '../components/Notify/AutoSuccessToast'
-import ReactDOMServer from 'react-dom/server'
-import StarCountShow from '../components/StarCountShow'
+import parse from 'html-react-parser';
+
+import { autoErrorToasterWithMessage } from '../components/Notify/AutoSuccessToast';
+import { blue_1 } from './../styles/global/styled-utils/settings/Colors';
 
 export const parseHtml = (html: string) => {
   const replaceAllSpanWithItsContentTagWhicClassIsEqualToMention = (html: any) => {

@@ -1,16 +1,25 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import axios from 'axios'
-import React, { ReactElement, useEffect, useState } from 'react'
-import { useInView } from 'react-intersection-observer'
-import { changeForumTabActive } from '../app/feature/PageTabs.slice'
-import { changeDownAnswersStatus, changeTopAnswersStatus, down_answers, down_answers_status, down_page, single_question_data, submitted_answer, top_answers, top_answers_status, top_page, total_page } from '../app/feature/Question.slice'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-import { ANSWER_INTERFACE } from '../app/store/state-Interfaces/QuestionInterface'
-import { getAnswers } from '../app/thunks/QuestionThunk'
-import { AnswersCont_STY } from '../styles/pages/SingleQuestionPage.styled'
-import Answer from './Answer'
-import AnswerSkeleton from './Skeletons/AnswerSkeleton'
-import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+import React, { ReactElement, useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+import { scroller } from 'react-scroll';
+
+import { changeForumTabActive } from '../app/feature/PageTabs.slice';
+import {
+    down_answers,
+    down_answers_status,
+    down_page,
+    single_question_data,
+    submitted_answer,
+    top_answers,
+    top_answers_status,
+    top_page,
+    total_page,
+} from '../app/feature/Question.slice';
+import { useAppDispatch, useAppSelector } from '../app/store/hooks';
+import { getAnswers } from '../app/thunks/QuestionThunk';
+import { AnswersCont_STY } from '../styles/pages/SingleQuestionPage.styled';
+import Answer from './Answer';
+import AnswerSkeleton from './Skeletons/AnswerSkeleton';
 
 
 export interface USER_INTERFACE {

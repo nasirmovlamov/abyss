@@ -1,8 +1,7 @@
-import { faStar } from '@fortawesome/free-regular-svg-icons'
-import { faStar as solidStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons'
-import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { ReactElement, useEffect, useState } from 'react'
+import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
+import { faStar as solidStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { ReactElement, useEffect, useState } from 'react';
 
 interface Props {
     count: number

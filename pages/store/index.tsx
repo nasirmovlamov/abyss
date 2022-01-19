@@ -1,20 +1,19 @@
-import axios from 'axios'
-import React, { ReactElement, useEffect, useState } from 'react'
-import ListingStoreProduct from '../../components/ListingStoreProduct'
-import PageTabs from '../../components/StorePageTabs'
-import { StorePage } from '../../styles/pages/Pages.style'
-import { PageDefaultStyle } from '../../styles/pages/Page.styled'
-import SidePartOfPage from '../../components/SidePartOfPage'
-import MainPartOfPage from '../../components/MainPartOfPage'
-import { useAppDispatch, useAppSelector } from '../../app/store/hooks'
-import { is_chatbox_opened } from '../../app/feature/ChatBox.slice'
-import ChatBox from '../../components/ChatBox'
-import { useInView } from 'react-intersection-observer'
-import { forumSearchInfinity, storeSearchInfinity } from '../../app/thunks/SearchBoxThunks'
-import { search_query, store_search_data } from '../../app/feature/SearchBox.slice'
-import FormQuestionSkeleton from '../../components/Skeletons/ForumQuestionSkeleton'
-import BeatLoader from "react-spinners/BeatLoader"
-import SearchBoxStaticVersion from '../../components/SearchBoxStaticVersion'
+import axios from 'axios';
+import React, { ReactElement, useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+import BeatLoader from 'react-spinners/BeatLoader';
+
+import { is_chatbox_opened } from '../../app/feature/ChatBox.slice';
+import { search_query, store_search_data } from '../../app/feature/SearchBox.slice';
+import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
+import ChatBox from '../../components/ChatBox';
+import ListingStoreProduct from '../../components/ListingStoreProduct';
+import MainPartOfPage from '../../components/MainPartOfPage';
+import SearchBoxStaticVersion from '../../components/SearchBoxStaticVersion';
+import SidePartOfPage from '../../components/SidePartOfPage';
+import PageTabs from '../../components/StorePageTabs';
+import { PageDefaultStyle } from '../../styles/pages/Page.styled';
+import { StorePage } from '../../styles/pages/Pages.style';
 
 interface Props {
 

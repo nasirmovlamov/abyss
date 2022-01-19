@@ -1,41 +1,24 @@
-import React, { ReactElement } from 'react'
-import Image from 'next/image'
-import { AnswerCount, Avatar, BottomSide, Content, FormQuestionCont, Name, PersonCont, QuestionTags, StatisticCont, Tags, TextCont, Title, Text, HelpfulCont, HelpfulCount, AnswerCont, ViewsCont, } from '../styles/components/styled-blocks/FormQuestion.style'
+import { faDownload, faEye } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { ReactElement } from 'react';
+
 import {
     AddCave,
-    AddCaveAndMentionsCont,
-    Iterations,
-    LanguageContForTextAndIcon,
-    LanguageInfo,
-    LanguageText,
-    LinesofCodeContForIconAndText,
-    LinesofCodeText,
-    MentionsCont,
-    MentionsCount,
-    MentionsText,
     ProductContent,
     ProductContentCont,
-    ProductDescription,
-    ProductDescriptionContent,
-    ProductDescriptionTitle,
     ProductDetailCont,
     ProductImageAndContent,
-    ProductImageOverlay,
-    ProductLanguageAndImage,
-    ProductPerson,
-    ProductPriceCont,
-    ProductSideDetailsCont,
     ProductSoldCont,
     ProductStarCont,
     ProductTag,
     ProductTags,
-    ProductTitle, ProductViewCont, Side_MentionsCont, Side_ProductSideDetailsCont, StoreListingProductStyle, StoreSideProductStyle
-} from '../styles/components/styled-blocks/ListingStoreProduct.styled'
-import NavLink from './NavLink'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDownload, faEye, faLaptopCode } from '@fortawesome/free-solid-svg-icons'
-import { faPython } from '@fortawesome/free-brands-svg-icons'
-import StarCountShow from './StarCountShow'
+    ProductTitle,
+    ProductViewCont,
+    Side_ProductSideDetailsCont,
+    StoreSideProductStyle,
+} from '../styles/components/styled-blocks/ListingStoreProduct.styled';
+import NavLink from './NavLink';
+import StarCountShow from './StarCountShow';
 
 interface Props {
     data: {

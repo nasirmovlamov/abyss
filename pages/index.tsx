@@ -1,10 +1,10 @@
-import React, { ReactElement, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { changeModalAction } from '../app/feature/User.slice'
-import SearchBoxForHome from '../components/SearchBoxForHome'
-import { accessToken } from '../helpers/token/TokenHandle'
-import { getCookie } from '../logic/CookieFunctions'
-import * as Home_STY from '../styles/components/styled-blocks/Index_STYLE/Home.style'
+import React, { ReactElement, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { changeModalAction } from '../app/feature/User.slice';
+import SearchBoxForHome from '../components/SearchBoxForHome';
+import * as Home_STY from '../styles/components/styled-blocks/Index_STYLE/Home.style';
+
 interface Props {
 
 }

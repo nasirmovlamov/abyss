@@ -1,13 +1,11 @@
-import React, { useEffect, useRef, useState } from "react"
-import { useQuill } from "react-quilljs"
-import "quill/dist/quill.snow.css"
-import hljs from 'highlight.js'
-// import 'highlight.js/styles/a11y-dark.css';
-import javascript from 'highlight.js/lib/languages/javascript'
-import { Head } from "next/document"
-import dynamic from 'next/dynamic'
-import "quill-mention/dist/quill.mention.css"
+import 'quill-mention/dist/quill.mention.css';
+import 'quill/dist/quill.snow.css';
 
+import hljs from 'highlight.js';
+import React, { useEffect, useRef, useState } from 'react';
+import { useQuill } from 'react-quilljs';
+
+// import 'highlight.js/styles/a11y-dark.css';
 interface Props {
   content: any
   onChange: any

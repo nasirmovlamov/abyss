@@ -1,20 +1,19 @@
-import React, { ReactElement, useEffect, useState } from 'react'
-import { user_modals } from '../../app/feature/User.slice'
-import { useAppSelector } from '../../app/store/hooks'
-import ForgetPasswordModal from './ForgetPasswordModal'
-import LoginModal from './LoginModal'
-import RegisterModal from './RegisterModal'
-import IsEmailSendModal from './IsEmailSendModal'
-import CreateQuestionModal from './CreateQuestion/CreateQuestion'
-import ModalCont from './ModalCont'
-import CreateProductModal from './CreateProduct/CreateProductModal'
-import CreateDiscussionModal from './CreateQuestion/CreateDiscussion'
-import CreateIterationModal from './CreateIterationModal'
-import MentionsListModal from './MentionsListModal'
-import CreateThreadModal from './CreateQuestion/CreateThreadModal'
-import AreYouSureDeleteQuestionModal from './AreYouSureDeleteQuestionModal'
-import AreYouSureDeleteAnswerModal from './AreYouSureDeleteAnswerModal'
-import AreYouSureDeleteCommentModal from './AreYouSureDeleteCommentModal'
+import React, { ReactElement, useEffect, useState } from 'react';
+
+import { user_modals } from '../../app/feature/User.slice';
+import { useAppSelector } from '../../app/store/hooks';
+import AreYouSureDeleteAnswerModal from './AreYouSureDeleteAnswerModal';
+import AreYouSureDeleteCommentModal from './AreYouSureDeleteCommentModal';
+import AreYouSureDeleteQuestionModal from './AreYouSureDeleteQuestionModal';
+import CreateIterationModal from './CreateIterationModal';
+import CreateProductModal from './CreateProduct/CreateProductModal';
+import CreateThreadModal from './CreateQuestion/CreateThreadModal';
+import ForgetPasswordModal from './ForgetPasswordModal';
+import IsEmailSendModal from './IsEmailSendModal';
+import LoginModal from './LoginModal';
+import MentionsListModal from './MentionsListModal';
+import ModalCont from './ModalCont';
+import RegisterModal from './RegisterModal';
 
 interface Props {
 }

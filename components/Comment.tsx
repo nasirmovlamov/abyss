@@ -1,12 +1,19 @@
-import React from 'react'
-import { CommentAvatar, CommentContent, CommentNameAndContentCont, CommentStyle, CommentUserName } from '../styles/components/styled-blocks/CommentsTab.style'
-import { useCommentHook } from '../hooks/useCommentHook'
-import * as SingleQuestion_STY from '../styles/pages/SingleQuestionPage.styled'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit, faEllipsisV, faTrash } from '@fortawesome/free-solid-svg-icons'
-import { useAppSelector } from '../app/store/hooks'
-import { user_data } from '../app/feature/User.slice'
-import { comments_types, edit_comment_data } from '../app/feature/Comments.slice'
+import { faEdit, faEllipsisV, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
+
+import { comments_types, edit_comment_data } from '../app/feature/Comments.slice';
+import { user_data } from '../app/feature/User.slice';
+import { useAppSelector } from '../app/store/hooks';
+import { useCommentHook } from '../hooks/useCommentHook';
+import {
+    CommentAvatar,
+    CommentContent,
+    CommentNameAndContentCont,
+    CommentStyle,
+    CommentUserName,
+} from '../styles/components/styled-blocks/CommentsTab.style';
+import * as SingleQuestion_STY from '../styles/pages/SingleQuestionPage.styled';
 
 interface Props {
     comment: any

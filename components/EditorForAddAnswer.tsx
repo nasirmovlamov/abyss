@@ -1,19 +1,23 @@
-import React, {  ReactElement, useEffect, useLayoutEffect, useState } from "react";
-import "quill-mention";
-import  'quill-magic-url'
-import "quill-mention/dist/quill.mention.css";
-import axios from "axios";
-import { BASE_API_INSTANCE } from "../helpers/api/BaseInstance";
-import ReactQuill, {Quill} from 'react-quill';
-import dynamic from 'next/dynamic'
-import { useAppDispatch, useAppSelector } from "../app/store/hooks";
-import {  question_value } from "../app/feature/CreateQuestionFeatures/CreateQuestion.slice";
-import { AnswerContentOnChange, linked_products_at_anwser_submit, linkProductAtAnswer, mentioned_users_at_anwser_submit, mentionUserAtAnswer, submit_answer_content } from "../app/feature/Question.slice";
-import javascript from 'highlight.js/lib/languages/javascript';
+import 'highlight.js/styles/a11y-dark.css';
+import 'quill-magic-url';
+import 'quill-mention';
+import 'quill-mention/dist/quill.mention.css';
+
 import hljs from 'highlight.js';
-import 'highlight.js/styles/a11y-dark.css'
-import { EditorWraper_STY } from "../styles/components/styled-blocks/CreateProduct_Style/Steps/CreateProduct_Step2.style";
-import { CreateAddAnswerEDITORWrapper_STY, CreateThreadEDITORWrapper_STY } from "../styles/components/Editors/CreateThread.style";
+import React, { ReactElement, useEffect, useLayoutEffect, useState } from 'react';
+import ReactQuill from 'react-quill';
+
+import {
+  AnswerContentOnChange,
+  linked_products_at_anwser_submit,
+  linkProductAtAnswer,
+  mentioned_users_at_anwser_submit,
+  mentionUserAtAnswer,
+  submit_answer_content,
+} from '../app/feature/Question.slice';
+import { useAppDispatch, useAppSelector } from '../app/store/hooks';
+import { BASE_API_INSTANCE } from '../helpers/api/BaseInstance';
+import { CreateAddAnswerEDITORWrapper_STY } from '../styles/components/Editors/CreateThread.style';
 
 
 

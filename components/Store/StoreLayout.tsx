@@ -1,14 +1,15 @@
-import React, { FC, useEffect, useLayoutEffect } from 'react'
-import { changeProductTabActiveWithoutScroll } from '../../app/feature/PageTabs.slice'
-import { goProductPage, single_product_data } from '../../app/feature/SingleProduct.slice'
-import { is_logged, user_data } from '../../app/feature/User.slice'
-import { useAppDispatch, useAppSelector } from '../../app/store/hooks'
-import { getSingleProduct } from '../../app/thunks/SingleProductThunk'
-import { PageDefaultStyle } from '../../styles/pages/Page.styled'
-import MainPartOfPage from '../MainPartOfPage'
-import SidePartOfPage from '../SidePartOfPage'
-import { useRouter } from 'next/router'
-import { inChangePositionOfFilters, outChangePositionOfFilters } from '../../app/feature/PageFilters.slice'
+import { useRouter } from 'next/router';
+import React, { FC, useEffect, useLayoutEffect } from 'react';
+
+import { inChangePositionOfFilters, outChangePositionOfFilters } from '../../app/feature/PageFilters.slice';
+import { changeProductTabActiveWithoutScroll } from '../../app/feature/PageTabs.slice';
+import { goProductPage, single_product_data } from '../../app/feature/SingleProduct.slice';
+import { is_logged } from '../../app/feature/User.slice';
+import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
+import { getSingleProduct } from '../../app/thunks/SingleProductThunk';
+import { PageDefaultStyle } from '../../styles/pages/Page.styled';
+import MainPartOfPage from '../MainPartOfPage';
+import SidePartOfPage from '../SidePartOfPage';
 
 interface Props {
 

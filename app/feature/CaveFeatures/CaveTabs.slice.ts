@@ -1,6 +1,7 @@
-import { RootState } from '../../store/store'
-import { createSlice } from '@reduxjs/toolkit'
-import { CaveState } from '../../store/states/Cave_States/Cave.state'
+import { createSlice } from '@reduxjs/toolkit';
+
+import { CaveState } from '../../store/states/Cave_States/Cave.state';
+import { RootState } from '../../store/store';
 
 export const CaveTabsSlice = createSlice({
   name: 'cave-tabs-slice',

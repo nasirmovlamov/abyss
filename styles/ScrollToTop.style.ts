@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const ScrollToTop_STY = styled.button<{ scrollY: number }>`
   width: 40px;

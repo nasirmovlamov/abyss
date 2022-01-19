@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const CreateProduct_Tabs = styled.div`
   width: 100%;

@@ -1,15 +1,18 @@
-import React, { ReactElement } from 'react'
-import Image from 'next/image'
-import { AnswerCount, Avatar, BottomSide, Content, FormQuestionCont, Name, PersonCont, QuestionTags, StatisticCont, Tags, TextCont, Title, Text, HelpfulCont, HelpfulCount, AnswerCont, ViewsCont, } from '../styles/components/styled-blocks/FormQuestion.style'
+import { faPython } from '@fortawesome/free-brands-svg-icons';
+import { faDownload, faEye, faLaptopCode } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { ReactElement } from 'react';
+
+import { getOptionsForMentionOfProduct } from '../app/feature/Question.slice';
+import { changeModalAction } from '../app/feature/User.slice';
+import { useAppDispatch } from '../app/store/hooks';
 import {
     AddCave,
     AddCaveAndMentionsCont,
     Iterations,
     LanguageContForTextAndIcon,
     LanguageInfo,
-    LanguageText,
     LinesofCodeContForIconAndText,
-    LinesofCodeText,
     MentionsCont,
     MentionsCount,
     MentionsText,
@@ -22,23 +25,16 @@ import {
     ProductImageAndContent,
     ProductImageOverlay,
     ProductLanguageAndImage,
-    ProductPerson,
-    ProductPriceCont,
     ProductSideDetailsCont,
     ProductSoldCont,
     ProductStarCont,
-    ProductTag,
     ProductTags,
-    ProductTitle, ProductViewCont, StoreListingProductStyle
-} from '../styles/components/styled-blocks/ListingStoreProduct.styled'
-import NavLink from './NavLink'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDownload, faEye, faLaptopCode } from '@fortawesome/free-solid-svg-icons'
-import { faPython } from '@fortawesome/free-brands-svg-icons'
-import StarCountShow from './StarCountShow'
-import { useAppDispatch } from '../app/store/hooks'
-import { changeModalAction } from '../app/feature/User.slice'
-import { getOptionsForMentionOfProduct } from '../app/feature/Question.slice'
+    ProductTitle,
+    ProductViewCont,
+    StoreListingProductStyle,
+} from '../styles/components/styled-blocks/ListingStoreProduct.styled';
+import NavLink from './NavLink';
+import StarCountShow from './StarCountShow';
 
 interface Props {
     data: any

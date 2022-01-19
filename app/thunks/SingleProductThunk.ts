@@ -1,6 +1,7 @@
-import * as types from '../constants/App.contants'
-import { AsyncThunk, createAction, createAsyncThunk, isRejectedWithValue } from '@reduxjs/toolkit'
-import { BASE_API_INSTANCE } from '../../helpers/api/BaseInstance'
+import { createAsyncThunk } from '@reduxjs/toolkit';
+
+import { BASE_API_INSTANCE } from '../../helpers/api/BaseInstance';
+import * as types from '../constants/App.contants';
 
 export const getSingleProduct = createAsyncThunk(
   types.GET_SINGLE_PRODUCT,

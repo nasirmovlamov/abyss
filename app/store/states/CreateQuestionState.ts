@@ -1,4 +1,4 @@
-import { CreateQuestionInterface } from './../state-Interfaces/CreateQuestionInterface'
+import { CreateQuestionInterface } from './../state-Interfaces/CreateQuestionInterface';
 
 export const CreateQuestionState: CreateQuestionInterface = {
   questionTitle: '',

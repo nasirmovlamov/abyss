@@ -1,10 +1,16 @@
-import React, { useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../../app/store/hooks'
-import { CreateQuestionActions, create_question_data } from '../../../../app/feature/CreateQuestionFeatures/CreateQuestion.slice'
-import { CreateThread_Step3_STY } from '../../../../styles/components/styled-blocks/CreateThread_Style/Steps/CreateThread_Step3.style'
-import { CreateThreadActions, create_thread_data } from '../../../../app/feature/CreateThread/CreateThread.slice'
-import { faCheckCircle, faExclamationCircle } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckCircle, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useEffect } from 'react';
+
+import {
+    create_question_data,
+    CreateQuestionActions,
+} from '../../../../app/feature/CreateQuestionFeatures/CreateQuestion.slice';
+import { create_thread_data, CreateThreadActions } from '../../../../app/feature/CreateThread/CreateThread.slice';
+import { useAppDispatch, useAppSelector } from '../../../../app/store/hooks';
+import {
+    CreateThread_Step3_STY,
+} from '../../../../styles/components/styled-blocks/CreateThread_Style/Steps/CreateThread_Step3.style';
 
 interface Props {
 

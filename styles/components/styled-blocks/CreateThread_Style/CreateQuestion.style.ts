@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const CreateQuestion_Title1 = styled.label``
 

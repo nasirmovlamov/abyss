@@ -1,17 +1,7 @@
-import { BASE_API_URL } from '../../helpers/urls/BASE_URL'
-import * as types from '../constants/App.contants'
-import { AsyncThunk, createAction, createAsyncThunk, isRejectedWithValue } from '@reduxjs/toolkit'
-import { AxiosError } from 'axios'
-import {
-  APP_INTERFACE,
-  ForgetPasswordError,
-  LoginAttributes,
-  LoginAuthError,
-  MyData,
-  RegisterAttributes,
-  RegisterAuthError,
-} from '../store/state-Interfaces/AppInterface'
-import { BASE_API_INSTANCE } from '../../helpers/api/BaseInstance'
+import { createAsyncThunk } from '@reduxjs/toolkit';
+
+import { BASE_API_INSTANCE } from '../../helpers/api/BaseInstance';
+import * as types from '../constants/App.contants';
 
 export const getQuestionComments = createAsyncThunk(
   types.GET_QUESTION_COMMENTS,

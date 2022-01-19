@@ -1,17 +1,14 @@
-import React, { ReactElement, useEffect, useRef, useState } from 'react'
-import axios from 'axios'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-import { AddAnswer_STY, AddAnswerCont_STY, AddAnswerSubmit_STY } from '../styles/pages/SingleQuestionPage.styled'
-import { changeModalAction, is_Logged, user_data } from '../app/feature/User.slice'
-import { errorToastFunc } from './Notify/ErrorToasts'
-import { autoErrorToasterWithMessage, autoSuccessToaster } from './Notify/AutoSuccessToast'
-import { autoErrorToaster } from './Notify/AutoErrorToaster'
-import { addAnswer } from '../app/thunks/QuestionThunk'
+import dynamic from 'next/dynamic';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 
-import MyEditor from './MyEditor'
-import dynamic from 'next/dynamic'
-import { LabelCont } from '../styles/components/styled-blocks/CreateQuestionModal.style'
-import { single_question_data, submit_answer_content, submit_answer_data } from '../app/feature/Question.slice'
+import { submit_answer_content, submit_answer_data } from '../app/feature/Question.slice';
+import { changeModalAction, is_Logged, user_data } from '../app/feature/User.slice';
+import { useAppDispatch, useAppSelector } from '../app/store/hooks';
+import { addAnswer } from '../app/thunks/QuestionThunk';
+import { LabelCont } from '../styles/components/styled-blocks/CreateQuestionModal.style';
+import { AddAnswerCont_STY, AddAnswerSubmit_STY } from '../styles/pages/SingleQuestionPage.styled';
+import MyEditor from './MyEditor';
+import { autoErrorToasterWithMessage } from './Notify/AutoSuccessToast';
 
 const DynamicComponentWithNoSSR = dynamic(
     () => import('./EditorForAddAnswer'),

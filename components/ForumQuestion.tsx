@@ -1,18 +1,41 @@
-import React, { ReactElement, useState } from 'react'
-import Image from 'next/image'
-import { AnswerCount, Avatar, BottomSide, Content, FormQuestionCont, Name, PersonCont, QuestionTags, StatisticCont, Tags, TextCont, Title, Text, HelpfulCont, HelpfulCount, AnswerCont, ViewsCont, CountOfProducts, ProductCount, ProductsIcons, ProductIcon, ThumbIcon, DefaultLine, PercentageLine, DateCount, QuestionStatisticPercentage } from '../styles/components/styled-blocks/FormQuestion.style'
-import Link from 'next/link'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faThumbsUp } from '@fortawesome/free-regular-svg-icons'
-import NavLink from './NavLink'
-import { QuestionStatisticButton_STY, QuestionStatistics_STY, VotePercentage_STY } from '../styles/pages/SingleQuestionPage.styled'
-import thumbs_up from "/public/thumbs-up.svg"
-import { parseHtml, parseHtmlWithMention, parseHtmlWithMentionremoveImgAndCodeBlock } from '../logic/htmlParser'
-import { useAppDispatch } from '../app/store/hooks'
-import { set_side_product_data } from '../app/feature/SideProducts.slice'
-import { getSideProducts } from '../app/thunks/SideProducts.thunk'
-import mainlogo from '../public/main-logo.svg'
-import { useRouter } from 'next/router'
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import React, { ReactElement, useState } from 'react';
+
+import { set_side_product_data } from '../app/feature/SideProducts.slice';
+import { useAppDispatch } from '../app/store/hooks';
+import { getSideProducts } from '../app/thunks/SideProducts.thunk';
+import mainlogo from '../public/main-logo.svg';
+import {
+    AnswerCont,
+    AnswerCount,
+    Avatar,
+    BottomSide,
+    Content,
+    CountOfProducts,
+    DateCount,
+    DefaultLine,
+    FormQuestionCont,
+    HelpfulCont,
+    HelpfulCount,
+    Name,
+    PercentageLine,
+    PersonCont,
+    ProductCount,
+    ProductIcon,
+    ProductsIcons,
+    QuestionStatisticPercentage,
+    QuestionTags,
+    StatisticCont,
+    Tags,
+    Text,
+    TextCont,
+    ThumbIcon,
+    Title,
+} from '../styles/components/styled-blocks/FormQuestion.style';
+import { QuestionStatisticButton_STY, QuestionStatistics_STY } from '../styles/pages/SingleQuestionPage.styled';
+import thumbs_up from '/public/thumbs-up.svg';
+
 interface Props {
     data: any
 }

@@ -1,8 +1,9 @@
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
-import { useScrollYPosition } from 'react-use-scroll-position'
-import { ScrollToTop_STY } from '../styles/ScrollToTop.style'
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
+import { useScrollYPosition } from 'react-use-scroll-position';
+
+import { ScrollToTop_STY } from '../styles/ScrollToTop.style';
 
 interface Props {
 

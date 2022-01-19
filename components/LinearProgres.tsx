@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { forum_search_data, store_search_data } from '../app/feature/SearchBox.slice'
-import { useAppSelector } from '../app/store/hooks'
-import { LinearProgress_STY } from '../styles/components/styled-blocks/LinearProgress.style'
+import React, { useEffect, useState } from 'react';
+
+import { forum_search_data } from '../app/feature/SearchBox.slice';
+import { useAppSelector } from '../app/store/hooks';
+import { LinearProgress_STY } from '../styles/components/styled-blocks/LinearProgress.style';
 
 interface Props {
 

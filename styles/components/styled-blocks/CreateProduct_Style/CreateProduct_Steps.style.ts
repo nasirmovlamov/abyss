@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const CreateProduct_StepCont = styled.div`
   display: flex;

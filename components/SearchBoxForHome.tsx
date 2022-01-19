@@ -1,20 +1,24 @@
-import { faPlus, faSearch } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useRouter } from 'next/router'
-import React, { ReactElement, useEffect, useRef, useState } from 'react'
-import { useScrollDirection } from 'react-use-scroll-direction'
-import { changeModalAction } from '../app/feature/User.slice'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex'
-import { MainPartOfPageStyle, SidePartOfPageStyle } from '../styles/pages/Page.styled'
-import { useScrollYPosition } from 'react-use-scroll-position'
-import { forumSearch, forumSearchInfinity, storeSearch, storeSearchInfinity } from '../app/thunks/SearchBoxThunks'
-import { forum_search_data, getCachedSearchBoxData, searchValueOnChange, resetSendedQuery, search_query, search_data, changeSearchVisibilty } from '../app/feature/SearchBox.slice'
-import { getFiltersFromCache } from '../app/feature/PageFilters.slice'
-import { createProductThunk } from '../app/thunks/CreateProductThunks'
-import { getAccessToken } from '../helpers/token/TokenHandle'
-import { getCookie } from '../logic/CookieFunctions'
-import * as SearchForHome_STY from '../styles/components/styled-blocks/SearchBoxForHome.style'
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useRouter } from 'next/router';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import { useScrollDirection } from 'react-use-scroll-direction';
+import { useScrollYPosition } from 'react-use-scroll-position';
+
+import { getFiltersFromCache } from '../app/feature/PageFilters.slice';
+import {
+    changeSearchVisibilty,
+    forum_search_data,
+    getCachedSearchBoxData,
+    resetSendedQuery,
+    search_data,
+    search_query,
+    searchValueOnChange,
+} from '../app/feature/SearchBox.slice';
+import { changeModalAction } from '../app/feature/User.slice';
+import { useAppDispatch, useAppSelector } from '../app/store/hooks';
+import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex';
+import * as SearchForHome_STY from '../styles/components/styled-blocks/SearchBoxForHome.style';
 
 
 interface Props {

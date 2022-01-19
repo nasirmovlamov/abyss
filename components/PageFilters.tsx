@@ -1,11 +1,51 @@
-import React, { ReactElement, useRef, useState } from 'react'
-import { faThumbtack } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-import { FilterCont, FilterContStyle, FilterDel, FilterLanguageCont, FilterLanguageContent, FilterLanguages, FilterLanguageTitle, FilterSearchAddElement, FilterSearchCont, FilterSearchDropdown, FilterSearchDropdownElement, FilterSearchInCont, FilterSearchInput, FilterTag, FilterTagCont, FilterTagContent, FilterTagElementCont, FilterTags, FilterTagsCont, FilterTagTitle, PinButton, SubjectCont, SubjectContent, Subjects, SubjectTitle } from '../styles/components/styled-blocks/PageFilters.style'
-import { addFilter, changePositionOfFilters, changeToStayInFocus, filterDropisHovered, filterDropisUnHovered, filterSearchValueOnChange, filterTagsOnDelete, filterTagsSearchisBlur, filterTagsSearchisFocused, filter_search_tags, filter_search_value, filter_tags, inChangePositionOfFilters, is_focused, outChangePositionOfFilters, stay_in_focus } from '../app/feature/PageFilters.slice'
-import { search_filters, ifFilterWasDeleted, selectFilterToSearchOption, search_data, search_exclude_filters, selectFilterToExcludeOption } from '../app/feature/SearchBox.slice'
-import { searchFiltersThunk } from '../app/thunks/PageFiltersThunk'
+import { faThumbtack } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { ReactElement, useRef, useState } from 'react';
+
+import {
+    changeToStayInFocus,
+    filter_search_tags,
+    filter_search_value,
+    filter_tags,
+    filterDropisHovered,
+    filterDropisUnHovered,
+    filterSearchValueOnChange,
+    filterTagsOnDelete,
+    filterTagsSearchisBlur,
+    filterTagsSearchisFocused,
+    inChangePositionOfFilters,
+    is_focused,
+    outChangePositionOfFilters,
+    stay_in_focus,
+} from '../app/feature/PageFilters.slice';
+import {
+    ifFilterWasDeleted,
+    search_data,
+    search_exclude_filters,
+    search_filters,
+    selectFilterToExcludeOption,
+    selectFilterToSearchOption,
+} from '../app/feature/SearchBox.slice';
+import { useAppDispatch, useAppSelector } from '../app/store/hooks';
+import { searchFiltersThunk } from '../app/thunks/PageFiltersThunk';
+import {
+    FilterCont,
+    FilterContStyle,
+    FilterDel,
+    FilterLanguageCont,
+    FilterLanguageContent,
+    FilterLanguageTitle,
+    FilterSearchAddElement,
+    FilterSearchCont,
+    FilterSearchDropdown,
+    FilterSearchDropdownElement,
+    FilterSearchInCont,
+    FilterSearchInput,
+    FilterTag,
+    FilterTagElementCont,
+    FilterTagsCont,
+    PinButton,
+} from '../styles/components/styled-blocks/PageFilters.style';
 
 interface Props {
 

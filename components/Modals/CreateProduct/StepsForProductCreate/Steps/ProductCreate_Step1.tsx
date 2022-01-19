@@ -1,10 +1,22 @@
-import React, { ReactElement } from 'react'
-import { is_product_created, ProductCreateStep1OnChanges, product_create_step1_data, product_create_steps, selectCreateProductLanguage } from '../../../../../app/feature/CreateProductFeatures/CreateProduct.slice'
-import { useAppDispatch, useAppSelector } from '../../../../../app/store/hooks'
-import CodeMirror from '@uiw/react-codemirror'
-import { javascript } from '@codemirror/lang-javascript'
-import { CodeMirror_STY, CreateProduct_Step1_Error, ProductCreate_Step1_Style, SelectLangType_STY } from '../../../../../styles/components/styled-blocks/CreateProduct_Style/Steps/ProductCreate_Step1.style'
-import HashLoader from 'react-spinners/HashLoader'
+import { javascript } from '@codemirror/lang-javascript';
+import CodeMirror from '@uiw/react-codemirror';
+import React, { ReactElement } from 'react';
+import HashLoader from 'react-spinners/HashLoader';
+
+import {
+    is_product_created,
+    product_create_step1_data,
+    product_create_steps,
+    ProductCreateStep1OnChanges,
+    selectCreateProductLanguage,
+} from '../../../../../app/feature/CreateProductFeatures/CreateProduct.slice';
+import { useAppDispatch, useAppSelector } from '../../../../../app/store/hooks';
+import {
+    CodeMirror_STY,
+    CreateProduct_Step1_Error,
+    ProductCreate_Step1_Style,
+    SelectLangType_STY,
+} from '../../../../../styles/components/styled-blocks/CreateProduct_Style/Steps/ProductCreate_Step1.style';
 
 
 interface Props {

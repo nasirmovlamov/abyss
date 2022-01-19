@@ -1,28 +1,12 @@
-import { AUTH_INTERFACE } from './../store/state-Interfaces/AuthInterface'
-import {
-  verifyEmail,
-  resendEmail,
-  checkForgetPasswordTokenThunk,
-  changePasswordThunk,
-} from './../thunks/AuthThunk'
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import {
-  forgetPasswordThunk,
-  userCheck,
-  userLogin,
-  userLogout,
-  userRegister,
-} from '../thunks/AuthThunk'
-import { RootState } from '../store/store'
-import { getKeyValue } from '../../logic/getKeyValue'
-import toast from 'react-hot-toast'
-import { ToastPosition } from 'react-hot-toast/dist/core/types'
-import { AUTH_STATE, user_errors_data } from '../store/states/AuthState'
-import { autoSuccessToaster } from '../../components/Notify/AutoSuccessToast'
-import { autoErrorToaster } from '../../components/Notify/AutoErrorToaster'
-import { removeAccessToken, setAccessToken } from '../../helpers/token/TokenHandle'
-import { deleteCookie } from '../../logic/CookieFunctions'
-import { on_change_password_interface } from '../store/state-Interfaces/AuthInterface'
+import { createSlice } from '@reduxjs/toolkit';
+
+import { autoSuccessToaster } from '../../components/Notify/AutoSuccessToast';
+import { removeAccessToken, setAccessToken } from '../../helpers/token/TokenHandle';
+import { getKeyValue } from '../../logic/getKeyValue';
+import { AUTH_STATE, user_errors_data } from '../store/states/AuthState';
+import { RootState } from '../store/store';
+import { forgetPasswordThunk, userCheck, userLogin, userLogout, userRegister } from '../thunks/AuthThunk';
+import { changePasswordThunk, checkForgetPasswordTokenThunk, resendEmail, verifyEmail } from './../thunks/AuthThunk';
 
 export const UserSlice = createSlice({
   name: 'user-slice',

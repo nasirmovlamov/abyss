@@ -1,6 +1,6 @@
-import React from 'react'
-import CaveLayout from '../../../components/Cave/CaveLayout'
-import CaveWindowRouter from '../../../components/Cave/Cave_Windows/CaveWindowRouter'
+import React from 'react';
+
+import CaveLayout from '../../../components/Cave/CaveLayout';
 
 interface Props {
 

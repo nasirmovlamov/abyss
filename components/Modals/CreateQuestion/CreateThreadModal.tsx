@@ -1,31 +1,30 @@
-import { faCommentAlt, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useEffect, useState } from 'react'
-import { CreateQuestionActions, create_question_data } from '../../../app/feature/CreateQuestionFeatures/CreateQuestion.slice'
-import { CreateThreadActions, create_thread_data } from '../../../app/feature/CreateThread/CreateThread.slice'
-import { changeModalAction } from '../../../app/feature/User.slice'
-import { useAppDispatch, useAppSelector } from '../../../app/store/hooks'
-import { createQuestionThunk } from '../../../app/thunks/CreateThread/CreateQuestion.thunk'
-import { CreateProduct_Tabs } from '../../../styles/components/styled-blocks/CreateProduct_Style/CreateProduct.style'
-import { CreateThreadFORM_STY } from '../../../styles/components/styled-blocks/CreateThread_Style/CreateThread.style'
+import { faCommentAlt, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useEffect, useState } from 'react';
+
+import { create_question_data } from '../../../app/feature/CreateQuestionFeatures/CreateQuestion.slice';
+import { create_thread_data, CreateThreadActions } from '../../../app/feature/CreateThread/CreateThread.slice';
+import { changeModalAction } from '../../../app/feature/User.slice';
+import { useAppDispatch, useAppSelector } from '../../../app/store/hooks';
+import { createQuestionThunk } from '../../../app/thunks/CreateThread/CreateQuestion.thunk';
+import { CreateThreadFORM_STY } from '../../../styles/components/styled-blocks/CreateThread_Style/CreateThread.style';
 import {
-    CreateThread_Tab,
-    CreateThread_Tabs,
-    CreateThread_Tab_Seperator,
-    ModalFORM_STY,
-    CreateThread_CloseButton_STY,
-    CreateThread_Buttons_Cont,
     CreateThread_Button_NEXT,
     CreateThread_Button_PREVOIUS,
+    CreateThread_Buttons_Cont,
+    CreateThread_CloseButton_STY,
     CreateThread_RightButtons_flexer,
-    CreateThread_StepCont
-} from '../../../styles/components/styled-blocks/Modal_Style/ModalCont.style'
-import { autoErrorToasterWithMessage } from '../../Notify/AutoSuccessToast'
-import CreateDiscussion from './CreateDiscussion'
-import CreateQuestion from './CreateQuestion'
-import CreateRequest from './CreateRequest'
-import CreateThread_Step1 from './Steps/CreateThread_Step1'
-import CreateThread_Step3 from './Steps/CreateThread_Step3'
+    CreateThread_StepCont,
+    CreateThread_Tab,
+    CreateThread_Tab_Seperator,
+    CreateThread_Tabs,
+} from '../../../styles/components/styled-blocks/Modal_Style/ModalCont.style';
+import { autoErrorToasterWithMessage } from '../../Notify/AutoSuccessToast';
+import CreateDiscussion from './CreateDiscussion';
+import CreateQuestion from './CreateQuestion';
+import CreateRequest from './CreateRequest';
+import CreateThread_Step1 from './Steps/CreateThread_Step1';
+import CreateThread_Step3 from './Steps/CreateThread_Step3';
 
 interface Props {
 

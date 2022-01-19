@@ -1,16 +1,10 @@
-import {
-  storeSearch,
-  storeSearchInfinity,
-  unHoverSearchAsync,
-  unHoverHeaderAsync,
-  hoverWindowAsync,
-} from './../thunks/SearchBoxThunks'
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { RootState } from '../store/store'
-import { SEARCHBOX_STATE } from '../store/states/SearchBoxState'
-import { forumSearch, forumSearchInfinity } from '../thunks/SearchBoxThunks'
-import { autoErrorToaster } from '../../components/Notify/AutoErrorToaster'
-import { getCookie, setCookie } from '../../logic/CookieFunctions'
+import { createSlice } from '@reduxjs/toolkit';
+
+import { getCookie, setCookie } from '../../logic/CookieFunctions';
+import { SEARCHBOX_STATE } from '../store/states/SearchBoxState';
+import { RootState } from '../store/store';
+import { forumSearchInfinity } from '../thunks/SearchBoxThunks';
+import { hoverWindowAsync, storeSearchInfinity, unHoverHeaderAsync, unHoverSearchAsync } from './../thunks/SearchBoxThunks';
 
 export const SearchBoxSlice = createSlice({
   name: 'app-slice',

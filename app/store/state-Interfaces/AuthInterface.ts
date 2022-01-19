@@ -1,5 +1,4 @@
-import { SerializedError } from '@reduxjs/toolkit'
-import { ForgetPasswordError, LoginAuthError, RegisterAuthError } from './AppInterface'
+import { ForgetPasswordError, LoginAuthError, RegisterAuthError } from './AppInterface';
 
 export interface AUTH_INTERFACE {
   user: {

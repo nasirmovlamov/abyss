@@ -1,32 +1,38 @@
-import { faPlus, faSearch } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useRouter } from 'next/router'
-import React, { ReactElement, useEffect, useRef, useState } from 'react'
-import { useScrollDirection } from 'react-use-scroll-direction'
-import { changeModalAction } from '../app/feature/User.slice'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex'
-import { MainPartOfPageStyle, SidePartOfPageStyle } from '../styles/pages/Page.styled'
-import { useScrollYPosition } from 'react-use-scroll-position'
-import { forumSearch, forumSearchInfinity, storeSearch, storeSearchInfinity } from '../app/thunks/SearchBoxThunks'
-import { forum_search_data, getCachedSearchBoxData, searchValueOnChange, resetSendedQuery, search_query, search_data, changeSearchVisibilty, hoverSearchNav, unhoverSearchNav } from '../app/feature/SearchBox.slice'
-import { getFiltersFromCache } from '../app/feature/PageFilters.slice'
-import { createProductThunk } from '../app/thunks/CreateProductThunks'
-import { getAccessToken } from '../helpers/token/TokenHandle'
-import { getCookie } from '../logic/CookieFunctions'
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useRouter } from 'next/router';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import { useScrollDirection } from 'react-use-scroll-direction';
+import { useScrollYPosition } from 'react-use-scroll-position';
+
+import { getFiltersFromCache } from '../app/feature/PageFilters.slice';
+import {
+    changeSearchVisibilty,
+    forum_search_data,
+    getCachedSearchBoxData,
+    hoverSearchNav,
+    resetSendedQuery,
+    search_data,
+    search_query,
+    searchValueOnChange,
+    unhoverSearchNav,
+} from '../app/feature/SearchBox.slice';
+import { changeModalAction } from '../app/feature/User.slice';
+import { useAppDispatch, useAppSelector } from '../app/store/hooks';
+import { forumSearchInfinity, storeSearchInfinity } from '../app/thunks/SearchBoxThunks';
+import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex';
 import {
     AddQuesitionCont_STY,
+    SearchBox_STY,
     SearchBoxContainer_STY,
     SearchBoxPage_STY,
-    SearchBoxThunkAndCont_STY,
     SearchBoxThunk_STY,
-    SearchBoxThunk_STY2,
-    SearchBox_STY,
+    SearchBoxThunkAndCont_STY,
     SearchButtonLupa_STY,
     SearchCont_STY,
     SearchInput_STY,
-    SearchNav_STY
-} from '../styles/components/styled-blocks/SearchBox.style'
+    SearchNav_STY,
+} from '../styles/components/styled-blocks/SearchBox.style';
 
 interface Props {
 

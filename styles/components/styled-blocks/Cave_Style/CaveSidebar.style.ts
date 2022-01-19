@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const CaveSidebar_Sty = styled.aside`
   display: flex;

@@ -1,5 +1,6 @@
-import styled from 'styled-components'
-import { ThemeType } from '../../global/styled-utils/settings/Theme.style'
+import styled from 'styled-components';
+
+import { ThemeType } from '../../global/styled-utils/settings/Theme.style';
 
 export const TabsContainer_STY = styled.div`
   box-sizing: border-box;

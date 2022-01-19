@@ -1,8 +1,8 @@
-import React, { ReactElement, useEffect, useState } from 'react'
-import { forum_search_data, selectSortSearchOption, selectTypeSearchOption } from '../app/feature/SearchBox.slice'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-import { FooterColumn, FooterElement, FooterRow, FooterStyle } from '../styles/components/styled-blocks/Footer.style'
-import * as PAGE_STY from '../styles/components/styled-blocks/PageTabs.style'
+import React, { ReactElement, useEffect, useState } from 'react';
+
+import { forum_search_data, selectSortSearchOption, selectTypeSearchOption } from '../app/feature/SearchBox.slice';
+import { useAppDispatch, useAppSelector } from '../app/store/hooks';
+import * as PAGE_STY from '../styles/components/styled-blocks/PageTabs.style';
 
 interface Props {
 

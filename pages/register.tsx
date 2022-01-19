@@ -1,11 +1,11 @@
-import React from 'react'
-import * as LoginPage_STY from '../styles/components/styled-blocks/AuthStyle/Login.style'
-import Image from 'next/image'
+import Image from 'next/image';
+import React from 'react';
 
-import mainLogo from '/public/main-logo-new.svg'
-import githubLogo from '/public/githubLogo.png'
-import googleLogo from '/public/googleLogo.png'
-import mainLogoText from '/public/main-logo-side-text-new.svg'
+import * as LoginPage_STY from '../styles/components/styled-blocks/AuthStyle/Login.style';
+import githubLogo from '/public/githubLogo.png';
+import googleLogo from '/public/googleLogo.png';
+import mainLogo from '/public/main-logo-new.svg';
+import mainLogoText from '/public/main-logo-side-text-new.svg';
 
 
 interface Props {

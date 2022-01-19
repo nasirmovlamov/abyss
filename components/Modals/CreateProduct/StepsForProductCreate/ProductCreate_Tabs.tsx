@@ -1,7 +1,15 @@
-import React from 'react'
-import { product_create_current_step, product_create_steps_data } from '../../../../app/feature/CreateProductFeatures/CreateProduct.slice'
-import { useAppDispatch, useAppSelector } from '../../../../app/store/hooks'
-import { CreateProduct_Tabs, CreateProduct_Tab_Seperator, CreateProduict_Tab_STY } from '../../../../styles/components/styled-blocks/CreateProduct_Style/CreateProduct.style'
+import React from 'react';
+
+import {
+    product_create_current_step,
+    product_create_steps_data,
+} from '../../../../app/feature/CreateProductFeatures/CreateProduct.slice';
+import { useAppDispatch, useAppSelector } from '../../../../app/store/hooks';
+import {
+    CreateProduct_Tab_Seperator,
+    CreateProduct_Tabs,
+    CreateProduict_Tab_STY,
+} from '../../../../styles/components/styled-blocks/CreateProduct_Style/CreateProduct.style';
 
 interface Props {
 

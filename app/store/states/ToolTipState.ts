@@ -1,4 +1,4 @@
-import { ToolTipInterface } from './../state-Interfaces/ToolTipInterface'
+import { ToolTipInterface } from './../state-Interfaces/ToolTipInterface';
 
 export const ToolTipState: ToolTipInterface = {
   show: false,

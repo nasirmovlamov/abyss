@@ -1,28 +1,48 @@
-import React, { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
-import { is_comment_opened } from '../app/feature/Comments.slice'
-import { edit_question_data, single_question_data } from '../app/feature/Question.slice'
-import { changeModalAction, user_data } from '../app/feature/User.slice'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-import { getSingleQuestion, unVoteQuestion, voteQuestion } from '../app/thunks/QuestionThunk'
-import { useQuestionHooks } from '../hooks/useQuestionHook'
-import { parseHtmlWithMention } from '../logic/htmlParser'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { ShowComments } from '../styles/components/styled-blocks/Answer.style'
-import { AnswerCont, AnswerCount, DefaultLine, HelpfulCont, HelpfulCount, PercentageLine, Text, ThumbIcon } from '../styles/components/styled-blocks/FormQuestion.style'
-import * as SingleQuestion_STY from '../styles/pages/SingleQuestionPage.styled'
-import SearchBoxStaticVersion from './SearchBoxStaticVersion'
-import abyssLogo from '../public/main-logo-new.svg'
-import { faEdit, faEllipsisV, faThumbsDown as solidfaThumbsDown, faThumbsUp as solidfaThumbsUp, faTrash } from '@fortawesome/free-solid-svg-icons'
-import { faComment, faThumbsDown as regularfaThumbsDown, faThumbsUp as regularfaThumbsUp } from '@fortawesome/free-regular-svg-icons'
-import AnswerSubmitCont from './AnswerSubmit'
-import SinglePageTabs from './SinglePageTabs'
-import AnswersConts from './AnswersCont'
-import ProductsConts from './ProductsCont'
-import Image from 'next/image'
-import dynamic from 'next/dynamic'
-import MyEditor from './MyEditor'
-import HTMLReactParser from 'html-react-parser'
+import {
+    faComment,
+    faThumbsDown as regularfaThumbsDown,
+    faThumbsUp as regularfaThumbsUp,
+} from '@fortawesome/free-regular-svg-icons';
+import {
+    faEdit,
+    faEllipsisV,
+    faThumbsDown as solidfaThumbsDown,
+    faThumbsUp as solidfaThumbsUp,
+    faTrash,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import HTMLReactParser from 'html-react-parser';
+import dynamic from 'next/dynamic';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
+
+import { is_comment_opened } from '../app/feature/Comments.slice';
+import { edit_question_data, single_question_data } from '../app/feature/Question.slice';
+import { user_data } from '../app/feature/User.slice';
+import { useAppDispatch, useAppSelector } from '../app/store/hooks';
+import { useQuestionHooks } from '../hooks/useQuestionHook';
+import { parseHtmlWithMention } from '../logic/htmlParser';
+import abyssLogo from '../public/main-logo-new.svg';
+import { ShowComments } from '../styles/components/styled-blocks/Answer.style';
+import {
+    AnswerCont,
+    AnswerCount,
+    DefaultLine,
+    HelpfulCont,
+    HelpfulCount,
+    PercentageLine,
+    Text,
+    ThumbIcon,
+} from '../styles/components/styled-blocks/FormQuestion.style';
+import * as SingleQuestion_STY from '../styles/pages/SingleQuestionPage.styled';
+import AnswersConts from './AnswersCont';
+import AnswerSubmitCont from './AnswerSubmit';
+import MyEditor from './MyEditor';
+import ProductsConts from './ProductsCont';
+import SearchBoxStaticVersion from './SearchBoxStaticVersion';
+import SinglePageTabs from './SinglePageTabs';
+
 const DynamicComponentWithNoSSR = dynamic(
     () => import('./Editors/EditorForQuestionEdit'),
     { ssr: false }

@@ -1,28 +1,21 @@
-import React, { ReactElement, FC, useEffect, useState } from 'react'
-import { page_overflowy } from '../app/feature/App.slice'
-import { user_data, user_status, user_status_not_logged } from '../app/feature/User.slice'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-import { userCheck } from '../app/thunks/AuthThunk'
-import Footer from './Footer'
-import Modals from './Modals/Modals'
-import OverlayBackground from './Overlay'
-import SearchBox from './SearchBox'
-import { is_chatbox_opened, openChat } from '../app/feature/ChatBox.slice'
-import { useRouter } from 'next/router'
-import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex'
-import Head from 'next/head'
-import CommentModal from './CommentsTab'
-import ChatBox from './ChatBox'
-import { closeComments, is_comment_opened } from '../app/feature/Comments.slice'
-import Cookies from 'js-cookie'
-import { getCookie } from '../logic/CookieFunctions'
-import Header from './Header'
-import { ScrollToTopButton } from './ScrollToTopButton'
-import SearchBoxForHome from './SearchBoxForHome'
-import ToolTip from './ToolTip'
-import LinearProgres from './LinearProgres'
-import { hoverWindow, unhoverWindow } from '../app/feature/SearchBox.slice'
-import { hoverWindowAsync } from '../app/thunks/SearchBoxThunks'
+import { useRouter } from 'next/router';
+import React, { FC, ReactElement, useEffect, useState } from 'react';
+
+import { page_overflowy } from '../app/feature/App.slice';
+import { is_chatbox_opened, openChat } from '../app/feature/ChatBox.slice';
+import { closeComments, is_comment_opened } from '../app/feature/Comments.slice';
+import { unhoverWindow } from '../app/feature/SearchBox.slice';
+import { user_data, user_status, user_status_not_logged } from '../app/feature/User.slice';
+import { useAppDispatch, useAppSelector } from '../app/store/hooks';
+import { userCheck } from '../app/thunks/AuthThunk';
+import { hoverWindowAsync } from '../app/thunks/SearchBoxThunks';
+import { getCookie } from '../logic/CookieFunctions';
+import ChatBox from './ChatBox';
+import Footer from './Footer';
+import Header from './Header';
+import Modals from './Modals/Modals';
+import { ScrollToTopButton } from './ScrollToTopButton';
+import ToolTip from './ToolTip';
 
 interface Props {
     // any props that come into the component

@@ -1,4 +1,4 @@
-import { CommentsInterface } from '../state-Interfaces/CommentInterface'
+import { CommentsInterface } from '../state-Interfaces/CommentInterface';
 
 export const CommentsState: CommentsInterface = {
   comments: [],

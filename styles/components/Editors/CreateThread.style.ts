@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const CreateThreadEDITORWrapper_STY = styled.div`
   display: flex;

@@ -1,15 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import axios from 'axios'
-import { useRouter } from 'next/router'
-import React, { ReactElement, useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../../app/store/hooks'
-import { verifyEmail } from '../../../../app/thunks/AuthThunk'
-import { BASE_API_INSTANCE } from '../../../../helpers/api/BaseInstance'
-import { getAccessToken } from '../../../../helpers/token/TokenHandle'
-import { BASE_API_URL } from '../../../../helpers/urls/BASE_URL'
-import { white_1 } from '../../../../styles/global/styled-utils/settings/Colors'
-import * as authThunk from '../../../../app/thunks/AuthThunk'
-import { user_data, user_verify } from '../../../../app/feature/User.slice'
+import { useRouter } from 'next/router';
+import React, { ReactElement, useEffect, useState } from 'react';
+
+import { user_data, user_verify } from '../../../../app/feature/User.slice';
+import { useAppDispatch, useAppSelector } from '../../../../app/store/hooks';
+import * as authThunk from '../../../../app/thunks/AuthThunk';
 
 interface Props {
 

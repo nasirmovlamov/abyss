@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { useInView } from 'react-intersection-observer'
-import { useScrollYPosition } from 'react-use-scroll-position'
-import { cave_actions, cave_tabs } from '../../../../app/feature/CaveFeatures/CaveTabs.slice'
-import { useAppDispatch, useAppSelector } from '../../../../app/store/hooks'
-import { CaveInventoryBlocks_Sty, CaveInventoryDefaultBlock_Sty } from '../../../../styles/components/styled-blocks/Cave_Style/CaveInventory/CaveInventory.style'
-import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
-import { cave_side_data } from '../../../../app/feature/CaveFeatures/CaveSide.slice'
-import { inventoryTabs } from '../../../../app/store/states/Cave_States/CaveTabs.state'
-import AnswerSkeleton from '../../../Skeletons/AnswerSkeleton'
-import { BASE_API_INSTANCE } from '../../../../helpers/api/BaseInstance'
-import ListingStoreProduct from '../../../ListingStoreProduct'
-import CaveProduct from '../../CaveProduct'
+import React, { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+import { scroller } from 'react-scroll';
+import { useScrollYPosition } from 'react-use-scroll-position';
+
+import { cave_side_data } from '../../../../app/feature/CaveFeatures/CaveSide.slice';
+import { cave_actions, cave_tabs } from '../../../../app/feature/CaveFeatures/CaveTabs.slice';
+import { useAppDispatch, useAppSelector } from '../../../../app/store/hooks';
+import { inventoryTabs } from '../../../../app/store/states/Cave_States/CaveTabs.state';
+import { BASE_API_INSTANCE } from '../../../../helpers/api/BaseInstance';
+import {
+    CaveInventoryBlocks_Sty,
+    CaveInventoryDefaultBlock_Sty,
+} from '../../../../styles/components/styled-blocks/Cave_Style/CaveInventory/CaveInventory.style';
+import AnswerSkeleton from '../../../Skeletons/AnswerSkeleton';
+import CaveProduct from '../../CaveProduct';
 
 interface Props {
 

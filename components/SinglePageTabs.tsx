@@ -1,14 +1,14 @@
-import React, { ReactElement, useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { useRouter } from 'next/router'
-import { changeForumTabActive, changeProductTabActive, page_tabs } from '../app/feature/PageTabs.slice'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex'
-import * as SinglePageTabs_STY from '../styles/components/styled-blocks/SinglePageTabs.styled'
-import NavLink from './NavLink'
-import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
-import { changeThunkBackVisibilty, search_data } from '../app/feature/SearchBox.slice'
-import { useScrollYPosition } from 'react-use-scroll-position'
-import { useScrollDirection } from 'react-use-scroll-direction'
+import { useRouter } from 'next/router';
+import React, { ReactElement, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { Link } from 'react-scroll';
+import { useScrollDirection } from 'react-use-scroll-direction';
+import { useScrollYPosition } from 'react-use-scroll-position';
+
+import { changeProductTabActive, page_tabs } from '../app/feature/PageTabs.slice';
+import { changeThunkBackVisibilty, search_data } from '../app/feature/SearchBox.slice';
+import { useAppDispatch, useAppSelector } from '../app/store/hooks';
+import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex';
+import * as SinglePageTabs_STY from '../styles/components/styled-blocks/SinglePageTabs.styled';
 
 
 interface Props {

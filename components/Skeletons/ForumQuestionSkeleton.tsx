@@ -1,6 +1,6 @@
-import React, { ReactElement } from 'react'
-import { FormQuestionCont } from '../../styles/components/styled-blocks/FormQuestion.style'
-import { SkeletonBox } from '../../styles/global/styled-utils/Global.style'
+import React, { ReactElement } from 'react';
+
+import { SkeletonBox } from '../../styles/global/styled-utils/Global.style';
 
 interface Props {
 

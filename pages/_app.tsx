@@ -1,20 +1,18 @@
+import '../styles/global/scss/global.css';
 
-import Layout from '../components/Layout'
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { Toaster } from 'react-hot-toast';
+import { Provider } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
+
+import { store } from '../app/store/store';
+import Layout from '../components/Layout';
+import { GlobalStyle } from '../styles/global/styled-utils/Global.style';
+import { darkTheme, lightTheme } from '../styles/global/styled-utils/settings/Theme.style';
+
+
 import type { AppProps } from 'next/app'
-import '../styles/global/scss/global.css'
-import { Provider } from 'react-redux'
-import { store } from '../app/store/store'
-import { ThemeProvider } from 'styled-components'
-import { GlobalStyle, Relativer, ThemeToggler, ToggleElement, TogglerButton } from '../styles/global/styled-utils/Global.style'
-import { darkTheme, lightTheme } from '../styles/global/styled-utils/settings/Theme.style'
-import { useState } from 'react'
-import ThemeSwitcher from '../components/ThemeSwitcher'
-import { useEffect } from 'react'
-import { Toaster } from 'react-hot-toast'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-import { userCheck } from '../app/thunks/AuthThunk'
-import { dispatch } from 'react-hot-toast/dist/core/store'
-
 
 
 function MyApp({ Component, pageProps }: AppProps) {

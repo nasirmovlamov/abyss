@@ -1,15 +1,21 @@
-import { faShopify } from '@fortawesome/free-brands-svg-icons'
-import { faBookReader, faBox, faInfoCircle, faShoppingBag, faSignOutAlt, faStickyNote, faUser } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useRouter } from 'next/router'
-import React from 'react'
-import { cave_main_data } from '../../app/feature/CaveFeatures/Cave.slice'
-import { caveSideActions, cave_side_data } from '../../app/feature/CaveFeatures/CaveSide.slice'
-import { useAppDispatch, useAppSelector } from '../../app/store/hooks'
-import { userLogout } from '../../app/thunks/AuthThunk'
-import { selectAsyncCaveWindow } from '../../app/thunks/Cave/Cave.thunk'
-import { getAccessToken } from '../../helpers/token/TokenHandle'
-import { CaveSidebar_Sty, CaveSide_section_Sty } from '../../styles/components/styled-blocks/Cave_Style/CaveSidebar.style'
+import {
+    faBookReader,
+    faBox,
+    faInfoCircle,
+    faShoppingBag,
+    faSignOutAlt,
+    faStickyNote,
+    faUser,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useRouter } from 'next/router';
+import React from 'react';
+
+import { cave_side_data } from '../../app/feature/CaveFeatures/CaveSide.slice';
+import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
+import { userLogout } from '../../app/thunks/AuthThunk';
+import { selectAsyncCaveWindow } from '../../app/thunks/Cave/Cave.thunk';
+import { CaveSide_section_Sty, CaveSidebar_Sty } from '../../styles/components/styled-blocks/Cave_Style/CaveSidebar.style';
 
 interface Props {
 

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const ProductCreate_Step1_Style = styled.div`
   width: 100%;

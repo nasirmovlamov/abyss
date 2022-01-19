@@ -1,8 +1,8 @@
-import React, { ReactElement, FC, useEffect } from 'react'
-import Link from 'next/link'
-import styled from 'styled-components'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-import { ToolTipActions, tooltip_data } from '../app/feature/Tooltip.slice'
+import Link from 'next/link';
+import React, { FC, ReactElement, useEffect } from 'react';
+
+import { tooltip_data } from '../app/feature/Tooltip.slice';
+import { useAppDispatch, useAppSelector } from '../app/store/hooks';
 
 
 interface Props {

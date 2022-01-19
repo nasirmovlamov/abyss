@@ -1,10 +1,8 @@
-import React, { Component, useState, useEffect } from 'react'
-import axios from 'axios'
-import StoreLayout from '../../../components/Store/StoreLayout'
-import StoreValidate from '../../../components/Store/StoreValidate'
-import { useAppSelector } from '../../../app/store/hooks'
-import { single_product_data } from '../../../app/feature/SingleProduct.slice'
-import SearchBoxStaticVersion from '../../../components/SearchBoxStaticVersion'
+import React, { Component, useEffect, useState } from 'react';
+
+import SearchBoxStaticVersion from '../../../components/SearchBoxStaticVersion';
+import StoreLayout from '../../../components/Store/StoreLayout';
+import StoreValidate from '../../../components/Store/StoreValidate';
 
 
 interface Props {

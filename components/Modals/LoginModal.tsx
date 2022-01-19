@@ -1,10 +1,11 @@
-import React, { FormEvent, ReactElement, useEffect, useState } from 'react'
-import { useAppSelector, useAppDispatch } from '../../app/store/hooks'
-import * as authThunk from '../../app/thunks/AuthThunk'
-import { changeModalAction, login_errors, login_form, login_Form_OnChange, user_modals } from '../../app/feature/User.slice'
-import { RegisterButton_STY } from '../../styles/components/styled-blocks/Navbar.style'
-import { ModalFORM_STY } from '../../styles/components/styled-blocks/Modal_Style/ModalCont.style'
-import * as Form_STY from '../../styles/components/styled-elements/Form.style'
+import React, { FormEvent, ReactElement, useEffect, useState } from 'react';
+
+import { changeModalAction, login_errors, login_form, login_Form_OnChange, user_modals } from '../../app/feature/User.slice';
+import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
+import * as authThunk from '../../app/thunks/AuthThunk';
+import { ModalFORM_STY } from '../../styles/components/styled-blocks/Modal_Style/ModalCont.style';
+import * as Form_STY from '../../styles/components/styled-elements/Form.style';
+
 interface Props {
 }
 

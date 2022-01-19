@@ -1,13 +1,26 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { ReactElement, useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { user_data } from '../app/feature/User.slice'
-import { useInView } from 'react-intersection-observer'
+import React, { ReactElement, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 
-import { chat_rooms, closeChat, opened_chat_room_id, setRoomId } from '../app/feature/ChatBox.slice'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-import { openRooms, reqRoomMessages, checkRoomChat, sendMessageToRoom, loadArchieveMessages } from '../app/thunks/ChatBoxThunks'
-import { getLastMessageId, getRooms } from '../logic/chatBoxLogic'
-import { ChatMain, ChatMessage, ChatMessages, ChatMessagesFix, ChatMessagesTab, ChatNav, ChatNavName, ChatRoom, ChatRooms, ChatSendMessage, ChatWindow, CloseChatBox } from '../styles/components/styled-blocks/ChatBox.style'
+import { chat_rooms, closeChat, opened_chat_room_id, setRoomId } from '../app/feature/ChatBox.slice';
+import { user_data } from '../app/feature/User.slice';
+import { useAppDispatch, useAppSelector } from '../app/store/hooks';
+import { checkRoomChat, loadArchieveMessages, openRooms, sendMessageToRoom } from '../app/thunks/ChatBoxThunks';
+import { getRooms } from '../logic/chatBoxLogic';
+import {
+    ChatMain,
+    ChatMessage,
+    ChatMessages,
+    ChatMessagesFix,
+    ChatMessagesTab,
+    ChatNav,
+    ChatNavName,
+    ChatRoom,
+    ChatRooms,
+    ChatSendMessage,
+    ChatWindow,
+    CloseChatBox,
+} from '../styles/components/styled-blocks/ChatBox.style';
 
 interface Props {
 

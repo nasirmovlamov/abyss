@@ -1,24 +1,26 @@
-import React, { useEffect, useRef } from 'react'
-import { cave_actions, cave_tabs } from '../../../app/feature/CaveFeatures/CaveTabs.slice'
-import { useAppDispatch, useAppSelector } from '../../../app/store/hooks'
+import { faFilter } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from 'next/image';
+import React, { useEffect, useRef } from 'react';
+import { scroller } from 'react-scroll';
+import { useScrollDirection } from 'react-use-scroll-direction';
+import { useScrollYPosition } from 'react-use-scroll-position';
+
+import { cave_side_data } from '../../../app/feature/CaveFeatures/CaveSide.slice';
+import { cave_actions, cave_tabs } from '../../../app/feature/CaveFeatures/CaveTabs.slice';
+import { useAppDispatch, useAppSelector } from '../../../app/store/hooks';
+import caveTabCornerHovered from '../../../public/caveTabCornerHovered.svg';
+import caveTabCornerNotHoveredSvg from '../../../public/caveTabCornerNotHovered.svg';
 import {
-    Cave_Tabs_Sty, Cave_Tab_Sty,
+    Cave_Tab_Seperator_Sty,
+    Cave_Tab_Sty,
     Cave_Tabs_Cont_Sty,
+    Cave_Tabs_Sty,
     CaveLeftCorner,
+    CaveLeftCornerForHover,
     CaveRightCorner,
     CaveRightCornerForHover,
-    CaveLeftCornerForHover,
-    Cave_Tab_Seperator_Sty
-} from '../../../styles/components/styled-blocks/Cave_Style/Cave_Tabs.style'
-import caveTabCornerNotHoveredSvg from '../../../public/caveTabCornerNotHovered.svg'
-import caveTabCornerHovered from '../../../public/caveTabCornerHovered.svg'
-import Image from 'next/image'
-import { cave_side_data } from '../../../app/feature/CaveFeatures/CaveSide.slice'
-import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
-import { useScrollDirection } from 'react-use-scroll-direction'
-import { useScrollYPosition } from 'react-use-scroll-position'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFilter } from '@fortawesome/free-solid-svg-icons'
+} from '../../../styles/components/styled-blocks/Cave_Style/Cave_Tabs.style';
 
 interface Props {
 

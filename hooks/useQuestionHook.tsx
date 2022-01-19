@@ -1,14 +1,19 @@
 //useFetch.js
-import axios from 'axios'
-import { useState, useEffect } from 'react'
-import { showComments } from '../app/feature/Comments.slice'
-import { disableQuestionEditing, edit_question_data, enableQuestionEditing, question_status, setDeleteOptions, single_question_data } from '../app/feature/Question.slice'
-import { changeModalAction, user_data } from '../app/feature/User.slice'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-import { question_data_interface } from '../app/store/state-Interfaces/QuestionInterface'
-import { getQuestionComments } from '../app/thunks/CommentsThunk'
-import { editQuestionThunk, unVoteQuestion, voteQuestion } from '../app/thunks/QuestionThunk'
-import { BASE_API_INSTANCE } from '../helpers/api/BaseInstance'
+import { useEffect, useState } from 'react';
+
+import { showComments } from '../app/feature/Comments.slice';
+import {
+    disableQuestionEditing,
+    edit_question_data,
+    enableQuestionEditing,
+    question_status,
+    setDeleteOptions,
+    single_question_data,
+} from '../app/feature/Question.slice';
+import { changeModalAction, user_data } from '../app/feature/User.slice';
+import { useAppDispatch, useAppSelector } from '../app/store/hooks';
+import { getQuestionComments } from '../app/thunks/CommentsThunk';
+import { editQuestionThunk, unVoteQuestion, voteQuestion } from '../app/thunks/QuestionThunk';
 
 
 

@@ -1,12 +1,13 @@
-import styled, { createGlobalStyle } from 'styled-components'
-import { ThemeType } from './settings/Theme.style'
+import styled, { createGlobalStyle } from 'styled-components';
+
+import { ThemeType } from './settings/Theme.style';
 
 type Props = {
   theme: ThemeType
 }
 
 export const GlobalStyle = createGlobalStyle<Props>`
-  body{
+  body {
       background-color: ${({ theme }) => theme.body};
        &::-webkit-scrollbar {
         width: 10px;

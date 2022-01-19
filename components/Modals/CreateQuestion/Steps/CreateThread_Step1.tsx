@@ -1,7 +1,8 @@
-import React from 'react'
-import { CreateThreadActions, create_thread_data } from '../../../../app/feature/CreateThread/CreateThread.slice'
-import { useAppDispatch, useAppSelector } from '../../../../app/store/hooks'
-import * as Step1_STY from '../../../../styles/components/styled-blocks/CreateProduct_Style/CreateProduct_Step1.style'
+import React from 'react';
+
+import { create_thread_data, CreateThreadActions } from '../../../../app/feature/CreateThread/CreateThread.slice';
+import { useAppDispatch, useAppSelector } from '../../../../app/store/hooks';
+import * as Step1_STY from '../../../../styles/components/styled-blocks/CreateProduct_Style/CreateProduct_Step1.style';
 
 interface Props {
 
