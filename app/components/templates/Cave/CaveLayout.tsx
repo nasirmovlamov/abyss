@@ -1,18 +1,19 @@
-import React, { FC } from 'react'
+import { useRouter } from 'next/router';
+import React, { FC } from 'react';
+import { useScrollDirection } from 'react-use-scroll-direction';
+import { useScrollYPosition } from 'react-use-scroll-position';
 
-import { CavePageDefaultStyle } from '../../../styles/pages/Page.styled'
-import CaveSidePartOfPage from '../../layouts/CaveSide.layout'
-import CaveSidebar from './CaveSidebar'
-import { Cave_Sty } from '../../../styles/ui/modules/Cave.style'
-import Cave_Tabs from './Cave_Tabs/Cave_Tabs'
-import MainPartOfPage from '../../layouts/PageMain.layout'
-import { is_Logged } from '../../app/feature/User.slice'
-import { useAppSelector } from '../../app/store/hooks'
-import { useRouter } from 'next/router'
-import { useScrollDirection } from 'react-use-scroll-direction'
-import { useScrollYPosition } from 'react-use-scroll-position'
+import { is_Logged } from '../../../store/slices/User.slice';
+import { useAppSelector } from '../../../store/states/store.hooks';
+import { CavePageDefaultStyle } from '../../../styles/pages/Page.styled';
+import { Cave_Sty } from '../../../styles/ui/modules/Cave.style';
+import CaveSidePartOfPage from '../../layouts/CaveSide.layout';
+import MainPartOfPage from '../../layouts/PageMain.layout';
+import Cave_Tabs from './Cave_Tabs/Cave_Tabs';
+import CaveSidebar from './CaveSidebar';
 
-interface Props {}
+
+interface Props { }
 
 const CaveLayout: FC<Props> = ({ children, ...props }) => {
   const { isScrollingUp, isScrollingDown } = useScrollDirection()

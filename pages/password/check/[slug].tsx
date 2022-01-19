@@ -1,19 +1,18 @@
-import * as ChangePassSTY from '../../../styles/components/styled-blocks/ForgetPassword.style'
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
 
-import React, { useEffect } from 'react'
+import { useChangePass } from '../../../app/hooks/useChangePass.hook';
 import {
   change_password_data,
   form_change_password_data,
   user_data,
   user_forget_pass_check_token,
-} from '../../../app/feature/User.slice'
-import { useAppDispatch, useAppSelector } from '../../../app/store/hooks'
+} from '../../../app/store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from '../../../app/store/states/store.hooks';
+import { checkForgetPasswordTokenThunk } from '../../../app/store/thunks/User.thunk';
+import * as ChangePassSTY from '../../../app/styles/ui/modules/ForgetPassword.style';
 
-import { checkForgetPasswordTokenThunk } from '../../../app/thunks/AuthThunk'
-import { useChangePass } from '../../../hooks/useChangePass'
-import { useRouter } from 'next/router'
-
-interface Props {}
+interface Props { }
 
 const ForgotPassChange = (props: Props) => {
   const dispatch = useAppDispatch()

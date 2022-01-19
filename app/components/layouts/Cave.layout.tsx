@@ -1,7 +1,5 @@
-import { AppProps } from 'next/app'
-import React from 'react'
-
-interface Props {}
+import { AppProps } from 'next/app';
+import React from 'react';
 
 const CaveApp = ({ Component, pageProps }: AppProps) => {
   return (

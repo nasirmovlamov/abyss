@@ -1,6 +1,13 @@
-import * as SearchForStaticVersion_STY from '../../styles/ui/modules/SearchBoxStatic.style'
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useRouter } from 'next/router';
+import { ReactElement, useEffect, useRef, useState } from 'react';
+import { useScrollDirection } from 'react-use-scroll-direction';
+import { useScrollYPosition } from 'react-use-scroll-position';
 
-import React, { ReactElement, useEffect, useRef, useState } from 'react'
+import { getCookie } from '../../helpers/functions/CookieFunctions';
+import { forumWordRegex, storeWordRegex } from '../../helpers/functions/regex/NavbarRegex';
+import { getFiltersFromCache } from '../../store/slices/PageFilters.slice';
 import {
   blurSearchBox,
   focusSearchBox,
@@ -9,31 +16,20 @@ import {
   hoverSearchBox,
   hoverSearchNav,
   resetSendedQuery,
-  searchValueOnChange,
   search_data,
   search_query,
+  searchValueOnChange,
   unhoverSearchNav,
-} from '../app/feature/SearchBox.slice'
-import {
-  forumSearchInfinity,
-  storeSearchInfinity,
-  unHoverSearchAsync,
-} from '../app/thunks/SearchBoxThunks'
-import { forumWordRegex, storeWordRegex } from '../../helpers/functions/regex/NavbarRegex'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
+} from '../../store/slices/SearchBox.slice';
+import { changeModalAction } from '../../store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
+import { forumSearchInfinity, storeSearchInfinity, unHoverSearchAsync } from '../../store/thunks/SearchBox.thunk';
+import * as SearchForStaticVersion_STY from '../../styles/ui/modules/SearchBoxStatic.style';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { changeModalAction } from '../app/feature/User.slice'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { getCookie } from '../../helpers/functions/CookieFunctions'
-import { getFiltersFromCache } from '../app/feature/PageFilters.slice'
-import { useRouter } from 'next/router'
-import { useScrollDirection } from 'react-use-scroll-direction'
-import { useScrollYPosition } from 'react-use-scroll-position'
 
-interface Props {}
+interface Props { }
 
-function SearchBoxStaticVersion({}: Props): ReactElement {
+function SearchBoxStaticVersion({ }: Props): ReactElement {
   const router = useRouter()
   const [pagePath, setpagePath] = useState('')
   const dispatch = useAppDispatch()

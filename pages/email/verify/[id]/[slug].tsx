@@ -1,15 +1,14 @@
-import * as authThunk from '../../../../app/thunks/AuthThunk'
+import { useRouter } from 'next/router';
+import React, { ReactElement, useEffect, useState } from 'react';
 
-import React, { ReactElement, useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../../app/store/hooks'
-import { user_data, user_verify } from '../../../../app/feature/User.slice'
+import { user_data, user_verify } from '../../../../app/store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from '../../../../app/store/states/store.hooks';
+
 
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useRouter } from 'next/router'
+interface Props { }
 
-interface Props {}
-
-function EmailVerify({}: Props): ReactElement {
+function EmailVerify({ }: Props): ReactElement {
   const dispatch = useAppDispatch()
   const router = useRouter()
   const userVerify: any = useAppSelector(user_verify)

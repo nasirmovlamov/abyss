@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/router';
 
-import StoreMiddlePartLayout from './StoreMiddlePartLayout'
-import StoreProductForNonSubscribed from './StoreProductForNonSubscribed'
-import StoreProductForSubscribed from './StoreProductForSubscribed'
-import { is_logged } from '../../app/feature/User.slice'
-import { useAppSelector } from '../../app/store/hooks'
-import { useRouter } from 'next/router'
+import { is_logged } from '../../../store/slices/User.slice';
+import { useAppSelector } from '../../../store/states/store.hooks';
+import StoreMiddlePartLayout from './StoreMiddlePartLayout';
+import StoreProductForNonSubscribed from './StoreProductForNonSubscribed';
+import StoreProductForSubscribed from './StoreProductForSubscribed';
 
-interface Props {}
+interface Props { }
 
 const StoreValidate = (props: Props) => {
   const router = useRouter()

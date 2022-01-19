@@ -1,11 +1,11 @@
-import { faEdit, faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faEdit, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from 'next/image';
+import React from 'react';
 
-import { CaveProduct_STY } from '../../../styles/ui/modules/Cave_Style/CaveProduct.style'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Image from 'next/image'
-import React from 'react'
-import StarCountShow from '../../ui/elements/StarCountShow'
-import mainLogo from '../../public/main-logo.svg'
+import mainLogo from '../../../../public/main-logo.svg';
+import { CaveProduct_STY } from '../../../styles/ui/modules/Cave_Style/CaveProduct.style';
+import StarCountShow from '../../ui/elements/StarCountShow';
 
 interface Props {
   data: any

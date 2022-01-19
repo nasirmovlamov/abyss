@@ -1,42 +1,42 @@
-import {
-  AddQuesitionCont_STY,
-  SearchBoxContainer_STY,
-  SearchBoxPage_STY,
-  SearchBoxThunkAndCont_STY,
-  SearchBoxThunk_STY,
-  SearchBox_STY,
-  SearchButtonLupa_STY,
-  SearchCont_STY,
-  SearchInput_STY,
-  SearchNav_STY,
-} from '../../styles/ui/modules/SearchBox.style'
-import React, { ReactElement, useEffect, useRef, useState } from 'react'
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useRouter } from 'next/router';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import { useScrollDirection } from 'react-use-scroll-direction';
+import { useScrollYPosition } from 'react-use-scroll-position';
+
+import { forumWordRegex, storeWordRegex } from '../../helpers/functions/regex/NavbarRegex';
+import { getFiltersFromCache } from '../../store/slices/PageFilters.slice';
 import {
   changeSearchVisibilty,
   forum_search_data,
   getCachedSearchBoxData,
   hoverSearchNav,
   resetSendedQuery,
-  searchValueOnChange,
   search_data,
   search_query,
+  searchValueOnChange,
   unhoverSearchNav,
-} from '../app/feature/SearchBox.slice'
-import { forumSearchInfinity, storeSearchInfinity } from '../app/thunks/SearchBoxThunks'
-import { forumWordRegex, storeWordRegex } from '../../helpers/functions/regex/NavbarRegex'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
+} from '../../store/slices/SearchBox.slice';
+import { changeModalAction } from '../../store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
+import { forumSearchInfinity, storeSearchInfinity } from '../../store/thunks/SearchBox.thunk';
+import {
+  AddQuesitionCont_STY,
+  SearchBox_STY,
+  SearchBoxContainer_STY,
+  SearchBoxPage_STY,
+  SearchBoxThunk_STY,
+  SearchBoxThunkAndCont_STY,
+  SearchButtonLupa_STY,
+  SearchCont_STY,
+  SearchInput_STY,
+  SearchNav_STY,
+} from '../../styles/ui/modules/SearchBox.style';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { changeModalAction } from '../app/feature/User.slice'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { getFiltersFromCache } from '../app/feature/PageFilters.slice'
-import { useRouter } from 'next/router'
-import { useScrollDirection } from 'react-use-scroll-direction'
-import { useScrollYPosition } from 'react-use-scroll-position'
+interface Props { }
 
-interface Props {}
-
-function SearchBox({}: Props): ReactElement {
+function SearchBox({ }: Props): ReactElement {
   const router = useRouter()
   const [pagePath, setpagePath] = useState('')
   const dispatch = useAppDispatch()

@@ -1,28 +1,26 @@
+import { faFilter } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useRef } from 'react';
+import { scroller } from 'react-scroll';
+import { useScrollDirection } from 'react-use-scroll-direction';
+import { useScrollYPosition } from 'react-use-scroll-position';
+
+import { cave_side_data } from '../../../../store/slices/CaveFeatures/CaveSide.slice';
+import { cave_actions, cave_tabs } from '../../../../store/slices/CaveFeatures/CaveTabs.slice';
+import { useAppDispatch, useAppSelector } from '../../../../store/states/store.hooks';
 import {
-  CaveLeftCorner,
-  CaveLeftCornerForHover,
-  CaveRightCorner,
-  CaveRightCornerForHover,
   Cave_Tab_Seperator_Sty,
   Cave_Tab_Sty,
   Cave_Tabs_Cont_Sty,
   Cave_Tabs_Sty,
-} from '../../../../styles/ui/modules/Cave_Style/Cave_Tabs.style'
-import React, { useEffect, useRef } from 'react'
-import { cave_actions, cave_tabs } from '../../../app/feature/CaveFeatures/CaveTabs.slice'
-import { useAppDispatch, useAppSelector } from '../../../app/store/hooks'
+  CaveLeftCorner,
+  CaveLeftCornerForHover,
+  CaveRightCorner,
+  CaveRightCornerForHover,
+} from '../../../../styles/ui/modules/Cave_Style/Cave_Tabs.style';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Image from 'next/image'
-import caveTabCornerHovered from '../../../public/caveTabCornerHovered.svg'
-import caveTabCornerNotHoveredSvg from '../../../public/caveTabCornerNotHovered.svg'
-import { cave_side_data } from '../../../app/feature/CaveFeatures/CaveSide.slice'
-import { faFilter } from '@fortawesome/free-solid-svg-icons'
-import { scroller } from 'react-scroll'
-import { useScrollDirection } from 'react-use-scroll-direction'
-import { useScrollYPosition } from 'react-use-scroll-position'
 
-interface Props {}
+interface Props { }
 
 const Cave_Tabs = (props: Props) => {
   const caveSideData = useAppSelector(cave_side_data)

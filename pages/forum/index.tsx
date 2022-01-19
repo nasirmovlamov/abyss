@@ -1,27 +1,32 @@
-import React, { ReactElement, useEffect, useLayoutEffect, useState } from 'react'
-import { changePositionOfFilters, stay_in_focus } from '../../app/store/slices/PageFilters.slice'
-import { forum_search_data, search_data, search_query, setScrollPositionYForum } from '../../app/store/slices/SearchBox.slice'
-import { useAppDispatch, useAppSelector } from '../../app/store/states/store.hooks'
+import { useRouter } from 'next/router';
+import React, { ReactElement, useEffect, useLayoutEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+import { BeatLoader } from 'react-spinners';
+import { useScrollYPosition } from 'react-use-scroll-position';
 
-import { BeatLoader } from 'react-spinners'
-import FormQuestion from '../../app/components/ui/elements/ForumQuestion'
-import { ForumPage } from '../../app/styles/pages/Pages.style'
-import MainPartOfPage from '../../app/components/layouts/PageMain.layout'
-import { PageDefaultStyle } from '../../app/styles/pages/Page.styled'
-import PageTabs from '../../app/components/ui/tabs/ForumPageTabs'
-import SearchBoxStaticVersion from '../../app/components/modules/SearchBoxStaticVersion'
-import SidePartOfPage from '../../app/components/layouts/PageSide.layout'
-import SideProductCont from '../../app/components/ui/elements/SideProductCont'
-import { forumSearchInfinity } from '../../app/store/thunks/SearchBox.thunk'
-import { is_chatbox_opened } from '../../app/store/slices/ChatBox.slice'
-import { side_product_data, side_product_data } from '../../app/store/slices/SideProducts.slice'
-import { useInView } from 'react-intersection-observer'
-import { useRouter } from 'next/router'
-import { useScrollYPosition } from 'react-use-scroll-position'
+import MainPartOfPage from '../../app/components/layouts/PageMain.layout';
+import SidePartOfPage from '../../app/components/layouts/PageSide.layout';
+import SearchBoxStaticVersion from '../../app/components/modules/SearchBoxStaticVersion';
+import FormQuestion from '../../app/components/ui/elements/ForumQuestion';
+import SideProductCont from '../../app/components/ui/elements/SideProductCont';
+import PageTabs from '../../app/components/ui/tabs/ForumPageTabs';
+import { is_chatbox_opened } from '../../app/store/slices/ChatBox.slice';
+import { changePositionOfFilters, stay_in_focus } from '../../app/store/slices/PageFilters.slice';
+import {
+  forum_search_data,
+  search_data,
+  search_query,
+  setScrollPositionYForum,
+} from '../../app/store/slices/SearchBox.slice';
+import { side_product_data } from '../../app/store/slices/SideProducts.slice';
+import { useAppDispatch, useAppSelector } from '../../app/store/states/store.hooks';
+import { forumSearchInfinity } from '../../app/store/thunks/SearchBox.thunk';
+import { PageDefaultStyle } from '../../app/styles/pages/Page.styled';
+import { ForumPage } from '../../app/styles/pages/Pages.style';
 
-interface Props {}
+interface Props { }
 
-function Forum({}: Props): ReactElement {
+function Forum({ }: Props): ReactElement {
   const [inViewRefLoaderDown, inViewLoaderDown] = useInView()
   const sideProductContData = useAppSelector(side_product_data)
   const scrollY = useScrollYPosition()

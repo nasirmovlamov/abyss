@@ -1,7 +1,14 @@
+import { useRouter } from 'next/router';
+import { ReactElement, useState } from 'react';
+
+import { set_side_product_data } from '../../../store/slices/SideProducts.slice';
+import { useAppDispatch } from '../../../store/states/store.hooks';
+import { getSideProducts } from '../../../store/thunks/SideProducts.thunk';
+import { QuestionStatisticButton_STY, QuestionStatistics_STY } from '../../../styles/pages/SingleQuestionPage.styled';
+import { Avatar, Name, PersonCont } from '../../../styles/ui/modules/Answer.style';
 import {
   AnswerCont,
   AnswerCount,
-  Avatar,
   BottomSide,
   Content,
   CountOfProducts,
@@ -10,9 +17,7 @@ import {
   FormQuestionCont,
   HelpfulCont,
   HelpfulCount,
-  Name,
   PercentageLine,
-  PersonCont,
   ProductCount,
   ProductIcon,
   ProductsIcons,
@@ -20,24 +25,10 @@ import {
   QuestionTags,
   StatisticCont,
   Tags,
-  Text,
   TextCont,
   ThumbIcon,
   Title,
-} from '../../../styles/ui/modules/FormQuestion.style'
-import {
-  QuestionStatisticButton_STY,
-  QuestionStatistics_STY,
-} from '../../../styles/pages/SingleQuestionPage.styled'
-import React, { ReactElement, useState } from 'react'
-
-import Image from 'next/image'
-import { getSideProducts } from '../app/thunks/SideProducts.thunk'
-import mainlogo from '../public/main-logo.svg'
-import { set_side_product_data } from '../app/feature/SideProducts.slice'
-import thumbs_up from '/public/thumbs-up.svg'
-import { useAppDispatch } from '../app/store/hooks'
-import { useRouter } from 'next/router'
+} from '../../../styles/ui/modules/FormQuestion.style';
 
 interface Props {
   data: any

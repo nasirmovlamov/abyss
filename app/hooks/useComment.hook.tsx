@@ -1,16 +1,14 @@
 import {
   disableCommentEditing,
-  edit_Comment_onChange,
   edit_comment_data,
+  edit_Comment_onChange,
   enableCommentEditing,
-} from '../app/feature/Comments.slice'
-import { edit_Answer_CommentThunk, edit_Question_CommentThunk } from '../app/thunks/CommentsThunk'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-//useFetch.js
-import { useEffect, useState } from 'react'
+} from '../store/slices/Comments.slice';
+import { setDeleteOptions } from '../store/slices/Question.slice';
+import { changeModalAction } from '../store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from '../store/states/store.hooks';
+import { edit_Answer_CommentThunk, edit_Question_CommentThunk } from '../store/thunks/Comments.thunk';
 
-import { changeModalAction } from '../app/feature/User.slice'
-import { setDeleteOptions } from '../app/feature/Question.slice'
 
 export const useCommentHook = ({ comment, commentType }: any) => {
   const dispatch = useAppDispatch()

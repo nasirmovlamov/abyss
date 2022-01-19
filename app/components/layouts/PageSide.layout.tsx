@@ -1,11 +1,11 @@
-import React, { ReactElement } from 'react'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
+import React, { ReactElement } from 'react';
 
-import PageFilters from '../modules/PageFilters'
-import { SidePartOfPageStyle } from '../../styles/pages/Page.styled'
-import { color_convert } from '../app/feature/User.slice'
-import { is_chatbox_opened } from '../app/feature/ChatBox.slice'
-import { is_comment_opened } from '../app/feature/Comments.slice'
+import { is_chatbox_opened } from '../../store/slices/ChatBox.slice';
+import { is_comment_opened } from '../../store/slices/Comments.slice';
+import { color_convert } from '../../store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
+import { SidePartOfPageStyle } from '../../styles/pages/Page.styled';
+import PageFilters from '../modules/PageFilters';
 
 interface Props {
   children: any

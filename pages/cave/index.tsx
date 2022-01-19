@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 
-import CaveLayout from '../../components/Cave/CaveLayout'
-import CaveWindowRouter from '../../components/Cave/Cave_Windows/CaveWindowRouter'
+import CaveLayout from '../../app/components/layouts/Cave.layout';
+import CaveWindowRouter from '../../app/components/templates/Cave/Cave_Windows/CaveWindowRouter';
 
-interface Props {}
+interface Props { }
 
 const Cave = (props: Props) => {
-  return (
-    <CaveLayout>
-      <CaveWindowRouter />
-    </CaveLayout>
-  )
+    return (
+        <CaveLayout>
+            <CaveWindowRouter />
+        </CaveLayout>
+    )
 }
 export default Cave

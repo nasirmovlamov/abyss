@@ -1,10 +1,10 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement } from 'react';
 
-import { SkeletonBox } from '../../styles/global/styled-utils/Global.style'
+import { SkeletonBox } from '../../../styles/global/styled-components/Global.style';
 
-interface Props {}
+interface Props { }
 
-function FormQuestionSkeleton({}: Props): ReactElement {
+function FormQuestionSkeleton({ }: Props): ReactElement {
   return <SkeletonBox className="skeleton-box" width="100%" height="125px" borderRadius="10px" />
 }
 

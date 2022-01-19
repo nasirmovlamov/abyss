@@ -1,7 +1,17 @@
+import axios from 'axios';
+import HTMLReactParser from 'html-react-parser';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+
+import { BASE_API_INSTANCE } from '../../../helpers/api/BaseInstance';
+import { store_tabs } from '../../../store/slices/PageTabs.slice';
+import { single_product_data } from '../../../store/slices/SingleProduct.slice';
+import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks';
 import {
   ClipBody,
-  ClipTitle,
   ClipsCont,
+  ClipTitle,
   LabelCont,
   LabelContent,
   LabelKey,
@@ -11,23 +21,12 @@ import {
   StoreForumBody,
   StoreForumCont,
   StoreForumTitle,
-} from '../../../styles/pages/Store.styled'
-import React, { useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../app/store/hooks'
+} from '../../../styles/pages/Store.styled';
+import { CodeMirror_ReadOnly_STY } from '../../../styles/ui/modules/CreateProduct_Style/Steps/ProductCreate_Step1.style';
+import { DetailsCont_STY } from '../../../styles/ui/modules/CreateQuestionModal.style';
+import { autoSuccessToaster } from '../../ui/toasters/AutoSuccessToast';
 
-import { BASE_API_INSTANCE } from '../../../helpers/api/BaseInstance'
-import CodeMirror from '@uiw/react-codemirror'
-import { CodeMirror_ReadOnly_STY } from '../../../styles/ui/modules/CreateProduct_Style/Steps/ProductCreate_Step1.style'
-import { DetailsCont_STY } from '../../../styles/ui/modules/CreateQuestionModal.style'
-import HTMLReactParser from 'html-react-parser'
-import { autoSuccessToaster } from '../../Notify/AutoSuccessToast'
-import axios from 'axios'
-import { single_product_data } from '../../app/feature/SingleProduct.slice'
-import { store_tabs } from '../../app/feature/PageTabs.slice'
-import { useInView } from 'react-intersection-observer'
-import { useRouter } from 'next/router'
-
-interface Props {}
+interface Props { }
 
 const StoreProductForSubscribed = (props: Props) => {
   const router = useRouter()
@@ -117,24 +116,24 @@ const StoreProductForSubscribed = (props: Props) => {
       {JSON.parse(singleProductData.data.description).details_data['sections_product'][3][
         'isClips'
       ]['clips'].length > 0 && (
-        <ClipsCont id={storeTabs[3].tabName}>
-          <ClipTitle>Clips</ClipTitle>
-          <ClipBody>
-            <MainClip>
-              <img src={mainClip} alt="main-image" />
-            </MainClip>
-            <SideClips>
-              {JSON.parse(singleProductData.data.description).details_data['sections_product'][3][
-                'isClips'
-              ]['clips'].map((item: any, index: any) => (
-                <SideClip key={item.id} onClick={() => mainClipChanger(item.src)}>
-                  <img src={item.src} alt="side-image" />
-                </SideClip>
-              ))}
-            </SideClips>
-          </ClipBody>
-        </ClipsCont>
-      )}
+          <ClipsCont id={storeTabs[3].tabName}>
+            <ClipTitle>Clips</ClipTitle>
+            <ClipBody>
+              <MainClip>
+                <img src={mainClip} alt="main-image" />
+              </MainClip>
+              <SideClips>
+                {JSON.parse(singleProductData.data.description).details_data['sections_product'][3][
+                  'isClips'
+                ]['clips'].map((item: any, index: any) => (
+                  <SideClip key={item.id} onClick={() => mainClipChanger(item.src)}>
+                    <img src={item.src} alt="side-image" />
+                  </SideClip>
+                ))}
+              </SideClips>
+            </ClipBody>
+          </ClipsCont>
+        )}
 
       <StoreForumCont id={storeTabs[2].tabName}>
         <StoreForumTitle>Forum</StoreForumTitle>

@@ -1,23 +1,23 @@
-import React, { ReactElement, useEffect, useState } from 'react'
-import { search_query, store_search_data } from '../../app/feature/SearchBox.slice'
-import { useAppDispatch, useAppSelector } from '../../app/store/hooks'
+import axios from 'axios';
+import React, { ReactElement, useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+import BeatLoader from 'react-spinners/BeatLoader';
 
-import BeatLoader from 'react-spinners/BeatLoader'
-import ChatBox from '../../components/ChatBox'
-import ListingStoreProduct from '../../components/ListingStoreProduct'
-import MainPartOfPage from '../../components/MainPartOfPage'
-import { PageDefaultStyle } from '../../styles/pages/Page.styled'
-import PageTabs from '../../components/StorePageTabs'
-import SearchBoxStaticVersion from '../../components/SearchBoxStaticVersion'
-import SidePartOfPage from '../../components/SidePartOfPage'
-import { StorePage } from '../../styles/pages/Pages.style'
-import axios from 'axios'
-import { is_chatbox_opened } from '../../app/feature/ChatBox.slice'
-import { useInView } from 'react-intersection-observer'
+import MainPartOfPage from '../../app/components/layouts/PageMain.layout';
+import SidePartOfPage from '../../app/components/layouts/PageSide.layout';
+import ChatBox from '../../app/components/modules/ChatBox';
+import SearchBoxStaticVersion from '../../app/components/modules/SearchBoxStaticVersion';
+import ListingStoreProduct from '../../app/components/templates/ListingStoreProduct';
+import PageTabs from '../../app/components/ui/tabs/ForumPageTabs';
+import { is_chatbox_opened } from '../../app/store/slices/ChatBox.slice';
+import { search_query, store_search_data } from '../../app/store/slices/SearchBox.slice';
+import { useAppDispatch, useAppSelector } from '../../app/store/states/store.hooks';
+import { PageDefaultStyle } from '../../app/styles/pages/Page.styled';
+import { StorePage } from '../../app/styles/pages/Pages.style';
 
-interface Props {}
+interface Props { }
 
-function Store({}: Props): ReactElement {
+function Store({ }: Props): ReactElement {
   const [inViewRefLoaderDown, inViewLoaderDown] = useInView()
   const dispatch = useAppDispatch()
   const storeSearchData = useAppSelector(store_search_data)

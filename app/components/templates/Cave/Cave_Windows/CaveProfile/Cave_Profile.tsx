@@ -1,9 +1,9 @@
-import React from 'react'
-import { cave_profile_sections } from '../Cave.windows'
-import { cave_tabs } from '../../../../app/feature/CaveFeatures/CaveTabs.slice'
-import { useAppSelector } from '../../../../app/store/hooks'
+import { cave_tabs } from '../../../../../store/slices/CaveFeatures/CaveTabs.slice';
+import { useAppSelector } from '../../../../../store/states/store.hooks';
+import { cave_profile_sections } from '../Cave.windows';
 
-interface Props {}
+
+interface Props { }
 
 const CaveProfile = (props: Props) => {
   const caveTabs = useAppSelector(cave_tabs)
