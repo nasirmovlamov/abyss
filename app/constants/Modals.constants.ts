@@ -1,1 +1,1 @@
-export const CHANGE_MODAL:string = "CHANGE_MODAL"  
+export const CHANGE_MODAL: string = 'CHANGE_MODAL'

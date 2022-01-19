@@ -6,11 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faHeart } from '@fortawesome/free-solid-svg-icons'
 import mainLogo from '../../public/main-logo.svg'
 interface Props {
-    data:any
+    data: any
 }
 
 const CaveProduct = (props: Props) => {
-    const {data} = props
+    const { data } = props
     return (
         <CaveProduct_STY>
             <p className="title">
@@ -19,11 +19,11 @@ const CaveProduct = (props: Props) => {
 
             <div className="details">
                 <div className="logo">
-                    <Image src={mainLogo} width='22' height='22' alt='company-logo'/>
+                    <Image src={mainLogo} width='22' height='22' alt='company-logo' />
                 </div>
 
                 <div className="flex">
-                    <StarCountShow count={4.5}/>
+                    <StarCountShow count={4.5} />
                     <span className='text'>621</span>
                 </div>
 
@@ -49,10 +49,10 @@ const CaveProduct = (props: Props) => {
                     <button className='free'>FREE</button>
                     <div className="buttonsCont">
                         <div className="button">
-                            <FontAwesomeIcon icon={faEdit}/>
+                            <FontAwesomeIcon icon={faEdit} />
                         </div>
                         <div className="button">
-                            <FontAwesomeIcon icon={faHeart}/>
+                            <FontAwesomeIcon icon={faHeart} />
                         </div>
                     </div>
                 </div>

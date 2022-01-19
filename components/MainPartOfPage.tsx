@@ -4,10 +4,10 @@ import { useAppSelector } from '../app/store/hooks'
 import { MainPartOfPageStyle } from '../styles/pages/Page.styled'
 
 interface Props {
-    children:any
+    children: any
 }
 
-function MainPartOfPage({children}: Props): ReactElement {
+function MainPartOfPage({ children }: Props): ReactElement {
     const colorConvert = useAppSelector(color_convert)
     return (
         <MainPartOfPageStyle colorConvert={colorConvert}>

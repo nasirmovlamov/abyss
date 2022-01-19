@@ -1,10 +1,10 @@
 import React from 'react'
 import { cave_tabs } from '../../../../app/feature/CaveFeatures/CaveTabs.slice'
 import { useAppSelector } from '../../../../app/store/hooks'
-import { cave_profile_sections} from '../Cave.windows'
+import { cave_profile_sections } from '../Cave.windows'
 
 interface Props {
-    
+
 }
 
 const CaveProfile = (props: Props) => {

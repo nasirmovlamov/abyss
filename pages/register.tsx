@@ -9,32 +9,32 @@ import mainLogoText from '/public/main-logo-side-text-new.svg'
 
 
 interface Props {
-    
+
 }
 
 const Register = (props: Props) => {
     return (
         <LoginPage_STY.AuthPageContainer_STY>
             <LoginPage_STY.TopLogoContainer_STY>
-                <Image  width="49px" height="49px"  src={mainLogo}  alt={"Abyss logo"}/>  
-                <Image width="99px" height='40px'  src={mainLogoText}   alt={"Abyss text"}/>  
-            </LoginPage_STY.TopLogoContainer_STY> 
-            
+                <Image width="49px" height="49px" src={mainLogo} alt={"Abyss logo"} />
+                <Image width="99px" height='40px' src={mainLogoText} alt={"Abyss text"} />
+            </LoginPage_STY.TopLogoContainer_STY>
+
             <LoginPage_STY.LoginContainer_STY>
                 <div className="part1">
                     <div className="buttonCont">
                         <button className="githubButton">
-                            <Image  width="30px" height="30px"  src={githubLogo}  alt={"Abyss logo"}/>
+                            <Image width="30px" height="30px" src={githubLogo} alt={"Abyss logo"} />
                             <span>Log in with Github</span>
                         </button>
 
                         <button className='gmailButton'>
-                            <Image  width="30px" height="30px"  src={googleLogo}  alt={"Abyss logo"}/>
+                            <Image width="30px" height="30px" src={googleLogo} alt={"Abyss logo"} />
                             <span>Log in with Gmail</span>
                         </button>
                     </div>
 
-                    <p className='agreeement'>By continuing, you agree to <br/> our <a href="#">User Agreement</a>, <a href="#">Privacy Policu</a> and <a href="#">CookiesPolicy</a> </p>
+                    <p className='agreeement'>By continuing, you agree to <br /> our <a href="#">User Agreement</a>, <a href="#">Privacy Policu</a> and <a href="#">CookiesPolicy</a> </p>
                 </div>
 
                 <div className="part2">
@@ -43,13 +43,13 @@ const Register = (props: Props) => {
                     <form action="">
                         <div className="form-cont">
                             <label htmlFor="email">Email</label>
-                            <input  type="email" id="email" placeholder="Email"/>
+                            <input type="email" id="email" placeholder="Email" />
                             <p className='error'>error</p>
                         </div>
 
                         <div className="form-cont">
                             <label htmlFor="password">Password</label>
-                            <input  type="password" id="password" placeholder="password"/>
+                            <input type="password" id="password" placeholder="password" />
                             <p className='error'>error</p>
                         </div>
 

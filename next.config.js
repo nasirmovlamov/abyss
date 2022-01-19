@@ -4,7 +4,7 @@ module.exports = {
     domains: ['https://demo.abysshub.com'],
   },
   reactStrictMode: true,
-  eslint:{
+  eslint: {
     ignoreDuringBuilds: false,
   },
 }

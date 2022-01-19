@@ -1,2 +1,2 @@
-export const forumWordRegex = /forum+/;
-export const storeWordRegex = /store+/;
+export const forumWordRegex = /forum+/
+export const storeWordRegex = /store+/

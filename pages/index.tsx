@@ -6,16 +6,16 @@ import { accessToken } from '../helpers/token/TokenHandle'
 import { getCookie } from '../logic/CookieFunctions'
 import * as Home_STY from '../styles/components/styled-blocks/Index_STYLE/Home.style'
 interface Props {
-    
+
 }
 
-function Index({}: Props): ReactElement {
+function Index({ }: Props): ReactElement {
 
     const dispatch = useDispatch()
 
     return (
         <Home_STY.Home_STYLE>
-            <SearchBoxForHome/>
+            <SearchBoxForHome />
             <p className="title">Discover limitless posibilities</p>
             <p className="subTitle">Enter the Abyss</p>
             <button onClick={() => dispatch(changeModalAction('register'))} className='registerButton'>Sign Up</button>

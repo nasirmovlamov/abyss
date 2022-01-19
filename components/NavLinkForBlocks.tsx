@@ -4,9 +4,9 @@ import Link from 'next/link'
 
 interface Props {
     // any props that come into the component
-    href:string
-    content:string
-    key?:string | number
+    href: string
+    content: string
+    key?: string | number
 }
 
 const NavLinkForBlocks: FC<Props> = ({ children, ...props }) => {
@@ -33,7 +33,7 @@ const NavLinkForBlocks: FC<Props> = ({ children, ...props }) => {
     //     clearTimeout(hideVar)
 
     //     const isMouseStayed = (e.clientX === toolTipData.cursorPosition.x && e.clientY === toolTipData.cursorPosition.y)
-        
+
     //     const cursorPosition = {
     //         x: e.clientX,
     //         y: e.clientY
@@ -46,9 +46,9 @@ const NavLinkForBlocks: FC<Props> = ({ children, ...props }) => {
     //                 position:cursorPosition
     //             }))
     //         }, 500);
-            
+
     //     }
-        
+
     // }
 
 
@@ -57,12 +57,12 @@ const NavLinkForBlocks: FC<Props> = ({ children, ...props }) => {
     //     clearTimeout(hideVar)
     // }
 
-    return(
-        <Link  key={props.key} href={props.href} passHref>
+    return (
+        <Link key={props.key} href={props.href} passHref>
             {children}
         </Link>
     )
 
-};
+}
 
 export default NavLinkForBlocks

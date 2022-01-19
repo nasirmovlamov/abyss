@@ -1,12 +1,13 @@
 import React, { useEffect, useRef } from 'react'
-import {  cave_actions, cave_tabs } from '../../../app/feature/CaveFeatures/CaveTabs.slice'
+import { cave_actions, cave_tabs } from '../../../app/feature/CaveFeatures/CaveTabs.slice'
 import { useAppDispatch, useAppSelector } from '../../../app/store/hooks'
-import { Cave_Tabs_Sty, Cave_Tab_Sty , 
+import {
+    Cave_Tabs_Sty, Cave_Tab_Sty,
     Cave_Tabs_Cont_Sty,
     CaveLeftCorner,
     CaveRightCorner,
     CaveRightCornerForHover,
-    CaveLeftCornerForHover, 
+    CaveLeftCornerForHover,
     Cave_Tab_Seperator_Sty
 } from '../../../styles/components/styled-blocks/Cave_Style/Cave_Tabs.style'
 import caveTabCornerNotHoveredSvg from '../../../public/caveTabCornerNotHovered.svg'
@@ -20,7 +21,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
 
 interface Props {
-    
+
 }
 
 const Cave_Tabs = (props: Props) => {
@@ -33,17 +34,17 @@ const Cave_Tabs = (props: Props) => {
 
     const dispatch = useAppDispatch()
 
-    
+
     const hoverTab = (tab: any) => {
-        dispatch(cave_actions.hoverTab({tab:tab , window:caveSideData.selectedWindow}))
+        dispatch(cave_actions.hoverTab({ tab: tab, window: caveSideData.selectedWindow }))
     }
     const unHoverTab = (tab: any) => {
-        dispatch(cave_actions.unHoverTab({tab:tab , window:caveSideData.selectedWindow}))
+        dispatch(cave_actions.unHoverTab({ tab: tab, window: caveSideData.selectedWindow }))
     }
 
-    
 
-    const changeActiveTab   =  (tab: any) => {
+
+    const changeActiveTab = (tab: any) => {
         const activeTab = caveTabs[caveSideData.selectedWindow].filter((tab: any) => tab.active)[0]
         scroller.scrollTo(`#${caveSideData.selectedWindow}${tab.name}Block`, {
             duration: 0,
@@ -51,13 +52,13 @@ const Cave_Tabs = (props: Props) => {
             smooth: 'easeInOutQuart',
             offset: -130
         })
-        if(activeTab.id !== tab.id && scrollY === 0){
+        if (activeTab.id !== tab.id && scrollY === 0) {
             // tabContRef.current?.setAttribute('style', 'position: fixed; top: 0px;')
         }
-        dispatch(cave_actions.selectTab({tab:tab , window:caveSideData.selectedWindow}))
+        dispatch(cave_actions.selectTab({ tab: tab, window: caveSideData.selectedWindow }))
     }
 
-    
+
 
     // useEffect(() => {
     //     // window.addEventListener('wheel', () => {
@@ -79,45 +80,45 @@ const Cave_Tabs = (props: Props) => {
 
             <Cave_Tabs_Cont_Sty>
                 {
-                    caveTabs[caveSideData.selectedWindow].map((tab, index) => 
+                    caveTabs[caveSideData.selectedWindow].map((tab, index) =>
                         <>
-                            <Cave_Tab_Sty               
-                                
-                                key={tab.id} 
-                                order={tab.id} 
+                            <Cave_Tab_Sty
+
+                                key={tab.id}
+                                order={tab.id}
                                 active={tab.active}
                                 onClick={() => changeActiveTab(tab)}
                                 onMouseEnter={() => hoverTab(tab)}
                                 onMouseLeave={() => unHoverTab(tab)}
                             >
                                 {
-                                    tab.id > 0 && 
+                                    tab.id > 0 &&
                                     <>
                                         <CaveLeftCorner tab={tab}>
-                                            <Image width='25px' height='15px' src={caveTabCornerNotHoveredSvg} alt="caveLeftCornerSvg" /> 
+                                            <Image width='25px' height='15px' src={caveTabCornerNotHoveredSvg} alt="caveLeftCornerSvg" />
                                         </CaveLeftCorner>
                                         <CaveLeftCornerForHover tab={tab}>
-                                            <Image width='25px' height='15px' src={caveTabCornerHovered} alt="caveLeftCornerSvg" /> 
+                                            <Image width='25px' height='15px' src={caveTabCornerHovered} alt="caveLeftCornerSvg" />
                                         </CaveLeftCornerForHover>
                                     </>
                                 }
 
-                                {tab.text} 
+                                {tab.text}
 
                                 <CaveRightCorner tab={tab}>
-                                    <Image  width='25px' height='15px'  src={caveTabCornerNotHoveredSvg} alt="caveLeftCornerSvg" /> 
+                                    <Image width='25px' height='15px' src={caveTabCornerNotHoveredSvg} alt="caveLeftCornerSvg" />
                                 </CaveRightCorner>
 
-                                {tab.hovered && <div style={{position:'absolute' , bottom:"-2px" , width:"100%" , height:"2px" , backgroundColor:"#1C1E20"}}></div>}
-                                {tab.active && <div style={{position:'absolute' , bottom:"-2px" , width:"100%" , height:"2px" , backgroundColor:"#1C1E20"}}></div>}
-                                <CaveRightCornerForHover  tab={tab}>
-                                    <Image width='25px' height='15px' src={caveTabCornerHovered} alt="caveLeftCornerSvg" /> 
+                                {tab.hovered && <div style={{ position: 'absolute', bottom: "-2px", width: "100%", height: "2px", backgroundColor: "#1C1E20" }}></div>}
+                                {tab.active && <div style={{ position: 'absolute', bottom: "-2px", width: "100%", height: "2px", backgroundColor: "#1C1E20" }}></div>}
+                                <CaveRightCornerForHover tab={tab}>
+                                    <Image width='25px' height='15px' src={caveTabCornerHovered} alt="caveLeftCornerSvg" />
                                 </CaveRightCornerForHover>
 
                             </Cave_Tab_Sty>
                             {
                                 index < caveTabs[caveSideData.selectedWindow].length &&
-                                <Cave_Tab_Seperator_Sty tab={tab} tabs={caveTabs[caveSideData.selectedWindow]}/>
+                                <Cave_Tab_Seperator_Sty tab={tab} tabs={caveTabs[caveSideData.selectedWindow]} />
                             }
                         </>
                     )
@@ -125,7 +126,7 @@ const Cave_Tabs = (props: Props) => {
             </Cave_Tabs_Cont_Sty>
 
 
-            {caveSideData.selectedWindow === 'profile' && <button className='tabFilters'> <FontAwesomeIcon icon={faFilter}/>  <p>Filter</p>  </button>}
+            {caveSideData.selectedWindow === 'profile' && <button className='tabFilters'> <FontAwesomeIcon icon={faFilter} />  <p>Filter</p>  </button>}
         </Cave_Tabs_Sty>
     )
 }

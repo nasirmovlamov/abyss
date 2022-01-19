@@ -7,25 +7,25 @@ import { QuestionMiddleLayout } from './QuestionMiddleLayout'
 
 
 interface Props {
-    
+
 }
 
 
 
-const QuestionLayout:FC <Props> = ({children , ...props}) => {
+const QuestionLayout: FC<Props> = ({ children, ...props }) => {
     const questionStatus = useAppSelector(question_status)
     const questionData = useAppSelector(single_question_data)
     const errors = useAppSelector(question_errors)
     const router = useRouter()
-    if(questionStatus === "loading" ){
+    if (questionStatus === "loading") {
         return (
             <>
                 <h1 className='custom-loading-cont'>Loading...</h1>
-                <div style={{width:"100%" , display:"flex", justifyContent:"center"}}><Loader loading={true} color={'white'}/></div>
+                <div style={{ width: "100%", display: "flex", justifyContent: "center" }}><Loader loading={true} color={'white'} /></div>
             </>
         )
     }
-    else if(questionStatus === "failed"){
+    else if (questionStatus === "failed") {
         return (
             <>
                 <h1 className='custom-error-cont'>Error occured.</h1>
@@ -37,13 +37,13 @@ const QuestionLayout:FC <Props> = ({children , ...props}) => {
             </>
         )
     }
-    else if(questionStatus === "idle"){
+    else if (questionStatus === "idle") {
         return (
             <>
                 <QuestionMiddleLayout />
             </>
         )
-    }else {
+    } else {
         return (
             <>
                 <p>Something went wrong.</p>

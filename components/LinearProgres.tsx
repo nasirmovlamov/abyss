@@ -4,7 +4,7 @@ import { useAppSelector } from '../app/store/hooks'
 import { LinearProgress_STY } from '../styles/components/styled-blocks/LinearProgress.style'
 
 interface Props {
-    
+
 }
 
 const LinearProgres = (props: Props) => {
@@ -13,46 +13,46 @@ const LinearProgres = (props: Props) => {
 
 
     useEffect(() => {
-        if(forumSearchData.infinityLoader === "loading"){
+        if (forumSearchData.infinityLoader === "loading") {
             setTimeout(() => {
                 linearProgressPercentageAutoGenerator()
-            }, 15);
+            }, 15)
         }
     })
 
     const linearProgressPercentageAutoGenerator = () => {
-        const randomNumberBetween60and80 = Math.floor(Math.random() * (85.4 - 76.4 + 1)) +  76.4
-        if(percentageLoader === randomNumberBetween60and80){
-            return 
+        const randomNumberBetween60and80 = Math.floor(Math.random() * (85.4 - 76.4 + 1)) + 76.4
+        if (percentageLoader === randomNumberBetween60and80) {
+            return
         }
         setpercentageLoader(percentageLoader + 1)
     }
-    
+
 
     useEffect(() => {
-        if(forumSearchData.infinityLoader === "loading"){
+        if (forumSearchData.infinityLoader === "loading") {
             setpercentageLoader(1)
         }
-        if(forumSearchData.infinityLoader === "loaded"){
+        if (forumSearchData.infinityLoader === "loaded") {
             setTimeout(() => {
                 setpercentageLoader(100)
-            },200);
+            }, 200)
         }
     }, [forumSearchData.infinityLoader])
 
-    
 
-    
-    
+
+
+
     useEffect(() => {
-        if(percentageLoader === 100){
+        if (percentageLoader === 100) {
             setTimeout(() => {
                 setpercentageLoader(0)
-            }, 500);
+            }, 500)
         }
     }, [percentageLoader])
 
-   
+
 
 
     return (

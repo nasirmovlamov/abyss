@@ -16,41 +16,35 @@ import createThreadReducer from '../feature/CreateThread/CreateThread.slice'
 import singleProductReducer from '../feature/SingleProduct.slice'
 import toolTipReducer from '../feature/Tooltip.slice'
 
-const reducer = 
-{  
-  appReducer: appReducer , 
-  userReducer:userReducer , 
-  questionReducer:questionReducer, 
-  commentsReducer:commentsReducer  ,
-  tabsReducer:tabsReducer,
-  chatBoxReducer:chatBoxReducer,
-  searchBoxReducer:searchBoxReducer,
-  pageFiltersReducer:pageFiltersReducer,
-  createProductReducer:createProductReducer,
-  createQuestionReducer:createQuestionReducer,
-  linkedProductsReducer:linkedProductsReducer,
-  caveRootReducer:caveRootReducer,
-  sideProductReducer:sideProductReducer,
-  createThreadReducer:createThreadReducer,
-  singleProductReducer:singleProductReducer,
-  toolTipReducer:toolTipReducer,
+const reducer = {
+  appReducer: appReducer,
+  userReducer: userReducer,
+  questionReducer: questionReducer,
+  commentsReducer: commentsReducer,
+  tabsReducer: tabsReducer,
+  chatBoxReducer: chatBoxReducer,
+  searchBoxReducer: searchBoxReducer,
+  pageFiltersReducer: pageFiltersReducer,
+  createProductReducer: createProductReducer,
+  createQuestionReducer: createQuestionReducer,
+  linkedProductsReducer: linkedProductsReducer,
+  caveRootReducer: caveRootReducer,
+  sideProductReducer: sideProductReducer,
+  createThreadReducer: createThreadReducer,
+  singleProductReducer: singleProductReducer,
+  toolTipReducer: toolTipReducer,
 }
-
-
 
 export const store = configureStore({
   reducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: false
+      serializableCheck: false,
     }),
 })
-
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>
 
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch
-
-

@@ -2,7 +2,7 @@ import React from 'react'
 import { AreYouSureButtonsCont, ModalFORM_STY } from '../../styles/components/styled-blocks/Modal_Style/ModalCont.style'
 
 interface Props {
-    
+
 }
 
 const CustomAreYouSureModal = (props: Props) => {
