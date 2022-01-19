@@ -1,15 +1,9 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement } from 'react'
 
-interface Props {
+interface Props {}
 
-}
-
-function Pedi({ }: Props): ReactElement {
-    return (
-        <div>
-            Pedi
-        </div>
-    )
+function Pedi({}: Props): ReactElement {
+  return <div>Pedi</div>
 }
 
 export default Pedi

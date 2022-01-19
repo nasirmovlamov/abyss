@@ -1,0 +1,268 @@
+/* Accordion */
+
+.ac > .ac-header {
+  @extend .bg-white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+
+  > i {
+    @extend .animate;
+  }
+}
+
+.ac > .ac-panel {
+  overflow: hidden;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-timing-function: ease;
+  transition-timing-function: ease;
+}
+
+.ac-panel li {
+  display: flex;
+  align-items: center;
+}
+.ac.js-enabled > .ac-panel {
+  visibility: hidden;
+}
+.ac.is-active > .ac-panel {
+  visibility: visible;
+  height: auto;
+}
+
+// Specific
+#js-accordion {
+  &-docs {
+    .ac {
+      margin-bottom: 32px;
+
+      &.is-active {
+        .ac-header i {
+          transform: rotate(180deg);
+        }
+
+        .ac-panel {
+          margin: 24px 0;
+        }
+      }
+
+      &-panel {
+        @extend .border-left;
+        @extend .border-haze;
+        padding-left: 12px;
+      }
+    }
+  }
+
+  &-faq,
+  &-faq_home {
+    .ac {
+      @extend .border-bottom;
+      @extend .border-catskill-white;
+      padding-bottom: 16px;
+      margin-bottom: 32px;
+
+      &.is-active {
+        .ac-header i {
+          transform: rotate(45deg);
+        }
+      }
+    }
+  }
+
+  &-faq_pricing {
+    .ac {
+      @extend .border-bottom;
+      @extend .border-sundown;
+      padding: 24px 0;
+
+      &.is-active {
+        .ac-header i {
+          transform: rotate(180deg);
+        }
+      }
+
+      &-panel {
+        transition-duration: 300ms;
+      }
+    }
+  }
+}
+
+/* Accordion End */
+
+/* Swiper */
+
+.swiper {
+  &-pagination {
+    @extend .d-flex-xy;
+    left: 0;
+    width: 100%;
+  }
+
+  &-pagination-bullet-my {
+    @extend .animate;
+    @extend .hover-darken;
+    @extend .active-darken;
+    @extend .bg-catskill-white;
+    @extend .radius-50;
+    width: 8px;
+    height: 8px;
+
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+
+    // Hide pagination if only one
+    &:only-child {
+      @extend .d-none;
+    }
+
+    &-active {
+      @extend .bg-bali;
+    }
+  }
+
+  &-pagination-bullet-my-radical {
+    @extend .bg-white;
+    @extend .animate;
+    @extend .hover-darken;
+    @extend .active-darken;
+    @extend .radius-50;
+    position: relative;
+    width: 16px;
+    height: 16px;
+
+    &:not(:last-child) {
+      margin-right: 16px;
+    }
+
+    // Hide pagination if only one
+    &:only-child {
+      @extend .d-none;
+    }
+
+    &-active {
+      @extend .bg-radical;
+    }
+  }
+
+  // Buttons
+  &-button {
+    &-my {
+      @extend .animate;
+      @extend .hover-darken;
+      @extend .active-darken;
+      @extend .radius-50;
+      @extend .bg-catskill;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: 56px;
+      height: 56px;
+    }
+
+    &-prev-my,
+    &-next-my {
+      @extend .swiper-button-my;
+      background-image: url('../../img/icons/arrow.svg');
+      background-size: 14px 7px;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    &-prev-my {
+      left: 0;
+      transform: rotate(90deg) translateY(-50%);
+    }
+
+    &-next-my {
+      right: 0;
+      transform: rotate(270deg) translateY(-50%);
+    }
+
+    &-disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+}
+
+// Specific
+#js-slider {
+  &-pricing {
+    @media (min-width: map-get($breakpoints, lg)) {
+      .swiper-slide {
+        filter: blur(4px);
+        transform: scaleY(0.85);
+
+        &-active {
+          filter: blur(0);
+          transform: scaleY(1);
+          z-index: 1;
+          margin-left: -8px !important;
+        }
+
+        &-prev {
+          margin-right: -16px !important;
+          margin-left: 32px !important;
+          transform: scaleY(0.85) translateX(50%);
+        }
+
+        &-next {
+          margin-left: -16px !important;
+          margin-right: 32px !important;
+          transform: scaleY(0.85) translateX(-50%);
+        }
+      }
+    }
+  }
+}
+
+/* Swiper End */
+
+/* Micromodal */
+
+.modal {
+  &__close {
+    @extend .animate;
+    @extend .hover-fade;
+    @extend .active-fade;
+    cursor: pointer;
+    display: inline-flex;
+
+    * {
+      pointer-events: none;
+    }
+  }
+}
+
+// Specific
+#modal {
+  &-video {
+    .modal {
+      &__container {
+        background-color: transparent;
+        padding: 0;
+        width: 100%;
+        max-width: 800px;
+      }
+
+      &__header {
+        justify-content: flex-end;
+      }
+
+      &__content {
+        margin: 0;
+
+        > .iframe-container {
+          border-radius: 8px;
+        }
+      }
+    }
+  }
+}
+
+/* Micromodal End */

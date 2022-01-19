@@ -1,71 +1,71 @@
-import Image from 'next/image';
-import React from 'react';
+import * as LoginPage_STY from '../styles/components/styled-blocks/AuthStyle/Login.style'
 
-import * as LoginPage_STY from '../styles/components/styled-blocks/AuthStyle/Login.style';
-import githubLogo from '/public/githubLogo.png';
-import googleLogo from '/public/googleLogo.png';
-import mainLogo from '/public/main-logo-new.svg';
-import mainLogoText from '/public/main-logo-side-text-new.svg';
+import Image from 'next/image'
+import React from 'react'
+import githubLogo from '/public/githubLogo.png'
+import googleLogo from '/public/googleLogo.png'
+import mainLogo from '/public/main-logo-new.svg'
+import mainLogoText from '/public/main-logo-side-text-new.svg'
 
-
-interface Props {
-
-}
+interface Props {}
 
 const Register = (props: Props) => {
-    return (
-        <LoginPage_STY.AuthPageContainer_STY>
-            <LoginPage_STY.TopLogoContainer_STY>
-                <Image width="49px" height="49px" src={mainLogo} alt={"Abyss logo"} />
-                <Image width="99px" height='40px' src={mainLogoText} alt={"Abyss text"} />
-            </LoginPage_STY.TopLogoContainer_STY>
+  return (
+    <LoginPage_STY.AuthPageContainer_STY>
+      <LoginPage_STY.TopLogoContainer_STY>
+        <Image width="49px" height="49px" src={mainLogo} alt={'Abyss logo'} />
+        <Image width="99px" height="40px" src={mainLogoText} alt={'Abyss text'} />
+      </LoginPage_STY.TopLogoContainer_STY>
 
-            <LoginPage_STY.LoginContainer_STY>
-                <div className="part1">
-                    <div className="buttonCont">
-                        <button className="githubButton">
-                            <Image width="30px" height="30px" src={githubLogo} alt={"Abyss logo"} />
-                            <span>Log in with Github</span>
-                        </button>
+      <LoginPage_STY.LoginContainer_STY>
+        <div className="part1">
+          <div className="buttonCont">
+            <button className="githubButton">
+              <Image width="30px" height="30px" src={githubLogo} alt={'Abyss logo'} />
+              <span>Log in with Github</span>
+            </button>
 
-                        <button className='gmailButton'>
-                            <Image width="30px" height="30px" src={googleLogo} alt={"Abyss logo"} />
-                            <span>Log in with Gmail</span>
-                        </button>
-                    </div>
+            <button className="gmailButton">
+              <Image width="30px" height="30px" src={googleLogo} alt={'Abyss logo'} />
+              <span>Log in with Gmail</span>
+            </button>
+          </div>
 
-                    <p className='agreeement'>By continuing, you agree to <br /> our <a href="#">User Agreement</a>, <a href="#">Privacy Policu</a> and <a href="#">CookiesPolicy</a> </p>
-                </div>
+          <p className="agreeement">
+            By continuing, you agree to <br /> our <a href="#">User Agreement</a>,{' '}
+            <a href="#">Privacy Policu</a> and <a href="#">CookiesPolicy</a>{' '}
+          </p>
+        </div>
 
-                <div className="part2">
-                    <p className='title'>Please Log in or <a href="#">Sign Up</a></p>
+        <div className="part2">
+          <p className="title">
+            Please Log in or <a href="#">Sign Up</a>
+          </p>
 
-                    <form action="">
-                        <div className="form-cont">
-                            <label htmlFor="email">Email</label>
-                            <input type="email" id="email" placeholder="Email" />
-                            <p className='error'>error</p>
-                        </div>
+          <form action="">
+            <div className="form-cont">
+              <label htmlFor="email">Email</label>
+              <input type="email" id="email" placeholder="Email" />
+              <p className="error">error</p>
+            </div>
 
-                        <div className="form-cont">
-                            <label htmlFor="password">Password</label>
-                            <input type="password" id="password" placeholder="password" />
-                            <p className='error'>error</p>
-                        </div>
+            <div className="form-cont">
+              <label htmlFor="password">Password</label>
+              <input type="password" id="password" placeholder="password" />
+              <p className="error">error</p>
+            </div>
 
-                        <div className="forgot-pass-cont">
-                            <a href="">Forgot Password</a>
-                        </div>
+            <div className="forgot-pass-cont">
+              <a href="">Forgot Password</a>
+            </div>
 
-                        <button className="login-button">Log in</button>
-                        <button className="signup-button">Sign Up</button>
-                    </form>
-                </div>
-            </LoginPage_STY.LoginContainer_STY>
-
-
-        </LoginPage_STY.AuthPageContainer_STY>
-    )
+            <button className="login-button">Log in</button>
+            <button className="signup-button">Sign Up</button>
+          </form>
+        </div>
+      </LoginPage_STY.LoginContainer_STY>
+    </LoginPage_STY.AuthPageContainer_STY>
+  )
 }
 
 export default Register
