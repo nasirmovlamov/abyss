@@ -1,8 +1,17 @@
-import React, { FormEvent, ReactElement, useEffect, useState } from 'react'
-import { useAppSelector, useAppDispatch } from '../../app/store/hooks'
-import * as authThunk from '../../app/thunks/AuthThunk'
-import { changeModalAction, forget_Password_Errors, login_form, login_Form_OnChange, user_forget_pass, user_modals } from '../../app/feature/User.slice'
-import { ModalFORM_STY } from '../../styles/components/styled-blocks/Modal_Style/ModalCont.style'
+import React, { FormEvent, ReactElement, useEffect, useState } from 'react';
+
+import {
+    changeModalAction,
+    forget_Password_Errors,
+    login_form,
+    login_Form_OnChange,
+    user_forget_pass,
+    user_modals,
+} from '../../app/feature/User.slice';
+import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
+import * as authThunk from '../../app/thunks/AuthThunk';
+import { ModalFORM_STY } from '../../styles/components/styled-blocks/Modal_Style/ModalCont.style';
+
 interface Props {
 }
 

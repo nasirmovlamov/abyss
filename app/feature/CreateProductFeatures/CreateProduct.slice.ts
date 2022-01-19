@@ -1,17 +1,11 @@
-import { autoSuccessToaster } from './../../../components/Notify/AutoSuccessToast'
-import {
-  createProductThunk,
-  addFile,
-  startPlagirismChecker,
-  updateProductThunk,
-} from './../../thunks/CreateProductThunks'
-import { getClipsIndex, getClips } from '../../../logic/createProduct'
-import { MainClip } from '../../../styles/pages/Store.styled'
-import { RootState } from '../../store/store'
-import { createSlice } from '@reduxjs/toolkit'
-import { autoErrorToaster } from '../../../components/Notify/AutoErrorToaster'
-import { CreateProductState } from '../../store/states/CreateProductState'
-import { SectionOfProduct } from '../../store/state-Interfaces/CreateProductInterface'
+import { createSlice } from '@reduxjs/toolkit';
+
+import { autoErrorToaster } from '../../../components/Notify/AutoErrorToaster';
+import { getClipsIndex } from '../../../logic/createProduct';
+import { CreateProductState } from '../../store/states/CreateProductState';
+import { RootState } from '../../store/store';
+import { autoSuccessToaster } from './../../../components/Notify/AutoSuccessToast';
+import { addFile, createProductThunk, startPlagirismChecker, updateProductThunk } from './../../thunks/CreateProductThunks';
 
 export const CreateProductSlice = createSlice({
   name: 'create-product-slice',

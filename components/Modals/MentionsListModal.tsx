@@ -1,12 +1,14 @@
-import React, { ReactElement, useEffect } from 'react'
-import { useInView } from 'react-intersection-observer'
-import { mentions_of_linked_product, single_question_data } from '../../app/feature/Question.slice'
-import { changeModalAction } from '../../app/feature/User.slice'
-import { useAppDispatch, useAppSelector } from '../../app/store/hooks'
-import { getMentionsOfProduct } from '../../app/thunks/LinkedProductsTunks'
-import { MentionsListModal_Sty } from '../../styles/components/styled-blocks/MentionsListModal.style'
-import Answer from '../Answer'
-import AnswerSkeleton from '../Skeletons/AnswerSkeleton'
+import React, { ReactElement, useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
+
+import { mentions_of_linked_product, single_question_data } from '../../app/feature/Question.slice';
+import { changeModalAction } from '../../app/feature/User.slice';
+import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
+import { getMentionsOfProduct } from '../../app/thunks/LinkedProductsTunks';
+import { MentionsListModal_Sty } from '../../styles/components/styled-blocks/MentionsListModal.style';
+import Answer from '../Answer';
+import AnswerSkeleton from '../Skeletons/AnswerSkeleton';
+
 interface Props {
 }
 

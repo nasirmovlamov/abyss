@@ -1,6 +1,6 @@
-import * as types from '../../constants/App.contants'
-import { AsyncThunk, createAction, createAsyncThunk, isRejectedWithValue } from '@reduxjs/toolkit'
-import { BASE_API_INSTANCE } from '../../../helpers/api/BaseInstance'
+import { createAsyncThunk } from '@reduxjs/toolkit';
+
+import * as types from '../../constants/App.contants';
 
 export const selectAsyncCaveWindow = createAsyncThunk(
   types.SELECT_CAVE_WINDOW,

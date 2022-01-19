@@ -1,22 +1,21 @@
-import React, { ReactElement, useEffect, useState } from 'react'
-import { changeModalAction } from '../../../app/feature/User.slice'
-import { useAppDispatch, useAppSelector } from '../../../app/store/hooks'
-import { BASE_API_INSTANCE } from '../../../helpers/api/BaseInstance'
-import { getKeyValue } from '../../../logic/getKeyValue'
-import { LabelCont, QuestionCreateForm, QuestionCreateModal } from '../../../styles/components/styled-blocks/CreateQuestionModal.style'
-import { Title } from '../../../styles/components/styled-blocks/FormQuestion.style'
-import MyEditor from '../../MyEditor'
-import { autoErrorToaster } from '../../Notify/AutoErrorToaster'
-import { errorToastFunc } from '../../Notify/ErrorToasts'
-import Image from 'next/image'
-import { autoSuccessToaster, autoErrorToasterWithMessage } from '../../Notify/AutoSuccessToast'
+import dynamic from 'next/dynamic';
+import React, { ReactElement, useEffect, useState } from 'react';
+
+import {
+    create_question_data,
+    CreateQuestionActions,
+    linked_products,
+    mentioned_users,
+    question_value,
+} from '../../../app/feature/CreateQuestionFeatures/CreateQuestion.slice';
+import { useAppDispatch, useAppSelector } from '../../../app/store/hooks';
+import { LabelCont } from '../../../styles/components/styled-blocks/CreateQuestionModal.style';
+import * as CreateQuestion_STY from '../../../styles/components/styled-blocks/CreateThread_Style/CreateQuestion.style';
+import { ErrorLabel } from '../../ErrorLabel';
+import MyEditor from '../../MyEditor';
+
 // import {EditorNewVersion} from '../EditorNewVersion'
 // import EditorClassVersion from '../EditorClassVersion'
-
-import dynamic from 'next/dynamic'
-import { CreateQuestionActions, create_question_data, linked_products, mentioned_users, question_value } from '../../../app/feature/CreateQuestionFeatures/CreateQuestion.slice'
-import * as CreateQuestion_STY from '../../../styles/components/styled-blocks/CreateThread_Style/CreateQuestion.style'
-import { ErrorLabel } from '../../ErrorLabel'
 
 
 const DynamicComponentWithNoSSR = dynamic(

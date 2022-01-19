@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components';
 
 export const LinearProgress_STY = styled.div<{
   progress: 'loading' | 'loaded' | 'error'

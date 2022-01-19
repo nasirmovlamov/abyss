@@ -1,4 +1,4 @@
-import { CreateProductInterface } from '../state-Interfaces/CreateProductInterface'
+import { CreateProductInterface } from '../state-Interfaces/CreateProductInterface';
 
 export const CreateProductState: CreateProductInterface = {
   name: '',

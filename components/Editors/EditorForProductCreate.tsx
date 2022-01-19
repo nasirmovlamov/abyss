@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from "react"
-import { useQuill } from "react-quilljs"
-import "quill/dist/quill.snow.css"
-import hljs from 'highlight.js'
-import javascript from 'highlight.js/lib/languages/javascript'
-import { Head } from "next/document"
-import dynamic from 'next/dynamic'
-import { EditorWraper_STY } from "../../styles/components/styled-blocks/CreateProduct_Style/Steps/CreateProduct_Step2.style"
+import 'quill/dist/quill.snow.css';
+
+import hljs from 'highlight.js';
+import React, { useEffect, useRef, useState } from 'react';
+import { useQuill } from 'react-quilljs';
+
+import { EditorWraper_STY } from '../../styles/components/styled-blocks/CreateProduct_Style/Steps/CreateProduct_Step2.style';
 
 interface Props {
   content: any

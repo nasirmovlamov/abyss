@@ -1,6 +1,7 @@
-import { BASE_API_INSTANCE } from './../../helpers/api/BaseInstance'
-import { createAsyncThunk } from '@reduxjs/toolkit'
-import * as types from '../constants/App.contants'
+import { createAsyncThunk } from '@reduxjs/toolkit';
+
+import * as types from '../constants/App.contants';
+import { BASE_API_INSTANCE } from './../../helpers/api/BaseInstance';
 
 export const getLinkedProducts = createAsyncThunk(
   types.GET_LINKED_PRODUCTS,

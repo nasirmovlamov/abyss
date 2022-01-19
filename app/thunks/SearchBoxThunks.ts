@@ -1,7 +1,7 @@
-import * as types from '../constants/App.contants'
-import { AsyncThunk, createAction, createAsyncThunk, isRejectedWithValue } from '@reduxjs/toolkit'
-import { BASE_API_INSTANCE } from '../../helpers/api/BaseInstance'
-import { unhoverSearchBox } from '../feature/SearchBox.slice'
+import { createAsyncThunk } from '@reduxjs/toolkit';
+
+import { BASE_API_INSTANCE } from '../../helpers/api/BaseInstance';
+import * as types from '../constants/App.contants';
 
 export const forumSearch = createAsyncThunk(
   types.FORUM_SEARCH,

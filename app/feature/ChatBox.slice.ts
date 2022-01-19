@@ -1,14 +1,9 @@
-import { RootState } from '../store/store'
-import { createSlice } from '@reduxjs/toolkit'
-import { autoErrorToaster } from '../../components/Notify/AutoErrorToaster'
-import { ChatBoxState } from '../store/states/ChatBoxState'
-import {
-  checkChat,
-  checkRoomChat,
-  loadArchieveMessages,
-  openRooms,
-  sendMessageToRoom,
-} from '../thunks/ChatBoxThunks'
+import { createSlice } from '@reduxjs/toolkit';
+
+import { autoErrorToaster } from '../../components/Notify/AutoErrorToaster';
+import { ChatBoxState } from '../store/states/ChatBoxState';
+import { RootState } from '../store/store';
+import { checkChat, checkRoomChat, loadArchieveMessages, openRooms, sendMessageToRoom } from '../thunks/ChatBoxThunks';
 
 export const ChatBoxSlice = createSlice({
   name: 'chatbox-slice',

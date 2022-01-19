@@ -1,5 +1,4 @@
-import styled from 'styled-components'
-import { ThemeType } from '../../global/styled-utils/settings/Theme.style'
+import styled from 'styled-components';
 
 export const SingleTabsContForBG = styled.div`
   /* height:103px; */

@@ -1,8 +1,8 @@
-import axios from 'axios'
-import { getCookie } from '../../logic/CookieFunctions'
-import { decryptUserToken } from '../../logic/Cryption'
-import { BASE_API_URL } from '../urls/BASE_URL'
-import { changeModalAction } from '../../app/feature/User.slice'
+import axios from 'axios';
+
+import { getCookie } from '../../logic/CookieFunctions';
+import { decryptUserToken } from '../../logic/Cryption';
+import { BASE_API_URL } from '../urls/BASE_URL';
 
 export const BASE_API_INSTANCE = axios.create({
   baseURL: 'https://api.abysshub.com/api',

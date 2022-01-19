@@ -1,7 +1,7 @@
-import { caveMainInterface } from './../../state-Interfaces/Cave_Interfaces/Cave.interface'
-import { CaveInterface } from '../../state-Interfaces/Cave_Interfaces/Cave.interface'
-import { caveSideState } from './CaveSide.state'
-import { caveTabsState } from './CaveTabs.state'
+import { CaveInterface } from '../../state-Interfaces/Cave_Interfaces/Cave.interface';
+import { caveMainInterface } from './../../state-Interfaces/Cave_Interfaces/Cave.interface';
+import { caveSideState } from './CaveSide.state';
+import { caveTabsState } from './CaveTabs.state';
 
 const caveMainState: caveMainInterface = {
   window: '',

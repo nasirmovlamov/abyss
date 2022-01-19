@@ -1,5 +1,5 @@
-import { linked_products } from '../../feature/CreateQuestionFeatures/CreateQuestion.slice'
-import { USER_INTERFACE } from '../../../components/AnswersCont'
+import { USER_INTERFACE } from '../../../components/AnswersCont';
+import { linked_products } from '../../feature/CreateQuestionFeatures/CreateQuestion.slice';
 
 export interface ANSWER_INTERFACE {
   id: number

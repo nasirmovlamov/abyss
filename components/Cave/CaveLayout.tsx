@@ -1,15 +1,16 @@
-import React, { FC } from 'react'
-import { useScrollDirection } from 'react-use-scroll-direction'
-import { useScrollYPosition } from 'react-use-scroll-position'
-import { is_Logged } from '../../app/feature/User.slice'
-import { useAppSelector } from '../../app/store/hooks'
-import { Cave_Sty } from '../../styles/components/styled-blocks/Cave.style'
-import { CavePageDefaultStyle } from '../../styles/pages/Page.styled'
-import CaveSidePartOfPage from '../CaveSidePartOfPage'
-import MainPartOfPage from '../MainPartOfPage'
-import CaveSidebar from './CaveSidebar'
-import Cave_Tabs from './Cave_Tabs/Cave_Tabs'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
+import React, { FC } from 'react';
+import { useScrollDirection } from 'react-use-scroll-direction';
+import { useScrollYPosition } from 'react-use-scroll-position';
+
+import { is_Logged } from '../../app/feature/User.slice';
+import { useAppSelector } from '../../app/store/hooks';
+import { Cave_Sty } from '../../styles/components/styled-blocks/Cave.style';
+import { CavePageDefaultStyle } from '../../styles/pages/Page.styled';
+import CaveSidePartOfPage from '../CaveSidePartOfPage';
+import MainPartOfPage from '../MainPartOfPage';
+import Cave_Tabs from './Cave_Tabs/Cave_Tabs';
+import CaveSidebar from './CaveSidebar';
 
 interface Props {
 

@@ -1,9 +1,10 @@
-import router, { useRouter } from 'next/router'
-import React, { FC } from 'react'
-import Loader from 'react-spinners/ScaleLoader'
-import { question_errors, question_status, single_question_data } from '../app/feature/Question.slice'
-import { useAppSelector } from '../app/store/hooks'
-import { QuestionMiddleLayout } from './QuestionMiddleLayout'
+import router, { useRouter } from 'next/router';
+import React, { FC } from 'react';
+import Loader from 'react-spinners/ScaleLoader';
+
+import { question_errors, question_status, single_question_data } from '../app/feature/Question.slice';
+import { useAppSelector } from '../app/store/hooks';
+import { QuestionMiddleLayout } from './QuestionMiddleLayout';
 
 
 interface Props {

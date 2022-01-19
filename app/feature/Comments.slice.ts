@@ -1,17 +1,13 @@
-import { edit_Answer_CommentThunk, edit_Question_CommentThunk } from './../thunks/CommentsThunk'
-import { successToast } from './../../components/Notify/SuccessToast'
-import { RootState } from '../store/store'
-import { createSlice } from '@reduxjs/toolkit'
-import { autoErrorToaster } from '../../components/Notify/AutoErrorToaster'
-import { autoSuccessToaster } from '../../components/Notify/AutoSuccessToast'
-import { CommentsState } from '../store/states/CommentState'
-import {
-  addAnswerComment,
-  addQuestionComment,
-  getAnswerComments,
-  getQuestionComments,
-} from '../thunks/CommentsThunk'
-import { deleteComment } from '../thunks/QuestionThunk'
+import { createSlice } from '@reduxjs/toolkit';
+
+import { autoErrorToaster } from '../../components/Notify/AutoErrorToaster';
+import { autoSuccessToaster } from '../../components/Notify/AutoSuccessToast';
+import { CommentsState } from '../store/states/CommentState';
+import { RootState } from '../store/store';
+import { addAnswerComment, addQuestionComment, getAnswerComments, getQuestionComments } from '../thunks/CommentsThunk';
+import { deleteComment } from '../thunks/QuestionThunk';
+import { successToast } from './../../components/Notify/SuccessToast';
+import { edit_Answer_CommentThunk, edit_Question_CommentThunk } from './../thunks/CommentsThunk';
 
 export const CommentsSlice = createSlice({
   name: 'comments-slice',

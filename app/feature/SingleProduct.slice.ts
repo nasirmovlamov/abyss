@@ -1,8 +1,8 @@
-import { getSingleProduct } from './../thunks/SingleProductThunk'
-import { SingleProductState } from './../store/states/SingleProductState'
-import { getSideProducts } from './../thunks/SideProducts.thunk'
-import { RootState } from './../store/store'
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
+
+import { SingleProductState } from './../store/states/SingleProductState';
+import { RootState } from './../store/store';
+import { getSingleProduct } from './../thunks/SingleProductThunk';
 
 export const SingleProduct_Slice = createSlice({
   name: 'linked-product-slice',

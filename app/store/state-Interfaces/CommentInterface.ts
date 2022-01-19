@@ -1,5 +1,4 @@
-import { SerializedError } from '@reduxjs/toolkit'
-import { USER_INTERFACE } from '../../../components/AnswersCont'
+import { USER_INTERFACE } from '../../../components/AnswersCont';
 
 export interface CommentsInterface {
   comments: CommentInterface[]

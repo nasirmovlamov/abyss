@@ -1,15 +1,12 @@
-import React, { ReactElement, useEffect, useState } from 'react'
-import { changeModalAction } from '../../app/feature/User.slice'
-import { useAppDispatch } from '../../app/store/hooks'
-import { BASE_API_INSTANCE } from '../../helpers/api/BaseInstance'
-import { getKeyValue } from '../../logic/getKeyValue'
-import { LabelCont, QuestionCreateForm, QuestionCreateModal } from '../../styles/components/styled-blocks/CreateQuestionModal.style'
-import { Title } from '../../styles/components/styled-blocks/FormQuestion.style'
-import { ModalFORM_STY } from '../../styles/components/styled-blocks/Modal_Style/ModalCont.style'
-import MyEditor from '../MyEditor'
-import { autoErrorToaster } from '../Notify/AutoErrorToaster'
-import { autoSuccessToaster } from '../Notify/AutoSuccessToast'
-import { errorToastFunc } from '../Notify/ErrorToasts'
+import React, { ReactElement, useEffect, useState } from 'react';
+
+import { changeModalAction } from '../../app/feature/User.slice';
+import { useAppDispatch } from '../../app/store/hooks';
+import { BASE_API_INSTANCE } from '../../helpers/api/BaseInstance';
+import { LabelCont } from '../../styles/components/styled-blocks/CreateQuestionModal.style';
+import { ModalFORM_STY } from '../../styles/components/styled-blocks/Modal_Style/ModalCont.style';
+import { autoErrorToaster } from '../Notify/AutoErrorToaster';
+import { autoSuccessToaster } from '../Notify/AutoSuccessToast';
 
 
 interface Props {

@@ -1,6 +1,5 @@
-import React, { ReactElement, FC, useEffect } from 'react'
-
-import Link from 'next/link'
+import Link from 'next/link';
+import React, { FC, ReactElement, useEffect } from 'react';
 
 interface Props {
     // any props that come into the component

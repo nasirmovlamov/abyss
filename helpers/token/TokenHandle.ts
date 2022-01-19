@@ -1,6 +1,5 @@
-import { decryptUserToken, encryptUserToken } from '../../logic/Cryption'
-import Cookies from 'js-cookie'
-import { deleteCookie, setCookie } from '../../logic/CookieFunctions'
+import { deleteCookie, setCookie } from '../../logic/CookieFunctions';
+import { decryptUserToken, encryptUserToken } from '../../logic/Cryption';
 
 export var accessToken: string | null = null
 

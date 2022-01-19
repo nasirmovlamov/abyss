@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react'
-import { useInView } from 'react-intersection-observer'
-import { side_product_data } from '../app/feature/SideProducts.slice'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-import { getSideProducts } from '../app/thunks/SideProducts.thunk'
-import * as SideProducts_STY from '../styles/components/styled-blocks/SideProducts.style'
-import SideProduct from './SideProduct'
-import AnswerSkeleton from './Skeletons/AnswerSkeleton'
-import FormQuestionSkeleton from './Skeletons/ForumQuestionSkeleton'
+import React, { useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
+
+import { side_product_data } from '../app/feature/SideProducts.slice';
+import { useAppDispatch, useAppSelector } from '../app/store/hooks';
+import { getSideProducts } from '../app/thunks/SideProducts.thunk';
+import * as SideProducts_STY from '../styles/components/styled-blocks/SideProducts.style';
+import SideProduct from './SideProduct';
+import FormQuestionSkeleton from './Skeletons/ForumQuestionSkeleton';
 
 interface Props {
 

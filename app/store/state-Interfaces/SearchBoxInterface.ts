@@ -1,5 +1,3 @@
-import { filterTagInterFace } from './PageFiltersInterface'
-
 export interface SEARCHBOX_INTERFACE {
   isHovered: boolean
   isFocused: boolean

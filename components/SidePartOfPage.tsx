@@ -1,12 +1,11 @@
-import React, { ReactElement } from 'react'
-import { is_chatbox_opened } from '../app/feature/ChatBox.slice'
-import { is_comment_opened } from '../app/feature/Comments.slice'
-import { changeColor, color_convert } from '../app/feature/User.slice'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-import { SidePartOfPageStyle } from '../styles/pages/Page.styled'
-import ChatBox from './ChatBox'
-import CommentModal from './CommentsTab'
-import PageFilters from './PageFilters'
+import React, { ReactElement } from 'react';
+
+import { is_chatbox_opened } from '../app/feature/ChatBox.slice';
+import { is_comment_opened } from '../app/feature/Comments.slice';
+import { color_convert } from '../app/feature/User.slice';
+import { useAppDispatch, useAppSelector } from '../app/store/hooks';
+import { SidePartOfPageStyle } from '../styles/pages/Page.styled';
+import PageFilters from './PageFilters';
 
 interface Props {
     children: any,

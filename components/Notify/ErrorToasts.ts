@@ -1,5 +1,5 @@
-import toast from 'react-hot-toast'
-import { ToastPosition } from 'react-hot-toast/dist/core/types'
+import toast from 'react-hot-toast';
+import { ToastPosition } from 'react-hot-toast/dist/core/types';
 
 //ERROR TOASTERS
 export const errorToastFunc = (side: ToastPosition, message: string) => {

@@ -1,26 +1,20 @@
-import React, { ReactElement, useEffect, useState } from 'react'
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import React, { ReactElement, useEffect, useState } from 'react';
+
+import { hoverHeader, search_data } from '../app/feature/SearchBox.slice';
+import { changeModalAction, is_loading, is_Logged, user_data, user_modals } from '../app/feature/User.slice';
+import { useAppDispatch, useAppSelector } from '../app/store/hooks';
+import { userLogout } from '../app/thunks/AuthThunk';
+import { unHoverHeaderAsync } from '../app/thunks/SearchBoxThunks';
+import { forumWordRegex } from '../logic/regex/NavbarRegex';
+import * as Header_STY from '../styles/components/styled-blocks/Navbar.style';
+import NavLink from './NavLink';
+import mainLogo from '/public/main-logo-new.svg';
+import mainLogoText from '/public/main-logo-side-text-new.svg';
+
 //#region import styles
-import * as Header_STY from '../styles/components/styled-blocks/Navbar.style'
 //#endregion import styles
-import Image from 'next/image'
-import mainLogo from '/public/main-logo-new.svg'
-import mainLogoText from '/public/main-logo-side-text-new.svg'
-import RegisterModal from './Modals/RegisterModal'
-import LoginModal from './Modals/LoginModal'
-import Modals from './Modals/Modals'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-import { changeModalAction, is_loading, is_Logged, user_data, user_modals } from '../app/feature/User.slice'
-import { userCheck, userLogin, userLogout } from '../app/thunks/AuthThunk'
-import { GetServerSideProps } from 'next'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import NavLink from './NavLink'
-import { forumWordRegex } from '../logic/regex/NavbarRegex'
-import chat_icon from '../public/chat_bubble.svg'
-import { hoverHeader, search_data, unhoverHeader, unhoverSearchBox } from '../app/feature/SearchBox.slice'
-import { unHoverHeaderAsync, unHoverSearchAsync } from '../app/thunks/SearchBoxThunks'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faExclamation } from '@fortawesome/free-solid-svg-icons'
 interface Props {
 }
 

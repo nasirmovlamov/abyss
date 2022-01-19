@@ -1,5 +1,6 @@
-import styled from 'styled-components'
-import { HeaderHeight } from '../../global/styled-utils/settings/Sizes'
+import styled from 'styled-components';
+
+import { HeaderHeight } from '../../global/styled-utils/settings/Sizes';
 
 export const TakeCommentsToSideMakeAbsolute = styled.div`
   position: fixed;

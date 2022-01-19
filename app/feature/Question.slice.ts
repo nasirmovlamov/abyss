@@ -1,33 +1,23 @@
-import { editAnswerThunk, editQuestionThunk } from './../thunks/QuestionThunk'
-import { getMentionsOfProduct } from './../thunks/LinkedProductsTunks'
-import { getLinkedProducts } from '../thunks/LinkedProductsTunks'
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import {
-  forgetPasswordThunk,
-  userCheck,
-  userLogin,
-  userLogout,
-  userRegister,
-} from '../thunks/AuthThunk'
-import { APP_STATE } from '../store/states/AppState'
-import { RootState } from '../store/store'
-import { getKeyValue } from '../../logic/getKeyValue'
-import toast from 'react-hot-toast'
-import { ToastPosition } from 'react-hot-toast/dist/core/types'
+import { createSlice } from '@reduxjs/toolkit';
+
+import { autoErrorToaster } from '../../components/Notify/AutoErrorToaster';
+import { successToast } from '../../components/Notify/SuccessToast';
+import { QUESTION_STATE } from '../store/states/QuestionState';
+import { RootState } from '../store/store';
+import { getLinkedProducts } from '../thunks/LinkedProductsTunks';
 import {
   addAnswer,
   deleteAnswer,
   deleteQuestion,
   getAnswers,
+  getSingleQuestion,
   unVoteAnswer,
   unVoteQuestion,
   voteAnswer,
   voteQuestion,
-} from '../thunks/QuestionThunk'
-import { getSingleQuestion } from '../thunks/QuestionThunk'
-import { autoErrorToaster } from '../../components/Notify/AutoErrorToaster'
-import { QUESTION_STATE } from '../store/states/QuestionState'
-import { successToast } from '../../components/Notify/SuccessToast'
+} from '../thunks/QuestionThunk';
+import { getMentionsOfProduct } from './../thunks/LinkedProductsTunks';
+import { editAnswerThunk, editQuestionThunk } from './../thunks/QuestionThunk';
 
 export const QuestionSlice = createSlice({
   name: 'app-slice',

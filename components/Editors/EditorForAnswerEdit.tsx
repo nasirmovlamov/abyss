@@ -1,19 +1,19 @@
-import React, {  ReactElement, useEffect, useState } from "react";
-import "quill-mention";
-import  'quill-magic-url'
-import "quill-mention/dist/quill.mention.css";
-import axios from "axios";
-import { BASE_API_INSTANCE } from "../../helpers/api/BaseInstance";
-import ReactQuill, {Quill} from 'react-quill';
-import dynamic from 'next/dynamic'
-import { useAppDispatch, useAppSelector } from "../../app/store/hooks";
-import { 
-  CreateQuestionActions,
-  linked_products, 
-  mentioned_users, 
-  question_value } from "../../app/feature/CreateQuestionFeatures/CreateQuestion.slice";
-import { CreateThreadEDITORWrapper_STY } from "../../styles/components/Editors/CreateThread.style";
-import { editAnswerContent_onChange, edit_answer_data, mentionProductAtAnswerEdit, mentionUserAtQuestionCreate } from "../../app/feature/Question.slice";
+import 'quill-magic-url';
+import 'quill-mention';
+import 'quill-mention/dist/quill.mention.css';
+
+import React, { ReactElement, useEffect, useState } from 'react';
+import ReactQuill from 'react-quill';
+
+import {
+  edit_answer_data,
+  editAnswerContent_onChange,
+  mentionProductAtAnswerEdit,
+  mentionUserAtQuestionCreate,
+} from '../../app/feature/Question.slice';
+import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
+import { BASE_API_INSTANCE } from '../../helpers/api/BaseInstance';
+import { CreateThreadEDITORWrapper_STY } from '../../styles/components/Editors/CreateThread.style';
 
 interface Props {
 }

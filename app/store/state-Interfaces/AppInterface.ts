@@ -1,6 +1,5 @@
-import { SerializedError } from '@reduxjs/toolkit'
-import { AUTH_INTERFACE } from './AuthInterface'
-import { QUESTION_INTERFACE } from './QuestionInterface'
+import { AUTH_INTERFACE } from './AuthInterface';
+import { QUESTION_INTERFACE } from './QuestionInterface';
 
 export interface APP_INTERFACE {
   AUTH_STATE: AUTH_INTERFACE

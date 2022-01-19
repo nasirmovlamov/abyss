@@ -1,27 +1,40 @@
-import React, { ReactElement, ReactEventHandler, useEffect, useRef, useState } from 'react'
-import { useInView } from 'react-intersection-observer'
-import { changeForumTabActive } from '../app/feature/PageTabs.slice'
-import { changeModalAction, user_data } from '../app/feature/User.slice'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-import { unVoteAnswer, voteAnswer } from '../app/thunks/QuestionThunk'
-import { AnswerContent, AnswerStyle, Avatar, LikeButton, LikeButtonsCont, Name, PersonCont, ShowComments, ShowCommentsCont } from '../styles/components/styled-blocks/Answer.style'
-import { closeComments, showComments } from '../app/feature/Comments.slice'
-import { getAnswerComments } from '../app/thunks/CommentsThunk'
-import { edit_answer_data, single_question_data } from '../app/feature/Question.slice'
-import { errorToastFunc, loginError } from './Notify/ErrorToasts'
-import { ANSWER_INTERFACE } from '../app/store/state-Interfaces/QuestionInterface'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faEdit, faEllipsisV, faThumbsUp, faTrash } from '@fortawesome/free-solid-svg-icons'
-import { set_overflowy } from '../app/feature/App.slice'
-import { parseHtml, parseHtmlWithMention } from '../logic/htmlParser'
-import { faThumbsDown as solidfaThumbsDown, faThumbsUp as solidfaThumbsUp } from '@fortawesome/free-solid-svg-icons'
-import { faComment, faThumbsDown as regularfaThumbsDown, faThumbsUp as regularfaThumbsUp } from '@fortawesome/free-regular-svg-icons'
-import { ThumbIcon } from '../styles/components/styled-blocks/FormQuestion.style'
-import { useAnswerHook } from '../hooks/useAnswerHook'
-import * as SingleQuestion_STY from '../styles/pages/SingleQuestionPage.styled'
-import HTMLReactParser from 'html-react-parser'
-import dynamic from 'next/dynamic'
-import MyEditor from './MyEditor'
+import {
+    faComment,
+    faThumbsDown as regularfaThumbsDown,
+    faThumbsUp as regularfaThumbsUp,
+} from '@fortawesome/free-regular-svg-icons';
+import {
+    faEdit,
+    faEllipsisV,
+    faThumbsDown as solidfaThumbsDown,
+    faThumbsUp as solidfaThumbsUp,
+    faTrash,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import HTMLReactParser from 'html-react-parser';
+import dynamic from 'next/dynamic';
+import React, { ReactElement, ReactEventHandler, useEffect, useRef, useState } from 'react';
+
+import { edit_answer_data } from '../app/feature/Question.slice';
+import { user_data } from '../app/feature/User.slice';
+import { useAppDispatch, useAppSelector } from '../app/store/hooks';
+import { ANSWER_INTERFACE } from '../app/store/state-Interfaces/QuestionInterface';
+import { useAnswerHook } from '../hooks/useAnswerHook';
+import { parseHtmlWithMention } from '../logic/htmlParser';
+import {
+    AnswerContent,
+    AnswerStyle,
+    Avatar,
+    LikeButton,
+    LikeButtonsCont,
+    Name,
+    PersonCont,
+    ShowComments,
+    ShowCommentsCont,
+} from '../styles/components/styled-blocks/Answer.style';
+import { ThumbIcon } from '../styles/components/styled-blocks/FormQuestion.style';
+import * as SingleQuestion_STY from '../styles/pages/SingleQuestionPage.styled';
+import MyEditor from './MyEditor';
 
 
 const DynamicComponentWithNoSSR = dynamic(

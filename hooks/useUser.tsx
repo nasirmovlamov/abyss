@@ -1,7 +1,7 @@
 //useFetch.js
-import axios from 'axios'
-import { useState, useEffect } from 'react'
-import { BASE_API_INSTANCE } from '../helpers/api/BaseInstance'
+import { useEffect, useState } from 'react';
+
+import { BASE_API_INSTANCE } from '../helpers/api/BaseInstance';
 
 
 

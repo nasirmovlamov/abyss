@@ -1,14 +1,14 @@
-import { faUserNinja } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
-import * as CavePInfo from '../../../../styles/components/styled-blocks/Cave_Style/CaveProfile/CaveProfileInfo.style'
-import Image from 'next/image'
-import rank from '../../../../public/tridentRANK_01.png'
-import abyss_logo from '../../../../public/main-logo.svg'
-import { useAppDispatch, useAppSelector } from '../../../../app/store/hooks'
-import { resend_mail, user_data } from '../../../../app/feature/User.slice'
-import { resendEmail } from '../../../../app/thunks/AuthThunk'
-import Loader from 'react-spinners/BeatLoader'
+import Image from 'next/image';
+import React from 'react';
+import Loader from 'react-spinners/BeatLoader';
+
+import { resend_mail, user_data } from '../../../../app/feature/User.slice';
+import { useAppDispatch, useAppSelector } from '../../../../app/store/hooks';
+import { resendEmail } from '../../../../app/thunks/AuthThunk';
+import abyss_logo from '../../../../public/main-logo.svg';
+import rank from '../../../../public/tridentRANK_01.png';
+import * as CavePInfo from '../../../../styles/components/styled-blocks/Cave_Style/CaveProfile/CaveProfileInfo.style';
+
 interface Props {
 
 }

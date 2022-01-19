@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const SideCont_STY = styled.div<{ top: number }>`
   width: 100%;

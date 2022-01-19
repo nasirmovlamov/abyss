@@ -1,12 +1,13 @@
-import router, { useRouter } from 'next/router'
-import React from 'react'
-import { single_question_data } from '../../app/feature/Question.slice'
-import { search_data, search_query } from '../../app/feature/SearchBox.slice'
-import { changeModalAction } from '../../app/feature/User.slice'
-import { useAppDispatch, useAppSelector } from '../../app/store/hooks'
-import { deleteQuestion } from '../../app/thunks/QuestionThunk'
-import { forumSearchInfinity } from '../../app/thunks/SearchBoxThunks'
-import { AreYouSureButtonsCont, ModalFORM_STY } from '../../styles/components/styled-blocks/Modal_Style/ModalCont.style'
+import router, { useRouter } from 'next/router';
+import React from 'react';
+
+import { single_question_data } from '../../app/feature/Question.slice';
+import { search_data, search_query } from '../../app/feature/SearchBox.slice';
+import { changeModalAction } from '../../app/feature/User.slice';
+import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
+import { deleteQuestion } from '../../app/thunks/QuestionThunk';
+import { forumSearchInfinity } from '../../app/thunks/SearchBoxThunks';
+import { AreYouSureButtonsCont, ModalFORM_STY } from '../../styles/components/styled-blocks/Modal_Style/ModalCont.style';
 
 interface Props {
 

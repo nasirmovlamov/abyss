@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const CaveProfileInfo_Cont = styled.div`
   display: flex;

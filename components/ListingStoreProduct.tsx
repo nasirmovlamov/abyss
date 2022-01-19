@@ -1,6 +1,13 @@
-import React, { ReactElement, useEffect, useState } from 'react'
-import Image from 'next/image'
-import { AnswerCount, Avatar, BottomSide, Content, FormQuestionCont, Name, PersonCont, QuestionTags, StatisticCont, Tags, TextCont, Title, Text, HelpfulCont, HelpfulCount, AnswerCont, ViewsCont, DateCount, } from '../styles/components/styled-blocks/FormQuestion.style'
+import HTMLReactParser from 'html-react-parser';
+import { useRouter } from 'next/router';
+import React, { ReactElement, useEffect, useState } from 'react';
+
+import { changeProductTabActiveWithoutScroll } from '../app/feature/PageTabs.slice';
+import { goProductPage, single_product_data } from '../app/feature/SingleProduct.slice';
+import { useAppDispatch, useAppSelector } from '../app/store/hooks';
+import { getSingleProduct } from '../app/thunks/SingleProductThunk';
+import abyssLogo from '../public/main-logo.svg';
+import { DateCount } from '../styles/components/styled-blocks/FormQuestion.style';
 import {
     AddCave,
     AddCaveAndMentionsCont,
@@ -8,42 +15,24 @@ import {
     Iterations,
     LanguageContForTextAndIcon,
     LanguageInfo,
-    LanguageText,
-    LinesofCodeContForIconAndText,
-    LinesofCodeText,
-    MentionsCont,
-    MentionsCount,
-    MentionsText,
     ProductContent,
     ProductContentCont,
     ProductDescription,
     ProductDescriptionContent,
-    ProductDescriptionTitle,
     ProductDetailCont,
     ProductImageAndContent,
     ProductImageOverlay,
     ProductLanguageAndImage,
-    ProductPerson,
-    ProductPriceCont,
     ProductSideDetailsCont,
-    ProductSoldCont,
     ProductStarCont,
     ProductTag,
     ProductTags,
-    ProductTitle, ProductViewCont, StoreListingProductStyle
-} from '../styles/components/styled-blocks/ListingStoreProduct.styled'
-import NavLink from './NavLink'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCopy, faDownload, faEye, faLaptopCode } from '@fortawesome/free-solid-svg-icons'
-import { faPython } from '@fortawesome/free-brands-svg-icons'
-import StarCountShow from './StarCountShow'
-import HTMLReactParser from 'html-react-parser'
-import { useRouter } from 'next/router'
-import { goProductPage, single_product_data } from '../app/feature/SingleProduct.slice'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-import { getSingleProduct } from '../app/thunks/SingleProductThunk'
-import { changeProductTabActiveWithoutScroll } from '../app/feature/PageTabs.slice'
-import abyssLogo from '../public/main-logo.svg'
+    ProductTitle,
+    ProductViewCont,
+    StoreListingProductStyle,
+} from '../styles/components/styled-blocks/ListingStoreProduct.styled';
+import StarCountShow from './StarCountShow';
+
 interface Props {
     data: {
         avatar: string,

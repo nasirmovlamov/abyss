@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const CreateThread_Step3_STY = styled.div`
   display: flex;

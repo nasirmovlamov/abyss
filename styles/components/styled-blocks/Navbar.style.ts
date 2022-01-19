@@ -1,6 +1,4 @@
-import styled from 'styled-components'
-import { useSelector } from 'react-redux'
-import { ThemeType } from '../../global/styled-utils/settings/Theme.style'
+import styled from 'styled-components';
 
 // color = (isLogged) ? "red" : "gray"
 

@@ -1,21 +1,30 @@
-import { faPlus, faSearch } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useRouter } from 'next/router'
-import React, { ReactElement, useEffect, useRef, useState } from 'react'
-import { useScrollDirection } from 'react-use-scroll-direction'
-import { changeModalAction } from '../app/feature/User.slice'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex'
-import { MainPartOfPageStyle, SidePartOfPageStyle } from '../styles/pages/Page.styled'
-import { useScrollYPosition } from 'react-use-scroll-position'
-import { forumSearch, forumSearchInfinity, storeSearch, storeSearchInfinity, unHoverSearchAsync } from '../app/thunks/SearchBoxThunks'
-import { forum_search_data, getCachedSearchBoxData, searchValueOnChange, resetSendedQuery, search_query, search_data, changeSearchVisibilty, focusSearchBox, hoverSearchBox, unhoverSearchBox, blurSearchBox, hoverSearchNav, unhoverSearchNav } from '../app/feature/SearchBox.slice'
-import { getFiltersFromCache } from '../app/feature/PageFilters.slice'
-import { createProductThunk } from '../app/thunks/CreateProductThunks'
-import { getAccessToken } from '../helpers/token/TokenHandle'
-import { getCookie } from '../logic/CookieFunctions'
-import * as SearchForStaticVersion_STY from '../styles/components/styled-blocks/SearchBoxStatic.style'
-import { SearchBoxThunk_STY2, SearchNavQuery_STY } from '../styles/components/styled-blocks/SearchBox.style'
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useRouter } from 'next/router';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import { useScrollDirection } from 'react-use-scroll-direction';
+import { useScrollYPosition } from 'react-use-scroll-position';
+
+import { getFiltersFromCache } from '../app/feature/PageFilters.slice';
+import {
+    blurSearchBox,
+    focusSearchBox,
+    forum_search_data,
+    getCachedSearchBoxData,
+    hoverSearchBox,
+    hoverSearchNav,
+    resetSendedQuery,
+    search_data,
+    search_query,
+    searchValueOnChange,
+    unhoverSearchNav,
+} from '../app/feature/SearchBox.slice';
+import { changeModalAction } from '../app/feature/User.slice';
+import { useAppDispatch, useAppSelector } from '../app/store/hooks';
+import { forumSearchInfinity, storeSearchInfinity, unHoverSearchAsync } from '../app/thunks/SearchBoxThunks';
+import { getCookie } from '../logic/CookieFunctions';
+import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex';
+import * as SearchForStaticVersion_STY from '../styles/components/styled-blocks/SearchBoxStatic.style';
 
 
 interface Props {

@@ -1,9 +1,10 @@
-import React from 'react'
-import { create_thread_data } from '../../../../app/feature/CreateThread/CreateThread.slice'
-import { useAppSelector } from '../../../../app/store/hooks'
-import CreateDiscussion from '../CreateDiscussion'
-import CreateQuestion from '../CreateQuestion'
-import CreateRequest from '../CreateRequest'
+import React from 'react';
+
+import { create_thread_data } from '../../../../app/feature/CreateThread/CreateThread.slice';
+import { useAppSelector } from '../../../../app/store/hooks';
+import CreateDiscussion from '../CreateDiscussion';
+import CreateQuestion from '../CreateQuestion';
+import CreateRequest from '../CreateRequest';
 
 interface Props {
 

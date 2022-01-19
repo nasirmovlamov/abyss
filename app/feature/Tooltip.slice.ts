@@ -1,6 +1,7 @@
-import { ToolTipState } from './../store/states/ToolTipState'
-import { RootState } from './../store/store'
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
+
+import { ToolTipState } from './../store/states/ToolTipState';
+import { RootState } from './../store/store';
 
 export const ToolTipSlice = createSlice({
   name: 'linked-product-slice',

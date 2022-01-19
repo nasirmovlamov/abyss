@@ -1,16 +1,33 @@
-import React, { useState } from 'react'
-import { addNewSection, deleteSection, deleteClip, sections_product, updateKey, updateLabel, updateSectionsOrder, changeClipPosition, product_create_step2_data, ProductCreateStep2OnChanges } from '../../../../../app/feature/CreateProductFeatures/CreateProduct.slice'
-import { useAppDispatch, useAppSelector } from '../../../../../app/store/hooks'
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import { SectionOfProduct } from '../../../../../app/store/state-Interfaces/CreateProductInterface'
-import { faCartPlus, faEllipsisH, faEllipsisV, faPlusSquare, faRulerVertical } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { getClipsIndex } from '../../../../../logic/createProduct'
-import EditorForProductCreate from '../../../../Editors/EditorForProductCreate'
-import { Title } from '../../../../../styles/components/styled-blocks/FormQuestion.style'
-import { ProductLabelCont } from '../../../../../styles/components/styled-blocks/CreateProduct_Style/CreateProductModal.style'
-import { addFile } from '../../../../../app/thunks/CreateProductThunks'
-import { CreateProductLabelCont, CreateProductStep2_CONT_STY, CreateProduct_ClipsCont_STY, CreateProduct_DragCont_STY, CreateProduct_TagsCont_STY, CreateProduct_Tags_STY } from '../../../../../styles/components/styled-blocks/CreateProduct_Style/Steps/CreateProduct_Step2.style'
+import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState } from 'react';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+
+import {
+    addNewSection,
+    changeClipPosition,
+    deleteClip,
+    deleteSection,
+    product_create_step2_data,
+    ProductCreateStep2OnChanges,
+    sections_product,
+    updateKey,
+    updateLabel,
+    updateSectionsOrder,
+} from '../../../../../app/feature/CreateProductFeatures/CreateProduct.slice';
+import { useAppDispatch, useAppSelector } from '../../../../../app/store/hooks';
+import { SectionOfProduct } from '../../../../../app/store/state-Interfaces/CreateProductInterface';
+import { addFile } from '../../../../../app/thunks/CreateProductThunks';
+import { getClipsIndex } from '../../../../../logic/createProduct';
+import {
+    CreateProduct_ClipsCont_STY,
+    CreateProduct_DragCont_STY,
+    CreateProduct_Tags_STY,
+    CreateProduct_TagsCont_STY,
+    CreateProductLabelCont,
+    CreateProductStep2_CONT_STY,
+} from '../../../../../styles/components/styled-blocks/CreateProduct_Style/Steps/CreateProduct_Step2.style';
+import EditorForProductCreate from '../../../../Editors/EditorForProductCreate';
 
 
 interface Props {
