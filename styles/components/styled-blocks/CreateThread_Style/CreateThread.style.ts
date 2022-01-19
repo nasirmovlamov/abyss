@@ -1,13 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
-
-export const  CreateThreadFORM_STY  = styled.form`
+export const CreateThreadFORM_STY = styled.form`
   z-index: 2;
   display: flex;
   box-sizing: border-box;
   border-radius: 10px;
-  background-color: ${({theme}) => theme.backgrounds.background1};
-  box-shadow: ${({theme}) => theme.boxshadows.boxshadow4};
+  background-color: ${({ theme }) => theme.backgrounds.background1};
+  box-shadow: ${({ theme }) => theme.boxshadows.boxshadow4};
   /* padding: 25px; */
   border-radius: 15px;
   flex-direction: column;
@@ -19,4 +18,3 @@ export const  CreateThreadFORM_STY  = styled.form`
   /* margin-top: 60px; */
   /* margin-bottom: 32px; */
 `
-

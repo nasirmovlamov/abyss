@@ -5,21 +5,21 @@ import { changePasswordThunk } from '../app/thunks/AuthThunk'
 import { autoErrorToasterWithMessage } from '../components/Notify/AutoSuccessToast'
 
 interface Props {
-    status:string,
-    errors:any
+    status: string,
+    errors: any
 }
 
 export const useChangePass = (props: Props) => {
-    const {status , errors} = props
+    const { status, errors } = props
     const dispatch = useAppDispatch()
     const formChangePasswordData = useAppSelector(form_change_password_data)
     const check_pass_token_data = useAppSelector(user_forget_pass_check_token)
 
 
 
-    const changePass = (e:FormEvent) => {
+    const changePass = (e: FormEvent) => {
         e.preventDefault()
-        if(!formChangePasswordData.isValid){
+        if (!formChangePasswordData.isValid) {
             return autoErrorToasterWithMessage("Please fill all the fields correctly")
         }
 
@@ -32,24 +32,24 @@ export const useChangePass = (props: Props) => {
     }
 
 
-    const change_pass_onChange = (input:any) => {
+    const change_pass_onChange = (input: any) => {
         dispatch(form_change_password_onChange(input.target))
     }
 
-    const change_pass_onBlur = (input:any) => {
+    const change_pass_onBlur = (input: any) => {
         dispatch(form_change_password_onBlur(input.target))
     }
 
-    
 
 
-    if(status === "pending"){
-        return {changePass:() => null, change_pass_onChange:() => null, change_pass_onBlur:() => null}
-    }else if(status === "failed"){
-        return {changePass:() => null, change_pass_onChange:() => null, change_pass_onBlur:() => null}
+
+    if (status === "pending") {
+        return { changePass: () => null, change_pass_onChange: () => null, change_pass_onBlur: () => null }
+    } else if (status === "failed") {
+        return { changePass: () => null, change_pass_onChange: () => null, change_pass_onBlur: () => null }
     }
-    else{
-        return ({changePass ,change_pass_onChange , change_pass_onBlur })
+    else {
+        return ({ changePass, change_pass_onChange, change_pass_onBlur })
     }
 
 }

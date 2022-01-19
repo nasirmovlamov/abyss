@@ -1,47 +1,47 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useQuill } from "react-quilljs";
-import "quill/dist/quill.snow.css";
-import hljs from 'highlight.js';
-import javascript from 'highlight.js/lib/languages/javascript';
-import { Head } from "next/document";
-import dynamic from 'next/dynamic';
-import { EditorWraper_STY } from "../../styles/components/styled-blocks/CreateProduct_Style/Steps/CreateProduct_Step2.style";
+import React, { useEffect, useRef, useState } from "react"
+import { useQuill } from "react-quilljs"
+import "quill/dist/quill.snow.css"
+import hljs from 'highlight.js'
+import javascript from 'highlight.js/lib/languages/javascript'
+import { Head } from "next/document"
+import dynamic from 'next/dynamic'
+import { EditorWraper_STY } from "../../styles/components/styled-blocks/CreateProduct_Style/Steps/CreateProduct_Step2.style"
 
 interface Props {
-  content:any
-  onChange:any
-  display:'none' | 'block'
+  content: any
+  onChange: any
+  display: 'none' | 'block'
 }
 
 
-function EditorForProductCreate({content , onChange, display}: Props){
-  
+function EditorForProductCreate({ content, onChange, display }: Props) {
+
   hljs.configure({
     languages: ['javascript', 'ruby', 'python', 'rust'],
   })
-  
-  const theme = 'snow';
+
+  const theme = 'snow'
 
   useEffect(() => {
     hljs.highlightAll()
   }, [])
 
-  
 
-  
-  
+
+
+
   const modules = {
-        toolbar: [
-          ['bold', 'italic'],
-          [ 'link', 'blockquote' ,  'code-block' ,  'image',],
-          [ {'indent': '-1'}, {'indent': '+1'} ,{'list': 'ordered'}, {'list': 'bullet'} , { 'header': [1, 2, false] } ,],
-          ['clean']
-        ],
-        syntax: {
-        highlight: (code:any) => hljs.highlightAuto(code).value,
-        },  
-   
-}
+    toolbar: [
+      ['bold', 'italic'],
+      ['link', 'blockquote', 'code-block', 'image',],
+      [{ 'indent': '-1' }, { 'indent': '+1' }, { 'list': 'ordered' }, { 'list': 'bullet' }, { 'header': [1, 2, false] },],
+      ['clean']
+    ],
+    syntax: {
+      highlight: (code: any) => hljs.highlightAuto(code).value,
+    },
+
+  }
 
   const formats = [
     "header",
@@ -61,32 +61,31 @@ function EditorForProductCreate({content , onChange, display}: Props){
     "code-block"
   ]
 
-  const { quill, quillRef , Quill } = useQuill({modules,formats });
-  
+  const { quill, quillRef, Quill } = useQuill({ modules, formats })
+
 
   const [editor_theme, seteditor_theme] = useState('black')
 
-  
+
 
 
 
   React.useEffect(() => {
-    
-    if(quill)
-    {
+
+    if (quill) {
       quill.root.innerHTML = content
       quill.on('text-change', (content) => {
-        onChange(quill.root.innerHTML); 
+        onChange(quill.root.innerHTML)
         let qlSyntaxes = document.querySelectorAll('.ql-syntax')
         for (let index = 0; index < qlSyntaxes.length; index++) {
           qlSyntaxes[index].setAttribute('style', `background-color: ${editor_theme}`)
         }
-      });
+      })
     }
-  }, [quill , editor_theme]);
-  
+  }, [quill, editor_theme])
 
-  const handleChange = (event:any) => {
+
+  const handleChange = (event: any) => {
     seteditor_theme(event.target.value)
   }
 
@@ -100,11 +99,11 @@ function EditorForProductCreate({content , onChange, display}: Props){
 
   return (
     <>
-      <EditorWraper_STY style={{ width: "100%",display:display}}>
+      <EditorWraper_STY style={{ width: "100%", display: display }}>
         <div style={{}} ref={quillRef} />
       </EditorWraper_STY>
     </>
-  );
+  )
 }
 
-export default EditorForProductCreate;
+export default EditorForProductCreate

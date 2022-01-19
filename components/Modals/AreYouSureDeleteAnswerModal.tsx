@@ -9,18 +9,18 @@ import { forumSearchInfinity } from '../../app/thunks/SearchBoxThunks'
 import { AreYouSureButtonsCont, ModalFORM_STY } from '../../styles/components/styled-blocks/Modal_Style/ModalCont.style'
 
 interface Props {
-    
+
 }
 
 const AreYouSureDeleteAnswerModal = (props: Props) => {
     const dispatch = useAppDispatch()
-    const question_data:any = useAppSelector(single_question_data)
+    const question_data: any = useAppSelector(single_question_data)
     const router = useRouter()
     const searchData = useAppSelector(search_data)
     const searchQuery = useAppSelector(search_query)
-    const threadDeleteOptions:any = useAppSelector(thread_delete_options) 
+    const threadDeleteOptions: any = useAppSelector(thread_delete_options)
 
-    const yesDelete = (e:any) => {
+    const yesDelete = (e: any) => {
         e.preventDefault()
         dispatch(changeModalAction('areYouSureDelete_Answer'))
         dispatch(deleteAnswer(threadDeleteOptions))

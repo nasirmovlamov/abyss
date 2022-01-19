@@ -9,42 +9,41 @@ import CaveSidePartOfPage from '../CaveSidePartOfPage'
 import MainPartOfPage from '../MainPartOfPage'
 import CaveSidebar from './CaveSidebar'
 import Cave_Tabs from './Cave_Tabs/Cave_Tabs'
-import {useRouter} from 'next/router'
+import { useRouter } from 'next/router'
 
 interface Props {
-    
+
 }
 
-const CaveLayout:FC<Props> = ({children, ...props}) => {
+const CaveLayout: FC<Props> = ({ children, ...props }) => {
     const { isScrollingUp, isScrollingDown } = useScrollDirection()
     const caveRef = React.useRef<HTMLDivElement>(null)
     const scrollY = useScrollYPosition()
     const isLoggedIn = useAppSelector(is_Logged)
     const router = useRouter()
-    
-    if(!isLoggedIn)
-    {
+
+    if (!isLoggedIn) {
         router.push('/404')
         return <></>
-    }else {
+    } else {
         return (
             <CavePageDefaultStyle>
-                    <CaveSidePartOfPage side={"left"} >
-                        <CaveSidebar/>
-                    </CaveSidePartOfPage>
-        
-                    <MainPartOfPage>
-                        <Cave_Tabs/>
-                        <Cave_Sty >
-                            {children}
-                        </Cave_Sty>
-                    </MainPartOfPage>
-        
-        
-                    <CaveSidePartOfPage side={"right"}>
-                        Right
-                    </CaveSidePartOfPage>
-                </CavePageDefaultStyle>
+                <CaveSidePartOfPage side={"left"} >
+                    <CaveSidebar />
+                </CaveSidePartOfPage>
+
+                <MainPartOfPage>
+                    <Cave_Tabs />
+                    <Cave_Sty >
+                        {children}
+                    </Cave_Sty>
+                </MainPartOfPage>
+
+
+                <CaveSidePartOfPage side={"right"}>
+                    Right
+                </CaveSidePartOfPage>
+            </CavePageDefaultStyle>
         )
     }
 }

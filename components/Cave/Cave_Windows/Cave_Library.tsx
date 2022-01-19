@@ -9,7 +9,7 @@ import { CaveLibraryBlocks_Sty, CaveLibraryDefaultBlock_Sty } from '../../../sty
 import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 interface Props {
-    
+
 }
 
 const Cave_Library = (props: Props) => {
@@ -20,20 +20,20 @@ const Cave_Library = (props: Props) => {
 
     const caveSideData = useAppSelector(cave_side_data)
     const dispatch = useAppDispatch()
-    const scrollY = useScrollYPosition();
+    const scrollY = useScrollYPosition()
 
     const caveTabs = useAppSelector(cave_tabs)
     const caveLibraryTabs = caveTabs['library']
     const activeTab = caveLibraryTabs.filter(tab => tab.active)[0]
 
-    
-    const savedTab= libraryTabs.filter(tab => tab.name === 'saved')[0]
-    const createdTab= libraryTabs.filter(tab => tab.name === 'created')[0]
-    const playlistTab= libraryTabs.filter(tab => tab.name === 'playlist')[0]
-    const historyTab= libraryTabs.filter(tab => tab.name === 'history')[0]
-    
+
+    const savedTab = libraryTabs.filter(tab => tab.name === 'saved')[0]
+    const createdTab = libraryTabs.filter(tab => tab.name === 'created')[0]
+    const playlistTab = libraryTabs.filter(tab => tab.name === 'playlist')[0]
+    const historyTab = libraryTabs.filter(tab => tab.name === 'history')[0]
+
     const changeActiveTab = async (tab: any) => {
-        dispatch(cave_actions.selectTab({tab:tab , window:caveSideData.selectedWindow}))
+        dispatch(cave_actions.selectTab({ tab: tab, window: caveSideData.selectedWindow }))
     }
 
     useEffect(() => {
@@ -46,39 +46,39 @@ const Cave_Library = (props: Props) => {
     }, [])
 
     useEffect(() => {
-        if(inViewLibrarySavedBlock){
+        if (inViewLibrarySavedBlock) {
             changeActiveTab(savedTab)
         }
-        if(inViewLibraryCreatedBlock){
+        if (inViewLibraryCreatedBlock) {
             changeActiveTab(createdTab)
         }
-        if(inViewLibraryPlaylistBlock){
+        if (inViewLibraryPlaylistBlock) {
             changeActiveTab(playlistTab)
         }
-        if(inViewLibraryHistoryBlock){
+        if (inViewLibraryHistoryBlock) {
             changeActiveTab(historyTab)
         }
     }, [scrollY])
 
-   
+
 
     return (
         <CaveLibraryBlocks_Sty>
-            <CaveLibraryDefaultBlock_Sty ref={inViewRefLibrarySavedBlock}    id='#librarysavedBlock'>
+            <CaveLibraryDefaultBlock_Sty ref={inViewRefLibrarySavedBlock} id='#librarysavedBlock'>
                 Saved Block
-            </CaveLibraryDefaultBlock_Sty>  
-           
-            <CaveLibraryDefaultBlock_Sty ref={inViewRefLibraryCreatedBlock}  id='#librarycreatedBlock'>
+            </CaveLibraryDefaultBlock_Sty>
+
+            <CaveLibraryDefaultBlock_Sty ref={inViewRefLibraryCreatedBlock} id='#librarycreatedBlock'>
                 Created Block
-            </CaveLibraryDefaultBlock_Sty>  
-           
+            </CaveLibraryDefaultBlock_Sty>
+
             <CaveLibraryDefaultBlock_Sty ref={inViewRefLibraryPlaylistBlock} id='#libraryplaylistBlock'>
                 Playlist Block
-            </CaveLibraryDefaultBlock_Sty>  
-           
-            <CaveLibraryDefaultBlock_Sty ref={inViewRefLibraryHistoryBlock}  id='#libraryhistoryBlock'>
+            </CaveLibraryDefaultBlock_Sty>
+
+            <CaveLibraryDefaultBlock_Sty ref={inViewRefLibraryHistoryBlock} id='#libraryhistoryBlock'>
                 History Block
-            </CaveLibraryDefaultBlock_Sty>  
+            </CaveLibraryDefaultBlock_Sty>
         </CaveLibraryBlocks_Sty>
     )
 }

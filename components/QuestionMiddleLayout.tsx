@@ -13,14 +13,14 @@ import { AnswerCont, AnswerCount, DefaultLine, HelpfulCont, HelpfulCount, Percen
 import * as SingleQuestion_STY from '../styles/pages/SingleQuestionPage.styled'
 import SearchBoxStaticVersion from './SearchBoxStaticVersion'
 import abyssLogo from '../public/main-logo-new.svg'
-import { faEdit, faEllipsisV, faThumbsDown as solidfaThumbsDown  ,   faThumbsUp as solidfaThumbsUp, faTrash } from '@fortawesome/free-solid-svg-icons'
-import {faComment, faThumbsDown as regularfaThumbsDown  ,   faThumbsUp as regularfaThumbsUp  } from '@fortawesome/free-regular-svg-icons'
+import { faEdit, faEllipsisV, faThumbsDown as solidfaThumbsDown, faThumbsUp as solidfaThumbsUp, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faComment, faThumbsDown as regularfaThumbsDown, faThumbsUp as regularfaThumbsUp } from '@fortawesome/free-regular-svg-icons'
 import AnswerSubmitCont from './AnswerSubmit'
 import SinglePageTabs from './SinglePageTabs'
 import AnswersConts from './AnswersCont'
 import ProductsConts from './ProductsCont'
 import Image from 'next/image'
-import dynamic from 'next/dynamic';
+import dynamic from 'next/dynamic'
 import MyEditor from './MyEditor'
 import HTMLReactParser from 'html-react-parser'
 const DynamicComponentWithNoSSR = dynamic(
@@ -42,14 +42,14 @@ export const QuestionMiddleLayout = (props: Props) => {
     const userData = useAppSelector(user_data)
     const isCommentsOpened = useAppSelector(is_comment_opened)
     const [showOptionsValue, setshowOptions] = useState(false)
-    const {  
-        openQuestionComments , 
-        vote, 
+    const {
+        openQuestionComments,
+        vote,
         downvote,
         deleteQuestion,
         enableEditingFunc,
         cancelEditingFunc,
-        saveEditingFunc 
+        saveEditingFunc
     } = useQuestionHooks()
 
     const editQuestionData = useAppSelector(edit_question_data)
@@ -61,7 +61,7 @@ export const QuestionMiddleLayout = (props: Props) => {
             <SingleQuestion_STY.QuestionCont_STY id={`question${question_data.id}`}>
                 <SingleQuestion_STY.PersonCont_STY>
                     <SingleQuestion_STY.Avatar_STY>
-                        <div style={{ opacity: 0.618 }}><Image src={abyssLogo} width='65px' height="65px" alt="Abyss Logo"/></div>
+                        <div style={{ opacity: 0.618 }}><Image src={abyssLogo} width='65px' height="65px" alt="Abyss Logo" /></div>
                     </SingleQuestion_STY.Avatar_STY>
                     <SingleQuestion_STY.Name_STY>{question_data.user.name}</SingleQuestion_STY.Name_STY>
                 </SingleQuestion_STY.PersonCont_STY>
@@ -71,28 +71,28 @@ export const QuestionMiddleLayout = (props: Props) => {
                         {question_data.title}
                     </SingleQuestion_STY.QuestionTitle_STY>
                     <SingleQuestion_STY.QuestionContent_STY>
-                    {
-                        (!(editQuestionData === null) && question_data.id === editQuestionData.id  ) 
-                        ? 
-                        <div>
-                            {<DynamicComponentWithNoSSR/>}
-                            <MyEditor  display={"none"} content={''} onChange={(content:any) => null} />
-                        <div>
-                            <button onClick={cancelEditingFunc}>cancel</button>
-                            <button onClick={saveEditingFunc} disabled={!(editQuestionData.new_content.length > 0)}>save</button>
-                        </div>
-                        </div>
-                        :
-                         <>
-                            { 
-                                question_data.linked_products  ? 
-                                parseHtmlWithMention(question_data.content, question_data.linked_products)
+                        {
+                            (!(editQuestionData === null) && question_data.id === editQuestionData.id)
+                                ?
+                                <div>
+                                    {<DynamicComponentWithNoSSR />}
+                                    <MyEditor display={"none"} content={''} onChange={(content: any) => null} />
+                                    <div>
+                                        <button onClick={cancelEditingFunc}>cancel</button>
+                                        <button onClick={saveEditingFunc} disabled={!(editQuestionData.new_content.length > 0)}>save</button>
+                                    </div>
+                                </div>
                                 :
-                                HTMLReactParser(question_data.content)
-                            }
-                        </>
-                       
-                    }
+                                <>
+                                    {
+                                        question_data.linked_products ?
+                                            parseHtmlWithMention(question_data.content, question_data.linked_products)
+                                            :
+                                            HTMLReactParser(question_data.content)
+                                    }
+                                </>
+
+                        }
                     </SingleQuestion_STY.QuestionContent_STY>
 
                     <SingleQuestion_STY.QuestionTagsAndDate_STY>
@@ -116,16 +116,16 @@ export const QuestionMiddleLayout = (props: Props) => {
                             (question_data.user.id === userData?.id) &&
                             <SingleQuestion_STY.QuestionStatisticOptForUser_STY >
                                 <SingleQuestion_STY.QuestionStatisticDotsButton_STY onClick={() => setshowOptions(!showOptionsValue)} onBlur={() => setshowOptions(false)}>
-                                    <FontAwesomeIcon icon={faEllipsisV} color='white'/>
+                                    <FontAwesomeIcon icon={faEllipsisV} color='white' />
                                 </SingleQuestion_STY.QuestionStatisticDotsButton_STY>
 
                                 <SingleQuestion_STY.QuestionStatisticElement_STY visible={true} >
-                                        <SingleQuestion_STY.Edit_Question_STY onClick={enableEditingFunc}>
-                                            <FontAwesomeIcon icon={faEdit}  />
-                                        </SingleQuestion_STY.Edit_Question_STY>
-                                        <SingleQuestion_STY.Delete_Question_STY onClick={deleteQuestion}>
-                                            <FontAwesomeIcon icon={faTrash} />
-                                        </SingleQuestion_STY.Delete_Question_STY>
+                                    <SingleQuestion_STY.Edit_Question_STY onClick={enableEditingFunc}>
+                                        <FontAwesomeIcon icon={faEdit} />
+                                    </SingleQuestion_STY.Edit_Question_STY>
+                                    <SingleQuestion_STY.Delete_Question_STY onClick={deleteQuestion}>
+                                        <FontAwesomeIcon icon={faTrash} />
+                                    </SingleQuestion_STY.Delete_Question_STY>
                                 </SingleQuestion_STY.QuestionStatisticElement_STY>
                             </SingleQuestion_STY.QuestionStatisticOptForUser_STY>
                         }
@@ -150,14 +150,14 @@ export const QuestionMiddleLayout = (props: Props) => {
                     </SingleQuestion_STY.QuestionDate_STY>
                     {
                         (question_data.user.id === userData?.id) &&
-                            <SingleQuestion_STY.QuestionStatisticElement_STY visible={true}>
-                                <SingleQuestion_STY.Edit_Question_STY>
-                                    <FontAwesomeIcon icon={faEdit} />
-                                </SingleQuestion_STY.Edit_Question_STY>
-                                <SingleQuestion_STY.Delete_Question_STY onClick={deleteQuestion}>
-                                    <FontAwesomeIcon icon={faTrash} />
-                                </SingleQuestion_STY.Delete_Question_STY>
-                            </SingleQuestion_STY.QuestionStatisticElement_STY>
+                        <SingleQuestion_STY.QuestionStatisticElement_STY visible={true}>
+                            <SingleQuestion_STY.Edit_Question_STY>
+                                <FontAwesomeIcon icon={faEdit} />
+                            </SingleQuestion_STY.Edit_Question_STY>
+                            <SingleQuestion_STY.Delete_Question_STY onClick={deleteQuestion}>
+                                <FontAwesomeIcon icon={faTrash} />
+                            </SingleQuestion_STY.Delete_Question_STY>
+                        </SingleQuestion_STY.QuestionStatisticElement_STY>
                     }
                 </SingleQuestion_STY.QuestionStatistics_STY>
             </SingleQuestion_STY.QuestionCont_STY>

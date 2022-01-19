@@ -3,7 +3,7 @@ import { useInView } from 'react-intersection-observer'
 import { changeProductTabActiveWithoutScroll, store_tabs } from '../../app/feature/PageTabs.slice'
 import { single_product_data } from '../../app/feature/SingleProduct.slice'
 import { useAppDispatch, useAppSelector } from '../../app/store/hooks'
-import {useRouter}  from 'next/router'
+import { useRouter } from 'next/router'
 import { getSingleProduct } from '../../app/thunks/SingleProductThunk'
 import { autoSuccessToaster } from '../Notify/AutoSuccessToast'
 import { ClipBody, ClipsCont, ClipTitle, Flexer, LabelCont, LabelContent, LabelKey, MainClip, ProductTag, SideClip, SideClips, StoreForumBody, StoreForumCont, StoreForumTitle, StorePage, StoreStatistics_STY, StoreTop, StoreTopAvatar, StoreTopCodeLines, StoreTopContent, StoreTopImg, StoreTopImgCont, StoreTopRatingCont, StoreTopRatingStars, StoreTopTags, StoreTopTitle } from '../../styles/pages/Store.styled'
@@ -15,7 +15,7 @@ import SinglePageTabs from '../SinglePageTabs'
 import { DetailsCont_STY } from '../../styles/components/styled-blocks/CreateQuestionModal.style'
 import { CodeMirror_ReadOnly_STY } from '../../styles/components/styled-blocks/CreateProduct_Style/Steps/ProductCreate_Step1.style'
 import HTMLReactParser from 'html-react-parser'
-import CodeMirror from '@uiw/react-codemirror';
+import CodeMirror from '@uiw/react-codemirror'
 import axios from 'axios'
 import { BASE_API_INSTANCE } from '../../helpers/api/BaseInstance'
 import Image from 'next/image'
@@ -23,18 +23,18 @@ import mainLogo from '../../public/main-logo.svg'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 interface Props {
-    
+
 }
 
-const StoreMiddlePartLayout:FC <Props> = ({children , ...props}) => {
-    
+const StoreMiddlePartLayout: FC<Props> = ({ children, ...props }) => {
+
     const router = useRouter()
     const [inViewRefCodeBlock, inViewCodeBlock] = useInView()
     const [formQuestionsAPI, setformQuestionsAPI] = useState([])
-    const dispatch = useAppDispatch() 
+    const dispatch = useAppDispatch()
     const storeTabs = useAppSelector(store_tabs)
     const singleProductData = useAppSelector(single_product_data)
-    const {data} = singleProductData
+    const { data } = singleProductData
     const activeStoreTab = storeTabs.filter(tab => tab.isActive)[0]
 
     const getQuestions = async () => {
@@ -46,15 +46,15 @@ const StoreMiddlePartLayout:FC <Props> = ({children , ...props}) => {
         }
     }
 
-    
-    
-    
+
+
+
 
     const addcave = async () => {
         try {
-            const resp = await BASE_API_INSTANCE.post(`/profile/inventory/${singleProductData.data.id}/create` )
+            const resp = await BASE_API_INSTANCE.post(`/profile/inventory/${singleProductData.data.id}/create`)
             autoSuccessToaster(resp.data.message)
-        } catch (error:any) {
+        } catch (error: any) {
             // autoErrorToaster(error)
         }
     }
@@ -62,47 +62,47 @@ const StoreMiddlePartLayout:FC <Props> = ({children , ...props}) => {
 
     const removeFromCave = async () => {
         try {
-            const resp = await BASE_API_INSTANCE.post(`/profile/inventory/${singleProductData.data.id}/delete` )
+            const resp = await BASE_API_INSTANCE.post(`/profile/inventory/${singleProductData.data.id}/delete`)
             autoSuccessToaster(resp.data.message)
-        } catch (error:any) {
+        } catch (error: any) {
             // autoErrorToaster(error)
         }
     }
-    
+
 
     return (
         <StorePage>
-        <StoreStatistics_STY>
-            <div className="element">
-                <p className="element-title">1.3K RATINGS</p>
-                <p className="element-value">4.7</p>
-                <div className="element-subtitle"><StarCountShow count={4.5}/></div>
-            </div>
+            <StoreStatistics_STY>
+                <div className="element">
+                    <p className="element-title">1.3K RATINGS</p>
+                    <p className="element-value">4.7</p>
+                    <div className="element-subtitle"><StarCountShow count={4.5} /></div>
+                </div>
 
-            <div className="element">
-                <p className="element-title">LANGUAGE</p>
-                <p className="element-value"><FontAwesomeIcon icon={faPython}/></p>
-                <p className="element-subtitle">Python</p>
-            </div>
+                <div className="element">
+                    <p className="element-title">LANGUAGE</p>
+                    <p className="element-value"><FontAwesomeIcon icon={faPython} /></p>
+                    <p className="element-subtitle">Python</p>
+                </div>
 
-            <div className="element">
-                <p className="element-title">Chart</p>
-                <p className="element-value">N17</p>
-                <p className="element-subtitle">controller functions</p>
-            </div>
+                <div className="element">
+                    <p className="element-title">Chart</p>
+                    <p className="element-value">N17</p>
+                    <p className="element-subtitle">controller functions</p>
+                </div>
 
-            <div className="element">
-                <p className="element-title">TOTAL</p>
-                <p className="element-value">31.8K</p>
-                <p className="element-subtitle">views</p>
-            </div>
+                <div className="element">
+                    <p className="element-title">TOTAL</p>
+                    <p className="element-value">31.8K</p>
+                    <p className="element-subtitle">views</p>
+                </div>
 
-            <div className="element">
-                <p className="element-title">PREFORMANCE</p>
-                <p className="element-value">7/10</p>
-                <p className="element-subtitle">abyss score</p>
-            </div>
-        </StoreStatistics_STY>
+                <div className="element">
+                    <p className="element-title">PREFORMANCE</p>
+                    <p className="element-value">7/10</p>
+                    <p className="element-subtitle">abyss score</p>
+                </div>
+            </StoreStatistics_STY>
 
             <StoreTop>
                 <Flexer>
@@ -111,14 +111,14 @@ const StoreMiddlePartLayout:FC <Props> = ({children , ...props}) => {
                         <StoreTopImgCont>
                             <StoreTopImg>
                                 <StoreTopAvatar>
-                                    <Image width='32' height='32' src={mainLogo}/>
+                                    <Image width='32' height='32' src={mainLogo} />
                                 </StoreTopAvatar>
                             </StoreTopImg>
                         </StoreTopImgCont>
 
                         <StoreTopCodeLines>
                             <p>{singleProductData.data.user.name}</p>
-                            <p>{singleProductData.data.user.email   }</p>
+                            <p>{singleProductData.data.user.email}</p>
                         </StoreTopCodeLines>
                     </div>
 
@@ -132,7 +132,7 @@ const StoreMiddlePartLayout:FC <Props> = ({children , ...props}) => {
 
                         </StoreTopRatingCont>
                         <StoreTopTags>
-                            {JSON.parse(singleProductData.data.description).details_data.product_tags.map((item:any, index:any) => 
+                            {JSON.parse(singleProductData.data.description).details_data.product_tags.map((item: any, index: any) =>
                                 <ProductTag key={item.id}>{item.value}</ProductTag>
                             )}
                         </StoreTopTags>
@@ -143,19 +143,19 @@ const StoreMiddlePartLayout:FC <Props> = ({children , ...props}) => {
                     {console.log(data)}
                     {
                         data?.user_check?.cave ?
-                        <button onClick={removeFromCave} className='add-cave-btn'>- Cave</button>
-                        :
-                        <button onClick={addcave} className='add-cave-btn'>+ Cave</button>
+                            <button onClick={removeFromCave} className='add-cave-btn'>- Cave</button>
+                            :
+                            <button onClick={addcave} className='add-cave-btn'>+ Cave</button>
                     }
-                </div>    
-                
-                
+                </div>
+
+
             </StoreTop>
 
-            <SinglePageTabs/>
+            <SinglePageTabs />
 
             {children}
-    </StorePage>
+        </StorePage>
     )
 }
 

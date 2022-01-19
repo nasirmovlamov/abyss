@@ -13,7 +13,7 @@ import ListingStoreProduct from '../../../ListingStoreProduct'
 import CaveProduct from '../../CaveProduct'
 
 interface Props {
-    
+
 }
 
 const Cave_Inventory = (props: Props) => {
@@ -32,20 +32,20 @@ const Cave_Inventory = (props: Props) => {
 
     const caveSideData = useAppSelector(cave_side_data)
     const dispatch = useAppDispatch()
-    const scrollY = useScrollYPosition();
+    const scrollY = useScrollYPosition()
 
     const caveTabs = useAppSelector(cave_tabs)
     const caveInventoryTabs = caveTabs['inventory']
     const activeTab = caveInventoryTabs.filter(tab => tab.active)[0]
 
-    
-    const savedTab= inventoryTabs.filter(tab => tab.name === 'saved')[0]
-    const createdTab= inventoryTabs.filter(tab => tab.name === 'created')[0]
-    const playlistTab= inventoryTabs.filter(tab => tab.name === 'playlist')[0]
-    const historyTab= inventoryTabs.filter(tab => tab.name === 'history')[0]
-    
+
+    const savedTab = inventoryTabs.filter(tab => tab.name === 'saved')[0]
+    const createdTab = inventoryTabs.filter(tab => tab.name === 'created')[0]
+    const playlistTab = inventoryTabs.filter(tab => tab.name === 'playlist')[0]
+    const historyTab = inventoryTabs.filter(tab => tab.name === 'history')[0]
+
     const changeActiveTab = (tab: any) => {
-        dispatch(cave_actions.selectTab({tab:tab , window:caveSideData.selectedWindow}))
+        dispatch(cave_actions.selectTab({ tab: tab, window: caveSideData.selectedWindow }))
     }
 
 
@@ -77,18 +77,18 @@ const Cave_Inventory = (props: Props) => {
     //#endregion ScrollSpy
     const getInventoryData = async () => {
         try {
-            if(inventoryStatus !== 'pending'){
+            if (inventoryStatus !== 'pending') {
                 return false
             }
             const resp = await BASE_API_INSTANCE(`/profile/cave?page=${inventoryCurrentPage}`)
-            setinventoryData([...inventoryData , ...resp.data.data])
-            if(inventoryCurrentPage === 1){
+            setinventoryData([...inventoryData, ...resp.data.data])
+            if (inventoryCurrentPage === 1) {
                 setinventoryLastPage(resp.data.meta.last_page)
-            }else { 
-                
+            } else {
+
             }
             setinventoryCurrentPage(inventoryCurrentPage + 1)
-            if(resp.data.meta.current_page === resp.data.meta.last_page){
+            if (resp.data.meta.current_page === resp.data.meta.last_page) {
                 setinventoryStatus('loaded')
             }
         } catch (error) {
@@ -97,26 +97,25 @@ const Cave_Inventory = (props: Props) => {
     }
 
     useEffect(() => {
-        if(inViewInventoryLoaderBlock)
-        {
+        if (inViewInventoryLoaderBlock) {
             getInventoryData()
         }
     })
 
-   
+
 
     return (
         <CaveInventoryBlocks_Sty>
-            <CaveInventoryDefaultBlock_Sty ref={inViewRefInventorySavedBlock}    id='#inventorysavedBlock'>
-                {inventoryData.map((item: any, index: number) => <CaveProduct data={item} key={index}/>)}
-                
+            <CaveInventoryDefaultBlock_Sty ref={inViewRefInventorySavedBlock} id='#inventorysavedBlock'>
+                {inventoryData.map((item: any, index: number) => <CaveProduct data={item} key={index} />)}
+
                 {
                     inventoryStatus === 'pending' &&
                     <div ref={inViewRefInventoryLoaderBlock}>
                         <AnswerSkeleton />
                     </div>
                 }
-            </CaveInventoryDefaultBlock_Sty>  
+            </CaveInventoryDefaultBlock_Sty>
 
 
 

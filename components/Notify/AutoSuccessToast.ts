@@ -1,10 +1,10 @@
-import { errorToastFunc } from "./ErrorToasts";
-import { successToast } from "./SuccessToast";
+import { errorToastFunc } from './ErrorToasts'
+import { successToast } from './SuccessToast'
 
 export const autoSuccessToaster = (message: string) => {
-    successToast('top-right' , message);
+  successToast('top-right', message)
 }
 
 export const autoErrorToasterWithMessage = (message: string) => {
-    errorToastFunc('top-right' , message);
+  errorToastFunc('top-right', message)
 }

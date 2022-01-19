@@ -1,7 +1,7 @@
 import React from 'react'
 
 interface Props {
-    
+
 }
 
 const Cave_Profile_Settings = (props: Props) => {

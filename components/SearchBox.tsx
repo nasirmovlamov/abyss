@@ -7,32 +7,32 @@ import { changeModalAction } from '../app/feature/User.slice'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex'
 import { MainPartOfPageStyle, SidePartOfPageStyle } from '../styles/pages/Page.styled'
-import { useScrollYPosition } from 'react-use-scroll-position';
+import { useScrollYPosition } from 'react-use-scroll-position'
 import { forumSearch, forumSearchInfinity, storeSearch, storeSearchInfinity } from '../app/thunks/SearchBoxThunks'
-import {  forum_search_data,  getCachedSearchBoxData, searchValueOnChange, resetSendedQuery, search_query, search_data, changeSearchVisibilty, hoverSearchNav, unhoverSearchNav } from '../app/feature/SearchBox.slice'
+import { forum_search_data, getCachedSearchBoxData, searchValueOnChange, resetSendedQuery, search_query, search_data, changeSearchVisibilty, hoverSearchNav, unhoverSearchNav } from '../app/feature/SearchBox.slice'
 import { getFiltersFromCache } from '../app/feature/PageFilters.slice'
 import { createProductThunk } from '../app/thunks/CreateProductThunks'
 import { getAccessToken } from '../helpers/token/TokenHandle'
 import { getCookie } from '../logic/CookieFunctions'
-import { 
+import {
     AddQuesitionCont_STY,
-    SearchBoxContainer_STY, 
-    SearchBoxPage_STY, 
-    SearchBoxThunkAndCont_STY, 
-    SearchBoxThunk_STY, 
-    SearchBoxThunk_STY2, 
-    SearchBox_STY, 
-    SearchButtonLupa_STY, 
-    SearchCont_STY, 
-    SearchInput_STY, 
-    SearchNav_STY 
+    SearchBoxContainer_STY,
+    SearchBoxPage_STY,
+    SearchBoxThunkAndCont_STY,
+    SearchBoxThunk_STY,
+    SearchBoxThunk_STY2,
+    SearchBox_STY,
+    SearchButtonLupa_STY,
+    SearchCont_STY,
+    SearchInput_STY,
+    SearchNav_STY
 } from '../styles/components/styled-blocks/SearchBox.style'
 
 interface Props {
-    
+
 }
 
-function SearchBox({}: Props): ReactElement {
+function SearchBox({ }: Props): ReactElement {
     const router = useRouter()
     const [pagePath, setpagePath] = useState("")
     const dispatch = useAppDispatch()
@@ -48,20 +48,20 @@ function SearchBox({}: Props): ReactElement {
 
 
 
-    const {isSearchVisible} = searchData
+    const { isSearchVisible } = searchData
 
     const [boxFocused, setboxFocused] = useState(false)
     const searchBoxRef = useRef<HTMLDivElement>(null)
     const searchContRef = useRef<HTMLDivElement>(null)
     const searchInputRef = useRef<HTMLInputElement>(null)
     const searchNavRef = useRef<HTMLDivElement>(null)
-    const scrollY = useScrollYPosition();
+    const scrollY = useScrollYPosition()
     const forumSearchData = useAppSelector(forum_search_data)
-    const focusSearchHandle= (e:any) => {
+    const focusSearchHandle = (e: any) => {
         setboxFocused(true)
         e.target.select()
     }
-    const {searchOptions} = forumSearchData
+    const { searchOptions } = forumSearchData
     const forumSearchOptions = searchOptions
 
     const [scrollYInside, setscrollYInside] = useState(0)
@@ -71,13 +71,13 @@ function SearchBox({}: Props): ReactElement {
 
     // const [searchValue, setSearchValue] = useState("")
 
-    const changeSearchValue = (e:string) => {
+    const changeSearchValue = (e: string) => {
         dispatch(searchValueOnChange(e))
     }
 
     const { isScrollingUp, isScrollingDown } = useScrollDirection()
 
-    const searchSizechange = (event:string) => {
+    const searchSizechange = (event: string) => {
         // if(router.pathname === '/')
         // {
 
@@ -93,30 +93,26 @@ function SearchBox({}: Props): ReactElement {
         //         searchNavRef.current!.style.top = `164px`
         //     }
         // }
-       
+
         // if(event === 'blur')
         // {
         //     searchNavRef.current!.style.top = `0px`
         //     return 0
         // }
 
-    } 
+    }
 
-    const pagePathDetector = (pathname:string) => {
-        if(pathname === "/")
-        {   
+    const pagePathDetector = (pathname: string) => {
+        if (pathname === "/") {
             return "Home"
         }
-        else if(forumWordRegex.test(pathname)) 
-        {
+        else if (forumWordRegex.test(pathname)) {
             return "Library"
         }
-        else if(storeWordRegex.test(pathname))
-        {
+        else if (storeWordRegex.test(pathname)) {
             return "Store"
         }
-        else 
-        {
+        else {
             return ""
         }
     }
@@ -130,162 +126,153 @@ function SearchBox({}: Props): ReactElement {
 
 
     const handleAddClick = () => {
-        if(forumWordRegex.test(router.asPath))
-        {
+        if (forumWordRegex.test(router.asPath)) {
             dispatch(changeModalAction("questionCreate"))
-        } 
-        else if(storeWordRegex.test(router.asPath))
-        {
+        }
+        else if (storeWordRegex.test(router.asPath)) {
             dispatch(changeModalAction("productCreate"))
         }
-        else 
-        {}
+        else { }
     }
-    
-    
 
-    const searchHandleWithEnter = (key:number) => {
-        if(key === 13)
-        {
-            if(router.pathname !== '/forum' && router.pathname !== '/store'){
+
+
+    const searchHandleWithEnter = (key: number) => {
+        if (key === 13) {
+            if (router.pathname !== '/forum' && router.pathname !== '/store') {
                 router.push('/forum')
             }
             window.scrollTo({
                 top: 0,
             })
-            if(forumSearchOptions.sendedQuery !== searchQuery){
-                if(router.pathname === '/forum'){
+            if (forumSearchOptions.sendedQuery !== searchQuery) {
+                if (router.pathname === '/forum') {
                     dispatch(forumSearchInfinity({
-                        query:searchQuery , 
-                        from:0, 
-                        forumType:searchData.searchBoxData.forum.searchOptions.forumType,
-                        filterTags:searchData.filters,
-                        excludedFilters:searchData.exculudedFilters
+                        query: searchQuery,
+                        from: 0,
+                        forumType: searchData.searchBoxData.forum.searchOptions.forumType,
+                        filterTags: searchData.filters,
+                        excludedFilters: searchData.exculudedFilters
                     }))
                 }
-                if(router.pathname === '/store'){
+                if (router.pathname === '/store') {
                     dispatch(storeSearchInfinity({
-                        query:searchQuery , 
-                        from:0,
-                        storeType:searchData.searchBoxData.store.searchOptions.storeType,
-                        filterTags:searchData.filters,
-                        excludedFilters:searchData.exculudedFilters
+                        query: searchQuery,
+                        from: 0,
+                        storeType: searchData.searchBoxData.store.searchOptions.storeType,
+                        filterTags: searchData.filters,
+                        excludedFilters: searchData.exculudedFilters
                     }))
                 }
             }
         }
     }
 
-    
+
 
     const searchHandleWithSubmit = () => {
-        if(searchQuery !== "")
-        {
+        if (searchQuery !== "") {
             window.scrollTo({
                 top: 0,
             })
-            if(forumSearchOptions.sendedQuery !== searchQuery){
-                if(router.pathname !== '/forum'){
+            if (forumSearchOptions.sendedQuery !== searchQuery) {
+                if (router.pathname !== '/forum') {
                     dispatch(forumSearchInfinity({
-                        query:searchQuery , 
-                        from:0,
-                        forumType:searchData.searchBoxData.forum.searchOptions.forumType,
-                        filterTags:searchData.filters,
-                        excludedFilters:searchData.exculudedFilters}))
+                        query: searchQuery,
+                        from: 0,
+                        forumType: searchData.searchBoxData.forum.searchOptions.forumType,
+                        filterTags: searchData.filters,
+                        excludedFilters: searchData.exculudedFilters
+                    }))
                 }
-                if(router.pathname !== '/store'){
-                    dispatch(storeSearchInfinity({query:searchQuery , from:0 ,storeType:searchData.searchBoxData.store.searchOptions.storeType,filterTags:searchData.filters,excludedFilters:searchData.exculudedFilters}))
+                if (router.pathname !== '/store') {
+                    dispatch(storeSearchInfinity({ query: searchQuery, from: 0, storeType: searchData.searchBoxData.store.searchOptions.storeType, filterTags: searchData.filters, excludedFilters: searchData.exculudedFilters }))
                 }
             }
-           
+
         }
     }
 
-    
+
     const searchScrollControl = async () => {
-            if(isScrollingDown && !boxFocused)
-            {
-                if(router.pathname !== '/cave')
-                {
-                    dispatch(changeSearchVisibilty('not-visible'))
-                }
+        if (isScrollingDown && !boxFocused) {
+            if (router.pathname !== '/cave') {
+                dispatch(changeSearchVisibilty('not-visible'))
             }
+        }
     }
 
-    const thunkHasHovered = async (router:any) => {
+    const thunkHasHovered = async (router: any) => {
         // searchContRef.current!.setAttribute("style", `top: 60px;`) 
         dispatch(changeSearchVisibilty('not-visible'))
     }
 
-    useEffect( () => {
-        if(isScrollingDown){
+    useEffect(() => {
+        if (isScrollingDown) {
             searchScrollControl()
         }
-    }, [isScrollingDown,  router.asPath , scrollY])
+    }, [isScrollingDown, router.asPath, scrollY])
 
-   
+
 
 
     useEffect(() => {
-        if(router.isReady)
-        {
-           
+        if (router.isReady) {
+
             setpagePath(pagePathDetector(router.asPath))
-            if(router.asPath !== '/')
-            {
-                
+            if (router.asPath !== '/') {
+
                 // searchBoxRef.current!.setAttribute("style" , "position:absolute;")
                 // searchInputRef.current!.focus()
                 dispatch(getFiltersFromCache(null))
-                if(searchQuery === ""){
-                    dispatch(getCachedSearchBoxData({page:router.pathname}))
+                if (searchQuery === "") {
+                    dispatch(getCachedSearchBoxData({ page: router.pathname }))
                     dispatch(resetSendedQuery(null))
-                    if(router.pathname === '/forum'){
-                        if(searchData.searchBoxData.forum.fromNumber === 0){
+                    if (router.pathname === '/forum') {
+                        if (searchData.searchBoxData.forum.fromNumber === 0) {
                             // dispatch(forumSearchInfinity({query:getCookie("searchValue") , from:0}))
                         }
                     }
-                    else if(router.pathname === '/store'){  
-                        if(searchData.searchBoxData.store.fromNumber === 0){
+                    else if (router.pathname === '/store') {
+                        if (searchData.searchBoxData.store.fromNumber === 0) {
                             // dispatch(storeSearchInfinity({query:getCookie("searchValue") , from:0}))
                         }
-                    }else{}
-                }else{
-                    if(router.pathname === '/forum'){
-                        if(searchData.searchBoxData.forum.fromNumber === 0){
+                    } else { }
+                } else {
+                    if (router.pathname === '/forum') {
+                        if (searchData.searchBoxData.forum.fromNumber === 0) {
                             // dispatch(forumSearchInfinity({query:searchQuery , from:0}))
                         }
                     }
-                    else if(router.pathname === '/store'){   
-                        if(searchData.searchBoxData.store.fromNumber === 0){
+                    else if (router.pathname === '/store') {
+                        if (searchData.searchBoxData.store.fromNumber === 0) {
                             // dispatch(storeSearchInfinity({query:searchQuery , from:0}))
                         }
-                    }else{}
+                    } else { }
                 }
             }
         }
-    }, [router ])
+    }, [router])
 
 
-    useEffect( () => {
-        if(scrollY < 600){
-            if(router.pathname !== '/cave')
-            {
+    useEffect(() => {
+        if (scrollY < 600) {
+            if (router.pathname !== '/cave') {
                 dispatch(changeSearchVisibilty('not-visible'))
             }
         }
     }, [scrollY])
-    
+
     return (
         <>
-        <SearchBoxContainer_STY   ref={searchContRef} path={router.asPath} style={SearchContDesign}>
-                <SearchBoxThunkAndCont_STY scrollFromTop={scrollY}   ref={searchBoxRef} direction={isSearchVisible}>
-                    <SearchBox_STY  onMouseLeave={() => (!boxFocused && scrollY > 0) ? dispatch(changeSearchVisibilty('not-visible')) : null} path={router.asPath} direction={isSearchVisible} > 
-                       {router.asPath !=='/' &&  <SearchBoxPage_STY>{pagePath}</SearchBoxPage_STY>}
+            <SearchBoxContainer_STY ref={searchContRef} path={router.asPath} style={SearchContDesign}>
+                <SearchBoxThunkAndCont_STY scrollFromTop={scrollY} ref={searchBoxRef} direction={isSearchVisible}>
+                    <SearchBox_STY onMouseLeave={() => (!boxFocused && scrollY > 0) ? dispatch(changeSearchVisibilty('not-visible')) : null} path={router.asPath} direction={isSearchVisible} >
+                        {router.asPath !== '/' && <SearchBoxPage_STY>{pagePath}</SearchBoxPage_STY>}
                         <SearchCont_STY path={router.asPath}>
-                            <SearchButtonLupa_STY onClick={searchHandleWithSubmit}><FontAwesomeIcon  icon={faSearch}/></SearchButtonLupa_STY>
-                            <SearchInput_STY onFocus={focusSearchHandle} onBlur={() => setboxFocused(false)}  path={router.asPath} onKeyDown={(e:any) => searchHandleWithEnter(e.keyCode)} value={searchQuery}  onChange={(e:any) => changeSearchValue(e.target.value)}   placeholder="Search..." ref={searchInputRef}   type="text" /> 
-                            {router.asPath !=='/' && <SearchNav_STY onMouseEnter={() => dispatch(hoverSearchNav(null))} onMouseLeave={() => dispatch(unhoverSearchNav(null))} path={router.asPath} ref={searchNavRef}>
+                            <SearchButtonLupa_STY onClick={searchHandleWithSubmit}><FontAwesomeIcon icon={faSearch} /></SearchButtonLupa_STY>
+                            <SearchInput_STY onFocus={focusSearchHandle} onBlur={() => setboxFocused(false)} path={router.asPath} onKeyDown={(e: any) => searchHandleWithEnter(e.keyCode)} value={searchQuery} onChange={(e: any) => changeSearchValue(e.target.value)} placeholder="Search..." ref={searchInputRef} type="text" />
+                            {router.asPath !== '/' && <SearchNav_STY onMouseEnter={() => dispatch(hoverSearchNav(null))} onMouseLeave={() => dispatch(unhoverSearchNav(null))} path={router.asPath} ref={searchNavRef}>
                                 {/* <SearchNavQuery>
                                     <FontAwesomeIcon  icon={faSearch}/>
                                     <span>react</span>
@@ -298,12 +285,12 @@ function SearchBox({}: Props): ReactElement {
                         </SearchCont_STY>
                         {pagePath !== "Home" && <AddQuesitionCont_STY onClick={handleAddClick}>ADD</AddQuesitionCont_STY>}
                     </SearchBox_STY>
-                    
-                    {(pagePath !== "Home") && <SearchBoxThunk_STY scrollFromTop={scrollY} isBackVisible={searchData.thunkBackground === 'visible'}  onMouseMove={()=>dispatch(changeSearchVisibilty("visible"))} direction={isSearchVisible} ><div>	• 	•	• </div></SearchBoxThunk_STY>}
+
+                    {(pagePath !== "Home") && <SearchBoxThunk_STY scrollFromTop={scrollY} isBackVisible={searchData.thunkBackground === 'visible'} onMouseMove={() => dispatch(changeSearchVisibilty("visible"))} direction={isSearchVisible} ><div>	• 	•	• </div></SearchBoxThunk_STY>}
                 </SearchBoxThunkAndCont_STY>
-                
-        </SearchBoxContainer_STY>
-        
+
+            </SearchBoxContainer_STY>
+
 
         </>
     )

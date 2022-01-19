@@ -7,9 +7,9 @@ import { ToolTipActions, tooltip_data } from '../app/feature/Tooltip.slice'
 
 interface Props {
     // any props that come into the component
-    href:string
-    content:string
-    key?:string | number
+    href: string
+    content: string
+    key?: string | number
 }
 
 
@@ -39,7 +39,7 @@ const NavLink: FC<Props> = ({ children, ...props }) => {
     //     clearTimeout(hideVar)
 
     //     const isMouseStayed = (e.clientX === toolTipData.cursorPosition.x && e.clientY === toolTipData.cursorPosition.y)
-        
+
     //     const cursorPosition = {
     //         x: e.clientX,
     //         y: e.clientY
@@ -52,9 +52,9 @@ const NavLink: FC<Props> = ({ children, ...props }) => {
     //                 position:cursorPosition
     //             }))
     //         }, 500);
-            
+
     //     }
-        
+
     // }
 
 
@@ -63,12 +63,12 @@ const NavLink: FC<Props> = ({ children, ...props }) => {
     //     clearTimeout(hideVar)
     // }
 
-    return(
+    return (
         <Link key={props.key} href={props.href} passHref>
             {children}
         </Link>
     )
 
-};
+}
 
 export default NavLink

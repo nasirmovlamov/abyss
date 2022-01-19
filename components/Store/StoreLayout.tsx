@@ -7,31 +7,31 @@ import { getSingleProduct } from '../../app/thunks/SingleProductThunk'
 import { PageDefaultStyle } from '../../styles/pages/Page.styled'
 import MainPartOfPage from '../MainPartOfPage'
 import SidePartOfPage from '../SidePartOfPage'
-import { useRouter  } from 'next/router'
+import { useRouter } from 'next/router'
 import { inChangePositionOfFilters, outChangePositionOfFilters } from '../../app/feature/PageFilters.slice'
 
 interface Props {
-    
+
 }
 
-const StoreLayout:FC <Props> = ({children , ...props}) => {
+const StoreLayout: FC<Props> = ({ children, ...props }) => {
     const router = useRouter()
     const singleProductData = useAppSelector(single_product_data)
     const dispatch = useAppDispatch()
     const isLogged = useAppSelector(is_logged)
 
-    
+
 
     useLayoutEffect(() => {
-        if(router.isReady){
-            if(singleProductData.data === null && singleProductData.status !== 'loading' ) {
-                if(!isLogged){
-                    dispatch(changeProductTabActiveWithoutScroll({id:3}))
-                }else {
-                    dispatch(changeProductTabActiveWithoutScroll({id:2}))
+        if (router.isReady) {
+            if (singleProductData.data === null && singleProductData.status !== 'loading') {
+                if (!isLogged) {
+                    dispatch(changeProductTabActiveWithoutScroll({ id: 3 }))
+                } else {
+                    dispatch(changeProductTabActiveWithoutScroll({ id: 2 }))
                 }
-                dispatch(goProductPage({id: router.query.id}))
-                dispatch(getSingleProduct({id: router.query.id , slug: router.query.slug}))
+                dispatch(goProductPage({ id: router.query.id }))
+                dispatch(getSingleProduct({ id: router.query.id, slug: router.query.slug }))
             }
         }
     }, [router])
@@ -47,7 +47,7 @@ const StoreLayout:FC <Props> = ({children , ...props}) => {
 
     return (
         <PageDefaultStyle>
-            <SidePartOfPage onMouseEnter={hoverSideLeft} onMouseLeave={hoverSideRight}  side={"left"}>
+            <SidePartOfPage onMouseEnter={hoverSideLeft} onMouseLeave={hoverSideRight} side={"left"}>
             </SidePartOfPage>
 
             <MainPartOfPage>
@@ -55,17 +55,17 @@ const StoreLayout:FC <Props> = ({children , ...props}) => {
                 {
                     (singleProductData.status === 'loading')
                     &&
-                    <p style={{fontSize:"30px" , color:"white", textAlign:'center' , padding:"30px"}}>LOADING ...</p>
-                } 
-                {singleProductData.status === 'error' && <p style={{fontSize:"30px" , color:"red",textAlign:'center', padding:"30px"}}>ERROR ...</p>}
+                    <p style={{ fontSize: "30px", color: "white", textAlign: 'center', padding: "30px" }}>LOADING ...</p>
+                }
+                {singleProductData.status === 'error' && <p style={{ fontSize: "30px", color: "red", textAlign: 'center', padding: "30px" }}>ERROR ...</p>}
                 {singleProductData.data === null && <></>}
             </MainPartOfPage>
 
             <SidePartOfPage side={"right"}>
             </SidePartOfPage>
         </PageDefaultStyle>
-        ) 
-  
+    )
+
 }
 
 export default StoreLayout

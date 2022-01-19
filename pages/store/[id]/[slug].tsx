@@ -1,4 +1,4 @@
-import React, { Component, useState , useEffect } from 'react'
+import React, { Component, useState, useEffect } from 'react'
 import axios from 'axios'
 import StoreLayout from '../../../components/Store/StoreLayout'
 import StoreValidate from '../../../components/Store/StoreValidate'
@@ -8,17 +8,17 @@ import SearchBoxStaticVersion from '../../../components/SearchBoxStaticVersion'
 
 
 interface Props {
-    
+
 }
 
 
 const SingleProductPage = (props: Props) => {
-    
+
     return (
         <StoreLayout>
-            <SearchBoxStaticVersion/>
-            <StoreValidate/>
-        </StoreLayout>       
+            <SearchBoxStaticVersion />
+            <StoreValidate />
+        </StoreLayout>
     )
 }
 

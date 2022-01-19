@@ -4,16 +4,16 @@ import { useAppDispatch, useAppSelector } from '../../../../app/store/hooks'
 import * as Step1_STY from '../../../../styles/components/styled-blocks/CreateProduct_Style/CreateProduct_Step1.style'
 
 interface Props {
-    
+
 }
 
 const CreateThread_Step1 = (props: Props) => {
-    const dispatch= useAppDispatch()
+    const dispatch = useAppDispatch()
     const createThreadData = useAppSelector(create_thread_data)
 
     return (
         <Step1_STY.CreateProduct_Step1_Container>
-            
+
             <div className="flexer">
                 <Step1_STY.SelectThreadType type="button" selected={createThreadData.threadType === 'request'} onClick={() => dispatch(CreateThreadActions.selectThreadType('request'))}>
                     <h2 className='title'>Request</h2>
@@ -49,7 +49,7 @@ const CreateThread_Step1 = (props: Props) => {
                 <p> You acknowledge that you agree to Abyssal Corp <a href="#">Terms of Service</a> and <a href="#">Community Guidelines</a> by submitting content.</p>
                 <p>Please be sure not to violate others copyright or privacy rights. <a href="#">Learn More</a></p>
             </div>
-            
+
 
         </Step1_STY.CreateProduct_Step1_Container>
     )

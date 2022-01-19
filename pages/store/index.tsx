@@ -13,19 +13,19 @@ import { useInView } from 'react-intersection-observer'
 import { forumSearchInfinity, storeSearchInfinity } from '../../app/thunks/SearchBoxThunks'
 import { search_query, store_search_data } from '../../app/feature/SearchBox.slice'
 import FormQuestionSkeleton from '../../components/Skeletons/ForumQuestionSkeleton'
-import BeatLoader from "react-spinners/BeatLoader";
+import BeatLoader from "react-spinners/BeatLoader"
 import SearchBoxStaticVersion from '../../components/SearchBoxStaticVersion'
 
 interface Props {
-    
+
 }
 
-function Store({}: Props): ReactElement {
+function Store({ }: Props): ReactElement {
     const [inViewRefLoaderDown, inViewLoaderDown] = useInView()
     const dispatch = useAppDispatch()
     const storeSearchData = useAppSelector(store_search_data)
     const searchQuery = useAppSelector(search_query)
-    
+
     const [storeListingProducts, setstoreListingProducts] = useState([])
     const isChatBoxOpened = useAppSelector(is_chatbox_opened)
 
@@ -37,64 +37,64 @@ function Store({}: Props): ReactElement {
             console.error(error)
         }
     }
-    
+
     useEffect(() => {
-        if(inViewLoaderDown){
-            const data = {query:searchQuery , from:storeSearchData.fromNumber} 
+        if (inViewLoaderDown) {
+            const data = { query: searchQuery, from: storeSearchData.fromNumber }
             // dispatch(storeSearchInfinity(data))
         }
     }, [inViewLoaderDown])
-    
+
 
     return (
         <PageDefaultStyle>
             <SidePartOfPage side="left">
-                
+
             </SidePartOfPage>
 
             <MainPartOfPage>
 
                 <StorePage>
-                    <SearchBoxStaticVersion/>
+                    <SearchBoxStaticVersion />
 
 
-                    <PageTabs/>  
+                    <PageTabs />
                     {
-                        storeSearchData.data.map((element , index) => <ListingStoreProduct  key={index} data={element}/>)
-                    } 
+                        storeSearchData.data.map((element, index) => <ListingStoreProduct key={index} data={element} />)
+                    }
 
                     {
-                        storeSearchData.status === "loaded" && 
+                        storeSearchData.status === "loaded" &&
                         (
                             storeSearchData.results_number > storeSearchData.data.length &&
-                            <div  ref={inViewRefLoaderDown} style={{width:"100%" , display:"flex",alignItems:'center', flexDirection:"column", rowGap:"10px", marginTop:"50px"}}>
-                                <BeatLoader color={'#b4b5b7'} loading={storeSearchData.status === "loaded"}  size={10} />
-                            </div>  
+                            <div ref={inViewRefLoaderDown} style={{ width: "100%", display: "flex", alignItems: 'center', flexDirection: "column", rowGap: "10px", marginTop: "50px" }}>
+                                <BeatLoader color={'#b4b5b7'} loading={storeSearchData.status === "loaded"} size={10} />
+                            </div>
                         )
-                    } 
+                    }
 
-                    {storeSearchData.status === "error" && <div>Error ...</div>} 
-                    
+                    {storeSearchData.status === "error" && <div>Error ...</div>}
+
                     {
-                       storeSearchData.status === "loaded" &&
-                       <div style={{color:"gray", fontSize:"20px" , }}>
-                           No more records found
-                       </div>
+                        storeSearchData.status === "loaded" &&
+                        <div style={{ color: "gray", fontSize: "20px", }}>
+                            No more records found
+                        </div>
                     }
                 </StorePage>
             </MainPartOfPage>
 
             <SidePartOfPage side="right">
                 {
-                    <> 
-                        {isChatBoxOpened  && <ChatBox/>}
+                    <>
+                        {isChatBoxOpened && <ChatBox />}
                     </>
                 }
             </SidePartOfPage>
         </PageDefaultStyle>
 
 
-        
+
     )
 }
 

@@ -14,14 +14,14 @@ import { Cave_Sty } from '../../styles/components/styled-blocks/Cave.style'
 import { CavePageDefaultStyle } from '../../styles/pages/Page.styled'
 
 interface Props {
-    
+
 }
 
 const Cave = (props: Props) => {
-        return (
-            <CaveLayout>
-                <CaveWindowRouter/>
-            </CaveLayout>
-        )
+    return (
+        <CaveLayout>
+            <CaveWindowRouter />
+        </CaveLayout>
+    )
 }
 export default Cave

@@ -5,12 +5,12 @@ import { useScrollYPosition } from 'react-use-scroll-position'
 import { ScrollToTop_STY } from '../styles/ScrollToTop.style'
 
 interface Props {
-    
+
 }
 
 export const ScrollToTopButton = (props: Props) => {
 
-    const scrollY = useScrollYPosition();
+    const scrollY = useScrollYPosition()
 
 
     const scrollToTop = () => {
@@ -20,10 +20,10 @@ export const ScrollToTopButton = (props: Props) => {
         })
     }
 
-    
+
 
     return (
-        <ScrollToTop_STY scrollY={scrollY} onClick={scrollToTop} style={{position:'fixed' , bottom:'30px' , right:"30px"}}>
+        <ScrollToTop_STY scrollY={scrollY} onClick={scrollToTop} style={{ position: 'fixed', bottom: '30px', right: "30px" }}>
             <FontAwesomeIcon icon={faArrowUp} />
         </ScrollToTop_STY>
     )

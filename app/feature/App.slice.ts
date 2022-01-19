@@ -1,6 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { forgetPasswordThunk,   userCheck, userLogin, userLogout, userRegister,  } from '../thunks/AuthThunk'
-import {APP_STATE} from '../store/states/AppState'
+import {
+  forgetPasswordThunk,
+  userCheck,
+  userLogin,
+  userLogout,
+  userRegister,
+} from '../thunks/AuthThunk'
+import { APP_STATE } from '../store/states/AppState'
 import { RootState } from '../store/store'
 import { getKeyValue } from '../../logic/getKeyValue'
 import toast from 'react-hot-toast'
@@ -9,13 +15,11 @@ import { unVoteAnswer, unVoteQuestion, voteAnswer, voteQuestion } from '../thunk
 import { getSingleQuestion } from '../thunks/QuestionThunk'
 import { autoErrorToaster } from '../../components/Notify/AutoErrorToaster'
 
-
-
 export const AppSlice = createSlice({
   name: 'app-slice',
-  initialState:APP_STATE,
+  initialState: APP_STATE,
   reducers: {
-    set_overflowy(state, {payload}) {
+    set_overflowy(state, { payload }) {
       state.PAGE_OVERFLOWY = payload
     },
     // addNewAnswer(state, {payload}) {
@@ -26,13 +30,9 @@ export const AppSlice = createSlice({
     //     state.singleQuestionData.answer_count += 1
     //   }
     // },
-
   },
 
-
-
   extraReducers: (builder) => {
-
     // //GET SINGLE QUESTION Reducers
     // builder.addCase(getSingleQuestion.fulfilled, (state, {payload}) => {
     //   state.singleQuestionData = payload.data
@@ -43,9 +43,7 @@ export const AppSlice = createSlice({
     // }),
     // builder.addCase(getSingleQuestion.rejected, (state, action) => {
     //   state.status = 'failed'
-    // })  
-
-
+    // })
     // //VOTE QUESTION Reducers
     // builder.addCase(voteQuestion.fulfilled, (state, {payload}) => {
     //   state.status = 'idle'
@@ -61,9 +59,7 @@ export const AppSlice = createSlice({
     // builder.addCase(voteQuestion.rejected, (state, {payload}) => {
     //   state.status = 'failed'
     //   autoErrorToaster(payload)
-    // })  
-
-
+    // })
     // //UN VOTE QUESTION Reducers
     // builder.addCase(unVoteQuestion.fulfilled, (state, {payload}) => {
     //   state.status = 'idle'
@@ -79,9 +75,7 @@ export const AppSlice = createSlice({
     // builder.addCase(unVoteQuestion.rejected, (state, {payload}) => {
     //   state.status = 'failed'
     //   autoErrorToaster(payload)
-    // }) 
-
-
+    // })
     // //VOTE ANSWER Reducers
     // builder.addCase(voteAnswer.fulfilled, (state, {payload}) => {
     //   state.status = 'idle'
@@ -91,7 +85,7 @@ export const AppSlice = createSlice({
     //       if(state.singleQuestionData.answers[i].id === payload.data.answer_id)
     //       {
     //         state.singleQuestionData.answers[i].user_votes = payload.data
-    //       } 
+    //       }
     //     }
     //   }
     // }),
@@ -101,20 +95,17 @@ export const AppSlice = createSlice({
     // builder.addCase(voteAnswer.rejected, (state, {payload}) => {
     //   state.status = 'failed'
     //   autoErrorToaster(payload)
-    // })  
-
-
+    // })
     // //UN VOTE ANSWER Reducers
     // builder.addCase(unVoteAnswer.fulfilled, (state, {payload}) => {
     //   state.status = 'idle'
-
     //   if(state.singleQuestionData !== null)
     //   {
     //     for (let i = 0; i < state.singleQuestionData.answers.length; i++) {
     //       if(state.singleQuestionData.answers[i].id === payload)
     //       {
     //         state.singleQuestionData.answers[i].user_votes = null
-    //       } 
+    //       }
     //     }
     //   }
     // }),
@@ -124,29 +115,14 @@ export const AppSlice = createSlice({
     // builder.addCase(unVoteAnswer.rejected, (state, {payload}) => {
     //   state.status = 'failed'
     //   autoErrorToaster(payload)
-    // }) 
-
-
-    
+    // })
   },
-
 })
 
-
 // action
-export const {set_overflowy} = AppSlice.actions
+export const { set_overflowy } = AppSlice.actions
 
 // data
 export const page_overflowy = (state: RootState) => state.appReducer.PAGE_OVERFLOWY
 
-
-
-export default AppSlice.reducer;
-
-
-
-
-
-
-
-
+export default AppSlice.reducer
