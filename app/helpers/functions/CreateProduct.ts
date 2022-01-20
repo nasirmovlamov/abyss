@@ -1,4 +1,4 @@
-import { SectionOfProduct } from '../../store/states/interfaces/CreateProduct.interface'
+import { SectionOfProduct } from '../../store/states/interfaces/CreateProduct.interface';
 
 export const getClips = (sections: SectionOfProduct[]) => {
   let index = sections.findIndex((section) => section.isClips.status)

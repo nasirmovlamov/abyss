@@ -1,5 +1,6 @@
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from 'next/image';
 import { useRef } from 'react';
 import { scroller } from 'react-scroll';
 import { useScrollDirection } from 'react-use-scroll-direction';
@@ -71,7 +72,7 @@ const Cave_Tabs = (props: Props) => {
       {/* <Cave_Tabs_Default_Color_Maker_Sty/> */}
 
       <Cave_Tabs_Cont_Sty>
-        {caveTabs[caveSideData.selectedWindow].map((tab, index) => (
+        {caveTabs[caveSideData.selectedWindow].map((tab: any, index: any) => (
           <>
             <Cave_Tab_Sty
               key={tab.id}
@@ -87,7 +88,7 @@ const Cave_Tabs = (props: Props) => {
                     <Image
                       width="25px"
                       height="15px"
-                      src={caveTabCornerNotHoveredSvg}
+                      src="/caveTabCornerNotHovered.svg"
                       alt="caveLeftCornerSvg"
                     />
                   </CaveLeftCorner>
@@ -95,7 +96,7 @@ const Cave_Tabs = (props: Props) => {
                     <Image
                       width="25px"
                       height="15px"
-                      src={caveTabCornerHovered}
+                      src="/caveTabCornerHovered.svg"
                       alt="caveLeftCornerSvg"
                     />
                   </CaveLeftCornerForHover>
@@ -108,7 +109,7 @@ const Cave_Tabs = (props: Props) => {
                 <Image
                   width="25px"
                   height="15px"
-                  src={caveTabCornerNotHoveredSvg}
+                  src="/caveTabCornerNotHovered.svg"
                   alt="caveLeftCornerSvg"
                 />
               </CaveRightCorner>
@@ -139,7 +140,7 @@ const Cave_Tabs = (props: Props) => {
                 <Image
                   width="25px"
                   height="15px"
-                  src={caveTabCornerHovered}
+                  src="/caveTabCornerHovered.svg"
                   alt="caveLeftCornerSvg"
                 />
               </CaveRightCornerForHover>

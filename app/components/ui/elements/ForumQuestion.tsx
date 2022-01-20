@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React, { ReactElement, useState } from 'react';
+import { ReactElement, useState } from 'react';
 
 import mainlogo from '../../../../public/main-logo.svg';
 import thumbs_up from '../../../../public/thumbs-up.svg';
@@ -108,7 +108,7 @@ function FormQuestion({ data }: Props): ReactElement {
             <HelpfulCount>
               <QuestionStatisticButton_STY changeDirection={false}>
                 <ThumbIcon>
-                  <Image src={thumbs_up} width="18px" height="18px" alt="like button" />{' '}
+                  <Image src={thumbs_up} width="18px" height="18px" alt="like button" />
                 </ThumbIcon>
               </QuestionStatisticButton_STY>
               <QuestionStatisticPercentage>

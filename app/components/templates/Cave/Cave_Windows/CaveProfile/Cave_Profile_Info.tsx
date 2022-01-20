@@ -1,8 +1,10 @@
+import Image from 'next/image';
 import Loader from 'react-spinners/HashLoader';
 
 import { resend_mail, user_data } from '../../../../../store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from '../../../../../store/states/store.hooks';
 import { resendEmail } from '../../../../../store/thunks/User.thunk';
+import * as CavePInfo from '../../../../../styles/ui/modules/Cave_Style/CaveProfile/CaveProfileInfo.style';
 
 
 interface Props { }
@@ -56,11 +58,11 @@ const Cave_Profile_Info = (props: Props) => {
         <CavePInfo.CaveProfile_User>
           <div className="seperator" style={{ height: '25px' }}></div>
           <div className="profileImage">
-            <Image src={abyss_logo} width="120" height="120" alt="rank user" />
+            <Image src="/main-logo.svg" width="120" height="120" alt="rank user" />
           </div>
           <div className="userRateCont">
             <div className="user_icon">
-              <Image src={rank} width="30" height="30" alt="rank user" />
+              <Image src="/tridentRANK_01.png" width="30" height="30" alt="rank user" />
             </div>
             <p className="percentage">74.6</p>
             <div className="percentageLineCont">

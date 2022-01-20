@@ -1,5 +1,28 @@
-import * as SingleQuestion_STY from '../../styles/pages/SingleQuestionPage.styled'
+import {
+  faComment,
+  faThumbsDown as regularfaThumbsDown,
+  faThumbsUp as regularfaThumbsUp,
+} from '@fortawesome/free-regular-svg-icons';
+import {
+  faEdit,
+  faEllipsisV,
+  faThumbsDown as solidfaThumbsDown,
+  faThumbsUp as solidfaThumbsUp,
+  faTrash,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import HTMLReactParser from 'html-react-parser';
+import dynamic from 'next/dynamic';
+import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
 
+import { parseHtmlWithMention } from '../../helpers/functions/HtmlParser';
+import { useQuestionHooks } from '../../hooks/useQuestion.hook';
+import { edit_question_data, single_question_data } from '../../store/slices/Question.slice';
+import { user_data } from '../../store/slices/User.slice';
+import { useAppSelector } from '../../store/states/store.hooks';
+import * as SingleQuestion_STY from '../../styles/pages/SingleQuestionPage.styled';
+import { ShowComments } from '../../styles/ui/modules/Answer.style';
 import {
   AnswerCont,
   AnswerCount,
@@ -9,56 +32,22 @@ import {
   PercentageLine,
   Text,
   ThumbIcon,
-} from '../../styles/ui/modules/FormQuestion.style'
-import React, { useEffect, useState } from 'react'
-import { edit_question_data, single_question_data } from '../../store/slices/Question.slice'
-import {
-  faComment,
-  faThumbsDown as regularfaThumbsDown,
-  faThumbsUp as regularfaThumbsUp,
-} from '@fortawesome/free-regular-svg-icons'
-import {
-  faEdit,
-  faEllipsisV,
-  faTrash,
-  faThumbsDown as solidfaThumbsDown,
-  faThumbsUp as solidfaThumbsUp,
-} from '@fortawesome/free-solid-svg-icons'
-import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks'
-
-import AnswerSubmitCont from '../modules/AnswerSubmit'
-import AnswersConts from './Answers.layout'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import HTMLReactParser from 'html-react-parser'
-import Image from 'next/image'
-import MyEditor from '../modules/editors/MyEditor'
-import ProductsConts from './Products.layout'
-import SearchBoxStaticVersion from '../modules/SearchBoxStaticVersion'
-import { ShowComments } from '../../styles/ui/modules/Answer.style'
-import SinglePageTabs from '../ui/elements/SinglePageTabs'
-import abyssLogo from '../public/main-logo-new.svg'
-import dynamic from 'next/dynamic'
-import { is_comment_opened } from '../../store/slices/Comments.slice'
-import { parseHtmlWithMention } from '../../helpers/functions/HtmlParser'
-import { useQuestionHooks } from '../../hooks/useQuestion.hook'
-import { useRouter } from 'next/router'
-import { user_data } from '../../store/slices/User.slice'
+} from '../../styles/ui/modules/FormQuestion.style';
+import AnswerLayout from '../modules/Answers.module';
+import AnswerSubmitCont from '../modules/AnswerSubmit';
+import MyEditor from '../modules/editors/MyEditor';
+import SearchBoxStaticVersion from '../modules/SearchBoxStaticVersion';
+import SinglePageTabs from '../ui/elements/SinglePageTabs';
+import ProductsConts from './Product.layout';
 
 const DynamicComponentWithNoSSR = dynamic(
   () => import('../modules/editors/EditorForQuestionEdit'),
   { ssr: false },
 )
 
-interface Props {}
-
-interface Props {}
-
-export const QuestionMiddleLayout = (props: Props) => {
-  const router = useRouter()
-  const dispatch = useAppDispatch()
+const QuestionMiddleLayout = () => {
   const question_data: any = useAppSelector(single_question_data)
   const userData = useAppSelector(user_data)
-  const isCommentsOpened = useAppSelector(is_comment_opened)
   const [showOptionsValue, setshowOptions] = useState(false)
   const {
     openQuestionComments,
@@ -80,7 +69,7 @@ export const QuestionMiddleLayout = (props: Props) => {
         <SingleQuestion_STY.PersonCont_STY>
           <SingleQuestion_STY.Avatar_STY>
             <div style={{ opacity: 0.618 }}>
-              <Image src={abyssLogo} width="65px" height="65px" alt="Abyss Logo" />
+              <Image src="/main-logo-new.svg" width="65px" height="65px" alt="Abyss Logo" />
             </div>
           </SingleQuestion_STY.Avatar_STY>
           <SingleQuestion_STY.Name_STY>{question_data.user.name}</SingleQuestion_STY.Name_STY>
@@ -189,7 +178,7 @@ export const QuestionMiddleLayout = (props: Props) => {
                   percentage={
                     question_data.downvote + question_data.upvote > 0
                       ? (question_data.upvote / (question_data.downvote + question_data.upvote)) *
-                        100
+                      100
                       : 0
                   }
                 />
@@ -224,7 +213,7 @@ export const QuestionMiddleLayout = (props: Props) => {
         {question_data.answer_count > 0 && (
           <>
             <SinglePageTabs />
-            <AnswersConts />
+            <AnswerLayout />
             <ProductsConts />
           </>
         )}
@@ -232,3 +221,5 @@ export const QuestionMiddleLayout = (props: Props) => {
     </SingleQuestion_STY.SingleProductMiddle_STY>
   )
 }
+
+export default QuestionMiddleLayout

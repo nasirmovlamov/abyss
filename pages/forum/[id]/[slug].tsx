@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import { ReactElement, useEffect } from 'react';
 
-import MainPartOfPage from '../../../app/components/layouts/PageMain.layout';
-import SidePartOfPage from '../../../app/components/layouts/PageSide.layout';
+import PageMainLayout from '../../../app/components/layouts/PageMain.layout';
+import PageSideLayout from '../../../app/components/layouts/PageSide.layout';
 import QuestionLayout from '../../../app/components/layouts/Question.layout';
 import CommentModal from '../../../app/components/ui/sidebars/CommentsSidebar';
 import { is_comment_opened } from '../../../app/store/slices/Comments.slice';
@@ -29,13 +29,13 @@ function QuestionPage({ }: Props): ReactElement {
 
   return (
     <PageDefaultStyle>
-      <SidePartOfPage side={'left'}></SidePartOfPage>
+      <PageSideLayout side="left">Test</PageSideLayout>
 
-      <MainPartOfPage>
+      <PageMainLayout>
         <QuestionLayout />
-      </MainPartOfPage>
+      </PageMainLayout>
 
-      <SidePartOfPage side={'right'}></SidePartOfPage>
+      <PageSideLayout side="right">Test</PageSideLayout>
       {isCommentsOpened && <CommentModal />}
     </PageDefaultStyle>
   )

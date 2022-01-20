@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import BeatLoader from 'react-spinners/BeatLoader';
 
 import MainPartOfPage from '../../app/components/layouts/PageMain.layout';
-import SidePartOfPage from '../../app/components/layouts/PageSide.layout';
+import PageSideLayout from '../../app/components/layouts/PageSide.layout';
 import ChatBox from '../../app/components/modules/ChatBox';
 import SearchBoxStaticVersion from '../../app/components/modules/SearchBoxStaticVersion';
 import ListingStoreProduct from '../../app/components/templates/ListingStoreProduct';
@@ -44,14 +44,14 @@ function Store({ }: Props): ReactElement {
 
   return (
     <PageDefaultStyle>
-      <SidePartOfPage side="left"></SidePartOfPage>
+      <PageSideLayout side="left">test</PageSideLayout>
 
       <MainPartOfPage>
         <StorePage>
           <SearchBoxStaticVersion />
 
           <PageTabs />
-          {storeSearchData.data.map((element, index) => (
+          {storeSearchData.data.map((element: any, index: number) => (
             <ListingStoreProduct key={index} data={element} />
           ))}
 
@@ -84,7 +84,7 @@ function Store({ }: Props): ReactElement {
         </StorePage>
       </MainPartOfPage>
 
-      <SidePartOfPage side="right">{<>{isChatBoxOpened && <ChatBox />}</>}</SidePartOfPage>
+      <PageSideLayout side="right">{<>{isChatBoxOpened && <ChatBox />}</>}</PageSideLayout>
     </PageDefaultStyle>
   )
 }

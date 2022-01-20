@@ -1,4 +1,4 @@
-import { USER_INTERFACE } from '../../../components/layouts/Answers.layout'
+import { USER_INTERFACE } from '../../../components/modules/Answers.module';
 
 export interface CommentsInterface {
   comments: CommentInterface[]

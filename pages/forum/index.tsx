@@ -5,9 +5,9 @@ import { BeatLoader } from 'react-spinners';
 import { useScrollYPosition } from 'react-use-scroll-position';
 
 import MainPartOfPage from '../../app/components/layouts/PageMain.layout';
-import SidePartOfPage from '../../app/components/layouts/PageSide.layout';
+import PageSideLayout from '../../app/components/layouts/PageSide.layout';
 import SearchBoxStaticVersion from '../../app/components/modules/SearchBoxStaticVersion';
-import FormQuestion from '../../app/components/ui/elements/ForumQuestion';
+import ForumQuestion from '../../app/components/ui/elements/ForumQuestion';
 import SideProductCont from '../../app/components/ui/elements/SideProductCont';
 import PageTabs from '../../app/components/ui/tabs/ForumPageTabs';
 import { is_chatbox_opened } from '../../app/store/slices/ChatBox.slice';
@@ -101,11 +101,11 @@ function Forum({ }: Props): ReactElement {
 
   return (
     <PageDefaultStyle>
-      <SidePartOfPage
+      <PageSideLayout
         onMouseEnter={handleMouseOver}
         onMouseLeave={handleMouseLeave}
         side={'left'}
-      ></SidePartOfPage>
+      >test</PageSideLayout>
 
       <MainPartOfPage>
         <ForumPage>
@@ -117,8 +117,8 @@ function Forum({ }: Props): ReactElement {
             </>
           ) : (
             <>
-              {forumSearchData.data.map((element, index) => (
-                <FormQuestion key={index} data={element} />
+              {forumSearchData.data.map((element: any, index: number) => (
+                <ForumQuestion key={index} data={element} />
               ))}
 
               {!forumSearchData.allDataLoaded &&
@@ -152,7 +152,7 @@ function Forum({ }: Props): ReactElement {
         </ForumPage>
       </MainPartOfPage>
 
-      <SidePartOfPage side={'right'}>
+      <PageSideLayout side={'right'}>
         {sideProductContData.status === 'loaded' &&
           sideProductContData.selectedID !== null &&
           sideProductContData.products.length > 0 && <SideProductCont />}
@@ -162,7 +162,7 @@ function Forum({ }: Props): ReactElement {
                         {isChatBoxOpened  && <ChatBox/>}
                     </>
                 } */}
-      </SidePartOfPage>
+      </PageSideLayout>
     </PageDefaultStyle>
   )
 }

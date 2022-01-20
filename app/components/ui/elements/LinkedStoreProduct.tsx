@@ -33,8 +33,9 @@ import {
   ProductViewCont,
   StoreListingProductStyle,
 } from '../../../styles/ui/modules/ListingStoreProduct.styled';
-import NavLink from './NavLink';
-import StarCountShow from './StarCountShow';
+import NavLink from '../elements/NavLink';
+import StarCountShow from '../elements/StarCountShow';
+
 
 interface Props {
   data: any

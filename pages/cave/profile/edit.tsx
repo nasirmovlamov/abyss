@@ -1,12 +1,12 @@
-import CaveLayout from '../../../components/Cave/CaveLayout'
-import React from 'react'
+import React from 'react';
 
-interface Props {}
+
+interface Props { }
 
 const edit = (props: Props) => {
   return (
     <div>
-      <CaveLayout></CaveLayout>
+      {/* <CaveLayout></CaveLayout> */}
     </div>
   )
 }

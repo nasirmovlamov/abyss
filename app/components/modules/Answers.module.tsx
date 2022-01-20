@@ -1,31 +1,39 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { ReactElement, useEffect, useState } from 'react'
-import { down_answers, top_answers } from '../../store/slices/Question.slice'
+import React, { useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
+import { scroller } from 'react-scroll';
 
-import Answer from '../ui/elements/Answer'
-import AnswerSkeleton from '../ui/skeletons/AnswerSkeleton'
-import { AnswersCont_STY } from '../../styles/pages/SingleQuestionPage.styled'
-import { scroller } from 'react-scroll'
-import { useAppSelector } from '../../store/states/store.hooks'
-import { useInView } from 'react-intersection-observer'
+import { changeForumTabActive } from '../../store/slices/PageTabs.slice';
+import {
+  down_answers,
+  down_answers_status,
+  down_page,
+  single_question_data,
+  submitted_answer,
+  top_answers,
+  top_answers_status,
+  top_page,
+  total_page,
+} from '../../store/slices/Question.slice';
+import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
+import { getAnswers } from '../../store/thunks/Question.thunk';
+import { AnswersCont_STY } from '../../styles/pages/SingleQuestionPage.styled';
+import Answer from '../ui/elements/Answer';
+import AnswerSkeleton from '../ui/skeletons/AnswerSkeleton';
 
+// @todo move this interface to a separate file
 export interface USER_INTERFACE {
   id: number
   email: string
   name: string
 }
 
-export interface GET_ANSWER_INTERFAC {
+export interface AnswerInterface {
   page: number
   direction: string
   questionId: number
 }
 
-interface Props {
-  // answers:ANSWER_INTERFACE[]
-}
-
-function AnswersConts({}: Props): ReactElement {
+const AnswersModule = () => {
   const [inViewRefAnswersCont, inViewAnswersCont] = useInView()
   const [inViewRefLoaderDown, inViewLoaderDown] = useInView()
   const [inViewRefLoaderUp, inViewLoaderUp] = useInView()
@@ -60,12 +68,13 @@ function AnswersConts({}: Props): ReactElement {
         ]),
       )
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inViewAnswersCont])
 
   useEffect(() => {
     if (inViewLoaderDown) {
       if (topAnswersStatus === 'loading') {
-        const data: GET_ANSWER_INTERFAC = {
+        const data: AnswerInterface = {
           page: topPage,
           direction: 'next',
           questionId: question_data.id,
@@ -73,12 +82,13 @@ function AnswersConts({}: Props): ReactElement {
         dispatch(getAnswers(data))
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inViewLoaderDown])
 
   useEffect(() => {
     if (inViewLoaderUp) {
       if (downAnswersStatus === 'loading') {
-        const data: GET_ANSWER_INTERFAC = {
+        const data: AnswerInterface = {
           page: downPage,
           direction: 'previous',
           questionId: question_data.id,
@@ -99,6 +109,7 @@ function AnswersConts({}: Props): ReactElement {
       }
     } else {
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inViewLoaderUp])
 
   const scrollToLastAnswer = (id: number) => {
@@ -125,7 +136,7 @@ function AnswersConts({}: Props): ReactElement {
           marginTop: '14px',
         }}
       >
-        {submittedAnswer.map((answer) => (
+        {submittedAnswer.map((answer: any) => (
           <Answer key={answer.id} direction="new-submitted" answer={answer} />
         ))}
       </div>
@@ -139,7 +150,7 @@ function AnswersConts({}: Props): ReactElement {
           marginTop: '14px',
         }}
       >
-        {topAnswers.map((answer) => (
+        {topAnswers.map((answer: any) => (
           <Answer key={answer.id} direction="top" answer={answer} />
         ))}
       </div>
@@ -180,7 +191,7 @@ function AnswersConts({}: Props): ReactElement {
           marginTop: '30px',
         }}
       >
-        {downAnswers.map((answer) => (
+        {downAnswers.map((answer: any) => (
           <Answer key={answer.id} direction="bottom" answer={answer} />
         ))}
       </div>
@@ -188,4 +199,4 @@ function AnswersConts({}: Props): ReactElement {
   )
 }
 
-export default AnswersConts
+export default AnswersModule

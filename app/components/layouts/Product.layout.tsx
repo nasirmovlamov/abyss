@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ReactElement, useEffect } from 'react'
-import { changeForumTabActive, forum_tabs } from '../../store/slices/PageTabs.slice'
+import { ReactElement, useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
+
+import { changeForumTabActive } from '../../store/slices/PageTabs.slice';
 import {
   current_page_linked_products,
   last_page_linked_products,
@@ -8,18 +10,14 @@ import {
   linked_products_status,
   single_question_data,
   total_linked_products,
-} from '../../store/slices/Question.slice'
-import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks'
+} from '../../store/slices/Question.slice';
+import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
+import { getLinkedProducts } from '../../store/thunks/LinkedProducts.thunk';
+import { ProductsCont_STY } from '../../styles/pages/SingleQuestionPage.styled';
+import LinkedStoreProduct from '../ui/elements/LinkedStoreProduct';
+import AnswerSkeleton from '../ui/skeletons/AnswerSkeleton';
 
-import AnswerSkeleton from '../ui/skeletons/AnswerSkeleton'
-import LinkedStoreProduct from '../ui/elements/LinkedStoreProduct'
-import { ProductsCont_STY } from '../../styles/pages/SingleQuestionPage.styled'
-import { getLinkedProducts } from '../../store/thunks/LinkedProducts.thunk'
-import { useInView } from 'react-intersection-observer'
-
-interface Props {}
-
-function ProductsConts({}: Props): ReactElement {
+const ProductLayout = () => {
   const { ref, inView, entry } = useInView({ threshold: 0 })
   const linkedProductsStatus = useAppSelector(linked_products_status)
   const [inViewRefProductsLoad, inViewProductsLoader] = useInView()
@@ -30,7 +28,6 @@ function ProductsConts({}: Props): ReactElement {
   const lastPageLinkedProducts = useAppSelector(last_page_linked_products)
   const linkedProductsForAnswersOfQuestion = useAppSelector(linked_products_for_answers_of_question)
   const dispatch = useAppDispatch()
-  const forumTabs = useAppSelector(forum_tabs)
 
   useEffect(() => {
     if (inView) {
@@ -79,4 +76,4 @@ function ProductsConts({}: Props): ReactElement {
   )
 }
 
-export default ProductsConts
+export default ProductLayout

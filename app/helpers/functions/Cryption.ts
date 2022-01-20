@@ -19,7 +19,6 @@ export const decryptUserToken = (data: string) => {
   if (data) {
     const key = process.env.NEXT_PUBLIC_COOKIE_KEY
     return base64.decode(data).toString().replace(key, '')
-  } else {
-    return null
   }
+  return null
 }

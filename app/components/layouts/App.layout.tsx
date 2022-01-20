@@ -1,32 +1,25 @@
-import React, { FC, ReactElement, useEffect, useState } from 'react'
-import { closeComments, is_comment_opened } from '../../store/slices/Comments.slice'
-import { is_chatbox_opened, openChat } from '../../store/slices/ChatBox.slice'
-import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks'
-import { user_data, user_status, user_status_not_logged } from '../../store/slices/User.slice'
+import { useRouter } from 'next/router';
+import React, { ReactNode, useEffect } from 'react';
 
-import ChatBox from '../modules/ChatBox'
-import Footer from '../modules/Footer'
-import Header from '../modules/Header'
-import Modals from '../ui/modals/Modals'
-import { ScrollToTopButton } from '../ui/elements/ScrollToTopButton'
-import ToolTip from '../ui/tooltips/ToolTip'
-import { getCookie } from '../../helpers/functions/CookieFunctions'
-import { hoverWindowAsync } from '../../store/thunks/SearchBox.thunk'
-import { page_overflowy } from '../../store/slices/App.slice'
-import { unhoverWindow } from '../../store/slices/SearchBox.slice'
-import { useRouter } from 'next/router'
-import { userCheck } from '../../store/thunks/User.thunk'
+import { getCookie } from '../../helpers/functions/CookieFunctions';
+import { is_chatbox_opened, openChat } from '../../store/slices/ChatBox.slice';
+import { closeComments, is_comment_opened } from '../../store/slices/Comments.slice';
+import { unhoverWindow } from '../../store/slices/SearchBox.slice';
+import { user_data, user_status, user_status_not_logged } from '../../store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
+import { hoverWindowAsync } from '../../store/thunks/SearchBox.thunk';
+import { userCheck } from '../../store/thunks/User.thunk';
+import ChatBox from '../modules/ChatBox';
+import Footer from '../modules/Footer';
+import Header from '../modules/Header';
+import { ScrollToTopButton } from '../ui/elements/ScrollToTopButton';
+import Modals from '../ui/modals/Modals';
+import ToolTip from '../ui/tooltips/ToolTip';
 
-interface Props {
-  // any props that come into the component
-}
-
-const Layout: FC<Props> = ({ children, ...props }) => {
+const AppLayout = ({ children }: { children: ReactNode }) => {
   const router = useRouter()
   const dispatch = useAppDispatch()
-  const [trig, settrig] = useState(true)
   const userStatus = useAppSelector(user_status)
-  const pageOverflowY = useAppSelector(page_overflowy)
   const userData = useAppSelector(user_data)
   const isChatBoxOpened = useAppSelector(is_chatbox_opened)
   const isCommentBoxOpened = useAppSelector(is_comment_opened)
@@ -44,6 +37,7 @@ const Layout: FC<Props> = ({ children, ...props }) => {
     if (isCommentBoxOpened) {
       dispatch(closeComments(null))
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router])
 
   const openUserChat = () => {
@@ -83,7 +77,8 @@ const Layout: FC<Props> = ({ children, ...props }) => {
       </div>
     )
   }
+
   return <></>
 }
 
-export default Layout
+export default AppLayout

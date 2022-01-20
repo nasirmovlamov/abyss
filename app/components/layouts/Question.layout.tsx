@@ -1,19 +1,14 @@
 import { useRouter } from 'next/router';
-import { FC } from 'react';
 import Loader from 'react-spinners/HashLoader';
 
-import { question_errors, question_status, single_question_data } from '../../store/slices/Question.slice';
+import { question_status } from '../../store/slices/Question.slice';
 import { useAppSelector } from '../../store/states/store.hooks';
-import { QuestionMiddleLayout } from './QuestionMain.layout';
+import QuestionMiddleLayout from './QuestionMain.layout';
 
-
-interface Props { }
-
-const QuestionLayout: FC<Props> = ({ children, ...props }) => {
+const QuestionLayout = () => {
   const questionStatus = useAppSelector(question_status)
-  const questionData = useAppSelector(single_question_data)
-  const errors = useAppSelector(question_errors)
   const router = useRouter()
+
   if (questionStatus === 'loading') {
     return (
       <>

@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../../store/states/store.hook
 import { getSingleProduct } from '../../../store/thunks/SingleProduct.thunk';
 import { PageDefaultStyle } from '../../../styles/pages/Page.styled';
 import MainPartOfPage from '../../layouts/PageMain.layout';
-import SidePartOfPage from '../../layouts/PageSide.layout';
+import PageSideLayout from '../../layouts/PageSide.layout';
 
 
 interface Props { }
@@ -44,11 +44,11 @@ const StoreLayout: FC<Props> = ({ children, ...props }) => {
 
   return (
     <PageDefaultStyle>
-      <SidePartOfPage
+      <PageSideLayout
         onMouseEnter={hoverSideLeft}
         onMouseLeave={hoverSideRight}
         side={'left'}
-      ></SidePartOfPage>
+      >test</PageSideLayout>
 
       <MainPartOfPage>
         {singleProductData.data !== null && <>{children}</>}
@@ -65,7 +65,7 @@ const StoreLayout: FC<Props> = ({ children, ...props }) => {
         {singleProductData.data === null && <></>}
       </MainPartOfPage>
 
-      <SidePartOfPage side={'right'}></SidePartOfPage>
+      <PageSideLayout side={'right'}>test</PageSideLayout>
     </PageDefaultStyle>
   )
 }

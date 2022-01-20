@@ -1,5 +1,5 @@
-import { decryptUserToken, encryptUserToken } from '../functions/Cryption'
-import { deleteCookie, setCookie } from '../functions/CookieFunctions'
+import { deleteCookie, setCookie } from '../functions/CookieFunctions';
+import { decryptUserToken, encryptUserToken } from '../functions/Cryption';
 
 export var accessToken: string | null = null
 
