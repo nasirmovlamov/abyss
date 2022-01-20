@@ -1,24 +1,19 @@
-import React, { ReactElement } from 'react'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
+import React, { ReactElement, ReactNode } from 'react';
 
-import PageFilters from '../modules/PageFilters'
-import { SidePartOfPageStyle } from '../../styles/pages/Page.styled'
-import { color_convert } from '../app/feature/User.slice'
-import { is_chatbox_opened } from '../app/feature/ChatBox.slice'
-import { is_comment_opened } from '../app/feature/Comments.slice'
+import { color_convert } from '../../store/slices/User.slice';
+import { useAppSelector } from '../../store/states/store.hooks';
+import { SidePartOfPageStyle } from '../../styles/pages/Page.styled';
+import PageFilters from '../modules/PageFilters';
 
 interface Props {
-  children: any
+  children: ReactNode
   side: string
   onMouseEnter?: () => void
   onMouseLeave?: () => void
 }
 
-function SidePartOfPage({ children, side, onMouseEnter, onMouseLeave }: Props): ReactElement {
-  const isChatBoxOpened = useAppSelector(is_chatbox_opened)
-  const isCommentOpened = useAppSelector(is_comment_opened)
+const PageSideLayout = ({ children, side, onMouseEnter, onMouseLeave }: Props) => {
   const colorConvert = useAppSelector(color_convert)
-  const dispatch = useAppDispatch()
 
   return (
     <SidePartOfPageStyle
@@ -39,4 +34,4 @@ function SidePartOfPage({ children, side, onMouseEnter, onMouseLeave }: Props): 
   )
 }
 
-export default SidePartOfPage
+export default PageSideLayout

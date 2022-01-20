@@ -1,8 +1,4 @@
 import {
-  CaveSide_section_Sty,
-  CaveSidebar_Sty,
-} from '../../../styles/ui/modules/Cave_Style/CaveSidebar.style'
-import {
   faBookReader,
   faBox,
   faInfoCircle,
@@ -10,17 +6,18 @@ import {
   faSignOutAlt,
   faStickyNote,
   faUser,
-} from '@fortawesome/free-solid-svg-icons'
-import { useAppDispatch, useAppSelector } from '../../app/store/hooks'
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useRouter } from 'next/router';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
-import { cave_side_data } from '../../app/feature/CaveFeatures/CaveSide.slice'
-import { selectAsyncCaveWindow } from '../../app/thunks/Cave/Cave.thunk'
-import { useRouter } from 'next/router'
-import { userLogout } from '../../app/thunks/AuthThunk'
+import { cave_side_data } from '../../../store/slices/CaveFeatures/CaveSide.slice';
+import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks';
+import { selectAsyncCaveWindow } from '../../../store/thunks/Cave/Cave.thunk';
+import { userLogout } from '../../../store/thunks/User.thunk';
+import { CaveSide_section_Sty, CaveSidebar_Sty } from '../../../styles/ui/modules/Cave_Style/CaveSidebar.style';
 
-interface Props {}
+
+interface Props { }
 
 const CaveSidebar = (props: Props) => {
   const dispatch = useAppDispatch()

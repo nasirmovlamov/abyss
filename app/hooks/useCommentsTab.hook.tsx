@@ -1,11 +1,12 @@
-import { addAnswerComment, addQuestionComment } from '../app/thunks/CommentsThunk'
-import { changeModalAction, is_Logged } from '../app/feature/User.slice'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-import { useEffect, useState } from 'react'
+import { useState } from 'react';
 
-import { autoErrorToasterWithMessage } from '../components/Notify/AutoSuccessToast'
-import { closeComments } from '../app/feature/Comments.slice'
-import { set_overflowy } from '../app/feature/App.slice'
+import { autoErrorToasterWithMessage } from '../components/ui/toasters/AutoSuccessToast';
+import { set_overflowy } from '../store/slices/App.slice';
+import { closeComments } from '../store/slices/Comments.slice';
+import { changeModalAction, is_Logged } from '../store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from '../store/states/store.hooks';
+import { addAnswerComment, addQuestionComment } from '../store/thunks/Comments.thunk';
+
 
 export const useCommentsTabHook = (commentsType: any) => {
   const dispatch = useAppDispatch()

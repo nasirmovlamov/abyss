@@ -1,4 +1,4 @@
-import { changeModalAction, user_data } from '../app/feature/User.slice'
+import { showComments } from '../store/slices/Comments.slice';
 import {
   disableQuestionEditing,
   edit_question_data,
@@ -6,14 +6,12 @@ import {
   question_status,
   setDeleteOptions,
   single_question_data,
-} from '../app/feature/Question.slice'
-import { editQuestionThunk, unVoteQuestion, voteQuestion } from '../app/thunks/QuestionThunk'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-//useFetch.js
-import { useEffect, useState } from 'react'
+} from '../store/slices/Question.slice';
+import { changeModalAction, user_data } from '../store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from '../store/states/store.hooks';
+import { getQuestionComments } from '../store/thunks/Comments.thunk';
+import { editQuestionThunk, unVoteQuestion, voteQuestion } from '../store/thunks/Question.thunk';
 
-import { getQuestionComments } from '../app/thunks/CommentsThunk'
-import { showComments } from '../app/feature/Comments.slice'
 
 export const useQuestionHooks = () => {
   const dispatch = useAppDispatch()

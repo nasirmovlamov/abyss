@@ -1,14 +1,15 @@
-import React, { FormEvent } from 'react'
+import { FormEvent } from 'react';
+
+import { autoErrorToasterWithMessage } from '../components/ui/toasters/AutoSuccessToast';
 import {
   form_change_password_data,
   form_change_password_onBlur,
   form_change_password_onChange,
   user_forget_pass_check_token,
-} from '../app/feature/User.slice'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
+} from '../store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from '../store/states/store.hooks';
+import { changePasswordThunk } from '../store/thunks/User.thunk';
 
-import { autoErrorToasterWithMessage } from '../components/Notify/AutoSuccessToast'
-import { changePasswordThunk } from '../app/thunks/AuthThunk'
 
 interface Props {
   status: string

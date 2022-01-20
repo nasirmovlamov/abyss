@@ -1,21 +1,21 @@
-import React, { ReactElement, useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../app/store/hooks'
+import { useRouter } from 'next/router';
+import { ReactElement, useEffect } from 'react';
 
-import CommentModal from '../../../components/CommentsTab'
-import MainPartOfPage from '../../../components/MainPartOfPage'
-import { PageDefaultStyle } from '../../../styles/pages/Page.styled'
-import QuestionLayout from '../../../components/QuestionLayout'
-import SidePartOfPage from '../../../components/SidePartOfPage'
-import { getSingleQuestion } from '../../../app/thunks/QuestionThunk'
-import { is_comment_opened } from '../../../app/feature/Comments.slice'
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useRouter } from 'next/router'
-import { user_data } from '../../../app/feature/User.slice'
+import PageMainLayout from '../../../app/components/layouts/PageMain.layout';
+import PageSideLayout from '../../../app/components/layouts/PageSide.layout';
+import QuestionLayout from '../../../app/components/layouts/Question.layout';
+import CommentModal from '../../../app/components/ui/sidebars/CommentsSidebar';
+import { is_comment_opened } from '../../../app/store/slices/Comments.slice';
+import { user_data } from '../../../app/store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from '../../../app/store/states/store.hooks';
+import { getSingleQuestion } from '../../../app/store/thunks/Question.thunk';
+import { PageDefaultStyle } from '../../../app/styles/pages/Page.styled';
+
 
 // import { AnswerCont, AnswerCount, DateCount, DefaultLine, HelpfulCont, HelpfulCount, PercentageLine, StatisticCont, Text, ThumbIcon } from '../../../styles/components/styled-elements/FormQuestion.style'
-interface Props {}
+interface Props { }
 
-function QuestionPage({}: Props): ReactElement {
+function QuestionPage({ }: Props): ReactElement {
   const router = useRouter()
   const dispatch = useAppDispatch()
   const userData = useAppSelector(user_data)
@@ -29,13 +29,13 @@ function QuestionPage({}: Props): ReactElement {
 
   return (
     <PageDefaultStyle>
-      <SidePartOfPage side={'left'}></SidePartOfPage>
+      <PageSideLayout side="left">Test</PageSideLayout>
 
-      <MainPartOfPage>
+      <PageMainLayout>
         <QuestionLayout />
-      </MainPartOfPage>
+      </PageMainLayout>
 
-      <SidePartOfPage side={'right'}></SidePartOfPage>
+      <PageSideLayout side="right">Test</PageSideLayout>
       {isCommentsOpened && <CommentModal />}
     </PageDefaultStyle>
   )

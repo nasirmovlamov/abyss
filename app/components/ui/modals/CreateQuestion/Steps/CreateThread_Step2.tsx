@@ -1,11 +1,10 @@
-import CreateDiscussion from '../CreateDiscussion'
-import CreateQuestion from '../CreateQuestion'
-import CreateRequest from '../CreateRequest'
-import React from 'react'
-import { create_thread_data } from '../../../../app/feature/CreateThread/CreateThread.slice'
-import { useAppSelector } from '../../../../app/store/hooks'
+import { create_thread_data } from '../../../../../store/slices/CreateThread/CreateThread.slice';
+import { useAppSelector } from '../../../../../store/states/store.hooks';
+import CreateDiscussion from '../CreateDiscussion';
+import CreateQuestion from '../CreateQuestion';
+import CreateRequest from '../CreateRequest';
 
-interface Props {}
+interface Props { }
 
 const CreateThread_Step2 = (props: Props) => {
   const createThreadData = useAppSelector(create_thread_data)

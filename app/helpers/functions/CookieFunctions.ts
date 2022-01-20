@@ -1,4 +1,4 @@
-import { decryptData, encryptData } from './Cryption'
+import { decryptData, encryptData } from './Cryption';
 
 export const setCookie = (cname: string, cvalue: string, exdays: number) => {
   const d = new Date()

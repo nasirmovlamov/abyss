@@ -1,4 +1,4 @@
-import { RoomInterface } from '../app/store/state-Interfaces/ChatBoxInterface'
+import { RoomInterface } from '../../store/states/interfaces/ChatBox.interface';
 
 export const getRooms = (rooms: { [index: number]: RoomInterface }) => {
   return Object.keys(rooms).map((id: any) => rooms[id])

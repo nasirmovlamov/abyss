@@ -1,21 +1,22 @@
+import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+import { scroller } from 'react-scroll';
+import { useScrollYPosition } from 'react-use-scroll-position';
+
+import { BASE_API_INSTANCE } from '../../../../../helpers/api/BaseInstance';
+import { cave_side_data } from '../../../../../store/slices/CaveFeatures/CaveSide.slice';
+import { cave_actions, cave_tabs } from '../../../../../store/slices/CaveFeatures/CaveTabs.slice';
+import { inventoryTabs } from '../../../../../store/states/states/Cave_States/CaveTabs.state';
+import { useAppDispatch, useAppSelector } from '../../../../../store/states/store.hooks';
 import {
   CaveInventoryBlocks_Sty,
   CaveInventoryDefaultBlock_Sty,
-} from '../../../../../styles/ui/modules/Cave_Style/CaveInventory/CaveInventory.style'
-import React, { useEffect, useState } from 'react'
-import { cave_actions, cave_tabs } from '../../../../app/feature/CaveFeatures/CaveTabs.slice'
-import { useAppDispatch, useAppSelector } from '../../../../app/store/hooks'
+} from '../../../../../styles/ui/modules/Cave_Style/CaveInventory/CaveInventory.style';
+import AnswerSkeleton from '../../../../ui/skeletons/AnswerSkeleton';
+import CaveProduct from '../../CaveProduct';
 
-import AnswerSkeleton from '../../../../ui/skeletons/AnswerSkeleton'
-import { BASE_API_INSTANCE } from '../../../../../helpers/api/BaseInstance'
-import CaveProduct from '../../CaveProduct'
-import { cave_side_data } from '../../../../app/feature/CaveFeatures/CaveSide.slice'
-import { inventoryTabs } from '../../../../app/store/states/Cave_States/CaveTabs.state'
-import { scroller } from 'react-scroll'
-import { useInView } from 'react-intersection-observer'
-import { useScrollYPosition } from 'react-use-scroll-position'
 
-interface Props {}
+interface Props { }
 
 const Cave_Inventory = (props: Props) => {
   const [inViewRefInventoryLoaderBlock, inViewInventoryLoaderBlock] = useInView()

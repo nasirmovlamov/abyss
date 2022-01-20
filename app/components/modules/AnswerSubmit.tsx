@@ -1,17 +1,14 @@
-import {
-  AddAnswerCont_STY,
-  AddAnswerSubmit_STY,
-} from '../../styles/pages/SingleQuestionPage.styled'
-import React, { ReactElement, useEffect, useRef, useState } from 'react'
-import { changeModalAction, is_Logged, user_data } from '../app/feature/User.slice'
-import { submit_answer_content, submit_answer_data } from '../app/feature/Question.slice'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
+import dynamic from 'next/dynamic';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 
-import { LabelCont } from '../../styles/ui/modules/CreateQuestionModal.style'
-import MyEditor from './editors/MyEditor'
-import { addAnswer } from '../app/thunks/QuestionThunk'
-import { autoErrorToasterWithMessage } from '../Notify/AutoSuccessToast'
-import dynamic from 'next/dynamic'
+import { submit_answer_content, submit_answer_data } from '../../store/slices/Question.slice';
+import { changeModalAction, is_Logged, user_data } from '../../store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
+import { addAnswer } from '../../store/thunks/Question.thunk';
+import { AddAnswerCont_STY, AddAnswerSubmit_STY } from '../../styles/pages/SingleQuestionPage.styled';
+import { LabelCont } from '../../styles/pages/Store.styled';
+import { autoErrorToasterWithMessage } from '../ui/toasters/AutoSuccessToast';
+import MyEditor from './editors/MyEditor';
 
 const DynamicComponentWithNoSSR = dynamic(() => import('./editors/EditorForAddAnswer'), {
   ssr: false,

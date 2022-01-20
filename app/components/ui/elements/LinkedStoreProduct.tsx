@@ -1,3 +1,11 @@
+import { faPython } from '@fortawesome/free-brands-svg-icons';
+import { faDownload, faEye, faLaptopCode } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ReactElement } from 'react';
+
+import { getOptionsForMentionOfProduct } from '../../../store/slices/Question.slice';
+import { changeModalAction } from '../../../store/slices/User.slice';
+import { useAppDispatch } from '../../../store/states/store.hooks';
 import {
   AddCave,
   AddCaveAndMentionsCont,
@@ -24,17 +32,10 @@ import {
   ProductTitle,
   ProductViewCont,
   StoreListingProductStyle,
-} from '../../../styles/ui/modules/ListingStoreProduct.styled'
-import React, { ReactElement } from 'react'
-import { faDownload, faEye, faLaptopCode } from '@fortawesome/free-solid-svg-icons'
+} from '../../../styles/ui/modules/ListingStoreProduct.styled';
+import NavLink from '../elements/NavLink';
+import StarCountShow from '../elements/StarCountShow';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import NavLink from './NavLink'
-import StarCountShow from './StarCountShow'
-import { changeModalAction } from '../app/feature/User.slice'
-import { faPython } from '@fortawesome/free-brands-svg-icons'
-import { getOptionsForMentionOfProduct } from '../app/feature/Question.slice'
-import { useAppDispatch } from '../app/store/hooks'
 
 interface Props {
   data: any

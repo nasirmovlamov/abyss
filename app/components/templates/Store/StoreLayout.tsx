@@ -1,20 +1,18 @@
-import React, { FC, useEffect, useLayoutEffect } from 'react'
-import { goProductPage, single_product_data } from '../../app/feature/SingleProduct.slice'
-import {
-  inChangePositionOfFilters,
-  outChangePositionOfFilters,
-} from '../../app/feature/PageFilters.slice'
-import { useAppDispatch, useAppSelector } from '../../app/store/hooks'
+import { useRouter } from 'next/router';
+import { FC, useLayoutEffect } from 'react';
 
-import MainPartOfPage from '../../layouts/PageMain.layout'
-import { PageDefaultStyle } from '../../../styles/pages/Page.styled'
-import SidePartOfPage from '../../layouts/PageSide.layout'
-import { changeProductTabActiveWithoutScroll } from '../../app/feature/PageTabs.slice'
-import { getSingleProduct } from '../../app/thunks/SingleProductThunk'
-import { is_logged } from '../../app/feature/User.slice'
-import { useRouter } from 'next/router'
+import { inChangePositionOfFilters, outChangePositionOfFilters } from '../../../store/slices/PageFilters.slice';
+import { changeProductTabActiveWithoutScroll } from '../../../store/slices/PageTabs.slice';
+import { goProductPage, single_product_data } from '../../../store/slices/SingleProduct.slice';
+import { is_logged } from '../../../store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks';
+import { getSingleProduct } from '../../../store/thunks/SingleProduct.thunk';
+import { PageDefaultStyle } from '../../../styles/pages/Page.styled';
+import MainPartOfPage from '../../layouts/PageMain.layout';
+import PageSideLayout from '../../layouts/PageSide.layout';
 
-interface Props {}
+
+interface Props { }
 
 const StoreLayout: FC<Props> = ({ children, ...props }) => {
   const router = useRouter()
@@ -46,11 +44,11 @@ const StoreLayout: FC<Props> = ({ children, ...props }) => {
 
   return (
     <PageDefaultStyle>
-      <SidePartOfPage
+      <PageSideLayout
         onMouseEnter={hoverSideLeft}
         onMouseLeave={hoverSideRight}
         side={'left'}
-      ></SidePartOfPage>
+      >test</PageSideLayout>
 
       <MainPartOfPage>
         {singleProductData.data !== null && <>{children}</>}
@@ -67,7 +65,7 @@ const StoreLayout: FC<Props> = ({ children, ...props }) => {
         {singleProductData.data === null && <></>}
       </MainPartOfPage>
 
-      <SidePartOfPage side={'right'}></SidePartOfPage>
+      <PageSideLayout side={'right'}>test</PageSideLayout>
     </PageDefaultStyle>
   )
 }

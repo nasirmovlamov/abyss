@@ -1,6 +1,6 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-export const MainPartOfPageStyle = styled.div<{ colorConvert: boolean }>`
+export const MainPartOfPageStyle = styled.div<{ colorConvert?: boolean }>`
   width: 810px;
   position: relative;
   /* padding-top: 74px;    */

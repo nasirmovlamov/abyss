@@ -1,15 +1,14 @@
-import * as SideProducts_STY from '../../../styles/ui/modules/SideProducts.style'
+import { useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 
-import React, { useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
+import { side_product_data } from '../../../store/slices/SideProducts.slice';
+import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks';
+import { getSideProducts } from '../../../store/thunks/SideProducts.thunk';
+import FormQuestionSkeleton from '../skeletons/ForumQuestionSkeleton';
+import SideProduct from './SideProduct';
 
-import FormQuestionSkeleton from '../../Skeletons/ForumQuestionSkeleton'
-import SideProduct from './SideProduct'
-import { getSideProducts } from '../app/thunks/SideProducts.thunk'
-import { side_product_data } from '../app/feature/SideProducts.slice'
-import { useInView } from 'react-intersection-observer'
 
-interface Props {}
+interface Props { }
 
 const SideProductCont = (props: Props) => {
   const [inViewRefLoaderDown, inViewLoaderDown] = useInView()

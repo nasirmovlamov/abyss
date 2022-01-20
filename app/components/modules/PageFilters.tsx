@@ -1,3 +1,33 @@
+import { faThumbtack } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ReactElement, useRef } from 'react';
+
+import {
+  changeToStayInFocus,
+  filter_search_tags,
+  filter_search_value,
+  filter_tags,
+  filterDropisHovered,
+  filterDropisUnHovered,
+  filterSearchValueOnChange,
+  filterTagsOnDelete,
+  filterTagsSearchisBlur,
+  filterTagsSearchisFocused,
+  inChangePositionOfFilters,
+  is_focused,
+  outChangePositionOfFilters,
+  stay_in_focus,
+} from '../../store/slices/PageFilters.slice';
+import {
+  ifFilterWasDeleted,
+  search_data,
+  search_exclude_filters,
+  search_filters,
+  selectFilterToExcludeOption,
+  selectFilterToSearchOption,
+} from '../../store/slices/SearchBox.slice';
+import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
+import { searchFiltersThunk } from '../../store/thunks/PageFilters.thunk';
 import {
   FilterCont,
   FilterContStyle,
@@ -15,41 +45,12 @@ import {
   FilterTagElementCont,
   FilterTagsCont,
   PinButton,
-} from '../../styles/ui/modules/PageFilters.style'
-import React, { ReactElement, useRef, useState } from 'react'
-import {
-  changeToStayInFocus,
-  filterDropisHovered,
-  filterDropisUnHovered,
-  filterSearchValueOnChange,
-  filterTagsOnDelete,
-  filterTagsSearchisBlur,
-  filterTagsSearchisFocused,
-  filter_search_tags,
-  filter_search_value,
-  filter_tags,
-  inChangePositionOfFilters,
-  is_focused,
-  outChangePositionOfFilters,
-  stay_in_focus,
-} from '../app/feature/PageFilters.slice'
-import {
-  ifFilterWasDeleted,
-  search_data,
-  search_exclude_filters,
-  search_filters,
-  selectFilterToExcludeOption,
-  selectFilterToSearchOption,
-} from '../app/feature/SearchBox.slice'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
+} from '../../styles/ui/modules/PageFilters.style';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faThumbtack } from '@fortawesome/free-solid-svg-icons'
-import { searchFiltersThunk } from '../app/thunks/PageFiltersThunk'
 
-interface Props {}
+interface Props { }
 
-function PageFilters({}: Props): ReactElement {
+function PageFilters({ }: Props): ReactElement {
   const dispatch = useAppDispatch()
   const filterTags = useAppSelector(filter_tags)
   const filterSearchTags = useAppSelector(filter_search_tags)

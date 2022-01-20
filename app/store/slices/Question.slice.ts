@@ -1,23 +1,23 @@
+import { createSlice } from '@reduxjs/toolkit';
+
+import { RootState } from '..';
+import { autoErrorToaster } from '../../components/ui/toasters/AutoErrorToaster';
+import { successToast } from '../../components/ui/toasters/SuccessToast';
+import { QUESTION_STATE } from '../states/states/Question.state';
+import { getLinkedProducts, getMentionsOfProduct } from '../thunks/LinkedProducts.thunk';
 import {
   addAnswer,
   deleteAnswer,
   deleteQuestion,
+  editAnswerThunk,
+  editQuestionThunk,
   getAnswers,
   getSingleQuestion,
   unVoteAnswer,
   unVoteQuestion,
   voteAnswer,
   voteQuestion,
-} from '../thunks/Question.thunk'
-import { editAnswerThunk, editQuestionThunk } from '../thunks/Question.thunk'
-
-import { QUESTION_STATE } from '../states/states/Question.state'
-import { RootState } from '..'
-import { autoErrorToaster } from '../../components/ui/toasters/AutoErrorToaster'
-import { createSlice } from '@reduxjs/toolkit'
-import { getLinkedProducts } from '../thunks/LinkedProducts.thunk'
-import { getMentionsOfProduct } from '../thunks/LinkedProducts.thunk'
-import { successToast } from '../../components/ui/toasters/SuccessToast'
+} from '../thunks/Question.thunk';
 
 export const QuestionSlice = createSlice({
   name: 'app-slice',
@@ -29,8 +29,9 @@ export const QuestionSlice = createSlice({
 
     mentionProductAtQuestionEdit(state, action) {
       if (
-        state.edit_question!.linkedProducts.filter((product) => product.id === action.payload.id)
-          .length === 0
+        state.edit_question!.linkedProducts.filter(
+          (product: any) => product.id === action.payload.id,
+        ).length === 0
       ) {
         state.edit_question!.linkedProducts.push(action.payload)
       }
@@ -38,8 +39,9 @@ export const QuestionSlice = createSlice({
 
     mentionUserAtQuestionEdit(state, action) {
       if (
-        state.edit_question!.mentionedUsers.filter((product) => product.id === action.payload.id)
-          .length === 0
+        state.edit_question!.mentionedUsers.filter(
+          (product: any) => product.id === action.payload.id,
+        ).length === 0
       ) {
         state.edit_question!.mentionedUsers.push(action.payload)
       }
@@ -47,7 +49,7 @@ export const QuestionSlice = createSlice({
 
     mentionProductAtAnswerEdit(state, action) {
       if (
-        state.edit_answer!.linkedProducts.filter((product) => product.id === action.payload.id)
+        state.edit_answer!.linkedProducts.filter((product: any) => product.id === action.payload.id)
           .length === 0
       ) {
         state.edit_answer!.linkedProducts.push(action.payload)
@@ -56,7 +58,7 @@ export const QuestionSlice = createSlice({
 
     mentionUserAtAnswerEdit(state, action) {
       if (
-        state.edit_answer!.mentionedUsers.filter((product) => product.id === action.payload.id)
+        state.edit_answer!.mentionedUsers.filter((product: any) => product.id === action.payload.id)
           .length === 0
       ) {
         state.edit_answer!.mentionedUsers.push(action.payload)
@@ -81,8 +83,9 @@ export const QuestionSlice = createSlice({
 
     mentionUserAtAnswer(state, action) {
       if (
-        state.answerSubmitData.mentionedUsers.filter((answer) => answer.id === action.payload.id)
-          .length === 0
+        state.answerSubmitData.mentionedUsers.filter(
+          (answer: any) => answer.id === action.payload.id,
+        ).length === 0
       ) {
         state.answerSubmitData.mentionedUsers.push(action.payload)
       }
@@ -90,8 +93,9 @@ export const QuestionSlice = createSlice({
 
     linkProductAtAnswer(state, action) {
       if (
-        state.answerSubmitData.linkedProducts.filter((answer) => answer.id === action.payload.id)
-          .length === 0
+        state.answerSubmitData.linkedProducts.filter(
+          (answer: any) => answer.id === action.payload.id,
+        ).length === 0
       ) {
         state.answerSubmitData.linkedProducts.push(action.payload)
       }
@@ -130,7 +134,7 @@ export const QuestionSlice = createSlice({
 
     mentionUserAtQuestionCreate(state, action) {
       if (
-        state.edit_answer!.mentionedUsers.filter((product) => product.id === action.payload.id)
+        state.edit_answer!.mentionedUsers.filter((product: any) => product.id === action.payload.id)
           .length === 0
       ) {
         state.edit_answer!.mentionedUsers.push(action.payload)
@@ -387,15 +391,15 @@ export const QuestionSlice = createSlice({
 
       if (payload.direction === 'bottom') {
         state.answersData.downAnswers.answers = state.answersData.downAnswers.answers.filter(
-          (answer) => answer.id !== payload.id,
+          (answer: any) => answer.id !== payload.id,
         )
       } else if (payload.direction === 'top') {
         state.answersData.topAnswers.answers = state.answersData.topAnswers.answers.filter(
-          (answer) => answer.id !== payload.id,
+          (answer: any) => answer.id !== payload.id,
         )
       } else if (payload.direction === 'new-submitted') {
         state.answersData.submittedAnswer = state.answersData.submittedAnswer.filter(
-          (answer) => answer.id !== payload.id,
+          (answer: any) => answer.id !== payload.id,
         )
       }
       successToast('top-right', payload.data.message)
@@ -422,7 +426,7 @@ export const QuestionSlice = createSlice({
       const downAnswers = state.answersData.downAnswers
       if (payload.direction === 'bottom') {
         state.answersData.downAnswers.answers = state.answersData.downAnswers.answers.map(
-          (answer) => {
+          (answer: any) => {
             if (answer.id === payload.id) {
               answer.content = payload.data.data.content
               answer.updated_at = payload.data.data.updated_at
@@ -432,7 +436,7 @@ export const QuestionSlice = createSlice({
         )
       } else if (payload.direction === 'top') {
         state.answersData.topAnswers.answers = state.answersData.topAnswers.answers.map(
-          (answer) => {
+          (answer: any) => {
             if (answer.id === payload.id) {
               answer.content = payload.data.data.content
               answer.updated_at = payload.data.data.updated_at
@@ -441,7 +445,7 @@ export const QuestionSlice = createSlice({
           },
         )
       } else if (payload.direction === 'new-submitted') {
-        state.answersData.submittedAnswer = state.answersData.submittedAnswer.map((answer) => {
+        state.answersData.submittedAnswer = state.answersData.submittedAnswer.map((answer: any) => {
           if (answer.id === payload.id) {
             answer.content = payload.data.data.content
             answer.updated_at = payload.data.data.updated_at

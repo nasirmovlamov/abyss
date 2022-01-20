@@ -1,7 +1,17 @@
+import HTMLReactParser from 'html-react-parser';
+import { useRouter } from 'next/router';
+import React, { ReactElement, useEffect, useState } from 'react';
+
+import abyssLogo from '../../../public/main-logo.svg';
+import { changeProductTabActiveWithoutScroll } from '../../store/slices/PageTabs.slice';
+import { goProductPage, single_product_data } from '../../store/slices/SingleProduct.slice';
+import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
+import { getSingleProduct } from '../../store/thunks/SingleProduct.thunk';
 import {
   AddCave,
   AddCaveAndMentionsCont,
   CompanyLogoImageOverlay,
+  DateCount,
   Iterations,
   LanguageContForTextAndIcon,
   LanguageInfo,
@@ -20,32 +30,22 @@ import {
   ProductTitle,
   ProductViewCont,
   StoreListingProductStyle,
-} from '../../styles/ui/modules/ListingStoreProduct.styled'
-import React, { ReactElement, useEffect, useState } from 'react'
-import { goProductPage, single_product_data } from '../app/feature/SingleProduct.slice'
-import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-
-import { DateCount } from '../../styles/ui/modules/FormQuestion.style'
-import HTMLReactParser from 'html-react-parser'
-import StarCountShow from '../ui/elements/StarCountShow'
-import abyssLogo from '../public/main-logo.svg'
-import { changeProductTabActiveWithoutScroll } from '../app/feature/PageTabs.slice'
-import { getSingleProduct } from '../app/thunks/SingleProductThunk'
-import { useRouter } from 'next/router'
+} from '../../styles/ui/modules/ListingStoreProduct.styled';
+import StarCountShow from '../ui/elements/StarCountShow';
 
 interface Props {
   data:
-    | {
-        avatar: string
-        programingLanguage: string
-        lineCount: string
-        name: string
-        starCount: string
-        soldCount: string
-        price: string
-        tags: string[]
-      }
-    | any
+  | {
+    avatar: string
+    programingLanguage: string
+    lineCount: string
+    name: string
+    starCount: string
+    soldCount: string
+    price: string
+    tags: string[]
+  }
+  | any
 }
 
 function ListingStoreProduct({ data }: Props): ReactElement {

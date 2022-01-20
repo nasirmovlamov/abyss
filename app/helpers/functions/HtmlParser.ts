@@ -1,6 +1,7 @@
-import { autoErrorToasterWithMessage } from '../../components/ui/toasters/AutoSuccessToast'
-import { blue_1 } from '../../styles/global/styled-components/abstracts/Colors.style'
-import parse from 'html-react-parser'
+import parse from 'html-react-parser';
+
+import { autoErrorToasterWithMessage } from '../../components/ui/toasters/AutoSuccessToast';
+import { blue_1 } from '../../styles/global/styled-components/abstracts/Colors.style';
 
 export const parseHtml = (html: string) => {
   const replaceAllSpanWithItsContentTagWhicClassIsEqualToMention = (html: any) => {
@@ -88,30 +89,31 @@ export const parseHtmlWithMention = (html: string, linkedProducts: any[]) => {
         newHtml = newHtml.replace(
           mentionsArray[i],
           `
-                    <div  style="padding:10px;padding-bottom:10px;column-gap:10px;border-radius:10px;color:red; width:100%;background:#141618;height:auto;display:flex;align-items:flex-start;overflow:hidden;"> 
-                        <div>
-                            <img src="https://musacivak.com/assets/images/avatar.png"  width="70px" height="70px" style="object-fit:cover;"/>  
-                            <p style='color:gray;'>Username</p>
-                        </div>    
-                    
-                        <div style="display:flex;flex-direction:column;row-gap:5px;">
-                            <a href="${hrefOfSpan}" target="_blank" style="font-size:20px;color:${blue_1};text-decoration:none;white-space:nowrap;">${productName}</a>
-                            <div style="display:flex;">
-                                
-                            </div>
-                        </div>
+            <div  style="padding:10px;padding-bottom:10px;column-gap:10px;border-radius:10px;color:red; width:100%;background:#141618;height:auto;display:flex;align-items:flex-start;overflow:hidden;"> 
+                <div>
+                    <img src="https://musacivak.com/assets/images/avatar.png"  width="70px" height="70px" style="object-fit:cover;"/>  
+                    <p style='color:gray;'>Username</p>
+                </div>    
+            
+                <div style="display:flex;flex-direction:column;row-gap:5px;">
+                    <a href="${hrefOfSpan}" target="_blank" style="font-size:20px;color:${blue_1};text-decoration:none;white-space:nowrap;">${productName}</a>
+                    <div style="display:flex;">
+                        
                     </div>
-                `,
+                </div>
+            </div>
+          `,
         )
       } else if (dataDenotationCharOfSpan === '#') {
         newHtml = newHtml.replace(
           mentionsArray[i],
           `
-                <div  style="column-gap:10px;border-radius:10px;color:red; width:100%;background:#141618;height:50px;display:flex;justify-content:center;align-items:center;"> 
-                    <img src=""  width="30px" height="30px" style="object-fit:cover;"/>  
-                    <a href="${hrefOfSpan}" target="_blank" style="text-decoration:none;">User ${dataIdOfSpan}</a>
-                    <button>salam qaqa</button>
-                </div>`,
+            <div  style="column-gap:10px;border-radius:10px;color:red; width:100%;background:#141618;height:50px;display:flex;justify-content:center;align-items:center;"> 
+                <img src="" width="30px" height="30px" style="object-fit:cover;"/>  
+                <a href="${hrefOfSpan}" target="_blank" style="text-decoration:none;">User ${dataIdOfSpan}</a>
+                <button>salam qaqa</button>
+            </div>
+          `,
         )
       } else {
       }
