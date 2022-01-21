@@ -1,17 +1,18 @@
 import '../app/styles/global/scss/style.css';
+import '../app/styles/global/scss-old/global.css';
 
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { Toaster } from 'react-hot-toast';
-import { Provider } from 'react-redux';
-import { ThemeProvider } from 'styled-components';
-
-import Layout from '../app/components/layouts/App.layout';
-import { store } from '../app/store';
 import { darkTheme, lightTheme } from '../app/styles/global/styled-components/abstracts/Theme.style';
-import { GlobalStyle } from '../app/styles/global/styled-components/Global.style';
 
 import type { AppProps } from 'next/app'
+import { GlobalStyle } from '../app/styles/global/styled-components/Global.style';
+import Layout from '../app/components/layouts/App.layout';
+import { Provider } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
+import { Toaster } from 'react-hot-toast';
+import { store } from '../app/store';
+import { useEffect } from 'react';
+import { useState } from 'react';
+
 function MyApp({ Component, pageProps }: AppProps) {
   const [theme, settheme] = useState('dark')
   useEffect(() => {

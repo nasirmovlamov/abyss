@@ -1,28 +1,5 @@
-import {
-  faComment,
-  faThumbsDown as regularfaThumbsDown,
-  faThumbsUp as regularfaThumbsUp,
-} from '@fortawesome/free-regular-svg-icons';
-import {
-  faEdit,
-  faEllipsisV,
-  faThumbsDown as solidfaThumbsDown,
-  faThumbsUp as solidfaThumbsUp,
-  faTrash,
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import HTMLReactParser from 'html-react-parser';
-import dynamic from 'next/dynamic';
-import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
-
-import { parseHtmlWithMention } from '../../helpers/functions/HtmlParser';
-import { useQuestionHooks } from '../../hooks/useQuestion.hook';
-import { edit_question_data, single_question_data } from '../../store/slices/Question.slice';
-import { user_data } from '../../store/slices/User.slice';
-import { useAppSelector } from '../../store/states/store.hooks';
 import * as SingleQuestion_STY from '../../styles/pages/SingleQuestionPage.styled';
-import { ShowComments } from '../../styles/ui/modules/Answer.style';
+
 import {
   AnswerCont,
   AnswerCount,
@@ -33,12 +10,36 @@ import {
   Text,
   ThumbIcon,
 } from '../../styles/ui/modules/FormQuestion.style';
-import AnswerLayout from '../modules/Answers.module';
+import React, { useEffect, useState } from 'react';
+import { edit_question_data, single_question_data } from '../../store/slices/Question.slice';
+import {
+  faComment,
+  faThumbsDown as regularfaThumbsDown,
+  faThumbsUp as regularfaThumbsUp,
+} from '@fortawesome/free-regular-svg-icons';
+import {
+  faEdit,
+  faEllipsisV,
+  faTrash,
+  faThumbsDown as solidfaThumbsDown,
+  faThumbsUp as solidfaThumbsUp,
+} from '@fortawesome/free-solid-svg-icons';
+
 import AnswerSubmitCont from '../modules/AnswerSubmit';
+import AnswersModule from '../modules/Answers.module';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import HTMLReactParser from 'html-react-parser';
+import Image from 'next/image';
 import MyEditor from '../modules/editors/MyEditor';
-import SearchBoxStaticVersion from '../modules/SearchBoxStaticVersion';
-import SinglePageTabs from '../ui/elements/SinglePageTabs';
 import ProductsConts from './Product.layout';
+import SearchBoxStaticVersion from '../modules/SearchBoxStaticVersion';
+import { ShowComments } from '../../styles/ui/modules/Answer.style';
+import SinglePageTabs from '../ui/elements/SinglePageTabs';
+import dynamic from 'next/dynamic';
+import { parseHtmlWithMention } from '../../helpers/functions/HtmlParser';
+import { useAppSelector } from '../../store/states/store.hooks';
+import { useQuestionHooks } from '../../hooks/useQuestion.hook';
+import { user_data } from '../../store/slices/User.slice';
 
 const DynamicComponentWithNoSSR = dynamic(
   () => import('../modules/editors/EditorForQuestionEdit'),
@@ -213,7 +214,7 @@ const QuestionMiddleLayout = () => {
         {question_data.answer_count > 0 && (
           <>
             <SinglePageTabs />
-            <AnswerLayout />
+            <AnswersModule />
             <ProductsConts />
           </>
         )}
