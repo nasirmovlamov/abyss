@@ -1,3 +1,4 @@
+import '../app/styles/scss-old/global.scss';
 import '../app/styles/scss/style.scss';
 
 import AppLayout from 'app/components/layouts/App.layout';

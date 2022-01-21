@@ -51,40 +51,42 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
   }
 
   return (
-    <StyledThemeProvider
-      theme={theme?.isDark ? darkTheme : lightTheme}
-    > {userStatus === 'logged' || userStatus === 'not-logged' ?
-      <div
-        style={{ display: 'flex', flexDirection: 'column', width: '100%' }}
-        onMouseEnter={() => dispatch(hoverWindowAsync(null))}
-        onMouseLeave={() => dispatch(unhoverWindow(null))}
-      >
+    <StyledThemeProvider theme={theme?.isDark ? darkTheme : lightTheme}>
+      {userStatus === 'logged' || userStatus === 'not-logged' ? (
         <div
-          style={{ width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}
+          style={{ display: 'flex', flexDirection: 'column', width: '100%' }}
+          onMouseEnter={() => dispatch(hoverWindowAsync(null))}
+          onMouseLeave={() => dispatch(unhoverWindow(null))}
         >
-          {router.pathname !== '/login' && router.pathname !== '/register' && <Header />}
-          {isChatBoxOpened && <ChatBox />}
-          <Toaster />
-          <GlobalStyle />
-          <ToolTip />
-          <ScrollToTopButton />
+          <div
+            style={{ width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}
+          >
+            {router.pathname !== '/login' && router.pathname !== '/register' && <Header />}
+            {isChatBoxOpened && <ChatBox />}
+            <Toaster />
+            <GlobalStyle />
+            <ToolTip />
+            <ScrollToTopButton />
 
-          {children}
+            {children}
 
-          {userData !== null && (
-            <button
-              type="button"
-              style={{ position: 'fixed', right: '0px', bottom: '0px' }}
-              onClick={openUserChat}
-            >
-              Chat
-            </button>
-          )}
-          <Modals />
+            {userData !== null && (
+              <button
+                type="button"
+                style={{ position: 'fixed', right: '0px', bottom: '0px' }}
+                onClick={openUserChat}
+              >
+                Chat
+              </button>
+            )}
+            <Modals />
+          </div>
+
+          {router.pathname === '/' && <Footer />}
         </div>
-
-        {router.pathname === '/' && <Footer />}
-      </div> : <></>}
+      ) : (
+        <></>
+      )}
     </StyledThemeProvider>
   )
 }

@@ -11,18 +11,12 @@ import {
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import HTMLReactParser from 'html-react-parser';
-import dynamic from 'next/dynamic';
-import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
-
-import { parseHtmlWithMention } from '../../helpers/functions/HtmlParser';
-import { useQuestionHooks } from '../../hooks/useQuestion.hook';
-import { edit_question_data, single_question_data } from '../../store/slices/Question.slice';
-import { user_data } from '../../store/slices/User.slice';
-import { useAppSelector } from '../../store/states/store.hooks';
-import * as SingleQuestion_STY from '../../styles/styled-components/pages/SingleQuestionPage.styled';
-import { ShowComments } from '../../styles/styled-components/ui/modules/Answer.style';
+import { parseHtmlWithMention } from 'app/helpers/functions/HtmlParser';
+import { useQuestionHooks } from 'app/hooks/useQuestion.hook';
+import { edit_question_data, single_question_data } from 'app/store/slices/Question.slice';
+import { user_data } from 'app/store/slices/User.slice';
+import { useAppSelector } from 'app/store/states/store.hooks';
+import { ShowComments } from 'app/styles/styled-components/ui/modules/Answer.style';
 import {
   AnswerCont,
   AnswerCount,
@@ -32,8 +26,14 @@ import {
   PercentageLine,
   Text,
   ThumbIcon,
-} from '../../styles/styled-components/ui/modules/FormQuestion.style';
-import AnswerLayout from '../modules/Answers.module';
+} from 'app/styles/styled-components/ui/modules/FormQuestion.style';
+import HTMLReactParser from 'html-react-parser';
+import dynamic from 'next/dynamic';
+import Image from 'next/image';
+import { useState } from 'react';
+
+import * as SingleQuestion_STY from '../../styles/styled-components/pages/SingleQuestionPage.styled';
+import AnswersModule from '../modules/Answers.module';
 import AnswerSubmitCont from '../modules/AnswerSubmit';
 import MyEditor from '../modules/editors/MyEditor';
 import SearchBoxStaticVersion from '../modules/SearchBoxStaticVersion';
@@ -178,7 +178,7 @@ const QuestionMiddleLayout = () => {
                   percentage={
                     question_data.downvote + question_data.upvote > 0
                       ? (question_data.upvote / (question_data.downvote + question_data.upvote)) *
-                      100
+                        100
                       : 0
                   }
                 />
@@ -213,7 +213,7 @@ const QuestionMiddleLayout = () => {
         {question_data.answer_count > 0 && (
           <>
             <SinglePageTabs />
-            <AnswerLayout />
+            <AnswersModule />
             <ProductsConts />
           </>
         )}

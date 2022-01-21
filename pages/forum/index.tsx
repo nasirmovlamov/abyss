@@ -86,11 +86,9 @@ const ForumPage = () => {
 
   const leftPart = (
     <div>
-      {
-        sideProductContData.status === 'loaded' &&
+      {sideProductContData.status === 'loaded' &&
         sideProductContData.selectedID !== null &&
-        sideProductContData.products.length > 0 && <SideProductCont />
-      }
+        sideProductContData.products.length > 0 && <SideProductCont />}
     </div>
   )
   const rightPart = (

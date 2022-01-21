@@ -1,4 +1,4 @@
-import { AUTH_INTERFACE } from '../state-Interfaces/AuthInterface';
+import { AUTH_INTERFACE } from '../interfaces/Auth.interface';
 
 export const user_errors_data = {
   registerErrors: {

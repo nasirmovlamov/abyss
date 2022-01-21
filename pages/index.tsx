@@ -5,9 +5,9 @@ import SearchBoxForHome from '../app/components/modules/SearchBoxForHome';
 import { changeModalAction } from '../app/store/slices/User.slice';
 import * as Home_STY from '../app/styles/styled-components/ui/modules/Index_STYLE/Home.style';
 
-interface Props { }
+interface Props {}
 
-function Index({ }: Props): ReactElement {
+function Index({}: Props): ReactElement {
   const dispatch = useDispatch()
 
   return (

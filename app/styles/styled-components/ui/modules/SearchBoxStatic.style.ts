@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const SearchBoxThunkAndCont_STY = styled.div<{
-  scrollFromTop: number
+  topPercent: number
   boxFocused: boolean
   thunkHovered: boolean
 }>`
@@ -12,9 +12,11 @@ export const SearchBoxThunkAndCont_STY = styled.div<{
   z-index: 8;
   height: 60px;
   position: sticky;
-  top: ${({ theme, scrollFromTop, boxFocused, thunkHovered }) =>
-    boxFocused ? '60px' : thunkHovered ? '60px' : '0px'};
-  transition: ${({ theme, scrollFromTop, boxFocused }) => '0.2s'};
+  /* top: ${({ boxFocused, thunkHovered, topPercent }) =>
+    boxFocused || thunkHovered ? `${(60 * topPercent) / 100}px` : '0px'}; */
+  /* top: ${({ theme, boxFocused, thunkHovered }) =>
+    boxFocused ? '60px' : thunkHovered ? '60px' : '0px'}; */
+  transition: 0.2s;
 `
 
 export const SearchBoxThunk_STY = styled.button<{
