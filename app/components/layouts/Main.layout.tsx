@@ -15,9 +15,9 @@ const MainLayout = ({ children, left, right }: MainLayoutProps) => {
     // </MainLayoutStyle>
     <div className="container-fluid">
       <div className="row">
-        <div className="col-lg-3">{left}</div>
-        <div className="col-lg-5">{children}</div>
-        <div className="col-lg-4">{right}</div>
+        <div className="col-lg-2">{left}</div>
+        <div className="col-lg-7">{children}</div>
+        <div className="col-lg-3">{right}</div>
       </div>
     </div>
   )
