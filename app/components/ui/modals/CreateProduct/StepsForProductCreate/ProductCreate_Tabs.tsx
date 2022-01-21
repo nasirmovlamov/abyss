@@ -1,17 +1,17 @@
+import React from 'react';
+
+import {
+  product_create_current_step,
+  product_create_steps_data,
+} from '../../../../../store/slices/CreateProductFeatures/CreateProduct.slice';
+import { useAppDispatch, useAppSelector } from '../../../../../store/states/store.hooks';
 import {
   CreateProduct_Tab_Seperator,
   CreateProduct_Tabs,
   CreateProduict_Tab_STY,
-} from '../../../../../styles/ui/modules/CreateProduct_Style/CreateProduct.style'
-import {
-  product_create_current_step,
-  product_create_steps_data,
-} from '../../../../../store/slices/CreateProductFeatures/CreateProduct.slice'
-import { useAppDispatch, useAppSelector } from '../../../../../store/states/store.hooks'
+} from '../../../../../styles/styled-components/ui/modules/CreateProduct_Style/CreateProduct.style';
 
-import React from 'react'
-
-interface Props {}
+interface Props { }
 
 const ProductCreate_Tabs = (props: Props) => {
   const dispatch = useAppDispatch()

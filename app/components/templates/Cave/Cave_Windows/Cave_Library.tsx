@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from '../../../../store/states/store.h
 import {
   CaveLibraryBlocks_Sty,
   CaveLibraryDefaultBlock_Sty,
-} from '../../../../styles/ui/modules/Cave_Style/CaveLibrary/CaveLibrary.style';
+} from '../../../../styles/styled-components/ui/modules/Cave_Style/CaveLibrary/CaveLibrary.style';
 
 interface Props { }
 

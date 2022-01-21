@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-import { SkeletonBox } from '../../../styles/global/styled-components/Global.style';
+import { SkeletonBox } from '../../../styles/styled-components/Global.style';
 
 interface Props { }
 

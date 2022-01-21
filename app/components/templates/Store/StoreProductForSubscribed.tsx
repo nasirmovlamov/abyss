@@ -21,9 +21,11 @@ import {
   StoreForumBody,
   StoreForumCont,
   StoreForumTitle,
-} from '../../../styles/pages/Store.styled';
-import { CodeMirror_ReadOnly_STY } from '../../../styles/ui/modules/CreateProduct_Style/Steps/ProductCreate_Step1.style';
-import { DetailsCont_STY } from '../../../styles/ui/modules/CreateQuestionModal.style';
+} from '../../../styles/styled-components/pages/Store.styled';
+import {
+  CodeMirror_ReadOnly_STY,
+} from '../../../styles/styled-components/ui/modules/CreateProduct_Style/Steps/ProductCreate_Step1.style';
+import { DetailsCont_STY } from '../../../styles/styled-components/ui/modules/CreateQuestionModal.style';
 import { autoSuccessToaster } from '../../ui/toasters/AutoSuccessToast';
 
 interface Props { }

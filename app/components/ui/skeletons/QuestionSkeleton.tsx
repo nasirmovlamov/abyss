@@ -1,6 +1,6 @@
 import { ReactElement } from "react"
-import { SkeletonBox } from "../../../styles/global/styled-components/Global.style"
-import { QuestionCont_STY, PersonCont_STY, ContentCont_STY, QuestionTagsAndDate_STY, QuestionTags_STY, QuestionStatistics_STY } from "../../../styles/pages/SingleQuestionPage.styled"
+import { SkeletonBox } from "../../../styles/styled-components/Global.style"
+import { QuestionCont_STY, PersonCont_STY, ContentCont_STY, QuestionTagsAndDate_STY, QuestionTags_STY, QuestionStatistics_STY } from "../../../styles/styled-components/pages/SingleQuestionPage.styled"
 import {
 
 

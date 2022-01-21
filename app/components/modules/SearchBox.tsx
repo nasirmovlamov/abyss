@@ -32,7 +32,7 @@ import {
   SearchCont_STY,
   SearchInput_STY,
   SearchNav_STY,
-} from '../../styles/ui/modules/SearchBox.style';
+} from '../../styles/styled-components/ui/modules/SearchBox.style';
 
 interface Props { }
 

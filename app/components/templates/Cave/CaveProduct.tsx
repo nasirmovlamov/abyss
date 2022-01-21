@@ -4,7 +4,7 @@ import Image from 'next/image';
 import React from 'react';
 
 import mainLogo from '../../../../public/main-logo.svg';
-import { CaveProduct_STY } from '../../../styles/ui/modules/Cave_Style/CaveProduct.style';
+import { CaveProduct_STY } from '../../../styles/styled-components/ui/modules/Cave_Style/CaveProduct.style';
 import StarCountShow from '../../ui/elements/StarCountShow';
 
 interface Props {

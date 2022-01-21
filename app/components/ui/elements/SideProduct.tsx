@@ -1,3 +1,7 @@
+import { faDownload, faEye } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { ReactElement } from 'react';
+
 import {
   AddCave,
   ProductContent,
@@ -12,27 +16,23 @@ import {
   ProductViewCont,
   Side_ProductSideDetailsCont,
   StoreSideProductStyle,
-} from '../../../styles/ui/modules/ListingStoreProduct.styled'
-import React, { ReactElement } from 'react'
-import { faDownload, faEye } from '@fortawesome/free-solid-svg-icons'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import NavLink from './NavLink'
-import StarCountShow from './StarCountShow'
+} from '../../../styles/styled-components/ui/modules/ListingStoreProduct.styled';
+import NavLink from './NavLink';
+import StarCountShow from './StarCountShow';
 
 interface Props {
   data:
-    | {
-        avatar: string
-        programingLanguage: string
-        lineCount: string
-        name: string
-        starCount: string
-        soldCount: string
-        price: string
-        tags: string[]
-      }
-    | any
+  | {
+    avatar: string
+    programingLanguage: string
+    lineCount: string
+    name: string
+    starCount: string
+    soldCount: string
+    price: string
+    tags: string[]
+  }
+  | any
 }
 
 function SideProduct({ data }: Props): ReactElement {

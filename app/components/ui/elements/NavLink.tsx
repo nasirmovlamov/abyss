@@ -1,8 +1,8 @@
-import React, { FC, ReactElement, useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks'
+import Link from 'next/link';
+import React, { FC, ReactElement, useEffect } from 'react';
 
-import Link from 'next/link'
-import { tooltip_data } from '../../../store/slices/Tooltip.slice'
+import { tooltip_data } from '../../../store/slices/Tooltip.slice';
+import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks';
 
 interface Props {
   // any props that come into the component

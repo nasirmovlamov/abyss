@@ -1,12 +1,12 @@
+import React from 'react';
+
 import {
-  ProductCreateStep5OnChage,
   product_create_step5_data,
-} from '../../../../../../store/slices/CreateProductFeatures/CreateProduct.slice'
-import { useAppDispatch, useAppSelector } from '../../../../../../store/states/store.hooks'
+  ProductCreateStep5OnChage,
+} from '../../../../../../store/slices/CreateProductFeatures/CreateProduct.slice';
+import { useAppDispatch, useAppSelector } from '../../../../../../store/states/store.hooks';
 
-import React from 'react'
-
-interface Props {}
+interface Props { }
 
 export const ProductCreate_Step5 = (props: Props) => {
   const dispatch = useAppDispatch()

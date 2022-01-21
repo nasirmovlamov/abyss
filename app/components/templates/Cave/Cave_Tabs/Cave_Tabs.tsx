@@ -18,7 +18,7 @@ import {
   CaveLeftCornerForHover,
   CaveRightCorner,
   CaveRightCornerForHover,
-} from '../../../../styles/ui/modules/Cave_Style/Cave_Tabs.style';
+} from '../../../../styles/styled-components/ui/modules/Cave_Style/Cave_Tabs.style';
 
 
 interface Props { }

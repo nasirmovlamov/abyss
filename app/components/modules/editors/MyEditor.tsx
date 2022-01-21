@@ -1,10 +1,9 @@
-import 'quill-mention/dist/quill.mention.css'
-import 'quill/dist/quill.snow.css'
+import 'quill-mention/dist/quill.mention.css';
+import 'quill/dist/quill.snow.css';
 
-import React, { useEffect, useRef, useState } from 'react'
-
-import hljs from 'highlight.js'
-import { useQuill } from 'react-quilljs'
+import hljs from 'highlight.js';
+import React, { useEffect, useRef, useState } from 'react';
+import { useQuill } from 'react-quilljs';
 
 // import 'highlight.js/styles/a11y-dark.css';
 interface Props {
@@ -122,7 +121,7 @@ function MyEditor({ content, onChange, display }: Props) {
     }
   }
 
-  React.useEffect(() => {}, [quill, editor_theme])
+  React.useEffect(() => { }, [quill, editor_theme])
 
   const handleChange = (event: any) => {
     seteditor_theme(event.target.value)

@@ -1,7 +1,8 @@
-import { CaveState } from '../../states/states/Cave_States/Cave.state'
-import { RootState } from '../..'
-import { createSlice } from '@reduxjs/toolkit'
-import { selectAsyncCaveWindow } from '../../thunks/Cave/Cave.thunk'
+import { createSlice } from '@reduxjs/toolkit';
+
+import { RootState } from '../..';
+import { CaveState } from '../../states/states/Cave_States/Cave.state';
+import { selectAsyncCaveWindow } from '../../thunks/Cave/Cave.thunk';
 
 export const CaveSideSlice = createSlice({
   name: 'cave-side-slice',

@@ -1,20 +1,13 @@
-import * as Form_STY from '../../../styles/ui/elements/Form.style'
+import { changeModalAction, login_errors, login_form, login_Form_OnChange, user_modals } from 'app/store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
+import { userLogin } from 'app/store/thunks/User.thunk';
+import * as Form_STY from 'app/styles/styled-components/ui/elements/Form.style';
+import { ModalFORM_STY } from 'app/styles/styled-components/ui/modules/Modal_Style/ModalCont.style';
+import { FormEvent, ReactElement } from 'react';
 
-import { FormEvent, ReactElement } from 'react'
-import {
-  changeModalAction,
-  login_Form_OnChange,
-  login_errors,
-  login_form,
-  user_modals,
-} from '../../../store/slices/User.slice'
-import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks'
+interface Props { }
 
-import { ModalFORM_STY } from '../../../styles/ui/modules/Modal_Style/ModalCont.style'
-
-interface Props {}
-
-function LoginModal({}: Props): ReactElement {
+function LoginModal({ }: Props): ReactElement {
   const dispatch = useAppDispatch()
   const loginErrors = useAppSelector(login_errors)
   const allModals = useAppSelector(user_modals)
@@ -22,7 +15,7 @@ function LoginModal({}: Props): ReactElement {
 
   const formSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    dispatch(authThunk.userLogin(loginForm))
+    dispatch(userLogin(loginForm))
   }
 
   return (

@@ -21,8 +21,8 @@ import { useQuestionHooks } from '../../hooks/useQuestion.hook';
 import { edit_question_data, single_question_data } from '../../store/slices/Question.slice';
 import { user_data } from '../../store/slices/User.slice';
 import { useAppSelector } from '../../store/states/store.hooks';
-import * as SingleQuestion_STY from '../../styles/pages/SingleQuestionPage.styled';
-import { ShowComments } from '../../styles/ui/modules/Answer.style';
+import * as SingleQuestion_STY from '../../styles/styled-components/pages/SingleQuestionPage.styled';
+import { ShowComments } from '../../styles/styled-components/ui/modules/Answer.style';
 import {
   AnswerCont,
   AnswerCount,
@@ -32,7 +32,7 @@ import {
   PercentageLine,
   Text,
   ThumbIcon,
-} from '../../styles/ui/modules/FormQuestion.style';
+} from '../../styles/styled-components/ui/modules/FormQuestion.style';
 import AnswerLayout from '../modules/Answers.module';
 import AnswerSubmitCont from '../modules/AnswerSubmit';
 import MyEditor from '../modules/editors/MyEditor';

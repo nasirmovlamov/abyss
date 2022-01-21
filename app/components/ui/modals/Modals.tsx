@@ -1,7 +1,7 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import { user_modals } from 'app/store/slices/User.slice';
+import { useAppSelector } from 'app/store/states/store.hooks';
+import React, { ReactElement } from 'react';
 
-import { user_modals } from '../../../store/slices/User.slice';
-import { useAppSelector } from '../../../store/states/store.hooks';
 import AreYouSureDeleteAnswerModal from './AreYouSureDeleteAnswerModal';
 import AreYouSureDeleteCommentModal from './AreYouSureDeleteCommentModal';
 import AreYouSureDeleteQuestionModal from './AreYouSureDeleteQuestionModal';

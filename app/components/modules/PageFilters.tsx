@@ -45,7 +45,7 @@ import {
   FilterTagElementCont,
   FilterTagsCont,
   PinButton,
-} from '../../styles/ui/modules/PageFilters.style';
+} from '../../styles/styled-components/ui/modules/PageFilters.style';
 
 
 interface Props { }

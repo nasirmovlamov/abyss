@@ -1,0 +1,9 @@
+* {
+  @extend .ff-euclid;
+}
+
+body {
+  @extend .color-rhino;
+  position: relative;
+  scroll-behavior: smooth;
+}

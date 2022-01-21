@@ -1,6 +1,7 @@
-import { APP_STATE } from '../states/states/App.state'
-import { RootState } from '..'
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
+
+import { RootState } from '..';
+import { APP_STATE } from '../states/states/App.state';
 
 export const AppSlice = createSlice({
   name: 'app-slice',

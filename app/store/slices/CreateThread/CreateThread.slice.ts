@@ -1,6 +1,7 @@
-import { CreateThread_STATE } from '../../states/states/CreateThread/CreateThread.state'
-import { RootState } from '../..'
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
+
+import { RootState } from '../..';
+import { CreateThread_STATE } from '../../states/states/CreateThread/CreateThread.state';
 
 export const CreateThreadSlice = createSlice({
   name: 'create-product-slice',

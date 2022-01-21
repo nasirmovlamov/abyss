@@ -5,8 +5,8 @@ import { submit_answer_content, submit_answer_data } from '../../store/slices/Qu
 import { changeModalAction, is_Logged, user_data } from '../../store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
 import { addAnswer } from '../../store/thunks/Question.thunk';
-import { AddAnswerCont_STY, AddAnswerSubmit_STY } from '../../styles/pages/SingleQuestionPage.styled';
-import { LabelCont } from '../../styles/pages/Store.styled';
+import { AddAnswerCont_STY, AddAnswerSubmit_STY } from '../../styles/styled-components/pages/SingleQuestionPage.styled';
+import { LabelCont } from '../../styles/styled-components/pages/Store.styled';
 import { autoErrorToasterWithMessage } from '../ui/toasters/AutoSuccessToast';
 import MyEditor from './editors/MyEditor';
 

@@ -1,4 +1,4 @@
-import { errorToastFunc } from './ErrorToasts'
+import { errorToastFunc } from './ErrorToasts';
 
 export const autoErrorToaster = (error: any) => {
   const errors = error.errors

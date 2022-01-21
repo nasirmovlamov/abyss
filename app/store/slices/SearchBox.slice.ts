@@ -1,15 +1,15 @@
-import { getCookie, setCookie } from '../../helpers/functions/CookieFunctions'
+import { createSlice } from '@reduxjs/toolkit';
+
+import { RootState } from '..';
+import { getCookie, setCookie } from '../../helpers/functions/CookieFunctions';
+import { SEARCHBOX_STATE } from '../states/states/SearchBox.state';
 import {
+  forumSearchInfinity,
   hoverWindowAsync,
   storeSearchInfinity,
   unHoverHeaderAsync,
   unHoverSearchAsync,
-} from '../thunks/SearchBox.thunk'
-
-import { RootState } from '..'
-import { SEARCHBOX_STATE } from '../states/states/SearchBox.state'
-import { createSlice } from '@reduxjs/toolkit'
-import { forumSearchInfinity } from '../thunks/SearchBox.thunk'
+} from '../thunks/SearchBox.thunk';
 
 export const SearchBoxSlice = createSlice({
   name: 'app-slice',

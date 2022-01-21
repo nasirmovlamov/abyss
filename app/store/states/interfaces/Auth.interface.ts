@@ -1,4 +1,4 @@
-import { ForgetPasswordError, LoginAuthError, RegisterAuthError } from './App.interface'
+import { ForgetPasswordError, LoginAuthError, RegisterAuthError } from './App.interface';
 
 export interface AUTH_INTERFACE {
   user: {

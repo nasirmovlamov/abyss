@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-interface Props {}
+interface Props { }
 
 const Cave_Profile_Subscription = (props: Props) => {
   return <div>subscription</div>

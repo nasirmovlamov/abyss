@@ -1,3 +1,10 @@
+import { createSlice } from '@reduxjs/toolkit';
+
+import { RootState } from '..';
+import { autoErrorToaster } from '../../components/ui/toasters/AutoErrorToaster';
+import { autoSuccessToaster } from '../../components/ui/toasters/AutoSuccessToast';
+import { successToast } from '../../components/ui/toasters/SuccessToast';
+import { CommentsState } from '../states/states/Comment.state';
 import {
   addAnswerComment,
   addQuestionComment,
@@ -5,15 +12,8 @@ import {
   edit_Question_CommentThunk,
   getAnswerComments,
   getQuestionComments,
-} from '../thunks/Comments.thunk'
-
-import { CommentsState } from '../states/states/Comment.state'
-import { RootState } from '..'
-import { autoErrorToaster } from '../../components/ui/toasters/AutoErrorToaster'
-import { autoSuccessToaster } from '../../components/ui/toasters/AutoSuccessToast'
-import { createSlice } from '@reduxjs/toolkit'
-import { deleteComment } from '../thunks/Question.thunk'
-import { successToast } from '../../components/ui/toasters/SuccessToast'
+} from '../thunks/Comments.thunk';
+import { deleteComment } from '../thunks/Question.thunk';
 
 export const CommentsSlice = createSlice({
   name: 'comments-slice',

@@ -1,20 +1,17 @@
-import React, { ReactElement, useEffect } from 'react'
-import {
-  mentions_of_linked_product,
-  single_question_data,
-} from '../../../store/slices/Question.slice'
-import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks'
+import { mentions_of_linked_product, single_question_data } from 'app/store/slices/Question.slice';
+import { changeModalAction } from 'app/store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
+import { getMentionsOfProduct } from 'app/store/thunks/LinkedProducts.thunk';
+import { MentionsListModal_Sty } from 'app/styles/styled-components/ui/modules/MentionsListModal.style';
+import React, { ReactElement, useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 
-import Answer from '../elements/Answer'
-import AnswerSkeleton from '../skeletons/AnswerSkeleton'
-import { MentionsListModal_Sty } from '../../../styles/ui/modules/MentionsListModal.style'
-import { changeModalAction } from '../../../store/slices/User.slice'
-import { getMentionsOfProduct } from '../../../store/thunks/LinkedProducts.thunk'
-import { useInView } from 'react-intersection-observer'
+import Answer from '../elements/Answer';
+import AnswerSkeleton from '../skeletons/AnswerSkeleton';
 
-interface Props {}
+interface Props { }
 
-function MentionsListModal({}: Props): ReactElement {
+function MentionsListModal({ }: Props): ReactElement {
   const [inViewRefMentionsLoad, inViewMentionsLoader] = useInView()
   const dispatch = useAppDispatch()
   const singleQuestionData = useAppSelector(single_question_data)

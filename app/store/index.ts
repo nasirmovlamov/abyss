@@ -1,20 +1,21 @@
-import appReducer from './slices/App.slice'
-import caveRootReducer from './slices/CaveFeatures/Cave_Reducers/Cave.root.reducer'
-import chatBoxReducer from './slices/ChatBox.slice'
-import commentsReducer from './slices/Comments.slice'
-import { configureStore } from '@reduxjs/toolkit'
-import createProductReducer from './slices/CreateProductFeatures/CreateProduct.slice'
-import createQuestionReducer from './slices/CreateQuestionFeatures/CreateQuestion.slice'
-import createThreadReducer from './slices/CreateThread/CreateThread.slice'
-import linkedProductsReducer from './slices/LinkedProducts.slice'
-import pageFiltersReducer from './slices/PageFilters.slice'
-import questionReducer from './slices/Question.slice'
-import searchBoxReducer from './slices/SearchBox.slice'
-import sideProductReducer from './slices/SideProducts.slice'
-import singleProductReducer from './slices/SingleProduct.slice'
-import tabsReducer from './slices/PageTabs.slice'
-import toolTipReducer from './slices/Tooltip.slice'
-import userReducer from './slices/User.slice'
+import { configureStore } from '@reduxjs/toolkit';
+
+import appReducer from './slices/App.slice';
+import caveRootReducer from './slices/CaveFeatures/Cave_Reducers/Cave.root.reducer';
+import chatBoxReducer from './slices/ChatBox.slice';
+import commentsReducer from './slices/Comments.slice';
+import createProductReducer from './slices/CreateProductFeatures/CreateProduct.slice';
+import createQuestionReducer from './slices/CreateQuestionFeatures/CreateQuestion.slice';
+import createThreadReducer from './slices/CreateThread/CreateThread.slice';
+import linkedProductsReducer from './slices/LinkedProducts.slice';
+import pageFiltersReducer from './slices/PageFilters.slice';
+import tabsReducer from './slices/PageTabs.slice';
+import questionReducer from './slices/Question.slice';
+import searchBoxReducer from './slices/SearchBox.slice';
+import sideProductReducer from './slices/SideProducts.slice';
+import singleProductReducer from './slices/SingleProduct.slice';
+import toolTipReducer from './slices/Tooltip.slice';
+import userReducer from './slices/User.slice';
 
 const reducer = {
   appReducer: appReducer,

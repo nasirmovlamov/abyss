@@ -1,5 +1,27 @@
-import * as SingleQuestion_STY from '../../../styles/pages/SingleQuestionPage.styled'
+import {
+  faComment,
+  faThumbsDown as regularfaThumbsDown,
+  faThumbsUp as regularfaThumbsUp,
+} from '@fortawesome/free-regular-svg-icons';
+import {
+  faEdit,
+  faEllipsisV,
+  faThumbsDown as solidfaThumbsDown,
+  faThumbsUp as solidfaThumbsUp,
+  faTrash,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import HTMLReactParser from 'html-react-parser';
+import dynamic from 'next/dynamic';
+import React, { ReactElement, ReactEventHandler, useEffect, useRef, useState } from 'react';
 
+import { parseHtmlWithMention } from '../../../helpers/functions/HtmlParser';
+import { useAnswerHook } from '../../../hooks/useAnswer.hook';
+import { edit_answer_data } from '../../../store/slices/Question.slice';
+import { user_data } from '../../../store/slices/User.slice';
+import { ANSWER_INTERFACE } from '../../../store/states/interfaces/Question.interface';
+import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks';
+import * as SingleQuestion_STY from '../../../styles/styled-components/pages/SingleQuestionPage.styled';
 import {
   AnswerContent,
   AnswerStyle,
@@ -10,32 +32,9 @@ import {
   PersonCont,
   ShowComments,
   ShowCommentsCont,
-} from '../../../styles/ui/modules/Answer.style'
-import React, { ReactElement, ReactEventHandler, useEffect, useRef, useState } from 'react'
-import {
-  faComment,
-  faThumbsDown as regularfaThumbsDown,
-  faThumbsUp as regularfaThumbsUp,
-} from '@fortawesome/free-regular-svg-icons'
-import {
-  faEdit,
-  faEllipsisV,
-  faTrash,
-  faThumbsDown as solidfaThumbsDown,
-  faThumbsUp as solidfaThumbsUp,
-} from '@fortawesome/free-solid-svg-icons'
-import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks'
-
-import { ANSWER_INTERFACE } from '../../../store/states/interfaces/Question.interface'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import HTMLReactParser from 'html-react-parser'
-import MyEditor from '../../modules/editors/MyEditor'
-import { ThumbIcon } from '../../../styles/ui/modules/FormQuestion.style'
-import dynamic from 'next/dynamic'
-import { edit_answer_data } from '../../../store/slices/Question.slice'
-import { parseHtmlWithMention } from '../../../helpers/functions/HtmlParser'
-import { useAnswerHook } from '../../../hooks/useAnswer.hook'
-import { user_data } from '../../../store/slices/User.slice'
+} from '../../../styles/styled-components/ui/modules/Answer.style';
+import { ThumbIcon } from '../../../styles/styled-components/ui/modules/FormQuestion.style';
+import MyEditor from '../../modules/editors/MyEditor';
 
 const DynamicComponentWithNoSSR = dynamic(
   () => import('../../modules/editors/EditorForAnswerEdit'),

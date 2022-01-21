@@ -1,21 +1,21 @@
-import 'quill-magic-url'
-import 'quill-mention'
-import 'quill-mention/dist/quill.mention.css'
+import 'quill-magic-url';
+import 'quill-mention';
+import 'quill-mention/dist/quill.mention.css';
 
+import React, { ReactElement, useEffect, useState } from 'react';
+import ReactQuill from 'react-quill';
+
+import { BASE_API_INSTANCE } from '../../../helpers/api/BaseInstance';
 import {
   CreateQuestionActions,
   linked_products,
   mentioned_users,
   question_value,
-} from '../../../store/slices/CreateQuestionFeatures/CreateQuestion.slice'
-import React, { ReactElement, useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks'
+} from '../../../store/slices/CreateQuestionFeatures/CreateQuestion.slice';
+import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks';
+import { CreateThreadEDITORWrapper_STY } from '../../../styles/styled-components/ui/modules/Editors/CreateThread.style';
 
-import { BASE_API_INSTANCE } from '../../../helpers/api/BaseInstance'
-import { CreateThreadEDITORWrapper_STY } from '../../../styles/ui/modules/Editors/CreateThread.style'
-import ReactQuill from 'react-quill'
-
-interface Props {}
+interface Props { }
 
 const modules = {
   toolbar: [
@@ -46,7 +46,7 @@ const modules = {
               }
             })
             return products
-          } catch (error) {}
+          } catch (error) { }
         }
         const getUserNames = async (query: string) => {
           try {
@@ -60,7 +60,7 @@ const modules = {
               }
             })
             return users
-          } catch (error) {}
+          } catch (error) { }
         }
         if (mentionChar === '@') {
           values = await getProductNames(searchTerm)
@@ -103,7 +103,7 @@ const formats = [
   'code-block',
 ]
 
-const EditorNewVersion = ({}: Props): ReactElement => {
+const EditorNewVersion = ({ }: Props): ReactElement => {
   const dispatch = useAppDispatch()
 
   const questionValue = useAppSelector(question_value)

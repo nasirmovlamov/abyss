@@ -30,7 +30,7 @@ import {
   ProductTitle,
   ProductViewCont,
   StoreListingProductStyle,
-} from '../../styles/ui/modules/ListingStoreProduct.styled';
+} from '../../styles/styled-components/ui/modules/ListingStoreProduct.styled';
 import StarCountShow from '../ui/elements/StarCountShow';
 
 interface Props {

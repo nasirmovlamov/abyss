@@ -10,7 +10,7 @@ import {
 } from '../../../app/store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from '../../../app/store/states/store.hooks';
 import { checkForgetPasswordTokenThunk } from '../../../app/store/thunks/User.thunk';
-import * as ChangePassSTY from '../../../app/styles/ui/modules/ForgetPassword.style';
+import * as ChangePassSTY from '../../../app/styles/styled-components/ui/modules/ForgetPassword.style';
 
 interface Props { }
 

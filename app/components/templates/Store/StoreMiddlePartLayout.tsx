@@ -1,3 +1,16 @@
+import { faPython } from '@fortawesome/free-brands-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import React, { FC, useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+
+import { BASE_API_INSTANCE } from '../../../helpers/api/BaseInstance';
+import { store_tabs } from '../../../store/slices/PageTabs.slice';
+import { single_product_data } from '../../../store/slices/SingleProduct.slice';
+import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks';
 import {
   Flexer,
   ProductTag,
@@ -13,26 +26,13 @@ import {
   StoreTopRatingStars,
   StoreTopTags,
   StoreTopTitle,
-} from '../../../styles/pages/Store.styled'
-import React, { FC, useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks'
+} from '../../../styles/styled-components/pages/Store.styled';
+import mainLogo from '../../public/main-logo.svg';
+import SinglePageTabs from '../../ui/elements/SinglePageTabs';
+import StarCountShow from '../../ui/elements/StarCountShow';
+import { autoSuccessToaster } from '../../ui/toasters/AutoSuccessToast';
 
-import { BASE_API_INSTANCE } from '../../../helpers/api/BaseInstance'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Image from 'next/image'
-import SinglePageTabs from '../../ui/elements/SinglePageTabs'
-import StarCountShow from '../../ui/elements/StarCountShow'
-import { autoSuccessToaster } from '../../ui/toasters/AutoSuccessToast'
-import axios from 'axios'
-import { faPython } from '@fortawesome/free-brands-svg-icons'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
-import mainLogo from '../../public/main-logo.svg'
-import { single_product_data } from '../../../store/slices/SingleProduct.slice'
-import { store_tabs } from '../../../store/slices/PageTabs.slice'
-import { useInView } from 'react-intersection-observer'
-import { useRouter } from 'next/router'
-
-interface Props {}
+interface Props { }
 
 const StoreMiddlePartLayout: FC<Props> = ({ children, ...props }) => {
   const router = useRouter()
@@ -42,7 +42,7 @@ const StoreMiddlePartLayout: FC<Props> = ({ children, ...props }) => {
   const storeTabs = useAppSelector(store_tabs)
   const singleProductData = useAppSelector(single_product_data)
   const { data } = singleProductData
-  const activeStoreTab = storeTabs.filter((tab:any) => tab.isActive)[0]
+  const activeStoreTab = storeTabs.filter((tab: any) => tab.isActive)[0]
 
   const getQuestions = async () => {
     try {

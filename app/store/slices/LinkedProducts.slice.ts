@@ -1,5 +1,6 @@
-import { LINKED_PRODUCT_STATE } from '../states/states/LinkedProduct.state'
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
+
+import { LINKED_PRODUCT_STATE } from '../states/states/LinkedProduct.state';
 
 export const LinkedProductsSlice = createSlice({
   name: 'linked-product-slice',

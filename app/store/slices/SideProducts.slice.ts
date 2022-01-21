@@ -1,7 +1,8 @@
-import { RootState } from '..'
-import { SIDEPRODUCT_STATE } from '../states/states/SideProdcuts.state'
-import { createSlice } from '@reduxjs/toolkit'
-import { getSideProducts } from './../thunks/SideProducts.thunk'
+import { createSlice } from '@reduxjs/toolkit';
+
+import { RootState } from '..';
+import { SIDEPRODUCT_STATE } from '../states/states/SideProdcuts.state';
+import { getSideProducts } from './../thunks/SideProducts.thunk';
 
 export const SideProductSlice = createSlice({
   name: 'linked-product-slice',

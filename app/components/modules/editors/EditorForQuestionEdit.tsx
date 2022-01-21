@@ -9,7 +9,7 @@ import {
   mentionUserAtQuestionEdit,
 } from '../../../store/slices/Question.slice';
 import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks';
-import { CreateThreadEDITORWrapper_STY } from '../../../styles/ui/modules/Editors/CreateThread.style';
+import { CreateThreadEDITORWrapper_STY } from '../../../styles/styled-components/ui/modules/Editors/CreateThread.style';
 
 
 interface Props { }

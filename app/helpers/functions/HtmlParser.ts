@@ -1,7 +1,7 @@
 import parse from 'html-react-parser';
 
 import { autoErrorToasterWithMessage } from '../../components/ui/toasters/AutoSuccessToast';
-import { blue_1 } from '../../styles/global/styled-components/abstracts/Colors.style';
+import { blue_1 } from '../../styles/styled-components/abstracts/Colors.style';
 
 export const parseHtml = (html: string) => {
   const replaceAllSpanWithItsContentTagWhicClassIsEqualToMention = (html: any) => {

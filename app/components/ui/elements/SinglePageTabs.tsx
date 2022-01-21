@@ -1,19 +1,18 @@
-import * as SinglePageTabs_STY from '../../../styles/ui/modules/SinglePageTabs.styled'
+import { useRouter } from 'next/router';
+import React, { ReactElement, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { Link } from 'react-scroll';
+import { useScrollDirection } from 'react-use-scroll-direction';
+import { useScrollYPosition } from 'react-use-scroll-position';
 
-import React, { ReactElement, useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { changeProductTabActive, page_tabs } from '../../../store/slices/PageTabs.slice'
-import { changeThunkBackVisibilty, search_data } from '../../../store/slices/SearchBox.slice'
-import { forumWordRegex, storeWordRegex } from '../../../helpers/functions/regex/NavbarRegex'
-import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks'
+import { forumWordRegex, storeWordRegex } from '../../../helpers/functions/regex/NavbarRegex';
+import { changeProductTabActive, page_tabs } from '../../../store/slices/PageTabs.slice';
+import { changeThunkBackVisibilty, search_data } from '../../../store/slices/SearchBox.slice';
+import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks';
+import * as SinglePageTabs_STY from '../../../styles/styled-components/ui/modules/SinglePageTabs.styled';
 
-import { Link } from 'react-scroll'
-import { useRouter } from 'next/router'
-import { useScrollDirection } from 'react-use-scroll-direction'
-import { useScrollYPosition } from 'react-use-scroll-position'
+interface Props { }
 
-interface Props {}
-
-function SinglePageTabs({}: Props): ReactElement {
+function SinglePageTabs({ }: Props): ReactElement {
   const searchData = useAppSelector(search_data)
   const pageTabs = useAppSelector(page_tabs)
   const router = useRouter()

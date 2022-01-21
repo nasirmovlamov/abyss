@@ -1,10 +1,12 @@
-import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.snow.css';
 
-import React, { useEffect, useRef, useState } from 'react'
+import hljs from 'highlight.js';
+import React, { useEffect, useRef, useState } from 'react';
+import { useQuill } from 'react-quilljs';
 
-import { EditorWraper_STY } from '../../../styles/ui/modules/CreateProduct_Style/Steps/CreateProduct_Step2.style'
-import hljs from 'highlight.js'
-import { useQuill } from 'react-quilljs'
+import {
+  EditorWraper_STY,
+} from '../../../styles/styled-components/ui/modules/CreateProduct_Style/Steps/CreateProduct_Step2.style';
 
 interface Props {
   content: any

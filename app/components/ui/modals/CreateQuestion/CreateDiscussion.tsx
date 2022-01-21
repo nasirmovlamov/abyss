@@ -1,17 +1,17 @@
-import React, { ReactElement, useEffect, useState } from 'react'
+import { BASE_API_INSTANCE } from 'app/helpers/api/BaseInstance';
+import { changeModalAction } from 'app/store/slices/User.slice';
+import { useAppDispatch } from 'app/store/states/store.hooks';
+import { LabelCont } from 'app/styles/styled-components/ui/modules/CreateQuestionModal.style';
+import { ModalFORM_STY } from 'app/styles/styled-components/ui/modules/Modal_Style/ModalCont.style';
+import React, { ReactElement, useEffect, useState } from 'react';
 
-import { BASE_API_INSTANCE } from '../../../../helpers/api/BaseInstance'
-import { LabelCont } from '../../../../styles/ui/modules/CreateQuestionModal.style'
-import { ModalFORM_STY } from '../../../../styles/ui/modules/Modal_Style/ModalCont.style'
-import MyEditor from '../../../modules/editors/MyEditor'
-import { autoErrorToaster } from '../../toasters/AutoErrorToaster'
-import { autoSuccessToaster } from '../../toasters/AutoSuccessToast'
-import { changeModalAction } from '../../../../store/slices/User.slice'
-import { useAppDispatch } from '../../../../store/states/store.hooks'
+import MyEditor from '../../../modules/editors/MyEditor';
+import { autoErrorToaster } from '../../toasters/AutoErrorToaster';
+import { autoSuccessToaster } from '../../toasters/AutoSuccessToast';
 
-interface Props {}
+interface Props { }
 
-function CreateDiscussion({}: Props): ReactElement {
+function CreateDiscussion({ }: Props): ReactElement {
   const [questionValue, setQuestionValue] = useState({ title: '', content: '' })
   const [tags, settags] = useState<string[]>([])
   const [category, setCategory] = useState<string>('1')

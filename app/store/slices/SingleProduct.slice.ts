@@ -1,7 +1,8 @@
-import { RootState } from '..'
-import { SingleProductState } from '../states/states/SingleProduct.state'
-import { createSlice } from '@reduxjs/toolkit'
-import { getSingleProduct } from '../thunks/SingleProduct.thunk'
+import { createSlice } from '@reduxjs/toolkit';
+
+import { RootState } from '..';
+import { SingleProductState } from '../states/states/SingleProduct.state';
+import { getSingleProduct } from '../thunks/SingleProduct.thunk';
 
 export const SingleProduct_Slice = createSlice({
   name: 'linked-product-slice',

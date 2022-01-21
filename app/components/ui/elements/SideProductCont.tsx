@@ -4,6 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { side_product_data } from '../../../store/slices/SideProducts.slice';
 import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks';
 import { getSideProducts } from '../../../store/thunks/SideProducts.thunk';
+import * as SideProducts_STY from '../../../styles/styled-components/ui/modules/SideProducts.style';
 import FormQuestionSkeleton from '../skeletons/ForumQuestionSkeleton';
 import SideProduct from './SideProduct';
 

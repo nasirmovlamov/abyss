@@ -1,3 +1,8 @@
+import { ReactElement } from 'react';
+
+import { useCommentsTabHook } from '../../../hooks/useCommentsTab.hook';
+import { comments, comments_types } from '../../../store/slices/Comments.slice';
+import { useAppSelector } from '../../../store/states/store.hooks';
 import {
   AllCommentsCont,
   CommentChangeContent,
@@ -7,16 +12,11 @@ import {
   CommentsTabStyle,
   PostComment,
   TakeCommentsToSideMakeAbsolute,
-} from '../../../styles/ui/modules/CommentsTab.style'
-import { comments, comments_types } from '../../../store/slices/Comments.slice'
+} from '../../../styles/styled-components/ui/modules/CommentsTab.style';
 
-import { ReactElement } from 'react'
-import { useAppSelector } from '../../../store/states/store.hooks'
-import { useCommentsTabHook } from '../../../hooks/useCommentsTab.hook'
+interface Props { }
 
-interface Props {}
-
-function CommentModal({}: Props): ReactElement {
+function CommentModal({ }: Props): ReactElement {
   const commentsType: any = useAppSelector(comments_types)
   const Comments = useAppSelector(comments)
   const { dontShowComments, setNewComment, newComment, commentOnChange, submitComment } =

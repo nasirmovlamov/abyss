@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-interface Props {}
+interface Props { }
 
 const Cave_Notes = (props: Props) => {
   return <div></div>

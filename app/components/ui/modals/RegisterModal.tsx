@@ -1,20 +1,19 @@
-import * as Form_STY from '../../../styles/ui/elements/Form.style'
-
-import { FormEvent, ReactElement } from 'react'
 import {
   changeModalAction,
-  register_Form_OnChange,
   register_errors,
   register_form,
+  register_Form_OnChange,
   user_modals,
-} from '../../../store/slices/User.slice'
-import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks'
+} from 'app/store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
+import { userRegister } from 'app/store/thunks/User.thunk';
+import * as Form_STY from 'app/styles/styled-components/ui/elements/Form.style';
+import { ModalFORM_STY } from 'app/styles/styled-components/ui/modules/Modal_Style/ModalCont.style';
+import { FormEvent, ReactElement } from 'react';
 
-import { ModalFORM_STY } from '../../../styles/ui/modules/Modal_Style/ModalCont.style'
+interface Props { }
 
-interface Props {}
-
-function RegisterModal({}: Props): ReactElement {
+function RegisterModal({ }: Props): ReactElement {
   const dispatch = useAppDispatch()
   const registerErrors = useAppSelector(register_errors)
   const allModals = useAppSelector(user_modals)
@@ -23,8 +22,8 @@ function RegisterModal({}: Props): ReactElement {
   const formSubmit = (e: FormEvent) => {
     e.preventDefault()
     try {
-      dispatch(authThunk.userRegister(registerForm))
-    } catch (error) {}
+      dispatch(userRegister(registerForm))
+    } catch (error) { }
   }
 
   return (

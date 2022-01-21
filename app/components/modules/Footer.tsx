@@ -1,16 +1,11 @@
-import {
-  FooterColumn,
-  FooterElement,
-  FooterRow,
-  FooterStyle,
-} from '../../styles/ui/modules/Footer.style'
-import React, { ReactElement } from 'react'
+import React, { ReactElement } from 'react';
 
-import { useAppDispatch } from '../../store/states/store.hooks'
+import { useAppDispatch } from '../../store/states/store.hooks';
+import { FooterColumn, FooterElement, FooterRow, FooterStyle } from '../../styles/styled-components/ui/modules/Footer.style';
 
-interface Props {}
+interface Props { }
 
-function Footer({}: Props): ReactElement {
+function Footer({ }: Props): ReactElement {
   const dispatch = useAppDispatch()
 
   return (

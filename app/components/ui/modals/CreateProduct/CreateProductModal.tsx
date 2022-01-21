@@ -1,10 +1,6 @@
-import * as ProductCR_STY from '../../../../styles/ui/modules/CreateProduct_Style/CreateProductModal.style'
+import React, { ReactElement, useEffect } from 'react';
 
 import {
-  ProductCreateStep1Validate,
-  ProductCreateStep2Validate,
-  ProductCreateStep3Validate,
-  ProductCreateStep5Validate,
   goNextStepProductCreate,
   goPreviousStepProductCreate,
   is_product_created,
@@ -13,25 +9,26 @@ import {
   product_create_id,
   product_create_step1_data,
   product_create_steps_data,
-} from '../../../../store/slices/CreateProductFeatures/CreateProduct.slice'
-import React, { ReactElement, useEffect } from 'react'
+  ProductCreateStep1Validate,
+  ProductCreateStep2Validate,
+  ProductCreateStep3Validate,
+  ProductCreateStep5Validate,
+} from '../../../../store/slices/CreateProductFeatures/CreateProduct.slice';
+import { changeModalAction } from '../../../../store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from '../../../../store/states/store.hooks';
+import { createProductThunk, startPlagirismChecker, updateProductThunk } from '../../../../store/thunks/CreateProduct.thunk';
 import {
-  createProductThunk,
-  startPlagirismChecker,
-  updateProductThunk,
-} from '../../../../store/thunks/CreateProduct.thunk'
-import { useAppDispatch, useAppSelector } from '../../../../store/states/store.hooks'
-
-import { CreateProduct_CloseButton_STY } from '../../../../styles/ui/modules/CreateProduct_Style/CreateProduct_Steps.style'
-import ProductCreate_Tabs from './StepsForProductCreate/ProductCreate_Tabs'
-import ProductStepsRouter from './StepsForProductCreate/ProductCreateStepsRouter'
-import { changeModalAction } from '../../../../store/slices/User.slice'
+  CreateProduct_CloseButton_STY,
+} from '../../../../styles/styled-components/ui/modules/CreateProduct_Style/CreateProduct_Steps.style';
+import * as ProductCR_STY from '../../../../styles/styled-components/ui/modules/CreateProduct_Style/CreateProductModal.style';
+import ProductCreate_Tabs from './StepsForProductCreate/ProductCreate_Tabs';
+import ProductStepsRouter from './StepsForProductCreate/ProductCreateStepsRouter';
 
 // { CreateProduct_Buttons_Cont, ProductCreateForm, ProductCreateModal, ProductLabelCont }
 
-interface Props {}
+interface Props { }
 
-function CreateProductModal(this: any, {}: Props): ReactElement {
+function CreateProductModal(this: any, { }: Props): ReactElement {
   const dispatch = useAppDispatch()
   const currentStep = useAppSelector(product_create_current_step)
   const isProductCreated = useAppSelector(is_product_created)
@@ -57,7 +54,7 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
               updateProductThunk({ mainData: productCreateData, productId: productCreateId }),
             )
             dispatch(changeModalAction('productCreate'))
-          } catch (error) {}
+          } catch (error) { }
         }
         return
       }
@@ -115,7 +112,7 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
     }
   }
 
-  const SubmitProduct = async () => {}
+  const SubmitProduct = async () => { }
 
   const goPrevoiusSection = async () => {
     if (currentStep !== 1) {

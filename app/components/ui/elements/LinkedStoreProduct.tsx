@@ -32,7 +32,7 @@ import {
   ProductTitle,
   ProductViewCont,
   StoreListingProductStyle,
-} from '../../../styles/ui/modules/ListingStoreProduct.styled';
+} from '../../../styles/styled-components/ui/modules/ListingStoreProduct.styled';
 import NavLink from '../elements/NavLink';
 import StarCountShow from '../elements/StarCountShow';
 

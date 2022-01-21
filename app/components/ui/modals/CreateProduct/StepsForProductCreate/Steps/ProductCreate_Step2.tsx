@@ -1,35 +1,35 @@
+import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from 'react';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+
+import { getClipsIndex } from '../../../../../../helpers/functions/CreateProduct';
 import {
-  CreateProductLabelCont,
-  CreateProductStep2_CONT_STY,
-  CreateProduct_ClipsCont_STY,
-  CreateProduct_DragCont_STY,
-  CreateProduct_TagsCont_STY,
-  CreateProduct_Tags_STY,
-} from '../../../../../../styles/ui/modules/CreateProduct_Style/Steps/CreateProduct_Step2.style'
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
-import {
-  ProductCreateStep2OnChanges,
   addNewSection,
   changeClipPosition,
   deleteClip,
   deleteSection,
   product_create_step2_data,
+  ProductCreateStep2OnChanges,
   sections_product,
   updateKey,
   updateLabel,
   updateSectionsOrder,
-} from '../../../../../../store/slices/CreateProductFeatures/CreateProduct.slice'
-import { useAppDispatch, useAppSelector } from '../../../../../../store/states/store.hooks'
+} from '../../../../../../store/slices/CreateProductFeatures/CreateProduct.slice';
+import { SectionOfProduct } from '../../../../../../store/states/interfaces/CreateProduct.interface';
+import { useAppDispatch, useAppSelector } from '../../../../../../store/states/store.hooks';
+import { addFile } from '../../../../../../store/thunks/CreateProduct.thunk';
+import {
+  CreateProduct_ClipsCont_STY,
+  CreateProduct_DragCont_STY,
+  CreateProduct_Tags_STY,
+  CreateProduct_TagsCont_STY,
+  CreateProductLabelCont,
+  CreateProductStep2_CONT_STY,
+} from '../../../../../../styles/styled-components/ui/modules/CreateProduct_Style/Steps/CreateProduct_Step2.style';
+import EditorForProductCreate from '../../../../../modules/editors/EditorForProductCreate';
 
-import EditorForProductCreate from '../../../../../modules/editors/EditorForProductCreate'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { SectionOfProduct } from '../../../../../../store/states/interfaces/CreateProduct.interface'
-import { addFile } from '../../../../../../store/thunks/CreateProduct.thunk'
-import { faEllipsisH } from '@fortawesome/free-solid-svg-icons'
-import { getClipsIndex } from '../../../../../../helpers/functions/CreateProduct'
-import { useState } from 'react'
-
-interface Props {}
+interface Props { }
 
 export const ProductCreate_Step2 = (props: Props) => {
   const [tagCreator, settagCreator] = useState('')

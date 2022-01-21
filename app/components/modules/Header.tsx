@@ -1,24 +1,23 @@
-import * as Header_STY from '../../styles/ui/modules/Navbar.style'
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import React, { ReactElement, useEffect, useState } from 'react';
 
-import React, { ReactElement, useEffect, useState } from 'react'
-import { changeModalAction, is_Logged, is_loading, user_data, user_modals } from '../../store/slices/User.slice'
-import { hoverHeader, search_data } from '../../store/slices/SearchBox.slice'
-import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks'
-
-import Image from 'next/image'
-import NavLink from '../ui/elements/NavLink'
-import { forumWordRegex } from '../../helpers/functions/regex/NavbarRegex'
-import mainLogo from '/public/main-logo-new.svg'
-import mainLogoText from '/public/main-logo-side-text-new.svg'
-import { unHoverHeaderAsync } from '../../store/thunks/SearchBox.thunk'
-import { useRouter } from 'next/router'
-import { userLogout } from '../../store/thunks/User.thunk'
+import { forumWordRegex } from '../../helpers/functions/regex/NavbarRegex';
+import { hoverHeader, search_data } from '../../store/slices/SearchBox.slice';
+import { changeModalAction, is_loading, is_Logged, user_data, user_modals } from '../../store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
+import { unHoverHeaderAsync } from '../../store/thunks/SearchBox.thunk';
+import { userLogout } from '../../store/thunks/User.thunk';
+import * as Header_STY from '../../styles/styled-components/ui/modules/Navbar.style';
+import NavLink from '../ui/elements/NavLink';
+import mainLogo from '/public/main-logo-new.svg';
+import mainLogoText from '/public/main-logo-side-text-new.svg';
 
 //#region import styles
 //#endregion import styles
-interface Props {}
+interface Props { }
 
-function Header({}: Props): ReactElement {
+function Header({ }: Props): ReactElement {
   const router = useRouter()
   const { pathname } = router
   const dispatch = useAppDispatch()

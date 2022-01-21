@@ -11,7 +11,7 @@ import { useAppDispatch, useAppSelector } from '../../../../../store/states/stor
 import {
   CaveInventoryBlocks_Sty,
   CaveInventoryDefaultBlock_Sty,
-} from '../../../../../styles/ui/modules/Cave_Style/CaveInventory/CaveInventory.style';
+} from '../../../../../styles/styled-components/ui/modules/Cave_Style/CaveInventory/CaveInventory.style';
 import AnswerSkeleton from '../../../../ui/skeletons/AnswerSkeleton';
 import CaveProduct from '../../CaveProduct';
 

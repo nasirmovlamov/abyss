@@ -1,5 +1,10 @@
+import { useAppTheme } from 'app/contexts/Theme.context';
+import { darkTheme, lightTheme } from 'app/styles/styled-components/abstracts/Theme.style';
+import { GlobalStyle } from 'app/styles/styled-components/Global.style';
 import { useRouter } from 'next/router';
 import React, { ReactNode, useEffect } from 'react';
+import { Toaster } from 'react-hot-toast';
+import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 
 import { getCookie } from '../../helpers/functions/CookieFunctions';
 import { is_chatbox_opened, openChat } from '../../store/slices/ChatBox.slice';
@@ -23,6 +28,7 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
   const userData = useAppSelector(user_data)
   const isChatBoxOpened = useAppSelector(is_chatbox_opened)
   const isCommentBoxOpened = useAppSelector(is_comment_opened)
+  const theme = useAppTheme()
 
   useEffect(() => {
     if (getCookie('token') !== null) {
@@ -44,8 +50,10 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
     dispatch(openChat(''))
   }
 
-  if (userStatus === 'logged' || userStatus === 'not-logged') {
-    return (
+  return (
+    <StyledThemeProvider
+      theme={theme?.isDark ? darkTheme : lightTheme}
+    > {userStatus === 'logged' || userStatus === 'not-logged' ?
       <div
         style={{ display: 'flex', flexDirection: 'column', width: '100%' }}
         onMouseEnter={() => dispatch(hoverWindowAsync(null))}
@@ -56,10 +64,12 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
         >
           {router.pathname !== '/login' && router.pathname !== '/register' && <Header />}
           {isChatBoxOpened && <ChatBox />}
-          {children}
-
+          <Toaster />
+          <GlobalStyle />
           <ToolTip />
           <ScrollToTopButton />
+
+          {children}
 
           {userData !== null && (
             <button
@@ -74,11 +84,9 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
         </div>
 
         {router.pathname === '/' && <Footer />}
-      </div>
-    )
-  }
-
-  return <></>
+      </div> : <></>}
+    </StyledThemeProvider>
+  )
 }
 
 export default AppLayout

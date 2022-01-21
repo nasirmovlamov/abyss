@@ -2,7 +2,7 @@ import React, { ReactElement, ReactNode } from 'react';
 
 import { color_convert } from '../../store/slices/User.slice';
 import { useAppSelector } from '../../store/states/store.hooks';
-import { SidePartOfPageStyle } from '../../styles/pages/Page.styled';
+import { SidePartOfPageStyle } from '../../styles/styled-components/pages/Page.styled';
 import PageFilters from '../modules/PageFilters';
 
 interface Props {

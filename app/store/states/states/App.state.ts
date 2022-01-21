@@ -1,6 +1,6 @@
-import { APP_INTERFACE } from '../state-Interfaces/AppInterface'
-import { AUTH_STATE } from './Auth.state'
-import { QUESTION_STATE } from './Question.state'
+import { APP_INTERFACE } from '../state-Interfaces/AppInterface';
+import { AUTH_STATE } from './Auth.state';
+import { QUESTION_STATE } from './Question.state';
 
 export const APP_STATE: APP_INTERFACE = {
   AUTH_STATE: { ...AUTH_STATE },

@@ -1,25 +1,25 @@
-import 'highlight.js/styles/a11y-dark.css'
-import 'quill-magic-url'
-import 'quill-mention'
-import 'quill-mention/dist/quill.mention.css'
+import 'highlight.js/styles/a11y-dark.css';
+import 'quill-magic-url';
+import 'quill-mention';
+import 'quill-mention/dist/quill.mention.css';
 
+import hljs from 'highlight.js';
+import React, { ReactElement, useEffect, useLayoutEffect, useState } from 'react';
+import ReactQuill from 'react-quill';
+
+import { BASE_API_INSTANCE } from '../../../helpers/api/BaseInstance';
 import {
   AnswerContentOnChange,
-  linkProductAtAnswer,
   linked_products_at_anwser_submit,
-  mentionUserAtAnswer,
+  linkProductAtAnswer,
   mentioned_users_at_anwser_submit,
+  mentionUserAtAnswer,
   submit_answer_content,
-} from '../../../store/slices/Question.slice'
-import React, { ReactElement, useEffect, useLayoutEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks'
+} from '../../../store/slices/Question.slice';
+import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks';
+import { CreateAddAnswerEDITORWrapper_STY } from '../../../styles/styled-components/ui/modules/Editors/CreateThread.style';
 
-import { BASE_API_INSTANCE } from '../../../helpers/api/BaseInstance'
-import { CreateAddAnswerEDITORWrapper_STY } from '../../../styles/ui/modules/Editors/CreateThread.style'
-import ReactQuill from 'react-quill'
-import hljs from 'highlight.js'
-
-interface Props {}
+interface Props { }
 
 const modules = {
   toolbar: [
@@ -52,7 +52,7 @@ const modules = {
               }
             })
             return products
-          } catch (error) {}
+          } catch (error) { }
         }
         const getUserNames = async (query: string) => {
           try {
@@ -66,7 +66,7 @@ const modules = {
               }
             })
             return users
-          } catch (error) {}
+          } catch (error) { }
         }
         if (mentionChar === '@') {
           values = await getProductNames(searchTerm)
@@ -91,7 +91,7 @@ const modules = {
   magicUrl: true,
 }
 
-const EditorAddAnswer = ({}: Props): ReactElement => {
+const EditorAddAnswer = ({ }: Props): ReactElement => {
   const [theme, settheme] = useState('')
   const addThemeFromHjs = async (theme: string) => {
     // const Fuse = (await import('fuse.js')).default
@@ -132,10 +132,10 @@ const EditorAddAnswer = ({}: Props): ReactElement => {
         }
       }
       dispatch(AnswerContentOnChange(content))
-    } catch (error) {}
+    } catch (error) { }
   }
 
-  const editorOnFocusHandle = (range: any, source: any, editor: any) => {}
+  const editorOnFocusHandle = (range: any, source: any, editor: any) => { }
 
   // const quillEditorOnPaste = (event:any, editor:any, html:any):any => {
   //   const data = event.clipboardData.getData('text/plain');
@@ -152,9 +152,9 @@ const EditorAddAnswer = ({}: Props): ReactElement => {
   //   }
   // }
 
-  const editorOnBlurHandle = (previousRange: any, source: any, editor: any) => {}
+  const editorOnBlurHandle = (previousRange: any, source: any, editor: any) => { }
 
-  useEffect(() => {}, [])
+  useEffect(() => { }, [])
 
   return (
     <CreateAddAnswerEDITORWrapper_STY>

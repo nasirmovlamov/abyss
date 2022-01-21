@@ -1,21 +1,28 @@
-import * as SearchForHome_STY from '../../styles/ui/modules/SearchBoxForHome.style'
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useRouter } from 'next/router';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import { useScrollDirection } from 'react-use-scroll-direction';
+import { useScrollYPosition } from 'react-use-scroll-position';
 
-import React, { ReactElement, useEffect, useRef, useState } from 'react'
-import { changeSearchVisibilty, forum_search_data, getCachedSearchBoxData, resetSendedQuery, searchValueOnChange, search_data, search_query } from '../../store/slices/SearchBox.slice'
-import { forumWordRegex, storeWordRegex } from '../../helpers/functions/regex/NavbarRegex'
-import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks'
+import { forumWordRegex, storeWordRegex } from '../../helpers/functions/regex/NavbarRegex';
+import { getFiltersFromCache } from '../../store/slices/PageFilters.slice';
+import {
+  changeSearchVisibilty,
+  forum_search_data,
+  getCachedSearchBoxData,
+  resetSendedQuery,
+  search_data,
+  search_query,
+  searchValueOnChange,
+} from '../../store/slices/SearchBox.slice';
+import { changeModalAction } from '../../store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
+import * as SearchForHome_STY from '../../styles/styled-components/ui/modules/SearchBoxForHome.style';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { changeModalAction } from '../../store/slices/User.slice'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { getFiltersFromCache } from '../../store/slices/PageFilters.slice'
-import { useRouter } from 'next/router'
-import { useScrollDirection } from 'react-use-scroll-direction'
-import { useScrollYPosition } from 'react-use-scroll-position'
+interface Props { }
 
-interface Props {}
-
-function SearchBoxForHome({}: Props): ReactElement {
+function SearchBoxForHome({ }: Props): ReactElement {
   const router = useRouter()
   const [pagePath, setpagePath] = useState('')
   const dispatch = useAppDispatch()

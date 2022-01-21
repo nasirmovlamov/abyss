@@ -1,8 +1,8 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement } from 'react';
 
-interface Props {}
+interface Props { }
 
-function OverlayBackground({}: Props): ReactElement {
+function OverlayBackground({ }: Props): ReactElement {
   return (
     <div
       style={{

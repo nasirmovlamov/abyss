@@ -7,8 +7,8 @@ import { goProductPage, single_product_data } from '../../../store/slices/Single
 import { is_logged } from '../../../store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks';
 import { getSingleProduct } from '../../../store/thunks/SingleProduct.thunk';
-import { PageDefaultStyle } from '../../../styles/pages/Page.styled';
-import MainPartOfPage from '../../layouts/PageMain.layout';
+import { PageDefaultStyle } from '../../../styles/styled-components/pages/Page.styled';
+import MainPartOfPage from '../../layouts/Main.layout';
 import PageSideLayout from '../../layouts/PageSide.layout';
 
 

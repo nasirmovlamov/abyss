@@ -1,7 +1,7 @@
-import React from 'react'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
+import React from 'react';
 
-interface Props {}
+interface Props { }
 
 const Page404 = (props: Props) => {
   const router = useRouter()

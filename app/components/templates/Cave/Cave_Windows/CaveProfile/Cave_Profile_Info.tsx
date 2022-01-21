@@ -4,7 +4,7 @@ import Loader from 'react-spinners/HashLoader';
 import { resend_mail, user_data } from '../../../../../store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from '../../../../../store/states/store.hooks';
 import { resendEmail } from '../../../../../store/thunks/User.thunk';
-import * as CavePInfo from '../../../../../styles/ui/modules/Cave_Style/CaveProfile/CaveProfileInfo.style';
+import * as CavePInfo from '../../../../../styles/styled-components/ui/modules/Cave_Style/CaveProfile/CaveProfileInfo.style';
 
 
 interface Props { }

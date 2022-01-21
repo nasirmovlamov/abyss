@@ -1,4 +1,4 @@
-import { CaveTabsInterface } from './../../state-Interfaces/Cave_Interfaces/CaveTabs.interface'
+import { CaveTabsInterface } from './../../state-Interfaces/Cave_Interfaces/CaveTabs.interface';
 
 //#region PROFILE TABS
 export const profileTabs = [
