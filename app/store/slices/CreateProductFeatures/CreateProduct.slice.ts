@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { autoErrorToaster } from 'app/components/ui/toasters/AutoErrorToaster';
+import { autoSuccessToaster } from 'app/components/ui/toasters/AutoSuccessToast';
+import { getClipsIndex } from 'app/helpers/functions/CreateProduct';
 
 import { RootState } from '../..';
-import { autoErrorToaster } from '../../../components/ui/toasters/AutoErrorToaster';
-import { autoSuccessToaster } from '../../../components/ui/toasters/AutoSuccessToast';
-import { getClipsIndex } from '../../../helpers/functions/CreateProduct';
 import { CreateProductState } from '../../states/states/CreateProduct.state';
 import { addFile, createProductThunk, startPlagirismChecker, updateProductThunk } from '../../thunks/CreateProduct.thunk';
 

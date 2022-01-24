@@ -1,18 +1,17 @@
+import { cave_side_data } from 'app/store/slices/CaveFeatures/CaveSide.slice';
+import { cave_actions, cave_tabs } from 'app/store/slices/CaveFeatures/CaveTabs.slice';
+import { libraryTabs } from 'app/store/states/states/Cave_States/CaveTabs.state';
+import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
+import {
+  CaveLibraryBlocks_Sty,
+  CaveLibraryDefaultBlock_Sty,
+} from 'app/styles/styled-components/ui/modules/Cave_Style/CaveLibrary/CaveLibrary.style';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { scroller } from 'react-scroll';
 import { useScrollYPosition } from 'react-use-scroll-position';
 
-import { cave_side_data } from '../../../../store/slices/CaveFeatures/CaveSide.slice';
-import { cave_actions, cave_tabs } from '../../../../store/slices/CaveFeatures/CaveTabs.slice';
-import { libraryTabs } from '../../../../store/states/states/Cave_States/CaveTabs.state';
-import { useAppDispatch, useAppSelector } from '../../../../store/states/store.hooks';
-import {
-  CaveLibraryBlocks_Sty,
-  CaveLibraryDefaultBlock_Sty,
-} from '../../../../styles/styled-components/ui/modules/Cave_Style/CaveLibrary/CaveLibrary.style';
-
-interface Props { }
+interface Props {}
 
 const Cave_Library = (props: Props) => {
   const [inViewRefLibrarySavedBlock, inViewLibrarySavedBlock] = useInView()

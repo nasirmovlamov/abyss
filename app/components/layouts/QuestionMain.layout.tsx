@@ -155,7 +155,7 @@ const QuestionMiddleLayout = () => {
                           ? solidfaThumbsUp
                           : regularfaThumbsUp
                       }
-                    />{' '}
+                    />
                   </ThumbIcon>
                 </SingleQuestion_STY.QuestionStatisticButton_STY>
                 <SingleQuestion_STY.QuestionStatisticButton_STY

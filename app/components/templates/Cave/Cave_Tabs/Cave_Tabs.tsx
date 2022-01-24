@@ -1,14 +1,8 @@
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Image from 'next/image';
-import { useRef } from 'react';
-import { scroller } from 'react-scroll';
-import { useScrollDirection } from 'react-use-scroll-direction';
-import { useScrollYPosition } from 'react-use-scroll-position';
-
-import { cave_side_data } from '../../../../store/slices/CaveFeatures/CaveSide.slice';
-import { cave_actions, cave_tabs } from '../../../../store/slices/CaveFeatures/CaveTabs.slice';
-import { useAppDispatch, useAppSelector } from '../../../../store/states/store.hooks';
+import { cave_side_data } from 'app/store/slices/CaveFeatures/CaveSide.slice';
+import { cave_actions, cave_tabs } from 'app/store/slices/CaveFeatures/CaveTabs.slice';
+import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import {
   Cave_Tab_Seperator_Sty,
   Cave_Tab_Sty,
@@ -18,10 +12,14 @@ import {
   CaveLeftCornerForHover,
   CaveRightCorner,
   CaveRightCornerForHover,
-} from '../../../../styles/styled-components/ui/modules/Cave_Style/Cave_Tabs.style';
+} from 'app/styles/styled-components/ui/modules/Cave_Style/Cave_Tabs.style';
+import Image from 'next/image';
+import { useRef } from 'react';
+import { scroller } from 'react-scroll';
+import { useScrollDirection } from 'react-use-scroll-direction';
+import { useScrollYPosition } from 'react-use-scroll-position';
 
-
-interface Props { }
+interface Props {}
 
 const Cave_Tabs = (props: Props) => {
   const caveSideData = useAppSelector(cave_side_data)

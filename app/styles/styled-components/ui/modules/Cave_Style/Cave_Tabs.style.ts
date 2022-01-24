@@ -1,6 +1,5 @@
+import { CaveTabInterface } from 'app/store/states/interfaces/Cave_Interfaces/CaveTabs.interface';
 import styled from 'styled-components';
-
-import { CaveTabInterface } from '../../../../app/store/state-Interfaces/Cave_Interfaces/CaveTabs.interface';
 
 export const Cave_Tabs_Sty = styled.div`
   /* display: flex; */

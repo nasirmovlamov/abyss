@@ -1,4 +1,4 @@
-import { USER_INTERFACE } from '../../../components/modules/Answers.module';
+import { USER_INTERFACE } from 'app/components/modules/Answers.module';
 
 export interface ANSWER_INTERFACE {
   id: number

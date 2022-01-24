@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { autoErrorToaster } from 'app/components/ui/toasters/AutoErrorToaster';
+import { autoSuccessToaster } from 'app/components/ui/toasters/AutoSuccessToast';
 
 import { RootState } from '../..';
-import { autoErrorToaster } from '../../../components/ui/toasters/AutoErrorToaster';
-import { autoSuccessToaster } from '../../../components/ui/toasters/AutoSuccessToast';
 import { CreateQuestionState } from '../../states/states/CreateQuestion.state';
 import { createQuestionThunk } from '../../thunks/CreateThread/CreateQuestion.thunk';
 

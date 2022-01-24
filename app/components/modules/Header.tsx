@@ -4,7 +4,7 @@ import React, { ReactElement, useEffect, useState } from 'react';
 
 import { forumWordRegex } from '../../helpers/functions/regex/NavbarRegex';
 import { hoverHeader, search_data } from '../../store/slices/SearchBox.slice';
-import { changeModalAction, is_loading, is_Logged, user_data, user_modals } from '../../store/slices/User.slice';
+import { changeModalAction, is_Logged, user_data } from '../../store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
 import { unHoverHeaderAsync } from '../../store/thunks/SearchBox.thunk';
 import { userLogout } from '../../store/thunks/User.thunk';
@@ -13,18 +13,12 @@ import NavLink from '../ui/elements/NavLink';
 import mainLogo from '/public/main-logo-new.svg';
 import mainLogoText from '/public/main-logo-side-text-new.svg';
 
-//#region import styles
-//#endregion import styles
-interface Props { }
-
-function Header({ }: Props): ReactElement {
+const Header = () => {
   const router = useRouter()
   const { pathname } = router
   const dispatch = useAppDispatch()
-  const userModals = useAppSelector(user_modals)
   const userData = useAppSelector(user_data)
   const isLogged = useAppSelector(is_Logged)
-  const isLoading = useAppSelector(is_loading)
   const [navView, setnavView] = useState<JSX.Element>()
   const [notificationToolTip, setnotificationToolTip] = useState(false)
   const [messageToolTip, setmessageToolTip] = useState(false)
@@ -203,8 +197,7 @@ function Header({ }: Props): ReactElement {
             <NavLink content="username" href="/cave">
               <Header_STY.PersonName_STY>
                 <span>
-                  {' '}
-                  {userData.name}{' '}
+                  {userData.name}
                   {!userData.isVerified && (
                     <span style={{ fontSize: '13px', color: 'orange' }}>
                       * <sup>not verified</sup>
