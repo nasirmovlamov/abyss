@@ -167,7 +167,7 @@ export const CreateProductSlice = createSlice({
 
     blurOnLabel(state, { payload }) {},
 
-    addNewSection(state, _) {
+    addNewSection(state) {
       state.steps[2].details_data.sections_product.push({
         id: Date.now(),
         label_key: 'Header',

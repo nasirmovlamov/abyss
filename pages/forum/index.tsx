@@ -1,16 +1,4 @@
-import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useLayoutEffect, useState } from 'react';
-import { useInView } from 'react-intersection-observer';
-import { BeatLoader } from 'react-spinners';
-import { useScrollYPosition } from 'react-use-scroll-position';
-
-import MainPartOfPage from '../../app/components/layouts/PageMain.layout';
-import PageSideLayout from '../../app/components/layouts/PageSide.layout';
-import SearchBoxStaticVersion from '../../app/components/modules/SearchBoxStaticVersion';
-import ForumQuestion from '../../app/components/ui/elements/ForumQuestion';
-import SideProductCont from '../../app/components/ui/elements/SideProductCont';
-import PageTabs from '../../app/components/ui/tabs/ForumPageTabs';
-import { is_chatbox_opened } from '../../app/store/slices/ChatBox.slice';
 import { changePositionOfFilters, stay_in_focus } from '../../app/store/slices/PageFilters.slice';
 import {
   forum_search_data,
@@ -18,11 +6,23 @@ import {
   search_query,
   setScrollPositionYForum,
 } from '../../app/store/slices/SearchBox.slice';
-import { side_product_data } from '../../app/store/slices/SideProducts.slice';
 import { useAppDispatch, useAppSelector } from '../../app/store/states/store.hooks';
-import { forumSearchInfinity } from '../../app/store/thunks/SearchBox.thunk';
-import { PageDefaultStyle } from '../../app/styles/pages/Page.styled';
+
+import { BeatLoader } from 'react-spinners';
 import { ForumPage } from '../../app/styles/pages/Pages.style';
+import ForumQuestion from '../../app/components/ui/elements/ForumQuestion';
+import MainPartOfPage from '../../app/components/layouts/PageMain.layout';
+import { PageDefaultStyle } from '../../app/styles/pages/Page.styled';
+import PageSideLayout from '../../app/components/layouts/PageSide.layout';
+import PageTabs from '../../app/components/ui/tabs/ForumPageTabs';
+import SearchBoxStaticVersion from '../../app/components/modules/SearchBoxStaticVersion';
+import SideProductCont from '../../app/components/ui/elements/SideProductCont';
+import { forumSearchInfinity } from '../../app/store/thunks/SearchBox.thunk';
+import { is_chatbox_opened } from '../../app/store/slices/ChatBox.slice';
+import { side_product_data } from '../../app/store/slices/SideProducts.slice';
+import { useInView } from 'react-intersection-observer';
+import { useRouter } from 'next/router';
+import { useScrollYPosition } from 'react-use-scroll-position';
 
 interface Props { }
 
@@ -35,7 +35,6 @@ function Forum({ }: Props): ReactElement {
   const searchQuery = useAppSelector(search_query)
   const router = useRouter()
   const isChatBoxOpened = useAppSelector(is_chatbox_opened)
-  const a = [1, 2, 3, 4]
   const stayInFocus = useAppSelector(stay_in_focus)
   const searchData = useAppSelector(search_data)
 
