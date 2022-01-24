@@ -51,8 +51,6 @@ export const SearchBoxSlice = createSlice({
     },
 
     selectFilterToSearchOption(state, action) {
-      console.log('HELLO sELEECt')
-
       state.exculudedFilters = state.exculudedFilters.filter((tag) => tag.id !== action.payload.id)
       for (let i = 0; i < state.filters.length; i++) {
         if (state.filters[i].id === action.payload.id) {
@@ -67,8 +65,6 @@ export const SearchBoxSlice = createSlice({
     },
 
     selectFilterToExcludeOption(state, action) {
-      console.log('HELLO sELEECt')
-
       state.filters = state.filters.filter((tag) => tag.id !== action.payload.id)
       for (let i = 0; i < state.exculudedFilters.length; i++) {
         if (state.exculudedFilters[i].id === action.payload.id) {

@@ -48,13 +48,21 @@ export const ProductCreate_Step2 = (props: Props) => {
       const [reorderedItem] = items.splice(result.source.index, 1)
       items.splice(result.destination.index, 0, reorderedItem)
       dispatch(updateSectionsOrder(items))
-    } else if (result.destination.droppableId === 'main-clip') {
+
+    } 
+    
+    
+    
+    else if (result.destination.droppableId === 'main-clip') {
       if (!result.destination) return
       const items = Array.from(sectionsProduct[getClipsIndex(sectionsProduct)].isClips.clips)
       const [reorderedItem] = items.splice(result.source.index, 1)
       items.splice(result.destination.index - 1, 0, reorderedItem)
       dispatch(changeClipPosition(items))
-    } else if (result.source.droppableId === 'clips') {
+    } 
+    
+    
+    else if (result.source.droppableId === 'clips') {
       if (result.source.draggableId === 'main-clip-drg-id') {
         if (!result.destination) return
         const items = Array.from(sectionsProduct[getClipsIndex(sectionsProduct)].isClips.clips)
@@ -70,13 +78,21 @@ export const ProductCreate_Step2 = (props: Props) => {
     }
   }
 
+
+
+  
   const addNewBlock = () => {
-    dispatch(addNewSection(null))
+    dispatch(addNewSection())
     return null
   }
   const deleteBlock = (index: number) => {
     dispatch(deleteSection(index))
   }
+
+
+
+
+  
   const createTag = (event: any) => {
     if (event.code === 'Space') {
       dispatch(
@@ -92,6 +108,10 @@ export const ProductCreate_Step2 = (props: Props) => {
   const deleteTag = (id: number) => {
     dispatch(ProductCreateStep2OnChanges({ type: 'product_tags', actionType: 'delete', id: id }))
   }
+
+
+
+  
   const productsOnBlurs = (type: string) => {
     // dispatch(ProductCreateStep2OnBlurs({type:type}))
   }
@@ -106,11 +126,11 @@ export const ProductCreate_Step2 = (props: Props) => {
           Title
         </label>
         <input className="input1" value={productName} onChange={productNameHandle} type="text" />
-        <label className="error" htmlFor="title">
+        <span className="error" >
           {validated === 'not-valid' &&
             !validators.isNameFilled.valid &&
             validators.isNameFilled.message}
-        </label>
+        </span>
       </CreateProductLabelCont>
 
       <CreateProductLabelCont key={0}>
@@ -125,11 +145,11 @@ export const ProductCreate_Step2 = (props: Props) => {
           />
         )}
         {sectionsProduct[0].isEditor && (
-          <label className="error" htmlFor="title">
+          <span className="error">
             {validated === 'not-valid' &&
               !validators.isDescriptionFilled.valid &&
               validators.isDescriptionFilled.message}
-          </label>
+          </span>
         )}
       </CreateProductLabelCont>
 
@@ -188,11 +208,11 @@ export const ProductCreate_Step2 = (props: Props) => {
           ))}
           <input onKeyDown={createTag} />
         </CreateProduct_Tags_STY>
-        <label className="error">
+        <span className="error">
           {validated === 'not-valid' &&
             !validators.isTagsFilled.valid &&
             validators.isTagsFilled.message}
-        </label>
+        </span>
       </CreateProduct_TagsCont_STY>
 
       <DragDropContext onDragEnd={handleOnDragEnd}>
