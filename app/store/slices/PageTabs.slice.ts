@@ -1,4 +1,4 @@
-import { RootState } from '../store/store'
+import { RootState } from '..';
 import { createSlice } from '@reduxjs/toolkit'
 import { scroller } from 'react-scroll'
 

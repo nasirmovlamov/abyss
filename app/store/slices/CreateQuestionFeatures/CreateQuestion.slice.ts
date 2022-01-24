@@ -11,13 +11,13 @@ export const CreateQuestionSlice = createSlice({
 
   reducers: {
     mentionProductAtQuestionCreate(state, action) {
-      if (state.linkedProducts.filter((product) => product.id === action.payload.id).length === 0) {
+      if (state.linkedProducts.filter((product:any) => product.id === action.payload.id).length === 0) {
         state.linkedProducts.push(action.payload)
       }
     },
 
     mentionUserAtQuestionCreate(state, action) {
-      if (state.mentionedUsers.filter((product) => product.id === action.payload.id).length === 0) {
+      if (state.mentionedUsers.filter((product:any) => product.id === action.payload.id).length === 0) {
         state.mentionedUsers.push(action.payload)
       }
     },
@@ -58,7 +58,7 @@ export const CreateQuestionSlice = createSlice({
     },
 
     questionDeleteTagOnClickHandler(state, action) {
-      state.tags = state.tags.filter((tag) => tag.id !== action.payload.id)
+      state.tags = state.tags.filter((tag:any) => tag.id !== action.payload.id)
       if (state.tags.length === 0) {
         state.validations.tags.isValid = false
       } else {

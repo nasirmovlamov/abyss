@@ -1,4 +1,4 @@
-import { CaveTabInterface } from '../../../../app/store/state-Interfaces/Cave_Interfaces/CaveTabs.interface'
+import { CaveTabInterface } from '../../../../store/states/interfaces/Cave_Interfaces/CaveTabs.interface'
 import styled from 'styled-components'
 
 export const Cave_Tabs_Sty = styled.div`

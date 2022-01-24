@@ -75,8 +75,8 @@ export const PageFiltersSlice = createSlice({
       // state.filterTagsOnClick=action.payload
     },
     filterTagsOnDelete(state, action) {
-      state.filterTags = state.filterTags.filter((tag) => tag.id !== action.payload)
-      state.filterTags = state.filterTags.filter((tag) => tag.id !== action.payload)
+      state.filterTags = state.filterTags.filter((tag:any) => tag.id !== action.payload)
+      state.filterTags = state.filterTags.filter((tag:any) => tag.id !== action.payload)
       setCookie('filterTags', JSON.stringify(state.filterTags), 1)
     },
   },

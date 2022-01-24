@@ -1,8 +1,8 @@
 import React, { Component, useEffect, useState } from 'react'
 
-import SearchBoxStaticVersion from '../../../components/SearchBoxStaticVersion'
-import StoreLayout from '../../../components/Store/StoreLayout'
-import StoreValidate from '../../../components/Store/StoreValidate'
+import SearchBoxStaticVersion from '../../../app/components/modules/SearchBoxStaticVersion';
+import StoreLayout from '../../../app/components/templates/Store/StoreLayout';
+import StoreValidate from '../../../app/components/templates/Store/StoreValidate';
 
 interface Props {}
 

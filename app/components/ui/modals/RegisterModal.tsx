@@ -1,4 +1,5 @@
 import * as Form_STY from '../../../styles/ui/elements/Form.style'
+import * as authThunk from '../../../../app/store/thunks/User.thunk'
 
 import { FormEvent, ReactElement } from 'react'
 import {
@@ -69,7 +70,7 @@ function RegisterModal({}: Props): ReactElement {
         />
         <Form_STY.Error_STY error={registerErrors.name}>
           {registerErrors.name &&
-            registerErrors.name.map((error, index) => <span key={index}> {error}</span>)}
+            registerErrors.name.map((error:any, index:any) => <span key={index}> {error}</span>)}
         </Form_STY.Error_STY>
       </Form_STY.InputGroup_STY>
 
@@ -85,7 +86,7 @@ function RegisterModal({}: Props): ReactElement {
         />
         <Form_STY.Error_STY error={registerErrors.email}>
           {registerErrors.email &&
-            registerErrors.email.map((error, index) => <span key={index}>{error}</span>)}
+            registerErrors.email.map((error:any, index:any) => <span key={index}>{error}</span>)}
         </Form_STY.Error_STY>
       </Form_STY.InputGroup_STY>
 
@@ -101,7 +102,7 @@ function RegisterModal({}: Props): ReactElement {
         />
         <Form_STY.Error_STY error={registerErrors.password}>
           {registerErrors.password &&
-            registerErrors.password.map((error, index) => <span key={index}>{error}</span>)}
+            registerErrors.password.map((error:any, index:any) => <span key={index}>{error}</span>)}
         </Form_STY.Error_STY>
       </Form_STY.InputGroup_STY>
 

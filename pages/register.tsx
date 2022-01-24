@@ -1,4 +1,4 @@
-import * as LoginPage_STY from '../styles/components/styled-blocks/AuthStyle/Login.style'
+import * as LoginPage_STY from '../app/styles/ui/modules/AuthStyle/Login.style'
 
 import Image from 'next/image'
 import React from 'react'

@@ -1,5 +1,4 @@
-import { CreateQuestionInterface } from './../state-Interfaces/CreateQuestionInterface'
-
+import { CreateQuestionInterface } from '../interfaces/CreateQuestion.interface';
 export const CreateQuestionState: CreateQuestionInterface = {
   questionTitle: '',
   linkedProducts: [],

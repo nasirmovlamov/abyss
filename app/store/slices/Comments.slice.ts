@@ -111,7 +111,7 @@ export const CommentsSlice = createSlice({
 
     //Delete Comment THUNK
     builder.addCase(deleteComment.fulfilled, (state, { payload }) => {
-      state.comments = state.comments.filter((answer) => answer.id !== payload.id)
+      state.comments = state.comments.filter((answer:any) => answer.id !== payload.id)
       successToast('top-right', payload.data.message)
     }),
       builder.addCase(deleteComment.pending, (state, { payload }) => {}),
@@ -121,7 +121,7 @@ export const CommentsSlice = createSlice({
 
     //EDIT Answer Comment THUNK
     builder.addCase(edit_Answer_CommentThunk.fulfilled, (state, { payload }) => {
-      state.comments = state.comments.map((comment) => {
+      state.comments = state.comments.map((comment:any) => {
         if (comment.id === payload.data.id) {
           comment.content = payload.data.content
           comment.updated_at = payload.data.updated_at
@@ -142,7 +142,7 @@ export const CommentsSlice = createSlice({
 
     //EDIT Question Comment THUNK
     builder.addCase(edit_Question_CommentThunk.fulfilled, (state, { payload }) => {
-      state.comments = state.comments.map((comment) => {
+      state.comments = state.comments.map((comment:any) => {
         if (comment.id === payload.data.id) {
           comment.content = payload.data.content
           comment.updated_at = payload.data.updated_at

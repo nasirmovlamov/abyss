@@ -10,6 +10,7 @@ import {
 } from '../../../styles/ui/modules/CommentsTab.style'
 import { comments, comments_types } from '../../../store/slices/Comments.slice'
 
+import Comment from '../elements/Comment';
 import { ReactElement } from 'react'
 import { useAppSelector } from '../../../store/states/store.hooks'
 import { useCommentsTabHook } from '../../../hooks/useCommentsTab.hook'
@@ -31,7 +32,7 @@ function CommentModal({}: Props): ReactElement {
           </CommentsTabMainNameStyle>
 
           <AllCommentsCont>
-            {Comments.map((comment) => (
+            {Comments.map((comment:any) => (
               <Comment key={comment.id} comment={comment} />
             ))}
           </AllCommentsCont>

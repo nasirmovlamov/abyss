@@ -1,10 +1,5 @@
-import { faEdit, faEllipsisV, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import * as SingleQuestion_STY from "../../../styles/pages/SingleQuestionPage.styled"
 
-import { useCommentHook } from '../../../hooks/useComment.hook';
-import { comments_types, edit_comment_data } from '../../../store/slices/Comments.slice';
-import { user_data } from '../../../store/slices/User.slice';
-import { useAppSelector } from '../../../store/states/store.hooks';
 import {
   CommentAvatar,
   CommentContent,
@@ -12,7 +7,13 @@ import {
   CommentStyle,
   CommentUserName,
 } from '../../../styles/ui/modules/CommentsTab.style';
+import { comments_types, edit_comment_data } from '../../../store/slices/Comments.slice';
+import { faEdit, faEllipsisV, faTrash } from '@fortawesome/free-solid-svg-icons';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useAppSelector } from '../../../store/states/store.hooks';
+import { useCommentHook } from '../../../hooks/useComment.hook';
+import { user_data } from '../../../store/slices/User.slice';
 
 interface Props {
   comment: any

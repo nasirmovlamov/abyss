@@ -1,9 +1,10 @@
-import { useRouter } from 'next/router';
+import * as authThunk from "../../../../app/store/thunks/User.thunk";
+
 import React, { ReactElement, useEffect, useState } from 'react';
-
-import { user_data, user_verify } from '../../../../app/store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from '../../../../app/store/states/store.hooks';
+import { user_data, user_verify } from '../../../../app/store/slices/User.slice';
 
+import { useRouter } from 'next/router';
 
 /* eslint-disable react-hooks/exhaustive-deps */
 interface Props { }

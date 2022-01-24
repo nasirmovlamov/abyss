@@ -1,12 +1,13 @@
-import { useEffect } from 'react';
-import { useInView } from 'react-intersection-observer';
+import * as SideProducts_STY from '../../../styles/ui/modules/SideProducts.style';
 
-import { side_product_data } from '../../../store/slices/SideProducts.slice';
 import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks';
-import { getSideProducts } from '../../../store/thunks/SideProducts.thunk';
+
 import FormQuestionSkeleton from '../skeletons/ForumQuestionSkeleton';
 import SideProduct from './SideProduct';
-
+import { getSideProducts } from '../../../store/thunks/SideProducts.thunk';
+import { side_product_data } from '../../../store/slices/SideProducts.slice';
+import { useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 interface Props { }
 
@@ -24,7 +25,7 @@ const SideProductCont = (props: Props) => {
 
   return (
     <SideProducts_STY.SideCont_STY top={sideProductContData.distanceFromTop}>
-      {sideProductContData.products.map((element, index) => (
+      {sideProductContData.products.map((element:any, index:any) => (
         <SideProducts_STY.SideProduct_STY key={index}>
           <SideProduct data={element} />
         </SideProducts_STY.SideProduct_STY>

@@ -1,3 +1,5 @@
+import * as authThunk from '../../../../app/store/thunks/User.thunk'
+
 import { FormEvent, ReactElement } from 'react'
 import {
   changeModalAction,

@@ -1,17 +1,8 @@
-import axios from 'axios';
-import HTMLReactParser from 'html-react-parser';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { useInView } from 'react-intersection-observer';
-
-import { BASE_API_INSTANCE } from '../../../helpers/api/BaseInstance';
-import { changeProductTabActiveWithoutScroll, store_tabs } from '../../../store/slices/PageTabs.slice';
-import { single_product_data } from '../../../store/slices/SingleProduct.slice';
-import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks';
+import { BlurredEditor, DetailsCont_STY } from '../../../styles/ui/modules/CreateQuestionModal.style';
 import {
   ClipBody,
-  ClipsCont,
   ClipTitle,
+  ClipsCont,
   LabelCont,
   LabelContent,
   LabelKey,
@@ -22,10 +13,19 @@ import {
   StoreForumCont,
   StoreForumTitle,
 } from '../../../styles/pages/Store.styled';
-import { CodeMirror_ReadOnly_STY } from '../../../styles/ui/modules/CreateProduct_Style/Steps/ProductCreate_Step1.style';
-import { BlurredEditor, DetailsCont_STY } from '../../../styles/ui/modules/CreateQuestionModal.style';
-import { autoSuccessToaster } from '../../ui/toasters/AutoSuccessToast';
+import { changeProductTabActiveWithoutScroll, store_tabs } from '../../../store/slices/PageTabs.slice';
+import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks';
+import { useEffect, useState } from 'react';
 
+import { BASE_API_INSTANCE } from '../../../helpers/api/BaseInstance';
+import { CodeMirror_ReadOnly_STY } from '../../../styles/ui/modules/CreateProduct_Style/Steps/ProductCreate_Step1.style';
+import HTMLReactParser from 'html-react-parser';
+import { autoSuccessToaster } from '../../ui/toasters/AutoSuccessToast';
+import axios from 'axios';
+import blurredEditor from '../../../../public/blurred_editor.jpg';
+import { single_product_data } from '../../../store/slices/SingleProduct.slice';
+import { useInView } from 'react-intersection-observer';
+import { useRouter } from 'next/router';
 
 interface Props { }
 
@@ -37,7 +37,7 @@ const StoreProductForNonSubscribed = (props: Props) => {
   const storeTabs = useAppSelector(store_tabs)
   const singleProductData = useAppSelector(single_product_data)
 
-  const activeStoreTab = storeTabs.filter((tab) => tab.isActive)[0]
+  const activeStoreTab = storeTabs.filter((tab:any) => tab.isActive)[0]
   const [mainClip, setmainClip] = useState('')
 
   useEffect(() => {

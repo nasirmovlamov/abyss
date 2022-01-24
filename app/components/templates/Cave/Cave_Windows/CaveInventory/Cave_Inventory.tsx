@@ -1,20 +1,19 @@
-import { useEffect, useState } from 'react';
-import { useInView } from 'react-intersection-observer';
-import { scroller } from 'react-scroll';
-import { useScrollYPosition } from 'react-use-scroll-position';
-
-import { BASE_API_INSTANCE } from '../../../../../helpers/api/BaseInstance';
-import { cave_side_data } from '../../../../../store/slices/CaveFeatures/CaveSide.slice';
-import { cave_actions, cave_tabs } from '../../../../../store/slices/CaveFeatures/CaveTabs.slice';
-import { inventoryTabs } from '../../../../../store/states/states/Cave_States/CaveTabs.state';
-import { useAppDispatch, useAppSelector } from '../../../../../store/states/store.hooks';
 import {
   CaveInventoryBlocks_Sty,
   CaveInventoryDefaultBlock_Sty,
 } from '../../../../../styles/ui/modules/Cave_Style/CaveInventory/CaveInventory.style';
-import AnswerSkeleton from '../../../../ui/skeletons/AnswerSkeleton';
-import CaveProduct from '../../CaveProduct';
+import { cave_actions, cave_tabs } from '../../../../../store/slices/CaveFeatures/CaveTabs.slice';
+import { useAppDispatch, useAppSelector } from '../../../../../store/states/store.hooks';
+import { useEffect, useState } from 'react';
 
+import AnswerSkeleton from '../../../../ui/skeletons/AnswerSkeleton';
+import { BASE_API_INSTANCE } from '../../../../../helpers/api/BaseInstance';
+import CaveProduct from '../../CaveProduct';
+import { cave_side_data } from '../../../../../store/slices/CaveFeatures/CaveSide.slice';
+import { inventoryTabs } from '../../../../../store/states/states/Cave_States/CaveTabs.state';
+import { scroller } from 'react-scroll';
+import { useInView } from 'react-intersection-observer';
+import { useScrollYPosition } from 'react-use-scroll-position';
 
 interface Props { }
 
@@ -37,7 +36,7 @@ const Cave_Inventory = (props: Props) => {
 
   const caveTabs = useAppSelector(cave_tabs)
   const caveInventoryTabs = caveTabs['inventory']
-  const activeTab = caveInventoryTabs.filter((tab) => tab.active)[0]
+  const activeTab = caveInventoryTabs.filter((tab:any) => tab.active)[0]
 
   const savedTab = inventoryTabs.filter((tab) => tab.name === 'saved')[0]
   const createdTab = inventoryTabs.filter((tab) => tab.name === 'created')[0]

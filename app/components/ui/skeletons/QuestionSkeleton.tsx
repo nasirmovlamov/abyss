@@ -1,10 +1,9 @@
+import { ContentCont_STY, PersonCont_STY, QuestionCont_STY, QuestionStatistics_STY, QuestionTagsAndDate_STY, QuestionTags_STY } from "../../../styles/pages/SingleQuestionPage.styled"
+
 import { ReactElement } from "react"
 import { SkeletonBox } from "../../../styles/global/styled-components/Global.style"
-import { QuestionCont_STY, PersonCont_STY, ContentCont_STY, QuestionTagsAndDate_STY, QuestionTags_STY, QuestionStatistics_STY } from "../../../styles/pages/SingleQuestionPage.styled"
-import {
 
-
-  interface Props {}
+interface Props {}
 
 function QuestionSkeleton({ }: Props): ReactElement {
   return (

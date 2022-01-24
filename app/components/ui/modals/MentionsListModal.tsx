@@ -47,7 +47,7 @@ function MentionsListModal({}: Props): ReactElement {
       </div>
       {
         <>
-          {mentions.map((answer) => (
+          {mentions.map((answer:any) => (
             <Answer key={answer.id} direction="top" answer={answer} />
           ))}
         </>

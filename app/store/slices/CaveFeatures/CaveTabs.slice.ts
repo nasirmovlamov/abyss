@@ -7,16 +7,16 @@ export const CaveTabsSlice = createSlice({
   initialState: CaveState.caveTabsState,
   reducers: {
     selectTab(state, { payload }) {
-      state[payload.window].filter((tab) => tab.active === true)[0].active = false
-      state[payload.window].filter((tab) => tab.id === payload.tab.id)[0].active = true
+      state[payload.window].filter((tab:any) => tab.active === true)[0].active = false
+      state[payload.window].filter((tab:any) => tab.id === payload.tab.id)[0].active = true
     },
 
     hoverTab(state, { payload }) {
-      state[payload.window].filter((tab) => tab.id === payload.tab.id)[0].hovered = true
+      state[payload.window].filter((tab:any) => tab.id === payload.tab.id)[0].hovered = true
     },
 
     unHoverTab(state, { payload }) {
-      state[payload.window].filter((tab) => tab.id === payload.tab.id)[0].hovered = false
+      state[payload.window].filter((tab:any) => tab.id === payload.tab.id)[0].hovered = false
     },
   },
 
