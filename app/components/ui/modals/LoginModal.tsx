@@ -11,7 +11,7 @@ const LoginModal = () => {
   const allModals = useAppSelector(user_modals)
   const loginForm = useAppSelector(login_form)
 
-  const formSubmit = async (e: Event) => {
+  const formSubmit = async (e: FormEvent) => {
     e.preventDefault()
     dispatch(userLogin(loginForm))
   }

@@ -1,7 +1,3 @@
-import { ReactElement } from 'react';
-import { ReactElement } from 'react';
-
-import { SkeletonBox } from '../../../styles/global/styled-components/Global.style';
 import {
   ContentCont_STY,
   PersonCont_STY,
@@ -9,20 +5,10 @@ import {
   QuestionStatistics_STY,
   QuestionTags_STY,
   QuestionTagsAndDate_STY,
-} from '../../../styles/pages/SingleQuestionPage.styled';
-import {
-  ContentCont_STY,
-  PersonCont_STY,
-  QuestionCont_STY,
-  QuestionStatistics_STY,
-  QuestionTags_STY,
-  QuestionTagsAndDate_STY,
-} from '../../../styles/styled-components/base/pages/SingleQuestionPage.style';
-import { SkeletonBox } from '../../../styles/styled-components/global.style';
+} from 'app/styles/styled-components/base/pages/SingleQuestionPage.style';
+import { SkeletonBox } from 'app/styles/styled-components/global.style';
 
-interface Props {}
-
-function QuestionSkeleton({}: Props): ReactElement {
+const QuestionSkeleton = () => {
   return (
     <>
       <div style={{ marginBottom: '25px' }}></div>
