@@ -1,12 +1,10 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
-import { ScrollToTop_STY } from '../../../styles/ScrollToTop.style'
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
-import { useScrollYPosition } from 'react-use-scroll-position'
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ScrollToTop_STY } from 'app/styles/styled-components/base/elements/ScrollToTop.style';
+import React from 'react';
+import { useScrollYPosition } from 'react-use-scroll-position';
 
-interface Props {}
-
-export const ScrollToTopButton = (props: Props) => {
+export const ScrollToTopButton = () => {
   const scrollY = useScrollYPosition()
 
   const scrollToTop = () => {

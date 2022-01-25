@@ -32,10 +32,9 @@ import {
   ProductTitle,
   ProductViewCont,
   StoreListingProductStyle,
-} from '../../../styles/ui/modules/ListingStoreProduct.styled';
+} from '../../../styles/styled-components/base/modules/ListingStoreProduct.styled';
 import NavLink from '../elements/NavLink';
 import StarCountShow from '../elements/StarCountShow';
-
 
 interface Props {
   data: any

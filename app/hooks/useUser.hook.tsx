@@ -1,7 +1,7 @@
 //useFetch.js
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 
-import { BASE_API_INSTANCE } from '../helpers/api/BaseInstance'
+import { BASE_API_INSTANCE } from '../helpers/api/BaseInstance';
 
 export const useUser = (url: string) => {
   const [isUserAuthorized, setisUserAuthorized] = useState<'yes' | 'no' | 'pending'>('pending')

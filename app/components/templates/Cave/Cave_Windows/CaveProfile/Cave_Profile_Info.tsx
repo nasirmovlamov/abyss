@@ -1,13 +1,11 @@
+import { resend_mail, user_data } from 'app/store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
+import { resendEmail } from 'app/store/thunks/User.thunk';
+import * as CavePInfo from 'app/styles/styled-components/base/modules/Cave_Style/CaveProfile/CaveProfileInfo.style';
 import Image from 'next/image';
 import Loader from 'react-spinners/HashLoader';
 
-import { resend_mail, user_data } from '../../../../../store/slices/User.slice';
-import { useAppDispatch, useAppSelector } from '../../../../../store/states/store.hooks';
-import { resendEmail } from '../../../../../store/thunks/User.thunk';
-import * as CavePInfo from '../../../../../styles/ui/modules/Cave_Style/CaveProfile/CaveProfileInfo.style';
-
-
-interface Props { }
+interface Props {}
 
 const Cave_Profile_Info = (props: Props) => {
   const dispatch = useAppDispatch()
@@ -58,7 +56,7 @@ const Cave_Profile_Info = (props: Props) => {
         <CavePInfo.CaveProfile_User>
           <div className="seperator" style={{ height: '25px' }}></div>
           <div className="profileImage">
-            <Image src="/main-logo.svg" width="120" height="120" alt="rank user" />
+            <Image src="/icons/main-logo.svg" width="120" height="120" alt="rank user" />
           </div>
           <div className="userRateCont">
             <div className="user_icon">

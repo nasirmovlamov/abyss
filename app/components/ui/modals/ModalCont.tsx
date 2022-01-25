@@ -1,6 +1,5 @@
-import React, { ReactChild, ReactElement } from 'react'
-
-import { ModalCont_STY } from '../../../styles/ui/modules/Modal_Style/ModalCont.style'
+import { ModalCont_STY } from 'app/styles/styled-components/base/modules/Modal_Style/ModalCont.style';
+import React, { ReactChild, ReactElement } from 'react';
 
 interface Props {
   children: any

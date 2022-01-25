@@ -1,3 +1,11 @@
+import React, { ReactElement, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+
+import { getRooms } from '../../helpers/functions/ChatBoxLogic';
+import { chat_rooms, closeChat, opened_chat_room_id, setRoomId } from '../../store/slices/ChatBox.slice';
+import { user_data } from '../../store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
+import { checkRoomChat, loadArchieveMessages, openRooms, sendMessageToRoom } from '../../store/thunks/ChatBox.thunk';
 import {
   ChatMain,
   ChatMessage,
@@ -11,27 +19,9 @@ import {
   ChatSendMessage,
   ChatWindow,
   CloseChatBox,
-} from '../../styles/ui/modules/ChatBox.style'
+} from '../../styles/styled-components/base/modules/ChatBox.style';
+
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { ReactElement, useEffect, useLayoutEffect, useRef, useState } from 'react'
-import {
-  chat_rooms,
-  closeChat,
-  opened_chat_room_id,
-  setRoomId,
-} from '../../store/slices/ChatBox.slice'
-import {
-  checkRoomChat,
-  loadArchieveMessages,
-  openRooms,
-  sendMessageToRoom,
-} from '../../store/thunks/ChatBox.thunk'
-import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks'
-
-import { getRooms } from '../../helpers/functions/ChatBoxLogic'
-import { useInView } from 'react-intersection-observer'
-import { user_data } from '../../store/slices/User.slice'
-
 interface Props {}
 
 export default function ChatBox({}: Props): ReactElement {

@@ -1,30 +1,19 @@
-import * as Form_STY from '../../../styles/ui/elements/Form.style'
-import * as authThunk from '../../../../app/store/thunks/User.thunk'
+import { changeModalAction, register_errors, register_form, register_Form_OnChange } from 'app/store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
+import { userRegister } from 'app/store/thunks/User.thunk';
+import * as Form_STY from 'app/styles/styled-components/base/elements/Form.style';
+import { ModalFORM_STY } from 'app/styles/styled-components/base/modules/Modal_Style/ModalCont.style';
+import { FormEvent, ReactElement } from 'react';
 
-import { FormEvent, ReactElement } from 'react'
-import {
-  changeModalAction,
-  register_Form_OnChange,
-  register_errors,
-  register_form,
-  user_modals,
-} from '../../../store/slices/User.slice'
-import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks'
-
-import { ModalFORM_STY } from '../../../styles/ui/modules/Modal_Style/ModalCont.style'
-
-interface Props {}
-
-function RegisterModal({}: Props): ReactElement {
+const RegisterModal = () => {
   const dispatch = useAppDispatch()
   const registerErrors = useAppSelector(register_errors)
-  const allModals = useAppSelector(user_modals)
   const registerForm = useAppSelector(register_form)
 
   const formSubmit = (e: FormEvent) => {
     e.preventDefault()
     try {
-      dispatch(authThunk.userRegister(registerForm))
+      dispatch(userRegister(registerForm))
     } catch (error) {}
   }
 
@@ -70,7 +59,7 @@ function RegisterModal({}: Props): ReactElement {
         />
         <Form_STY.Error_STY error={registerErrors.name}>
           {registerErrors.name &&
-            registerErrors.name.map((error:any, index:any) => <span key={index}> {error}</span>)}
+            registerErrors.name.map((error: any, index: any) => <span key={index}> {error}</span>)}
         </Form_STY.Error_STY>
       </Form_STY.InputGroup_STY>
 
@@ -86,7 +75,7 @@ function RegisterModal({}: Props): ReactElement {
         />
         <Form_STY.Error_STY error={registerErrors.email}>
           {registerErrors.email &&
-            registerErrors.email.map((error:any, index:any) => <span key={index}>{error}</span>)}
+            registerErrors.email.map((error: any, index: any) => <span key={index}>{error}</span>)}
         </Form_STY.Error_STY>
       </Form_STY.InputGroup_STY>
 
@@ -102,7 +91,9 @@ function RegisterModal({}: Props): ReactElement {
         />
         <Form_STY.Error_STY error={registerErrors.password}>
           {registerErrors.password &&
-            registerErrors.password.map((error:any, index:any) => <span key={index}>{error}</span>)}
+            registerErrors.password.map((error: any, index: any) => (
+              <span key={index}>{error}</span>
+            ))}
         </Form_STY.Error_STY>
       </Form_STY.InputGroup_STY>
 

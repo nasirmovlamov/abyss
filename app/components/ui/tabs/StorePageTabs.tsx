@@ -2,11 +2,11 @@ import React, { ReactElement, useEffect, useState } from 'react';
 
 import { selectSortSearchOption, selectTypeSearchOption, store_search_data } from '../../../store/slices/SearchBox.slice';
 import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks';
-import * as PAGE_STY from '../../../styles/ui/modules/PageTabs.style';
+import * as PAGE_STY from '../../../styles/styled-components/base/modules/PageTabs.style';
 
-interface Props { }
+interface Props {}
 
-function PageTabs({ }: Props): ReactElement {
+function PageTabs({}: Props): ReactElement {
   const dispatch = useAppDispatch()
   const storeSearchData = useAppSelector(store_search_data)
 

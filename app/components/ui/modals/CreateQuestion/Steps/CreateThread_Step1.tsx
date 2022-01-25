@@ -1,16 +1,9 @@
-import * as Step1_STY from '../../../../../styles/ui/modules/CreateProduct_Style/CreateProduct_Step1.style'
+import { create_thread_data, CreateThreadActions } from 'app/store/slices/CreateThread/CreateThread.slice';
+import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
+import * as Step1_STY from 'app/styles/styled-components/base/modules/CreateProduct_Style/CreateProduct_Step1.style';
+import React from 'react';
 
-import {
-  CreateThreadActions,
-  create_thread_data,
-} from '../../../../../store/slices/CreateThread/CreateThread.slice'
-import { useAppDispatch, useAppSelector } from '../../../../../store/states/store.hooks'
-
-import React from 'react'
-
-interface Props {}
-
-const CreateThread_Step1 = (props: Props) => {
+const CreateThread_Step1 = () => {
   const dispatch = useAppDispatch()
   const createThreadData = useAppSelector(create_thread_data)
 

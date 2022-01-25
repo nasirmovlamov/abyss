@@ -1,8 +1,7 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
-import { ReactElement, useEffect, useRef, useState } from 'react';
-import { useScrollDirection } from 'react-use-scroll-direction';
+import { useEffect, useRef, useState } from 'react';
 import { useScrollYPosition } from 'react-use-scroll-position';
 
 import { getCookie } from '../../helpers/functions/CookieFunctions';
@@ -24,23 +23,20 @@ import {
 import { changeModalAction } from '../../store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
 import { forumSearchInfinity, storeSearchInfinity, unHoverSearchAsync } from '../../store/thunks/SearchBox.thunk';
-import * as SearchForStaticVersion_STY from '../../styles/ui/modules/SearchBoxStatic.style';
+import * as SearchForStaticVersion_STY from '../../styles/styled-components/base/modules/SearchBoxStatic.style';
 
-
-interface Props { }
-
-function SearchBoxStaticVersion({ }: Props): ReactElement {
+const SearchBoxStaticVersion = () => {
   const router = useRouter()
   const [pagePath, setpagePath] = useState('')
   const dispatch = useAppDispatch()
   const searchData = useAppSelector(search_data)
+  const [topPercent, setTopPercent] = useState(100)
 
   const { isSearchVisible, isFocused, isHovered } = searchData
-  const searchBoxRef = useRef<HTMLDivElement>(null)
-  const searchContRef = useRef<HTMLDivElement>(null)
   const searchInputRef = useRef<HTMLInputElement>(null)
   const scrollY = useScrollYPosition()
   const forumSearchData = useAppSelector(forum_search_data)
+
   const focusSearchHandle = (e: any) => {
     dispatch(focusSearchBox(null))
     e.target.select()
@@ -48,18 +44,11 @@ function SearchBoxStaticVersion({ }: Props): ReactElement {
   const { searchOptions } = forumSearchData
   const forumSearchOptions = searchOptions
 
-  const [scrollSearchBox, setscrollSearchBox] = useState<number>(0)
-  const [scrollYInside, setscrollYInside] = useState(0)
-
   const searchQuery = useAppSelector(search_query)
-  const [searchValue, setSearchValue] = useState('')
-  // const [searchValue, setSearchValue] = useState("")
 
   const changeSearchValue = (e: string) => {
     dispatch(searchValueOnChange(e))
   }
-
-  const { isScrollingUp, isScrollingDown } = useScrollDirection()
 
   const pagePathDetector = (pathname: string) => {
     if (pathname === '/') {
@@ -82,8 +71,8 @@ function SearchBoxStaticVersion({ }: Props): ReactElement {
     }
   }
 
-  const searchHandleWithEnter = (key: number) => {
-    if (key === 13) {
+  const handleSearch = (key?: number) => {
+    if (!key || (key && key === 13)) {
       window.scrollTo({
         top: 0,
       })
@@ -116,54 +105,6 @@ function SearchBoxStaticVersion({ }: Props): ReactElement {
       }
     }
   }
-
-  const searchHandleWithSubmit = () => {
-    if (searchQuery !== '') {
-      window.scrollTo({
-        top: 0,
-      })
-      if (forumSearchOptions.sendedQuery !== searchQuery) {
-        if (router.pathname !== '/forum') {
-          dispatch(
-            forumSearchInfinity({
-              query: searchQuery,
-              from: 0,
-              forumType: searchData.searchBoxData.forum.searchOptions.forumType,
-              filterTags: searchData.filters,
-              excludedFilters: searchData.exculudedFilters,
-            }),
-          )
-        }
-        if (router.pathname !== '/store') {
-          dispatch(
-            storeSearchInfinity({
-              query: searchQuery,
-              from: 0,
-              storeType: searchData.searchBoxData.store.searchOptions.storeType,
-              filterTags: searchData.filters,
-              excludedFilters: searchData.exculudedFilters,
-            }),
-          )
-        }
-      }
-    }
-  }
-
-  // const searchScrollControl = async (router:any) => {
-  //         if(isScrollingDown && isFocused)
-  //           dispatch(changeSearchVisibilty('not-visible'))
-  // }
-
-  // const thunkHasHovered = async (router:any) => {
-  //     // searchContRef.current!.setAttribute("style", `top: 60px;`)
-  //     dispatch(changeSearchVisibilty('not-visible'))
-  // }
-
-  // useEffect( () => {
-  //     if(isScrollingDown){
-  //         searchScrollControl(router.asPath)
-  //     }
-  // }, [isScrollingDown,  router.asPath , scrollY])
 
   useEffect(() => {
     if (router.isReady) {
@@ -314,7 +255,7 @@ function SearchBoxStaticVersion({ }: Props): ReactElement {
   return (
     <>
       <SearchForStaticVersion_STY.SearchBoxThunkAndCont_STY
-        scrollFromTop={scrollY}
+        topPercent={topPercent}
         boxFocused={isFocused}
         thunkHovered={isHovered}
         onMouseEnter={() => dispatch(hoverSearchBox(null))}
@@ -327,14 +268,14 @@ function SearchBoxStaticVersion({ }: Props): ReactElement {
             </SearchForStaticVersion_STY.SearchBoxPage_STY>
           )}
           <SearchForStaticVersion_STY.SearchCont_STY path={router.asPath}>
-            <SearchForStaticVersion_STY.SearchButtonLupa_STY onClick={searchHandleWithSubmit}>
+            <SearchForStaticVersion_STY.SearchButtonLupa_STY onClick={() => handleSearch()}>
               <FontAwesomeIcon icon={faSearch} />
             </SearchForStaticVersion_STY.SearchButtonLupa_STY>
             <SearchForStaticVersion_STY.SearchInput_STY
               onFocus={focusSearchHandle}
               onBlur={() => dispatch(blurSearchBox(null))}
               path={router.asPath}
-              onKeyDown={(e: any) => searchHandleWithEnter(e.keyCode)}
+              onKeyDown={(e: any) => e.keyCode === 13 && handleSearch()}
               value={searchQuery}
               onChange={(e: any) => changeSearchValue(e.target.value)}
               placeholder="Search..."

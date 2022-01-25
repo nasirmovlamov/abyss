@@ -1,4 +1,5 @@
 import { SIDEPRODUCT_INTERFACE } from '../interfaces/SideProducts.interface';
+
 export const SIDEPRODUCT_STATE: SIDEPRODUCT_INTERFACE = {
   selectedID: null,
   page: 1,

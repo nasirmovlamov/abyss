@@ -1,10 +1,10 @@
-import * as types from '../constants/App.contants'
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { BASE_API_INSTANCE } from '../../helpers/api/BaseInstance'
-import { autoErrorToaster } from '../../components/ui/toasters/AutoErrorToaster'
-import { autoSuccessToaster } from '../../components/ui/toasters/AutoSuccessToast'
-import { convertAnyFileBase64 } from '../../helpers/functions/ConvertBase64'
-import { createAsyncThunk } from '@reduxjs/toolkit'
+import { autoErrorToaster } from '../../components/ui/toasters/AutoErrorToaster';
+import { autoSuccessToaster } from '../../components/ui/toasters/AutoSuccessToast';
+import { BASE_API_INSTANCE } from '../../helpers/api/BaseInstance';
+import { convertAnyFileBase64 } from '../../helpers/functions/ConvertBase64';
+import * as types from '../constants/App.contants';
 
 // export const submitProduct = createAsyncThunk(
 //     types.GET_SINGLE_QUESTION, async (data:{}, {rejectWithValue}) => {

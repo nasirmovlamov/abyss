@@ -1,4 +1,5 @@
 import { AUTH_INTERFACE } from '../interfaces/Auth.interface';
+
 export const user_errors_data = {
   registerErrors: {
     errors: {

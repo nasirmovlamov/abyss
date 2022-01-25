@@ -1,4 +1,4 @@
-import { SingleProductInterface } from "../interfaces/SingleProduct.interface";
+import { SingleProductInterface } from '../interfaces/SingleProduct.interface';
 
 export const SingleProductState: SingleProductInterface = {
   selectedID: null,

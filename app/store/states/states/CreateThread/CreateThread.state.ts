@@ -1,4 +1,5 @@
 import { CreateThread_Interface } from '../../interfaces/CreateThread/CreatThread.interface';
+
 export const CreateThread_STATE: CreateThread_Interface = {
   threadType: 'not-selected',
   currentStage: 1,

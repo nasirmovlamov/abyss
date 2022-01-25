@@ -1,6 +1,6 @@
-import * as types from '../../constants/App.contants'
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { createAsyncThunk } from '@reduxjs/toolkit'
+import * as types from '../../constants/App.contants';
 
 export const selectAsyncCaveWindow = createAsyncThunk(
   types.SELECT_CAVE_WINDOW,

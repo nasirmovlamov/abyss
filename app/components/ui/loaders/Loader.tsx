@@ -1,6 +1,6 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement } from 'react';
 
-import styles from '../styles/components/css/Loader.module.css'
+import styles from '../styles/components/css/Loader.module.css';
 
 interface Props {}
 

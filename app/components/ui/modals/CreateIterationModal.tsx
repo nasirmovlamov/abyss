@@ -1,12 +1,12 @@
-import React, { ReactElement, useEffect, useState } from 'react'
+import { BASE_API_INSTANCE } from 'app/helpers/api/BaseInstance';
+import { changeModalAction } from 'app/store/slices/User.slice';
+import { useAppDispatch } from 'app/store/states/store.hooks';
+import { LabelCont } from 'app/styles/styled-components/base/modules/CreateQuestionModal.style';
+import { ModalFORM_STY } from 'app/styles/styled-components/base/modules/Modal_Style/ModalCont.style';
+import React, { ReactElement, useEffect, useState } from 'react';
 
-import { BASE_API_INSTANCE } from '../../../helpers/api/BaseInstance'
-import { LabelCont } from '../../../styles/ui/modules/CreateQuestionModal.style'
-import { ModalFORM_STY } from '../../../styles/ui/modules/Modal_Style/ModalCont.style'
-import { autoErrorToaster } from '../toasters/AutoErrorToaster'
-import { autoSuccessToaster } from '../toasters/AutoSuccessToast'
-import { changeModalAction } from '../../../store/slices/User.slice'
-import { useAppDispatch } from '../../../store/states/store.hooks'
+import { autoErrorToaster } from '../toasters/AutoErrorToaster';
+import { autoSuccessToaster } from '../toasters/AutoSuccessToast';
 
 interface Props {}
 

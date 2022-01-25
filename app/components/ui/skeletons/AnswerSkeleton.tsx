@@ -1,11 +1,7 @@
-import {
-  AnswerContentSkeleton,
-  AnswerStyle,
-  PersonCont,
-} from '../../../styles/ui/modules/Answer.style'
-import React, { ReactElement } from 'react'
+import React, { ReactElement } from 'react';
 
-import { SkeletonBox } from '../../../styles/global/styled-components/Global.style'
+import { AnswerContentSkeleton, AnswerStyle, PersonCont } from '../../../styles/styled-components/base/modules/Answer.style';
+import { SkeletonBox } from '../../../styles/styled-components/global.style';
 
 interface Props {}
 

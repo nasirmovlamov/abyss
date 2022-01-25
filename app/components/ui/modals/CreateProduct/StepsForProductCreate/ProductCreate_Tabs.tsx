@@ -1,15 +1,15 @@
+import React from 'react';
+
+import {
+  product_create_current_step,
+  product_create_steps_data,
+} from '../../../../../store/slices/CreateProductFeatures/CreateProduct.slice';
+import { useAppDispatch, useAppSelector } from '../../../../../store/states/store.hooks';
 import {
   CreateProduct_Tab_Seperator,
   CreateProduct_Tabs,
   CreateProduict_Tab_STY,
-} from '../../../../../styles/ui/modules/CreateProduct_Style/CreateProduct.style'
-import {
-  product_create_current_step,
-  product_create_steps_data,
-} from '../../../../../store/slices/CreateProductFeatures/CreateProduct.slice'
-import { useAppDispatch, useAppSelector } from '../../../../../store/states/store.hooks'
-
-import React from 'react'
+} from '../../../../../styles/styled-components/base/modules/CreateProduct_Style/CreateProduct.style';
 
 interface Props {}
 

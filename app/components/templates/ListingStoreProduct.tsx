@@ -2,7 +2,7 @@ import HTMLReactParser from 'html-react-parser';
 import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
 
-import abyssLogo from '../../../public/main-logo.svg';
+import abyssLogo from '../../../public/icons/main-logo.svg';
 import { changeProductTabActiveWithoutScroll } from '../../store/slices/PageTabs.slice';
 import { goProductPage, single_product_data } from '../../store/slices/SingleProduct.slice';
 import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
@@ -30,22 +30,22 @@ import {
   ProductTitle,
   ProductViewCont,
   StoreListingProductStyle,
-} from '../../styles/ui/modules/ListingStoreProduct.styled';
+} from '../../styles/styled-components/base/modules/ListingStoreProduct.styled';
 import StarCountShow from '../ui/elements/StarCountShow';
 
 interface Props {
   data:
-  | {
-    avatar: string
-    programingLanguage: string
-    lineCount: string
-    name: string
-    starCount: string
-    soldCount: string
-    price: string
-    tags: string[]
-  }
-  | any
+    | {
+        avatar: string
+        programingLanguage: string
+        lineCount: string
+        name: string
+        starCount: string
+        soldCount: string
+        price: string
+        tags: string[]
+      }
+    | any
 }
 
 function ListingStoreProduct({ data }: Props): ReactElement {

@@ -1,12 +1,9 @@
-import React, { Component, useEffect, useState } from 'react'
+import SearchBoxStaticVersion from 'app/components/modules/SearchBoxStaticVersion';
+import StoreLayout from 'app/components/templates/Store/StoreLayout';
+import StoreValidate from 'app/components/templates/Store/StoreValidate';
+import React from 'react';
 
-import SearchBoxStaticVersion from '../../../app/components/modules/SearchBoxStaticVersion';
-import StoreLayout from '../../../app/components/templates/Store/StoreLayout';
-import StoreValidate from '../../../app/components/templates/Store/StoreValidate';
-
-interface Props {}
-
-const SingleProductPage = (props: Props) => {
+const SingleProductPage = () => {
   return (
     <StoreLayout>
       <SearchBoxStaticVersion />

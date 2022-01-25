@@ -1,5 +1,5 @@
-import { CaveSideInterface } from './CaveSide.interface'
-import { CaveTabsInterface } from './CaveTabs.interface'
+import { CaveSideInterface } from './CaveSide.interface';
+import { CaveTabsInterface } from './CaveTabs.interface';
 
 export interface caveMainInterface {
   window: string

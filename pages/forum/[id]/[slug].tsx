@@ -1,43 +1,31 @@
+import MainLayout from 'app/components/layouts/Main.layout';
+import QuestionLayout from 'app/components/layouts/Question.layout';
+import PageFilters from 'app/components/modules/PageFilters';
+import { user_data } from 'app/store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
+import { getSingleQuestion } from 'app/store/thunks/Question.thunk';
 import { useRouter } from 'next/router';
 import { ReactElement, useEffect } from 'react';
 
-import PageMainLayout from '../../../app/components/layouts/PageMain.layout';
-import PageSideLayout from '../../../app/components/layouts/PageSide.layout';
-import QuestionLayout from '../../../app/components/layouts/Question.layout';
-import CommentModal from '../../../app/components/ui/sidebars/CommentsSidebar';
-import { is_comment_opened } from '../../../app/store/slices/Comments.slice';
-import { user_data } from '../../../app/store/slices/User.slice';
-import { useAppDispatch, useAppSelector } from '../../../app/store/states/store.hooks';
-import { getSingleQuestion } from '../../../app/store/thunks/Question.thunk';
-import { PageDefaultStyle } from '../../../app/styles/pages/Page.styled';
-
-
-// import { AnswerCont, AnswerCount, DateCount, DefaultLine, HelpfulCont, HelpfulCount, PercentageLine, StatisticCont, Text, ThumbIcon } from '../../../styles/components/styled-elements/FormQuestion.style'
-interface Props { }
-
-function QuestionPage({ }: Props): ReactElement {
+const QuestionPage = () => {
   const router = useRouter()
   const dispatch = useAppDispatch()
   const userData = useAppSelector(user_data)
-  const isCommentsOpened = useAppSelector(is_comment_opened)
 
   useEffect(() => {
     if (router.isReady) {
       dispatch(getSingleQuestion(router.asPath))
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router, userData])
 
+  const leftPart = <PageFilters />
+  const rightPart = <p>Right</p>
+
   return (
-    <PageDefaultStyle>
-      <PageSideLayout side="left">Test</PageSideLayout>
-
-      <PageMainLayout>
-        <QuestionLayout />
-      </PageMainLayout>
-
-      <PageSideLayout side="right">Test</PageSideLayout>
-      {isCommentsOpened && <CommentModal />}
-    </PageDefaultStyle>
+    <MainLayout left={leftPart} right={rightPart}>
+      <QuestionLayout />
+    </MainLayout>
   )
 }
 

@@ -7,17 +7,15 @@ import {
   CommentsTabStyle,
   PostComment,
   TakeCommentsToSideMakeAbsolute,
-} from '../../../styles/ui/modules/CommentsTab.style'
-import { comments, comments_types } from '../../../store/slices/Comments.slice'
+} from 'app/styles/styled-components/base/modules/CommentsTab.style';
+import { ReactElement } from 'react';
 
+import { useCommentsTabHook } from '../../../hooks/useCommentsTab.hook';
+import { comments, comments_types } from '../../../store/slices/Comments.slice';
+import { useAppSelector } from '../../../store/states/store.hooks';
 import Comment from '../elements/Comment';
-import { ReactElement } from 'react'
-import { useAppSelector } from '../../../store/states/store.hooks'
-import { useCommentsTabHook } from '../../../hooks/useCommentsTab.hook'
 
-interface Props {}
-
-function CommentModal({}: Props): ReactElement {
+const CommentModal = () => {
   const commentsType: any = useAppSelector(comments_types)
   const Comments = useAppSelector(comments)
   const { dontShowComments, setNewComment, newComment, commentOnChange, submitComment } =
@@ -32,7 +30,7 @@ function CommentModal({}: Props): ReactElement {
           </CommentsTabMainNameStyle>
 
           <AllCommentsCont>
-            {Comments.map((comment:any) => (
+            {Comments.map((comment: any) => (
               <Comment key={comment.id} comment={comment} />
             ))}
           </AllCommentsCont>

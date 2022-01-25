@@ -1,23 +1,22 @@
-import 'highlight.js/styles/a11y-dark.css'
-import 'quill-magic-url'
-import 'quill-mention'
-import 'quill-mention/dist/quill.mention.css'
+import 'highlight.js/styles/a11y-dark.css';
+import 'quill-magic-url';
+import 'quill-mention';
+import 'quill-mention/dist/quill.mention.css';
 
+import { BASE_API_INSTANCE } from 'app/helpers/api/BaseInstance';
 import {
   AnswerContentOnChange,
-  linkProductAtAnswer,
   linked_products_at_anwser_submit,
-  mentionUserAtAnswer,
+  linkProductAtAnswer,
   mentioned_users_at_anwser_submit,
+  mentionUserAtAnswer,
   submit_answer_content,
-} from '../../../store/slices/Question.slice'
-import React, { ReactElement, useEffect, useLayoutEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks'
-
-import { BASE_API_INSTANCE } from '../../../helpers/api/BaseInstance'
-import { CreateAddAnswerEDITORWrapper_STY } from '../../../styles/ui/modules/Editors/CreateThread.style'
-import ReactQuill from 'react-quill'
-import hljs from 'highlight.js'
+} from 'app/store/slices/Question.slice';
+import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
+import { CreateAddAnswerEDITORWrapper_STY } from 'app/styles/styled-components/base/modules/Editors/CreateThread.style';
+import hljs from 'highlight.js';
+import React, { ReactElement, useEffect, useLayoutEffect, useState } from 'react';
+import ReactQuill from 'react-quill';
 
 interface Props {}
 

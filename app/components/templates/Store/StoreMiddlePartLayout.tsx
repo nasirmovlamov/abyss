@@ -1,6 +1,12 @@
+import { faPython } from '@fortawesome/free-brands-svg-icons';
+import { faStar } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { BASE_API_INSTANCE } from 'app/helpers/api/BaseInstance';
+import { single_product_data } from 'app/store/slices/SingleProduct.slice';
+import { useAppSelector } from 'app/store/states/store.hooks';
+import { ProductTag } from 'app/styles/styled-components/base/modules/ListingStoreProduct.styled';
 import {
   Flexer,
-  ProductTag,
   StorePage,
   StoreStatistics_STY,
   StoreTop,
@@ -13,36 +19,19 @@ import {
   StoreTopRatingStars,
   StoreTopTags,
   StoreTopTitle,
-} from '../../../styles/pages/Store.styled'
-import React, { FC, useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks'
+} from 'app/styles/styled-components/base/pages/Store.style';
+import axios from 'axios';
+import Image from 'next/image';
+import { ReactNode, useState } from 'react';
 
-import { BASE_API_INSTANCE } from '../../../helpers/api/BaseInstance'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Image from 'next/image'
-import SinglePageTabs from '../../ui/elements/SinglePageTabs'
-import StarCountShow from '../../ui/elements/StarCountShow'
-import { autoSuccessToaster } from '../../ui/toasters/AutoSuccessToast'
-import axios from 'axios'
-import { faPython } from '@fortawesome/free-brands-svg-icons'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
-import mainLogo from '../../../../public/main-logo.svg'
-import { single_product_data } from '../../../store/slices/SingleProduct.slice'
-import { store_tabs } from '../../../store/slices/PageTabs.slice'
-import { useInView } from 'react-intersection-observer'
-import { useRouter } from 'next/router'
+import SinglePageTabs from '../../ui/elements/SinglePageTabs';
+import StarCountShow from '../../ui/elements/StarCountShow';
+import { autoSuccessToaster } from '../../ui/toasters/AutoSuccessToast';
 
-interface Props {}
-
-const StoreMiddlePartLayout: FC<Props> = ({ children, ...props }) => {
-  const router = useRouter()
-  const [inViewRefCodeBlock, inViewCodeBlock] = useInView()
+const StoreMiddlePartLayout = ({ children }: { children: ReactNode }) => {
   const [formQuestionsAPI, setformQuestionsAPI] = useState([])
-  const dispatch = useAppDispatch()
-  const storeTabs = useAppSelector(store_tabs)
   const singleProductData = useAppSelector(single_product_data)
   const { data } = singleProductData
-  const activeStoreTab = storeTabs.filter((tab:any) => tab.isActive)[0]
 
   const getQuestions = async () => {
     try {
@@ -119,7 +108,7 @@ const StoreMiddlePartLayout: FC<Props> = ({ children, ...props }) => {
             <StoreTopImgCont>
               <StoreTopImg>
                 <StoreTopAvatar>
-                  <Image width="32" height="32" src={mainLogo} />
+                  <Image width="32" height="32" src="/icons/main-logo.svg" alt="logo" />
                 </StoreTopAvatar>
               </StoreTopImg>
             </StoreTopImgCont>

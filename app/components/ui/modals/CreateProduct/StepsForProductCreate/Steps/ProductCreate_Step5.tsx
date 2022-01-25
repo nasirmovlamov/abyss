@@ -1,10 +1,10 @@
-import {
-  ProductCreateStep5OnChage,
-  product_create_step5_data,
-} from '../../../../../../store/slices/CreateProductFeatures/CreateProduct.slice'
-import { useAppDispatch, useAppSelector } from '../../../../../../store/states/store.hooks'
+import React from 'react';
 
-import React from 'react'
+import {
+  product_create_step5_data,
+  ProductCreateStep5OnChage,
+} from '../../../../../../store/slices/CreateProductFeatures/CreateProduct.slice';
+import { useAppDispatch, useAppSelector } from '../../../../../../store/states/store.hooks';
 
 interface Props {}
 

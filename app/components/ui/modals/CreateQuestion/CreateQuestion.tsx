@@ -1,19 +1,18 @@
-import * as CreateQuestion_STY from '../../../../styles/ui/modules/CreateThread_Style/CreateQuestion.style'
-
 import {
-  CreateQuestionActions,
   create_question_data,
+  CreateQuestionActions,
   linked_products,
   mentioned_users,
   question_value,
-} from '../../../../store/slices/CreateQuestionFeatures/CreateQuestion.slice'
-import { useAppDispatch, useAppSelector } from '../../../../store/states/store.hooks'
+} from 'app/store/slices/CreateQuestionFeatures/CreateQuestion.slice';
+import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
+import { LabelCont } from 'app/styles/styled-components/base/modules/CreateQuestionModal.style';
+import * as CreateQuestion_STY from 'app/styles/styled-components/base/modules/CreateThread_Style/CreateQuestion.style';
+import dynamic from 'next/dynamic';
+import { ReactElement } from 'react';
 
-import { ErrorLabel } from '../../elements/ErrorLabel'
-import { LabelCont } from '../../../../styles/ui/modules/CreateQuestionModal.style'
-import MyEditor from '../../../modules/editors/MyEditor'
-import { ReactElement } from 'react'
-import dynamic from 'next/dynamic'
+import MyEditor from '../../../modules/editors/MyEditor';
+import { ErrorLabel } from '../../elements/ErrorLabel';
 
 // import {EditorNewVersion} from '../EditorNewVersion'
 // import EditorClassVersion from '../EditorClassVersion'

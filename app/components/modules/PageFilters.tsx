@@ -1,3 +1,32 @@
+import { faThumbtack } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { searchFiltersThunk } from 'app/store/thunks/PageFilters.thunk';
+import { useRef } from 'react';
+
+import {
+  changeToStayInFocus,
+  filter_search_tags,
+  filter_search_value,
+  filterDropisHovered,
+  filterDropisUnHovered,
+  filterSearchValueOnChange,
+  filterTagsOnDelete,
+  filterTagsSearchisBlur,
+  filterTagsSearchisFocused,
+  inChangePositionOfFilters,
+  is_focused,
+  outChangePositionOfFilters,
+  stay_in_focus,
+} from '../../store/slices/PageFilters.slice';
+import {
+  ifFilterWasDeleted,
+  search_data,
+  search_exclude_filters,
+  search_filters,
+  selectFilterToExcludeOption,
+  selectFilterToSearchOption,
+} from '../../store/slices/SearchBox.slice';
+import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
 import {
   FilterCont,
   FilterContStyle,
@@ -15,43 +44,10 @@ import {
   FilterTagElementCont,
   FilterTagsCont,
   PinButton,
-} from '../../styles/ui/modules/PageFilters.style';
-import { ReactElement, useRef } from 'react';
-import {
-  changeToStayInFocus,
-  filterDropisHovered,
-  filterDropisUnHovered,
-  filterSearchValueOnChange,
-  filterTagsOnDelete,
-  filterTagsSearchisBlur,
-  filterTagsSearchisFocused,
-  filter_search_tags,
-  filter_search_value,
-  filter_tags,
-  inChangePositionOfFilters,
-  is_focused,
-  outChangePositionOfFilters,
-  stay_in_focus,
-} from '../../store/slices/PageFilters.slice';
-import {
-  ifFilterWasDeleted,
-  search_data,
-  search_exclude_filters,
-  search_filters,
-  selectFilterToExcludeOption,
-  selectFilterToSearchOption,
-} from '../../store/slices/SearchBox.slice';
-import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
+} from '../../styles/styled-components/base/modules/PageFilters.style';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbtack } from '@fortawesome/free-solid-svg-icons';
-import { searchFiltersThunk } from '../../store/thunks/PageFilters.thunk';
-
-interface Props { }
-
-function PageFilters({ }: Props): ReactElement {
+const PageFilters = () => {
   const dispatch = useAppDispatch()
-  const filterTags = useAppSelector(filter_tags)
   const filterSearchTags = useAppSelector(filter_search_tags)
   const filterSearchValue = useAppSelector(filter_search_value)
   const isFocused = useAppSelector(is_focused)
@@ -134,15 +130,15 @@ function PageFilters({ }: Props): ReactElement {
           <FilterLanguageContent>
             <p className="title">Include</p>
             <FilterTagsCont>
-              {searchIncludeFilters.map((element:any, index:any) => (
+              {searchIncludeFilters.map((element: any, index: any) => (
                 <FilterTagElementCont
                   key={element.id}
-                  selected={searchIncludeFilters.find((x:any) => x.id === element.id)}
+                  selected={searchIncludeFilters.find((x: any) => x.id === element.id)}
                   tagType="include"
                 >
                   <FilterTag
                     onClick={() => dispatch(selectFilterToExcludeOption(element))}
-                    selected={searchIncludeFilters.find((x:any) => x.id === element.id)}
+                    selected={searchIncludeFilters.find((x: any) => x.id === element.id)}
                     tagType="include"
                   >
                     {element.name}
@@ -153,15 +149,15 @@ function PageFilters({ }: Props): ReactElement {
             </FilterTagsCont>
             <p className="title">Exclude</p>
             <FilterTagsCont>
-              {searchExcludeFilters.map((element:any, index:any) => (
+              {searchExcludeFilters.map((element: any, index: any) => (
                 <FilterTagElementCont
                   key={element.id}
-                  selected={searchExcludeFilters.find((x:any) => x.id === element.id)}
+                  selected={searchExcludeFilters.find((x: any) => x.id === element.id)}
                   tagType="exclude"
                 >
                   <FilterTag
                     onClick={() => dispatch(selectFilterToSearchOption(element))}
-                    selected={searchExcludeFilters.find((x:any) => x.id === element.id)}
+                    selected={searchExcludeFilters.find((x: any) => x.id === element.id)}
                     tagType="exclude"
                   >
                     {element.name}
@@ -194,7 +190,7 @@ function PageFilters({ }: Props): ReactElement {
               onMouseLeave={filterOnUnHover}
             >
               {filterSearchTags.filters.map(
-                (element:any, index:any) =>
+                (element: any, index: any) =>
                   element.name.includes(filterSearchValue.value) && (
                     <FilterSearchDropdownElement key={element.id}>
                       {element.name}{' '}

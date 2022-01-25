@@ -1,9 +1,9 @@
-import { getCookie, setCookie } from '../../helpers/functions/CookieFunctions'
+import { createSlice } from '@reduxjs/toolkit';
 
-import { PAGE_FILTERS_STATE } from '../states/states/PageFilters.state'
-import { RootState } from '..'
-import { createSlice } from '@reduxjs/toolkit'
-import { searchFiltersThunk } from '../thunks/PageFilters.thunk'
+import { RootState } from '..';
+import { getCookie, setCookie } from '../../helpers/functions/CookieFunctions';
+import { PAGE_FILTERS_STATE } from '../states/states/PageFilters.state';
+import { searchFiltersThunk } from '../thunks/PageFilters.thunk';
 
 export const PageFiltersSlice = createSlice({
   name: 'app-slice',

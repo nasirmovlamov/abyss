@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react';
 
-import { tooltip_data } from '../../../store/slices/Tooltip.slice'
-import { useAppSelector } from '../../../store/states/store.hooks'
+import { tooltip_data } from '../../../store/slices/Tooltip.slice';
+import { useAppSelector } from '../../../store/states/store.hooks';
 
 interface Props {}
 

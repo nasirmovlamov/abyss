@@ -1,6 +1,7 @@
+import { createSlice } from '@reduxjs/toolkit';
+import { scroller } from 'react-scroll';
+
 import { RootState } from '..';
-import { createSlice } from '@reduxjs/toolkit'
-import { scroller } from 'react-scroll'
 
 export interface PageTabsState {
   page_tabs: {

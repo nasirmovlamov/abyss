@@ -32,11 +32,11 @@ import {
   SearchCont_STY,
   SearchInput_STY,
   SearchNav_STY,
-} from '../../styles/ui/modules/SearchBox.style';
+} from '../../styles/styled-components/base/modules/SearchBox.style';
 
-interface Props { }
+interface Props {}
 
-function SearchBox({ }: Props): ReactElement {
+function SearchBox({}: Props): ReactElement {
   const router = useRouter()
   const [pagePath, setpagePath] = useState('')
   const dispatch = useAppDispatch()

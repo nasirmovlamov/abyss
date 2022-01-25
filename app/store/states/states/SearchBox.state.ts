@@ -1,4 +1,5 @@
 import { SEARCHBOX_INTERFACE } from '../interfaces/SearchBox.interface';
+
 export const SEARCHBOX_STATE: SEARCHBOX_INTERFACE = {
   isFocused: false,
   isHovered: false,

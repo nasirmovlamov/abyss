@@ -1,14 +1,10 @@
-import {
-  AreYouSureButtonsCont,
-  ModalFORM_STY,
-} from '../../../styles/ui/modules/Modal_Style/ModalCont.style'
-import router, { useRouter } from 'next/router'
-import { search_data, search_query } from '../../../store/slices/SearchBox.slice'
-import { single_question_data, thread_delete_options } from '../../../store/slices/Question.slice'
-import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks'
-
-import { changeModalAction } from '../../../store/slices/User.slice'
-import { deleteAnswer } from '../../../store/thunks/Question.thunk'
+import { single_question_data, thread_delete_options } from 'app/store/slices/Question.slice';
+import { search_data, search_query } from 'app/store/slices/SearchBox.slice';
+import { changeModalAction } from 'app/store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
+import { deleteAnswer } from 'app/store/thunks/Question.thunk';
+import { AreYouSureButtonsCont, ModalFORM_STY } from 'app/styles/styled-components/base/modules/Modal_Style/ModalCont.style';
+import router, { useRouter } from 'next/router';
 
 interface Props {}
 

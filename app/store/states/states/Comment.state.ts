@@ -1,4 +1,5 @@
 import { CommentsInterface } from '../interfaces/Comment.interface';
+
 export const CommentsState: CommentsInterface = {
   comments: [],
   commentsType: null,

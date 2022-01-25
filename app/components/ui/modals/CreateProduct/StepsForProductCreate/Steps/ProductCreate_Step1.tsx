@@ -1,22 +1,22 @@
+import { javascript } from '@codemirror/lang-javascript';
+import CodeMirror from '@uiw/react-codemirror';
+import { ReactElement } from 'react';
+import HashLoader from 'react-spinners/HashLoader';
+
+import {
+  is_product_created,
+  product_create_step1_data,
+  product_create_steps,
+  ProductCreateStep1OnChanges,
+  selectCreateProductLanguage,
+} from '../../../../../../store/slices/CreateProductFeatures/CreateProduct.slice';
+import { useAppDispatch, useAppSelector } from '../../../../../../store/states/store.hooks';
 import {
   CodeMirror_STY,
   CreateProduct_Step1_Error,
   ProductCreate_Step1_Style,
   SelectLangType_STY,
-} from '../../../../../../styles/ui/modules/CreateProduct_Style/Steps/ProductCreate_Step1.style'
-import {
-  ProductCreateStep1OnChanges,
-  is_product_created,
-  product_create_step1_data,
-  product_create_steps,
-  selectCreateProductLanguage,
-} from '../../../../../../store/slices/CreateProductFeatures/CreateProduct.slice'
-import { useAppDispatch, useAppSelector } from '../../../../../../store/states/store.hooks'
-
-import CodeMirror from '@uiw/react-codemirror'
-import HashLoader from 'react-spinners/HashLoader'
-import { ReactElement } from 'react'
-import { javascript } from '@codemirror/lang-javascript'
+} from '../../../../../../styles/styled-components/base/modules/CreateProduct_Style/Steps/ProductCreate_Step1.style';
 
 interface Props {}
 

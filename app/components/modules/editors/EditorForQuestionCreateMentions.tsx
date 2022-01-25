@@ -1,19 +1,18 @@
-import 'quill-magic-url'
-import 'quill-mention'
-import 'quill-mention/dist/quill.mention.css'
+import 'quill-magic-url';
+import 'quill-mention';
+import 'quill-mention/dist/quill.mention.css';
 
+import { BASE_API_INSTANCE } from 'app/helpers/api/BaseInstance';
 import {
   CreateQuestionActions,
   linked_products,
   mentioned_users,
   question_value,
-} from '../../../store/slices/CreateQuestionFeatures/CreateQuestion.slice'
-import React, { ReactElement, useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks'
-
-import { BASE_API_INSTANCE } from '../../../helpers/api/BaseInstance'
-import { CreateThreadEDITORWrapper_STY } from '../../../styles/ui/modules/Editors/CreateThread.style'
-import ReactQuill from 'react-quill'
+} from 'app/store/slices/CreateQuestionFeatures/CreateQuestion.slice';
+import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
+import { CreateThreadEDITORWrapper_STY } from 'app/styles/styled-components/base/modules/Editors/CreateThread.style';
+import React, { ReactElement, useEffect, useState } from 'react';
+import ReactQuill from 'react-quill';
 
 interface Props {}
 

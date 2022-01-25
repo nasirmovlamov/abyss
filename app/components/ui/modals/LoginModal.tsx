@@ -1,29 +1,19 @@
-import * as Form_STY from '../../../styles/ui/elements/Form.style'
-import * as authThunk from '../../../../app/store/thunks/User.thunk'
+import { changeModalAction, login_errors, login_form, login_Form_OnChange, user_modals } from 'app/store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
+import { userLogin } from 'app/store/thunks/User.thunk';
+import * as Form_STY from 'app/styles/styled-components/base/elements/Form.style';
+import { ModalFORM_STY } from 'app/styles/styled-components/base/modules/Modal_Style/ModalCont.style';
+import { FormEvent } from 'react';
 
-import { FormEvent, ReactElement } from 'react'
-import {
-  changeModalAction,
-  login_Form_OnChange,
-  login_errors,
-  login_form,
-  user_modals,
-} from '../../../store/slices/User.slice'
-import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks'
-
-import { ModalFORM_STY } from '../../../styles/ui/modules/Modal_Style/ModalCont.style'
-
-interface Props {}
-
-function LoginModal({}: Props): ReactElement {
+const LoginModal = () => {
   const dispatch = useAppDispatch()
   const loginErrors = useAppSelector(login_errors)
   const allModals = useAppSelector(user_modals)
   const loginForm = useAppSelector(login_form)
 
-  const formSubmit = async (e: FormEvent) => {
+  const formSubmit = async (e: Event) => {
     e.preventDefault()
-    dispatch(authThunk.userLogin(loginForm))
+    dispatch(userLogin(loginForm))
   }
 
   return (

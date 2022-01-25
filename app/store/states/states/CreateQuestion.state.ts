@@ -1,4 +1,5 @@
 import { CreateQuestionInterface } from '../interfaces/CreateQuestion.interface';
+
 export const CreateQuestionState: CreateQuestionInterface = {
   questionTitle: '',
   linkedProducts: [],

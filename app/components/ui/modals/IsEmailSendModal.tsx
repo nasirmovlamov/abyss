@@ -1,30 +1,17 @@
-import * as authThunk from '../../../../app/store/thunks/User.thunk'
+import { changeModalAction, login_form, login_Form_OnChange, user_forget_pass } from 'app/store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
+import { forgetPasswordThunk } from 'app/store/thunks/User.thunk';
+import { ModalFORM_STY } from 'app/styles/styled-components/base/modules/Modal_Style/ModalCont.style';
+import { FormEvent } from 'react';
 
-import { FormEvent, ReactElement } from 'react'
-import {
-  changeModalAction,
-  forget_Password_Errors,
-  login_Form_OnChange,
-  login_form,
-  user_forget_pass,
-  user_modals,
-} from '../../../store/slices/User.slice'
-import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks'
-
-import { ModalFORM_STY } from '../../../styles/ui/modules/Modal_Style/ModalCont.style'
-
-interface Props {}
-
-function IsEmailSendModal({}: Props): ReactElement {
+const IsEmailSendModal = () => {
   const dispatch = useAppDispatch()
-  const allModals = useAppSelector(user_modals)
   const loginForm = useAppSelector(login_form)
-  const errors = useAppSelector(forget_Password_Errors)
   const userForgetPass = useAppSelector(user_forget_pass)
 
   const formSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    dispatch(authThunk.forgetPasswordThunk(loginForm.email))
+    dispatch(forgetPasswordThunk(loginForm.email))
   }
 
   return (

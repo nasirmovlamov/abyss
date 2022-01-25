@@ -3,13 +3,13 @@ import React, { ReactNode } from 'react';
 
 import { color_convert, is_Logged } from '../../store/slices/User.slice';
 import { useAppSelector } from '../../store/states/store.hooks';
-import { CavePageDefaultStyle, CaveSidePartOfPage_Sty } from '../../styles/pages/Page.styled';
-import { Cave_Sty } from '../../styles/ui/modules/Cave.style';
+import { Cave_Sty } from '../../styles/styled-components/base/modules/Cave.style';
+import { CavePageDefaultStyle, CaveSidePartOfPage_Sty } from '../../styles/styled-components/base/pages/Page.style';
 import Cave_Tabs from '../templates/Cave/Cave_Tabs/Cave_Tabs';
 import CaveSidebar from '../templates/Cave/CaveSidebar';
-import PageMainLayout from './PageMain.layout';
+import PageMainLayout from './Main.layout';
 
-const CaveSide = ({ children, side }: { children: ReactNode, side: string }) => {
+const CaveSide = ({ children, side }: { children: ReactNode; side: string }) => {
   const colorConvert = useAppSelector(color_convert)
 
   return (
@@ -25,7 +25,7 @@ const CaveSide = ({ children, side }: { children: ReactNode, side: string }) => 
   )
 }
 
-const CaveLayout = ({ children, ...props }: { children: ReactNode }) => {
+const CaveLayout = ({ children }: { children: ReactNode }) => {
   const isLoggedIn = useAppSelector(is_Logged)
   const router = useRouter()
 

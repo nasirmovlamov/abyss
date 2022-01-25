@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import { forum_search_data } from '../../../store/slices/SearchBox.slice';
 import { useAppSelector } from '../../../store/states/store.hooks';
-import { LinearProgress_STY } from '../../../styles/ui/modules/LinearProgress.style';
+import { LinearProgress_STY } from '../../../styles/styled-components/base/modules/LinearProgress.style';
 
-interface Props { }
+interface Props {}
 
 const LinearProgres = (props: Props) => {
   const forumSearchData = useAppSelector(forum_search_data)

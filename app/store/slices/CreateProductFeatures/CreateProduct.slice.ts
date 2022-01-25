@@ -1,16 +1,11 @@
-import {
-  addFile,
-  createProductThunk,
-  startPlagirismChecker,
-  updateProductThunk,
-} from '../../thunks/CreateProduct.thunk'
+import { createSlice } from '@reduxjs/toolkit';
+import { autoErrorToaster } from 'app/components/ui/toasters/AutoErrorToaster';
+import { autoSuccessToaster } from 'app/components/ui/toasters/AutoSuccessToast';
+import { getClipsIndex } from 'app/helpers/functions/CreateProduct';
 
-import { CreateProductState } from '../../states/states/CreateProduct.state'
-import { RootState } from '../..'
-import { autoErrorToaster } from '../../../components/ui/toasters/AutoErrorToaster'
-import { autoSuccessToaster } from '../../../components/ui/toasters/AutoSuccessToast'
-import { createSlice } from '@reduxjs/toolkit'
-import { getClipsIndex } from '../../../helpers/functions/CreateProduct'
+import { RootState } from '../..';
+import { CreateProductState } from '../../states/states/CreateProduct.state';
+import { addFile, createProductThunk, startPlagirismChecker, updateProductThunk } from '../../thunks/CreateProduct.thunk';
 
 export const CreateProductSlice = createSlice({
   name: 'create-product-slice',
@@ -68,7 +63,7 @@ export const CreateProductSlice = createSlice({
             case 'delete':
               state.steps[2].details_data.product_tags =
                 state.steps[2].details_data.product_tags.filter(
-                  (element:any) => element.id !== action.payload.id,
+                  (element: any) => element.id !== action.payload.id,
                 )
               if (state.steps[2].details_data.product_tags.length > 0) {
                 state.steps[2].validators.isTagsFilled.valid = true
@@ -226,21 +221,23 @@ export const CreateProductSlice = createSlice({
           })
           break
         case 'delete_iteration':
-          state.steps[3].iterations_of_product.filter((element:any) => element.id !== action.payload.id)
+          state.steps[3].iterations_of_product.filter(
+            (element: any) => element.id !== action.payload.id,
+          )
           break
         case 'update_iteration_code':
           state.steps[3].iterations_of_product.filter(
-            (element:any) => element.id === action.payload.id,
+            (element: any) => element.id === action.payload.id,
           )[0].iteration_code = action.payload.content
           break
         case 'update_iteration_name':
           state.steps[3].iterations_of_product.filter(
-            (element:any) => element.id === action.payload.id,
+            (element: any) => element.id === action.payload.id,
           )[0].iteration_name = action.payload.content
           break
         case 'update_iteration_note':
           state.steps[3].iterations_of_product.filter(
-            (element:any) => element.id === action.payload.id,
+            (element: any) => element.id === action.payload.id,
           )[0].iteration_note = action.payload.content
           break
         default:
@@ -253,45 +250,45 @@ export const CreateProductSlice = createSlice({
         case 'check_iteration_code':
           if (
             state.steps[3].iterations_of_product.filter(
-              (element:any) => element.id === action.payload.id,
+              (element: any) => element.id === action.payload.id,
             )[0].iteration_code.length > 0
           ) {
             state.steps[3].iterations_of_product.filter(
-              (element:any) => element.id === action.payload.id,
+              (element: any) => element.id === action.payload.id,
             )[0].validators.isCodeFilled.valid = true
           } else {
             state.steps[3].iterations_of_product.filter(
-              (element:any) => element.id === action.payload.id,
+              (element: any) => element.id === action.payload.id,
             )[0].validators.isCodeFilled.valid = false
           }
           break
         case 'check_iteration_name':
           if (
             state.steps[3].iterations_of_product.filter(
-              (element:any) => element.id === action.payload.id,
+              (element: any) => element.id === action.payload.id,
             )[0].iteration_name.length > 0
           ) {
             state.steps[3].iterations_of_product.filter(
-              (element:any) => element.id === action.payload.id,
+              (element: any) => element.id === action.payload.id,
             )[0].validators.isNameFilled.valid = true
           } else {
             state.steps[3].iterations_of_product.filter(
-              (element:any) => element.id === action.payload.id,
+              (element: any) => element.id === action.payload.id,
             )[0].validators.isNameFilled.valid = false
           }
           break
         case 'check_iteration_note':
           if (
             state.steps[3].iterations_of_product.filter(
-              (element:any) => element.id === action.payload.id,
+              (element: any) => element.id === action.payload.id,
             )[0].iteration_note.length > 0
           ) {
             state.steps[3].iterations_of_product.filter(
-              (element:any) => element.id === action.payload.id,
+              (element: any) => element.id === action.payload.id,
             )[0].validators.isNoteFilled.valid = true
           } else {
             state.steps[3].iterations_of_product.filter(
-              (element:any) => element.id === action.payload.id,
+              (element: any) => element.id === action.payload.id,
             )[0].validators.isNoteFilled.valid = false
           }
           break
@@ -326,7 +323,7 @@ export const CreateProductSlice = createSlice({
       }
       if (
         state.steps[3].iterations_of_product.filter(
-          (element:any) => element.validators.areAllFilled.valid === 'failed',
+          (element: any) => element.validators.areAllFilled.valid === 'failed',
         ).length > 0
       ) {
         state.steps[3].validated = 'not-valid'

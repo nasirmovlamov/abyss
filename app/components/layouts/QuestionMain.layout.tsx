@@ -1,5 +1,22 @@
-import * as SingleQuestion_STY from '../../styles/pages/SingleQuestionPage.styled';
-
+import {
+  faComment,
+  faThumbsDown as regularfaThumbsDown,
+  faThumbsUp as regularfaThumbsUp,
+} from '@fortawesome/free-regular-svg-icons';
+import {
+  faEdit,
+  faEllipsisV,
+  faThumbsDown as solidfaThumbsDown,
+  faThumbsUp as solidfaThumbsUp,
+  faTrash,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { parseHtmlWithMention } from 'app/helpers/functions/HtmlParser';
+import { useQuestionHooks } from 'app/hooks/useQuestion.hook';
+import { edit_question_data, single_question_data } from 'app/store/slices/Question.slice';
+import { user_data } from 'app/store/slices/User.slice';
+import { useAppSelector } from 'app/store/states/store.hooks';
+import { ShowComments } from 'app/styles/styled-components/base/modules/Answer.style';
 import {
   AnswerCont,
   AnswerCount,
@@ -9,37 +26,19 @@ import {
   PercentageLine,
   Text,
   ThumbIcon,
-} from '../../styles/ui/modules/FormQuestion.style';
-import React, { useEffect, useState } from 'react';
-import { edit_question_data, single_question_data } from '../../store/slices/Question.slice';
-import {
-  faComment,
-  faThumbsDown as regularfaThumbsDown,
-  faThumbsUp as regularfaThumbsUp,
-} from '@fortawesome/free-regular-svg-icons';
-import {
-  faEdit,
-  faEllipsisV,
-  faTrash,
-  faThumbsDown as solidfaThumbsDown,
-  faThumbsUp as solidfaThumbsUp,
-} from '@fortawesome/free-solid-svg-icons';
-
-import AnswerSubmitCont from '../modules/AnswerSubmit';
-import AnswersModule from '../modules/Answers.module';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+} from 'app/styles/styled-components/base/modules/FormQuestion.style';
 import HTMLReactParser from 'html-react-parser';
-import Image from 'next/image';
-import MyEditor from '../modules/editors/MyEditor';
-import ProductsConts from './Product.layout';
-import SearchBoxStaticVersion from '../modules/SearchBoxStaticVersion';
-import { ShowComments } from '../../styles/ui/modules/Answer.style';
-import SinglePageTabs from '../ui/elements/SinglePageTabs';
 import dynamic from 'next/dynamic';
-import { parseHtmlWithMention } from '../../helpers/functions/HtmlParser';
-import { useAppSelector } from '../../store/states/store.hooks';
-import { useQuestionHooks } from '../../hooks/useQuestion.hook';
-import { user_data } from '../../store/slices/User.slice';
+import Image from 'next/image';
+import { useState } from 'react';
+
+import * as SingleQuestion_STY from '../../styles/styled-components/base/pages/SingleQuestionPage.style';
+import AnswersModule from '../modules/Answers.module';
+import AnswerSubmitCont from '../modules/AnswerSubmit';
+import MyEditor from '../modules/editors/MyEditor';
+import SearchBoxStaticVersion from '../modules/SearchBoxStaticVersion';
+import SinglePageTabs from '../ui/elements/SinglePageTabs';
+import ProductsConts from './Product.layout';
 
 const DynamicComponentWithNoSSR = dynamic(
   () => import('../modules/editors/EditorForQuestionEdit'),
@@ -70,7 +69,7 @@ const QuestionMiddleLayout = () => {
         <SingleQuestion_STY.PersonCont_STY>
           <SingleQuestion_STY.Avatar_STY>
             <div style={{ opacity: 0.618 }}>
-              <Image src="/main-logo-new.svg" width="65px" height="65px" alt="Abyss Logo" />
+              <Image src="/icons/main-logo-new.svg" width="65px" height="65px" alt="Abyss Logo" />
             </div>
           </SingleQuestion_STY.Avatar_STY>
           <SingleQuestion_STY.Name_STY>{question_data.user.name}</SingleQuestion_STY.Name_STY>
@@ -156,7 +155,7 @@ const QuestionMiddleLayout = () => {
                           ? solidfaThumbsUp
                           : regularfaThumbsUp
                       }
-                    />{' '}
+                    />
                   </ThumbIcon>
                 </SingleQuestion_STY.QuestionStatisticButton_STY>
                 <SingleQuestion_STY.QuestionStatisticButton_STY
@@ -179,7 +178,7 @@ const QuestionMiddleLayout = () => {
                   percentage={
                     question_data.downvote + question_data.upvote > 0
                       ? (question_data.upvote / (question_data.downvote + question_data.upvote)) *
-                      100
+                        100
                       : 0
                   }
                 />

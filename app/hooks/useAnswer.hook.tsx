@@ -1,16 +1,15 @@
-import { changeModalAction, user_data } from '../store/slices/User.slice'
+import { showComments } from '../store/slices/Comments.slice';
 import {
   disableAnswerEditing,
-  editAnswerContent_onChange,
   edit_answer_data,
+  editAnswerContent_onChange,
   enableAnswerEditing,
   setDeleteOptions,
-} from '../store/slices/Question.slice'
-import { editAnswerThunk, unVoteAnswer, voteAnswer } from '../store/thunks/Question.thunk'
-import { useAppDispatch, useAppSelector } from '../store/states/store.hooks'
-
-import { getAnswerComments } from '../store/thunks/Comments.thunk'
-import { showComments } from '../store/slices/Comments.slice'
+} from '../store/slices/Question.slice';
+import { changeModalAction, user_data } from '../store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from '../store/states/store.hooks';
+import { getAnswerComments } from '../store/thunks/Comments.thunk';
+import { editAnswerThunk, unVoteAnswer, voteAnswer } from '../store/thunks/Question.thunk';
 
 export const useAnswerHook = ({ answer, direction }: { answer: any; direction: string }) => {
   const dispatch = useAppDispatch()

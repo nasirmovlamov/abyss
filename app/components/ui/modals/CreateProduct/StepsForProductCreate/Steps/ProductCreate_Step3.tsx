@@ -1,11 +1,11 @@
+import React from 'react';
+
 import {
+  product_create_step3_data,
   ProductCreateStep3OnBlurs,
   ProductCreateStep3OnChanges,
-  product_create_step3_data,
-} from '../../../../../../store/slices/CreateProductFeatures/CreateProduct.slice'
-import { useAppDispatch, useAppSelector } from '../../../../../../store/states/store.hooks'
-
-import React from 'react'
+} from '../../../../../../store/slices/CreateProductFeatures/CreateProduct.slice';
+import { useAppDispatch, useAppSelector } from '../../../../../../store/states/store.hooks';
 
 interface Props {}
 

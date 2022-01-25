@@ -1,7 +1,11 @@
-import {
-  CreateThreadActions,
-  create_thread_data,
-} from '../../../../store/slices/CreateThread/CreateThread.slice'
+import { faCommentAlt, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { create_question_data } from 'app/store/slices/CreateQuestionFeatures/CreateQuestion.slice';
+import { create_thread_data, CreateThreadActions } from 'app/store/slices/CreateThread/CreateThread.slice';
+import { changeModalAction } from 'app/store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
+import { createQuestionThunk } from 'app/store/thunks/CreateThread/CreateQuestion.thunk';
+import { CreateThreadFORM_STY } from 'app/styles/styled-components/base/modules/CreateThread_Style/CreateThread.style';
 import {
   CreateThread_Button_NEXT,
   CreateThread_Button_PREVOIUS,
@@ -12,22 +16,15 @@ import {
   CreateThread_Tab,
   CreateThread_Tab_Seperator,
   CreateThread_Tabs,
-} from '../../../../styles/ui/modules/Modal_Style/ModalCont.style'
-import React, { useEffect, useState } from 'react'
-import { faCommentAlt, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
-import { useAppDispatch, useAppSelector } from '../../../../store/states/store.hooks'
+} from 'app/styles/styled-components/base/modules/Modal_Style/ModalCont.style';
+import React, { useEffect, useState } from 'react';
 
-import CreateDiscussion from './CreateDiscussion'
-import CreateQuestion from './CreateQuestion'
-import CreateRequest from './CreateRequest'
-import { CreateThreadFORM_STY } from '../../../../styles/ui/modules/CreateThread_Style/CreateThread.style'
-import CreateThread_Step1 from './Steps/CreateThread_Step1'
-import CreateThread_Step3 from './Steps/CreateThread_Step3'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { autoErrorToasterWithMessage } from '../../toasters/AutoSuccessToast'
-import { changeModalAction } from '../../../../store/slices/User.slice'
-import { createQuestionThunk } from '../../../../store/thunks/CreateThread/CreateQuestion.thunk'
-import { create_question_data } from '../../../../store/slices/CreateQuestionFeatures/CreateQuestion.slice'
+import { autoErrorToasterWithMessage } from '../../toasters/AutoSuccessToast';
+import CreateDiscussion from './CreateDiscussion';
+import CreateQuestion from './CreateQuestion';
+import CreateRequest from './CreateRequest';
+import CreateThread_Step1 from './Steps/CreateThread_Step1';
+import CreateThread_Step3 from './Steps/CreateThread_Step3';
 
 interface Props {}
 

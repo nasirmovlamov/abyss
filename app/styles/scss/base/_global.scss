@@ -1,0 +1,88 @@
+/* Background colors */
+@include make-colors($all-colors, bg);
+
+/* Text colors */
+@include make-colors($all-colors);
+
+/* Border colors */
+@include make-colors($all-colors, border);
+
+/* Squares */
+$squares: (
+  xs: (
+    4: 4,
+    8: 8,
+    14: 14,
+    16: 16,
+    18: 18,
+    20: 20,
+    24: 24,
+    26: 26,
+    28: 28,
+    30: 30,
+    32: 32,
+    40: 40,
+    48: 48,
+    56: 56,
+    64: 64,
+    104: 104,
+  ),
+);
+@include make-shape($squares, square);
+
+/* Rectangles */
+$rectangles: (
+  xs: (
+    10: 6,
+    126: 36,
+    140: 40,
+  ),
+);
+@include make-shape($rectangles);
+
+/* Heights */
+$heights: 8, 16, 24, 26, 40, 48, 50, 52, 56, 60, 64;
+@each $height in $heights {
+  .h-#{$height} {
+    height: #{$height}px;
+  }
+}
+
+/* Border radiuses */
+$radiuses: 8, 16, 24;
+@each $radius in $radiuses {
+  .br-#{$radius} {
+    border-radius: #{$radius}px;
+  }
+}
+
+/* RESPONSIVE */
+@media (min-width: map-get($breakpoints, lg)) {
+  /* Rectangles */
+  $rectangles: (
+    lg: (
+      154: 44,
+    ),
+  );
+  @include make-shape($rectangles);
+
+  /* Heights */
+  $heights: 8, 16, 24, 26, 40, 48, 50, 52, 56, 60, 64;
+  @each $height in $heights {
+    .h-lg-#{$height} {
+      height: #{$height}px;
+    }
+  }
+}
+
+/* RESPONSIVE */
+@media (min-width: map-get($breakpoints, lg)) {
+  /* Squares */
+  $squares: (
+    lg: (
+      24: 24,
+      56: 56,
+    ),
+  );
+  @include make-shape($squares, square);
+}

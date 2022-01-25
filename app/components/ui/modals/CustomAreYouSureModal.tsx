@@ -1,9 +1,5 @@
-import {
-  AreYouSureButtonsCont,
-  ModalFORM_STY,
-} from '../../../styles/ui/modules/Modal_Style/ModalCont.style'
-
-import React from 'react'
+import { AreYouSureButtonsCont, ModalFORM_STY } from 'app/styles/styled-components/base/modules/Modal_Style/ModalCont.style';
+import React from 'react';
 
 interface Props {}
 

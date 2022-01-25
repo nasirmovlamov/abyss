@@ -12,7 +12,6 @@ import { useAppDispatch, useAppSelector } from '../store/states/store.hooks';
 import { getQuestionComments } from '../store/thunks/Comments.thunk';
 import { editQuestionThunk, unVoteQuestion, voteQuestion } from '../store/thunks/Question.thunk';
 
-
 export const useQuestionHooks = () => {
   const dispatch = useAppDispatch()
   const questionStatus = useAppSelector(question_status)

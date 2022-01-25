@@ -1,18 +1,16 @@
-import { ReactElement } from 'react';
-import ReactQuill from 'react-quill';
-
-import { BASE_API_INSTANCE } from '../../../helpers/api/BaseInstance';
+import { BASE_API_INSTANCE } from 'app/helpers/api/BaseInstance';
 import {
   edit_question_data,
   editQuestionContent_onChange,
   mentionProductAtQuestionEdit,
   mentionUserAtQuestionEdit,
-} from '../../../store/slices/Question.slice';
-import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks';
-import { CreateThreadEDITORWrapper_STY } from '../../../styles/ui/modules/Editors/CreateThread.style';
+} from 'app/store/slices/Question.slice';
+import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
+import { CreateThreadEDITORWrapper_STY } from 'app/styles/styled-components/base/modules/Editors/CreateThread.style';
+import { ReactElement } from 'react';
+import ReactQuill from 'react-quill';
 
-
-interface Props { }
+interface Props {}
 
 const modules = {
   toolbar: [
@@ -43,7 +41,7 @@ const modules = {
               }
             })
             return products
-          } catch (error) { }
+          } catch (error) {}
         }
         const getUserNames = async (query: string) => {
           try {
@@ -57,7 +55,7 @@ const modules = {
               }
             })
             return users
-          } catch (error) { }
+          } catch (error) {}
         }
         if (mentionChar === '@') {
           values = await getProductNames(searchTerm)
@@ -100,7 +98,7 @@ const formats = [
   'code-block',
 ]
 
-const EditorForQuestionEdit = ({ }: Props): ReactElement => {
+const EditorForQuestionEdit = ({}: Props): ReactElement => {
   const dispatch = useAppDispatch()
   const questiondata = useAppSelector(edit_question_data)
   const linkedProducts = questiondata!.linkedProducts

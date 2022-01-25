@@ -1,9 +1,10 @@
-import { CreateQuestionState } from '../../states/states/CreateQuestion.state'
-import { RootState } from '../..'
-import { autoErrorToaster } from '../../../components/ui/toasters/AutoErrorToaster'
-import { autoSuccessToaster } from '../../../components/ui/toasters/AutoSuccessToast'
-import { createQuestionThunk } from '../../thunks/CreateThread/CreateQuestion.thunk'
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
+import { autoErrorToaster } from 'app/components/ui/toasters/AutoErrorToaster';
+import { autoSuccessToaster } from 'app/components/ui/toasters/AutoSuccessToast';
+
+import { RootState } from '../..';
+import { CreateQuestionState } from '../../states/states/CreateQuestion.state';
+import { createQuestionThunk } from '../../thunks/CreateThread/CreateQuestion.thunk';
 
 export const CreateQuestionSlice = createSlice({
   name: 'create-product-slice',

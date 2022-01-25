@@ -8,16 +8,17 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { cave_side_data } from 'app/store/slices/CaveFeatures/CaveSide.slice';
+import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
+import { selectAsyncCaveWindow } from 'app/store/thunks/Cave/Cave.thunk';
+import { userLogout } from 'app/store/thunks/User.thunk';
+import {
+  CaveSide_section_Sty,
+  CaveSidebar_Sty,
+} from 'app/styles/styled-components/base/modules/Cave_Style/CaveSidebar.style';
 import { useRouter } from 'next/router';
 
-import { cave_side_data } from '../../../store/slices/CaveFeatures/CaveSide.slice';
-import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks';
-import { selectAsyncCaveWindow } from '../../../store/thunks/Cave/Cave.thunk';
-import { userLogout } from '../../../store/thunks/User.thunk';
-import { CaveSide_section_Sty, CaveSidebar_Sty } from '../../../styles/ui/modules/Cave_Style/CaveSidebar.style';
-
-
-interface Props { }
+interface Props {}
 
 const CaveSidebar = (props: Props) => {
   const dispatch = useAppDispatch()

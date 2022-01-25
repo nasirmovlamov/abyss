@@ -10,7 +10,6 @@ import {
 import { useAppDispatch, useAppSelector } from '../store/states/store.hooks';
 import { changePasswordThunk } from '../store/thunks/User.thunk';
 
-
 interface Props {
   status: string
   errors: any

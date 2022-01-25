@@ -1,23 +1,21 @@
-import { AUTH_STATE, user_errors_data } from '../states/states/Auth.state'
+import { createSlice } from '@reduxjs/toolkit';
+
+import { RootState } from '..';
+import { autoSuccessToaster } from '../../components/ui/toasters/AutoSuccessToast';
+import { getKeyValue } from '../../helpers/functions/GetKeyValue';
+import { removeAccessToken, setAccessToken } from '../../helpers/token/TokenHandle';
+import { AUTH_STATE, user_errors_data } from '../states/states/Auth.state';
 import {
   changePasswordThunk,
   checkForgetPasswordTokenThunk,
-  resendEmail,
-  verifyEmail,
-} from '../thunks/User.thunk'
-import {
   forgetPasswordThunk,
+  resendEmail,
   userCheck,
   userLogin,
   userLogout,
   userRegister,
-} from '../thunks/User.thunk'
-import { removeAccessToken, setAccessToken } from '../../helpers/token/TokenHandle'
-
-import { RootState } from '..'
-import { autoSuccessToaster } from '../../components/ui/toasters/AutoSuccessToast'
-import { createSlice } from '@reduxjs/toolkit'
-import { getKeyValue } from '../../helpers/functions/GetKeyValue'
+  verifyEmail,
+} from '../thunks/User.thunk';
 
 export const UserSlice = createSlice({
   name: 'user-slice',

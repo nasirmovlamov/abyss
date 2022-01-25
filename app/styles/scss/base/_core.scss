@@ -1,0 +1,17 @@
+body {
+  font-family: 'Segoe UI';
+  position: relative;
+  scroll-behavior: smooth;
+}
+
+/* Container */
+.container-main {
+  max-width: 1440px;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  @media (min-width: map-get($breakpoints, lg)) {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}

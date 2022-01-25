@@ -1,5 +1,10 @@
+import { useAppTheme } from 'app/contexts/Theme.context';
+import { darkTheme, lightTheme } from 'app/styles/styled-components/abstracts/theme.style';
+import { GlobalStyle } from 'app/styles/styled-components/global.style';
 import { useRouter } from 'next/router';
 import React, { ReactNode, useEffect } from 'react';
+import { Toaster } from 'react-hot-toast';
+import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 
 import { getCookie } from '../../helpers/functions/CookieFunctions';
 import { is_chatbox_opened, openChat } from '../../store/slices/ChatBox.slice';
@@ -23,6 +28,7 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
   const userData = useAppSelector(user_data)
   const isChatBoxOpened = useAppSelector(is_chatbox_opened)
   const isCommentBoxOpened = useAppSelector(is_comment_opened)
+  const theme = useAppTheme()
 
   useEffect(() => {
     if (getCookie('token') !== null) {
@@ -44,41 +50,45 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
     dispatch(openChat(''))
   }
 
-  if (userStatus === 'logged' || userStatus === 'not-logged') {
-    return (
-      <div
-        style={{ display: 'flex', flexDirection: 'column', width: '100%' }}
-        onMouseEnter={() => dispatch(hoverWindowAsync(null))}
-        onMouseLeave={() => dispatch(unhoverWindow(null))}
-      >
+  return (
+    <StyledThemeProvider theme={theme?.isDark ? darkTheme : lightTheme}>
+      {userStatus === 'logged' || userStatus === 'not-logged' ? (
         <div
-          style={{ width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}
+          style={{ display: 'flex', flexDirection: 'column', width: '100%' }}
+          onMouseEnter={() => dispatch(hoverWindowAsync(null))}
+          onMouseLeave={() => dispatch(unhoverWindow(null))}
         >
-          {router.pathname !== '/login' && router.pathname !== '/register' && <Header />}
-          {isChatBoxOpened && <ChatBox />}
-          {children}
+          <div
+            style={{ width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}
+          >
+            {router.pathname !== '/login' && router.pathname !== '/register' && <Header />}
+            {isChatBoxOpened && <ChatBox />}
+            <Toaster />
+            <GlobalStyle />
+            <ToolTip />
+            <ScrollToTopButton />
 
-          <ToolTip />
-          <ScrollToTopButton />
+            {children}
 
-          {userData !== null && (
-            <button
-              type="button"
-              style={{ position: 'fixed', right: '0px', bottom: '0px' }}
-              onClick={openUserChat}
-            >
-              Chat
-            </button>
-          )}
-          <Modals />
+            {userData !== null && (
+              <button
+                type="button"
+                style={{ position: 'fixed', right: '0px', bottom: '0px' }}
+                onClick={openUserChat}
+              >
+                Chat
+              </button>
+            )}
+            <Modals />
+          </div>
+
+          {router.pathname === '/' && <Footer />}
         </div>
-
-        {router.pathname === '/' && <Footer />}
-      </div>
-    )
-  }
-
-  return <></>
+      ) : (
+        <></>
+      )}
+    </StyledThemeProvider>
+  )
 }
 
 export default AppLayout

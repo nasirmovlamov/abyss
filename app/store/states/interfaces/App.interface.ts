@@ -1,5 +1,5 @@
-import { AUTH_INTERFACE } from './Auth.interface'
-import { QUESTION_INTERFACE } from './Question.interface'
+import { AUTH_INTERFACE } from './Auth.interface';
+import { QUESTION_INTERFACE } from './Question.interface';
 
 export interface APP_INTERFACE {
   AUTH_STATE: AUTH_INTERFACE

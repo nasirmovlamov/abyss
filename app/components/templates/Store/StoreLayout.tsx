@@ -1,20 +1,17 @@
+import { inChangePositionOfFilters, outChangePositionOfFilters } from 'app/store/slices/PageFilters.slice';
+import { changeProductTabActiveWithoutScroll } from 'app/store/slices/PageTabs.slice';
+import { goProductPage, single_product_data } from 'app/store/slices/SingleProduct.slice';
+import { is_logged } from 'app/store/slices/User.slice';
+import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
+import { getSingleProduct } from 'app/store/thunks/SingleProduct.thunk';
+import { MainLayoutStyle } from 'app/styles/styled-components/base/pages/Page.style';
 import { useRouter } from 'next/router';
-import { FC, useLayoutEffect } from 'react';
+import { ReactNode, useLayoutEffect } from 'react';
 
-import { inChangePositionOfFilters, outChangePositionOfFilters } from '../../../store/slices/PageFilters.slice';
-import { changeProductTabActiveWithoutScroll } from '../../../store/slices/PageTabs.slice';
-import { goProductPage, single_product_data } from '../../../store/slices/SingleProduct.slice';
-import { is_logged } from '../../../store/slices/User.slice';
-import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks';
-import { getSingleProduct } from '../../../store/thunks/SingleProduct.thunk';
-import { PageDefaultStyle } from '../../../styles/pages/Page.styled';
-import MainPartOfPage from '../../layouts/PageMain.layout';
+import MainPartOfPage from '../../layouts/Main.layout';
 import PageSideLayout from '../../layouts/PageSide.layout';
 
-
-interface Props { }
-
-const StoreLayout: FC<Props> = ({ children, ...props }) => {
+const StoreLayout = ({ children }: { children: ReactNode }) => {
   const router = useRouter()
   const singleProductData = useAppSelector(single_product_data)
   const dispatch = useAppDispatch()
@@ -42,13 +39,13 @@ const StoreLayout: FC<Props> = ({ children, ...props }) => {
     dispatch(outChangePositionOfFilters(null))
   }
 
+  const leftPart = <div>test</div>
+
   return (
-    <PageDefaultStyle>
-      <PageSideLayout
-        onMouseEnter={hoverSideLeft}
-        onMouseLeave={hoverSideRight}
-        side={'left'}
-      >test</PageSideLayout>
+    <MainLayoutStyle>
+      <PageSideLayout onMouseEnter={hoverSideLeft} onMouseLeave={hoverSideRight} side={'left'}>
+        test
+      </PageSideLayout>
 
       <MainPartOfPage>
         {singleProductData.data !== null && <>{children}</>}
@@ -66,7 +63,7 @@ const StoreLayout: FC<Props> = ({ children, ...props }) => {
       </MainPartOfPage>
 
       <PageSideLayout side={'right'}>test</PageSideLayout>
-    </PageDefaultStyle>
+    </MainLayoutStyle>
   )
 }
 
