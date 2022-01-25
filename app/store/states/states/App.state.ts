@@ -1,4 +1,4 @@
-import { APP_INTERFACE } from '../state-Interfaces/AppInterface';
+import { APP_INTERFACE } from '../interfaces/App.interface';
 import { AUTH_STATE } from './Auth.state';
 import { QUESTION_STATE } from './Question.state';
 

@@ -1,4 +1,4 @@
-import { QUESTION_INTERFACE } from '../state-Interfaces/QuestionInterface';
+import { QUESTION_INTERFACE } from '../interfaces/Question.interface';
 
 export const QUESTION_STATE: QUESTION_INTERFACE = {
   status: 'loading',

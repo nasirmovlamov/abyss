@@ -1,10 +1,12 @@
-import { faEdit, faEllipsisV, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEdit } from '@fortawesome/free-regular-svg-icons';
+import { faEllipsisV, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useCommentHook } from 'app/hooks/useComment.hook';
+import { comments_types, edit_comment_data } from 'app/store/slices/Comments.slice';
+import { user_data } from 'app/store/slices/User.slice';
+import { useAppSelector } from 'app/store/states/store.hooks';
+import * as SingleQuestion_STY from 'app/styles/styled-components/base/pages/SingleQuestionPage.style';
 
-import { useCommentHook } from '../../../hooks/useComment.hook';
-import { comments_types, edit_comment_data } from '../../../store/slices/Comments.slice';
-import { user_data } from '../../../store/slices/User.slice';
-import { useAppSelector } from '../../../store/states/store.hooks';
 import {
   CommentAvatar,
   CommentContent,

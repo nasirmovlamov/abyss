@@ -4,16 +4,14 @@ import { goProductPage, single_product_data } from 'app/store/slices/SingleProdu
 import { is_logged } from 'app/store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import { getSingleProduct } from 'app/store/thunks/SingleProduct.thunk';
-import { PageDefaultStyle } from 'app/styles/styled-components/base/pages/Page.styled';
+import { MainLayoutStyle } from 'app/styles/styled-components/base/pages/Page.style';
 import { useRouter } from 'next/router';
-import { FC, useLayoutEffect } from 'react';
+import { ReactNode, useLayoutEffect } from 'react';
 
 import MainPartOfPage from '../../layouts/Main.layout';
 import PageSideLayout from '../../layouts/PageSide.layout';
 
-interface Props {}
-
-const StoreLayout: FC<Props> = ({ children, ...props }) => {
+const StoreLayout = ({ children }: { children: ReactNode }) => {
   const router = useRouter()
   const singleProductData = useAppSelector(single_product_data)
   const dispatch = useAppDispatch()
@@ -41,8 +39,10 @@ const StoreLayout: FC<Props> = ({ children, ...props }) => {
     dispatch(outChangePositionOfFilters(null))
   }
 
+  const leftPart = <div>test</div>
+
   return (
-    <PageDefaultStyle>
+    <MainLayoutStyle>
       <PageSideLayout onMouseEnter={hoverSideLeft} onMouseLeave={hoverSideRight} side={'left'}>
         test
       </PageSideLayout>
@@ -63,7 +63,7 @@ const StoreLayout: FC<Props> = ({ children, ...props }) => {
       </MainPartOfPage>
 
       <PageSideLayout side={'right'}>test</PageSideLayout>
-    </PageDefaultStyle>
+    </MainLayoutStyle>
   )
 }
 

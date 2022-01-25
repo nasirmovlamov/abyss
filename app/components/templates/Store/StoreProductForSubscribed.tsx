@@ -1,3 +1,18 @@
+import CodeMirror from '@uiw/react-codemirror';
+import { DetailsCont_STY, LabelCont } from 'app/styles/styled-components/base/modules/CreateQuestionModal.style';
+import {
+  ClipBody,
+  ClipsCont,
+  ClipTitle,
+  LabelContent,
+  LabelKey,
+  MainClip,
+  SideClip,
+  SideClips,
+  StoreForumBody,
+  StoreForumCont,
+  StoreForumTitle,
+} from 'app/styles/styled-components/base/pages/Store.style';
 import axios from 'axios';
 import HTMLReactParser from 'html-react-parser';
 import { useRouter } from 'next/router';
@@ -11,21 +26,6 @@ import { useAppDispatch, useAppSelector } from '../../../store/states/store.hook
 import {
   CodeMirror_ReadOnly_STY,
 } from '../../../styles/styled-components/base/modules/CreateProduct_Style/Steps/ProductCreate_Step1.style';
-import { DetailsCont_STY } from '../../../styles/styled-components/base/modules/CreateQuestionModal.style';
-import {
-  ClipBody,
-  ClipsCont,
-  ClipTitle,
-  LabelCont,
-  LabelContent,
-  LabelKey,
-  MainClip,
-  SideClip,
-  SideClips,
-  StoreForumBody,
-  StoreForumCont,
-  StoreForumTitle,
-} from '../../../styles/styled-components/base/pages/Store.styled';
 import { autoSuccessToaster } from '../../ui/toasters/AutoSuccessToast';
 
 interface Props {}
@@ -37,7 +37,7 @@ const StoreProductForSubscribed = (props: Props) => {
   const dispatch = useAppDispatch()
   const storeTabs = useAppSelector(store_tabs)
   const singleProductData = useAppSelector(single_product_data)
-  const activeStoreTab = storeTabs.filter((tab) => tab.isActive)[0]
+  const activeStoreTab = storeTabs.filter((tab: any) => tab.isActive)[0]
   const [mainClip, setmainClip] = useState('')
 
   const getQuestions = async () => {

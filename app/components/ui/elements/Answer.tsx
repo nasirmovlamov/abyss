@@ -33,7 +33,7 @@ import {
   ShowCommentsCont,
 } from '../../../styles/styled-components/base/modules/Answer.style';
 import { ThumbIcon } from '../../../styles/styled-components/base/modules/FormQuestion.style';
-import * as SingleQuestion_STY from '../../../styles/styled-components/base/pages/SingleQuestionPage.styled';
+import * as SingleQuestion_STY from '../../../styles/styled-components/base/pages/SingleQuestionPage.style';
 import MyEditor from '../../modules/editors/MyEditor';
 
 const DynamicComponentWithNoSSR = dynamic(

@@ -2,7 +2,6 @@ import AnswerSkeleton from 'app/components/ui/skeletons/AnswerSkeleton';
 import { BASE_API_INSTANCE } from 'app/helpers/api/BaseInstance';
 import { cave_side_data } from 'app/store/slices/CaveFeatures/CaveSide.slice';
 import { cave_actions, cave_tabs } from 'app/store/slices/CaveFeatures/CaveTabs.slice';
-import { inventoryTabs } from 'app/store/states/states/Cave_States/CaveTabs.state';
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import {
   CaveInventoryBlocks_Sty,
@@ -11,37 +10,24 @@ import {
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { scroller } from 'react-scroll';
-import { useScrollYPosition } from 'react-use-scroll-position';
 
 import CaveProduct from '../../CaveProduct';
 
-interface Props {}
-
-const Cave_Inventory = (props: Props) => {
+const Cave_Inventory = () => {
   const [inViewRefInventoryLoaderBlock, inViewInventoryLoaderBlock] = useInView()
   const [inViewRefInventorySavedBlock, inViewInventorySavedBlock] = useInView()
-  const [inViewRefInventoryCreatedBlock, inViewInventoryCreatedBlock] = useInView()
-  const [inViewRefInventoryPlaylistBlock, inViewInventoryPlaylistBlock] = useInView()
-  const [inViewRefInventoryHistoryBlock, inViewInventoryHistoryBlock] = useInView()
 
   const [inventoryLastPage, setinventoryLastPage] = useState<any>(0)
   const [inventoryCurrentPage, setinventoryCurrentPage] = useState<any>(1)
   const [inventoryData, setinventoryData] = useState<any>([])
   const [inventoryStatus, setinventoryStatus] = useState<any>('pending')
-  // const [inventoryCurrentPage, setinventoryCurrentPage] = useState(0)
 
   const caveSideData = useAppSelector(cave_side_data)
   const dispatch = useAppDispatch()
-  const scrollY = useScrollYPosition()
 
   const caveTabs = useAppSelector(cave_tabs)
   const caveInventoryTabs = caveTabs['inventory']
-  const activeTab = caveInventoryTabs.filter((tab) => tab.active)[0]
-
-  const savedTab = inventoryTabs.filter((tab) => tab.name === 'saved')[0]
-  const createdTab = inventoryTabs.filter((tab) => tab.name === 'created')[0]
-  const playlistTab = inventoryTabs.filter((tab) => tab.name === 'playlist')[0]
-  const historyTab = inventoryTabs.filter((tab) => tab.name === 'history')[0]
+  const activeTab = caveInventoryTabs.filter((tab: any) => tab.active)[0]
 
   const changeActiveTab = (tab: any) => {
     dispatch(cave_actions.selectTab({ tab: tab, window: caveSideData.selectedWindow }))
@@ -57,21 +43,6 @@ const Cave_Inventory = (props: Props) => {
     })
   }, [])
 
-  // useEffect(() => {
-  //     // if(inViewInventorySavedBlock){
-  //     //     changeActiveTab(savedTab)
-  //     // }
-  //     // if(inViewInventoryCreatedBlock){
-  //     //     changeActiveTab(createdTab)
-  //     // }
-  //     // if(inViewInventoryPlaylistBlock){
-  //     //     changeActiveTab(playlistTab)
-  //     // }
-  //     // if(inViewInventoryHistoryBlock){
-  //     //     changeActiveTab(historyTab)
-  //     // }
-  // }, [scrollY])
-  //#endregion ScrollSpy
   const getInventoryData = async () => {
     try {
       if (inventoryStatus !== 'pending') {

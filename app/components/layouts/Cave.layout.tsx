@@ -4,7 +4,7 @@ import React, { ReactNode } from 'react';
 import { color_convert, is_Logged } from '../../store/slices/User.slice';
 import { useAppSelector } from '../../store/states/store.hooks';
 import { Cave_Sty } from '../../styles/styled-components/base/modules/Cave.style';
-import { CavePageDefaultStyle, CaveSidePartOfPage_Sty } from '../../styles/styled-components/base/pages/Page.styled';
+import { CavePageDefaultStyle, CaveSidePartOfPage_Sty } from '../../styles/styled-components/base/pages/Page.style';
 import Cave_Tabs from '../templates/Cave/Cave_Tabs/Cave_Tabs';
 import CaveSidebar from '../templates/Cave/CaveSidebar';
 import PageMainLayout from './Main.layout';

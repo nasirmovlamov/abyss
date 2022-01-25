@@ -32,7 +32,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useState } from 'react';
 
-import * as SingleQuestion_STY from '../../styles/styled-components/base/pages/SingleQuestionPage.styled';
+import * as SingleQuestion_STY from '../../styles/styled-components/base/pages/SingleQuestionPage.style';
 import AnswersModule from '../modules/Answers.module';
 import AnswerSubmitCont from '../modules/AnswerSubmit';
 import MyEditor from '../modules/editors/MyEditor';

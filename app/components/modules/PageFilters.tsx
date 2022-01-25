@@ -1,12 +1,12 @@
 import { faThumbtack } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ReactElement, useRef } from 'react';
+import { searchFiltersThunk } from 'app/store/thunks/PageFilters.thunk';
+import { useRef } from 'react';
 
 import {
   changeToStayInFocus,
   filter_search_tags,
   filter_search_value,
-  filter_tags,
   filterDropisHovered,
   filterDropisUnHovered,
   filterSearchValueOnChange,
@@ -27,7 +27,6 @@ import {
   selectFilterToSearchOption,
 } from '../../store/slices/SearchBox.slice';
 import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
-import { searchFiltersThunk } from '../../store/thunks/PageFilters.thunk';
 import {
   FilterCont,
   FilterContStyle,
@@ -47,11 +46,8 @@ import {
   PinButton,
 } from '../../styles/styled-components/base/modules/PageFilters.style';
 
-interface Props {}
-
-function PageFilters({}: Props): ReactElement {
+const PageFilters = () => {
   const dispatch = useAppDispatch()
-  const filterTags = useAppSelector(filter_tags)
   const filterSearchTags = useAppSelector(filter_search_tags)
   const filterSearchValue = useAppSelector(filter_search_value)
   const isFocused = useAppSelector(is_focused)
@@ -134,15 +130,15 @@ function PageFilters({}: Props): ReactElement {
           <FilterLanguageContent>
             <p className="title">Include</p>
             <FilterTagsCont>
-              {searchIncludeFilters.map((element, index) => (
+              {searchIncludeFilters.map((element: any, index: any) => (
                 <FilterTagElementCont
                   key={element.id}
-                  selected={searchIncludeFilters.find((x) => x.id === element.id)}
+                  selected={searchIncludeFilters.find((x: any) => x.id === element.id)}
                   tagType="include"
                 >
                   <FilterTag
                     onClick={() => dispatch(selectFilterToExcludeOption(element))}
-                    selected={searchIncludeFilters.find((x) => x.id === element.id)}
+                    selected={searchIncludeFilters.find((x: any) => x.id === element.id)}
                     tagType="include"
                   >
                     {element.name}
@@ -153,15 +149,15 @@ function PageFilters({}: Props): ReactElement {
             </FilterTagsCont>
             <p className="title">Exclude</p>
             <FilterTagsCont>
-              {searchExcludeFilters.map((element, index) => (
+              {searchExcludeFilters.map((element: any, index: any) => (
                 <FilterTagElementCont
                   key={element.id}
-                  selected={searchExcludeFilters.find((x) => x.id === element.id)}
+                  selected={searchExcludeFilters.find((x: any) => x.id === element.id)}
                   tagType="exclude"
                 >
                   <FilterTag
                     onClick={() => dispatch(selectFilterToSearchOption(element))}
-                    selected={searchExcludeFilters.find((x) => x.id === element.id)}
+                    selected={searchExcludeFilters.find((x: any) => x.id === element.id)}
                     tagType="exclude"
                   >
                     {element.name}
@@ -194,7 +190,7 @@ function PageFilters({}: Props): ReactElement {
               onMouseLeave={filterOnUnHover}
             >
               {filterSearchTags.filters.map(
-                (element, index) =>
+                (element: any, index: any) =>
                   element.name.includes(filterSearchValue.value) && (
                     <FilterSearchDropdownElement key={element.id}>
                       {element.name}{' '}

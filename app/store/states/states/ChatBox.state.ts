@@ -1,4 +1,4 @@
-import { ChatBoxInterface } from '../state-Interfaces/ChatBoxInterface';
+import { ChatBoxInterface } from '../interfaces/ChatBox.interface';
 
 export const ChatBoxState: ChatBoxInterface = {
   status: 'loading',

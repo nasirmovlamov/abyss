@@ -1,13 +1,13 @@
+import { BASE_API_INSTANCE } from 'app/helpers/api/BaseInstance';
+import { changeProductTabActiveWithoutScroll, store_tabs } from 'app/store/slices/PageTabs.slice';
+import { single_product_data } from 'app/store/slices/SingleProduct.slice';
+import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import axios from 'axios';
 import HTMLReactParser from 'html-react-parser';
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import { BASE_API_INSTANCE } from '../../../helpers/api/BaseInstance';
-import { changeProductTabActiveWithoutScroll, store_tabs } from '../../../store/slices/PageTabs.slice';
-import { single_product_data } from '../../../store/slices/SingleProduct.slice';
-import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks';
+import blurredEditor from '../../../../public/blurred_editor.jpg';
 import {
   CodeMirror_ReadOnly_STY,
 } from '../../../styles/styled-components/base/modules/CreateProduct_Style/Steps/ProductCreate_Step1.style';
@@ -25,20 +25,17 @@ import {
   StoreForumBody,
   StoreForumCont,
   StoreForumTitle,
-} from '../../../styles/styled-components/base/pages/Store.styled';
+} from '../../../styles/styled-components/base/pages/Store.style';
 import { autoSuccessToaster } from '../../ui/toasters/AutoSuccessToast';
 
-interface Props {}
-
-const StoreProductForNonSubscribed = (props: Props) => {
-  const router = useRouter()
+const StoreProductForNonSubscribed = () => {
   const [inViewRefCodeBlock, inViewCodeBlock] = useInView()
   const [formQuestionsAPI, setformQuestionsAPI] = useState([])
   const dispatch = useAppDispatch()
   const storeTabs = useAppSelector(store_tabs)
   const singleProductData = useAppSelector(single_product_data)
 
-  const activeStoreTab = storeTabs.filter((tab) => tab.isActive)[0]
+  const activeStoreTab = storeTabs.filter((tab: any) => tab.isActive)[0]
   const [mainClip, setmainClip] = useState('')
 
   useEffect(() => {

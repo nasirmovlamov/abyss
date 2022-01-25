@@ -1,12 +1,12 @@
 import dynamic from 'next/dynamic';
-import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import React, { ReactElement, useRef, useState } from 'react';
 
 import { submit_answer_content, submit_answer_data } from '../../store/slices/Question.slice';
 import { changeModalAction, is_Logged, user_data } from '../../store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
 import { addAnswer } from '../../store/thunks/Question.thunk';
-import { AddAnswerCont_STY, AddAnswerSubmit_STY } from '../../styles/styled-components/base/pages/SingleQuestionPage.styled';
-import { LabelCont } from '../../styles/styled-components/base/pages/Store.styled';
+import { AddAnswerCont_STY, AddAnswerSubmit_STY } from '../../styles/styled-components/base/pages/SingleQuestionPage.style';
+import { LabelCont } from '../../styles/styled-components/base/pages/Store.style';
 import { autoErrorToasterWithMessage } from '../ui/toasters/AutoSuccessToast';
 import MyEditor from './editors/MyEditor';
 

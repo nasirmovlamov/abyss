@@ -9,11 +9,9 @@ import {
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import { forgetPasswordThunk } from 'app/store/thunks/User.thunk';
 import { ModalFORM_STY } from 'app/styles/styled-components/base/modules/Modal_Style/ModalCont.style';
-import { FormEvent, ReactElement } from 'react';
+import { FormEvent } from 'react';
 
-interface Props {}
-
-function ForgetPasswordModal({}: Props): ReactElement {
+const ForgetPasswordModal = () => {
   const dispatch = useAppDispatch()
   const allModals = useAppSelector(user_modals)
   const loginForm = useAppSelector(login_form)

@@ -1,6 +1,5 @@
-import { CaveTabsInterface } from './../../state-Interfaces/Cave_Interfaces/CaveTabs.interface';
+import { CaveTabsInterface } from '../../interfaces/Cave_Interfaces/CaveTabs.interface';
 
-//#region PROFILE TABS
 export const profileTabs = [
   {
     id: 0,
@@ -36,9 +35,7 @@ export const profileTabs = [
     name: 'settings',
   },
 ]
-//#endregion PROFILE TABS
 
-//#region Inventory TABS
 export const inventoryTabs = [
   {
     id: 0,
@@ -85,9 +82,7 @@ export const inventoryTabs = [
     name: 'history',
   },
 ]
-//#endregion Inventory TABS
 
-//#region Library TABS
 export const libraryTabs = [
   {
     id: 0,
@@ -134,9 +129,7 @@ export const libraryTabs = [
     name: 'history',
   },
 ]
-//#endregion Library TABS
 
-//#region Shop TABS
 export const shopTabs = [
   {
     id: 0,
@@ -183,9 +176,7 @@ export const shopTabs = [
     name: 'settings',
   },
 ]
-//#endregion Shop TABS
 
-//#region Note TABS
 export const notesTabs = [
   {
     id: 0,
@@ -199,9 +190,7 @@ export const notesTabs = [
     name: 'note',
   },
 ]
-//#endregion Note TABS
 
-//#region Guide TABS
 export const guideTabs = [
   {
     id: 0,
@@ -215,7 +204,6 @@ export const guideTabs = [
     name: 'guide',
   },
 ]
-//#endregion Guide TABS
 
 export const caveTabsState: CaveTabsInterface = {
   profile: profileTabs,

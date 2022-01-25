@@ -1,8 +1,3 @@
-import { ReactElement } from 'react';
-
-import { useCommentsTabHook } from '../../../hooks/useCommentsTab.hook';
-import { comments, comments_types } from '../../../store/slices/Comments.slice';
-import { useAppSelector } from '../../../store/states/store.hooks';
 import {
   AllCommentsCont,
   CommentChangeContent,
@@ -12,11 +7,15 @@ import {
   CommentsTabStyle,
   PostComment,
   TakeCommentsToSideMakeAbsolute,
-} from '../../../styles/styled-components/base/modules/CommentsTab.style';
+} from 'app/styles/styled-components/base/modules/CommentsTab.style';
+import { ReactElement } from 'react';
 
-interface Props {}
+import { useCommentsTabHook } from '../../../hooks/useCommentsTab.hook';
+import { comments, comments_types } from '../../../store/slices/Comments.slice';
+import { useAppSelector } from '../../../store/states/store.hooks';
+import Comment from '../elements/Comment';
 
-function CommentModal({}: Props): ReactElement {
+const CommentModal = () => {
   const commentsType: any = useAppSelector(comments_types)
   const Comments = useAppSelector(comments)
   const { dontShowComments, setNewComment, newComment, commentOnChange, submitComment } =
@@ -31,7 +30,7 @@ function CommentModal({}: Props): ReactElement {
           </CommentsTabMainNameStyle>
 
           <AllCommentsCont>
-            {Comments.map((comment) => (
+            {Comments.map((comment: any) => (
               <Comment key={comment.id} comment={comment} />
             ))}
           </AllCommentsCont>

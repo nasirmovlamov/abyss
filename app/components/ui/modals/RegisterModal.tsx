@@ -1,22 +1,13 @@
-import {
-  changeModalAction,
-  register_errors,
-  register_form,
-  register_Form_OnChange,
-  user_modals,
-} from 'app/store/slices/User.slice';
+import { changeModalAction, register_errors, register_form, register_Form_OnChange } from 'app/store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import { userRegister } from 'app/store/thunks/User.thunk';
 import * as Form_STY from 'app/styles/styled-components/base/elements/Form.style';
 import { ModalFORM_STY } from 'app/styles/styled-components/base/modules/Modal_Style/ModalCont.style';
 import { FormEvent, ReactElement } from 'react';
 
-interface Props {}
-
-function RegisterModal({}: Props): ReactElement {
+const RegisterModal = () => {
   const dispatch = useAppDispatch()
   const registerErrors = useAppSelector(register_errors)
-  const allModals = useAppSelector(user_modals)
   const registerForm = useAppSelector(register_form)
 
   const formSubmit = (e: FormEvent) => {
@@ -68,7 +59,7 @@ function RegisterModal({}: Props): ReactElement {
         />
         <Form_STY.Error_STY error={registerErrors.name}>
           {registerErrors.name &&
-            registerErrors.name.map((error, index) => <span key={index}> {error}</span>)}
+            registerErrors.name.map((error: any, index: any) => <span key={index}> {error}</span>)}
         </Form_STY.Error_STY>
       </Form_STY.InputGroup_STY>
 
@@ -84,7 +75,7 @@ function RegisterModal({}: Props): ReactElement {
         />
         <Form_STY.Error_STY error={registerErrors.email}>
           {registerErrors.email &&
-            registerErrors.email.map((error, index) => <span key={index}>{error}</span>)}
+            registerErrors.email.map((error: any, index: any) => <span key={index}>{error}</span>)}
         </Form_STY.Error_STY>
       </Form_STY.InputGroup_STY>
 
@@ -100,7 +91,9 @@ function RegisterModal({}: Props): ReactElement {
         />
         <Form_STY.Error_STY error={registerErrors.password}>
           {registerErrors.password &&
-            registerErrors.password.map((error, index) => <span key={index}>{error}</span>)}
+            registerErrors.password.map((error: any, index: any) => (
+              <span key={index}>{error}</span>
+            ))}
         </Form_STY.Error_STY>
       </Form_STY.InputGroup_STY>
 

@@ -11,9 +11,7 @@ import { useInView } from 'react-intersection-observer';
 import { scroller } from 'react-scroll';
 import { useScrollYPosition } from 'react-use-scroll-position';
 
-interface Props {}
-
-const Cave_Library = (props: Props) => {
+const Cave_Library = () => {
   const [inViewRefLibrarySavedBlock, inViewLibrarySavedBlock] = useInView()
   const [inViewRefLibraryCreatedBlock, inViewLibraryCreatedBlock] = useInView()
   const [inViewRefLibraryPlaylistBlock, inViewLibraryPlaylistBlock] = useInView()
@@ -25,7 +23,7 @@ const Cave_Library = (props: Props) => {
 
   const caveTabs = useAppSelector(cave_tabs)
   const caveLibraryTabs = caveTabs['library']
-  const activeTab = caveLibraryTabs.filter((tab) => tab.active)[0]
+  const activeTab = caveLibraryTabs.filter((tab: any) => tab.active)[0]
 
   const savedTab = libraryTabs.filter((tab) => tab.name === 'saved')[0]
   const createdTab = libraryTabs.filter((tab) => tab.name === 'created')[0]

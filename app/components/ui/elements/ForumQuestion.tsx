@@ -37,7 +37,7 @@ import {
 import {
   QuestionStatisticButton_STY,
   QuestionStatistics_STY,
-} from '../../../styles/styled-components/base/pages/SingleQuestionPage.styled';
+} from '../../../styles/styled-components/base/pages/SingleQuestionPage.style';
 
 interface Props {
   data: any
