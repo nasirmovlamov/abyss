@@ -11,7 +11,7 @@ import PageTabs from '../../app/components/ui/tabs/ForumPageTabs';
 import { is_chatbox_opened } from '../../app/store/slices/ChatBox.slice';
 import { search_query, store_search_data } from '../../app/store/slices/SearchBox.slice';
 import { useAppSelector } from '../../app/store/states/store.hooks';
-import { StorePageStyle } from '../../app/styles/styled-components/pages/Pages.style';
+import { StorePageStyle } from '../../app/styles/styled-components/base/pages/Pages.style';
 
 function StorePage() {
   const [inViewRefLoaderDown, inViewLoaderDown] = useInView()

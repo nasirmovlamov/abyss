@@ -16,7 +16,7 @@ import { useQuestionHooks } from 'app/hooks/useQuestion.hook';
 import { edit_question_data, single_question_data } from 'app/store/slices/Question.slice';
 import { user_data } from 'app/store/slices/User.slice';
 import { useAppSelector } from 'app/store/states/store.hooks';
-import { ShowComments } from 'app/styles/styled-components/components/modules/Answer.style';
+import { ShowComments } from 'app/styles/styled-components/base/modules/Answer.style';
 import {
   AnswerCont,
   AnswerCount,
@@ -26,13 +26,13 @@ import {
   PercentageLine,
   Text,
   ThumbIcon,
-} from 'app/styles/styled-components/components/modules/FormQuestion.style';
+} from 'app/styles/styled-components/base/modules/FormQuestion.style';
 import HTMLReactParser from 'html-react-parser';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useState } from 'react';
 
-import * as SingleQuestion_STY from '../../styles/styled-components/pages/SingleQuestionPage.styled';
+import * as SingleQuestion_STY from '../../styles/styled-components/base/pages/SingleQuestionPage.styled';
 import AnswersModule from '../modules/Answers.module';
 import AnswerSubmitCont from '../modules/AnswerSubmit';
 import MyEditor from '../modules/editors/MyEditor';
@@ -69,7 +69,7 @@ const QuestionMiddleLayout = () => {
         <SingleQuestion_STY.PersonCont_STY>
           <SingleQuestion_STY.Avatar_STY>
             <div style={{ opacity: 0.618 }}>
-              <Image src="/main-logo-new.svg" width="65px" height="65px" alt="Abyss Logo" />
+              <Image src="/icons/main-logo-new.svg" width="65px" height="65px" alt="Abyss Logo" />
             </div>
           </SingleQuestion_STY.Avatar_STY>
           <SingleQuestion_STY.Name_STY>{question_data.user.name}</SingleQuestion_STY.Name_STY>

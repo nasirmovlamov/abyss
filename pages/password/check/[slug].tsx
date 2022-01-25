@@ -7,7 +7,7 @@ import {
 } from 'app/store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import { checkForgetPasswordTokenThunk } from 'app/store/thunks/User.thunk';
-import * as ChangePassSTY from 'app/styles/styled-components/components/modules/ForgetPassword.style';
+import * as ChangePassSTY from 'app/styles/styled-components/base/modules/ForgetPassword.style';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 

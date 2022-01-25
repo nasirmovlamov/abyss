@@ -2,7 +2,6 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
-import { useScrollDirection } from 'react-use-scroll-direction';
 import { useScrollYPosition } from 'react-use-scroll-position';
 
 import { getCookie } from '../../helpers/functions/CookieFunctions';
@@ -24,9 +23,9 @@ import {
 import { changeModalAction } from '../../store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
 import { forumSearchInfinity, storeSearchInfinity, unHoverSearchAsync } from '../../store/thunks/SearchBox.thunk';
-import * as SearchForStaticVersion_STY from '../../styles/styled-components/components/modules/SearchBoxStatic.style';
+import * as SearchForStaticVersion_STY from '../../styles/styled-components/base/modules/SearchBoxStatic.style';
 
-function SearchBoxStaticVersion() {
+const SearchBoxStaticVersion = () => {
   const router = useRouter()
   const [pagePath, setpagePath] = useState('')
   const dispatch = useAppDispatch()
@@ -50,8 +49,6 @@ function SearchBoxStaticVersion() {
   const changeSearchValue = (e: string) => {
     dispatch(searchValueOnChange(e))
   }
-
-  const { isScrollingUp, isScrollingDown } = useScrollDirection()
 
   const pagePathDetector = (pathname: string) => {
     if (pathname === '/') {
@@ -108,27 +105,6 @@ function SearchBoxStaticVersion() {
       }
     }
   }
-
-  // const searchScrollControl = async (router: any) => {
-  //   if (isScrollingDown && isFocused) dispatch(changeSearchVisibilty('not-visible'))
-  // }
-
-  // const thunkHasHovered = async (router: any) => {
-  //   // searchContRef.current!.setAttribute("style", `top: 60px;`)
-  //   dispatch(changeSearchVisibilty('not-visible'))
-  // }
-
-  // Handle search bar disappearing on hovered and scroll down
-  // useEffect(() => {
-  //   // When we stop after scrolling
-  //   if (!isScrollingUp && !isScrollingDown) return
-
-  //   if (isScrollingDown && (isHovered || isFocused)) {
-  //     setTopPercent((1 - scrollY / document.body.scrollHeight) * 100)
-  //   } else {
-  //     setTopPercent(100)
-  //   }
-  // }, [scrollY, isHovered, isFocused, isScrollingDown])
 
   useEffect(() => {
     if (router.isReady) {

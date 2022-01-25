@@ -2,8 +2,8 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { ReactElement, useState } from 'react';
 
-import mainlogo from '../../../../public/main-logo.svg';
-import thumbs_up from '../../../../public/thumbs-up.svg';
+import mainlogo from '../../../../public/icons/main-logo.svg';
+import thumbs_up from '../../../../public/icons/thumbs-up.svg';
 import { set_side_product_data } from '../../../store/slices/SideProducts.slice';
 import { useAppDispatch } from '../../../store/states/store.hooks';
 import { getSideProducts } from '../../../store/thunks/SideProducts.thunk';
@@ -33,11 +33,11 @@ import {
   TextCont,
   ThumbIcon,
   Title,
-} from '../../../styles/styled-components/components/modules/FormQuestion.style';
+} from '../../../styles/styled-components/base/modules/FormQuestion.style';
 import {
   QuestionStatisticButton_STY,
   QuestionStatistics_STY,
-} from '../../../styles/styled-components/pages/SingleQuestionPage.styled';
+} from '../../../styles/styled-components/base/pages/SingleQuestionPage.styled';
 
 interface Props {
   data: any

@@ -13,7 +13,7 @@ import {
 } from '../../store/slices/Question.slice';
 import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
 import { getLinkedProducts } from '../../store/thunks/LinkedProducts.thunk';
-import { ProductsCont_STY } from '../../styles/styled-components/pages/SingleQuestionPage.styled';
+import { ProductsCont_STY } from '../../styles/styled-components/base/pages/SingleQuestionPage.styled';
 import LinkedStoreProduct from '../ui/elements/LinkedStoreProduct';
 import AnswerSkeleton from '../ui/skeletons/AnswerSkeleton';
 

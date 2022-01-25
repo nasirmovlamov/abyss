@@ -12,7 +12,7 @@ import {
   CaveLeftCornerForHover,
   CaveRightCorner,
   CaveRightCornerForHover,
-} from 'app/styles/styled-components/components/modules/Cave_Style/Cave_Tabs.style';
+} from 'app/styles/styled-components/base/modules/Cave_Style/Cave_Tabs.style';
 import Image from 'next/image';
 import { useRef } from 'react';
 import { scroller } from 'react-scroll';
@@ -86,7 +86,7 @@ const Cave_Tabs = (props: Props) => {
                     <Image
                       width="25px"
                       height="15px"
-                      src="/caveTabCornerNotHovered.svg"
+                      src="/icons/caveTabCornerNotHovered.svg"
                       alt="caveLeftCornerSvg"
                     />
                   </CaveLeftCorner>
@@ -94,7 +94,7 @@ const Cave_Tabs = (props: Props) => {
                     <Image
                       width="25px"
                       height="15px"
-                      src="/caveTabCornerHovered.svg"
+                      src="/icons/caveTabCornerHovered.svg"
                       alt="caveLeftCornerSvg"
                     />
                   </CaveLeftCornerForHover>
@@ -107,7 +107,7 @@ const Cave_Tabs = (props: Props) => {
                 <Image
                   width="25px"
                   height="15px"
-                  src="/caveTabCornerNotHovered.svg"
+                  src="/icons/caveTabCornerNotHovered.svg"
                   alt="caveLeftCornerSvg"
                 />
               </CaveRightCorner>
@@ -138,7 +138,7 @@ const Cave_Tabs = (props: Props) => {
                 <Image
                   width="25px"
                   height="15px"
-                  src="/caveTabCornerHovered.svg"
+                  src="/icons/caveTabCornerHovered.svg"
                   alt="caveLeftCornerSvg"
                 />
               </CaveRightCornerForHover>

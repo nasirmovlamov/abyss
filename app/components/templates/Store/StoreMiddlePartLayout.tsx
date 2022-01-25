@@ -26,8 +26,8 @@ import {
   StoreTopRatingStars,
   StoreTopTags,
   StoreTopTitle,
-} from '../../../styles/styled-components/pages/Store.styled';
-import mainLogo from '../../public/main-logo.svg';
+} from '../../../styles/styled-components/base/pages/Store.styled';
+import mainLogo from '../../public/icons/main-logo.svg';
 import SinglePageTabs from '../../ui/elements/SinglePageTabs';
 import StarCountShow from '../../ui/elements/StarCountShow';
 import { autoSuccessToaster } from '../../ui/toasters/AutoSuccessToast';

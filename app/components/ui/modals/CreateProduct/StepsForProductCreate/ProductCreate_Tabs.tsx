@@ -9,7 +9,7 @@ import {
   CreateProduct_Tab_Seperator,
   CreateProduct_Tabs,
   CreateProduict_Tab_STY,
-} from '../../../../../styles/styled-components/components/modules/CreateProduct_Style/CreateProduct.style';
+} from '../../../../../styles/styled-components/base/modules/CreateProduct_Style/CreateProduct.style';
 
 interface Props {}
 

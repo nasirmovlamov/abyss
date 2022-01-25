@@ -8,7 +8,7 @@ import { forum_search_data, search_data, search_query, setScrollPositionYForum }
 import { side_product_data } from 'app/store/slices/SideProducts.slice';
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import { forumSearchInfinity } from 'app/store/thunks/SearchBox.thunk';
-import { ForumPageStyle } from 'app/styles/styled-components/pages/Pages.style';
+import { ForumPageStyle } from 'app/styles/styled-components/base/pages/Pages.style';
 import React, { useEffect, useLayoutEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { BeatLoader } from 'react-spinners';

@@ -16,7 +16,7 @@ import {
 } from '../../store/slices/Question.slice';
 import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
 import { getAnswers } from '../../store/thunks/Question.thunk';
-import { AnswersCont_STY } from '../../styles/styled-components/pages/SingleQuestionPage.styled';
+import { AnswersCont_STY } from '../../styles/styled-components/base/pages/SingleQuestionPage.styled';
 import Answer from '../ui/elements/Answer';
 import AnswerSkeleton from '../ui/skeletons/AnswerSkeleton';
 

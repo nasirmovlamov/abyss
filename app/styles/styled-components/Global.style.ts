@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
-import { ThemeType } from './abstracts/Theme.style';
+import { ThemeType } from './abstracts/theme.style';
 
 type Props = {
   theme: ThemeType
@@ -8,64 +8,56 @@ type Props = {
 
 export const GlobalStyle = createGlobalStyle<Props>`
   body {
-      background-color: ${({ theme }) => theme.body};
-       &::-webkit-scrollbar {
-        width: 10px;
-        }
+    background-color: ${({ theme }) => theme.body};
+      
+    &::-webkit-scrollbar {
+      width: 10px;
+      }
 
-         /* Track  */
-        &::-webkit-scrollbar-track {
-            background: #0f1113;
-            opacity: 0.4;
-            border-radius: 5px;
-        }
+      /* Track  */
+      &::-webkit-scrollbar-track {
+          background: #0f1113;
+          opacity: 0.4;
+          border-radius: 5px;
+      }
 
-        /* Handle  */
-        &::-webkit-scrollbar-thumb {
-        background: #949597;
-        border-radius: 5px;
+      /* Handle  */
+      &::-webkit-scrollbar-thumb {
+      background: #949597;
+      border-radius: 5px;
 
-        }
+      }
 
-         /* Handle on hover  */
-        &::-webkit-scrollbar-thumb:hover {
-        background: #6c6d6f;
-        }
-    } 
-
-
-
-    *{
-        box-sizing: border-box;
-        &::-webkit-scrollbar {
-        width: 10px;
-        }
-
-        /* Track */
-        &::-webkit-scrollbar-track {
-            background: #0f1113;
-            border-radius: 5px;
-        }
-
-        /* Handle */
-        &::-webkit-scrollbar-thumb {
-        background: #949597;
-        border-radius: 5px;
-
-        }
-
-        /* Handle on hover */
-        &::-webkit-scrollbar-thumb:hover {
-            background: #6c6d6f;
-        }
+        /* Handle on hover  */
+      &::-webkit-scrollbar-thumb:hover {
+      background: #6c6d6f;
     }
-    button, input , select, textarea{
-        cursor: pointer;
-        border:none;
-        &:focus {
-            outline:none
-        }
-    }
+  } 
+
+  * {
+      box-sizing: border-box;
+      &::-webkit-scrollbar {
+      width: 10px;
+      }
+
+      /* Track */
+      &::-webkit-scrollbar-track {
+          background: #0f1113;
+          border-radius: 5px;
+      }
+
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+      background: #949597;
+      border-radius: 5px;
+
+      }
+
+      /* Handle on hover */
+      &::-webkit-scrollbar-thumb:hover {
+          background: #6c6d6f;
+      }
+  }
   
 `
 

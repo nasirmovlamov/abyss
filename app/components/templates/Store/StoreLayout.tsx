@@ -4,7 +4,7 @@ import { goProductPage, single_product_data } from 'app/store/slices/SingleProdu
 import { is_logged } from 'app/store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import { getSingleProduct } from 'app/store/thunks/SingleProduct.thunk';
-import { PageDefaultStyle } from 'app/styles/styled-components/pages/Page.styled';
+import { PageDefaultStyle } from 'app/styles/styled-components/base/pages/Page.styled';
 import { useRouter } from 'next/router';
 import { FC, useLayoutEffect } from 'react';
 

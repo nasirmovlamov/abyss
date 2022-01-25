@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 
-import * as LoginPage_STY from '../app/styles/styled-components/components/modules/AuthStyle/Login.style';
+import * as LoginPage_STY from '../app/styles/styled-components/base/modules/AuthStyle/Login.style';
 import githubLogo from '/public/githubLogo.png';
 import googleLogo from '/public/googleLogo.png';
 import mainLogo from '/public/main-logo-new.svg';

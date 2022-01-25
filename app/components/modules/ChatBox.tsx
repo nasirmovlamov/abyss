@@ -19,7 +19,7 @@ import {
   ChatSendMessage,
   ChatWindow,
   CloseChatBox,
-} from '../../styles/styled-components/components/modules/ChatBox.style';
+} from '../../styles/styled-components/base/modules/ChatBox.style';
 
 /* eslint-disable react-hooks/exhaustive-deps */
 interface Props {}

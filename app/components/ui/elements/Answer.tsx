@@ -31,9 +31,9 @@ import {
   PersonCont,
   ShowComments,
   ShowCommentsCont,
-} from '../../../styles/styled-components/components/modules/Answer.style';
-import { ThumbIcon } from '../../../styles/styled-components/components/modules/FormQuestion.style';
-import * as SingleQuestion_STY from '../../../styles/styled-components/pages/SingleQuestionPage.styled';
+} from '../../../styles/styled-components/base/modules/Answer.style';
+import { ThumbIcon } from '../../../styles/styled-components/base/modules/FormQuestion.style';
+import * as SingleQuestion_STY from '../../../styles/styled-components/base/pages/SingleQuestionPage.styled';
 import MyEditor from '../../modules/editors/MyEditor';
 
 const DynamicComponentWithNoSSR = dynamic(

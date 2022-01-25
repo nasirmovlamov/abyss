@@ -1,6 +1,6 @@
 import { useAppTheme } from 'app/contexts/Theme.context';
-import { darkTheme, lightTheme } from 'app/styles/styled-components/abstracts/Theme.style';
-import { GlobalStyle } from 'app/styles/styled-components/Global.style';
+import { darkTheme, lightTheme } from 'app/styles/styled-components/abstracts/theme.style';
+import { GlobalStyle } from 'app/styles/styled-components/global.style';
 import { useRouter } from 'next/router';
 import React, { ReactNode, useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';

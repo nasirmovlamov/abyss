@@ -15,7 +15,7 @@ import { userLogout } from 'app/store/thunks/User.thunk';
 import {
   CaveSide_section_Sty,
   CaveSidebar_Sty,
-} from 'app/styles/styled-components/components/modules/Cave_Style/CaveSidebar.style';
+} from 'app/styles/styled-components/base/modules/Cave_Style/CaveSidebar.style';
 import { useRouter } from 'next/router';
 
 interface Props {}

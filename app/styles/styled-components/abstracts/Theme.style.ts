@@ -1,4 +1,4 @@
-import * as boxshadows from './BoxShadows.style';
+import * as boxshadows from './box-shadows.style';
 import * as colors from './Colors.style';
 
 export const lightTheme = {

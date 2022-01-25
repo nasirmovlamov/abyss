@@ -1,8 +1,8 @@
 import { changeModalAction, login_errors, login_form, login_Form_OnChange, user_modals } from 'app/store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import { userLogin } from 'app/store/thunks/User.thunk';
-import * as Form_STY from 'app/styles/styled-components/components/elements/Form.style';
-import { ModalFORM_STY } from 'app/styles/styled-components/components/modules/Modal_Style/ModalCont.style';
+import * as Form_STY from 'app/styles/styled-components/base/elements/Form.style';
+import { ModalFORM_STY } from 'app/styles/styled-components/base/modules/Modal_Style/ModalCont.style';
 import { FormEvent, ReactElement } from 'react';
 
 interface Props {}

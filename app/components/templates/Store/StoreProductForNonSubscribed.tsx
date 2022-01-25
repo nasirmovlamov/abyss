@@ -10,11 +10,8 @@ import { single_product_data } from '../../../store/slices/SingleProduct.slice';
 import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks';
 import {
   CodeMirror_ReadOnly_STY,
-} from '../../../styles/styled-components/components/modules/CreateProduct_Style/Steps/ProductCreate_Step1.style';
-import {
-  BlurredEditor,
-  DetailsCont_STY,
-} from '../../../styles/styled-components/components/modules/CreateQuestionModal.style';
+} from '../../../styles/styled-components/base/modules/CreateProduct_Style/Steps/ProductCreate_Step1.style';
+import { BlurredEditor, DetailsCont_STY } from '../../../styles/styled-components/base/modules/CreateQuestionModal.style';
 import {
   ClipBody,
   ClipsCont,
@@ -28,7 +25,7 @@ import {
   StoreForumBody,
   StoreForumCont,
   StoreForumTitle,
-} from '../../../styles/styled-components/pages/Store.styled';
+} from '../../../styles/styled-components/base/pages/Store.styled';
 import { autoSuccessToaster } from '../../ui/toasters/AutoSuccessToast';
 
 interface Props {}

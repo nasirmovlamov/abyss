@@ -3,10 +3,7 @@ import { search_data, search_query } from 'app/store/slices/SearchBox.slice';
 import { changeModalAction } from 'app/store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import { deleteAnswer } from 'app/store/thunks/Question.thunk';
-import {
-  AreYouSureButtonsCont,
-  ModalFORM_STY,
-} from 'app/styles/styled-components/components/modules/Modal_Style/ModalCont.style';
+import { AreYouSureButtonsCont, ModalFORM_STY } from 'app/styles/styled-components/base/modules/Modal_Style/ModalCont.style';
 import router, { useRouter } from 'next/router';
 
 interface Props {}

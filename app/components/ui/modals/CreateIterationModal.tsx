@@ -1,8 +1,8 @@
 import { BASE_API_INSTANCE } from 'app/helpers/api/BaseInstance';
 import { changeModalAction } from 'app/store/slices/User.slice';
 import { useAppDispatch } from 'app/store/states/store.hooks';
-import { LabelCont } from 'app/styles/styled-components/components/modules/CreateQuestionModal.style';
-import { ModalFORM_STY } from 'app/styles/styled-components/components/modules/Modal_Style/ModalCont.style';
+import { LabelCont } from 'app/styles/styled-components/base/modules/CreateQuestionModal.style';
+import { ModalFORM_STY } from 'app/styles/styled-components/base/modules/Modal_Style/ModalCont.style';
 import React, { ReactElement, useEffect, useState } from 'react';
 
 import { autoErrorToaster } from '../toasters/AutoErrorToaster';

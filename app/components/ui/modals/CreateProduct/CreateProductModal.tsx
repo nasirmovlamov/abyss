@@ -19,8 +19,8 @@ import { useAppDispatch, useAppSelector } from '../../../../store/states/store.h
 import { createProductThunk, startPlagirismChecker, updateProductThunk } from '../../../../store/thunks/CreateProduct.thunk';
 import {
   CreateProduct_CloseButton_STY,
-} from '../../../../styles/styled-components/components/modules/CreateProduct_Style/CreateProduct_Steps.style';
-import * as ProductCR_STY from '../../../../styles/styled-components/components/modules/CreateProduct_Style/CreateProductModal.style';
+} from '../../../../styles/styled-components/base/modules/CreateProduct_Style/CreateProduct_Steps.style';
+import * as ProductCR_STY from '../../../../styles/styled-components/base/modules/CreateProduct_Style/CreateProductModal.style';
 import ProductCreate_Tabs from './StepsForProductCreate/ProductCreate_Tabs';
 import ProductStepsRouter from './StepsForProductCreate/ProductCreateStepsRouter';
 

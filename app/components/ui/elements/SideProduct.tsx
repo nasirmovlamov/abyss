@@ -16,7 +16,7 @@ import {
   ProductViewCont,
   Side_ProductSideDetailsCont,
   StoreSideProductStyle,
-} from '../../../styles/styled-components/components/modules/ListingStoreProduct.styled';
+} from '../../../styles/styled-components/base/modules/ListingStoreProduct.styled';
 import NavLink from './NavLink';
 import StarCountShow from './StarCountShow';
 

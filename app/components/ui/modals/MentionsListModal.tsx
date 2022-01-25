@@ -2,7 +2,7 @@ import { mentions_of_linked_product, single_question_data } from 'app/store/slic
 import { changeModalAction } from 'app/store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import { getMentionsOfProduct } from 'app/store/thunks/LinkedProducts.thunk';
-import { MentionsListModal_Sty } from 'app/styles/styled-components/components/modules/MentionsListModal.style';
+import { MentionsListModal_Sty } from 'app/styles/styled-components/base/modules/MentionsListModal.style';
 import React, { ReactElement, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 

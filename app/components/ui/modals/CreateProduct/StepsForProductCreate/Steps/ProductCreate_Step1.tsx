@@ -16,7 +16,7 @@ import {
   CreateProduct_Step1_Error,
   ProductCreate_Step1_Style,
   SelectLangType_STY,
-} from '../../../../../../styles/styled-components/components/modules/CreateProduct_Style/Steps/ProductCreate_Step1.style';
+} from '../../../../../../styles/styled-components/base/modules/CreateProduct_Style/Steps/ProductCreate_Step1.style';
 
 interface Props {}
 

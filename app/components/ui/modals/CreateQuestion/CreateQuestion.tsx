@@ -6,8 +6,8 @@ import {
   question_value,
 } from 'app/store/slices/CreateQuestionFeatures/CreateQuestion.slice';
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
-import { LabelCont } from 'app/styles/styled-components/components/modules/CreateQuestionModal.style';
-import * as CreateQuestion_STY from 'app/styles/styled-components/components/modules/CreateThread_Style/CreateQuestion.style';
+import { LabelCont } from 'app/styles/styled-components/base/modules/CreateQuestionModal.style';
+import * as CreateQuestion_STY from 'app/styles/styled-components/base/modules/CreateThread_Style/CreateQuestion.style';
 import dynamic from 'next/dynamic';
 import { ReactElement } from 'react';
 

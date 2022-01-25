@@ -13,9 +13,7 @@ import {
   submit_answer_content,
 } from 'app/store/slices/Question.slice';
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
-import {
-  CreateAddAnswerEDITORWrapper_STY,
-} from 'app/styles/styled-components/components/modules/Editors/CreateThread.style';
+import { CreateAddAnswerEDITORWrapper_STY } from 'app/styles/styled-components/base/modules/Editors/CreateThread.style';
 import hljs from 'highlight.js';
 import React, { ReactElement, useEffect, useLayoutEffect, useState } from 'react';
 import ReactQuill from 'react-quill';

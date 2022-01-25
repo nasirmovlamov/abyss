@@ -1,7 +1,7 @@
 import { faEdit, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import mainLogo from 'app/../public/main-logo.svg';
-import { CaveProduct_STY } from 'app/styles/styled-components/components/modules/Cave_Style/CaveProduct.style';
+import mainLogo from 'app/../public/icons/main-logo.svg';
+import { CaveProduct_STY } from 'app/styles/styled-components/base/modules/Cave_Style/CaveProduct.style';
 import Image from 'next/image';
 import React from 'react';
 

@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-import { Relativer, ThemeToggler, ToggleElement, TogglerButton } from '../../../styles/styled-components/Global.style';
+import { Relativer, ThemeToggler, ToggleElement, TogglerButton } from '../../../styles/styled-components/global.style';
 
 interface Props {
   theme: string

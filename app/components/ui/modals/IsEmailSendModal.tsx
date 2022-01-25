@@ -8,7 +8,7 @@ import {
 } from 'app/store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import { forgetPasswordThunk } from 'app/store/thunks/User.thunk';
-import { ModalFORM_STY } from 'app/styles/styled-components/components/modules/Modal_Style/ModalCont.style';
+import { ModalFORM_STY } from 'app/styles/styled-components/base/modules/Modal_Style/ModalCont.style';
 import { FormEvent, ReactElement } from 'react';
 
 interface Props {}

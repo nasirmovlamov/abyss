@@ -5,7 +5,7 @@ import { create_thread_data, CreateThreadActions } from 'app/store/slices/Create
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import {
   CreateThread_Step3_STY,
-} from 'app/styles/styled-components/components/modules/CreateThread_Style/Steps/CreateThread_Step3.style';
+} from 'app/styles/styled-components/base/modules/CreateThread_Style/Steps/CreateThread_Step3.style';
 import { useEffect } from 'react';
 
 interface Props {}
