@@ -8,7 +8,7 @@ import { changeModalAction, is_Logged, user_data } from '../../store/slices/User
 import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
 import { unHoverHeaderAsync } from '../../store/thunks/SearchBox.thunk';
 import { userLogout } from '../../store/thunks/User.thunk';
-import * as Header_STY from '../../styles/styled-components/ui/modules/Navbar.style';
+import * as Header_STY from '../../styles/styled-components/components/modules/Navbar.style';
 import NavLink from '../ui/elements/NavLink';
 import mainLogo from '/public/main-logo-new.svg';
 import mainLogoText from '/public/main-logo-side-text-new.svg';

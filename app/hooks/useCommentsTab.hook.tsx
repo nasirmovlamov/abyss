@@ -7,7 +7,6 @@ import { changeModalAction, is_Logged } from '../store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from '../store/states/store.hooks';
 import { addAnswerComment, addQuestionComment } from '../store/thunks/Comments.thunk';
 
-
 export const useCommentsTabHook = (commentsType: any) => {
   const dispatch = useAppDispatch()
   const [newComment, setNewComment] = useState('')

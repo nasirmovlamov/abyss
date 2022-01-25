@@ -30,22 +30,22 @@ import {
   ProductTitle,
   ProductViewCont,
   StoreListingProductStyle,
-} from '../../styles/styled-components/ui/modules/ListingStoreProduct.styled';
+} from '../../styles/styled-components/components/modules/ListingStoreProduct.styled';
 import StarCountShow from '../ui/elements/StarCountShow';
 
 interface Props {
   data:
-  | {
-    avatar: string
-    programingLanguage: string
-    lineCount: string
-    name: string
-    starCount: string
-    soldCount: string
-    price: string
-    tags: string[]
-  }
-  | any
+    | {
+        avatar: string
+        programingLanguage: string
+        lineCount: string
+        name: string
+        starCount: string
+        soldCount: string
+        price: string
+        tags: string[]
+      }
+    | any
 }
 
 function ListingStoreProduct({ data }: Props): ReactElement {

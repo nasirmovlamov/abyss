@@ -15,16 +15,20 @@ export const AppThemeProvider = ({ children }: { children: ReactNode }) => {
   const [isDarkMode, setIsDarkMode] = useState(true)
 
   useEffect(() => {
-    const isDarkModeSaved = localStorage.getItem('darkMode') ? localStorage.getItem('darkMode') === 'true' : true
+    const isDarkModeSaved = localStorage.getItem('darkMode')
+      ? localStorage.getItem('darkMode') === 'true'
+      : true
     setIsDarkMode(isDarkModeSaved)
   }, [])
 
   const toggle = () => {
-    setIsDarkMode(prevVal => {
+    setIsDarkMode((prevVal) => {
       localStorage.setItem('darkMode', !prevVal ? 'true' : 'false')
       return !prevVal
     })
   }
 
-  return <ThemeContext.Provider value={{ isDark: isDarkMode, toggle }}>{children}</ThemeContext.Provider>
+  return (
+    <ThemeContext.Provider value={{ isDark: isDarkMode, toggle }}>{children}</ThemeContext.Provider>
+  )
 }

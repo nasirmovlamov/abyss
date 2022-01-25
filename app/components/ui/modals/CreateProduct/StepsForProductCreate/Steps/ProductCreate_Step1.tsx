@@ -16,11 +16,11 @@ import {
   CreateProduct_Step1_Error,
   ProductCreate_Step1_Style,
   SelectLangType_STY,
-} from '../../../../../../styles/styled-components/ui/modules/CreateProduct_Style/Steps/ProductCreate_Step1.style';
+} from '../../../../../../styles/styled-components/components/modules/CreateProduct_Style/Steps/ProductCreate_Step1.style';
 
-interface Props { }
+interface Props {}
 
-export const ProductCreate_Step1 = ({ }: Props): ReactElement => {
+export const ProductCreate_Step1 = ({}: Props): ReactElement => {
   const dispatch = useAppDispatch()
   const ProductCreateSteps = useAppSelector(product_create_steps)
   const Step1Data = ProductCreateSteps['1']

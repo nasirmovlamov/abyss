@@ -11,8 +11,7 @@ import {
   CommentNameAndContentCont,
   CommentStyle,
   CommentUserName,
-} from '../../../styles/styled-components/ui/modules/CommentsTab.style';
-
+} from '../../../styles/styled-components/components/modules/CommentsTab.style';
 
 interface Props {
   comment: any

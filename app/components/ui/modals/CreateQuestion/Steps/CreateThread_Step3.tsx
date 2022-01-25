@@ -5,10 +5,10 @@ import { create_thread_data, CreateThreadActions } from 'app/store/slices/Create
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import {
   CreateThread_Step3_STY,
-} from 'app/styles/styled-components/ui/modules/CreateThread_Style/Steps/CreateThread_Step3.style';
+} from 'app/styles/styled-components/components/modules/CreateThread_Style/Steps/CreateThread_Step3.style';
 import { useEffect } from 'react';
 
-interface Props { }
+interface Props {}
 
 const CreateThread_Step3 = (props: Props) => {
   const threadData = useAppSelector(create_thread_data)
@@ -35,7 +35,7 @@ const CreateThread_Step3 = (props: Props) => {
   return (
     <CreateThread_Step3_STY>
       {threadData.threadType === 'question' &&
-        validationData_question.validation_check === 'valid' ? (
+      validationData_question.validation_check === 'valid' ? (
         <div className="threadValid">
           <FontAwesomeIcon icon={faCheckCircle} />
           <p>Your {threadData.threadType} is ready to go !</p>

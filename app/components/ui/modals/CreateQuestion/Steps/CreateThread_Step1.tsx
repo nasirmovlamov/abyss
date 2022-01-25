@@ -1,6 +1,6 @@
 import { create_thread_data, CreateThreadActions } from 'app/store/slices/CreateThread/CreateThread.slice';
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
-import * as Step1_STY from 'app/styles/styled-components/ui/modules/CreateProduct_Style/CreateProduct_Step1.style';
+import * as Step1_STY from 'app/styles/styled-components/components/modules/CreateProduct_Style/CreateProduct_Step1.style';
 import React from 'react';
 
 const CreateThread_Step1 = () => {

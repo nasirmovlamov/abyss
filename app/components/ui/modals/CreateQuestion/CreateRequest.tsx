@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface Props { }
+interface Props {}
 
 const CreateRequest = (props: Props) => {
   return <div></div>

@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { tooltip_data } from '../../../store/slices/Tooltip.slice';
 import { useAppSelector } from '../../../store/states/store.hooks';
 
-interface Props { }
+interface Props {}
 
 const ToolTip = (props: Props) => {
   const tooltipData = useAppSelector(tooltip_data)

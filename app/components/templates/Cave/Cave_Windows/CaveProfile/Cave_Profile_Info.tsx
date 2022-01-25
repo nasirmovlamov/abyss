@@ -1,7 +1,7 @@
 import { resend_mail, user_data } from 'app/store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import { resendEmail } from 'app/store/thunks/User.thunk';
-import * as CavePInfo from 'app/styles/styled-components/ui/modules/Cave_Style/CaveProfile/CaveProfileInfo.style';
+import * as CavePInfo from 'app/styles/styled-components/components/modules/Cave_Style/CaveProfile/CaveProfileInfo.style';
 import Image from 'next/image';
 import Loader from 'react-spinners/HashLoader';
 

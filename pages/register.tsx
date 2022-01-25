@@ -7,7 +7,7 @@ import googleLogo from '/public/googleLogo.png';
 import mainLogo from '/public/main-logo-new.svg';
 import mainLogoText from '/public/main-logo-side-text-new.svg';
 
-interface Props { }
+interface Props {}
 
 const Register = (props: Props) => {
   return (

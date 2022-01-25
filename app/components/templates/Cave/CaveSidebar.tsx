@@ -12,7 +12,10 @@ import { cave_side_data } from 'app/store/slices/CaveFeatures/CaveSide.slice';
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import { selectAsyncCaveWindow } from 'app/store/thunks/Cave/Cave.thunk';
 import { userLogout } from 'app/store/thunks/User.thunk';
-import { CaveSide_section_Sty, CaveSidebar_Sty } from 'app/styles/styled-components/ui/modules/Cave_Style/CaveSidebar.style';
+import {
+  CaveSide_section_Sty,
+  CaveSidebar_Sty,
+} from 'app/styles/styled-components/components/modules/Cave_Style/CaveSidebar.style';
 import { useRouter } from 'next/router';
 
 interface Props {}

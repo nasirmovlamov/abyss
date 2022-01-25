@@ -7,7 +7,7 @@ import {
 } from '../../../../../../store/slices/CreateProductFeatures/CreateProduct.slice';
 import { useAppDispatch, useAppSelector } from '../../../../../../store/states/store.hooks';
 
-interface Props { }
+interface Props {}
 
 export const ProductCreate_Step3 = (props: Props) => {
   const dispatch = useAppDispatch()

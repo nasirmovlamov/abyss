@@ -19,12 +19,12 @@ import {
   ChatSendMessage,
   ChatWindow,
   CloseChatBox,
-} from '../../styles/styled-components/ui/modules/ChatBox.style';
+} from '../../styles/styled-components/components/modules/ChatBox.style';
 
 /* eslint-disable react-hooks/exhaustive-deps */
-interface Props { }
+interface Props {}
 
-export default function ChatBox({ }: Props): ReactElement {
+export default function ChatBox({}: Props): ReactElement {
   const [inViewRefChatLoaderCont, inViewChatLoaderCont] = useInView()
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const messagesBoxRef = useRef<HTMLDivElement>(null)

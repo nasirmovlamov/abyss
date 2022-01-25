@@ -9,7 +9,6 @@ import { changeModalAction } from '../store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from '../store/states/store.hooks';
 import { edit_Answer_CommentThunk, edit_Question_CommentThunk } from '../store/thunks/Comments.thunk';
 
-
 export const useCommentHook = ({ comment, commentType }: any) => {
   const dispatch = useAppDispatch()
   const editCommentData = useAppSelector(edit_comment_data)

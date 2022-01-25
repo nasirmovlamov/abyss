@@ -5,7 +5,7 @@ import CreateDiscussion from '../CreateDiscussion';
 import CreateQuestion from '../CreateQuestion';
 import CreateRequest from '../CreateRequest';
 
-interface Props { }
+interface Props {}
 
 const CreateThread_Step2 = (props: Props) => {
   const createThreadData = useAppSelector(create_thread_data)

@@ -32,7 +32,7 @@ import SinglePageTabs from '../../ui/elements/SinglePageTabs';
 import StarCountShow from '../../ui/elements/StarCountShow';
 import { autoSuccessToaster } from '../../ui/toasters/AutoSuccessToast';
 
-interface Props { }
+interface Props {}
 
 const StoreMiddlePartLayout: FC<Props> = ({ children, ...props }) => {
   const router = useRouter()

@@ -8,11 +8,11 @@ import { forumWordRegex, storeWordRegex } from '../../../helpers/functions/regex
 import { changeProductTabActive, page_tabs } from '../../../store/slices/PageTabs.slice';
 import { changeThunkBackVisibilty, search_data } from '../../../store/slices/SearchBox.slice';
 import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks';
-import * as SinglePageTabs_STY from '../../../styles/styled-components/ui/modules/SinglePageTabs.styled';
+import * as SinglePageTabs_STY from '../../../styles/styled-components/components/modules/SinglePageTabs.styled';
 
-interface Props { }
+interface Props {}
 
-function SinglePageTabs({ }: Props): ReactElement {
+function SinglePageTabs({}: Props): ReactElement {
   const searchData = useAppSelector(search_data)
   const pageTabs = useAppSelector(page_tabs)
   const router = useRouter()

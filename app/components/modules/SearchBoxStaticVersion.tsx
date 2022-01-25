@@ -24,7 +24,7 @@ import {
 import { changeModalAction } from '../../store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
 import { forumSearchInfinity, storeSearchInfinity, unHoverSearchAsync } from '../../store/thunks/SearchBox.thunk';
-import * as SearchForStaticVersion_STY from '../../styles/styled-components/ui/modules/SearchBoxStatic.style';
+import * as SearchForStaticVersion_STY from '../../styles/styled-components/components/modules/SearchBoxStatic.style';
 
 function SearchBoxStaticVersion() {
   const router = useRouter()

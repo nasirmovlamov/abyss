@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import {
   CaveInventoryBlocks_Sty,
   CaveInventoryDefaultBlock_Sty,
-} from 'app/styles/styled-components/ui/modules/Cave_Style/CaveInventory/CaveInventory.style';
+} from 'app/styles/styled-components/components/modules/Cave_Style/CaveInventory/CaveInventory.style';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { scroller } from 'react-scroll';

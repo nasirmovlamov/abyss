@@ -26,10 +26,10 @@ import {
   CreateProduct_TagsCont_STY,
   CreateProductLabelCont,
   CreateProductStep2_CONT_STY,
-} from '../../../../../../styles/styled-components/ui/modules/CreateProduct_Style/Steps/CreateProduct_Step2.style';
+} from '../../../../../../styles/styled-components/components/modules/CreateProduct_Style/Steps/CreateProduct_Step2.style';
 import EditorForProductCreate from '../../../../../modules/editors/EditorForProductCreate';
 
-interface Props { }
+interface Props {}
 
 export const ProductCreate_Step2 = (props: Props) => {
   const [tagCreator, settagCreator] = useState('')
@@ -48,21 +48,13 @@ export const ProductCreate_Step2 = (props: Props) => {
       const [reorderedItem] = items.splice(result.source.index, 1)
       items.splice(result.destination.index, 0, reorderedItem)
       dispatch(updateSectionsOrder(items))
-
-    } 
-    
-    
-    
-    else if (result.destination.droppableId === 'main-clip') {
+    } else if (result.destination.droppableId === 'main-clip') {
       if (!result.destination) return
       const items = Array.from(sectionsProduct[getClipsIndex(sectionsProduct)].isClips.clips)
       const [reorderedItem] = items.splice(result.source.index, 1)
       items.splice(result.destination.index - 1, 0, reorderedItem)
       dispatch(changeClipPosition(items))
-    } 
-    
-    
-    else if (result.source.droppableId === 'clips') {
+    } else if (result.source.droppableId === 'clips') {
       if (result.source.draggableId === 'main-clip-drg-id') {
         if (!result.destination) return
         const items = Array.from(sectionsProduct[getClipsIndex(sectionsProduct)].isClips.clips)
@@ -78,9 +70,6 @@ export const ProductCreate_Step2 = (props: Props) => {
     }
   }
 
-
-
-  
   const addNewBlock = () => {
     dispatch(addNewSection())
     return null
@@ -89,10 +78,6 @@ export const ProductCreate_Step2 = (props: Props) => {
     dispatch(deleteSection(index))
   }
 
-
-
-
-  
   const createTag = (event: any) => {
     if (event.code === 'Space') {
       dispatch(
@@ -109,9 +94,6 @@ export const ProductCreate_Step2 = (props: Props) => {
     dispatch(ProductCreateStep2OnChanges({ type: 'product_tags', actionType: 'delete', id: id }))
   }
 
-
-
-  
   const productsOnBlurs = (type: string) => {
     // dispatch(ProductCreateStep2OnBlurs({type:type}))
   }
@@ -126,7 +108,7 @@ export const ProductCreate_Step2 = (props: Props) => {
           Title
         </label>
         <input className="input1" value={productName} onChange={productNameHandle} type="text" />
-        <span className="error" >
+        <span className="error">
           {validated === 'not-valid' &&
             !validators.isNameFilled.valid &&
             validators.isNameFilled.message}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface Props { }
+interface Props {}
 
 const Cave_Shop = (props: Props) => {
   return <div></div>

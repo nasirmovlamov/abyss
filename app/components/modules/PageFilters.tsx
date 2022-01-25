@@ -45,12 +45,11 @@ import {
   FilterTagElementCont,
   FilterTagsCont,
   PinButton,
-} from '../../styles/styled-components/ui/modules/PageFilters.style';
+} from '../../styles/styled-components/components/modules/PageFilters.style';
 
+interface Props {}
 
-interface Props { }
-
-function PageFilters({ }: Props): ReactElement {
+function PageFilters({}: Props): ReactElement {
   const dispatch = useAppDispatch()
   const filterTags = useAppSelector(filter_tags)
   const filterSearchTags = useAppSelector(filter_search_tags)

@@ -8,10 +8,6 @@ import { set_side_product_data } from '../../../store/slices/SideProducts.slice'
 import { useAppDispatch } from '../../../store/states/store.hooks';
 import { getSideProducts } from '../../../store/thunks/SideProducts.thunk';
 import {
-  QuestionStatisticButton_STY,
-  QuestionStatistics_STY,
-} from '../../../styles/styled-components/pages/SingleQuestionPage.styled';
-import {
   AnswerCont,
   AnswerCount,
   Avatar,
@@ -37,7 +33,11 @@ import {
   TextCont,
   ThumbIcon,
   Title,
-} from '../../../styles/styled-components/ui/modules/FormQuestion.style';
+} from '../../../styles/styled-components/components/modules/FormQuestion.style';
+import {
+  QuestionStatisticButton_STY,
+  QuestionStatistics_STY,
+} from '../../../styles/styled-components/pages/SingleQuestionPage.styled';
 
 interface Props {
   data: any

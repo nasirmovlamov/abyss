@@ -21,7 +21,6 @@ import { edit_answer_data } from '../../../store/slices/Question.slice';
 import { user_data } from '../../../store/slices/User.slice';
 import { ANSWER_INTERFACE } from '../../../store/states/interfaces/Question.interface';
 import { useAppDispatch, useAppSelector } from '../../../store/states/store.hooks';
-import * as SingleQuestion_STY from '../../../styles/styled-components/pages/SingleQuestionPage.styled';
 import {
   AnswerContent,
   AnswerStyle,
@@ -32,8 +31,9 @@ import {
   PersonCont,
   ShowComments,
   ShowCommentsCont,
-} from '../../../styles/styled-components/ui/modules/Answer.style';
-import { ThumbIcon } from '../../../styles/styled-components/ui/modules/FormQuestion.style';
+} from '../../../styles/styled-components/components/modules/Answer.style';
+import { ThumbIcon } from '../../../styles/styled-components/components/modules/FormQuestion.style';
+import * as SingleQuestion_STY from '../../../styles/styled-components/pages/SingleQuestionPage.styled';
 import MyEditor from '../../modules/editors/MyEditor';
 
 const DynamicComponentWithNoSSR = dynamic(

@@ -5,7 +5,7 @@ import { create_thread_data, CreateThreadActions } from 'app/store/slices/Create
 import { changeModalAction } from 'app/store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import { createQuestionThunk } from 'app/store/thunks/CreateThread/CreateQuestion.thunk';
-import { CreateThreadFORM_STY } from 'app/styles/styled-components/ui/modules/CreateThread_Style/CreateThread.style';
+import { CreateThreadFORM_STY } from 'app/styles/styled-components/components/modules/CreateThread_Style/CreateThread.style';
 import {
   CreateThread_Button_NEXT,
   CreateThread_Button_PREVOIUS,
@@ -16,7 +16,7 @@ import {
   CreateThread_Tab,
   CreateThread_Tab_Seperator,
   CreateThread_Tabs,
-} from 'app/styles/styled-components/ui/modules/Modal_Style/ModalCont.style';
+} from 'app/styles/styled-components/components/modules/Modal_Style/ModalCont.style';
 import React, { useEffect, useState } from 'react';
 
 import { autoErrorToasterWithMessage } from '../../toasters/AutoSuccessToast';
@@ -26,7 +26,7 @@ import CreateRequest from './CreateRequest';
 import CreateThread_Step1 from './Steps/CreateThread_Step1';
 import CreateThread_Step3 from './Steps/CreateThread_Step3';
 
-interface Props { }
+interface Props {}
 
 const CreateThreadModal = (props: Props) => {
   const dispatch = useAppDispatch()

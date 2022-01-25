@@ -3,13 +3,13 @@ import React, { ReactNode } from 'react';
 
 import { color_convert, is_Logged } from '../../store/slices/User.slice';
 import { useAppSelector } from '../../store/states/store.hooks';
+import { Cave_Sty } from '../../styles/styled-components/components/modules/Cave.style';
 import { CavePageDefaultStyle, CaveSidePartOfPage_Sty } from '../../styles/styled-components/pages/Page.styled';
-import { Cave_Sty } from '../../styles/styled-components/ui/modules/Cave.style';
 import Cave_Tabs from '../templates/Cave/Cave_Tabs/Cave_Tabs';
 import CaveSidebar from '../templates/Cave/CaveSidebar';
 import PageMainLayout from './Main.layout';
 
-const CaveSide = ({ children, side }: { children: ReactNode, side: string }) => {
+const CaveSide = ({ children, side }: { children: ReactNode; side: string }) => {
   const colorConvert = useAppSelector(color_convert)
 
   return (

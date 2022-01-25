@@ -12,11 +12,11 @@ import {
   CommentsTabStyle,
   PostComment,
   TakeCommentsToSideMakeAbsolute,
-} from '../../../styles/styled-components/ui/modules/CommentsTab.style';
+} from '../../../styles/styled-components/components/modules/CommentsTab.style';
 
-interface Props { }
+interface Props {}
 
-function CommentModal({ }: Props): ReactElement {
+function CommentModal({}: Props): ReactElement {
   const commentsType: any = useAppSelector(comments_types)
   const Comments = useAppSelector(comments)
   const { dontShowComments, setNewComment, newComment, commentOnChange, submitComment } =

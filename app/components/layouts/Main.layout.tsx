@@ -8,12 +8,7 @@ interface MainLayoutProps {
 
 const MainLayout = ({ children, left, right }: MainLayoutProps) => {
   return (
-    // <MainLayoutStyle>
-    //   <SidePartOfPageStyle side="left">{left}</SidePartOfPageStyle>
-    //   <MiddleStyle>{children}</MiddleStyle>
-    //   <SidePartOfPageStyle side="right">{right}</SidePartOfPageStyle>
-    // </MainLayoutStyle>
-    <div className="container-fluid">
+    <div className="container-lg container">
       <div className="row">
         <div className="col-lg-2">{left}</div>
         <div className="col-lg-7">{children}</div>

@@ -12,7 +12,7 @@ import {
   CaveLeftCornerForHover,
   CaveRightCorner,
   CaveRightCornerForHover,
-} from 'app/styles/styled-components/ui/modules/Cave_Style/Cave_Tabs.style';
+} from 'app/styles/styled-components/components/modules/Cave_Style/Cave_Tabs.style';
 import Image from 'next/image';
 import { useRef } from 'react';
 import { scroller } from 'react-scroll';

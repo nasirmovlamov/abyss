@@ -2,16 +2,16 @@ import { mentions_of_linked_product, single_question_data } from 'app/store/slic
 import { changeModalAction } from 'app/store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import { getMentionsOfProduct } from 'app/store/thunks/LinkedProducts.thunk';
-import { MentionsListModal_Sty } from 'app/styles/styled-components/ui/modules/MentionsListModal.style';
+import { MentionsListModal_Sty } from 'app/styles/styled-components/components/modules/MentionsListModal.style';
 import React, { ReactElement, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 import Answer from '../elements/Answer';
 import AnswerSkeleton from '../skeletons/AnswerSkeleton';
 
-interface Props { }
+interface Props {}
 
-function MentionsListModal({ }: Props): ReactElement {
+function MentionsListModal({}: Props): ReactElement {
   const [inViewRefMentionsLoad, inViewMentionsLoader] = useInView()
   const dispatch = useAppDispatch()
   const singleQuestionData = useAppSelector(single_question_data)

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import SearchBoxForHome from '../app/components/modules/SearchBoxForHome';
 import { changeModalAction } from '../app/store/slices/User.slice';
-import * as Home_STY from '../app/styles/styled-components/ui/modules/Index_STYLE/Home.style';
+import * as Home_STY from '../app/styles/styled-components/components/modules/Index_STYLE/Home.style';
 
 interface Props {}
 

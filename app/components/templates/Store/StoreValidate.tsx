@@ -6,7 +6,7 @@ import StoreMiddlePartLayout from './StoreMiddlePartLayout';
 import StoreProductForNonSubscribed from './StoreProductForNonSubscribed';
 import StoreProductForSubscribed from './StoreProductForSubscribed';
 
-interface Props { }
+interface Props {}
 
 const StoreValidate = (props: Props) => {
   const router = useRouter()

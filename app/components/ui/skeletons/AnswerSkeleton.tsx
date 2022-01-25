@@ -1,11 +1,15 @@
 import React, { ReactElement } from 'react';
 
+import {
+  AnswerContentSkeleton,
+  AnswerStyle,
+  PersonCont,
+} from '../../../styles/styled-components/components/modules/Answer.style';
 import { SkeletonBox } from '../../../styles/styled-components/Global.style';
-import { AnswerContentSkeleton, AnswerStyle, PersonCont } from '../../../styles/styled-components/ui/modules/Answer.style';
 
-interface Props { }
+interface Props {}
 
-function AnswerSkeleton({ }: Props): ReactElement {
+function AnswerSkeleton({}: Props): ReactElement {
   return (
     <AnswerStyle key={'loading'}>
       <div className="flexer c-gp-10">

@@ -6,7 +6,7 @@ import {
   mentionUserAtQuestionEdit,
 } from 'app/store/slices/Question.slice';
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
-import { CreateThreadEDITORWrapper_STY } from 'app/styles/styled-components/ui/modules/Editors/CreateThread.style';
+import { CreateThreadEDITORWrapper_STY } from 'app/styles/styled-components/components/modules/Editors/CreateThread.style';
 import { ReactElement } from 'react';
 import ReactQuill from 'react-quill';
 

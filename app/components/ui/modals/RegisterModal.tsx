@@ -7,13 +7,13 @@ import {
 } from 'app/store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import { userRegister } from 'app/store/thunks/User.thunk';
-import * as Form_STY from 'app/styles/styled-components/ui/elements/Form.style';
-import { ModalFORM_STY } from 'app/styles/styled-components/ui/modules/Modal_Style/ModalCont.style';
+import * as Form_STY from 'app/styles/styled-components/components/elements/Form.style';
+import { ModalFORM_STY } from 'app/styles/styled-components/components/modules/Modal_Style/ModalCont.style';
 import { FormEvent, ReactElement } from 'react';
 
-interface Props { }
+interface Props {}
 
-function RegisterModal({ }: Props): ReactElement {
+function RegisterModal({}: Props): ReactElement {
   const dispatch = useAppDispatch()
   const registerErrors = useAppSelector(register_errors)
   const allModals = useAppSelector(user_modals)
@@ -23,7 +23,7 @@ function RegisterModal({ }: Props): ReactElement {
     e.preventDefault()
     try {
       dispatch(userRegister(registerForm))
-    } catch (error) { }
+    } catch (error) {}
   }
 
   return (

@@ -18,11 +18,11 @@ import {
 } from '../../store/slices/SearchBox.slice';
 import { changeModalAction } from '../../store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
-import * as SearchForHome_STY from '../../styles/styled-components/ui/modules/SearchBoxForHome.style';
+import * as SearchForHome_STY from '../../styles/styled-components/components/modules/SearchBoxForHome.style';
 
-interface Props { }
+interface Props {}
 
-function SearchBoxForHome({ }: Props): ReactElement {
+function SearchBoxForHome({}: Props): ReactElement {
   const router = useRouter()
   const [pagePath, setpagePath] = useState('')
   const dispatch = useAppDispatch()

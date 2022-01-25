@@ -10,7 +10,7 @@ import {
   question_value,
 } from 'app/store/slices/CreateQuestionFeatures/CreateQuestion.slice';
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
-import { CreateThreadEDITORWrapper_STY } from 'app/styles/styled-components/ui/modules/Editors/CreateThread.style';
+import { CreateThreadEDITORWrapper_STY } from 'app/styles/styled-components/components/modules/Editors/CreateThread.style';
 import React, { ReactElement, useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 

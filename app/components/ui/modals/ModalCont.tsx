@@ -1,4 +1,4 @@
-import { ModalCont_STY } from 'app/styles/styled-components/ui/modules/Modal_Style/ModalCont.style';
+import { ModalCont_STY } from 'app/styles/styled-components/components/modules/Modal_Style/ModalCont.style';
 import React, { ReactChild, ReactElement } from 'react';
 
 interface Props {

@@ -9,9 +9,9 @@ import {
   CreateProduct_Tab_Seperator,
   CreateProduct_Tabs,
   CreateProduict_Tab_STY,
-} from '../../../../../styles/styled-components/ui/modules/CreateProduct_Style/CreateProduct.style';
+} from '../../../../../styles/styled-components/components/modules/CreateProduct_Style/CreateProduct.style';
 
-interface Props { }
+interface Props {}
 
 const ProductCreate_Tabs = (props: Props) => {
   const dispatch = useAppDispatch()

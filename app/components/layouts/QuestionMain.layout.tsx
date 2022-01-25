@@ -16,7 +16,7 @@ import { useQuestionHooks } from 'app/hooks/useQuestion.hook';
 import { edit_question_data, single_question_data } from 'app/store/slices/Question.slice';
 import { user_data } from 'app/store/slices/User.slice';
 import { useAppSelector } from 'app/store/states/store.hooks';
-import { ShowComments } from 'app/styles/styled-components/ui/modules/Answer.style';
+import { ShowComments } from 'app/styles/styled-components/components/modules/Answer.style';
 import {
   AnswerCont,
   AnswerCount,
@@ -26,7 +26,7 @@ import {
   PercentageLine,
   Text,
   ThumbIcon,
-} from 'app/styles/styled-components/ui/modules/FormQuestion.style';
+} from 'app/styles/styled-components/components/modules/FormQuestion.style';
 import HTMLReactParser from 'html-react-parser';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';

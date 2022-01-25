@@ -1,31 +1,24 @@
-.flexer
-{
-    display: flex;
+.flexer {
+  display: flex;
 }
-.j-center
-{
-    justify-content: center;
+.j-center {
+  justify-content: center;
 }
-.j-between
-{
-    justify-content: space-between;
+.j-between {
+  justify-content: space-between;
 }
-.j-around
-{
-    justify-content: space-around;
+.j-around {
+  justify-content: space-around;
 }
 
-.a-center
-{
-    align-items: center;
+.a-center {
+  align-items: center;
 }
 
-.a-end
-{
-    align-items: flex-end;
+.a-end {
+  align-items: flex-end;
 }
 
-.fd-c
-{
-    flex-direction: column;
+.fd-c {
+  flex-direction: column;
 }

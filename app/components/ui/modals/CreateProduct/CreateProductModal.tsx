@@ -19,16 +19,16 @@ import { useAppDispatch, useAppSelector } from '../../../../store/states/store.h
 import { createProductThunk, startPlagirismChecker, updateProductThunk } from '../../../../store/thunks/CreateProduct.thunk';
 import {
   CreateProduct_CloseButton_STY,
-} from '../../../../styles/styled-components/ui/modules/CreateProduct_Style/CreateProduct_Steps.style';
-import * as ProductCR_STY from '../../../../styles/styled-components/ui/modules/CreateProduct_Style/CreateProductModal.style';
+} from '../../../../styles/styled-components/components/modules/CreateProduct_Style/CreateProduct_Steps.style';
+import * as ProductCR_STY from '../../../../styles/styled-components/components/modules/CreateProduct_Style/CreateProductModal.style';
 import ProductCreate_Tabs from './StepsForProductCreate/ProductCreate_Tabs';
 import ProductStepsRouter from './StepsForProductCreate/ProductCreateStepsRouter';
 
 // { CreateProduct_Buttons_Cont, ProductCreateForm, ProductCreateModal, ProductLabelCont }
 
-interface Props { }
+interface Props {}
 
-function CreateProductModal(this: any, { }: Props): ReactElement {
+function CreateProductModal(this: any, {}: Props): ReactElement {
   const dispatch = useAppDispatch()
   const currentStep = useAppSelector(product_create_current_step)
   const isProductCreated = useAppSelector(is_product_created)
@@ -54,7 +54,7 @@ function CreateProductModal(this: any, { }: Props): ReactElement {
               updateProductThunk({ mainData: productCreateData, productId: productCreateId }),
             )
             dispatch(changeModalAction('productCreate'))
-          } catch (error) { }
+          } catch (error) {}
         }
         return
       }
@@ -112,7 +112,7 @@ function CreateProductModal(this: any, { }: Props): ReactElement {
     }
   }
 
-  const SubmitProduct = async () => { }
+  const SubmitProduct = async () => {}
 
   const goPrevoiusSection = async () => {
     if (currentStep !== 1) {

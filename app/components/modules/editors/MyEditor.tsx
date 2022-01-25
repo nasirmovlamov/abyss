@@ -121,7 +121,7 @@ function MyEditor({ content, onChange, display }: Props) {
     }
   }
 
-  React.useEffect(() => { }, [quill, editor_theme])
+  React.useEffect(() => {}, [quill, editor_theme])
 
   const handleChange = (event: any) => {
     seteditor_theme(event.target.value)
