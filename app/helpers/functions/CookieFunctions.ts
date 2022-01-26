@@ -35,5 +35,6 @@ export const getCookie = (cname: string) => {
       return decryptData(c.substring(name.length, c.length))
     }
   }
+
   return null
 }

@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import appReducer from './slices/App.slice';
+import { authReducer } from './slices/auth.slice';
 import caveRootReducer from './slices/CaveFeatures/Cave_Reducers/Cave.root.reducer';
 import chatBoxReducer from './slices/ChatBox.slice';
 import commentsReducer from './slices/Comments.slice';
@@ -19,6 +20,7 @@ import userReducer from './slices/User.slice';
 
 const reducer = {
   appReducer: appReducer,
+  auth: authReducer,
   userReducer: userReducer,
   questionReducer: questionReducer,
   commentsReducer: commentsReducer,
@@ -44,8 +46,5 @@ export const store: any = configureStore({
     }),
 })
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>
-
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch

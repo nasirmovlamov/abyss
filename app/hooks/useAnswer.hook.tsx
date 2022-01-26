@@ -15,6 +15,7 @@ export const useAnswerHook = ({ answer, direction }: { answer: any; direction: s
   const dispatch = useAppDispatch()
   const userData = useAppSelector(user_data)
   const editAnswerData = useAppSelector(edit_answer_data)
+
   const vote = () => {
     if (userData === null) {
       dispatch(changeModalAction('login'))

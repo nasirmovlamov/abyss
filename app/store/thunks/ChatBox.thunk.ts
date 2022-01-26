@@ -7,7 +7,7 @@ export const checkChat = createAsyncThunk(
   types.CHECK_CHAT,
   async (user_id: number, { rejectWithValue }) => {
     try {
-      const resp = await BASE_API_INSTANCE.get(`/chat/${user_id}//getcomment`)
+      const resp = await BASE_API_INSTANCE.get(`/chat/${user_id}/getcomment`)
       return resp.data
     } catch (error: any) {
       return rejectWithValue(error.response.data)

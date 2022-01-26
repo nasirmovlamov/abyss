@@ -116,16 +116,12 @@ const forumTypeDeterminer = (type: string) => {
   switch (type) {
     case 'Questions':
       return 1
-      break
     case 'Requests':
       return 2
-      break
     case 'Discussion':
       return 3
-      break
     default:
       return 1
-      break
   }
 }
 
@@ -133,15 +129,11 @@ const forumsortDeterminer = (type: string) => {
   switch (type) {
     case 'Best':
       return 1
-      break
     case 'New':
       return 2
-      break
     case 'Top':
       return 3
-      break
     default:
-      break
   }
 }
 
@@ -149,15 +141,11 @@ const storeTypeDeterminer = (type: string) => {
   switch (type) {
     case 'All':
       return 1
-      break
     case 'Free':
       return 2
-      break
     case 'Paid':
       return 3
-      break
     default:
-      break
   }
 }
 
@@ -165,14 +153,10 @@ const storeSortDeterminer = (type: string) => {
   switch (type) {
     case 'Best':
       return 1
-      break
     case 'New':
       return 2
-      break
     case 'Top':
       return 3
-      break
     default:
-      break
   }
 }

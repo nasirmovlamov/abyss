@@ -6,14 +6,12 @@ import React, { ReactNode, useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 
-import { getCookie } from '../../helpers/functions/CookieFunctions';
 import { is_chatbox_opened, openChat } from '../../store/slices/ChatBox.slice';
 import { closeComments, is_comment_opened } from '../../store/slices/Comments.slice';
 import { unhoverWindow } from '../../store/slices/SearchBox.slice';
-import { user_data, user_status, user_status_not_logged } from '../../store/slices/User.slice';
+import { user_data, user_status } from '../../store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
 import { hoverWindowAsync } from '../../store/thunks/SearchBox.thunk';
-import { userCheck } from '../../store/thunks/User.thunk';
 import ChatBox from '../modules/ChatBox';
 import Footer from '../modules/Footer';
 import Header from '../modules/Header';
@@ -29,13 +27,12 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
   const isChatBoxOpened = useAppSelector(is_chatbox_opened)
   const isCommentBoxOpened = useAppSelector(is_comment_opened)
   const theme = useAppTheme()
+  const authState = useAppSelector((state) => state.auth)
 
   useEffect(() => {
-    if (getCookie('token') !== null) {
-      dispatch(userCheck())
-    } else {
-      dispatch(user_status_not_logged('not-logged'))
-    }
+    // if (Cookie.get(AUTH_TOKEN)) {
+    //   dispatch(authCheckToken())
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -50,9 +47,11 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
     dispatch(openChat(''))
   }
 
+  console.log(authState)
+
   return (
     <StyledThemeProvider theme={theme?.isDark ? darkTheme : lightTheme}>
-      {userStatus === 'logged' || userStatus === 'not-logged' ? (
+      {!authState.isLoading ? (
         <div
           style={{ display: 'flex', flexDirection: 'column', width: '100%' }}
           onMouseEnter={() => dispatch(hoverWindowAsync(null))}
