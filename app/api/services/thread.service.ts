@@ -1,19 +1,24 @@
-import fetch from '../interceptor';
+import { Thread } from 'app/interfaces/Thread';
 
-interface Thread {
-  title: string
-  content: string
-  tags: string
-  type: number
-  product_id?: number // required if type is 3
-  linked_products?: string
-}
+import fetch from '../interceptor';
 
 const threadService: { [index: string]: (...args: any[]) => Promise<any> } = {}
 
-threadService.getAll = async (): Promise<any> => {
+threadService.search = async (
+  type: number | null,
+  keyword: string | null,
+  tags: string[] | null,
+  mustNot: string[] | null,
+): Promise<any> => {
+  let queryParams = []
+
+  if (type) queryParams.push('type=' + type)
+  if (keyword) queryParams.push('keyword=' + keyword)
+  if (tags) queryParams.push('tags=' + tags.join(','))
+  if (mustNot) queryParams.push('must_not=' + mustNot.join(','))
+
   return fetch({
-    url: '/forum',
+    url: `/forum/search${queryParams.length ? '?' + queryParams.join('&') : ''}`,
     method: 'get',
   })
 }
@@ -48,7 +53,7 @@ threadService.delete = async (id: number): Promise<any> => {
   })
 }
 
-threadService.upVote = async (id: number, type: string): Promise<any> => {
+threadService.vote = async (id: number, type: string): Promise<any> => {
   return fetch({
     url: `/forum/${id}/thread/vote`,
     method: 'post',
@@ -56,11 +61,18 @@ threadService.upVote = async (id: number, type: string): Promise<any> => {
   })
 }
 
-threadService.downVote = async (id: number, type: string): Promise<any> => {
+threadService.cancelVote = async (id: number, type: string): Promise<any> => {
   return fetch({
     url: `/forum/${id}/thread/unvote`,
     method: 'post',
     data: { type },
+  })
+}
+
+threadService.getMentionedProducts = async (id: number): Promise<any> => {
+  return fetch({
+    url: `/forum/${id}/answers/loadproducts`,
+    method: 'get',
   })
 }
 

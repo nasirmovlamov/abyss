@@ -2,13 +2,17 @@ import { AnyAction, createAsyncThunk, createSlice, isFulfilled, isPending, isRej
 import threadService from 'app/api/services/thread.service';
 import { withHandleRequestError } from 'app/hof/withHandleRequestError';
 import { Comment } from 'app/interfaces/Comment';
+import { Product } from 'app/interfaces/Product';
 import { Thread } from 'app/interfaces/Thread';
+
+type voteType = 'upvote' | 'downvote'
 
 interface State {
   items: Thread[]
   currentItem: Thread | null
   comments: Comment[]
-  isVoted: boolean | null
+  mentionedProducts: Product[]
+  myVote: voteType | null
   isLoading: boolean
   successMsg: string | null
   errorMsg: string | null
@@ -19,7 +23,8 @@ const initialState: State = {
   items: [],
   currentItem: null,
   comments: [],
-  isVoted: null,
+  mentionedProducts: [],
+  myVote: null,
   isLoading: false,
   successMsg: '',
   errorMsg: '',
@@ -27,11 +32,23 @@ const initialState: State = {
 }
 
 // Thunks
-export const threadGetAll = createAsyncThunk(
+export const threadSearch = createAsyncThunk(
   'thread/getAll',
-  withHandleRequestError(async (_: void) => {
-    return await threadService.getAll()
-  }),
+  withHandleRequestError(
+    async ({
+      type,
+      keyword,
+      tags,
+      mustNot,
+    }: {
+      type: number
+      keyword: string
+      tags: string[]
+      mustNot: string[]
+    }) => {
+      return await threadService.search(type, keyword, tags, mustNot)
+    },
+  ),
 )
 
 export const threadGet = createAsyncThunk(
@@ -62,17 +79,24 @@ export const threadDelete = createAsyncThunk(
   }),
 )
 
-export const threadUpVote = createAsyncThunk(
-  'thread/upVote',
+export const threadVote = createAsyncThunk(
+  'thread/vote',
   withHandleRequestError(async ({ id, type }: { id: number; type: string }) => {
-    return await threadService.upVote(id, type)
+    return await threadService.vote(id, type)
   }),
 )
 
-export const threadDownVote = createAsyncThunk(
-  'thread/downVote',
+export const threadCancelVote = createAsyncThunk(
+  'thread/cancelVote',
   withHandleRequestError(async ({ id, type }: { id: number; type: string }) => {
-    return await threadService.downVote(id, type)
+    return await threadService.cancelVote(id, type)
+  }),
+)
+
+export const threadGetMentionedProducts = createAsyncThunk(
+  'thread/getMentionedProducts',
+  withHandleRequestError(async ({ id, type }: { id: number; type: string }) => {
+    return await threadService.cancelVote(id, type)
   }),
 )
 
@@ -91,7 +115,7 @@ export const threadCreateComment = createAsyncThunk(
 )
 
 export const threadUpdateComment = createAsyncThunk(
-  'thread/createComment',
+  'thread/updateComment',
   withHandleRequestError(async ({ id, content }: { id: number; content: string }) => {
     return await threadService.updateComment(id, content)
   }),
@@ -105,13 +129,14 @@ export const threadDeleteComment = createAsyncThunk(
 )
 
 const threadActions = [
-  threadGetAll,
+  threadSearch,
   threadGet,
   threadCreate,
   threadUpdate,
   threadDelete,
-  threadUpVote,
-  threadDownVote,
+  threadVote,
+  threadCancelVote,
+  threadGetMentionedProducts,
   threadGetComments,
   threadCreateComment,
   threadUpdateComment,
@@ -123,66 +148,70 @@ const threadSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // Get all
-    builder.addCase(threadGetAll.fulfilled, (state, { payload }: { payload: any }) => {
+    // Thread CRUD
+    builder.addCase(threadSearch.fulfilled, (state, { payload }: { payload: any }) => {
       state.items = payload
     })
 
-    // Get
     builder.addCase(threadGet.fulfilled, (state, { payload }: { payload: any }) => {
       state.currentItem = payload
     })
 
-    // Create
     builder.addCase(threadCreate.fulfilled, (state, { payload }: { payload: any }) => {
       state.items.push(payload)
     })
 
-    // Update
     builder.addCase(threadUpdate.fulfilled, (state, { payload }: { payload: any }) => {
       const index = state.items.findIndex(({ id }) => id === payload.id)
       state.items[index] = payload
     })
 
-    // Delete
-    builder.addCase(threadUpdate.fulfilled, (state, { payload }: { payload: any }) => {
+    builder.addCase(threadDelete.fulfilled, (state, { payload }: { payload: any }) => {
       const index = state.items.findIndex(({ id }) => id === payload)
       state.items.splice(index, 1)
     })
 
-    // Up vote
-    builder.addCase(threadUpVote.fulfilled, (state, { payload }: { payload: any }) => {
-      state.isVoted = true
-      const index = state.items.findIndex(({ id }) => id === payload.voteable_id)
-      state.items[index].upvote++
-    })
+    // Vote
+    builder.addCase(
+      threadVote.fulfilled,
+      (state, { payload }: { payload: { voteable_id: number; type: voteType } }) => {
+        state.myVote = payload.type
+        const index = state.items.findIndex(({ id }) => id === payload.voteable_id)
+        state.items[index][payload.type]++
+      },
+    )
 
-    // Down vote
-    builder.addCase(threadDownVote.fulfilled, (state, { payload }: { payload: any }) => {
-      state.isVoted = false
-      const index = state.items.findIndex(({ id }) => id === payload.voteable_id)
-      state.items[index].downvote++
-    })
+    builder.addCase(
+      threadCancelVote.fulfilled,
+      (state, { payload }: { payload: { voteable_id: number; type: voteType } }) => {
+        state.myVote = null
+        const index = state.items.findIndex(({ id }) => id === payload.voteable_id)
+        state.items[index][payload.type]--
+      },
+    )
 
-    // Cancel vote with unvote
+    // Mentioned products
+    builder.addCase(
+      threadGetMentionedProducts.fulfilled,
+      (state, { payload }: { payload: any }) => {
+        state.mentionedProducts = payload
+      },
+    )
 
-    // Get comments
+    // Comments CRUD
     builder.addCase(threadGetComments.fulfilled, (state, { payload }: { payload: any }) => {
       state.comments = payload
     })
 
-    // Create comment
     builder.addCase(threadCreateComment.fulfilled, (state, { payload }: { payload: any }) => {
       state.comments.push(payload)
     })
 
-    // Update comment
     builder.addCase(threadUpdateComment.fulfilled, (state, { payload }: { payload: any }) => {
       const index = state.comments.findIndex(({ id }) => id === payload.id)
       state.comments[index] = payload
     })
 
-    // Delete comment
     builder.addCase(threadDeleteComment.fulfilled, (state, { payload }: { payload: any }) => {
       const index = state.comments.findIndex(({ id }) => id === payload.id)
       state.comments.splice(index, 1)

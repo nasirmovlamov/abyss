@@ -1,3 +1,4 @@
+import { Product } from './Product';
 import { User } from './User';
 
 export interface Thread {
@@ -8,6 +9,7 @@ export interface Thread {
   description: string
   tags: string[]
   accepted_answer_id: number
+  linked_products?: Product[]
   answer_count: number
   comment_count: number
   view_count: number

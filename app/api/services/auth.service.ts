@@ -77,4 +77,11 @@ authService.resetPassword = async (data: {
   })
 }
 
+authService.getProfile = async (): Promise<any> => {
+  return fetch({
+    url: '/user',
+    method: 'get',
+  })
+}
+
 export default authService

@@ -111,7 +111,7 @@ const authActions = [
 ]
 
 const authSlice = createSlice({
-  name: 'tasks',
+  name: 'auth',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
