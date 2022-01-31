@@ -1,13 +1,13 @@
+import { authLogout } from 'app/store/slices/auth.slice';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
 import { forumWordRegex } from '../../helpers/functions/regex/NavbarRegex';
 import { hoverHeader } from '../../store/slices/SearchBox.slice';
-import { changeModalAction, is_Logged, user_data } from '../../store/slices/User.slice';
+import { changeModalAction } from '../../store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from '../../store/states/store.hooks';
 import { unHoverHeaderAsync } from '../../store/thunks/SearchBox.thunk';
-import { userLogout } from '../../store/thunks/User.thunk';
 import * as Header_STY from '../../styles/styled-components/base/modules/Navbar.style';
 import MainLayout from '../layouts/Main.layout';
 import NavLink from '../ui/elements/NavLink';
@@ -18,11 +18,10 @@ const Header = () => {
   const router = useRouter()
   const { pathname } = router
   const dispatch = useAppDispatch()
-  const userData = useAppSelector(user_data)
-  const isLogged = useAppSelector(is_Logged)
   const [notificationToolTip, setnotificationToolTip] = useState(false)
   const [messageToolTip, setmessageToolTip] = useState(false)
   const [menuToolTip, setmenuToolTip] = useState(false)
+  const authState = useAppSelector((state) => state.auth)
 
   const goPage = (link: string) => {
     window.scrollTo(0, 0)
@@ -54,14 +53,9 @@ const Header = () => {
     setmenuToolTip(false)
   }
 
-  const exit = async () => {
-    router.push('/')
-    await dispatch(userLogout())
-  }
-
   let view
 
-  if (!isLogged) {
+  if (!authState.isLoggedIn) {
     view = (
       <Header_STY.Guest_STY>
         <Header_STY.LoginButton_STY onClick={() => dispatch(changeModalAction('login'))}>
@@ -141,8 +135,8 @@ const Header = () => {
           <NavLink content="username" href="/cave">
             <Header_STY.PersonName_STY>
               <span>
-                {userData.name}
-                {!userData.isVerified && (
+                {authState.user.name}
+                {!authState.user.isVerified && (
                   <span style={{ fontSize: '13px', color: 'orange' }}>
                     * <sup>not verified</sup>
                   </span>
@@ -152,7 +146,7 @@ const Header = () => {
           </NavLink>
         </Header_STY.Logged_STY>
 
-        <Header_STY.Logout_STY onClick={exit}>
+        <Header_STY.Logout_STY onClick={() => dispatch(authLogout())}>
           <span>logout</span>
         </Header_STY.Logout_STY>
       </>

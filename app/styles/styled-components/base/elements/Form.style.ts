@@ -88,7 +88,7 @@ export const F_Button_STY = styled.button`
   span {
     transition: 0.5s;
   }
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: ${({ theme }) => theme.background_hover.hover1};
     box-shadow: ${({ theme }) => theme.boxshadows.boxshadow1};
     svg {

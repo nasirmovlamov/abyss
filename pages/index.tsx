@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import SearchBoxForHome from '../app/components/modules/SearchBoxHome';

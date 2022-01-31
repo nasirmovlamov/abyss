@@ -5,7 +5,7 @@ import { user_data } from 'app/store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import { getSingleQuestion } from 'app/store/thunks/Question.thunk';
 import { useRouter } from 'next/router';
-import { ReactElement, useEffect } from 'react';
+import { useEffect } from 'react';
 
 const QuestionPage = () => {
   const router = useRouter()

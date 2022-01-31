@@ -1,6 +1,6 @@
-import { resend_mail, user_data } from 'app/store/slices/User.slice';
+import { authSendVerifyEmail } from 'app/store/slices/auth.slice';
+import { resend_mail } from 'app/store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
-import { resendEmail } from 'app/store/thunks/User.thunk';
 import * as CavePInfo from 'app/styles/styled-components/base/modules/Cave_Style/CaveProfile/CaveProfileInfo.style';
 import Image from 'next/image';
 import Loader from 'react-spinners/HashLoader';
@@ -9,14 +9,12 @@ interface Props {}
 
 const Cave_Profile_Info = (props: Props) => {
   const dispatch = useAppDispatch()
-  const userData: any = useAppSelector(user_data)
   const resendMailData = useAppSelector(resend_mail)
-  const resendEmailFunc = () => {
-    dispatch(resendEmail(null))
-  }
+  const authState = useAppSelector((state) => state.auth)
+
   return (
     <>
-      {!userData.isVerified && (
+      {!authState.user?.isVerified && (
         <div
           style={{
             width: '100%',
@@ -31,13 +29,14 @@ const Cave_Profile_Info = (props: Props) => {
           }}
         >
           <p style={{ textAlign: 'center', margin: '0px' }}>
-            {' '}
-            Your email is not verified please enter your email and verify it.{' '}
+            Your email is not verified please enter your email and verify it.
             {resendMailData?.status === 'pending' && (
               <Loader color={'white'} size={2} loading={resendMailData?.status === 'pending'} />
             )}
           </p>
-          <button onClick={resendEmailFunc}>Resend email</button>
+          <button style={{ color: 'white' }} onClick={() => dispatch(authSendVerifyEmail())}>
+            Resend email
+          </button>
 
           {resendMailData?.status === 'success' && (
             <p style={{ color: 'green' }}>Check your mail address for verification link.</p>

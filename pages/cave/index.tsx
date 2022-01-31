@@ -5,11 +5,6 @@ import CaveWindowRouter from '../../app/components/templates/Cave/Cave_Windows/C
 interface Props {}
 
 const Cave = (props: Props) => {
-  return (
-    <CaveWindowRouter />
-    // <CaveLayout>
-    //     <CaveWindowRouter />
-    // </CaveLayout>
-  )
+  return <CaveWindowRouter />
 }
 export default Cave

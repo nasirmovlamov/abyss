@@ -43,9 +43,9 @@ authService.sendVerifyEmail = async (): Promise<any> => {
   })
 }
 
-authService.verifyEmail = async (token: string): Promise<any> => {
+authService.verifyEmail = async (link: string): Promise<any> => {
   return fetch({
-    url: `/email/verify/${token}`,
+    url: link,
     method: 'get',
   })
 }

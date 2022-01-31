@@ -1,14 +1,11 @@
 import Cryption from './Cryption';
 
 class Cookie {
-  static set(key: string, value: string, expDays: number) {
+  static set(key: string, value: string, expDate: Date) {
     const encryptedKey = Cryption.encrypt(key)
     const encryptedValue = Cryption.encrypt(value)
-    const now = new Date()
-    const expireTime = now.getTime() + 1000 * 24 * 60 * 60 * expDays
-    now.setTime(expireTime)
 
-    document.cookie = `${encryptedKey}=${encryptedValue};expires=${now.toUTCString()};path=/`
+    document.cookie = `${encryptedKey}=${encryptedValue};expires=${expDate.toUTCString()};path=/`
   }
 
   static get(key: string) {
@@ -27,7 +24,7 @@ class Cookie {
   }
 
   static delete(key: string) {
-    this.set(key, '', -1)
+    this.set(key, '', new Date(0))
   }
 }
 

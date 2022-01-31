@@ -1,9 +1,10 @@
 import { AnyAction, createAsyncThunk, createSlice, isFulfilled, isPending, isRejected } from '@reduxjs/toolkit';
 import authService from 'app/api/services/auth.service';
-import { AUTH_TOKEN } from 'app/constants';
+import { AUTH_TOKEN, ENTRY_ROUTE } from 'app/constants';
 import { withHandleRequestError } from 'app/hof/withHandleRequestError';
 import { User } from 'app/interfaces/User';
 import Cookie from 'app/utils/Cookie';
+import Router from 'next/router';
 
 interface State {
   isLoggedIn: boolean
@@ -16,6 +17,7 @@ interface State {
 
 const initialState: State = {
   isLoggedIn: false,
+  user: null,
   isLoading: false,
   successMsg: '',
   errorMsg: '',
@@ -24,7 +26,7 @@ const initialState: State = {
 
 // Shared reducers
 const handleAuthSuccess = (state: State, { payload }: { payload: any }) => {
-  state.user = payload.user
+  state.user = payload.data.user
   state.isLoggedIn = true
 }
 const handleAuthFail = (state: State) => {
@@ -32,6 +34,7 @@ const handleAuthFail = (state: State) => {
   state.isLoggedIn = false
 
   Cookie.delete(AUTH_TOKEN)
+  Router.push(ENTRY_ROUTE)
 }
 
 // Thunks
@@ -72,8 +75,8 @@ export const authSendVerifyEmail = createAsyncThunk(
 
 export const authVerifyEmail = createAsyncThunk(
   'auth/verifyEmail',
-  withHandleRequestError(async (token: string) => {
-    return await authService.verifyEmail(token)
+  withHandleRequestError(async (link: string) => {
+    return await authService.verifyEmail(link)
   }),
 )
 
@@ -118,19 +121,23 @@ const authSlice = createSlice({
     // Login
     builder.addCase(authLogin.fulfilled, (state, { payload }: { payload: any }) => {
       handleAuthSuccess(state, { payload })
-      Cookie.set(AUTH_TOKEN, payload.access_token, payload.expires_at)
+
+      Cookie.set(AUTH_TOKEN, payload.data.access_token, new Date(payload.data.expires_at))
     })
     builder.addCase(authLogin.rejected, handleAuthFail)
 
     // Register
     builder.addCase(authRegister.fulfilled, (state, { payload }: { payload: any }) => {
       handleAuthSuccess(state, { payload })
-      Cookie.set(AUTH_TOKEN, payload.access_token, payload.expires_at)
+      Cookie.set(AUTH_TOKEN, payload.data.access_token, new Date(payload.data.expires_at))
     })
     builder.addCase(authRegister.rejected, handleAuthFail)
 
     // Check token
-    builder.addCase(authCheckToken.fulfilled, handleAuthSuccess)
+    builder.addCase(authCheckToken.fulfilled, (state, { payload }: { payload: any }) => {
+      state.user = payload.data
+      state.isLoggedIn = true
+    })
     builder.addCase(authCheckToken.rejected, handleAuthFail)
 
     // Logout

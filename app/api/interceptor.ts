@@ -1,4 +1,4 @@
-import { API_BASE_URL } from 'app/constants';
+import { API_BASE_URL, AUTH_TOKEN, ENTRY_ROUTE } from 'app/constants';
 import { getCookie } from 'app/helpers/functions/CookieFunctions';
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import Router from 'next/router';
@@ -9,12 +9,11 @@ const config: AxiosRequestConfig = {
 }
 
 const service: AxiosInstance = axios.create(config)
-const ENTRY_ROUTE = '/'
 
 // Intercept request
 service.interceptors.request.use(
   (config) => {
-    const accessToken = getCookie('token')
+    const accessToken = getCookie(AUTH_TOKEN)
 
     if (accessToken) {
       config.headers['Authorization'] = `Bearer ${accessToken}`
@@ -32,7 +31,7 @@ service.interceptors.request.use(
 // Intercept response
 service.interceptors.response.use(
   (response: AxiosResponse) => {
-    return response.data.data
+    return response.data
   },
   (error: AxiosError) => {
     return Promise.reject(error.response?.data)
