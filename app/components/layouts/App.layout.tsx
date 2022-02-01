@@ -43,7 +43,6 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
     if (isCommentBoxOpened) {
       dispatch(closeComments(null))
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router])
 
   const openUserChat = () => {
