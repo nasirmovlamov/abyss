@@ -777,6 +777,11 @@
   "resolved" "https://registry.npmjs.org/@types/js-cookie/-/js-cookie-3.0.0.tgz"
   "version" "3.0.0"
 
+"@types/linkify-it@^3.0.2":
+  "integrity" "sha512-HZQYqbiFVWufzCwexrvh694SOim8z2d+xJl5UNamcvQFejLY/2YUtzXHYi3cHdI7PMlS8ejH2slRAOJQ32aNbA=="
+  "resolved" "https://registry.npmjs.org/@types/linkify-it/-/linkify-it-3.0.2.tgz"
+  "version" "3.0.2"
+
 "@types/node@*":
   "integrity" "sha512-LSw8TZt12ZudbpHc6EkIyDM3nHVWKYrAvGy6EAJfNfjusbwnThqjqxUKKRwuV3iWYeW/LYMzNgaq3MaLffQ2xA=="
   "resolved" "https://registry.npmjs.org/@types/node/-/node-16.6.2.tgz"
