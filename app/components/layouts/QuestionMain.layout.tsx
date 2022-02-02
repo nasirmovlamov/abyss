@@ -35,15 +35,14 @@ import { useState } from 'react';
 import * as SingleQuestion_STY from '../../styles/styled-components/base/pages/SingleQuestionPage.style';
 import AnswersModule from '../modules/Answers.module';
 import AnswerSubmitCont from '../modules/AnswerSubmit';
-import MyEditor from '../modules/editors/MyEditor';
 import SearchBoxStaticVersion from '../modules/SearchBoxStaticVersion';
+import MyEditor from '../ui/editors/MyEditor';
 import SinglePageTabs from '../ui/elements/SinglePageTabs';
 import ProductsConts from './Product.layout';
 
-const DynamicComponentWithNoSSR = dynamic(
-  () => import('../modules/editors/EditorForQuestionEdit'),
-  { ssr: false },
-)
+const DynamicComponentWithNoSSR = dynamic(() => import('../ui/editors/EditorForQuestionEdit'), {
+  ssr: false,
+})
 
 const QuestionMiddleLayout = () => {
   const question_data: any = useAppSelector(single_question_data)

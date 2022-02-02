@@ -11,14 +11,14 @@ import * as CreateQuestion_STY from 'app/styles/styled-components/base/modules/C
 import dynamic from 'next/dynamic';
 import { ReactElement } from 'react';
 
-import MyEditor from '../../../modules/editors/MyEditor';
+import RichEditor from '../../editors/RichEditor';
 import { ErrorLabel } from '../../elements/ErrorLabel';
 
 // import {EditorNewVersion} from '../EditorNewVersion'
 // import EditorClassVersion from '../EditorClassVersion'
 
 const DynamicComponentWithNoSSR = dynamic(
-  () => import('../../../modules/editors/EditorForQuestionCreateMentions'),
+  () => import('../../../ui/editors/EditorForQuestionCreateMentions'),
   { ssr: false },
 )
 interface Props {}
@@ -79,11 +79,9 @@ function CreateQuestion({}: Props): ReactElement {
       </div>
 
       <LabelCont>
-        <label htmlFor="content" className="title">
-          Content
-        </label>
-        {<DynamicComponentWithNoSSR />}
-        <MyEditor display={'none'} content={''} onChange={(content: any) => content} />
+        {/* {<DynamicComponentWithNoSSR />} */}
+        <RichEditor />
+        {/* <MyEditor display={'none'} content={''} onChange={(content: any) => content} /> */}
         {/* <EditorNewVersion/> */}
         <ErrorLabel validation={validation_check} validators={validations.questionValue} />
       </LabelCont>

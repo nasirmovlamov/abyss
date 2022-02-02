@@ -291,7 +291,6 @@ export const AddAnswerCont_STY = styled.form`
   align-items: center;
   box-sizing: border-box;
   height: auto;
-  width: 808px;
   border-radius: 10px;
   background-color: ${({ theme }) => theme.backgrounds.background1};
   box-shadow: ${({ theme }) => theme.boxshadows.boxshadow4};

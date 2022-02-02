@@ -27,7 +27,7 @@ import {
   CreateProductLabelCont,
   CreateProductStep2_CONT_STY,
 } from '../../../../../../styles/styled-components/base/modules/CreateProduct_Style/Steps/CreateProduct_Step2.style';
-import EditorForProductCreate from '../../../../../modules/editors/EditorForProductCreate';
+import EditorForProductCreate from '../../../../editors/EditorForProductCreate';
 
 interface Props {}
 

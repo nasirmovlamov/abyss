@@ -1,7 +1,7 @@
+import { AUTH_TOKEN } from 'app/constants';
+import Cookie from 'app/utils/Cookie';
 import axios from 'axios';
 
-import { getCookie } from '../functions/CookieFunctions';
-import { decryptUserToken } from '../functions/Cryption';
 import { BASE_API_URL } from '../urls/BaseUrl';
 
 export const BASE_API_INSTANCE = axios.create({
@@ -11,21 +11,13 @@ export const BASE_API_INSTANCE = axios.create({
 // Request interceptor for API calls
 BASE_API_INSTANCE.interceptors.request.use(
   async (config) => {
-    const cryptedToken = await getCookie('token')
-    let accessToken = null
-    if (cryptedToken !== null) {
-      accessToken = decryptUserToken(cryptedToken)
+    const accessToken = Cookie.get(AUTH_TOKEN)
+
+    if (accessToken) {
+      config.headers['Authorization'] = `Bearer ${accessToken}`
     }
 
-    config.headers = {
-      Accept: 'application/json',
-      'Content-Type': 'application/x-www-form-urlencoded',
-    }
     config.baseURL = BASE_API_URL
-    if (accessToken !== null && accessToken !== '') {
-      config.headers['Authorization'] = `Bearer ${accessToken}`
-    } else {
-    }
     return config
   },
   (error) => {

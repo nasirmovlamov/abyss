@@ -34,12 +34,11 @@ import {
 } from '../../../styles/styled-components/base/modules/Answer.style';
 import { ThumbIcon } from '../../../styles/styled-components/base/modules/FormQuestion.style';
 import * as SingleQuestion_STY from '../../../styles/styled-components/base/pages/SingleQuestionPage.style';
-import MyEditor from '../../modules/editors/MyEditor';
+import MyEditor from '../editors/MyEditor';
 
-const DynamicComponentWithNoSSR = dynamic(
-  () => import('../../modules/editors/EditorForAnswerEdit'),
-  { ssr: false },
-)
+const DynamicComponentWithNoSSR = dynamic(() => import('../editors/EditorForAnswerEdit'), {
+  ssr: false,
+})
 
 interface Props {
   answer: ANSWER_INTERFACE

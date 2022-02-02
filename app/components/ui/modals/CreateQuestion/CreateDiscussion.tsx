@@ -5,7 +5,7 @@ import { LabelCont } from 'app/styles/styled-components/base/modules/CreateQuest
 import { ModalFORM_STY } from 'app/styles/styled-components/base/modules/Modal_Style/ModalCont.style';
 import React, { ReactElement, useEffect, useState } from 'react';
 
-import MyEditor from '../../../modules/editors/MyEditor';
+import MyEditor from '../../editors/MyEditor';
 import { autoErrorToaster } from '../../toasters/AutoErrorToaster';
 import { autoSuccessToaster } from '../../toasters/AutoSuccessToast';
 

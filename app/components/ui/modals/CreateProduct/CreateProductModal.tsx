@@ -60,6 +60,7 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
       }
 
       if (currentStep === 1) {
+        console.log('test')
         await validateFunctions[`step${currentStep}`]()
         if (
           isProductCreated.status === 'created' &&

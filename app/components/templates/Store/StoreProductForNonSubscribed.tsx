@@ -7,7 +7,7 @@ import HTMLReactParser from 'html-react-parser';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import blurredEditor from '../../../../public/blurred_editor.jpg';
+import blurredEditor from '../../../../public/img/blurred_editor.jpg';
 import {
   CodeMirror_ReadOnly_STY,
 } from '../../../styles/styled-components/base/modules/CreateProduct_Style/Steps/ProductCreate_Step1.style';
