@@ -1,55 +1,72 @@
-import { CompositeDecorator, ContentBlock, DraftHandleValue, Editor, EditorState, RichUtils } from 'draft-js';
+import {
+  ContentBlock,
+  ContentState,
+  DraftHandleValue,
+  Editor,
+  EditorState,
+  genKey,
+  Modifier,
+  RichUtils,
+  SelectionState,
+} from 'draft-js';
+import { List } from 'immutable';
 import linkifyIt from 'linkify-it';
-import React, { ReactNode, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import Toolbar from './Toolbar';
 
-const ProductItem = ({ children }: { children: ReactNode; offsetKey: string }) => {
+const ProductItem = ({ block }: { block: ContentBlock }) => {
   return (
     <div
-      // contentEditable={false}
-      suppressContentEditableWarning
-      style={{ width: '100%', height: 40, background: '#2e3a59', borderRadius: 5 }}
+      style={{
+        width: '100%',
+        height: 40,
+        background: '#000',
+        borderRadius: 5,
+        userSelect: 'none',
+      }}
     >
-      <span>{children}</span>
+      <span>I am the inserted product</span>
     </div>
   )
 }
 
 const RichEditor = () => {
   const editorRef = useRef<any>()
-  const [shouldReplace, setShouldReplace] = useState(false)
-
-  const findProductLink = (contentBlock: ContentBlock, callback: Function) => {
-    const blockText = contentBlock.getText()
-    const links = linkifyIt().match(blockText)
-
-    if (links) {
-      links.forEach((link: any) => {
-        if (link.url.includes(window.location.origin) && shouldReplace) {
-          const start = blockText.indexOf(link.url)
-          callback(start, start + link.url.length)
-          // shouldReplace = false
-        }
-      })
-    }
-  }
-
-  // Add custom decorator for embedding products
-  const compositeDecorator = new CompositeDecorator([
-    // {
-    //   strategy: findProductLink,
-    //   component: ProductItem,
-    // },
-  ])
-  const [editorState, setEditorState] = useState(() => EditorState.createEmpty(compositeDecorator))
+  const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
 
   const handleKeyCommand = (command: string, editorState: EditorState): DraftHandleValue => {
     const newState = RichUtils.handleKeyCommand(editorState, command)
 
-    if (command === 'split-block') {
-      setShouldReplace(true)
-      // forceRender()
+    // Remove embedded product on backspace pressed
+    if (command === 'backspace') {
+      const { currentBlock, currentKey } = getCurrentBlock()
+      const prevBlock = editorState.getCurrentContent().getBlockBefore(currentKey)
+
+      if (prevBlock) {
+        const prevBlockText = prevBlock.getText()
+
+        if (getProductLinks(prevBlockText)) {
+          prevBlock.clear()
+          const removeSelection = new SelectionState({
+            anchorKey: prevBlock.getKey(),
+            anchorOffset: prevBlockText.length,
+            focusKey: prevBlock.getKey(),
+            focusOffset: 1,
+          })
+          const newContentState = Modifier.removeRange(
+            editorState.getCurrentContent(),
+            removeSelection,
+            'backward',
+          )
+
+          const newEditorState = EditorState.forceSelection(
+            EditorState.push(editorState, newContentState, 'remove-range'),
+            editorState.getCurrentContent().getSelectionAfter(),
+          )
+          setEditorState(newEditorState)
+        }
+      }
     }
 
     if (newState) {
@@ -59,51 +76,131 @@ const RichEditor = () => {
     return 'not-handled'
   }
 
-  const handleEditorStateChange = (editorState: EditorState) => {
-    setEditorState(editorState)
-  }
-
-  const forceRender = () => {
-    var contentState = editorState.getCurrentContent()
-
-    var newEditorStateInstance = EditorState.createWithContent(contentState, compositeDecorator)
-
-    var copyOfEditorState = EditorState.set(newEditorStateInstance, {
-      selection: editorState.getSelection(),
-      undoStack: editorState.getUndoStack(),
-      redoStack: editorState.getRedoStack(),
-      lastChangeType: editorState.getLastChangeType(),
-    })
-    setEditorState(copyOfEditorState)
-  }
-
   const handleBlockRenderer = (contentBlock: ContentBlock) => {
-    const blockText = contentBlock.getText()
-    const links = linkifyIt().match(blockText)
+    const contentText = contentBlock.getText()
+    const links = getProductLinks(contentText)
 
-    if (links) {
-      links.forEach((link: any) => {
-        if (link.url.includes(window.location.origin)) {
-          return {
-            component: ProductItem,
-            editable: false,
-            props: {
-              foo: 'bar',
-            },
-          }
-          // setTimeout(() => {
-          //   setShouldReplace(false)
-          //   return {
-          //     component: ProductItem,
-          //     editable: false,
-          //     props: {
-          //       foo: 'bar',
-          //     },
-          //   }
-          // }, 500)
+    if (links && links.length === 1) {
+      const { currentBlock, currentKey } = getCurrentBlock()
+      const contentBlockKey = contentBlock.getKey()
+
+      // Embed product on block change, and on space
+      if (contentBlockKey !== currentKey) {
+        return {
+          component: ProductItem,
+          editable: false,
+          props: {
+            block: contentBlock,
+          },
         }
-      })
+      }
     }
+  }
+
+  const handleEditorStateChange = (newEditorState: EditorState) => {
+    const { currentBlock, currentKey } = getCurrentBlock()
+
+    // Force render if previous block contained links
+    if (getProductLinks(currentBlock.getText())) {
+      const newSelection = newEditorState.getSelection()
+      const newKey = newEditorState.getSelection().getEndKey()
+      const newBlock = newEditorState.getCurrentContent().getBlockForKey(newKey)
+
+      // Embed product on focus and on space key pressed
+      const wasBlurred =
+        newEditorState.getLastChangeType() === 'insert-fragment' && currentKey === newKey
+      const hasSpace = newBlock.getText().charAt(newBlock.getText().length - 1) === ' '
+
+      if (wasBlurred || hasSpace) {
+        // Insert new block
+        const newBlockState = EditorState.push(
+          newEditorState,
+          insertBlock('after'),
+          'insert-fragment',
+        )
+
+        // Go to the new block
+        newEditorState = EditorState.forceSelection(
+          newBlockState,
+          goToBlock(newBlockState.getCurrentContent().getBlockAfter(currentKey)?.getKey()),
+        )
+      } else {
+        newEditorState = EditorState.forceSelection(newEditorState, newSelection)
+      }
+    }
+
+    setEditorState(newEditorState)
+  }
+
+  const insertBlock = (direction: 'before' | 'after') => {
+    const selection = editorState.getSelection()
+    const contentState = editorState.getCurrentContent()
+    const { currentBlock } = getCurrentBlock()
+
+    const blockMap = contentState.getBlockMap()
+    // Split the blocks
+    const blocksBefore = blockMap.toSeq().takeUntil(function (v) {
+      return v === currentBlock
+    })
+    const blocksAfter = blockMap
+      .toSeq()
+      .skipUntil(function (v) {
+        return v === currentBlock
+      })
+      .rest()
+    const newBlockKey = genKey()
+    let newBlocks =
+      direction === 'before'
+        ? [
+            [
+              newBlockKey,
+              new ContentBlock({
+                key: newBlockKey,
+                type: 'unstyled',
+                text: '',
+                characterList: List(),
+              }),
+            ],
+            [currentBlock?.getKey(), currentBlock],
+          ]
+        : [
+            [currentBlock?.getKey(), currentBlock],
+            [
+              newBlockKey,
+              new ContentBlock({
+                key: newBlockKey,
+                type: 'unstyled',
+                text: '',
+                characterList: List(),
+              }),
+            ],
+          ]
+    const newBlockMap = blocksBefore.concat(newBlocks, blocksAfter).toOrderedMap()
+    const newContentState = contentState.merge({
+      blockMap: newBlockMap,
+      selectionBefore: selection,
+      selectionAfter: selection,
+    })
+
+    return newContentState as ContentState
+  }
+
+  const goToBlock = (key: string | undefined) => {
+    return new SelectionState({
+      anchorKey: key,
+      focusKey: key,
+    })
+  }
+
+  const getCurrentBlock = () => {
+    const currentKey = editorState.getSelection().getEndKey()
+    const currentBlock = editorState.getCurrentContent().getBlockForKey(currentKey)
+
+    return { currentKey, currentBlock }
+  }
+
+  const getProductLinks = (text: string) => {
+    return linkifyIt().match(text)
   }
 
   return (
