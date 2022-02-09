@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
-import { ThemeType } from './abstracts/Theme.style';
+import { ThemeType } from './abstracts/theme.style';
 
 type Props = {
   theme: ThemeType

@@ -1,7 +1,7 @@
 import { AUTH_TOKEN } from 'app/constants';
 import { useAppTheme } from 'app/contexts/Theme.context';
 import { authCheckToken } from 'app/store/slices/auth.slice';
-import { darkTheme, lightTheme } from 'app/styles/styled-components/abstracts/Theme.style';
+import { darkTheme, lightTheme } from 'app/styles/styled-components/abstracts/theme.style';
 import { GlobalStyle } from 'app/styles/styled-components/global.style';
 import Cookie from 'app/utils/Cookie';
 import { useRouter } from 'next/router';
@@ -40,7 +40,6 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
     if (isCommentBoxOpened) {
       dispatch(closeComments(null))
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router])
 
   const openUserChat = () => {

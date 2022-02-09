@@ -23,7 +23,7 @@ const QuestionPage = () => {
   const rightPart = <p>Right</p>
 
   return (
-    <MainLayout left={leftPart} right={rightPart}>
+    <MainLayout left={leftPart} leftLgCol={1} rightLgCol={1} right={rightPart}>
       <QuestionLayout />
     </MainLayout>
   )

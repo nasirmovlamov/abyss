@@ -174,14 +174,7 @@ const Header = () => {
       onMouseEnter={() => dispatch(hoverHeader(null))}
       onMouseLeave={unHoverHeader}
     >
-      <MainLayout
-        left={leftPart}
-        right={rightPart}
-        leftCol={6}
-        middleCol={null}
-        rightCol={6}
-        leftLgCol={pathname === '/' ? 3 : 2}
-      >
+      <MainLayout left={leftPart} right={rightPart} leftCol={6} middleCol={null} rightCol={6}>
         <Header_STY.LinksStyleCenterer_STY>
           <Header_STY.LinksStyle_STY>
             <Header_STY.LiStyle_STY

@@ -27,11 +27,10 @@ productService.get = async (id: number): Promise<any> => {
   })
 }
 
-productService.create = async (data: Product): Promise<any> => {
+productService.create = async (): Promise<any> => {
   return fetch({
     url: '/store/create',
     method: 'post',
-    data,
   })
 }
 
@@ -47,6 +46,17 @@ productService.delete = async (id: number): Promise<any> => {
   return fetch({
     url: `/store/${id}/product/delete`,
     method: 'delete',
+  })
+}
+
+productService.checkPlagiarism = async (
+  id: number,
+  data: { source_code: string; extension: string },
+): Promise<any> => {
+  return fetch({
+    url: `/store/${id}/product/plagiarism`,
+    method: 'post',
+    data,
   })
 }
 

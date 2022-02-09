@@ -36,14 +36,20 @@ const MainLayout = ({
     return classNames.join(' ')
   }
 
+  const calculateMiddleCol = (leftCol: number | null, rightCol: number | null) => {
+    const leftRightSum = (leftCol || 0) + (rightCol || 0)
+
+    return 12 - (leftRightSum <= 12 ? leftRightSum : 0)
+  }
+
   return (
     <div className="container-fluid container-main h-100">
       <div className="row h-100">
         <div className={generateColClass(leftCol, leftLgCol)}>{left}</div>
         <div
           className={generateColClass(
-            middleCol || 12 - ((leftCol || 0) + (rightCol || 0)),
-            middleLgCol || 12 - ((leftLgCol || 0) + (rightLgCol || 0)),
+            middleCol || calculateMiddleCol(leftCol, rightCol),
+            middleLgCol || calculateMiddleCol(leftLgCol, rightLgCol),
           )}
         >
           {children}

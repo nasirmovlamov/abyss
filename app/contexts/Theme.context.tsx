@@ -12,12 +12,12 @@ export const useAppTheme = () => {
 }
 
 export const AppThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [isDarkMode, setIsDarkMode] = useState(true)
+  const [isDarkMode, setIsDarkMode] = useState(false)
 
   useEffect(() => {
     const isDarkModeSaved = localStorage.getItem('darkMode')
       ? localStorage.getItem('darkMode') === 'true'
-      : true
+      : false
     setIsDarkMode(isDarkModeSaved)
   }, [])
 

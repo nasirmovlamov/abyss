@@ -83,7 +83,7 @@ const QuestionMiddleLayout = () => {
               <div>
                 {<DynamicComponentWithNoSSR />}
                 <MyEditor display={'none'} content={''} onChange={(content: any) => null} />
-                <div>
+                <div className="mt-5">
                   <button onClick={cancelEditingFunc}>cancel</button>
                   <button
                     onClick={saveEditingFunc}

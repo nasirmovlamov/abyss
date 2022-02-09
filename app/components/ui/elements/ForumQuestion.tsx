@@ -39,11 +39,7 @@ import {
   QuestionStatistics_STY,
 } from '../../../styles/styled-components/base/pages/SingleQuestionPage.style';
 
-interface Props {
-  data: any
-}
-
-const FormQuestion = ({ data }: Props) => {
+const ForumQuestion = ({ data }: { data: any }) => {
   const router = useRouter()
   const dispatch = useAppDispatch()
   const [isToolTip, setshowToolTip] = useState(false)
@@ -150,4 +146,4 @@ const FormQuestion = ({ data }: Props) => {
   )
 }
 
-export default FormQuestion
+export default ForumQuestion

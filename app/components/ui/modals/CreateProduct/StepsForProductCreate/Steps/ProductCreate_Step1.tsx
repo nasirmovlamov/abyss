@@ -1,5 +1,4 @@
-import { javascript } from '@codemirror/lang-javascript';
-import CodeMirror from '@uiw/react-codemirror';
+import CodeEditor from 'app/components/ui/editors/CodeEditor';
 import {
   is_product_created,
   product_create_step1_data,
@@ -9,7 +8,6 @@ import {
 } from 'app/store/slices/CreateProductFeatures/CreateProduct.slice';
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import {
-  CodeMirror_STY,
   CreateProduct_Step1_Error,
   ProductCreate_Step1_Style,
   SelectLangType_STY,
@@ -20,7 +18,6 @@ const ProductCreate_Step1 = () => {
   const dispatch = useAppDispatch()
   const ProductCreateSteps = useAppSelector(product_create_steps)
   const Step1Data = ProductCreateSteps['1']
-  const sourceCode = Step1Data.source_code
   const productCreateStep1Data = useAppSelector(product_create_step1_data)
   const productCreation = useAppSelector(is_product_created)
   const { validators } = productCreateStep1Data
@@ -57,7 +54,7 @@ const ProductCreate_Step1 = () => {
           </button>
         </div>
       </div>
-      <CodeMirror_STY>
+      {/* <CodeMirror_STY>
         <CodeMirror
           value={sourceCode}
           height="200px"
@@ -67,7 +64,8 @@ const ProductCreate_Step1 = () => {
             dispatch(ProductCreateStep1OnChanges(value))
           }}
         />
-      </CodeMirror_STY>
+      </CodeMirror_STY> */}
+      <CodeEditor />
 
       <SelectLangType_STY
         name=""

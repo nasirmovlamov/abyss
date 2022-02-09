@@ -22,7 +22,13 @@ interface ProductItemProps {
   id: number
 }
 
-const ProductItem = ({ blockProps }: { blockProps: ProductItemProps }) => {
+const ProductItem = ({
+  blockProps,
+  block,
+}: {
+  blockProps: ProductItemProps
+  block: ContentBlock
+}) => {
   const dispatch = useAppDispatch()
   const productState = useAppSelector((state) => state.product)
   const { id } = blockProps
@@ -32,11 +38,14 @@ const ProductItem = ({ blockProps }: { blockProps: ProductItemProps }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return productState.currentItem && <ListingStoreProduct data={productState.currentItem} />
+  return productState.currentItem ? (
+    <ListingStoreProduct data={productState.currentItem} />
+  ) : (
+    block.getText()
+  )
 }
 
 const RichEditor = () => {
-  const editorRef = useRef<any>()
   const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
   let isBlurred = false
 
@@ -52,7 +61,6 @@ const RichEditor = () => {
         const prevBlockText = prevBlock.getText()
 
         if (getIDfromLink('store', prevBlockText)) {
-          prevBlock.clear()
           const removeSelection = new SelectionState({
             anchorKey: prevBlock.getKey(),
             anchorOffset: prevBlockText.length,
@@ -224,7 +232,6 @@ const RichEditor = () => {
       <Toolbar editorState={editorState} setEditorState={setEditorState} />
       <div className="RichEditor-editor">
         <Editor
-          ref={editorRef}
           editorState={editorState}
           onChange={handleEditorStateChange}
           handleKeyCommand={handleKeyCommand}

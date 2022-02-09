@@ -61,6 +61,8 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
 
       if (currentStep === 1) {
         console.log('test')
+        //@todo: rewrite the steps logic
+        // dispatch(productCreate())
         await validateFunctions[`step${currentStep}`]()
         if (
           isProductCreated.status === 'created' &&
@@ -77,7 +79,7 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
           isProductCreated.id !== null &&
           isProductCreated.status === 'created'
         ) {
-          await dispatch(
+          dispatch(
             startPlagirismChecker({
               product_id: isProductCreated.id,
               source_code: productCreateStep1Data.source_code,
@@ -112,8 +114,6 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
       }
     }
   }
-
-  const SubmitProduct = async () => {}
 
   const goPrevoiusSection = async () => {
     if (currentStep !== 1) {
@@ -175,5 +175,3 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
 }
 
 export default CreateProductModal
-
-// Dropable Content

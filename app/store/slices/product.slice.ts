@@ -38,10 +38,10 @@ export const productGet = createAsyncThunk(
   }),
 )
 
-export const productCreate = createAsyncThunk(
-  'product/create',
-  withHandleRequestError(async (data: Product) => {
-    return await productService.create(data)
+export const productSubmit = createAsyncThunk(
+  'product/submit',
+  withHandleRequestError(async ({ id, data }: { id: number; data: Product }) => {
+    return await productService.submit(id, data)
   }),
 )
 
@@ -59,21 +59,7 @@ export const productDelete = createAsyncThunk(
   }),
 )
 
-export const productSubmit = createAsyncThunk(
-  'product/submit',
-  withHandleRequestError(async ({ id, data }: { id: number; data: Product }) => {
-    return await productService.submit(id, data)
-  }),
-)
-
-const productActions = [
-  productSearch,
-  productGet,
-  productCreate,
-  productUpdate,
-  productDelete,
-  productSubmit,
-]
+const productActions = [productSearch, productGet, productUpdate, productDelete, productSubmit]
 
 const productSlice = createSlice({
   name: 'product',
@@ -89,7 +75,7 @@ const productSlice = createSlice({
       state.currentItem = payload.data
     })
 
-    builder.addCase(productCreate.fulfilled, (state, { payload }: { payload: any }) => {
+    builder.addCase(productSubmit.fulfilled, (state, { payload }: { payload: any }) => {
       state.items.push(payload)
     })
 

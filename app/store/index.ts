@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import { addProductReducer } from './slices/addProduct.slice';
 import appReducer from './slices/App.slice';
 import { authReducer } from './slices/auth.slice';
 import caveRootReducer from './slices/CaveFeatures/Cave_Reducers/Cave.root.reducer';
@@ -23,6 +24,7 @@ const reducer = {
   appReducer: appReducer,
   auth: authReducer,
   product: productReducer,
+  addProduct: addProductReducer,
   userReducer: userReducer,
   questionReducer: questionReducer,
   commentsReducer: commentsReducer,

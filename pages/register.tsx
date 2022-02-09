@@ -2,31 +2,29 @@ import * as LoginPage_STY from 'app/styles/styled-components/base/modules/AuthSt
 import Image from 'next/image';
 import React from 'react';
 
-import githubLogo from '/public/githubLogo.png';
-import googleLogo from '/public/googleLogo.png';
-import mainLogo from '/public/icons/main-logo-new.svg';
-import mainLogoText from '/public/icons/main-logo-side-text-new.svg';
-
-interface Props {}
-
-const Register = (props: Props) => {
+const Register = () => {
   return (
     <LoginPage_STY.AuthPageContainer_STY>
       <LoginPage_STY.TopLogoContainer_STY>
-        <Image width="49px" height="49px" src={mainLogo} alt={'Abyss logo'} />
-        <Image width="99px" height="40px" src={mainLogoText} alt={'Abyss text'} />
+        <Image width="49px" height="49px" src="/icons/main-logo-new.svg" alt={'Abyss logo'} />
+        <Image
+          width="99px"
+          height="40px"
+          src="/icons/main-logo-side-text-new.svg"
+          alt={'Abyss text'}
+        />
       </LoginPage_STY.TopLogoContainer_STY>
 
       <LoginPage_STY.LoginContainer_STY>
         <div className="part1">
           <div className="buttonCont">
             <button className="githubButton">
-              <Image width="30px" height="30px" src={githubLogo} alt={'Abyss logo'} />
+              <Image width="30px" height="30px" src="/img/githubLogo.png" alt={'Abyss logo'} />
               <span>Log in with Github</span>
             </button>
 
             <button className="gmailButton">
-              <Image width="30px" height="30px" src={googleLogo} alt={'Abyss logo'} />
+              <Image width="30px" height="30px" src="/img/googleLogo.png" alt={'Abyss logo'} />
               <span>Log in with Gmail</span>
             </button>
           </div>

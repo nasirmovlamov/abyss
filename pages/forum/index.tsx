@@ -32,6 +32,7 @@ const ForumPage = () => {
 
   useEffect(() => {
     scrollToY()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -45,6 +46,7 @@ const ForumPage = () => {
       }
       dispatch(forumSearchInfinity(data))
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inViewLoaderDown])
 
   useLayoutEffect(() => {
@@ -62,6 +64,7 @@ const ForumPage = () => {
         }),
       )
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     forumSearchData.searchOptions.forumSort,
     forumSearchData.searchOptions.forumType,
