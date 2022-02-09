@@ -21,7 +21,7 @@ const RegisterModal = () => {
           required: true,
         },
         value: '',
-        valid: false,
+        valid: true,
         touched: false,
         error: '',
       },
@@ -35,7 +35,7 @@ const RegisterModal = () => {
           email: true,
         },
         value: '',
-        valid: false,
+        valid: true,
         touched: false,
         error: '',
       },
@@ -49,7 +49,7 @@ const RegisterModal = () => {
           min: 6,
         },
         value: '',
-        valid: false,
+        valid: true,
         touched: false,
         error: '',
       },
@@ -91,13 +91,14 @@ const RegisterModal = () => {
   }
 
   // Handle value change of a control
-  const onValueChange = (itemId: string, value: string) => {
-    const { updatedForm, formValid } = Utils.valueChangedHandler(
-      registerForm.controls,
-      itemId,
-      value,
-    )
+  const handleValueChange = (itemId: string, value: string) => {
+    const updatedForm = Utils.handleFieldChange(registerForm.controls, itemId, value)
+    setRegisterForm({ ...registerForm, controls: updatedForm })
+  }
 
+  // Handle validation of a control
+  const handleBlur = (itemId: string) => {
+    const { updatedForm, formValid } = Utils.handleFieldValidation(registerForm.controls, itemId)
     setRegisterForm({ ...registerForm, controls: updatedForm, valid: formValid })
   }
 
@@ -151,7 +152,8 @@ const RegisterModal = () => {
             placeholder={item.config.placeholder}
             id={item.config.name}
             value={item.config.value}
-            onChange={(e) => onValueChange(item.config.name, e.target.value)}
+            onChange={(e) => handleValueChange(item.config.name, e.target.value)}
+            onBlur={() => handleBlur(item.config.name)}
           />
           <Form_STY.Error_STY error={item.config.touched && !item.config.valid}>
             <span>{item.config.error}</span>
@@ -160,7 +162,7 @@ const RegisterModal = () => {
       ))}
 
       <Form_STY.F_ButtonCont_STY>
-        <Form_STY.F_Button_STY onClick={handleSubmit}>
+        <Form_STY.F_Button_STY disabled={!registerForm.valid} onClick={handleSubmit}>
           <span>Submit</span>
         </Form_STY.F_Button_STY>
 

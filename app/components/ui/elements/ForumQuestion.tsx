@@ -43,7 +43,7 @@ interface Props {
   data: any
 }
 
-function FormQuestion({ data }: Props): ReactElement {
+const FormQuestion = ({ data }: Props) => {
   const router = useRouter()
   const dispatch = useAppDispatch()
   const [isToolTip, setshowToolTip] = useState(false)
@@ -66,9 +66,16 @@ function FormQuestion({ data }: Props): ReactElement {
     setshowToolTip(true)
   }
 
+  const handleQuestionClicked = () => {
+    // Prevent click on text selection
+    if (!getSelection()?.toString()) {
+      router.push(`/forum/${data.id}/${data.slug}`)
+    }
+  }
+
   return (
     <FormQuestionCont
-      onClick={() => router.push(`/forum/${data.id}/${data.slug}`)}
+      onClick={handleQuestionClicked}
       key={data.id}
       onMouseEnter={showToolTip}
       onMouseLeave={hideToolTip}

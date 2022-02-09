@@ -20,9 +20,16 @@ productService.search = async (
   })
 }
 
+productService.get = async (id: number): Promise<any> => {
+  return fetch({
+    url: `/store/${id}/test`,
+    method: 'get',
+  })
+}
+
 productService.create = async (data: Product): Promise<any> => {
   return fetch({
-    url: `/store/create`,
+    url: '/store/create',
     method: 'post',
     data,
   })

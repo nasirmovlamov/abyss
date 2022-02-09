@@ -33,8 +33,8 @@ export const productSearch = createAsyncThunk(
 
 export const productGet = createAsyncThunk(
   'product/get',
-  withHandleRequestError(async ({ id, keyword }: { id: number; keyword: string }) => {
-    return await productService.get(id, keyword)
+  withHandleRequestError(async (id: number) => {
+    return await productService.get(id)
   }),
 )
 
@@ -86,7 +86,7 @@ const productSlice = createSlice({
     })
 
     builder.addCase(productGet.fulfilled, (state, { payload }: { payload: any }) => {
-      state.currentItem = payload
+      state.currentItem = payload.data
     })
 
     builder.addCase(productCreate.fulfilled, (state, { payload }: { payload: any }) => {

@@ -1,3 +1,6 @@
+import ListingStoreProduct from 'app/components/templates/ListingStoreProduct';
+import { productGet } from 'app/store/slices/product.slice';
+import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import {
   ContentBlock,
   ContentState,
@@ -11,29 +14,31 @@ import {
 } from 'draft-js';
 import { List } from 'immutable';
 import linkifyIt from 'linkify-it';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import Toolbar from './Toolbar';
 
-const ProductItem = ({ block }: { block: ContentBlock }) => {
-  return (
-    <div
-      style={{
-        width: '100%',
-        height: 40,
-        background: '#000',
-        borderRadius: 5,
-        userSelect: 'none',
-      }}
-    >
-      <span>I am the inserted product</span>
-    </div>
-  )
+interface ProductItemProps {
+  id: number
+}
+
+const ProductItem = ({ blockProps }: { blockProps: ProductItemProps }) => {
+  const dispatch = useAppDispatch()
+  const productState = useAppSelector((state) => state.product)
+  const { id } = blockProps
+
+  useEffect(() => {
+    dispatch(productGet(id))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  return productState.currentItem && <ListingStoreProduct data={productState.currentItem} />
 }
 
 const RichEditor = () => {
   const editorRef = useRef<any>()
   const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
+  let isBlurred = false
 
   const handleKeyCommand = (command: string, editorState: EditorState): DraftHandleValue => {
     const newState = RichUtils.handleKeyCommand(editorState, command)
@@ -46,7 +51,7 @@ const RichEditor = () => {
       if (prevBlock) {
         const prevBlockText = prevBlock.getText()
 
-        if (getProductLinks(prevBlockText)) {
+        if (getIDfromLink('store', prevBlockText)) {
           prevBlock.clear()
           const removeSelection = new SelectionState({
             anchorKey: prevBlock.getKey(),
@@ -78,9 +83,9 @@ const RichEditor = () => {
 
   const handleBlockRenderer = (contentBlock: ContentBlock) => {
     const contentText = contentBlock.getText()
-    const links = getProductLinks(contentText)
+    const id = getIDfromLink('store', contentText)
 
-    if (links && links.length === 1) {
+    if (id) {
       const { currentBlock, currentKey } = getCurrentBlock()
       const contentBlockKey = contentBlock.getKey()
 
@@ -89,9 +94,7 @@ const RichEditor = () => {
         return {
           component: ProductItem,
           editable: false,
-          props: {
-            block: contentBlock,
-          },
+          props: { id },
         }
       }
     }
@@ -101,17 +104,15 @@ const RichEditor = () => {
     const { currentBlock, currentKey } = getCurrentBlock()
 
     // Force render if previous block contained links
-    if (getProductLinks(currentBlock.getText())) {
+    if (getIDfromLink('store', currentBlock.getText())) {
       const newSelection = newEditorState.getSelection()
       const newKey = newEditorState.getSelection().getEndKey()
       const newBlock = newEditorState.getCurrentContent().getBlockForKey(newKey)
 
       // Embed product on focus and on space key pressed
-      const wasBlurred =
-        newEditorState.getLastChangeType() === 'insert-fragment' && currentKey === newKey
       const hasSpace = newBlock.getText().charAt(newBlock.getText().length - 1) === ' '
 
-      if (wasBlurred || hasSpace) {
+      if (isBlurred || hasSpace) {
         // Insert new block
         const newBlockState = EditorState.push(
           newEditorState,
@@ -199,8 +200,23 @@ const RichEditor = () => {
     return { currentKey, currentBlock }
   }
 
-  const getProductLinks = (text: string) => {
-    return linkifyIt().match(text)
+  const getIDfromLink = (path: string, text: string): number | null => {
+    const matchedLinks = linkifyIt().match(text)
+
+    // Match url in text, then search for ID
+    if (matchedLinks && matchedLinks.length === 1) {
+      const url = matchedLinks[0].url
+      if (url.includes(`${window.location.origin}/${path}`)) {
+        const matchedDigits = url.match(/\d+/g)
+
+        // Return last occurrence of id
+        if (matchedDigits) {
+          return +matchedDigits[matchedDigits.length - 1]
+        }
+      }
+    }
+
+    return null
   }
 
   return (
@@ -213,6 +229,8 @@ const RichEditor = () => {
           onChange={handleEditorStateChange}
           handleKeyCommand={handleKeyCommand}
           blockRendererFn={handleBlockRenderer}
+          onBlur={() => (isBlurred = true)}
+          onFocus={() => (isBlurred = false)}
         />
       </div>
     </div>

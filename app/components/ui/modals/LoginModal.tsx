@@ -22,7 +22,7 @@ const LoginModal = () => {
           email: true,
         },
         value: '',
-        valid: false,
+        valid: true,
         touched: false,
         error: '',
       },
@@ -36,7 +36,7 @@ const LoginModal = () => {
           min: 6,
         },
         value: '',
-        valid: false,
+        valid: true,
         touched: false,
         error: '',
       },
@@ -77,9 +77,14 @@ const LoginModal = () => {
   }
 
   // Handle value change of a control
-  const onValueChange = (itemId: string, value: string) => {
-    const { updatedForm, formValid } = Utils.valueChangedHandler(loginForm.controls, itemId, value)
+  const handleValueChange = (itemId: string, value: string) => {
+    const updatedForm = Utils.handleFieldChange(loginForm.controls, itemId, value)
+    setLoginForm({ ...loginForm, controls: updatedForm })
+  }
 
+  // Handle validation of a control
+  const handleBlur = (itemId: string) => {
+    const { updatedForm, formValid } = Utils.handleFieldValidation(loginForm.controls, itemId)
     setLoginForm({ ...loginForm, controls: updatedForm, valid: formValid })
   }
 
@@ -133,7 +138,8 @@ const LoginModal = () => {
             placeholder={item.config.placeholder}
             id={item.id}
             value={item.config.value}
-            onChange={(e) => onValueChange(item.config.name, e.target.value)}
+            onChange={(e) => handleValueChange(item.config.name, e.target.value)}
+            onBlur={() => handleBlur(item.config.name)}
           />
 
           <Form_STY.Error_STY error={item.config.touched && !item.config.valid}>

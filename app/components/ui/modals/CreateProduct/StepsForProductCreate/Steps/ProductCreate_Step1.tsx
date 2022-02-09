@@ -1,26 +1,22 @@
 import { javascript } from '@codemirror/lang-javascript';
 import CodeMirror from '@uiw/react-codemirror';
-import { ReactElement } from 'react';
-import HashLoader from 'react-spinners/HashLoader';
-
 import {
   is_product_created,
   product_create_step1_data,
   product_create_steps,
   ProductCreateStep1OnChanges,
   selectCreateProductLanguage,
-} from '../../../../../../store/slices/CreateProductFeatures/CreateProduct.slice';
-import { useAppDispatch, useAppSelector } from '../../../../../../store/states/store.hooks';
+} from 'app/store/slices/CreateProductFeatures/CreateProduct.slice';
+import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import {
   CodeMirror_STY,
   CreateProduct_Step1_Error,
   ProductCreate_Step1_Style,
   SelectLangType_STY,
-} from '../../../../../../styles/styled-components/base/modules/CreateProduct_Style/Steps/ProductCreate_Step1.style';
+} from 'app/styles/styled-components/base/modules/CreateProduct_Style/Steps/ProductCreate_Step1.style';
+import HashLoader from 'react-spinners/HashLoader';
 
-interface Props {}
-
-export const ProductCreate_Step1 = ({}: Props): ReactElement => {
+const ProductCreate_Step1 = () => {
   const dispatch = useAppDispatch()
   const ProductCreateSteps = useAppSelector(product_create_steps)
   const Step1Data = ProductCreateSteps['1']
@@ -122,3 +118,5 @@ export const ProductCreate_Step1 = ({}: Props): ReactElement => {
     </ProductCreate_Step1_Style>
   )
 }
+
+export default ProductCreate_Step1

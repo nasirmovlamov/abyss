@@ -6,6 +6,7 @@ export const CreateProduct_Step1_Container = styled.div`
   align-items: center;
   width: 800px;
   .flexer {
+    display: flex;
     column-gap: 22px;
   }
   .info-block {
@@ -42,7 +43,6 @@ export const SelectThreadType = styled.button<{ selected: boolean }>`
     width: 100%;
     font-size: 24px;
   }
-
   .textBlock {
     box-shadow: ${({ theme }) => theme.boxshadows.boxshadow1};
     outline: 2px solid
@@ -64,7 +64,6 @@ export const SelectThreadType = styled.button<{ selected: boolean }>`
       border: none;
     }
   }
-
   &:hover {
     .title {
       color: ${({ theme, selected }) => (selected ? theme.texts.text8 : theme.texts.text1)};

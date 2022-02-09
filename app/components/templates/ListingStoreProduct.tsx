@@ -48,7 +48,7 @@ interface Props {
     | any
 }
 
-function ListingStoreProduct({ data }: Props): ReactElement {
+const ListingStoreProduct = ({ data }: Props) => {
   const singleProductData = useAppSelector(single_product_data)
   const router = useRouter()
   const [description, setdescription] = useState<any>()

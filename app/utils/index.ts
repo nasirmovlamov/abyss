@@ -2,6 +2,38 @@ import { Form, FormControl } from 'app/interfaces';
 
 class Utils {
   /**
+   * Update and return an object with values provided
+   *
+   * @param {Object} oldObject - The object that needs to be updated
+   * @param {Object} updatedValues - Values to update
+   * @returns {Object} Updated object
+   */
+  static updateObject(oldObject: any, updatedValues: any) {
+    return {
+      ...oldObject,
+      ...updatedValues,
+    }
+  }
+
+  /**
+   * Creates an array from given form
+   *
+   * @param {Form} form - The form object
+   * @returns {Array} Array version of given form
+   */
+  static formToArray(form: Form) {
+    const formArray = []
+    for (const key in form.controls) {
+      formArray.push({
+        id: key,
+        config: form.controls[key],
+      })
+    }
+
+    return formArray
+  }
+
+  /**
    * Check validity of a form control based on the rules provided
    *
    * @param {string} value - Value of the form control
@@ -34,41 +66,42 @@ class Utils {
   }
 
   /**
-   * Update and return an object with values provided
-   *
-   * @param {Object} oldObject - The object that needs to be updated
-   * @param {Object} updatedValues - Values to update
-   * @returns {Object} Updated object
-   */
-  static updateObject(oldObject: any, updatedValues: any) {
-    return {
-      ...oldObject,
-      ...updatedValues,
-    }
-  }
-
-  /**
    * Update and return a form based on changes of an input
    *
    * @param {Object} form - The object that contains the form state
    * @param {string} itemId - ID of the control in object
-   * @param {Event} value - Changed value of form control
-   * @returns {Object} Updated form object and form validity status
+   * @param {string} value - Changed value of form control
+   * @returns {Form} Updated form object
    */
-  static valueChangedHandler(
-    form: { [index: string]: FormControl },
-    itemId: string,
-    value: string,
-  ) {
-    const { isValid, error } = this.checkValidity(value, form[itemId].validation)
-
+  static handleFieldChange(form: { [index: string]: FormControl }, itemId: string, value: string) {
     const updatedFormElement = {
       ...form[itemId],
       ...{
         value: value,
+        touched: true,
+      },
+    }
+    const updatedForm = this.updateObject(form, {
+      [itemId]: updatedFormElement,
+    })
+
+    return updatedForm
+  }
+
+  /**
+   * Update and return a form based on validation of an input
+   *
+   * @param {Object} form - The object that contains the form state
+   * @param {string} itemId - ID of the control in object
+   * @returns {Object} Updated form object and form validity status
+   */
+  static handleFieldValidation(form: { [index: string]: FormControl }, itemId: string) {
+    const { isValid, error } = this.checkValidity(form[itemId].value, form[itemId].validation)
+    const updatedFormElement = {
+      ...form[itemId],
+      ...{
         valid: isValid,
         error: error,
-        touched: true,
       },
     }
     const updatedForm = this.updateObject(form, {
@@ -79,25 +112,8 @@ class Utils {
     for (let id in updatedForm) {
       formValid = updatedForm[id].valid && formValid
     }
+
     return { updatedForm, formValid }
-  }
-
-  /**
-   * Creates an array from given form
-   *
-   * @param {Form} form - The form object
-   * @returns {Array} Array version of given form
-   */
-  static formToArray(form: Form) {
-    const formArray = []
-    for (const key in form.controls) {
-      formArray.push({
-        id: key,
-        config: form.controls[key],
-      })
-    }
-
-    return formArray
   }
 }
 

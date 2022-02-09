@@ -11,6 +11,7 @@ import createThreadReducer from './slices/CreateThread/CreateThread.slice';
 import linkedProductsReducer from './slices/LinkedProducts.slice';
 import pageFiltersReducer from './slices/PageFilters.slice';
 import tabsReducer from './slices/PageTabs.slice';
+import { productReducer } from './slices/product.slice';
 import questionReducer from './slices/Question.slice';
 import searchBoxReducer from './slices/SearchBox.slice';
 import sideProductReducer from './slices/SideProducts.slice';
@@ -21,6 +22,7 @@ import userReducer from './slices/User.slice';
 const reducer = {
   appReducer: appReducer,
   auth: authReducer,
+  product: productReducer,
   userReducer: userReducer,
   questionReducer: questionReducer,
   commentsReducer: commentsReducer,
