@@ -1,16 +1,13 @@
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState } from 'react';
+import { AddProductStepProps } from 'app/interfaces';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
 import { getClipsIndex } from '../../../../../../helpers/functions/CreateProduct';
 import {
-  addNewSection,
   changeClipPosition,
-  deleteClip,
   deleteSection,
   product_create_step2_data,
-  ProductCreateStep2OnChanges,
   sections_product,
   updateKey,
   updateLabel,
@@ -18,9 +15,7 @@ import {
 } from '../../../../../../store/slices/CreateProductFeatures/CreateProduct.slice';
 import { SectionOfProduct } from '../../../../../../store/states/interfaces/CreateProduct.interface';
 import { useAppDispatch, useAppSelector } from '../../../../../../store/states/store.hooks';
-import { addFile } from '../../../../../../store/thunks/CreateProduct.thunk';
 import {
-  CreateProduct_ClipsCont_STY,
   CreateProduct_DragCont_STY,
   CreateProduct_Tags_STY,
   CreateProduct_TagsCont_STY,
@@ -29,16 +24,27 @@ import {
 } from '../../../../../../styles/styled-components/base/modules/CreateProduct_Style/Steps/CreateProduct_Step2.style';
 import EditorForProductCreate from '../../../../editors/EditorForProductCreate';
 
-interface Props {}
+interface CreateProductDetailsProps extends AddProductStepProps {
+  addDetailBlock: () => void
+  updateDetailBlock: (key: string, label?: string, value?: string) => void
+  deleteDetailBlock: (key: string) => void
+  addTag: (tag: string) => void
+  deleteTag: (index: number) => void
+}
 
-export const ProductCreate_Step2 = (props: Props) => {
-  const [tagCreator, settagCreator] = useState('')
-
+const CreateProductDetails = ({
+  state,
+  handleValueChange,
+  addDetailBlock,
+  updateDetailBlock,
+  deleteDetailBlock,
+  addTag,
+  deleteTag,
+}: CreateProductDetailsProps) => {
   const dispatch = useAppDispatch()
   const sectionsProduct = useAppSelector(sections_product)
   const createProductStep2 = useAppSelector(product_create_step2_data)
   const { validators, validated, details_data } = createProductStep2
-  const productName = createProductStep2.details_data.product_name
   const product_tags = details_data.product_tags
 
   function handleOnDragEnd(result: any) {
@@ -70,44 +76,27 @@ export const ProductCreate_Step2 = (props: Props) => {
     }
   }
 
-  const addNewBlock = () => {
-    dispatch(addNewSection())
-    return null
-  }
-  const deleteBlock = (index: number) => {
-    dispatch(deleteSection(index))
-  }
-
   const createTag = (event: any) => {
     if (event.code === 'Space') {
-      dispatch(
-        ProductCreateStep2OnChanges({
-          type: 'product_tags',
-          actionType: 'add',
-          value: event.target.value,
-        }),
-      )
-      event.target.value = ''
+      if (event.target.value) {
+        addTag(event.target.value)
+        event.target.value = ''
+      }
     }
-  }
-  const deleteTag = (id: number) => {
-    dispatch(ProductCreateStep2OnChanges({ type: 'product_tags', actionType: 'delete', id: id }))
-  }
-
-  const productsOnBlurs = (type: string) => {
-    // dispatch(ProductCreateStep2OnBlurs({type:type}))
-  }
-  const productNameHandle = (e: any) => {
-    dispatch(ProductCreateStep2OnChanges({ type: 'product_name', value: e.target.value }))
   }
 
   return (
     <CreateProductStep2_CONT_STY>
-      <CreateProductLabelCont key={0}>
+      <CreateProductLabelCont>
         <label className="title" htmlFor="title">
           Title
         </label>
-        <input className="input1" value={productName} onChange={productNameHandle} type="text" />
+        <input
+          className="input1"
+          value={state.productTitle}
+          onChange={(e) => handleValueChange('productTitle', e.target.value)}
+          type="text"
+        />
         <span className="error">
           {validated === 'not-valid' &&
             !validators.isNameFilled.valid &&
@@ -115,75 +104,40 @@ export const ProductCreate_Step2 = (props: Props) => {
         </span>
       </CreateProductLabelCont>
 
-      <CreateProductLabelCont key={0}>
-        {sectionsProduct[0].isEditor && (
-          <input className="title editorTitle" type="text" value={sectionsProduct[0].label_key} />
-        )}
-        {sectionsProduct[0].isEditor && (
-          <EditorForProductCreate
-            display={'block'}
-            content={sectionsProduct[0].label_value}
-            onChange={(content: any) => dispatch(updateLabel({ index: 0, content: content }))}
+      {state.details?.map((item) => (
+        <CreateProductLabelCont key={item.key}>
+          <input
+            className="title editorTitle"
+            type="text"
+            value={item.label}
+            onChange={(e) => updateDetailBlock(item.key, e.target.value)}
+            onDoubleClick={() => item.isEditable && deleteDetailBlock(item.key)}
+            readOnly={!item.isEditable}
           />
-        )}
-        {sectionsProduct[0].isEditor && (
-          <span className="error">
-            {validated === 'not-valid' &&
-              !validators.isDescriptionFilled.valid &&
-              validators.isDescriptionFilled.message}
-          </span>
-        )}
-      </CreateProductLabelCont>
-
-      <CreateProductLabelCont key={1}>
-        {sectionsProduct[1].isEditor && (
-          <input className="title editorTitle" type="text" value={sectionsProduct[1].label_key} />
-        )}
-        {sectionsProduct[1].isEditor && (
           <EditorForProductCreate
-            display={'block'}
-            content={sectionsProduct[1].label_value}
-            onChange={(content: any) => dispatch(updateLabel({ index: 1, content: content }))}
+            display="block"
+            content={item.value}
+            onChange={(content: any) => updateDetailBlock(item.key, undefined, content)}
           />
-        )}
-        {sectionsProduct[1].isEditor && (
-          <label className="error" htmlFor="title">
-            {validated === 'not-valid' &&
-              !validators.isApplicabilityFilled.valid &&
-              validators.isApplicabilityFilled.message}
-          </label>
-        )}
-      </CreateProductLabelCont>
-
-      <CreateProductLabelCont key={2}>
-        {sectionsProduct[2].isEditor && (
-          <input className="title editorTitle" type="text" value={sectionsProduct[2].label_key} />
-        )}
-        {sectionsProduct[2].isEditor && (
-          <EditorForProductCreate
-            display={'block'}
-            content={sectionsProduct[2].label_value}
-            onChange={(content: any) => dispatch(updateLabel({ index: 2, content: content }))}
-          />
-        )}
-        {sectionsProduct[2].isEditor && (
-          <label className="error" htmlFor="title">
-            {validated === 'not-valid' &&
-              !validators.isProblemFormulationFilled.valid &&
-              validators.isProblemFormulationFilled.message}
-          </label>
-        )}
-      </CreateProductLabelCont>
+          {sectionsProduct[0].isEditor && (
+            <span className="error">
+              {validated === 'not-valid' &&
+                !validators.isDescriptionFilled.valid &&
+                validators.isDescriptionFilled.message}
+            </span>
+          )}
+        </CreateProductLabelCont>
+      ))}
 
       <CreateProduct_TagsCont_STY>
         <label htmlFor="" className="titleTags">
           Tags
         </label>
         <CreateProduct_Tags_STY style={{ display: 'flex', columnGap: '10px' }}>
-          {product_tags.map((element: any) => (
-            <div key={element.id} className="tag">
-              {element.value}
-              <button onClick={() => deleteTag(element.id)} className="deleteTag">
+          {state.tags?.map((tag, index) => (
+            <div key={Math.random().toString()} className="tag">
+              {tag}
+              <button onClick={() => deleteTag(index)} className="deleteTag">
                 x
               </button>
             </div>
@@ -203,9 +157,6 @@ export const ProductCreate_Step2 = (props: Props) => {
             <CreateProduct_DragCont_STY
               key={'77'}
               style={{
-                // background: snapshot.isDraggingOver
-                //     ? "black"
-                //     : "gray",
                 width: '100%',
               }}
               {...provided.droppableProps}
@@ -265,7 +216,7 @@ export const ProductCreate_Step2 = (props: Props) => {
                                 />
                               )}
                               {/* {isEditor &&<label htmlFor="title">validate</label>} */}
-                              {isClips.status && (
+                              {/* {isClips.status && (
                                 <CreateProduct_ClipsCont_STY>
                                   {isClips.status && (
                                     <input
@@ -390,7 +341,7 @@ export const ProductCreate_Step2 = (props: Props) => {
                                     />
                                   </button>
                                 </CreateProduct_ClipsCont_STY>
-                              )}
+                              )} */}
                             </CreateProductLabelCont>
                           </div>
                         )}
@@ -410,23 +361,13 @@ export const ProductCreate_Step2 = (props: Props) => {
       <button
         type="button"
         className="addNewSection"
-        onClick={addNewBlock}
+        onClick={addDetailBlock}
         disabled={sectionsProduct.length > 7}
       >
-        <p>Add new block</p>{' '}
+        <p>Add new block</p>
       </button>
     </CreateProductStep2_CONT_STY>
   )
 }
 
-// <ProductLabelCont>
-//     <input type='text' defaultValue={"Description"} />
-//     <EditorForProductCreate content={questionValue} onChange={(code:any) => setQuestionValue(code)}/>
-//     <label htmlFor="title">validate</label>
-// </ProductLabelCont>
-
-// <ProductLabelCont>
-//     <input type='text' defaultValue={"Aplicability"} />
-//     <EditorForProductCreate content={questionValue} onChange={(code:any) => setQuestionValue(code)}/>
-//     <label htmlFor="title">validate</label>
-// </ProductLabelCont>
+export default CreateProductDetails

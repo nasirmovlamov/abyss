@@ -1,124 +1,234 @@
-import React, { ReactElement, useEffect } from 'react';
-
+import { AddProductForm, AddProductFormStep } from 'app/interfaces';
 import {
-  goNextStepProductCreate,
-  goPreviousStepProductCreate,
-  is_product_created,
-  product_create_current_step,
-  product_create_data,
-  product_create_id,
-  product_create_step1_data,
-  product_create_steps_data,
-  ProductCreateStep1Validate,
-  ProductCreateStep2Validate,
-  ProductCreateStep3Validate,
-  ProductCreateStep5Validate,
-} from '../../../../store/slices/CreateProductFeatures/CreateProduct.slice';
+  CreateProduct_Tab_Seperator,
+  CreateProduict_Tab_STY,
+} from 'app/styles/styled-components/base/modules/CreateProduct_Style/CreateProduct.style';
+import React, { useState } from 'react';
+
+import { is_product_created } from '../../../../store/slices/CreateProductFeatures/CreateProduct.slice';
 import { changeModalAction } from '../../../../store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from '../../../../store/states/store.hooks';
-import { createProductThunk, startPlagirismChecker, updateProductThunk } from '../../../../store/thunks/CreateProduct.thunk';
 import {
   CreateProduct_CloseButton_STY,
+  CreateProduct_StepCont,
+  CreateProduct_Tabs,
 } from '../../../../styles/styled-components/base/modules/CreateProduct_Style/CreateProduct_Steps.style';
 import * as ProductCR_STY from '../../../../styles/styled-components/base/modules/CreateProduct_Style/CreateProductModal.style';
-import ProductCreate_Tabs from './StepsForProductCreate/ProductCreate_Tabs';
-import ProductStepsRouter from './StepsForProductCreate/ProductCreateStepsRouter';
+import ProductCreate_Step1 from './StepsForProductCreate/Steps/CreateProductCode';
+import CreateProductDetails from './StepsForProductCreate/Steps/CreateProductDetails';
+import { ProductCreate_Step3 } from './StepsForProductCreate/Steps/ProductCreate_Step3';
+import { ProductCreate_Step4 } from './StepsForProductCreate/Steps/ProductCreate_Step4';
+import { ProductCreate_Step5 } from './StepsForProductCreate/Steps/ProductCreate_Step5';
 
-// { CreateProduct_Buttons_Cont, ProductCreateForm, ProductCreateModal, ProductLabelCont }
-
-interface Props {}
-
-function CreateProductModal(this: any, {}: Props): ReactElement {
+const CreateProductModal = () => {
   const dispatch = useAppDispatch()
-  const currentStep = useAppSelector(product_create_current_step)
-  const isProductCreated = useAppSelector(is_product_created)
-  const productCreateStep1Data = useAppSelector(product_create_step1_data)
-  const productCreateId = useAppSelector(product_create_id)
-  const productCreateStepsData = useAppSelector(product_create_steps_data)
-  const productCreateData = useAppSelector(product_create_data)
-  const validateFunctions: { [key: string]: any } = {
-    step1: () => dispatch(ProductCreateStep1Validate(null)),
-    step2: () => dispatch(ProductCreateStep2Validate(null)),
-    step3: () => dispatch(ProductCreateStep3Validate(null)),
-    step5: () => dispatch(ProductCreateStep5Validate(null)),
-  }
   const productCreation = useAppSelector(is_product_created)
 
-  const goNextSection = async () => {
-    if (1 <= currentStep && currentStep <= 5) {
-      if (currentStep === 5) {
-        await validateFunctions[`step${currentStep}`]()
-        if (productCreateStepsData[5].validated === 'valid') {
-          try {
-            dispatch(
-              updateProductThunk({ mainData: productCreateData, productId: productCreateId }),
-            )
-            dispatch(changeModalAction('productCreate'))
-          } catch (error) {}
-        }
-        return
-      }
+  // NOTE: for steps, we start from 0
+  const [addProductForm, setAddProductForm] = useState<AddProductForm>({
+    curStep: 0,
+    supportedLangs: [
+      { key: 'javascript', label: 'Javascript' },
+      { key: 'php', label: 'PHP' },
+      { key: 'c++', label: 'C++' },
+      { key: 'python', label: 'Python' },
+    ],
+    steps: [
+      {
+        key: 'code',
+        label: 'Code',
+        isValidated: null,
+        code: '',
+        lang: 'javascript',
+      },
+      {
+        key: 'details',
+        label: 'Details',
+        isValidated: null,
+        productTitle: '',
+        details: [
+          { key: 'description', label: 'Description', value: '', isEditable: false },
+          { key: 'applicability', label: 'Applicability', value: '', isEditable: false },
+          {
+            key: 'problem_formulation',
+            label: 'Problem Formulation',
+            value: '',
+            isEditable: false,
+          },
+        ],
+        tags: [],
+        clips: [],
+      },
+      {
+        key: 'iterations',
+        label: 'Iterations',
+        isValidated: null,
+        iterationTitle: '',
+        iterationCode: '',
+        iterationLang: 'javascript',
+        iterationNote: '',
+      },
+      {
+        key: 'checks',
+        label: 'Checks',
+        isValidated: null,
+      },
+      {
+        key: 'pricing',
+        label: 'Pricing',
+        isValidated: null,
+        tierType: null,
+        visibilityType: null,
+      },
+    ],
+  })
 
-      if (currentStep === 1) {
-        console.log('test')
-        //@todo: rewrite the steps logic
-        // dispatch(productCreate())
-        await validateFunctions[`step${currentStep}`]()
-        if (
-          isProductCreated.status === 'created' &&
-          isProductCreated.sendend_source_code === productCreateStep1Data.source_code &&
-          isProductCreated.id !== null
-        ) {
-          dispatch(goNextStepProductCreate(null))
-          return
-        }
+  // Helper function to update a step
+  const _updateSteps = (updatedStep: AddProductFormStep) => {
+    const updatedSteps = [...addProductForm.steps]
+    updatedSteps[addProductForm.curStep] = updatedStep
 
-        if (
-          isProductCreated.sendend_source_code !== productCreateStep1Data.source_code &&
-          productCreateStep1Data.source_code.length > 0 &&
-          isProductCreated.id !== null &&
-          isProductCreated.status === 'created'
-        ) {
-          dispatch(
-            startPlagirismChecker({
-              product_id: isProductCreated.id,
-              source_code: productCreateStep1Data.source_code,
-              extension: productCreateStep1Data.lang_type,
-            }),
-          )
-          return
-        }
+    setAddProductForm({ ...addProductForm, steps: updatedSteps })
+  }
 
-        if (
-          isProductCreated.sendend_source_code !== productCreateStep1Data.source_code &&
-          isProductCreated.id === null &&
-          productCreateStep1Data.source_code.length > 0
-        ) {
-          await dispatch(
-            createProductThunk({
-              source_code: productCreateStep1Data.source_code,
-              extension: productCreateStep1Data.lang_type,
-            }),
-          )
-          return
-        } else {
-          return
-        }
-      }
+  const goNextStep = () => {
+    const step = addProductForm.curStep
 
-      if (currentStep !== 4) {
-        await validateFunctions[`step${currentStep}`]()
-        dispatch(goNextStepProductCreate(null))
-      } else {
-        dispatch(goNextStepProductCreate(null))
-      }
+    //@todo: Validate the step
+
+    if (step < addProductForm.steps.length - 1) {
+      setAddProductForm({ ...addProductForm, curStep: step + 1 })
     }
   }
 
-  const goPrevoiusSection = async () => {
-    if (currentStep !== 1) {
-      dispatch(goPreviousStepProductCreate(null))
+  const goPrevStep = () => {
+    const step = addProductForm.curStep
+    if (step >= 0) {
+      setAddProductForm({ ...addProductForm, curStep: step - 1 })
     }
+  }
+
+  // Update value of item in the current step
+  const handleValueChange = (itemId: string, value: string) => {
+    const updatedStep = {
+      ...addProductForm.steps[addProductForm.curStep],
+      [itemId]: value,
+    }
+    _updateSteps(updatedStep)
+  }
+
+  // Create a detail block with unique key
+  const handleAddDetailBlock = () => {
+    const curStepState = addProductForm.steps[addProductForm.curStep]
+
+    if (curStepState.details) {
+      const updatedStep = {
+        ...curStepState,
+        details: [
+          ...curStepState.details,
+          { key: Math.random().toString(), label: '', value: '', isEditable: true },
+        ],
+      }
+      _updateSteps(updatedStep)
+    }
+  }
+
+  // Find detail block in state and update it
+  const handleUpdateDetailBlock = (key: string, label?: string, value?: string) => {
+    const curStepState = addProductForm.steps[addProductForm.curStep]
+
+    if (curStepState.details) {
+      const detailIndex = curStepState.details.findIndex((item) => item.key === key)
+      const oldDetail = curStepState.details[detailIndex]
+      const updatedDetails = [...curStepState.details]
+      updatedDetails[detailIndex] = {
+        ...oldDetail,
+        label: label || oldDetail.label,
+        value: value || oldDetail.value,
+      }
+
+      const updatedStep = {
+        ...curStepState,
+        details: updatedDetails,
+      }
+      _updateSteps(updatedStep)
+    }
+  }
+
+  // Find and remove block with given key
+  const handleDeleteDetailBlock = (key: string) => {
+    const curStepState = addProductForm.steps[addProductForm.curStep]
+
+    if (curStepState.details) {
+      const updatedDetails = curStepState.details.filter((item) => item.key !== key)
+      const updatedStep = {
+        ...curStepState,
+        details: updatedDetails,
+      }
+      _updateSteps(updatedStep)
+    }
+  }
+
+  // Create a tag and add to the list
+  const handleAddTag = (tag: string) => {
+    const curStepState = addProductForm.steps[addProductForm.curStep]
+
+    if (curStepState.tags) {
+      const updatedStep = {
+        ...curStepState,
+        tags: [...curStepState.tags, tag],
+      }
+      _updateSteps(updatedStep)
+    }
+  }
+
+  // Find and remove tag in given index
+  const handleDeleteTag = (index: number) => {
+    const curStepState = addProductForm.steps[addProductForm.curStep]
+
+    if (curStepState.tags) {
+      const updatedTags = curStepState.tags.filter((_, i) => i !== index)
+      const updatedStep = {
+        ...curStepState,
+        tags: updatedTags,
+      }
+      _updateSteps(updatedStep)
+    }
+  }
+
+  // Render current step view
+  let curStepView
+  const stepViewProps = {
+    state: addProductForm.steps[addProductForm.curStep],
+    handleValueChange,
+  }
+
+  switch (addProductForm.curStep) {
+    case 1:
+      curStepView = (
+        <CreateProductDetails
+          {...stepViewProps}
+          addDetailBlock={handleAddDetailBlock}
+          deleteDetailBlock={handleDeleteDetailBlock}
+          updateDetailBlock={handleUpdateDetailBlock}
+          addTag={handleAddTag}
+          deleteTag={handleDeleteTag}
+        />
+      )
+      break
+    case 2:
+      curStepView = <ProductCreate_Step3 {...stepViewProps} />
+      break
+    case 3:
+      curStepView = <ProductCreate_Step4 {...stepViewProps} />
+      break
+    case 4:
+      curStepView = <ProductCreate_Step5 {...stepViewProps} />
+      break
+    default:
+      curStepView = (
+        <ProductCreate_Step1 {...stepViewProps} supportedLangs={addProductForm.supportedLangs} />
+      )
   }
 
   return (
@@ -139,35 +249,45 @@ function CreateProductModal(this: any, {}: Props): ReactElement {
         </svg>
       </CreateProduct_CloseButton_STY>
 
-      <ProductCreate_Tabs />
-      <ProductStepsRouter />
+      <CreateProduct_Tabs>
+        {addProductForm.steps.map((step, index) => (
+          <>
+            <CreateProduict_Tab_STY
+              key={step.key}
+              validated={step.isValidated === true}
+              currentStage={addProductForm.curStep === index}
+            />
+
+            {index !== addProductForm.steps.length - 1 && <CreateProduct_Tab_Seperator />}
+          </>
+        ))}
+      </CreateProduct_Tabs>
+      <CreateProduct_StepCont>{curStepView}</CreateProduct_StepCont>
 
       <ProductCR_STY.CreateProduct_Buttons_Cont
         style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}
       >
-        {currentStep > 1 ? (
-          <ProductCR_STY.CreateProduct_Button_PREVOIUS onClick={goPrevoiusSection} type="button">
+        {addProductForm.curStep > 0 ? (
+          <ProductCR_STY.CreateProduct_Button_PREVOIUS onClick={goPrevStep} type="button">
             Previous
           </ProductCR_STY.CreateProduct_Button_PREVOIUS>
         ) : (
           <div></div>
         )}
-        {currentStep !== 5 ? (
+        {addProductForm.curStep < addProductForm.steps.length - 1 ? (
           <ProductCR_STY.CreateProduct_Button_NEXT
             disabled={
               productCreation.status === 'pending' || productCreation.plagirismLoading === 'loading'
             }
-            onClick={goNextSection}
+            onClick={goNextStep}
             type="button"
           >
-            {' '}
             Next
           </ProductCR_STY.CreateProduct_Button_NEXT>
         ) : (
-          <button onClick={goNextSection} type="button">
-            {' '}
-            Submit{' '}
-          </button>
+          <ProductCR_STY.CreateProduct_Button_NEXT onClick={goNextStep} type="button">
+            Submit
+          </ProductCR_STY.CreateProduct_Button_NEXT>
         )}
       </ProductCR_STY.CreateProduct_Buttons_Cont>
     </ProductCR_STY.ProductCreateForm>

@@ -76,10 +76,8 @@ class Utils {
   static handleFieldChange(form: { [index: string]: FormControl }, itemId: string, value: string) {
     const updatedFormElement = {
       ...form[itemId],
-      ...{
-        value: value,
-        touched: true,
-      },
+      value: value,
+      touched: true,
     }
     const updatedForm = this.updateObject(form, {
       [itemId]: updatedFormElement,
@@ -99,10 +97,8 @@ class Utils {
     const { isValid, error } = this.checkValidity(form[itemId].value, form[itemId].validation)
     const updatedFormElement = {
       ...form[itemId],
-      ...{
-        valid: isValid,
-        error: error,
-      },
+      valid: isValid,
+      error: error,
     }
     const updatedForm = this.updateObject(form, {
       [itemId]: updatedFormElement,

@@ -1,9 +1,22 @@
 import Editor from '@monaco-editor/react';
 
-const CodeEditor = () => {
-  //@todo: add theme and language switching
+interface CodeEditorProps {
+  language: string
+  value: string
+  onChange: (itemId: string, value: string) => void
+}
 
-  return <Editor defaultLanguage="javascript" theme="vs-dark" defaultValue="// hello world" />
+const CodeEditor = ({ language, value, onChange }: CodeEditorProps) => {
+  console.log(language)
+  return (
+    <Editor
+      theme="vs-dark"
+      defaultValue="// Add some code"
+      language={language}
+      value={value}
+      onChange={(value) => value && onChange('code', value)}
+    />
+  )
 }
 
 export default CodeEditor

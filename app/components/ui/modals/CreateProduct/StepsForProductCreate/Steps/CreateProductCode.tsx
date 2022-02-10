@@ -1,10 +1,9 @@
 import CodeEditor from 'app/components/ui/editors/CodeEditor';
+import { AddProductStepProps } from 'app/interfaces';
 import {
   is_product_created,
   product_create_step1_data,
-  product_create_steps,
   ProductCreateStep1OnChanges,
-  selectCreateProductLanguage,
 } from 'app/store/slices/CreateProductFeatures/CreateProduct.slice';
 import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
 import {
@@ -14,10 +13,16 @@ import {
 } from 'app/styles/styled-components/base/modules/CreateProduct_Style/Steps/ProductCreate_Step1.style';
 import HashLoader from 'react-spinners/HashLoader';
 
-const ProductCreate_Step1 = () => {
+interface CreateProductCodeProps extends AddProductStepProps {
+  supportedLangs: { key: string; label: string }[]
+}
+
+const CreateProductCode = ({
+  state,
+  handleValueChange,
+  supportedLangs,
+}: CreateProductCodeProps) => {
   const dispatch = useAppDispatch()
-  const ProductCreateSteps = useAppSelector(product_create_steps)
-  const Step1Data = ProductCreateSteps['1']
   const productCreateStep1Data = useAppSelector(product_create_step1_data)
   const productCreation = useAppSelector(is_product_created)
   const { validators } = productCreateStep1Data
@@ -54,55 +59,43 @@ const ProductCreate_Step1 = () => {
           </button>
         </div>
       </div>
-      {/* <CodeMirror_STY>
-        <CodeMirror
-          value={sourceCode}
-          height="200px"
-          extensions={[javascript({ jsx: true })]}
-          theme="dark"
-          onChange={(value, viewUpdate) => {
-            dispatch(ProductCreateStep1OnChanges(value))
-          }}
-        />
-      </CodeMirror_STY> */}
-      <CodeEditor />
+      <CodeEditor
+        language={state.lang || 'javascript'}
+        value={state.code || ''}
+        onChange={handleValueChange}
+      />
 
       <SelectLangType_STY
-        name=""
-        id=""
-        value={Step1Data.lang_type}
-        onChange={(e) => dispatch(selectCreateProductLanguage(e.target.value))}
+        value={state.lang}
+        onChange={(e) => handleValueChange('lang', e.target.value)}
       >
-        <option value="js">Javascript</option>
-        <option value="php">Php</option>
-        <option value="cpp">C++</option>
-        <option value="py">Python</option>
+        {supportedLangs?.map((lang) => (
+          <option key={lang.key} value={lang.key}>
+            {lang.label}
+          </option>
+        ))}
       </SelectLangType_STY>
 
       <div>
         {productCreation.status === 'pending' && (
           <div>
-            {' '}
             <span>Product is creating </span>{' '}
             <HashLoader size={15} loading={productCreation.status === 'pending'} />
           </div>
         )}
         {productCreation.plagirismLoading === 'loading' && (
           <div>
-            {' '}
             <span>Plagirism is checking </span>{' '}
             <HashLoader size={15} loading={productCreation.plagirismLoading === 'loading'} />
           </div>
         )}
         {productCreation.plagirismLoading === 'valid' && (
           <div>
-            {' '}
             <span>Plagirism is not Detected </span>{' '}
           </div>
         )}
         {productCreation.status === 'created' && (
           <div>
-            {' '}
             <span>Product is created </span>{' '}
           </div>
         )}
@@ -117,4 +110,4 @@ const ProductCreate_Step1 = () => {
   )
 }
 
-export default ProductCreate_Step1
+export default CreateProductCode

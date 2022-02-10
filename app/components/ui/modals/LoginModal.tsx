@@ -47,7 +47,23 @@ const LoginModal = () => {
   const [serverErrors, setServerErrors] = useState<string[]>([])
   const { errorMsg, errors } = authState
 
-  const formSubmit = async (e: FormEvent) => {
+  // Handle errors
+  useEffect(() => {
+    if (errorMsg) setLoginForm({ ...loginForm, error: errorMsg })
+
+    // Convert errors object to array
+    const errorsArray: string[] = []
+    if (errors) {
+      for (let key in errors) {
+        errors[key].forEach((error: string) => errorsArray.push(error))
+      }
+    }
+    setServerErrors(errorsArray)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [errorMsg, errors])
+
+  // Handle form submit
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
 
     if (loginForm.valid) {
@@ -133,7 +149,7 @@ const LoginModal = () => {
       ))}
 
       <Form_STY.F_ButtonCont_STY>
-        <Form_STY.F_Button_STY disabled={!loginForm.valid} onClick={formSubmit}>
+        <Form_STY.F_Button_STY disabled={!loginForm.valid} onClick={handleSubmit}>
           <span>Submit</span>
         </Form_STY.F_Button_STY>
 
