@@ -45,7 +45,6 @@ const CreateProductDetails = ({
   const sectionsProduct = useAppSelector(sections_product)
   const createProductStep2 = useAppSelector(product_create_step2_data)
   const { validators, validated, details_data } = createProductStep2
-  const product_tags = details_data.product_tags
 
   function handleOnDragEnd(result: any) {
     if (result.source.droppableId === 'main') {

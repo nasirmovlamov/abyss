@@ -1,18 +1,18 @@
 import { AddProductForm, AddProductFormStep } from 'app/interfaces';
 import {
   CreateProduct_Tab_Seperator,
+  CreateProduct_Tabs,
   CreateProduict_Tab_STY,
 } from 'app/styles/styled-components/base/modules/CreateProduct_Style/CreateProduct.style';
+import {
+  CreateProduct_CloseButton_STY,
+  CreateProduct_StepCont,
+} from 'app/styles/styled-components/base/modules/CreateProduct_Style/CreateProduct_Steps.style';
 import React, { useState } from 'react';
 
 import { is_product_created } from '../../../../store/slices/CreateProductFeatures/CreateProduct.slice';
 import { changeModalAction } from '../../../../store/slices/User.slice';
 import { useAppDispatch, useAppSelector } from '../../../../store/states/store.hooks';
-import {
-  CreateProduct_CloseButton_STY,
-  CreateProduct_StepCont,
-  CreateProduct_Tabs,
-} from '../../../../styles/styled-components/base/modules/CreateProduct_Style/CreateProduct_Steps.style';
 import * as ProductCR_STY from '../../../../styles/styled-components/base/modules/CreateProduct_Style/CreateProductModal.style';
 import ProductCreate_Step1 from './StepsForProductCreate/Steps/CreateProductCode';
 import CreateProductDetails from './StepsForProductCreate/Steps/CreateProductDetails';
@@ -82,6 +82,7 @@ const CreateProductModal = () => {
       },
     ],
   })
+  console.log(addProductForm.steps[1].details)
 
   // Helper function to update a step
   const _updateSteps = (updatedStep: AddProductFormStep) => {
@@ -139,13 +140,12 @@ const CreateProductModal = () => {
 
     if (curStepState.details) {
       const detailIndex = curStepState.details.findIndex((item) => item.key === key)
-      const oldDetail = curStepState.details[detailIndex]
+      const updatedDetail = curStepState.details[detailIndex]
+      if (label) updatedDetail.label = label
+      if (value) updatedDetail.value = value
+
       const updatedDetails = [...curStepState.details]
-      updatedDetails[detailIndex] = {
-        ...oldDetail,
-        label: label || oldDetail.label,
-        value: value || oldDetail.value,
-      }
+      updatedDetails[detailIndex] = updatedDetail
 
       const updatedStep = {
         ...curStepState,
@@ -251,15 +251,14 @@ const CreateProductModal = () => {
 
       <CreateProduct_Tabs>
         {addProductForm.steps.map((step, index) => (
-          <>
+          <div style={{ display: 'flex', alignItems: 'center' }} key={step.key}>
             <CreateProduict_Tab_STY
-              key={step.key}
               validated={step.isValidated === true}
               currentStage={addProductForm.curStep === index}
             />
 
             {index !== addProductForm.steps.length - 1 && <CreateProduct_Tab_Seperator />}
-          </>
+          </div>
         ))}
       </CreateProduct_Tabs>
       <CreateProduct_StepCont>{curStepView}</CreateProduct_StepCont>
