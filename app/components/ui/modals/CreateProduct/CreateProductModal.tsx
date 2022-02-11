@@ -1,3 +1,4 @@
+import { ADD_PRODUCT_STATE_KEY } from 'app/constants';
 import { AddProductForm, AddProductFormStep } from 'app/interfaces';
 import {
   CreateProduct_Tab_Seperator,
@@ -8,11 +9,11 @@ import {
   CreateProduct_CloseButton_STY,
   CreateProduct_StepCont,
 } from 'app/styles/styled-components/base/modules/CreateProduct_Style/CreateProduct_Steps.style';
-import React, { useState } from 'react';
+import Cryption from 'app/utils/Cryption';
+import React, { useEffect, useState } from 'react';
 
-import { is_product_created } from '../../../../store/slices/CreateProductFeatures/CreateProduct.slice';
 import { changeModalAction } from '../../../../store/slices/User.slice';
-import { useAppDispatch, useAppSelector } from '../../../../store/states/store.hooks';
+import { useAppDispatch } from '../../../../store/states/store.hooks';
 import * as ProductCR_STY from '../../../../styles/styled-components/base/modules/CreateProduct_Style/CreateProductModal.style';
 import ProductCreate_Step1 from './StepsForProductCreate/Steps/CreateProductCode';
 import CreateProductDetails from './StepsForProductCreate/Steps/CreateProductDetails';
@@ -22,7 +23,7 @@ import { ProductCreate_Step5 } from './StepsForProductCreate/Steps/ProductCreate
 
 const CreateProductModal = () => {
   const dispatch = useAppDispatch()
-  const productCreation = useAppSelector(is_product_created)
+  const [timer, setTimer] = useState<ReturnType<typeof setTimeout>>()
 
   // NOTE: for steps, we start from 0
   const [addProductForm, setAddProductForm] = useState<AddProductForm>({
@@ -82,7 +83,27 @@ const CreateProductModal = () => {
       },
     ],
   })
-  console.log(addProductForm.steps[1].details)
+
+  // Get saved state from localStorage
+  useEffect(() => {
+    const savedState = localStorage.getItem(Cryption.encrypt(ADD_PRODUCT_STATE_KEY))
+    if (savedState) setAddProductForm(JSON.parse(Cryption.decrypt(savedState)))
+  }, [])
+
+  // Debounce state change and save to localStorage
+  useEffect(() => {
+    if (timer) clearTimeout(timer)
+
+    setTimer(
+      setTimeout(() => {
+        localStorage.setItem(
+          Cryption.encrypt(ADD_PRODUCT_STATE_KEY),
+          Cryption.encrypt(JSON.stringify(addProductForm)),
+        )
+      }, 1500),
+    )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [addProductForm])
 
   // Helper function to update a step
   const _updateSteps = (updatedStep: AddProductFormStep) => {
@@ -139,13 +160,15 @@ const CreateProductModal = () => {
     const curStepState = addProductForm.steps[addProductForm.curStep]
 
     if (curStepState.details) {
-      const detailIndex = curStepState.details.findIndex((item) => item.key === key)
-      const updatedDetail = curStepState.details[detailIndex]
-      if (label) updatedDetail.label = label
-      if (value) updatedDetail.value = value
-
-      const updatedDetails = [...curStepState.details]
-      updatedDetails[detailIndex] = updatedDetail
+      const updatedDetails = curStepState.details.map((item) => {
+        return item.key === key
+          ? {
+              ...item,
+              label: label || item.label,
+              value: value || item.value,
+            }
+          : item
+      })
 
       const updatedStep = {
         ...curStepState,
@@ -160,7 +183,9 @@ const CreateProductModal = () => {
     const curStepState = addProductForm.steps[addProductForm.curStep]
 
     if (curStepState.details) {
-      const updatedDetails = curStepState.details.filter((item) => item.key !== key)
+      const updatedDetails = curStepState.details.filter(
+        (item) => item.key !== key || !item.isEditable,
+      )
       const updatedStep = {
         ...curStepState,
         details: updatedDetails,
@@ -274,13 +299,7 @@ const CreateProductModal = () => {
           <div></div>
         )}
         {addProductForm.curStep < addProductForm.steps.length - 1 ? (
-          <ProductCR_STY.CreateProduct_Button_NEXT
-            disabled={
-              productCreation.status === 'pending' || productCreation.plagirismLoading === 'loading'
-            }
-            onClick={goNextStep}
-            type="button"
-          >
+          <ProductCR_STY.CreateProduct_Button_NEXT onClick={goNextStep} type="button">
             Next
           </ProductCR_STY.CreateProduct_Button_NEXT>
         ) : (

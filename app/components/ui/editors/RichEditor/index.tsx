@@ -1,6 +1,4 @@
-import ListingStoreProduct from 'app/components/templates/ListingStoreProduct';
-import { productGet } from 'app/store/slices/product.slice';
-import { useAppDispatch, useAppSelector } from 'app/store/states/store.hooks';
+import Utils from 'app/utils';
 import {
   ContentBlock,
   ContentState,
@@ -13,40 +11,20 @@ import {
   SelectionState,
 } from 'draft-js';
 import { List } from 'immutable';
-import linkifyIt from 'linkify-it';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 
+import ProductItem from '../../elements/ProductItem';
 import Toolbar from './Toolbar';
 
-interface ProductItemProps {
-  id: number
+interface RichEditorProps {
+  contentValueChanged?: (value: string) => void
+  value?: string
 }
 
-const ProductItem = ({
-  blockProps,
-  block,
-}: {
-  blockProps: ProductItemProps
-  block: ContentBlock
-}) => {
-  const dispatch = useAppDispatch()
-  const productState = useAppSelector((state) => state.product)
-  const { id } = blockProps
-
-  useEffect(() => {
-    dispatch(productGet(id))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  return productState.currentItem ? (
-    <ListingStoreProduct data={productState.currentItem} />
-  ) : (
-    block.getText()
+const RichEditor = ({ contentValueChanged, value }: RichEditorProps) => {
+  const [editorState, setEditorState] = useState(() =>
+    EditorState.createWithContent(ContentState.createFromText(value || '')),
   )
-}
-
-const RichEditor = () => {
-  const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
   let isBlurred = false
 
   const handleKeyCommand = (command: string, editorState: EditorState): DraftHandleValue => {
@@ -60,7 +38,7 @@ const RichEditor = () => {
       if (prevBlock) {
         const prevBlockText = prevBlock.getText()
 
-        if (getIDfromLink('store', prevBlockText)) {
+        if (Utils.matchIDfromTextLink('store', prevBlockText)) {
           const removeSelection = new SelectionState({
             anchorKey: prevBlock.getKey(),
             anchorOffset: prevBlockText.length,
@@ -91,7 +69,7 @@ const RichEditor = () => {
 
   const handleBlockRenderer = (contentBlock: ContentBlock) => {
     const contentText = contentBlock.getText()
-    const id = getIDfromLink('store', contentText)
+    const id = Utils.matchIDfromTextLink('store', contentText)
 
     if (id) {
       const { currentBlock, currentKey } = getCurrentBlock()
@@ -112,7 +90,7 @@ const RichEditor = () => {
     const { currentBlock, currentKey } = getCurrentBlock()
 
     // Force render if previous block contained links
-    if (getIDfromLink('store', currentBlock.getText())) {
+    if (Utils.matchIDfromTextLink('store', currentBlock.getText())) {
       const newSelection = newEditorState.getSelection()
       const newKey = newEditorState.getSelection().getEndKey()
       const newBlock = newEditorState.getCurrentContent().getBlockForKey(newKey)
@@ -138,9 +116,18 @@ const RichEditor = () => {
       }
     }
 
+    // Pass content value to parent on change
+    if (contentValueChanged) {
+      const newContent = newEditorState.getCurrentContent()
+      if (newContent !== editorState.getCurrentContent()) {
+        contentValueChanged(newContent.getPlainText())
+      }
+    }
+
     setEditorState(newEditorState)
   }
 
+  // Insert an empty block to a given direction
   const insertBlock = (direction: 'before' | 'after') => {
     const selection = editorState.getSelection()
     const contentState = editorState.getCurrentContent()
@@ -194,6 +181,7 @@ const RichEditor = () => {
     return newContentState as ContentState
   }
 
+  // Go to a specific block
   const goToBlock = (key: string | undefined) => {
     return new SelectionState({
       anchorKey: key,
@@ -201,30 +189,12 @@ const RichEditor = () => {
     })
   }
 
+  // Get current block info
   const getCurrentBlock = () => {
     const currentKey = editorState.getSelection().getEndKey()
     const currentBlock = editorState.getCurrentContent().getBlockForKey(currentKey)
 
     return { currentKey, currentBlock }
-  }
-
-  const getIDfromLink = (path: string, text: string): number | null => {
-    const matchedLinks = linkifyIt().match(text)
-
-    // Match url in text, then search for ID
-    if (matchedLinks && matchedLinks.length === 1) {
-      const url = matchedLinks[0].url
-      if (url.includes(`${window.location.origin}/${path}`)) {
-        const matchedDigits = url.match(/\d+/g)
-
-        // Return last occurrence of id
-        if (matchedDigits) {
-          return +matchedDigits[matchedDigits.length - 1]
-        }
-      }
-    }
-
-    return null
   }
 
   return (

@@ -1,28 +1,11 @@
-import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import RichEditor from 'app/components/ui/editors/RichEditor';
 import { AddProductStepProps } from 'app/interfaces';
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
-
-import { getClipsIndex } from '../../../../../../helpers/functions/CreateProduct';
 import {
-  changeClipPosition,
-  deleteSection,
-  product_create_step2_data,
-  sections_product,
-  updateKey,
-  updateLabel,
-  updateSectionsOrder,
-} from '../../../../../../store/slices/CreateProductFeatures/CreateProduct.slice';
-import { SectionOfProduct } from '../../../../../../store/states/interfaces/CreateProduct.interface';
-import { useAppDispatch, useAppSelector } from '../../../../../../store/states/store.hooks';
-import {
-  CreateProduct_DragCont_STY,
   CreateProduct_Tags_STY,
   CreateProduct_TagsCont_STY,
   CreateProductLabelCont,
   CreateProductStep2_CONT_STY,
-} from '../../../../../../styles/styled-components/base/modules/CreateProduct_Style/Steps/CreateProduct_Step2.style';
-import EditorForProductCreate from '../../../../editors/EditorForProductCreate';
+} from 'app/styles/styled-components/base/modules/CreateProduct_Style/Steps/CreateProduct_Step2.style';
 
 interface CreateProductDetailsProps extends AddProductStepProps {
   addDetailBlock: () => void
@@ -41,45 +24,14 @@ const CreateProductDetails = ({
   addTag,
   deleteTag,
 }: CreateProductDetailsProps) => {
-  const dispatch = useAppDispatch()
-  const sectionsProduct = useAppSelector(sections_product)
-  const createProductStep2 = useAppSelector(product_create_step2_data)
-  const { validators, validated, details_data } = createProductStep2
-
-  function handleOnDragEnd(result: any) {
-    if (result.source.droppableId === 'main') {
-      if (!result.destination) return
-      const items = Array.from(sectionsProduct)
-      const [reorderedItem] = items.splice(result.source.index, 1)
-      items.splice(result.destination.index, 0, reorderedItem)
-      dispatch(updateSectionsOrder(items))
-    } else if (result.destination.droppableId === 'main-clip') {
-      if (!result.destination) return
-      const items = Array.from(sectionsProduct[getClipsIndex(sectionsProduct)].isClips.clips)
-      const [reorderedItem] = items.splice(result.source.index, 1)
-      items.splice(result.destination.index - 1, 0, reorderedItem)
-      dispatch(changeClipPosition(items))
-    } else if (result.source.droppableId === 'clips') {
-      if (result.source.draggableId === 'main-clip-drg-id') {
-        if (!result.destination) return
-        const items = Array.from(sectionsProduct[getClipsIndex(sectionsProduct)].isClips.clips)
-        const [reorderedItem] = items.splice(result.source.index, 1)
-        items.splice(result.destination.index, 0, reorderedItem)
-        dispatch(changeClipPosition(items))
-      }
-      if (!result.destination) return
-      const items = Array.from(sectionsProduct[getClipsIndex(sectionsProduct)].isClips.clips)
-      const [reorderedItem] = items.splice(result.source.index, 1)
-      items.splice(result.destination.index, 0, reorderedItem)
-      dispatch(changeClipPosition(items))
-    }
-  }
-
   const createTag = (event: any) => {
-    if (event.code === 'Space') {
-      if (event.target.value) {
+    if (event.code === 'Space' || event.code === 'Enter') {
+      if (event.target.value.trim()) {
         addTag(event.target.value)
         event.target.value = ''
+
+        // Remove space created by keypress
+        setTimeout(() => (event.target.value = ''))
       }
     }
   }
@@ -96,11 +48,7 @@ const CreateProductDetails = ({
           onChange={(e) => handleValueChange('productTitle', e.target.value)}
           type="text"
         />
-        <span className="error">
-          {validated === 'not-valid' &&
-            !validators.isNameFilled.valid &&
-            validators.isNameFilled.message}
-        </span>
+        <span className="error"></span>
       </CreateProductLabelCont>
 
       {state.details?.map((item) => (
@@ -109,22 +57,19 @@ const CreateProductDetails = ({
             className="title editorTitle"
             type="text"
             value={item.label}
-            onChange={(e) => updateDetailBlock(item.key, e.target.value)}
-            onDoubleClick={() => item.isEditable && deleteDetailBlock(item.key)}
+            onChange={(e) => updateDetailBlock(item.key, e.target.value, undefined)}
             readOnly={!item.isEditable}
           />
-          <EditorForProductCreate
-            display="block"
-            content={item.value}
-            onChange={(content: any) => updateDetailBlock(item.key, undefined, content)}
-          />
-          {sectionsProduct[0].isEditor && (
-            <span className="error">
-              {validated === 'not-valid' &&
-                !validators.isDescriptionFilled.valid &&
-                validators.isDescriptionFilled.message}
-            </span>
+          {item.isEditable && (
+            <button style={{ color: 'white' }} onClick={() => deleteDetailBlock(item.key)}>
+              Delete block
+            </button>
           )}
+
+          <RichEditor
+            contentValueChanged={(value) => updateDetailBlock(item.key, undefined, value)}
+            value={item.value}
+          />
         </CreateProductLabelCont>
       ))}
 
@@ -143,225 +88,14 @@ const CreateProductDetails = ({
           ))}
           <input onKeyDown={createTag} />
         </CreateProduct_Tags_STY>
-        <span className="error">
-          {validated === 'not-valid' &&
-            !validators.isTagsFilled.valid &&
-            validators.isTagsFilled.message}
-        </span>
+        <span className="error"></span>
       </CreateProduct_TagsCont_STY>
-
-      <DragDropContext onDragEnd={handleOnDragEnd}>
-        <Droppable droppableId="main">
-          {(provided, snapshot) => (
-            <CreateProduct_DragCont_STY
-              key={'77'}
-              style={{
-                width: '100%',
-              }}
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-            >
-              {sectionsProduct.map(
-                (
-                  { id, label_key, label_value, isEditor, isClips }: SectionOfProduct,
-                  index: any,
-                ) => {
-                  if (index > 2) {
-                    return (
-                      <Draggable draggableId={id.toString()} index={index} key={id}>
-                        {(provided, snapshot) => (
-                          <div
-                            key={id}
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            style={{
-                              userSelect: 'none',
-                              margin: '0 0 8px 0',
-                              minHeight: '50px',
-                              ...provided.draggableProps.style,
-                            }}
-                          >
-                            <CreateProductLabelCont className="customBlock">
-                              {isEditor && (
-                                <button
-                                  className="delEditorBtn"
-                                  disabled={id === 1 || id === 2 || id === 3}
-                                  type="button"
-                                  onClick={() => dispatch(deleteSection({ index: index }))}
-                                >
-                                  x
-                                </button>
-                              )}
-                              <span {...provided.dragHandleProps} className="dragEditorBtn">
-                                <FontAwesomeIcon icon={faEllipsisH} />
-                              </span>
-                              {isEditor && (
-                                <input
-                                  className="title editorTitle"
-                                  type="text"
-                                  value={label_key}
-                                  onChange={(e: any) =>
-                                    dispatch(updateKey({ index: index, content: e.target.value }))
-                                  }
-                                />
-                              )}
-                              {isEditor && (
-                                <EditorForProductCreate
-                                  display={'block'}
-                                  content={label_value}
-                                  onChange={(content: any) =>
-                                    dispatch(updateLabel({ index: index, content: content }))
-                                  }
-                                />
-                              )}
-                              {/* {isEditor &&<label htmlFor="title">validate</label>} */}
-                              {/* {isClips.status && (
-                                <CreateProduct_ClipsCont_STY>
-                                  {isClips.status && (
-                                    <input
-                                      className="titleClips"
-                                      type="text"
-                                      disabled={true}
-                                      value={label_key}
-                                    />
-                                  )}
-                                  <div className="clipsSectionCont">
-                                    <Droppable droppableId="main-clip" type={`main-clip`}>
-                                      {(provided, snapshot) => (
-                                        <div {...provided.droppableProps} ref={provided.innerRef}>
-                                          <div
-                                            className="clipsLeftSection"
-                                            style={{
-                                              userSelect: 'none',
-                                              // backgroundColor: snapshot.isDragging
-                                              // ? "red"
-                                              // : "pink",
-                                              width: '100%',
-                                            }}
-                                          >
-                                            {isClips.clips[0] && (
-                                              <img
-                                                width={'450px'}
-                                                className="imgPreview"
-                                                id="imgPreview"
-                                                src={isClips.clips[0].src}
-                                                alt=""
-                                              />
-                                            )}
-                                          </div>
-                                        </div>
-                                      )}
-                                    </Droppable>
-
-                                    <Droppable droppableId="clips" type={`clips`}>
-                                      {(provided, snapshot) => (
-                                        <div
-                                          className="clipsRightSection"
-                                          style={{
-                                            // background: snapshot.isDraggingOver
-                                            // // ? "lightblue"
-                                            // // : "lightgrey",
-                                            width: '100%',
-                                          }}
-                                          {...provided.droppableProps}
-                                          ref={provided.innerRef}
-                                        >
-                                          {isClips.clips.map(({ id, src }, index) => {
-                                            return (
-                                              <Draggable
-                                                key={id}
-                                                draggableId={id.toString()}
-                                                index={index}
-                                              >
-                                                {(provided, snapshot) => (
-                                                  <div
-                                                    ref={provided.innerRef}
-                                                    {...provided.draggableProps}
-                                                    style={{
-                                                      userSelect: 'none',
-                                                      margin: '0 0 8px 0',
-                                                      // backgroundColor: snapshot.isDragging
-                                                      // ? "#263B4A"
-                                                      // : "#456C86",
-                                                      color: 'white',
-                                                      ...provided.draggableProps.style,
-                                                    }}
-                                                    className="clipItem"
-                                                  >
-                                                    <img
-                                                      className="imgPreview"
-                                                      id="imgPreview"
-                                                      src={src}
-                                                      width="auto"
-                                                      height="100px"
-                                                      alt=""
-                                                    />
-                                                    <span
-                                                      className="move"
-                                                      style={{
-                                                        marginRight: '10px',
-                                                        color: 'black',
-                                                      }}
-                                                      {...provided.dragHandleProps}
-                                                    >
-                                                      <FontAwesomeIcon icon={faEllipsisH} />
-                                                    </span>
-                                                    {id}
-                                                    <button
-                                                      type="button"
-                                                      className="del"
-                                                      onClick={() =>
-                                                        dispatch(deleteClip({ index: index }))
-                                                      }
-                                                    >
-                                                      x
-                                                    </button>
-                                                  </div>
-                                                )}
-                                              </Draggable>
-                                            )
-                                          })}
-
-                                          {provided.placeholder}
-                                        </div>
-                                      )}
-                                    </Droppable>
-                                  </div>
-
-                                  <button className="addClipImage">
-                                    <p className="text">Upload File</p>
-                                    <input
-                                      onChangeCapture={(e: any) =>
-                                        dispatch(addFile(e.target.files[0]))
-                                      }
-                                      value={''}
-                                      type="file"
-                                      placeholder="add Image"
-                                    />
-                                  </button>
-                                </CreateProduct_ClipsCont_STY>
-                              )} */}
-                            </CreateProductLabelCont>
-                          </div>
-                        )}
-                      </Draggable>
-                    )
-                  } else {
-                    return null
-                  }
-                },
-              )}
-              {provided.placeholder}
-            </CreateProduct_DragCont_STY>
-          )}
-        </Droppable>
-      </DragDropContext>
 
       <button
         type="button"
         className="addNewSection"
         onClick={addDetailBlock}
-        disabled={sectionsProduct.length > 7}
+        disabled={state.details && state.details.length > 7}
       >
         <p>Add new block</p>
       </button>

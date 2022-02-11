@@ -1,4 +1,5 @@
 import { Form, FormControl } from 'app/interfaces';
+import LinkifyIt from 'linkify-it';
 
 class Utils {
   /**
@@ -110,6 +111,25 @@ class Utils {
     }
 
     return { updatedForm, formValid }
+  }
+
+  static matchIDfromTextLink(path: string, text: string): number | null {
+    const matchedLinks = LinkifyIt().match(text)
+
+    // Match url in text, then search for ID
+    if (matchedLinks && matchedLinks.length === 1) {
+      const url = matchedLinks[0].url
+      if (url.includes(`${window.location.origin}/${path}`)) {
+        const matchedDigits = url.match(/\d+/g)
+
+        // Return last occurrence of id
+        if (matchedDigits) {
+          return +matchedDigits[matchedDigits.length - 1]
+        }
+      }
+    }
+
+    return null
   }
 }
 

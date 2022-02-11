@@ -26,10 +26,6 @@ export const CreateProductStep2_CONT_STY = styled.div`
     }
   }
   .editorTitle {
-    position: absolute;
-    z-index: 2;
-    top: 0px;
-    margin-top: 40px;
     width: 100%;
     padding: 10px;
     box-shadow: ${({ theme }) => theme.boxshadows.boxshadow1};
