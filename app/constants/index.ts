@@ -1,4 +1,5 @@
 export const API_BASE_URL = 'https://api.abysshub.com/api'
 export const AUTH_TOKEN = 'auth_token'
-export const ADD_PRODUCT_STATE_KEY = 'add_product_state'
+export const ADD_PRODUCT_STEPS_STATE_KEY = 'add_product_state'
+export const ADD_PRODUCT_WAS_REFRESHED_KEY = 'add_product_was_refreshed'
 export const ENTRY_ROUTE = '/'

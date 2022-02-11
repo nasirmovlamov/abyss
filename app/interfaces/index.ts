@@ -22,10 +22,22 @@ export interface Form {
 }
 
 // Add product
+export interface AddProductFormValidation {
+  rules: {
+    required?: boolean
+    email?: boolean
+    min?: number
+  }
+  error: string
+}
+
 export interface AddProductFormStep {
   key: string
   label: string
   isValidated: boolean | null
+  validations: {
+    [index: string]: AddProductFormValidation | { [index: string]: AddProductFormValidation }
+  }
   productTitle?: string
   code?: string
   lang?: string

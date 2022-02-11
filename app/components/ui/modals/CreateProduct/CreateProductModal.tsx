@@ -1,4 +1,4 @@
-import { ADD_PRODUCT_STATE_KEY } from 'app/constants';
+import { ADD_PRODUCT_STEPS_STATE_KEY } from 'app/constants';
 import { AddProductForm, AddProductFormStep } from 'app/interfaces';
 import {
   CreateProduct_Tab_Seperator,
@@ -21,12 +21,12 @@ import { ProductCreate_Step3 } from './StepsForProductCreate/Steps/ProductCreate
 import { ProductCreate_Step4 } from './StepsForProductCreate/Steps/ProductCreate_Step4';
 import { ProductCreate_Step5 } from './StepsForProductCreate/Steps/ProductCreate_Step5';
 
-const CreateProductModal = () => {
+const CreateProductModal = ({ pageWasRefreshed }: { pageWasRefreshed: boolean }) => {
   const dispatch = useAppDispatch()
   const [timer, setTimer] = useState<ReturnType<typeof setTimeout>>()
 
   // NOTE: for steps, we start from 0
-  const [addProductForm, setAddProductForm] = useState<AddProductForm>({
+  const initialAddProductForm: AddProductForm = {
     curStep: 0,
     supportedLangs: [
       { key: 'javascript', label: 'Javascript' },
@@ -41,6 +41,14 @@ const CreateProductModal = () => {
         isValidated: null,
         code: '',
         lang: 'javascript',
+        validations: {
+          code: {
+            rules: {
+              required: true,
+            },
+            error: '',
+          },
+        },
       },
       {
         key: 'details',
@@ -59,6 +67,34 @@ const CreateProductModal = () => {
         ],
         tags: [],
         clips: [],
+        validations: {
+          productTitle: {
+            rules: {
+              required: true,
+            },
+            error: '',
+          },
+          details: {
+            description: {
+              rules: {
+                required: true,
+              },
+              error: '',
+            },
+            applicability: {
+              rules: {
+                required: true,
+              },
+              error: '',
+            },
+            problem_formulation: {
+              rules: {
+                required: true,
+              },
+              error: '',
+            },
+          },
+        },
       },
       {
         key: 'iterations',
@@ -68,11 +104,32 @@ const CreateProductModal = () => {
         iterationCode: '',
         iterationLang: 'javascript',
         iterationNote: '',
+        validations: {
+          iterationTitle: {
+            rules: {
+              required: true,
+            },
+            error: '',
+          },
+          iterationCode: {
+            rules: {
+              required: true,
+            },
+            error: '',
+          },
+          iterationNote: {
+            rules: {
+              required: true,
+            },
+            error: '',
+          },
+        },
       },
       {
         key: 'checks',
         label: 'Checks',
         isValidated: null,
+        validations: {},
       },
       {
         key: 'pricing',
@@ -80,26 +137,58 @@ const CreateProductModal = () => {
         isValidated: null,
         tierType: null,
         visibilityType: null,
+        validations: {
+          tierType: {
+            rules: {
+              required: true,
+            },
+            error: '',
+          },
+          visibilityType: {
+            rules: {
+              required: true,
+            },
+            error: '',
+          },
+        },
       },
     ],
-  })
+  }
+  const [addProductForm, setAddProductForm] = useState<AddProductForm>(initialAddProductForm)
 
-  // Get saved state from localStorage
+  // Get saved draft from localStorage
   useEffect(() => {
-    const savedState = localStorage.getItem(Cryption.encrypt(ADD_PRODUCT_STATE_KEY))
-    if (savedState) setAddProductForm(JSON.parse(Cryption.decrypt(savedState)))
+    const savedState = localStorage.getItem(Cryption.encrypt(ADD_PRODUCT_STEPS_STATE_KEY))
+    if (savedState) {
+      let savedForm: AddProductForm = JSON.parse(Cryption.decrypt(savedState))
+
+      const restoreDraft = confirm('Do you want to restore the draft?')
+      if (restoreDraft) {
+        // If page was not refreshed, make first step active
+        if (!pageWasRefreshed) savedForm.curStep = 0
+        setAddProductForm(savedForm)
+      } else {
+        localStorage.removeItem(Cryption.encrypt(ADD_PRODUCT_STEPS_STATE_KEY))
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  // Debounce state change and save to localStorage
   useEffect(() => {
     if (timer) clearTimeout(timer)
 
     setTimer(
       setTimeout(() => {
-        localStorage.setItem(
-          Cryption.encrypt(ADD_PRODUCT_STATE_KEY),
-          Cryption.encrypt(JSON.stringify(addProductForm)),
-        )
+        // Debounce changes and save to draft if different from initial
+        const addProductFormStr = JSON.stringify(addProductForm)
+        if (addProductFormStr !== JSON.stringify(initialAddProductForm)) {
+          localStorage.setItem(
+            Cryption.encrypt(ADD_PRODUCT_STEPS_STATE_KEY),
+            Cryption.encrypt(addProductFormStr),
+          )
+        } else {
+          localStorage.removeItem(Cryption.encrypt(ADD_PRODUCT_STEPS_STATE_KEY))
+        }
       }, 1500),
     )
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -127,6 +216,12 @@ const CreateProductModal = () => {
     const step = addProductForm.curStep
     if (step >= 0) {
       setAddProductForm({ ...addProductForm, curStep: step - 1 })
+    }
+  }
+
+  const goStep = (step: number) => {
+    if (step >= 0 && step < addProductForm.steps.length) {
+      setAddProductForm({ ...addProductForm, curStep: step })
     }
   }
 
@@ -279,7 +374,8 @@ const CreateProductModal = () => {
           <div style={{ display: 'flex', alignItems: 'center' }} key={step.key}>
             <CreateProduict_Tab_STY
               validated={step.isValidated === true}
-              currentStage={addProductForm.curStep === index}
+              currentStage={index === addProductForm.curStep}
+              onClick={() => goStep(index)}
             />
 
             {index !== addProductForm.steps.length - 1 && <CreateProduct_Tab_Seperator />}

@@ -7,14 +7,12 @@ interface CodeEditorProps {
 }
 
 const CodeEditor = ({ language, value, onChange }: CodeEditorProps) => {
-  console.log(language)
   return (
     <Editor
       theme="vs-dark"
-      defaultValue="// Add some code"
       language={language}
       value={value}
-      onChange={(value) => value && onChange('code', value)}
+      onChange={(value) => onChange('code', value || '')}
     />
   )
 }
